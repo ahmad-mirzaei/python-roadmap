@@ -1,5 +1,3 @@
-# python-roadmap
-
 # 🐍 Python Roadmap
 
 A comprehensive collection of Python exercises, explanations, and projects designed to help learners master Python from **Beginner** to **Advanced**.
@@ -7,7 +5,9 @@ A comprehensive collection of Python exercises, explanations, and projects desig
 Unlike ordinary repositories that only provide solutions, this project focuses on **learning by solving problems**.
 
 ---
-
+- ## **Translated versions**
+    - [Persian Version - فارسی](README_FA.md)
+---
 ## 🎯 Project Goals
 
 This repository aims to help developers:

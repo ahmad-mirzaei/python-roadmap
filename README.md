@@ -95,23 +95,55 @@ LICENSE
 CONTRIBUTING.md
 .gitignore
 
-01-Basics/
-02-Conditions/
-03-Loops/
-04-Functions/
-05-Strings/
-06-Lists/
-07-Tuples/
-08-Sets/
-09-Dictionaries/
-10-Comprehensions/
-11-File-Handling/
-12-Exception-Handling/
-13-OOP/
-14-Modules/
-15-Advanced/
-16-Mini-Projects/
-17-Interview-Questions/
+01-Beginner/
+│
+├── README.md
+├── 01-Basics.md
+├── 02-Conditions.md
+├── 03-Loops.md
+├── 04-Functions.md
+├── 05-Strings.md
+├── 06-Lists.md
+├── 07-Tuples.md
+├── 08-Sets.md
+└── 09-Dictionaries.md
+
+02-Intermediate/
+│
+├── README.md
+├── 01-Comprehensions.md
+├── 02-Modules.md
+├── 03-File-Handling.md
+├── 04-Exception-Handling.md
+├── 05-OOP.md
+└── 06-Regular-Expressions.md
+
+03-Advanced/
+│
+├── README.md
+├── 01-Decorators.md
+├── 02-Generators.md
+├── 03-Iterators.md
+├── 04-Context-Managers.md
+├── 05-Multithreading.md
+├── 06-Multiprocessing.md
+├── 07-Async.md
+└── 08-Design-Patterns.md
+
+04-Mini-Projects/
+│
+├── README.md
+├── Calculator.md
+├── Todo-App.md
+├── Weather-App.md
+└── ...
+
+05-Interview-Questions/
+│
+├── README.md
+├── Beginner.md
+├── Intermediate.md
+└── Advanced.md
 ```
 
 ---

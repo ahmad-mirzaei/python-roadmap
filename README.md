@@ -6,7 +6,7 @@ Unlike ordinary repositories that only provide solutions, this project focuses o
 
 ---
 - ## **Translated versions**
-    - [Persian Version - فارسی](README_FA.md)
+    - [Persian](README_FA.md)
 ---
 ## 🎯 Project Goals
 

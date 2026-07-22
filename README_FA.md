@@ -97,7 +97,6 @@ CONTRIBUTING.md
 
 01-Beginner/
 │
-├── README.md
 ├── 01-Basics.md
 ├── 02-Conditions.md
 ├── 03-Loops.md
@@ -110,7 +109,6 @@ CONTRIBUTING.md
 
 02-Intermediate/
 │
-├── README.md
 ├── 01-Comprehensions.md
 ├── 02-Modules.md
 ├── 03-File-Handling.md
@@ -120,7 +118,6 @@ CONTRIBUTING.md
 
 03-Advanced/
 │
-├── README.md
 ├── 01-Decorators.md
 ├── 02-Generators.md
 ├── 03-Iterators.md
@@ -132,7 +129,6 @@ CONTRIBUTING.md
 
 04-Mini-Projects/
 │
-├── README.md
 ├── Calculator.md
 ├── Todo-App.md
 ├── Weather-App.md
@@ -140,7 +136,6 @@ CONTRIBUTING.md
 
 05-Interview-Questions/
 │
-├── README.md
 ├── Beginner.md
 ├── Intermediate.md
 └── Advanced.md

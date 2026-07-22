@@ -88,62 +88,120 @@ A dedicated section containing Python interview questions from beginner to advan
 
 ```text
 python-roadmap/
-
-README.md
-README_FA.md
-LICENSE
-CONTRIBUTING.md
-.gitignore
-
-01-Beginner/
 │
-├── README.md
-├── 01-Basics.md
-├── 02-Conditions.md
-├── 03-Loops.md
-├── 04-Functions.md
-├── 05-Strings.md
-├── 06-Lists.md
-├── 07-Tuples.md
-├── 08-Sets.md
-└── 09-Dictionaries.md
-
-02-Intermediate/
+├── README.md                      # Project documentation (English)
+├── README_FA.md                   # مستندات پروژه (فارسی)
+├── CONTRIBUTING.md                # Contribution guide
+├── LICENSE                        # MIT License
+├── .gitignore
 │
-├── README.md
-├── 01-Comprehensions.md
-├── 02-Modules.md
-├── 03-File-Handling.md
-├── 04-Exception-Handling.md
-├── 05-OOP.md
-└── 06-Regular-Expressions.md
-
-03-Advanced/
+├── 01-Beginner/
+│   │
+│   ├── 01-Basics/
+│   │   ├── README.md
+│   │   ├── 01-Variables.md
+│   │   ├── 02-Data-Types.md
+│   │   ├── 03-Input-Output.md
+│   │   ├── 04-Type-Casting.md
+│   │   └── 05-Operators.md
+│   │
+│   ├── 02-Conditions/
+│   │   ├── README.md
+│   │   ├── 01-If.md
+│   │   ├── 02-If-Else.md
+│   │   ├── 03-Elif.md
+│   │   ├── 04-Nested-If.md
+│   │   ├── 05-Match-Case.md
+│   │   └── 06-Ternary-Operator.md
+│   │
+│   ├── 03-Loops/
+│   │   ├── README.md
+│   │   ├── 01-For.md
+│   │   ├── 02-While.md
+│   │   ├── 03-Break.md
+│   │   ├── 04-Continue.md
+│   │   ├── 05-Nested-Loops.md
+│   │   └── 06-Loop-Else.md
+│   │
+│   ├── 04-Functions/
+│   │   ├── README.md
+│   │   ├── 01-Function-Basics.md
+│   │   ├── 02-Arguments.md
+│   │   ├── 03-Return.md
+│   │   ├── 04-Scope.md
+│   │   ├── 05-Lambda.md
+│   │   └── 06-Recursion.md
+│   │
+│   ├── 05-Strings/
+│   │   ├── README.md
+│   │   ├── 01-String-Basics.md
+│   │   ├── 02-String-Methods.md
+│   │   ├── 03-Slicing.md
+│   │   └── 04-Formatting.md
+│   │
+│   ├── 06-Lists/
+│   │   ├── README.md
+│   │   ├── 01-List-Basics.md
+│   │   ├── 02-List-Methods.md
+│   │   ├── 03-Slicing.md
+│   │   ├── 04-Sorting.md
+│   │   └── 05-List-Comprehension.md
+│   │
+│   ├── 07-Tuples/
+│   │   ├── README.md
+│   │   ├── 01-Tuple-Basics.md
+│   │   └── 02-Tuple-Methods.md
+│   │
+│   ├── 08-Sets/
+│   │   ├── README.md
+│   │   ├── 01-Set-Basics.md
+│   │   ├── 02-Set-Methods.md
+│   │   └── 03-Set-Operations.md
+│   │
+│   └── 09-Dictionaries/
+│       ├── README.md
+│       ├── 01-Dictionary-Basics.md
+│       ├── 02-Dictionary-Methods.md
+│       └── 03-Nested-Dictionaries.md
 │
-├── README.md
-├── 01-Decorators.md
-├── 02-Generators.md
-├── 03-Iterators.md
-├── 04-Context-Managers.md
-├── 05-Multithreading.md
-├── 06-Multiprocessing.md
-├── 07-Async.md
-└── 08-Design-Patterns.md
-
-04-Mini-Projects/
+├── 02-Intermediate/
+│   │
+│   ├── 01-Modules/
+│   ├── 02-File-Handling/
+│   ├── 03-Exception-Handling/
+│   ├── 04-Comprehensions/
+│   ├── 05-Iterators/
+│   ├── 06-Generators/
+│   ├── 07-Regular-Expressions/
+│   ├── 08-OOP/
+│   └── 09-Testing/
 │
-├── README.md
-├── Calculator.md
-├── Todo-App.md
-├── Weather-App.md
-└── ...
-
-05-Interview-Questions/
+├── 03-Advanced/
+│   │
+│   ├── 01-Decorators/
+│   ├── 02-Context-Managers/
+│   ├── 03-Multithreading/
+│   ├── 04-Multiprocessing/
+│   ├── 05-Asyncio/
+│   ├── 06-Design-Patterns/
+│   ├── 07-Type-Hinting/
+│   └── 08-Performance/
 │
-├── README.md
-├── Beginner.md
-├── Intermediate.md
-└── Advanced.md
+├── 04-Mini-Projects/
+│   │
+│   ├── 01-Calculator/
+│   ├── 02-Guess-The-Number/
+│   ├── 03-Todo-App/
+│   ├── 04-Expense-Tracker/
+│   ├── 05-Password-Manager/
+│   ├── 06-Library-Management/
+│   └── ...
+│
+└── 05-Interview-Questions/
+    │
+    ├── 01-Beginner/
+    ├── 02-Intermediate/
+    └── 03-Advanced/
 ```
 
 ---

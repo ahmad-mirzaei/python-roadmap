@@ -4,6 +4,22 @@
 
 Welcome to the **Basics** chapter!
 
+> [!NOTE]
+>
+> **Level:** 🟢 Beginner
+>
+> **Estimated Time:** 30–45 minutes
+>
+> **Prerequisites:** None
+>
+> **Topics:** 5
+>
+> **Exercises:** Coming Soon
+>
+> **Mini Project:** Coming Soon
+>
+> **Status:** 🚧 In Progress
+
 This chapter introduces the fundamental concepts of Python that every beginner should master before moving on to more advanced topics.
 
 ---

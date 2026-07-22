@@ -4,6 +4,22 @@
 
 به فصل **مبانی پایتون** خوش آمدید.
 
+> [!NOTE]
+>
+> **Level:** 🟢 Beginner
+>
+> **Estimated Time:** 30–45 minutes
+>
+> **Prerequisites:** None
+>
+> **Topics:** 5
+>
+> **Exercises:** Coming Soon
+>
+> **Mini Project:** Coming Soon
+>
+> **Status:** 🚧 In Progress
+
 در این فصل با مفاهیم پایه‌ای زبان برنامه‌نویسی پایتون آشنا می‌شوید؛ مفاهیمی که یادگیری آن‌ها پیش‌نیاز ورود به مباحث پیشرفته‌تر است.
 
 ---

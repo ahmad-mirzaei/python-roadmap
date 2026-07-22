@@ -9,7 +9,7 @@
 ---
 
 ---
-🌐 Language: **فارسی** | [English](README.md)
+- 🌐 Language: **فارسی** | [English](README.md)
 ---
 
 ## 🎯 هدف پروژه

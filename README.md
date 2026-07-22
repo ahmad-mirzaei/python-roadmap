@@ -5,8 +5,7 @@ A comprehensive collection of Python exercises, explanations, and projects desig
 Unlike ordinary repositories that only provide solutions, this project focuses on **learning by solving problems**.
 
 ---
-- ## **Translated versions**
-    - [Persian](README_FA.md)
+🌐 Language: **English** | [فارسی](README_FA.md)
 ---
 ## 🎯 Project Goals
 

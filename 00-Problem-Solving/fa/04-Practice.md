@@ -1,7 +1,7 @@
 # 💪 تمرین
 
-> 🌐 **زبان:** فارسی | [English](../04-Practice.md)
-
+---
+- 🌐 Language: **فارسی** | [English](../04-Practice.md)
 ---
 
 ## 📖 معرفی

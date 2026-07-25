@@ -1,7 +1,7 @@
 # 📝 Quiz
 
-> 🌐 **Language:** English | [فارسی](fa/05-Quiz.md)
-
+---
+- 🌐 Language: **English** | [فارسی](fa/05-Quize.md)
 ---
 
 # 📖 Overview

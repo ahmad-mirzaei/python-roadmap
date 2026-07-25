@@ -1,7 +1,7 @@
 # 💪 Practice
 
-> 🌐 **Language:** English | [فارسی](fa/04-Practice.md)
-
+---
+- 🌐 Language: **English** | [فارسی](fa/04-Practice.md)
 ---
 
 ## 📖 Overview

@@ -1,12 +1,12 @@
----
-- 🌐 Language: **English** | [فارسی](README_FA.md)
----
-
 # 🧩 Problem Solving
 
 Before learning Python, it's important to learn **how to think like a programmer**.
 
 Many beginners jump directly into writing code without understanding the problem first. This chapter teaches you how to analyze a problem, break it into smaller steps, write a simple algorithm, and then implement it in Python.
+
+---
+- 🌐 Language: **English** | [فارسی](README_FA.md)
+---
 
 Remember:
 

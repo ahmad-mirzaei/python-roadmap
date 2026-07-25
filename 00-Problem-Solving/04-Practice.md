@@ -8,7 +8,7 @@
 
 Congratulations!
 
-You've completed the theoretical part of the **Problem Solving** module.
+You've completed the theoretical part of the **Problem Solving** lesson.
 
 Now it's time to put everything you've learned into practice.
 
@@ -301,7 +301,7 @@ Try solving this challenge completely on your own.
 
 Congratulations!
 
-You have completed the **Problem Solving** module.
+You have completed the **Problem Solving** lesson.
 
 You have learned how to:
 
@@ -332,9 +332,9 @@ If your answer is **"Yes"** to all of these questions, you're ready for the next
 
 ---
 
-## 🚀 Next Module
+## 🚀 Next lesson 
 
-The next module is:
+The next lesson is:
 
 # 🐍 01-Beginner
 

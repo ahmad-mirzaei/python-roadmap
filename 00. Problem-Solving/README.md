@@ -1,3 +1,7 @@
+---
+- 🌐 Language: **English** | [فارسی](README_FA.md)
+---
+
 # 🧩 Problem Solving
 
 Before learning Python, it's important to learn **how to think like a programmer**.

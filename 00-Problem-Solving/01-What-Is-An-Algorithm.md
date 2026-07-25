@@ -1,7 +1,7 @@
 # 🧩 What Is an Algorithm?
 
 ---
-- 🌐 Language: **English** | [فارسی](fa/01.%20What-Is-An-Algorithm.md.md)
+- 🌐 Language: **English** | [فارسی](fa/01-What-Is-An-Algorithm.md)
 ---
 
 ## 📖 Overview

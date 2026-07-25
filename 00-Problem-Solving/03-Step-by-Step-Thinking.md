@@ -1,7 +1,7 @@
 # 🧠 Step-by-Step Thinking
 
 ---
-- 🌐 Language: **English** | [فارسی](fa/03.%20Step-by-Step-Thinking.md)
+- 🌐 Language: **English** | [فارسی](fa/03-Step-by-Step-Thinking.md)
 ---
 
 ## 📖 Overview

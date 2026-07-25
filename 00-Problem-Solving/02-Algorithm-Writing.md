@@ -1,7 +1,7 @@
 # ✍️ How to Write an Algorithm
 
 ---
-- 🌐 Language: **English** | [فارسی](fa/02.%20Algorithm-Writing.md)
+- 🌐 Language: **English** | [فارسی](fa/02-Algorithm-Writing.md)
 ---
 
 ## 📖 Overview

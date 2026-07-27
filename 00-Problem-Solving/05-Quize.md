@@ -8,7 +8,7 @@
 
 Congratulations!
 
-You have reached the end of the **Problem Solving** module.
+You have reached the end of the **Problem Solving** lesson.
 
 Before moving on to Python programming, take this short quiz to review what you've learned.
 
@@ -41,7 +41,7 @@ Good luck!
 What is an algorithm?
 
 - A) A programming language
-- B) A sequence of steps used to solve a problem ✅
+- B) A sequence of steps used to solve a problem 
 - C) A software application
 - D) A Python function
 
@@ -53,7 +53,7 @@ What should you do before writing code?
 
 - A) Search the internet
 - B) Memorize the solution
-- C) Understand the problem ✅
+- C) Understand the problem 
 - D) Open your code editor
 
 ---
@@ -63,7 +63,7 @@ What should you do before writing code?
 What is the **input** of a program?
 
 - A) The result produced by the program
-- B) Information provided to the program ✅
+- B) Information provided to the program 
 - C) The program's source code
 - D) Error messages
 
@@ -74,7 +74,7 @@ What is the **input** of a program?
 Which order is correct?
 
 - A) Code → Algorithm → Problem
-- B) Problem → Algorithm → Code ✅
+- B) Problem → Algorithm → Code 
 - C) Algorithm → Code → Problem
 - D) Code → Output → Problem
 
@@ -85,7 +85,7 @@ Which order is correct?
 Why do programmers divide large problems into smaller ones?
 
 - A) To write more code
-- B) To make the problem easier to solve ✅
+- B) To make the problem easier to solve 
 - C) To make the program run faster
 - D) To avoid debugging
 
@@ -98,7 +98,7 @@ You want to calculate the average of three numbers.
 What is the first step?
 
 - A) Divide by three
-- B) Read the three numbers ✅
+- B) Read the three numbers 
 - C) Print the result
 - D) Write Python code
 
@@ -109,7 +109,7 @@ What is the first step?
 How can you determine whether a number is even?
 
 - A) Check whether it is greater than zero
-- B) Check whether it is divisible by 2 with no remainder ✅
+- B) Check whether it is divisible by 2 with no remainder 
 - C) Count its digits
 - D) Add all its digits together
 
@@ -120,7 +120,7 @@ How can you determine whether a number is even?
 When should you think about Python syntax?
 
 - A) Before understanding the problem
-- B) After writing the algorithm ✅
+- B) After writing the algorithm 
 - C) Before identifying the input
 - D) Before reading the problem
 
@@ -133,7 +133,7 @@ A problem seems difficult.
 What should you do first?
 
 - A) Memorize a similar solution
-- B) Break it into smaller tasks ✅
+- B) Break it into smaller tasks 
 - C) Skip the problem
 - D) Start coding immediately
 
@@ -141,11 +141,11 @@ What should you do first?
 
 ## Question 10
 
-What is the main goal of this module?
+What is the main goal of this lesson?
 
 - A) Learning Python syntax
 - B) Building complex projects
-- C) Developing problem-solving skills ✅
+- C) Developing problem-solving skills
 - D) Learning Python libraries
 
 ---
@@ -163,7 +163,7 @@ What is the main goal of this module?
 
 # 🎉 Congratulations!
 
-You have successfully completed the **Problem Solving** module.
+You have successfully completed the **Problem Solving** lesson.
 
 You now know how to:
 
@@ -175,7 +175,7 @@ You now know how to:
 
 You're now ready to start writing your first Python programs.
 
-➡️ **Next Module:** `01-Beginner`
+➡️ **Next lesson:** `01-Beginner`
 
 ---
 

@@ -1,6 +1,6 @@
 # 📘 مبانی (Basics)
 
-🌐 زبان: [English](README.md) | **فارسی**
+🌐 Language: [English](../README.md) | **فارسی**
 
 به فصل **مبانی پایتون** خوش آمدید.
 

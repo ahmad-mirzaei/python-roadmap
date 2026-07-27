@@ -1,6 +1,6 @@
 # 📘 Basics
 
-🌐 Language: **English** | [فارسی](README_FA.md)
+🌐 Language: **English** | [فارسی](fa/README.md)
 
 Welcome to the **Basics** chapter!
 

@@ -1,5 +1,7 @@
 # Part 1 — Why Do We Need to Install Python?
 
+🌐 Language: **English** | [فارسی](fa/README.md)
+
 Before writing your first Python program, you need to prepare your computer.
 
 But what exactly do we need to install?

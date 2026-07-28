@@ -104,18 +104,20 @@ python-roadmap/
 │   ├── 03-Step-by-Step-Thinking.md
 │   └── 04-Practice.md
 │
-├── 01-Beginner/
-│   ├── README.md
-│   ├── README_FA.md
-│   │
-│   ├── 01-Basics/
-│   │   ├── README.md
-│   │   ├── README_FA.md
-│   │   ├── 01-Variables.md
-│   │   ├── 02-Data-Types.md
-│   │   ├── 03-Input-Output.md
-│   │   ├── 04-Type-Casting.md
-│   │   └── 05-Operators.md
+01-Beginner/
+└── 01-Basics/
+    ├── README.md
+    ├── fa/
+    │   └── README.md
+    │
+    ├── 01-What-Is-Python/
+    ├── 02-Installing-Python/
+    ├── 03-Your-First-Python-Program/
+    ├── 04-Variables/
+    ├── 05-Data-Types/
+    ├── 06-Input-Output/
+    ├── 07-Type-Casting/
+    └── 08-Operators/
 │   │
 │   ├── 02-Conditions/
 │   ├── 03-Loops/

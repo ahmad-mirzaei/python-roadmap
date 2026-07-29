@@ -150,9 +150,13 @@ https://www.python.org
 
 > **به شکل ۱ مراجعه کنید.**
 
-![شکل ۱](../images/python-homepage.png)
+<p align="center">
+  <img src="../images/python-homepage.png" width="800" alt="python-homepage">
+</p>
 
-**شکل ۱ — دانلود آخرین نسخه پایدار پایتون از وب‌ سایت رسمی.**
+<p align="center">
+  <em>شکل ۱ — دانلود آخرین نسخه پایدار پایتون از وب‌ سایت رسمی.</em>
+</p>
 
 ---
 
@@ -217,9 +221,13 @@ python-3.x.x-amd64.exe
 
 > **به شکل ۲ مراجعه کنید.**
 
-![شکل ۲](../images/Installer.png)
+<p align="center">
+  <img src="../images/Installer.png" width="800" alt="Installer">
+</p>
 
-**شکل ۲ — پنجره نصب پایتون.**
+<p align="center">
+  <em>شکل ۲ — پنجره نصب پایتون.</em>
+</p>
 
 ---
 
@@ -253,9 +261,13 @@ python-3.x.x-amd64.exe
 
 > **به شکل ۳ مراجعه کنید.**
 
-![شکل ۳](../images/Installation-%20Progress.png)
+<p align="center">
+  <img src="../images/Installation-Progress.png" width="800" alt="Installation-Progress">
+</p>
 
-**شکل ۳ — نصب پایتون در حال انجام است.**
+<p align="center">
+  <em>شکل ۳ — نصب پایتون در حال انجام است.</em>
+</p>
 
 ---
 
@@ -271,9 +283,13 @@ Setup was successful
 
 > **به شکل ۴ مراجعه کنید.**
 
-![شکل ۴](../images/Installation-Complete.png)
+<p align="center">
+  <img src="../images/Installation-Complete.png" width="800" alt="Installation-Complete">
+</p>
 
-**شکل ۴ — نصب پایتون با موفقیت به پایان رسید.**
+<p align="center">
+  <em>شکل ۴ — نصب پایتون با موفقیت به پایان رسید.</em>
+</p>
 
 ---
 

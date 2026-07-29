@@ -329,7 +329,7 @@ Then open **Command Prompt**.
 
 > **See Figure 5.**
 
-p align="center">
+<p align="center">
   <img src="images/Open-Command-Prompt.PNG" width="800" alt="Open-Command-Prompt">
 </p>
 
@@ -357,7 +357,7 @@ Python 3.14.6
 
 > **See Figure 6.**
 
-p align="center">
+<p align="center">
   <img src="images/Check-the-Python-Version.png" width="800" alt="Check-the-Python-Version.png">
 </p>
 
@@ -417,7 +417,7 @@ The `>>>` symbol means that Python is waiting for your commands.
 
 > **See Figure 7.**
 
-p align="center">
+<p align="center">
   <img src="images/Interactive-Shell.PNG" width="800" alt="Interactive-Shell">
 </p>
 
@@ -452,5 +452,128 @@ Enter
 - Verified the Python installation.
 - Started the Python Interpreter.
 - Learned how to exit the Interpreter.
+
+---
+
+# Part 5 — Your First Python Program
+
+Congratulations!
+
+Python is now installed and ready to use.
+
+It's time to write and run your very first Python program.
+
+---
+
+## Open the Python Interpreter
+
+Open **Command Prompt** and type:
+
+```bash
+python
+```
+
+Then press **Enter**.
+
+If everything is working correctly, you'll see the Python Interactive Shell.
+
+---
+
+## Your First Program
+
+Type the following command exactly as shown:
+
+```python
+print("Hello, World!")
+```
+
+Then press **Enter**.
+
+Python immediately displays:
+
+```text
+Hello, World!
+```
+
+> **See Figure 8.**
+
+<p align="center">
+  <img src="images/Write-Your-First-Program.PNG" width="800" alt="Write-Your-First-Program">
+</p>
+
+<p align="center">
+  <em>Figure 8 — Running your first Python program.</em>
+</p>
+
+---
+
+## Understanding the Code
+
+Let's break it down.
+
+```python
+print("Hello, World!")
+```
+
+- `print()` is a built-in Python function.
+- `"Hello, World!"` is a string.
+- The `print()` function displays the string on the screen.
+
+This is your first Python program.
+
+---
+
+## Try It Yourself
+
+Now experiment with your own text.
+
+For example:
+
+```python
+print("My name is Ahmad.")
+```
+
+or
+
+```python
+print("I am learning Python!")
+```
+
+Feel free to replace the text with anything you like.
+
+---
+
+> 💡 **Tip**
+>
+> Programming is learned by practicing.
+> Try changing the text several times and observe the output.
+
+---
+
+## Why "Hello, World!"?
+
+The **Hello, World!** program has been used for decades as the traditional first program in many programming languages.
+
+Its purpose is simple:
+
+It verifies that your programming environment is working correctly while introducing the basic syntax of the language.
+
+---
+
+## Lesson Summary
+
+Congratulations!
+
+In this lesson, you learned how to:
+
+- Download Python.
+- Install Python on Windows.
+- Verify the installation.
+- Open the Python Interpreter.
+- Run your very first Python program.
+
+You now have a fully working Python environment.
+
+In the next lesson, you'll install **Visual Studio Code** and begin writing Python programs in real `.py` files.
 
 ---

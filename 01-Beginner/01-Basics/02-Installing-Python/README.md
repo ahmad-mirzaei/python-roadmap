@@ -221,9 +221,13 @@ Two options are especially important.
 
 > **See Figure 2.**
 
-![Figure 2](images/Installer.png)
+<p align="center">
+  <img src="images/Installer.png" width="1400" alt="Installer">
+</p>
 
-**Figure 2 — The Python installer window.**
+<p align="center">
+  <em>Figure 1 — The Python installer window.</em>
+</p>
 
 ---
 
@@ -257,9 +261,13 @@ During this process, a progress bar will be displayed.
 
 > **See Figure 3.**
 
-![Figure 3](images/Installation-%20Progress.png)
+<p align="center">
+  <img src="images/Installation-Progress.png" width="1400" alt="Installation-Progress">
+</p>
 
-**Figure 3 — Python is being installed.**
+<p align="center">
+  <em>Figure 1 — Python is being installed.</em>
+</p>
 
 ---
 
@@ -275,9 +283,13 @@ Click **Close** to exit the installer.
 
 > **See Figure 4.**
 
-![Figure 4](images/Installation-Complete.png)
+<p align="center">
+  <img src="images/Installation-Complete.png" width="1400" alt="Installation-Complete">
+</p>
 
-**Figure 4 — Python has been installed successfully.**
+<p align="center">
+  <em>Figure 1 — Python has been installed successfully.</em>
+</p>
 
 ---
 

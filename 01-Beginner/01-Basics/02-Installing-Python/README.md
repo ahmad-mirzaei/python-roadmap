@@ -150,9 +150,13 @@ To download Python:
 
 > **See Figure 1.**
 
-![Figure 1](images/python-homepage.png)
+<p align="center">
+  <img src="images/python-homepage.png" width="400" alt="python-homepage">
+</p>
 
-**Figure 1 — Download the latest stable version of Python from the official website.**
+<p align="center">
+  <em>Figure 1 — Download the latest stable version of Python from the official website.</em>
+</p>
 
 ---
 

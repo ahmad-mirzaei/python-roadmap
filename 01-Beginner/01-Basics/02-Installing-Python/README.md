@@ -151,7 +151,7 @@ To download Python:
 > **See Figure 1.**
 
 <p align="center">
-  <img src="images/python-homepage.png" width="400" alt="python-homepage">
+  <img src="images/python-homepage.png" width="1400" alt="python-homepage">
 </p>
 
 <p align="center">

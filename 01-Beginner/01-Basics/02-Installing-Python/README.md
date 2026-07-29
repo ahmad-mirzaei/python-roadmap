@@ -151,7 +151,7 @@ To download Python:
 > **See Figure 1.**
 
 <p align="center">
-  <img src="images/python-homepage.png" width="1000" alt="python-homepage">
+  <img src="images/python-homepage.png" width="800" alt="python-homepage">
 </p>
 
 <p align="center">
@@ -222,7 +222,7 @@ Two options are especially important.
 > **See Figure 2.**
 
 <p align="center">
-  <img src="images/Installer.png" width="1000" alt="Installer">
+  <img src="images/Installer.png" width="800" alt="Installer">
 </p>
 
 <p align="center">
@@ -262,7 +262,7 @@ During this process, a progress bar will be displayed.
 > **See Figure 3.**
 
 <p align="center">
-  <img src="images/Installation-Progress.png" width="1000" alt="Installation-Progress">
+  <img src="images/Installation-Progress.png" width="800" alt="Installation-Progress">
 </p>
 
 <p align="center">
@@ -284,7 +284,7 @@ Click **Close** to exit the installer.
 > **See Figure 4.**
 
 <p align="center">
-  <img src="images/Installation-Complete.png" width="1000" alt="Installation-Complete">
+  <img src="images/Installation-Complete.png" width="800" alt="Installation-Complete">
 </p>
 
 <p align="center">

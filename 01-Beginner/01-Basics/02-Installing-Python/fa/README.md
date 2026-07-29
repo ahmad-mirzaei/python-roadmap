@@ -329,7 +329,7 @@ cmd
 
 > **به شکل ۵ مراجعه کنید.**
 
-p align="center">
+<p align="center">
   <img src="../images/Open-Command-Prompt.PNG" width="800" alt="Open-Command-Prompt">
 </p>
 
@@ -357,7 +357,7 @@ Python 3.14.6
 
 > **به شکل ۶ مراجعه کنید.**
 
-p align="center">
+<p align="center">
   <img src="../images/Check-the-Python-Version.png" width="800" alt="Check-the-Python-Version.png">
 </p>
 
@@ -417,7 +417,7 @@ Python 3.14.6 (...)
 
 > **به شکل ۷ مراجعه کنید.**
 
-p align="center">
+<p align="center">
   <img src="../images/Interactive-Shell.PNG" width="800" alt="Interactive-Shell">
 </p>
 

@@ -308,3 +308,149 @@ Click **Close** to exit the installer.
 - Close the installer after the success message appears.
 
 ---
+
+# Part 4 — Verifying the Installation
+
+After installing Python, it's a good idea to verify that everything works correctly.
+
+In this part, you'll check your Python installation and run Python for the first time.
+
+---
+
+## Open Command Prompt
+
+Open the Windows Start Menu and search for:
+
+```text
+cmd
+```
+
+Then open **Command Prompt**.
+
+> **See Figure 5.**
+
+p align="center">
+  <img src="images/Open-Command-Prompt.PNG" width="800" alt="Open-Command-Prompt">
+</p>
+
+<p align="center">
+  <em>Figure 5 — Opening Command Prompt in Windows.</em>
+</p>
+
+---
+
+## Check the Python Version
+
+To verify that Python is installed correctly, type the following command:
+
+```bash
+python --version
+```
+
+Then press **Enter**.
+
+If Python is installed correctly, you should see an output similar to:
+
+```text
+Python 3.14.6
+```
+
+> **See Figure 6.**
+
+p align="center">
+  <img src="images/Check-the-Python-Version.png" width="800" alt="Check-the-Python-Version.png">
+</p>
+
+<p align="center">
+  <em>Figure 6 — Checking the installed Python version.</em>
+</p>
+
+---
+
+> 💡 **Tip**
+>
+> Your version number may be different depending on when you installed Python.
+
+---
+
+## If the Command Doesn't Work
+
+If you see a message similar to:
+
+```text
+'python' is not recognized as an internal or external command...
+```
+
+don't worry.
+
+This usually happens because:
+
+- Python was not added to the system PATH.
+- Command Prompt was already open before Python was installed.
+
+> ⚠️ **Important**
+>
+> Close Command Prompt and open it again before trying the command a second time.
+
+If the problem still exists, reinstall Python and make sure **Add Python to PATH** is enabled.
+
+---
+
+## Start the Python Interpreter
+
+Now type:
+
+```bash
+python
+```
+
+and press **Enter**.
+
+If everything is working correctly, you'll see something similar to:
+
+```text
+Python 3.14.6 (...)
+>>>
+```
+
+The `>>>` symbol means that Python is waiting for your commands.
+
+> **See Figure 7.**
+
+p align="center">
+  <img src="images/Interactive-Shell.PNG" width="800" alt="Interactive-Shell">
+</p>
+
+<p align="center">
+  <em>Figure 7 — The Python Interactive Shell.</em>
+</p>
+
+---
+
+## Exit the Interpreter
+
+To leave the Python Interpreter, type:
+
+```python
+exit()
+```
+
+and press **Enter**.
+
+You can also use:
+
+```text
+Ctrl + Z
+Enter
+```
+
+---
+
+## Part Summary
+
+- Opened Command Prompt.
+- Verified the Python installation.
+- Started the Python Interpreter.
+- Learned how to exit the Interpreter.
+
+---

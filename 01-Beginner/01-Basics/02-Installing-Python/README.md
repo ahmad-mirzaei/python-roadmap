@@ -184,3 +184,111 @@ In the next part, we will install Python step by step and configure it correctly
 - In the next part, we will install Python on Windows.
 
 ---
+
+# Part 3 — Installing Python on Windows
+
+After downloading the Python installer, the next step is to install Python on your computer.
+
+The installation process is straightforward, but there is one important option that you should not miss.
+
+Let's install Python step by step.
+
+---
+
+## Run the Installer
+
+Locate the installer you downloaded.
+
+Its name will look similar to:
+
+```text
+python-3.x.x-amd64.exe
+```
+
+Double-click the installer to launch the Python Setup window.
+
+---
+
+## The Python Setup Window
+
+When the installer opens, you will see the main setup window.
+
+Two options are especially important.
+
+> **See Figure 2.**
+
+![Figure 2](images/Installer.png)
+
+**Figure 2 — The Python installer window.**
+
+---
+
+## Enable "Add Python to PATH"
+
+Before installing Python, make sure the **Add Python to PATH** checkbox is enabled.
+
+This allows Windows to recognize the `python` command from Command Prompt or PowerShell.
+
+> ⚠️ **Important**
+>
+> Always check **Add Python to PATH** before clicking **Install Now**.
+
+If you skip this step, Python may be installed correctly, but Windows might not recognize it from the command line.
+
+---
+
+## Click "Install Now"
+
+Once the **Add Python to PATH** option is enabled, click **Install Now**.
+
+The installer will copy all required files and configure Python automatically.
+
+---
+
+## Installing Python
+
+The installation may take a few moments.
+
+During this process, a progress bar will be displayed.
+
+> **See Figure 3.**
+
+![Figure 3](images/Installation-%20Progress.png)
+
+**Figure 3 — Python is being installed.**
+
+---
+
+## Installation Complete
+
+When the installation finishes successfully, you will see the message:
+
+```text
+Setup was successful
+```
+
+Click **Close** to exit the installer.
+
+> **See Figure 4.**
+
+![Figure 4](images/Installation-Complete.png)
+
+**Figure 4 — Python has been installed successfully.**
+
+---
+
+> 💡 **Tip**
+>
+> Restart your Command Prompt or PowerShell after installing Python to ensure the PATH changes are applied.
+
+---
+
+## Part Summary
+
+- Run the downloaded installer.
+- Enable **Add Python to PATH**.
+- Click **Install Now**.
+- Wait until the installation is complete.
+- Close the installer after the success message appears.
+
+---

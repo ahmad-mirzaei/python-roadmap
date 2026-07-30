@@ -109,7 +109,7 @@ Click the download button to start downloading the installer.
 > **See Figure 1.**
 
 <p align="center">
-  <img src="images/Download-Vscode.png" width="800" alt="Download-Vscode">
+  <img src="images/Download-Vscode.png" width="1000" alt="Download-Vscode">
 </p>
 
 <p align="center">

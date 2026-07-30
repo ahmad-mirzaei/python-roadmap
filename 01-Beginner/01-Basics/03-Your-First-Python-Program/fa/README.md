@@ -108,7 +108,7 @@ https://code.visualstudio.com
 > **به شکل ۱ مراجعه کنید.**
 
 <p align="center">
-  <img src="../images/Download-Vscode.png" width="800" alt="Download-Vscode">
+  <img src="../images/Download-Vscode.png" width="1000" alt="Download-Vscode">
 </p>
 
 <p align="center">

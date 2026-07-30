@@ -72,3 +72,81 @@ Using the same editor throughout the course keeps the learning experience simple
 - It helps you write and manage code.
 - VS Code is not Python.
 - In the next part, you'll download VS Code from the official website.
+
+# Part 2 — Downloading Visual Studio Code
+
+Now that you know what Visual Studio Code is, it's time to download it.
+
+VS Code is free and can be downloaded directly from the official Microsoft website.
+
+---
+
+## Download from the Official Website
+
+Open your web browser and visit:
+
+https://code.visualstudio.com
+
+Always download Visual Studio Code from the official website.
+
+This ensures that you receive:
+
+- The latest stable version
+- Official updates
+- A secure installer
+- The correct version for your operating system
+
+---
+
+## Download for Your Operating System
+
+The VS Code website automatically detects your operating system.
+
+You will usually see a large download button for your device.
+
+Click the download button to start downloading the installer.
+
+> **See Figure 1.**
+
+<p align="center">
+  <img src="images/Download-Vscode.png" width="800" alt="Download-Vscode">
+</p>
+
+<p align="center">
+  <em>Figure 1 — Downloading Visual Studio Code from the official website.</em>
+</p>
+
+---
+
+## Supported Operating Systems
+
+Visual Studio Code is available for:
+
+- Windows
+- macOS
+- Linux
+
+If the correct version is not displayed automatically, select your operating system manually from the download page.
+
+---
+
+> 💡 **Tip**
+>
+> Download the Stable version unless you specifically need the Insider version.
+
+---
+
+## Before You Continue
+
+After the download finishes, do not run the installer yet.
+
+In the next part, you'll install Visual Studio Code step by step.
+
+---
+
+## Part Summary
+
+- Download VS Code only from the official Microsoft website.
+- The website usually detects your operating system automatically.
+- Download the Stable version.
+- In the next part, you'll install VS Code.

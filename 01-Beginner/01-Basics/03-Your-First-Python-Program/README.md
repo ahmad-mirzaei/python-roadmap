@@ -150,3 +150,139 @@ In the next part, you'll install Visual Studio Code step by step.
 - The website usually detects your operating system automatically.
 - Download the Stable version.
 - In the next part, you'll install VS Code.
+
+# Part 3 — Installing Visual Studio Code
+
+After downloading Visual Studio Code, the next step is to install it.
+
+The installation process is simple and usually takes only a few minutes.
+
+---
+
+## Run the Installer
+
+Locate the installer you downloaded.
+
+Its name will look similar to:
+
+```text
+VSCodeUserSetup-x64-1.xx.x.exe
+```
+
+Double-click the installer to launch the setup wizard.
+
+---
+
+## Accept the License Agreement
+
+Read the license agreement.
+
+Select:
+
+```text
+I accept the agreement
+```
+
+Then click **Next**.
+
+> **See Figure 2.**
+
+<p align="center">
+  <img src="images/License-Agreement.png" width="800" alt="License-Agreement">
+</p>
+
+<p align="center">
+  <em>Figure 2 — Accepting the license agreement.</em>
+</p>
+
+---
+
+## Choose the Installation Location
+
+The default installation location is recommended for most users.
+
+Simply click **Next** to continue.
+
+> 💡 **Tip**
+>
+> Unless you have a specific reason, keep the default installation folder.
+
+---
+
+## Select Additional Tasks
+
+The installer allows you to enable several optional features.
+
+We recommend enabling:
+
+- ✔ Create a desktop icon
+- ✔ Add "Open with Code" to the Windows Explorer context menu (files)
+- ✔ Add "Open with Code" to the Windows Explorer context menu (directories)
+- ✔ Register Code as an editor for supported file types
+- ✔ Add to PATH
+
+> **See Figure 3.**
+
+<p align="center">
+  <img src="images/Additional-Tasks.png" width="800" alt="Additional-Tasks">
+</p>
+
+<p align="center">
+  <em>Figure 3 — Recommended installation options.</em>
+</p>
+
+---
+
+> ⚠️ **Important**
+>
+> Make sure **Add to PATH** is enabled. This allows VS Code to be launched from the command line.
+
+---
+
+## Install Visual Studio Code
+
+Click **Install** to begin the installation.
+
+Wait until the progress bar reaches 100%.
+
+> **See Figure 4.**
+
+<p align="center">
+  <img src="images/Progress-Bar.png" width="800" alt="Additional-Tasks">
+</p>
+
+<p align="center">
+  <em>Figure 4 — Installing Visual Studio Code.</em>
+</p>
+
+---
+
+## Finish the Installation
+
+When the installation is complete, click **Finish**.
+
+Leave the option **Launch Visual Studio Code** enabled.
+
+This will automatically start VS Code after setup finishes.
+
+> **See Figure 5.**
+
+<p align="center">
+  <img src="images/Finish&Launch-Visual-Studio-Code.png" width="800" alt="Finish&Launch-Visual-Studio-Code">
+</p>
+
+<p align="center">
+  <em>Figure 5 — Installation completed successfully.</em>
+</p>
+
+---
+
+## Part Summary
+
+- Ran the installer.
+- Accepted the license agreement.
+- Kept the default installation settings.
+- Enabled the recommended options.
+- Installed Visual Studio Code successfully.
+
+---

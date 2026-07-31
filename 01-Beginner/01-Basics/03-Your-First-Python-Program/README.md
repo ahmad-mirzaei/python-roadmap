@@ -505,3 +505,110 @@ This is how real Python projects are built.
 In the next part, you'll run this file for the first time.
 
 ---
+
+# Part 6 — Running Your First Python File
+
+Your Python file is ready.
+
+Now it's time to run it.
+
+---
+
+## Open the Python File
+
+Open the file you created in the previous part.
+
+For example:
+
+```text
+hello.py
+```
+
+Make sure the file is saved before running it.
+
+---
+
+## Run the Program
+
+Click the **Run Python File** button in the top-right corner of Visual Studio Code.
+
+Alternatively, right-click inside the editor and select:
+
+```text
+Run Python File in Terminal
+```
+
+> **See Figure 11.**
+
+<p align="center">
+  <img src="images/Run-Python-File.png" width="800" alt="Run-Python-File">
+</p>
+
+<p align="center">
+  <em>Figure 11 — Running a Python file in Visual Studio Code.</em>
+</p>
+
+---
+
+## View the Output
+
+VS Code opens the integrated terminal automatically.
+
+You should see output similar to:
+
+```text
+Hello, World!
+```
+
+This confirms that your program ran successfully.
+
+> **See Figure 12.**
+
+<p align="center">
+  <img src="images/show-hello-world.png" width="800" alt="show-hello-world">
+</p>
+
+<p align="center">
+  <em>Figure 12 — Output displayed in the integrated terminal.</em>
+</p>
+
+---
+
+> 💡 **Tip**
+>
+> Every time you modify your program, save the file before running it again.
+
+---
+
+## Interactive Shell vs Python File
+
+You have now used two different ways to execute Python code.
+
+| Interactive Shell | Python File |
+|-------------------|-------------|
+| Executes one command at a time | Executes an entire file |
+| Good for experiments | Best for real projects |
+| Code is not saved automatically | Code is stored in a file |
+
+From now on, you'll primarily write Python programs in `.py` files.
+
+---
+
+## Lesson Summary
+
+Congratulations!
+
+You have successfully:
+
+- Installed Python
+- Installed Visual Studio Code
+- Installed the Python extension
+- Created your first Python file
+- Executed your first Python program in VS Code
+
+Your Python development environment is now fully configured.
+
+In the next lesson, you'll begin learning Python syntax and writing real programs.
+
+---
+

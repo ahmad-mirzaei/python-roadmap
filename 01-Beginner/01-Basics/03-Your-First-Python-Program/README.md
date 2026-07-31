@@ -391,3 +391,117 @@ This indicates that the extension has been installed successfully.
 In the next part, you'll create and open your first Python file in Visual Studio Code.
 
 ---
+
+# Part 5 — Creating Your First Python File
+
+So far, you've used the Python Interactive Shell.
+
+Now it's time to write Python code in a real file.
+
+This is how professional Python developers work.
+
+---
+
+## Create a New Folder
+
+Before writing code, it's a good idea to create a folder for your project.
+
+For example:
+
+```text
+Python-Learning
+```
+
+Open this folder in Visual Studio Code.
+
+You can do this by selecting:
+
+**File → Open Folder...**
+
+Then choose your project folder.
+
+> **See Figure 9.**
+
+<p align="center">
+  <img src="images/open-folder.png" width="800" alt="open-folder">
+</p>
+
+<p align="center">
+  <em>Figure 9 — Opening a project folder in Visual Studio Code.</em>
+</p>
+
+---
+
+## Create a New Python File
+
+Click the **New File** button in the Explorer.
+
+Name the file:
+
+```text
+hello.py
+```
+
+Make sure the file extension is **.py**.
+
+> **See Figure 10.**
+
+<p align="center">
+  <img src="images/create-python-file.png" width="800" alt="create-python-file">
+</p>
+
+<p align="center">
+  <em>Figure 10 — Creating the first Python file.</em>
+</p>
+
+---
+
+> ⚠️ **Important**
+>
+> Always save Python files with the `.py` extension.
+
+---
+
+## Write Your First Program
+
+Type the following code:
+
+```python
+print("Hello, World!")
+```
+
+Save the file using:
+
+```text
+Ctrl + S
+```
+
+---
+
+## Understanding the File
+
+Unlike the Interactive Shell, this code is now stored inside a file.
+
+You can edit it later, run it again, and share it with others.
+
+This is how real Python projects are built.
+
+---
+
+> 💡 **Tip**
+>
+> Give your files meaningful names such as `calculator.py`, `game.py`, or `weather.py`.
+
+---
+
+## Part Summary
+
+- Created a project folder.
+- Opened the folder in VS Code.
+- Created a Python file.
+- Wrote your first Python program.
+- Saved the file.
+
+In the next part, you'll run this file for the first time.
+
+---

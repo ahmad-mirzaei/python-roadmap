@@ -286,3 +286,108 @@ This will automatically start VS Code after setup finishes.
 - Installed Visual Studio Code successfully.
 
 ---
+
+# Part 4 — Installing the Python Extension
+
+Visual Studio Code supports many programming languages through extensions.
+
+To write and run Python programs, you need to install the official Python extension.
+
+---
+
+## Open the Extensions View
+
+Launch Visual Studio Code.
+
+Click the **Extensions** icon in the Activity Bar on the left side of the window.
+
+You can also open it using the keyboard shortcut:
+
+```text
+Ctrl + Shift + X
+```
+
+> **See Figure 6.**
+
+<p align="center">
+  <img src="images/open-extentions.png" width="800" alt="open-extentions">
+</p>
+
+<p align="center">
+  <em>Figure 6 — Opening the Extensions view.</em>
+</p>
+
+---
+
+## Search for the Python Extension
+
+In the search box, type:
+
+```text
+Python
+```
+
+The first result should be the official **Python** extension published by **Microsoft**.
+
+> **See Figure 7.**
+
+<p align="center">
+  <img src="images/search-python-extention.png" width="800" alt="search-python-extention">
+</p>
+
+<p align="center">
+  <em>Figure 7 — Searching for the official Python extension.</em>
+</p>
+
+---
+
+> ⚠️ **Important**
+>
+> Install the **Python** extension published by **Microsoft**. Avoid installing extensions with similar names from other publishers.
+
+---
+
+## Install the Extension
+
+Click the **Install** button.
+
+VS Code will download and install the extension automatically.
+
+This process usually takes only a few seconds.
+
+---
+
+## Verify the Installation
+
+When the installation is complete, the **Install** button changes to **Uninstall** (or **Disable**).
+
+This indicates that the extension has been installed successfully.
+
+> **See Figure 8.**
+
+<p align="center">
+  <img src="images/install-python-extention.png" width="800" alt="install-python-extention">
+</p>
+
+<p align="center">
+  <em>Figure 8 — The Python extension installed successfully.</em>
+</p>
+
+---
+
+> 💡 **Tip**
+>
+> Keep the Python extension updated to receive the latest features and bug fixes.
+
+---
+
+## Part Summary
+
+- Opened the Extensions view.
+- Searched for the official Python extension.
+- Installed the extension.
+- Verified that the installation was successful.
+
+In the next part, you'll create and open your first Python file in Visual Studio Code.
+
+---

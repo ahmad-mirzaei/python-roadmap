@@ -294,7 +294,7 @@ Visual Studio Code از طریق افزونه‌ها از زبان‌های بر
 
 ## باز کردن بخش Extensions
 
-Visual Studio Code را اجرا کنید.
+بر نامه ی Visual Studio Code را اجرا کنید.
 
 از نوار کناری سمت چپ، روی آیکون **Extensions** کلیک کنید.
 

@@ -510,3 +510,183 @@ They help you write cleaner and shorter code.
 
 ---
 
+# Part 4 — Comparison Operators
+
+Programs often need to compare values before making decisions.
+
+For example:
+
+- Is the user old enough to register?
+- Is the password correct?
+- Is the score greater than 90?
+
+Python uses **comparison operators** to compare two values.
+
+A comparison always produces one of two results:
+
+- `True`
+- `False`
+
+---
+
+## Equal To (==)
+
+The `==` operator checks whether two values are equal.
+
+Example:
+
+```python
+print(10 == 10)
+```
+
+Output:
+
+```text
+True
+```
+
+Example:
+
+```python
+print(10 == 5)
+```
+
+Output:
+
+```text
+False
+```
+
+---
+
+## Not Equal To (!=)
+
+The `!=` operator checks whether two values are different.
+
+Example:
+
+```python
+print(10 != 5)
+```
+
+Output:
+
+```text
+True
+```
+
+---
+
+## Greater Than (>)
+
+Checks whether the left value is greater than the right value.
+
+Example:
+
+```python
+print(20 > 15)
+```
+
+Output:
+
+```text
+True
+```
+
+---
+
+## Less Than (<)
+
+Checks whether the left value is smaller than the right value.
+
+Example:
+
+```python
+print(7 < 3)
+```
+
+Output:
+
+```text
+False
+```
+
+---
+
+## Greater Than or Equal To (>=)
+
+Example:
+
+```python
+print(18 >= 18)
+```
+
+Output:
+
+```text
+True
+```
+
+---
+
+## Less Than or Equal To (<=)
+
+Example:
+
+```python
+print(12 <= 20)
+```
+
+Output:
+
+```text
+True
+```
+
+---
+
+## Summary Table
+
+| Operator | Meaning |
+|----------|---------|
+| `==` | Equal to |
+| `!=` | Not equal to |
+| `>` | Greater than |
+| `<` | Less than |
+| `>=` | Greater than or equal to |
+| `<=` | Less than or equal to |
+
+---
+
+## Try It Yourself
+
+### 🟢 Easy
+
+Predict the output:
+
+```python
+print(5 == 5)
+```
+
+---
+
+### 🟡 Medium
+
+Predict the output:
+
+```python
+print(15 < 10)
+```
+
+---
+
+### 🔴 Challenge
+
+Write three comparison statements that produce:
+
+- `True`
+- `False`
+- `True`
+
+---
+

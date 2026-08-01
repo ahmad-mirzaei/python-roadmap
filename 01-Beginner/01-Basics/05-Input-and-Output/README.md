@@ -83,3 +83,115 @@ Examples:
 - Programs can use fixed information or user information.
 - Real applications usually receive data from users.
 - User input makes programs more flexible.
+
+# Part 2 — The input() Function
+
+In the previous part, you learned why programs need information from users.
+
+Now we will learn how Python receives that information.
+
+Python uses the `input()` function to ask the user for data.
+
+---
+
+## What Is input()?
+
+The `input()` function pauses the program and waits for the user to type something.
+
+For example:
+
+```python
+name = input("Enter your name: ")
+```
+
+When Python runs this code, it displays:
+
+```text
+Enter your name:
+```
+
+The program waits until the user enters a value.
+
+---
+
+## A Real-World Example
+
+Think about an ATM machine.
+
+An ATM does not already know your password.
+
+It asks:
+
+> "Please enter your password."
+
+The machine waits for your answer and then uses that information.
+
+The `input()` function works in a similar way.
+
+It asks the user a question and receives the answer.
+
+---
+
+## Understanding the Code
+
+Look at this example:
+
+```python
+name = input("Enter your name: ")
+```
+
+There are two parts:
+
+### The message
+
+```python
+"Enter your name: "
+```
+
+This is the question shown to the user.
+
+### The input value
+
+The answer typed by the user is stored inside:
+
+```python
+name
+```
+
+The variable keeps the information so the program can use it later.
+
+---
+
+## Another Example
+
+```python
+country = input("Where do you live? ")
+```
+
+The program asks a question.
+
+The user's answer is stored in the variable:
+
+```python
+country
+```
+
+---
+
+## Important Note
+
+For now, remember this:
+
+The `input()` function receives information from the user.
+
+Later, you will learn how to work with different types of input, such as numbers.
+
+---
+
+## Part Summary
+
+- `input()` receives information from the user.
+- The program waits until the user enters a value.
+- The result can be stored inside a variable.
+- User input makes programs interactive.
+

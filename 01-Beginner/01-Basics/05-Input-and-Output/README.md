@@ -6,7 +6,7 @@ For example:
 
 ```python
 name = "Ahmad"
-age = 25
+age = 36
 ```
 
 The values are fixed.
@@ -338,13 +338,13 @@ age = input("Enter your age: ")
 If the user enters:
 
 ```text
-25
+36
 ```
 
 Python stores it as:
 
 ```text
-"25"
+"36"
 ```
 
 It looks like a number, but Python sees it as text.
@@ -358,7 +358,7 @@ Imagine receiving a phone number.
 A phone number contains digits:
 
 ```
-09121234567
+09121111111
 ```
 
 But it is not a number that you calculate with.
@@ -384,7 +384,7 @@ next_year = age + 1
 A beginner may expect:
 
 ```
-25 + 1 = 26
+36 + 1 = 37
 ```
 
 But Python does not see `age` as a number.
@@ -392,7 +392,7 @@ But Python does not see `age` as a number.
 It sees:
 
 ```
-"25" + 1
+"36" + 1
 ```
 
 These are different types of information.
@@ -435,13 +435,13 @@ age = input("Enter your age: ")
 Even if the user enters:
 
 ```text
-25
+36
 ```
 
 Python stores it as:
 
 ```text
-"25"
+"36"
 ```
 
 To work with this value as a number, we need to convert its data type.
@@ -463,13 +463,13 @@ age = int(input("Enter your age: "))
 Now, if the user enters:
 
 ```text
-25
+36
 ```
 
 Python stores:
 
 ```python
-25
+36
 ```
 
 as an integer.
@@ -487,13 +487,13 @@ next_year = age + 1
 If the user enters:
 
 ```text
-25
+36
 ```
 
 The result will be:
 
 ```text
-26
+37
 ```
 
 ---
@@ -511,7 +511,7 @@ height = float(input("Enter your height: "))
 If the user enters:
 
 ```text
-1.75
+1.84
 ```
 
 Python stores it as a float value.
@@ -551,7 +551,7 @@ So the program converts the input into a numeric type.
 Examples:
 
 ```python
-number = int("25")
+number = int("36")
 ```
 
 ```python
@@ -571,7 +571,7 @@ Conversion only works when the value can be converted.
 Correct:
 
 ```python
-age = int("25")
+age = int("36")
 ```
 
 Incorrect:
@@ -656,8 +656,8 @@ If the user enters:
 ```text
 Ahmad
 Iran
-25
-1.75
+36
+1.84
 ```
 
 The program displays:
@@ -665,8 +665,8 @@ The program displays:
 ```text
 Name: Ahmad
 Country: Iran
-Age: 25
-Height: 1.75
+Age: 36
+Height: 1.84
 ```
 
 ---
@@ -679,8 +679,8 @@ Example:
 
 ```text
 Hello Ahmad!
-You are 25 years old and you live in Iran.
-Your height is 1.75 meters.
+You are 36 years old and you live in Iran.
+Your height is 1.84 meters.
 ```
 
 Try creating this output using variables.

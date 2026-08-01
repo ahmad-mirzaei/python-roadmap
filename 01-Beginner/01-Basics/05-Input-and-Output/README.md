@@ -1,5 +1,7 @@
 # Part 1 — Getting Information from Users
 
+🌐 Language: **English** | [فارسی](fa/README.md)
+
 So far, you have created programs that use information already written inside the code.
 
 For example:

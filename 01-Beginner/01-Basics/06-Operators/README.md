@@ -839,3 +839,131 @@ Predict the output:
 print(not (10 > 5))
 ```
 
+---
+
+# Try It Yourself
+
+Now it's time to practice what you have learned.
+
+Try to solve these exercises before looking at the answers.
+
+---
+
+## 🟢 Easy
+
+### Exercise 1
+
+Create two variables:
+
+```python
+a = 15
+b = 5
+```
+
+Print:
+
+- Addition
+- Subtraction
+- Multiplication
+- Division
+
+---
+
+### Exercise 2
+
+Create a variable named `score` with the value `80`.
+
+Increase it by `10` using an assignment operator.
+
+Print the result.
+
+---
+
+### Exercise 3
+
+Predict the output:
+
+```python
+print(20 > 15)
+```
+
+---
+
+## 🟡 Medium
+
+### Exercise 4
+
+Create two variables:
+
+```python
+age = 36
+height = 1.84
+```
+
+Print whether the age is greater than `18`.
+
+---
+
+### Exercise 5
+
+Predict the output:
+
+```python
+print(25 % 4)
+```
+
+Explain why.
+
+---
+
+### Exercise 6
+
+Predict the output:
+
+```python
+print((15 > 10) and (20 < 30))
+```
+
+---
+
+## 🔴 Challenge
+
+### Exercise 7
+
+Without running the code, predict the output.
+
+```python
+number = 12
+
+number += 8
+number *= 2
+
+print(number)
+```
+
+---
+
+### Exercise 8
+
+Predict the result.
+
+```python
+print((8 > 5) or (10 < 3))
+```
+
+---
+
+### Exercise 9
+
+Create two variables:
+
+```python
+age = 36
+country = "Iran"
+```
+
+Write a comparison that returns `True`.
+
+Then write another comparison that returns `False`.
+
+---

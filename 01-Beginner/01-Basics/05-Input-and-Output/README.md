@@ -317,3 +317,108 @@ Without storing input, the program would receive information and immediately los
 - Each variable can store a different piece of information.
 - Stored information can be used later in the program.
 
+# Part 4 — Working with User Input
+
+In the previous parts, you learned how to receive information from users and store it in variables.
+
+Now let's look at how Python handles that information.
+
+---
+
+## Input Is Stored as Text
+
+When Python receives information using `input()`, it stores the result as text.
+
+For example:
+
+```python
+age = input("Enter your age: ")
+```
+
+If the user enters:
+
+```text
+25
+```
+
+Python stores it as:
+
+```text
+"25"
+```
+
+It looks like a number, but Python sees it as text.
+
+---
+
+## A Real-World Example
+
+Imagine receiving a phone number.
+
+A phone number contains digits:
+
+```
+09121234567
+```
+
+But it is not a number that you calculate with.
+
+You do not add two phone numbers together.
+
+It is information represented using digits.
+
+This is why some values that contain numbers are still treated as text.
+
+---
+
+## Why Does This Matter?
+
+Imagine this code:
+
+```python
+age = input("Enter your age: ")
+
+next_year = age + 1
+```
+
+A beginner may expect:
+
+```
+25 + 1 = 26
+```
+
+But Python does not see `age` as a number.
+
+It sees:
+
+```
+"25" + 1
+```
+
+These are different types of information.
+
+Python needs to know that we want to perform a mathematical operation.
+
+---
+
+## Working with Different Types
+
+Programs often need to convert information from one type to another.
+
+For example:
+
+- Text to a number
+- Number to text
+
+This process is called **type conversion**.
+
+We will learn how to do this in the next part.
+
+---
+
+## Part Summary
+
+- `input()` receives information as text.
+- Numbers entered by users are still stored as text.
+- Different data types may need to be converted before use.
+

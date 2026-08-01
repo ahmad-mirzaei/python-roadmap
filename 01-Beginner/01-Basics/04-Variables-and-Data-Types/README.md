@@ -316,3 +316,141 @@ Without quotation marks, Python thinks `Ahmad` is the name of another variable.
 - Strings must be enclosed in quotation marks.
 - Python accepts both single and double quotation marks.
 - Text without quotation marks is not treated as a string.
+
+# Part 4 — Numeric Data Types
+
+In the previous part, you learned how Python stores text using strings.
+
+But programs also need to work with numbers.
+
+Examples:
+
+- A person's age
+- A product price
+- A temperature
+- A score in a game
+
+Python provides different data types for storing numbers.
+
+The most common numeric data types are:
+
+- Integer (`int`)
+- Float (`float`)
+
+---
+
+## Integer (int)
+
+An integer is a whole number without a decimal point.
+
+Examples:
+
+```python
+age = 25
+```
+
+```python
+score = 100
+```
+
+```python
+year = 2026
+```
+
+These values are integers because they do not contain decimal numbers.
+
+---
+
+## Float (float)
+
+A float is a number that contains a decimal point.
+
+Examples:
+
+```python
+height = 1.75
+```
+
+```python
+price = 99.99
+```
+
+```python
+temperature = 36.5
+```
+
+These values are floats because they contain decimal numbers.
+
+---
+
+## Integer vs Float
+
+Compare these two examples:
+
+```python
+age = 25
+```
+
+and:
+
+```python
+height = 1.75
+```
+
+The first value is an integer because it is a complete number.
+
+The second value is a float because it contains a decimal part.
+
+---
+
+## Choosing the Right Type
+
+Use integers when you need whole numbers:
+
+Examples:
+
+```python
+number_of_students = 30
+```
+
+```python
+page_count = 250
+```
+
+Use floats when you need more precise values:
+
+Examples:
+
+```python
+weight = 72.5
+```
+
+```python
+average_score = 18.75
+```
+
+---
+
+> 💡 **Tip**
+>
+> Python automatically understands whether a number is an integer or a float based on how you write it.
+
+Example:
+
+```python
+age = 25
+height = 1.75
+```
+
+Python recognizes:
+- `25` as an integer
+- `1.75` as a float
+
+---
+
+## Part Summary
+
+- Numbers can be stored using different data types.
+- `int` stores whole numbers.
+- `float` stores decimal numbers.
+- Choosing the correct type helps make programs clearer.

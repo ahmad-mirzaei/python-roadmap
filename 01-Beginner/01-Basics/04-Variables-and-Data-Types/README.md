@@ -200,3 +200,119 @@ unless they are used for short examples or temporary values.
 - Variable names are case-sensitive.
 - Good names make programs easier to read.
 
+# Part 3 — String Data Type
+
+Not all information is made of numbers.
+
+Sometimes we want to store text, such as a person's name, country, or email address.
+
+In Python, text is stored using the **String** data type.
+
+---
+
+## What Is a String?
+
+A **string** is a sequence of characters enclosed in quotation marks.
+
+For example:
+
+```python
+name = "Ahmad"
+```
+
+Here, `"Ahmad"` is a string.
+
+Python knows it is text because it is enclosed in quotation marks.
+
+---
+
+## More Examples
+
+```python
+country = "Iran"
+```
+
+```python
+city = "Shiraz"
+```
+
+```python
+email = "Ahmad@example.com"
+```
+
+All of these values are strings because they represent text.
+
+---
+
+## Quotation Marks
+
+Python allows you to use either double quotation marks (`" "`) or single quotation marks (`' '`).
+
+Both examples below are valid:
+
+```python
+language = "Python"
+```
+
+```python
+language = 'Python'
+```
+
+Choose one style and use it consistently throughout your code.
+
+---
+
+## When Should You Use Strings?
+
+Use strings whenever you need to store text.
+
+Examples include:
+
+- Names
+- Cities
+- Countries
+- Email addresses
+- Messages
+
+---
+
+> 💡 **Tip**
+>
+> Even if a value contains numbers, it is still a string if it is enclosed in quotation marks.
+>
+> Example:
+>
+> ```python
+> code = "12345"
+> ```
+>
+> This is text, not a number.
+
+---
+
+## Common Beginner Mistake
+
+Beginners sometimes forget to place text inside quotation marks.
+
+Incorrect:
+
+```python
+name = Ahmad
+```
+
+Correct:
+
+```python
+name = "Ahmad"
+```
+
+Without quotation marks, Python thinks `Ahmad` is the name of another variable.
+
+---
+
+## Part Summary
+
+- A string stores text.
+- Strings must be enclosed in quotation marks.
+- Python accepts both single and double quotation marks.
+- Text without quotation marks is not treated as a string.

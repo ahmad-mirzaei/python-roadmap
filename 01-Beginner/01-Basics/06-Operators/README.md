@@ -124,3 +124,271 @@ In the next part, you will learn the most common arithmetic operators in Python.
 
 ---
 
+# Part 2 — Arithmetic Operators
+
+In the previous part, you learned what operators and operands are.
+
+Now it's time to learn the operators you will use most often in Python.
+
+These operators are called **Arithmetic Operators** because they perform mathematical calculations.
+
+---
+
+## A Real-World Example
+
+Think about using a calculator.
+
+When you calculate:
+
+```
+15 + 5
+```
+
+the calculator performs an addition.
+
+When you calculate:
+
+```
+20 - 8
+```
+
+it performs a subtraction.
+
+Python works exactly the same way.
+
+It uses arithmetic operators to perform mathematical calculations.
+
+---
+
+## Addition (+)
+
+The addition operator adds two values together.
+
+Example:
+
+```python
+a = 10
+b = 5
+
+result = a + b
+
+print(result)
+```
+
+Output:
+
+```text
+15
+```
+
+---
+
+## Subtraction (-)
+
+The subtraction operator subtracts one value from another.
+
+Example:
+
+```python
+a = 20
+b = 8
+
+result = a - b
+
+print(result)
+```
+
+Output:
+
+```text
+12
+```
+
+---
+
+## Multiplication (*)
+
+The multiplication operator multiplies two values.
+
+Example:
+
+```python
+a = 6
+b = 4
+
+result = a * b
+
+print(result)
+```
+
+Output:
+
+```text
+24
+```
+
+---
+
+## Division (/)
+
+The division operator divides one value by another.
+
+Example:
+
+```python
+a = 20
+b = 5
+
+result = a / b
+
+print(result)
+```
+
+Output:
+
+```text
+4.0
+```
+
+Notice that Python returns a floating-point number.
+
+---
+
+## Floor Division (//)
+
+The floor division operator divides two numbers and keeps only the whole-number part.
+
+Example:
+
+```python
+a = 20
+b = 6
+
+result = a // b
+
+print(result)
+```
+
+Output:
+
+```text
+3
+```
+
+The decimal part is discarded.
+
+---
+
+## Modulus (%)
+
+The modulus operator returns the remainder after division.
+
+Example:
+
+```python
+a = 20
+b = 6
+
+result = a % b
+
+print(result)
+```
+
+Output:
+
+```text
+2
+```
+
+Because:
+
+```
+20 = (6 × 3) + 2
+```
+
+The remainder is `2`.
+
+---
+
+## Exponent (**)
+
+The exponent operator raises a number to a power.
+
+Example:
+
+```python
+result = 2 ** 3
+
+print(result)
+```
+
+Output:
+
+```text
+8
+```
+
+Because:
+
+```
+2 × 2 × 2 = 8
+```
+
+---
+
+## Summary Table
+
+| Operator | Meaning | Example |
+|----------|---------|---------|
+| `+` | Addition | `10 + 5` |
+| `-` | Subtraction | `20 - 8` |
+| `*` | Multiplication | `6 * 4` |
+| `/` | Division | `20 / 5` |
+| `//` | Floor Division | `20 // 6` |
+| `%` | Modulus | `20 % 6` |
+| `**` | Exponent | `2 ** 3` |
+
+---
+
+## Common Beginner Mistake
+
+Many beginners confuse `/` and `//`.
+
+```python
+20 / 6
+```
+
+Result:
+
+```text
+3.3333333333333335
+```
+
+But:
+
+```python
+20 // 6
+```
+
+Result:
+
+```text
+3
+```
+
+The first returns the exact result.
+
+The second returns only the whole-number part.
+
+---
+
+## Part Summary
+
+- Arithmetic operators perform mathematical calculations.
+- Python supports seven arithmetic operators.
+- `/` and `//` are different operators.
+- `%` returns the remainder.
+- `**` calculates powers.
+
+---
+

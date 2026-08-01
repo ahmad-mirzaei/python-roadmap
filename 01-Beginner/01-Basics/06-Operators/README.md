@@ -690,3 +690,152 @@ Write three comparison statements that produce:
 
 ---
 
+# Part 5 — Logical Operators
+
+Sometimes comparing a single condition is not enough.
+
+For example:
+
+- Is the user over 18 **and** has a valid ID?
+- Is today Saturday **or** Sunday?
+- Is the password **not** empty?
+
+Python uses **logical operators** to combine or modify conditions.
+
+There are three logical operators:
+
+- `and`
+- `or`
+- `not`
+
+---
+
+## The `and` Operator
+
+The `and` operator returns `True` only when **both conditions** are `True`.
+
+Example:
+
+```python
+age = 36
+has_id = True
+
+print(age >= 18 and has_id)
+```
+
+Output:
+
+```text
+True
+```
+
+If one condition becomes `False`, the entire expression becomes `False`.
+
+---
+
+## The `or` Operator
+
+The `or` operator returns `True` when **at least one condition** is `True`.
+
+Example:
+
+```python
+is_saturday = False
+is_sunday = True
+
+print(is_saturday or is_sunday)
+```
+
+Output:
+
+```text
+True
+```
+
+Only when both conditions are `False` does the result become `False`.
+
+---
+
+## The `not` Operator
+
+The `not` operator reverses a Boolean value.
+
+Example:
+
+```python
+is_logged_in = False
+
+print(not is_logged_in)
+```
+
+Output:
+
+```text
+True
+```
+
+---
+
+## Summary Table
+
+| Operator | Meaning |
+|----------|---------|
+| `and` | Both conditions must be True |
+| `or` | At least one condition must be True |
+| `not` | Reverses the result |
+
+---
+
+## A Real-World Example
+
+Imagine a website.
+
+To log in, the user must:
+
+- Enter the correct username.
+- Enter the correct password.
+
+Both conditions must be correct.
+
+This is a perfect example of the `and` operator.
+
+Another example:
+
+A cinema offers discounts on **Saturday or Sunday**.
+
+Only one of these days is enough.
+
+This is a good example of the `or` operator.
+
+---
+
+## Try It Yourself
+
+### 🟢 Easy
+
+Predict the output:
+
+```python
+print(True and False)
+```
+
+---
+
+### 🟡 Medium
+
+Predict the output:
+
+```python
+print(False or True)
+```
+
+---
+
+### 🔴 Challenge
+
+Predict the output:
+
+```python
+print(not (10 > 5))
+```
+

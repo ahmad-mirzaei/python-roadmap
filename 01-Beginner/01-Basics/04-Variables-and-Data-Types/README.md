@@ -454,3 +454,149 @@ Python recognizes:
 - `int` stores whole numbers.
 - `float` stores decimal numbers.
 - Choosing the correct type helps make programs clearer.
+
+# Part 5 — The print() Function
+
+So far, you have learned how to store information using variables.
+
+But storing information is only one part of programming.
+
+Sometimes we need to show information to the user.
+
+In Python, we use the `print()` function to display output.
+
+---
+
+## What Is print()?
+
+The `print()` function displays a value on the screen.
+
+For example:
+
+```python
+print("Hello, World!")
+```
+
+Output:
+
+```text
+Hello, World!
+```
+
+The text inside the parentheses is displayed in the terminal.
+
+---
+
+## Printing Variables
+
+The `print()` function can also display values stored inside variables.
+
+Example:
+
+```python
+name = "Ahmad"
+
+print(name)
+```
+
+Output:
+
+```text
+Ahmad
+```
+
+Python looks at the variable and displays the value stored inside it.
+
+---
+
+## Printing Numbers
+
+Variables containing numbers can also be displayed.
+
+Example:
+
+```python
+age = 25
+
+print(age)
+```
+
+Output:
+
+```text
+25
+```
+
+---
+
+## Printing Multiple Values
+
+You can display multiple values in one `print()` statement.
+
+Example:
+
+```python
+name = "Ahmad"
+age = 25
+
+print(name, age)
+```
+
+Output:
+
+```text
+Ahmad 25
+```
+
+Python automatically separates the values with a space.
+
+---
+
+## Combining Text and Variables
+
+You can also print text together with variables.
+
+Example:
+
+```python
+name = "Ahmad"
+
+print("Hello", name)
+```
+
+Output:
+
+```text
+Hello Ahmad
+```
+
+This allows programs to create more meaningful messages.
+
+---
+
+## Common Beginner Mistake
+
+A common mistake is forgetting the parentheses.
+
+Incorrect:
+
+```python
+print "Hello"
+```
+
+Correct:
+
+```python
+print("Hello")
+```
+
+Python functions always use parentheses when they are called.
+
+---
+
+## Part Summary
+
+- `print()` displays information on the screen.
+- Variables can be printed directly.
+- Multiple values can be printed together.
+- `print()` helps programs communicate with users.

@@ -600,3 +600,124 @@ Python functions always use parentheses when they are called.
 - Variables can be printed directly.
 - Multiple values can be printed together.
 - `print()` helps programs communicate with users.
+
+# Part 6 — Practice: Creating a Personal Profile
+
+In this lesson, you learned how to store information using variables and display it using `print()`.
+
+Now let's combine everything in a small practice project.
+
+---
+
+## Project Goal
+
+Create a simple program that stores information about a person and displays it.
+
+Your program should store:
+
+- Name
+- Country
+- Age
+- Height
+
+---
+
+## Step 1 — Create Variables
+
+Create variables to store the information.
+
+Example:
+
+```python
+name = "Ahmad"
+country = "Iran"
+age = 25
+height = 1.75
+```
+
+Notice that each variable has a meaningful name.
+
+---
+
+## Step 2 — Display the Information
+
+Use `print()` to display each value.
+
+Example:
+
+```python
+print(name)
+print(country)
+print(age)
+print(height)
+```
+
+Output:
+
+```text
+Ahmad
+Iran
+25
+1.75
+```
+
+---
+
+## Challenge
+
+Try creating a message instead of printing values separately.
+
+Example:
+
+```python
+print("My name is", name)
+```
+
+Create similar messages for:
+
+- Country
+- Age
+- Height
+
+---
+
+## Expected Result
+
+Your final program should display information similar to:
+
+```text
+My name is Ahmad
+I live in Iran
+I am 25 years old
+My height is 1.75 meters
+```
+
+---
+
+## What You Practiced
+
+In this project, you used:
+
+- Variables to store information.
+- Strings to store text.
+- Numbers to store values.
+- `print()` to display output.
+
+---
+
+## Lesson 04 Complete
+
+Congratulations!
+
+You learned the basic building blocks of Python:
+
+- Variables
+- Variable naming rules
+- Strings
+- Numbers
+- Printing information
+
+These concepts are the foundation of almost every Python program.
+
+In the next lesson, you will learn how to receive information from users using `input()`.
+

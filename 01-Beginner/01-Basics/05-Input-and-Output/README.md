@@ -591,3 +591,118 @@ Python cannot convert a word into a number.
 - `float()` converts text to decimal numbers.
 - Type conversion allows programs to work with data correctly.
 
+# Part 6 — Practice Project: Personal Information Program
+
+In this lesson, you learned how programs receive information from users.
+
+Now let's create a small project that combines everything you have learned.
+
+---
+
+## Project Goal
+
+Create a program that asks the user for personal information and displays a summary.
+
+The program should ask for:
+
+- Name
+- Country
+- Age
+- Height
+
+---
+
+## Step 1 — Getting Information
+
+First, ask the user for their information.
+
+Example:
+
+```python
+name = input("Enter your name: ")
+country = input("Enter your country: ")
+
+age = int(input("Enter your age: "))
+height = float(input("Enter your height: "))
+```
+
+Notice that:
+
+- Name and country are stored as text.
+- Age is converted to an integer.
+- Height is converted to a float.
+
+---
+
+## Step 2 — Displaying Information
+
+After receiving the information, display the result.
+
+Example:
+
+```python
+print("Name:", name)
+print("Country:", country)
+print("Age:", age)
+print("Height:", height)
+```
+
+---
+
+## Example Output
+
+If the user enters:
+
+```text
+Ahmad
+Iran
+25
+1.75
+```
+
+The program displays:
+
+```text
+Name: Ahmad
+Country: Iran
+Age: 25
+Height: 1.75
+```
+
+---
+
+## Challenge
+
+Improve the program by creating a complete message.
+
+Example:
+
+```text
+Hello Ahmad!
+You are 25 years old and you live in Iran.
+Your height is 1.75 meters.
+```
+
+Try creating this output using variables.
+
+---
+
+## What You Practiced
+
+In this project, you used:
+
+- `input()` to receive information.
+- Variables to store values.
+- `int()` and `float()` for conversion.
+- `print()` to display results.
+
+---
+
+## Lesson 05 Complete
+
+Congratulations!
+
+You learned how Python programs can communicate with users.
+
+You are now ready to start working with calculations and operations in the next lesson.
+

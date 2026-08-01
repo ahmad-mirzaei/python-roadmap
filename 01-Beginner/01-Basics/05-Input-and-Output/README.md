@@ -422,3 +422,172 @@ We will learn how to do this in the next part.
 - Numbers entered by users are still stored as text.
 - Different data types may need to be converted before use.
 
+# Part 5 — Converting Input Data Types
+
+In the previous part, you learned that values received from `input()` are stored as text.
+
+For example:
+
+```python
+age = input("Enter your age: ")
+```
+
+Even if the user enters:
+
+```text
+25
+```
+
+Python stores it as:
+
+```text
+"25"
+```
+
+To work with this value as a number, we need to convert its data type.
+
+This process is called **type conversion**.
+
+---
+
+## Converting Text to Integer
+
+Python provides the `int()` function to convert text into a whole number.
+
+Example:
+
+```python
+age = int(input("Enter your age: "))
+```
+
+Now, if the user enters:
+
+```text
+25
+```
+
+Python stores:
+
+```python
+25
+```
+
+as an integer.
+
+Now mathematical operations are possible.
+
+Example:
+
+```python
+age = int(input("Enter your age: "))
+
+next_year = age + 1
+```
+
+If the user enters:
+
+```text
+25
+```
+
+The result will be:
+
+```text
+26
+```
+
+---
+
+## Converting Text to Float
+
+When we need decimal numbers, we use `float()`.
+
+Example:
+
+```python
+height = float(input("Enter your height: "))
+```
+
+If the user enters:
+
+```text
+1.75
+```
+
+Python stores it as a float value.
+
+---
+
+## A Real-World Example
+
+Imagine a shopping application.
+
+The user enters the product price:
+
+```
+99.99
+```
+
+The program needs to calculate:
+
+- Total price
+- Discounts
+- Taxes
+
+For these calculations, the price must be treated as a number, not text.
+
+So the program converts the input into a numeric type.
+
+---
+
+## Common Conversion Functions
+
+| Function | Converts To |
+|---|---|
+| `int()` | Integer |
+| `float()` | Decimal number |
+| `str()` | String |
+
+Examples:
+
+```python
+number = int("25")
+```
+
+```python
+price = float("99.99")
+```
+
+```python
+text = str(100)
+```
+
+---
+
+## Important Note
+
+Conversion only works when the value can be converted.
+
+Correct:
+
+```python
+age = int("25")
+```
+
+Incorrect:
+
+```python
+age = int("Ahmad")
+```
+
+Python cannot convert a word into a number.
+
+---
+
+## Part Summary
+
+- Input values are stored as text.
+- `int()` converts text to integers.
+- `float()` converts text to decimal numbers.
+- Type conversion allows programs to work with data correctly.
+

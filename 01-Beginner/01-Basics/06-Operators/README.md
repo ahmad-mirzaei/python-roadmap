@@ -392,3 +392,121 @@ The second returns only the whole-number part.
 
 ---
 
+# Part 3 — Assignment Operators
+
+In previous lessons, you have already used the assignment operator many times.
+
+For example:
+
+```python
+age = 36
+```
+
+But what exactly is happening here?
+
+The assignment operator stores a value inside a variable.
+
+Python also provides several shortcut assignment operators that make your code shorter and easier to read.
+
+---
+
+## Assignment (=)
+
+The `=` operator assigns a value to a variable.
+
+Example:
+
+```python
+score = 100
+```
+
+Now the variable `score` stores the value `100`.
+
+---
+
+## Add and Assign (+=)
+
+Instead of writing:
+
+```python
+score = score + 10
+```
+
+you can write:
+
+```python
+score += 10
+```
+
+Both statements produce the same result.
+
+---
+
+## Subtract and Assign (-=)
+
+Example:
+
+```python
+score -= 5
+```
+
+This means:
+
+```python
+score = score - 5
+```
+
+---
+
+## Multiply and Assign (*=)
+
+Example:
+
+```python
+score *= 2
+```
+
+Equivalent to:
+
+```python
+score = score * 2
+```
+
+---
+
+## Divide and Assign (/=)
+
+Example:
+
+```python
+score /= 4
+```
+
+Equivalent to:
+
+```python
+score = score / 4
+```
+
+---
+
+## Summary Table
+
+| Operator | Equivalent Expression |
+|----------|------------------------|
+| `=` | Assign a value |
+| `+=` | `x = x + value` |
+| `-=` | `x = x - value` |
+| `*=` | `x = x * value` |
+| `/=` | `x = x / value` |
+
+---
+
+## Part Summary
+
+Assignment operators update the value of a variable.
+
+They help you write cleaner and shorter code.
+
+---
+

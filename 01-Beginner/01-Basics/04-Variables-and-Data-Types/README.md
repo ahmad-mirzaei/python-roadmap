@@ -1,5 +1,7 @@
 # Part 1 — Variables
 
+🌐 Language: **English** | [فارسی](fa/README.md)
+
 Every day, we store things in containers.
 
 For example, imagine you have a box on your desk.

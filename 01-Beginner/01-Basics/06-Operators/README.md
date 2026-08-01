@@ -967,3 +967,111 @@ Write a comparison that returns `True`.
 Then write another comparison that returns `False`.
 
 ---
+
+# Mini Project — Simple Calculator
+
+In this project, you will create a simple calculator.
+
+The program will:
+
+- Receive two numbers from the user.
+- Perform mathematical operations.
+- Display the results.
+
+---
+
+## Project Goal
+
+Create a program that calculates:
+
+- Addition
+- Subtraction
+- Multiplication
+- Division
+
+---
+
+## Step 1 — Getting User Input
+
+First, receive two numbers from the user.
+
+Example:
+
+```python
+first_number = float(input("Enter the first number: "))
+second_number = float(input("Enter the second number: "))
+```
+
+We use `float()` because the user may enter decimal numbers.
+
+---
+
+## Step 2 — Performing Calculations
+
+Now perform the operations.
+
+Example:
+
+```python
+addition = first_number + second_number
+subtraction = first_number - second_number
+multiplication = first_number * second_number
+division = first_number / second_number
+```
+
+---
+
+## Step 3 — Displaying Results
+
+Print the results.
+
+Example:
+
+```python
+print("Addition:", addition)
+print("Subtraction:", subtraction)
+print("Multiplication:", multiplication)
+print("Division:", division)
+```
+
+---
+
+## Example Output
+
+Input:
+
+```text
+10
+5
+```
+
+Output:
+
+```text
+Addition: 15
+Subtraction: 5
+Multiplication: 50
+Division: 2.0
+```
+
+---
+
+## Challenge
+
+Improve the calculator:
+
+- Add floor division (`//`).
+- Add modulus (`%`).
+- Add exponent (`**`).
+
+---
+
+## What You Practiced
+
+In this project, you used:
+
+- Variables
+- User input
+- Type conversion
+- Arithmetic operators
+- Output formatting

@@ -195,3 +195,125 @@ Later, you will learn how to work with different types of input, such as numbers
 - The result can be stored inside a variable.
 - User input makes programs interactive.
 
+# Part 3 — Storing User Input in Variables
+
+In the previous part, you learned that the `input()` function receives information from users.
+
+But receiving information is only the first step.
+
+A program also needs a way to remember that information.
+
+Python stores user input inside variables.
+
+---
+
+## A Real-World Example
+
+Imagine filling out a registration form.
+
+You type your name:
+
+```
+Ahmad
+```
+
+The website does not just read your name and forget it.
+
+It stores your information so it can use it later.
+
+Python programs work in a similar way.
+
+They store the user's answers inside variables.
+
+---
+
+## Storing Input
+
+Look at this example:
+
+```python
+name = input("Enter your name: ")
+```
+
+When the user enters:
+
+```text
+Ahmad
+```
+
+Python stores that value inside the variable:
+
+```python
+name
+```
+
+Now the program remembers the user's name.
+
+---
+
+## Using Stored Information
+
+After storing information, the program can use it later.
+
+Example:
+
+```python
+name = input("Enter your name: ")
+
+print(name)
+```
+
+If the user enters:
+
+```text
+Ahmad
+```
+
+The output will be:
+
+```text
+Ahmad
+```
+
+The program displays the value stored inside the variable.
+
+---
+
+## Multiple Inputs
+
+A program can store different pieces of information in different variables.
+
+Example:
+
+```python
+name = input("Enter your name: ")
+country = input("Enter your country: ")
+```
+
+Now the program has two separate pieces of information:
+
+- The user's name
+- The user's country
+
+Each value has its own variable.
+
+---
+
+## Why Store User Input?
+
+Storing information allows programs to:
+
+- Use data later.
+- Create personalized messages.
+- Make decisions based on user information.
+
+Without storing input, the program would receive information and immediately lose it.
+
+---
+
+## Part Summary
+
+- User input can be stored inside variables.
+- Each variable can store a different piece of information.
+- Stored information can be used later in the program.
+

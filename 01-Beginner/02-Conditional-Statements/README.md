@@ -37,6 +37,8 @@ Programs work in exactly the same way.
 
 They first check a condition, then decide what to do.
 
+## Figure 1
+
 <p align="center">
   <img src="images/Cinema-Age-Check-Flowchart.png" width="800" alt="Cinema-Age-Check-Flowchart">
 </p>
@@ -207,6 +209,8 @@ If the condition is `False`, nothing happens.
 
 In the next part, you will learn how to tell Python what to do when the condition is `False`.
 
+## Figure 2
+
 <p align="center">
   <img src="images/if-flowchart.png" width="800" alt="if-flowchart">
 </p>
@@ -316,7 +320,7 @@ You cannot write `else` without an `if` before it.
 
 ---
 
-## Figure 3 (Optional)
+## Figure 3
 
 <p align="center">
   <img src="images/if-else-flowchart.png" width="800" alt="if-else-flowchart">

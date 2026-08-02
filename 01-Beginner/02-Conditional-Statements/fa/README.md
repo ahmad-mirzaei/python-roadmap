@@ -37,6 +37,8 @@
 
 ابتدا یک شرط را بررسی می کنند و سپس بر اساس نتیجه، مسیر مناسب را انتخاب می کنند.
 
+## شکل ۱
+
 <p align="center">
   <img src="../images/Cinema-Age-Check-Flowchart.png" width="800" alt="Cinema-Age-Check-Flowchart">
 </p>
@@ -207,6 +209,8 @@ if age >= 18:
 
 در بخش بعد یاد می گیرید چگونه برای حالت نادرست نیز دستور جداگانه ای بنویسید.
 
+## ۲ شکل 
+
 <p align="center">
   <img src="../images/if-flowchart.png" width="800" alt="if-flowchart">
 </p>
@@ -316,7 +320,7 @@ The weather is normal.
 
 ---
 
-## شکل ۳ (اختیاری)
+## شکل ۳
 
 <p align="center">
   <img src="../images/if-else-flowchart.png" width="800" alt="if-else-flowchart">

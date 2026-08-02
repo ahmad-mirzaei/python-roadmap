@@ -216,7 +216,7 @@ In the next part, you will learn how to tell Python what to do when the conditio
 </p>
 
 <p align="center">
-  <em>**Figure 2.** The execution flow of an `if` statement based on the condition result.</em>
+  <em>Figure 2. The execution flow of an `if` statement based on the condition result.</em>
 </p>
 
 ---

@@ -66,7 +66,7 @@ To get the best learning experience, study the topics in the following order:
 | Type Casting | ✅ complited |
 | Operators | ✅ complited |
 
-**Completion:** **0%**
+**Completion:** **100%**
 
 ---
 

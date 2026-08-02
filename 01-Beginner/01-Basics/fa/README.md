@@ -60,13 +60,13 @@
 
 | مبحث | وضعیت |
 |------|:------:|
-| Variables | ⬜ |
-| Data Types | ⬜ |
-| Input & Output | ⬜ |
-| Type Casting | ⬜ |
-| Operators | ⬜ |
+| Variables | 🟩 |
+| Data Types | 🟩 |
+| Input & Output | 🟩 |
+| Type Casting | 🟩 |
+| Operators | 🟩 |
 
-**درصد تکمیل:** **0٪**
+**درصد تکمیل:** *100٪**
 
 ---
 

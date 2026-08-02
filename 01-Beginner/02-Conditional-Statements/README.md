@@ -217,3 +217,114 @@ In the next part, you will learn how to tell Python what to do when the conditio
 
 ---
 
+# Part 3 — The `else` Statement
+
+In the previous part, you learned that an `if` statement only runs when its condition is `True`.
+
+But what happens when the condition is `False`?
+
+Sometimes, we want the program to do something different when a condition is not met.
+
+Python uses the `else` statement for this situation.
+
+The word `else` means:
+
+> "If the condition is not true, do this instead."
+
+---
+
+## Basic Syntax
+
+```python
+if condition:
+    statement
+else:
+    statement
+```
+
+The `else` block does not have a condition.
+
+It runs automatically when the `if` condition is `False`.
+
+---
+
+## Example
+
+Let's return to the movie theater example.
+
+The rule is:
+
+> People who are 18 or older can enter.
+
+Python code:
+
+```python
+age = 15
+
+if age >= 18:
+    print("You can enter the movie theater.")
+else:
+    print("You cannot enter the movie theater.")
+```
+
+Output:
+
+```text
+You cannot enter the movie theater.
+```
+
+The condition `age >= 18` is `False`, so Python runs the `else` block.
+
+---
+
+## Another Example
+
+```python
+temperature = 30
+
+if temperature > 35:
+    print("It is very hot.")
+else:
+    print("The weather is normal.")
+```
+
+Output:
+
+```text
+The weather is normal.
+```
+
+---
+
+## How `if` and `else` Work Together
+
+Python follows these steps:
+
+1. Check the `if` condition.
+2. If the condition is `True`, run the `if` block.
+3. If the condition is `False`, run the `else` block.
+
+Only one of the two blocks will execute.
+
+---
+
+## Important Note
+
+An `if` statement and an `else` statement always work as a pair.
+
+You cannot write `else` without an `if` before it.
+
+---
+
+## Figure 3 (Optional)
+
+<p align="center">
+  <img src="images/if-else-flowchart.png" width="800" alt="if-else-flowchart">
+</p>
+
+<p align="center">
+  <em>Figure 3. The execution flow of an `if-else` statement based on the condition result.</em>
+</p>
+
+---
+

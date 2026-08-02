@@ -113,3 +113,99 @@ if
 
 ---
 
+# Part 2 — The `if` Statement
+
+Now that you know what a conditional statement is, it's time to write one in Python.
+
+Python uses the `if` statement to make decisions.
+
+The word `if` simply means:
+
+> "If this condition is true, do something."
+
+---
+
+## Basic Syntax
+
+```python
+if condition:
+    statement
+```
+
+There are two important things to notice:
+
+- A colon (`:`) appears at the end of the first line.
+- The code inside the `if` statement is indented.
+
+Both are required in Python.
+
+---
+
+## How the `if` Statement Works
+
+Python follows these steps:
+
+1. Read the condition.
+2. Check whether it is `True` or `False`.
+3. If it is `True`, execute the indented code.
+4. If it is `False`, skip the indented code.
+
+---
+
+## Example
+
+Imagine the movie theater from the previous section.
+
+The rule is:
+
+> People who are 18 or older may enter.
+
+In Python:
+
+```python
+age = 36
+
+if age >= 18:
+    print("You can enter the movie theater.")
+```
+
+Output:
+
+```text
+You can enter the movie theater.
+```
+
+Since the condition is `True`, Python executes the `print()` statement.
+
+---
+
+## Another Example
+
+```python
+age = 15
+
+if age >= 18:
+    print("You can enter the movie theater.")
+```
+
+Output:
+
+```text
+```
+
+Nothing is printed because the condition is `False`.
+
+Python simply skips the code inside the `if` statement.
+
+---
+
+## Important Note
+
+An `if` statement only performs an action when the condition is `True`.
+
+If the condition is `False`, nothing happens.
+
+In the next part, you will learn how to tell Python what to do when the condition is `False`.
+
+---
+

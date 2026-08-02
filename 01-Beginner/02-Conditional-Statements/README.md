@@ -207,5 +207,13 @@ If the condition is `False`, nothing happens.
 
 In the next part, you will learn how to tell Python what to do when the condition is `False`.
 
+<p align="center">
+  <img src="images/if-flowchart.png" width="800" alt="if-flowchart">
+</p>
+
+<p align="center">
+  <em>**Figure 2.** The execution flow of an `if` statement based on the condition result.</em>
+</p>
+
 ---
 

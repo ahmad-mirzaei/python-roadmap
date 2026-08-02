@@ -60,11 +60,11 @@ To get the best learning experience, study the topics in the following order:
 
 | Topic | Status |
 |--------|:------:|
-| Variables | ⬜ |
-| Data Types | ⬜ |
-| Input & Output | ⬜ |
-| Type Casting | ⬜ |
-| Operators | ⬜ |
+| Variables | ✅ complited |
+| Data Types | ✅ complited |
+| Input & Output | ✅ complited |
+| Type Casting | ✅ complited |
+| Operators | ✅ complited |
 
 **Completion:** **0%**
 

@@ -226,3 +226,135 @@ This is called an **infinite loop**.
 
 ---
 
+# Part 3 — The `for` Loop
+
+## What Is a `for` Loop?
+
+A `for` loop is used to repeat a block of code for a specific number of times or to go through a sequence of values.
+
+Unlike a `while` loop, a `for` loop usually has a clear number of repetitions.
+
+---
+
+## Basic Syntax
+
+```python
+for variable in sequence:
+    statement
+```
+
+Python takes each value from the sequence and runs the code block once for each value.
+
+---
+
+## Simple Example
+
+```python
+for number in range(5):
+    print(number)
+```
+
+Output:
+
+```text
+0
+1
+2
+3
+4
+```
+
+The loop runs five times.
+
+---
+
+## How Does This Code Work?
+
+The `range(5)` function creates a sequence of numbers:
+
+```text
+0, 1, 2, 3, 4
+```
+
+During each repetition:
+
+First:
+
+```python
+number = 0
+```
+
+Then:
+
+```python
+number = 1
+```
+
+Then:
+
+```python
+number = 2
+```
+
+The process continues until all values are used.
+
+---
+
+## Looping Through a List
+
+A `for` loop can also go through items inside a list.
+
+Example:
+
+```python
+names = ["Ali", "Sara", "John"]
+
+for name in names:
+    print(name)
+```
+
+Output:
+
+```text
+Ali
+Sara
+John
+```
+
+The loop takes each item from the list and executes the code.
+
+---
+
+## `for` Loop vs `while` Loop
+
+| `for` Loop | `while` Loop |
+|---|---|
+| Used when the number of repetitions is known | Used when repetition depends on a condition |
+| Works with sequences | Works with conditions |
+| Usually stops automatically | Needs a condition to become `False` |
+
+Example:
+
+Use `for` when you know the number of repetitions:
+
+```python
+for i in range(10):
+    print(i)
+```
+
+Use `while` when you wait for a condition:
+
+```python
+while password != "1234":
+    print("Try again")
+```
+
+---
+
+## Important Note
+
+A `for` loop does not need a manual counter update.
+
+Python automatically moves to the next item in the sequence.
+
+---

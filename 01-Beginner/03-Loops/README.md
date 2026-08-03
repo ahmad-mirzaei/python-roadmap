@@ -358,3 +358,166 @@ A `for` loop does not need a manual counter update.
 Python automatically moves to the next item in the sequence.
 
 ---
+
+# Part 4 — The `range()` Function
+
+## What Is `range()`?
+
+The `range()` function is used to create a sequence of numbers.
+
+It is commonly used with `for` loops when we need to repeat code a specific number of times.
+
+---
+
+## Basic Syntax
+
+```python
+range(stop)
+```
+
+The sequence starts from `0` and stops before the specified number.
+
+Example:
+
+```python
+for number in range(5):
+    print(number)
+```
+
+Output:
+
+```text
+0
+1
+2
+3
+4
+```
+
+Notice that `5` is not included.
+
+---
+
+## Using `range()` With Start and Stop
+
+We can define where the sequence starts and where it stops.
+
+Syntax:
+
+```python
+range(start, stop)
+```
+
+Example:
+
+```python
+for number in range(2, 6):
+    print(number)
+```
+
+Output:
+
+```text
+2
+3
+4
+5
+```
+
+The starting value is included, but the stopping value is not included.
+
+---
+
+## Using `range()` With Step
+
+We can also control the difference between numbers.
+
+Syntax:
+
+```python
+range(start, stop, step)
+```
+
+Example:
+
+```python
+for number in range(0, 10, 2):
+    print(number)
+```
+
+Output:
+
+```text
+0
+2
+4
+6
+8
+```
+
+The `step` value determines how much the number changes after each repetition.
+
+---
+
+## Counting Backwards
+
+The `step` value can also be negative.
+
+Example:
+
+```python
+for number in range(5, 0, -1):
+    print(number)
+```
+
+Output:
+
+```text
+5
+4
+3
+2
+1
+```
+
+---
+
+## Common Mistake
+
+A common mistake is forgetting that the stop value is not included.
+
+Example:
+
+```python
+range(1, 5)
+```
+
+Creates:
+
+```text
+1, 2, 3, 4
+```
+
+Not:
+
+```text
+1, 2, 3, 4, 5
+```
+
+---
+
+## Summary
+
+The `range()` function has three common forms:
+
+```python
+range(stop)
+
+range(start, stop)
+
+range(start, stop, step)
+```
+
+It is one of the most useful tools when working with `for` loops.
+
+---

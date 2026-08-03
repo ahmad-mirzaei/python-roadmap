@@ -448,3 +448,362 @@ The remaining conditions will not be checked.
 <p align="center">
   <em>Figure 4. Execution flow of an <code>if-elif-else</code> statement.</em>
 </p>
+
+---
+
+# Part 5 — Logical Operators (`and`, `or`, `not`)
+
+## Part 5.1 — The `and` Operator
+
+The `and` operator is used when we want **all conditions** to be true before executing a block of code.
+
+Think about a real-life example:
+
+> You can enter the movie theater if you are 18 or older **and** you have a ticket.
+
+Both conditions must be true:
+
+```python
+age >= 18
+has_ticket == True
+```
+
+If one of these conditions is false, the whole condition becomes false.
+
+---
+
+## Basic Syntax
+
+```python
+if condition1 and condition2:
+    statement
+```
+
+Python checks both conditions.
+
+The code inside the `if` block runs only when both conditions are `True`.
+
+---
+
+## Example
+
+```python
+age = 36
+has_ticket = True
+
+if age >= 18 and has_ticket:
+    print("You can enter the movie theater.")
+```
+
+Output:
+
+```text
+You can enter the movie theater.
+```
+
+Let's look at the conditions:
+
+```python
+age >= 18
+```
+
+The result is:
+
+```text
+True
+```
+
+and:
+
+```python
+has_ticket
+```
+
+The result is:
+
+```text
+True
+```
+
+Because both conditions are true, Python executes the code inside the `if` block.
+
+---
+
+## Another Example
+
+```python
+username = "ahmad"
+password = "python123"
+
+if username == "ahmad" and password == "python123":
+    print("Login successful.")
+```
+
+Output:
+
+```text
+Login successful.
+```
+
+The user can log in only when both the username and password are correct.
+
+---
+
+## Important Note
+
+The `and` operator works like the word **"both"** in everyday language.
+
+For example:
+
+> I will go outside if it is sunny **and** I have free time.
+
+Both conditions must happen together.
+
+---
+
+## Part 5.2 — The `or` Operator
+
+The `or` operator is used when we want **at least one condition** to be true before executing a block of code.
+
+Think about a real-life example:
+
+> You can enter a competition if you are a student **or** you have a special invitation.
+
+In this situation, you do not need both conditions.
+
+Having one of them is enough.
+
+The conditions are:
+
+```python
+is_student == True
+has_invitation == True
+```
+
+If at least one condition is `True`, the whole condition becomes `True`.
+
+---
+
+## Basic Syntax
+
+```python
+if condition1 or condition2:
+    statement
+```
+
+Python checks all conditions connected with `or`.
+
+The code inside the `if` block runs when at least one condition is `True`.
+
+---
+
+## Example
+
+```python
+is_student = True
+has_invitation = False
+
+if is_student or has_invitation:
+    print("You can join the competition.")
+```
+
+Output:
+
+```text
+You can join the competition.
+```
+
+Let's check the conditions:
+
+```python
+is_student
+```
+
+Result:
+
+```text
+True
+```
+
+and:
+
+```python
+has_invitation
+```
+
+Result:
+
+```text
+False
+```
+
+Because one of the conditions is `True`, Python executes the `if` block.
+
+---
+
+## Another Example
+
+```python
+day = "Friday"
+
+if day == "Friday" or day == "Saturday":
+    print("It is the weekend.")
+```
+
+Output:
+
+```text
+It is the weekend.
+```
+
+The condition is true because the day is one of the accepted options.
+
+---
+
+## Important Note
+
+The `or` operator works like the word **"one of them"** in everyday language.
+
+For example:
+
+> I will watch a movie if I have free time **or** if my friend invites me.
+
+Only one condition needs to be true.
+
+---
+
+## Part 5.3 — The `not` Operator
+
+The `not` operator is used to reverse the result of a condition.
+
+It changes:
+
+- `True` to `False`
+- `False` to `True`
+
+Think about a real-life example:
+
+> You can enter the restricted area if you are **not** an unauthorized person.
+
+In other words:
+
+- If the person is unauthorized → access is denied.
+- If the person is not unauthorized → access is allowed.
+
+---
+
+## Basic Syntax
+
+```python
+if not condition:
+    statement
+```
+
+Python first checks the condition, then reverses its result.
+
+---
+
+## Example
+
+```python
+is_closed = False
+
+if not is_closed:
+    print("The store is open.")
+```
+
+Output:
+
+```text
+The store is open.
+```
+
+Let's understand what happens:
+
+The original value is:
+
+```python
+is_closed = False
+```
+
+The `not` operator reverses it:
+
+```text
+not False → True
+```
+
+Because the final result is `True`, Python runs the `if` block.
+
+---
+
+## Another Example
+
+```python
+has_permission = False
+
+if not has_permission:
+    print("Access denied.")
+```
+
+Output:
+
+```text
+Access denied.
+```
+
+The user does not have permission, so the condition becomes true after using `not`.
+
+---
+
+## Important Note
+
+The `not` operator does not check a new condition.
+
+It only changes the result of an existing condition.
+
+For example:
+
+```python
+not True
+```
+
+becomes:
+
+```text
+False
+```
+
+and:
+
+```python
+not False
+```
+
+becomes:
+
+```text
+True
+```
+
+---
+
+## Logical Operators Truth Table
+
+The following table shows how logical operators work with different combinations of `True` and `False` values.
+
+| Condition A | Condition B | A and B | A or B |
+|---|---|---|---|
+| True | True | True | True |
+| True | False | False | True |
+| False | True | False | True |
+| False | False | False | False |
+
+For the `not` operator:
+
+| Condition | not Condition |
+|---|---|
+| True | False |
+| False | True |
+
+---
+

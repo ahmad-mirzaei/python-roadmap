@@ -1258,3 +1258,195 @@ These simple checks can help find problems quickly.
 
 ---
 
+# Part 9 — Mini Project: User Authentication System
+
+After learning different types of conditional statements, it is time to use them together in a small project.
+
+In this project, we will create a simple user authentication system.
+
+The program checks different conditions and decides whether the user can log in or not.
+
+---
+
+## Project Introduction
+
+Imagine a website that requires users to log in.
+
+Before allowing access, the system needs to check:
+
+- Does the user exist?
+- Is the password correct?
+- Is the account active?
+
+Only when the required conditions are satisfied, the user can access the account.
+
+---
+
+## Project Requirements
+
+Our program should:
+
+1. Check if the username is correct.
+2. Check if the password is correct.
+3. Check if the account is active.
+4. Display the appropriate message.
+
+---
+
+## Planning the Logic
+
+Before writing code, we can describe the program logic:
+
+```
+Start
+
+    Check username
+
+        If username is correct:
+            Check password
+
+                If password is correct:
+                    Check account status
+
+                        If account is active:
+                            Login successful
+
+                        Else:
+                            Account disabled
+
+                Else:
+                    Wrong password
+
+        Else:
+            User not found
+
+End
+```
+
+This structure uses nested conditions because each step depends on the previous step.
+
+---
+
+## Writing the Code
+
+```python
+username = "ahmad"
+password = "python123"
+
+account_active = True
+
+if username == "ahmad":
+    if password == "python123":
+        if account_active:
+            print("Login successful.")
+        else:
+            print("Account is disabled.")
+    else:
+        print("Wrong password.")
+else:
+    print("User not found.")
+```
+
+Output:
+
+```text
+Login successful.
+```
+
+---
+
+## Understanding the Code Step by Step
+
+Let's analyze how the program works.
+
+### Step 1 — Checking the Username
+
+```python
+if username == "ahmad":
+```
+
+First, the program checks whether the username matches the stored username.
+
+If the condition is `True`, the program moves to the next step.
+
+If the condition is `False`, the program runs:
+
+```python
+print("User not found.")
+```
+
+---
+
+### Step 2 — Checking the Password
+
+```python
+if password == "python123":
+```
+
+After the username is correct, the program checks the password.
+
+If the password is correct, the program continues.
+
+Otherwise, it displays:
+
+```text
+Wrong password.
+```
+
+---
+
+### Step 3 — Checking Account Status
+
+```python
+if account_active:
+```
+
+The program checks whether the account is active.
+
+If the account is active:
+
+```text
+Login successful.
+```
+
+is displayed.
+
+If the account is disabled:
+
+```text
+Account is disabled.
+```
+
+is displayed.
+
+---
+
+## Improving the Project
+
+The current project works, but we can make it better.
+
+For example, instead of using fixed values, we can allow the user to enter their own information.
+
+A future version can use:
+
+```python
+input()
+```
+
+to receive:
+
+- username
+- password
+
+from the user.
+
+We can also improve the project by adding:
+
+- Multiple users
+- Password attempts limit
+- Account lock system
+- More detailed error messages
+
+These improvements require new concepts that will be learned in future sections.
+
+---

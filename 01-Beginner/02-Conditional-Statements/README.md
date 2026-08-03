@@ -332,3 +332,119 @@ You cannot write `else` without an `if` before it.
 
 ---
 
+# Part 4 — The `elif` Statement
+
+Sometimes, we need to check more than one condition.
+
+Using only `if` and `else` is not enough.
+
+Python provides the `elif` statement for this purpose.
+
+The word `elif` means:
+
+> "Else if this condition is true."
+
+It allows Python to test multiple conditions one by one.
+
+---
+
+## Basic Syntax
+
+```python
+if condition1:
+    statement
+elif condition2:
+    statement
+else:
+    statement
+```
+
+Python checks each condition from top to bottom.
+
+As soon as one condition is `True`, Python executes its block and ignores the rest.
+
+---
+
+## Example
+
+Suppose we want to display a message based on a student's score.
+
+```python
+score = 85
+
+if score >= 90:
+    print("Excellent")
+elif score >= 75:
+    print("Good")
+else:
+    print("Needs Improvement")
+```
+
+Output:
+
+```text
+Good
+```
+
+Python first checks:
+
+```python
+score >= 90
+```
+
+This is `False`.
+
+Then it checks:
+
+```python
+score >= 75
+```
+
+This is `True`, so it prints:
+
+```text
+Good
+```
+
+The `else` block is skipped.
+
+---
+
+## Another Example
+
+```python
+temperature = 38
+
+if temperature >= 40:
+    print("Very Hot")
+elif temperature >= 30:
+    print("Warm")
+else:
+    print("Cool")
+```
+
+Output:
+
+```text
+Warm
+```
+
+---
+
+## Important Note
+
+Python checks conditions in order.
+
+The first condition that is `True` will be executed.
+
+The remaining conditions will not be checked.
+
+---
+
+<p align="center">
+  <img src="images/elif-flowchart.png" width="800" alt="elif-flowchart">
+</p>
+
+<p align="center">
+  <em>Figure 4. Execution flow of an <code>if-elif-else</code> statement.</em>
+</p>

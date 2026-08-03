@@ -323,7 +323,7 @@ The weather is normal.
 ## شکل ۳
 
 <p align="center">
-  <img src="../images/if-else-flowchart.png" width="800" alt="if-else-flowchart">
+  <img src="../images/if-else-flowchart-fa.png" width="800" alt="if-else-flowchart">
 </p>
 
 <p align="center">

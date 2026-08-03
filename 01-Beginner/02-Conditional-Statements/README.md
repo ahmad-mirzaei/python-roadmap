@@ -807,3 +807,135 @@ For the `not` operator:
 
 ---
 
+# Part 6 — Nested `if` Statements
+
+Sometimes, a program needs to check a condition only after another condition becomes true.
+
+In these situations, we can place one `if` statement inside another `if` statement.
+
+This is called a **Nested `if` statement**.
+
+---
+
+## What Is a Nested `if`?
+
+A nested `if` is an `if` statement written inside another `if` statement.
+
+The inner `if` only runs when the outer `if` condition is `True`.
+
+---
+
+## Basic Syntax
+
+```python
+if condition1:
+    if condition2:
+        statement
+```
+
+Python first checks the outer condition.
+
+If it is true, Python moves inside and checks the second condition.
+
+---
+
+## Example
+
+Imagine an online account login system.
+
+The program first checks if the user has an account.
+
+Then it checks if the password is correct.
+
+```python
+has_account = True
+password_correct = True
+
+if has_account:
+    if password_correct:
+        print("Login successful.")
+```
+
+Output:
+
+```text
+Login successful.
+```
+
+---
+
+## Step-by-Step Execution
+
+Python follows these steps:
+
+1. Check:
+
+```python
+has_account
+```
+
+Result:
+
+```text
+True
+```
+
+The program enters the first `if` block.
+
+2. Then it checks:
+
+```python
+password_correct
+```
+
+Result:
+
+```text
+True
+```
+
+The program executes:
+
+```text
+Login successful.
+```
+
+---
+
+## Real-world Example
+
+Think about entering a secure building.
+
+First:
+
+> Do you have an access card?
+
+If yes:
+
+> Is your password correct?
+
+Only after passing the first check, the second check happens.
+
+This is the idea behind Nested `if`.
+
+---
+
+## Common Mistakes
+
+A common mistake is creating too many nested conditions.
+
+For example:
+
+```python
+if condition1:
+    if condition2:
+        if condition3:
+            statement
+```
+
+Too many nested levels make the code harder to read.
+
+In larger programs, we often use logical operators like `and` to simplify conditions.
+
+---
+

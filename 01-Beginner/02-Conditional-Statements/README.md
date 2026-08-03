@@ -939,3 +939,157 @@ In larger programs, we often use logical operators like `and` to simplify condit
 
 ---
 
+# Part 7 — Combining Conditions
+
+In real-world programs, decisions usually depend on more than one condition.
+
+A program may need to check several pieces of information before making a decision.
+
+For example:
+
+> A user can access an online account if the username is correct, the password is correct, and the account is active.
+
+The program needs to check multiple conditions together.
+
+This is called **combining conditions**.
+
+---
+
+## Why Do We Combine Conditions?
+
+A single condition is sometimes not enough.
+
+Example:
+
+```python
+age >= 18
+```
+
+This only checks the user's age.
+
+But a real system may need more information:
+
+```python
+age >= 18
+has_permission == True
+```
+
+Both conditions together provide a more accurate decision.
+
+---
+
+## Combining Conditions with `and`
+
+The `and` operator is used when all conditions must be true.
+
+Example:
+
+```python
+age = 36
+has_permission = True
+
+if age >= 18 and has_permission:
+    print("Access granted.")
+```
+
+Output:
+
+```text
+Access granted.
+```
+
+The program allows access because both conditions are true.
+
+---
+
+## Combining Conditions with `or`
+
+The `or` operator is used when at least one condition must be true.
+
+Example:
+
+```python
+is_student = False
+has_discount_card = True
+
+if is_student or has_discount_card:
+    print("Discount available.")
+```
+
+Output:
+
+```text
+Discount available.
+```
+
+The condition is true because one of the conditions is true.
+
+---
+
+## Combining Conditions with `not`
+
+The `not` operator is used to reverse a condition.
+
+Example:
+
+```python
+is_blocked = False
+
+if not is_blocked:
+    print("User can continue.")
+```
+
+Output:
+
+```text
+User can continue.
+```
+
+The program continues because the user is not blocked.
+
+---
+
+## Real-world Example
+
+Imagine an online shopping website.
+
+A user can complete an order when:
+
+- The user is logged in.
+- The shopping cart is not empty.
+- Payment is available.
+
+```python
+is_logged_in = True
+cart_has_items = True
+payment_available = True
+
+if is_logged_in and cart_has_items and payment_available:
+    print("Order completed.")
+```
+
+Output:
+
+```text
+Order completed.
+```
+
+---
+
+## Common Mistakes
+
+A common mistake is writing conditions that are too complicated.
+
+Example:
+
+```python
+if age >= 18 and age <= 60 and has_card and not is_blocked:
+    print("Allowed")
+```
+
+This condition works, but if conditions become too long, the code becomes harder to read.
+
+In larger programs, it is better to store complex conditions in separate variables.
+
+---
+

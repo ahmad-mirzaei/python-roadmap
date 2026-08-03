@@ -1093,3 +1093,168 @@ In larger programs, it is better to store complex conditions in separate variabl
 
 ---
 
+# Part 8 — Common Mistakes in Conditional Statements
+
+Conditional statements are one of the most important parts of programming.
+
+However, beginners often make small mistakes that can change how a program works or cause errors.
+
+Learning these common mistakes helps you write cleaner and more reliable code.
+
+---
+
+## Mistake 1 — Using `=` Instead of `==`
+
+One of the most common mistakes is confusing assignment and comparison.
+
+The `=` operator assigns a value to a variable.
+
+The `==` operator compares two values.
+
+Incorrect:
+
+```python
+age = 18
+
+if age = 18:
+    print("Adult")
+```
+
+This code causes an error.
+
+Correct:
+
+```python
+age = 18
+
+if age == 18:
+    print("Adult")
+```
+
+Output:
+
+```text
+Adult
+```
+
+---
+
+## Mistake 2 — Forgetting Indentation
+
+Python uses indentation to define blocks of code.
+
+Incorrect:
+
+```python
+age = 20
+
+if age >= 18:
+print("Adult")
+```
+
+Correct:
+
+```python
+age = 20
+
+if age >= 18:
+    print("Adult")
+```
+
+The code inside the `if` block must be indented.
+
+---
+
+## Mistake 3 — Creating Too Many Nested Conditions
+
+Nested `if` statements are useful, but too many levels make code difficult to understand.
+
+Example:
+
+```python
+if user_exists:
+    if password_correct:
+        if account_active:
+            print("Login successful.")
+```
+
+For complex programs, it may be better to combine conditions:
+
+```python
+if user_exists and password_correct and account_active:
+    print("Login successful.")
+```
+
+---
+
+## Mistake 4 — Not Handling All Cases
+
+Sometimes programmers only consider one situation.
+
+Example:
+
+```python
+score = 50
+
+if score >= 60:
+    print("Passed")
+```
+
+If the score is below 60, nothing happens.
+
+A better approach:
+
+```python
+score = 50
+
+if score >= 60:
+    print("Passed")
+else:
+    print("Failed")
+```
+
+Output:
+
+```text
+Failed
+```
+
+---
+
+## Mistake 5 — Writing Conditions That Are Always True or False
+
+Example:
+
+```python
+age = 20
+
+if age >= 10 or age >= 18:
+    print("Allowed")
+```
+
+This condition is always true because any number greater than 18 is also greater than 10.
+
+Writing clear conditions prevents unexpected results.
+
+---
+
+## Debugging Tips
+
+When a condition does not work as expected:
+
+- Check the condition carefully.
+- Print variable values.
+- Make sure you are using the correct operator.
+- Check indentation.
+
+Example:
+
+```python
+print(age)
+print(has_permission)
+```
+
+These simple checks can help find problems quickly.
+
+---
+

@@ -104,3 +104,125 @@ We will learn how `for` and `range()` work in the next parts.
 
 ---
 
+# Part 2 — The `while` Loop
+
+## What Is a `while` Loop?
+
+A `while` loop repeats a block of code as long as a specific condition is `True`.
+
+The loop continues running until the condition becomes `False`.
+
+---
+
+## Basic Syntax
+
+```python
+while condition:
+    statement
+```
+
+Python checks the condition before each repetition.
+
+- If the condition is `True`, the code inside the loop runs.
+- If the condition is `False`, the loop stops.
+
+---
+
+## Example
+
+```python
+count = 1
+
+while count <= 5:
+    print(count)
+    count = count + 1
+```
+
+Output:
+
+```text
+1
+2
+3
+4
+5
+```
+
+---
+
+## How Does This Code Work?
+
+At the beginning, the variable has this value:
+
+```python
+count = 1
+```
+
+Python checks the condition:
+
+```python
+count <= 5
+```
+
+The result is:
+
+```text
+True
+```
+
+So the code inside the loop runs.
+
+After printing the value, the variable increases:
+
+```python
+count = count + 1
+```
+
+The value changes:
+
+```text
+1 → 2 → 3 → 4 → 5 → 6
+```
+
+When `count` becomes `6`, the condition becomes:
+
+```text
+False
+```
+
+The loop stops.
+
+---
+
+## Real-world Example
+
+Imagine filling a water tank.
+
+The process is:
+
+1. Check the water level.
+2. If the tank is not full, add more water.
+3. Check the level again.
+4. Repeat until the tank is full.
+
+This repeated process is similar to how a `while` loop works.
+
+---
+
+## Important Note
+
+A `while` loop needs a condition that eventually becomes `False`.
+
+If the condition never changes, the loop continues forever.
+
+Example:
+
+```python
+while True:
+    print("Running...")
+```
+
+This is called an **infinite loop**.
+
+---
+

@@ -821,3 +821,80 @@ It only skips the current iteration.
 
 ---
 
+# Part 8 — Comparing `break` and `continue`
+
+Both `break` and `continue` are used inside loops.
+
+However, they behave differently.
+
+---
+
+## `break`
+
+The `break` statement stops the entire loop immediately.
+
+Python exits the loop and continues with the first statement after the loop.
+
+Example:
+
+```python
+for number in range(1, 6):
+    if number == 3:
+        break
+
+    print(number)
+```
+
+Output:
+
+```text
+1
+2
+```
+
+---
+
+## `continue`
+
+The `continue` statement does **not** stop the loop.
+
+Instead, it skips the current iteration and continues with the next one.
+
+Example:
+
+```python
+for number in range(1, 6):
+    if number == 3:
+        continue
+
+    print(number)
+```
+
+Output:
+
+```text
+1
+2
+4
+5
+```
+
+---
+
+## Comparison Table
+
+| Statement | What it does |
+|-----------|--------------|
+| `break` | Stops the entire loop immediately. |
+| `continue` | Skips the current iteration and continues with the next one. |
+
+---
+
+## Important Note
+
+If you want to end the loop completely, use `break`.
+
+If you only want to ignore one iteration, use `continue`.
+
+---
+

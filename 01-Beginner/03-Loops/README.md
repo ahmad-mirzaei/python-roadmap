@@ -603,3 +603,104 @@ The inner loop always completes before the next iteration of the outer loop begi
 
 ---
 
+# Part 6 — The `break` Statement
+
+Normally, a loop continues until it finishes all of its iterations.
+
+However, sometimes we want to stop the loop immediately.
+
+Python provides the `break` statement for this purpose.
+
+The word **break** means:
+
+> "Exit the loop immediately."
+
+---
+
+## A Real-World Example
+
+Imagine you are searching for a book on a bookshelf.
+
+You check the books one by one.
+
+As soon as you find the book you want, you stop searching.
+
+There is no reason to continue checking the remaining books.
+
+The `break` statement works exactly like this.
+
+---
+
+## Basic Syntax
+
+```python
+for item in sequence:
+    if condition:
+        break
+```
+
+When Python reaches `break`, the loop ends immediately.
+
+---
+
+## Example
+
+```python
+for number in range(1, 11):
+    if number == 6:
+        break
+
+    print(number)
+```
+
+Output:
+
+```text
+1
+2
+3
+4
+5
+```
+
+When `number` becomes `6`, Python exits the loop.
+
+The remaining numbers are never processed.
+
+---
+
+## Another Example
+
+```python
+password = ""
+
+while True:
+    password = input("Enter the password: ")
+
+    if password == "python":
+        print("Access granted.")
+        break
+```
+
+The loop continues until the correct password is entered.
+
+---
+
+## Important Note
+
+`break` stops only the loop that it belongs to.
+
+If it is inside a nested loop, only the inner loop will stop.
+
+---
+
+<p align="center">
+  <img src="images/break-flowchart.png" width="800" alt="break-flowchart">
+</p>
+
+<p align="center">
+  <em>Figure 6. Immediate termination of a loop using the <code>break</code> statement.</em>
+</p>
+
+---
+

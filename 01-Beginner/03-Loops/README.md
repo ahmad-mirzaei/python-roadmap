@@ -707,3 +707,117 @@ If it is inside a nested loop, only the inner loop will stop.
 
 ---
 
+# Part 7 — The `continue` Statement
+
+In the previous part, you learned that the `break` statement stops a loop immediately.
+
+But sometimes we do not want to stop the loop.
+
+Instead, we simply want to skip the current iteration and continue with the next one.
+
+Python uses the `continue` statement for this purpose.
+
+The word **continue** means:
+
+> "Skip the rest of the current iteration and continue with the next one."
+
+---
+
+## A Real-World Example
+
+Imagine a teacher is checking students' homework.
+
+One student is absent.
+
+Instead of stopping the attendance process, the teacher simply skips that student and continues checking the remaining students.
+
+The `continue` statement works exactly the same way.
+
+---
+
+## Basic Syntax
+
+```python
+for item in sequence:
+    if condition:
+        continue
+
+    statement
+```
+
+When Python reaches `continue`, it skips the remaining code in the current iteration and immediately starts the next iteration.
+
+---
+
+## Example
+
+```python
+for number in range(1, 11):
+
+    if number == 6:
+        continue
+
+    print(number)
+```
+
+Output:
+
+```text
+1
+2
+3
+4
+5
+7
+8
+9
+10
+```
+
+The number `6` is skipped, but the loop continues normally.
+
+---
+
+## Another Example
+
+```python
+for letter in "PYTHON":
+
+    if letter == "H":
+        continue
+
+    print(letter)
+```
+
+Output:
+
+```text
+P
+Y
+T
+O
+N
+```
+
+Python skips the letter `H` and continues with the remaining letters.
+
+---
+
+## Important Note
+
+Unlike `break`, the `continue` statement does **not** stop the loop.
+
+It only skips the current iteration.
+
+---
+
+<p align="center">
+  <img src="images/continue-flowchart.png" width="800" alt="continue-flowchart">
+</p>
+
+<p align="center">
+  <em>Figure 7. Skipping the current iteration using the <code>continue</code> statement.</em>
+</p>
+
+---
+

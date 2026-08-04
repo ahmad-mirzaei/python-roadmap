@@ -702,7 +702,7 @@ If it is inside a nested loop, only the inner loop will stop.
 </p>
 
 <p align="center">
-  <em>Figure 6. Immediate termination of a loop using the <code>break</code> statement.</em>
+  <em>Figure 1. Immediate termination of a loop using the <code>break</code> statement.</em>
 </p>
 
 ---
@@ -816,7 +816,7 @@ It only skips the current iteration.
 </p>
 
 <p align="center">
-  <em>Figure 7. Skipping the current iteration using the <code>continue</code> statement.</em>
+  <em>Figure 2. Skipping the current iteration using the <code>continue</code> statement.</em>
 </p>
 
 ---

@@ -703,7 +703,7 @@ while True:
 </p>
 
 <p align="center">
-  <em>شکل ۶. خروج فوری از حلقه پس از اجرای دستور <code>break</code>.</em>
+  <em>شکل ۱. خروج فوری از حلقه پس از اجرای دستور <code>break</code>.</em>
 </p>
 
 ---
@@ -819,7 +819,7 @@ N
 </p>
 
 <p align="center">
-  <em>شکل ۷. عبور از تکرار فعلی و ادامه اجرای حلقه با دستور <code>continue</code>.</em>
+  <em>شکل ۲. عبور از تکرار فعلی و ادامه اجرای حلقه با دستور <code>continue</code>.</em>
 </p>
 
 ---

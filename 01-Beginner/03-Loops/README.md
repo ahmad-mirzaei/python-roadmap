@@ -1,5 +1,8 @@
 # Part 1 — What Are Loops?
 
+> 🌐 language: **فارسی** | [English](README.md)
+
+
 In programming, we often need to repeat the same action multiple times.
 
 Writing the same code again and again is not efficient.

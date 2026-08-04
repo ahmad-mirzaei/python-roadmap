@@ -521,3 +521,85 @@ range(start, stop, step)
 It is one of the most useful tools when working with `for` loops.
 
 ---
+
+# Part 5 — Nested Loops
+
+Sometimes, one loop is not enough.
+
+There are situations where we need a loop inside another loop.
+
+This is called a **nested loop**.
+
+A nested loop simply means:
+
+> A loop that runs inside another loop.
+
+---
+
+## A Real-World Example
+
+Imagine a school with several classrooms.
+
+Each classroom contains multiple students.
+
+To visit every student, you would:
+
+1. Enter a classroom.
+2. Visit every student in that classroom.
+3. Move to the next classroom.
+4. Repeat the process.
+
+This is exactly how nested loops work.
+
+The outer loop moves between classrooms.
+
+The inner loop visits every student inside each classroom.
+
+---
+
+## Basic Syntax
+
+```python
+for item1 in sequence1:
+    for item2 in sequence2:
+        statement
+```
+
+The inner loop finishes completely before the outer loop continues.
+
+---
+
+## Example
+
+```python
+for row in range(3):
+    for column in range(3):
+        print(row, column)
+```
+
+Output:
+
+```text
+0 0
+0 1
+0 2
+1 0
+1 1
+1 2
+2 0
+2 1
+2 2
+```
+
+For every value of `row`, Python executes the entire inner loop.
+
+---
+
+## Important Note
+
+The outer loop controls how many times the inner loop starts.
+
+The inner loop always completes before the next iteration of the outer loop begins.
+
+---
+

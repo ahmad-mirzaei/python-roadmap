@@ -1075,3 +1075,6 @@ In this project, you used:
 - Type conversion
 - Arithmetic operators
 - Output formatting
+
+---
+

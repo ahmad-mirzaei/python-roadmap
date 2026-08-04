@@ -1,6 +1,6 @@
 # Part 1 — What Are Loops?
 
-> 🌐 language: **English** | [فارسی](README.md)
+> 🌐 language: **English** | [فارسی](fa/README.md)
 
 
 In programming, we often need to repeat the same action multiple times.

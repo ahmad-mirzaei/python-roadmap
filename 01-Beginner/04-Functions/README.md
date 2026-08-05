@@ -1,5 +1,7 @@
 # Part 1 — What Is a Function?
 
+> 🌐 language: **English** | [فارسی](fa/README.md)
+
 As programs become larger, writing everything in one place becomes difficult.
 
 Some pieces of code perform the same task many times.

@@ -898,3 +898,101 @@ If you only want to ignore one iteration, use `continue`.
 
 ---
 
+# Part 9 — Try It Yourself
+
+Now it's your turn.
+
+The following exercises will help you practice everything you learned in this lesson.
+
+Try to solve each exercise on your own before looking at any solution.
+
+The more you practice, the more confident you will become.
+
+---
+
+## Exercise 1 — Print Numbers
+
+Using a `for` loop, print the numbers from 1 to 10.
+
+---
+
+## Exercise 2 — Print Numbers in Reverse
+
+Using a `for` loop, print the numbers from 10 down to 1.
+
+---
+
+## Exercise 3 — Sum of Numbers
+
+Calculate and print the sum of the numbers from 1 to 100.
+
+---
+
+## Exercise 4 — Even Numbers
+
+Print all even numbers between 1 and 50.
+
+---
+
+## Exercise 5 — Using `break`
+
+Print the numbers from 1 to 10.
+
+Stop the loop when the number becomes 7.
+
+---
+
+## Exercise 6 — Using `continue`
+
+Print the numbers from 1 to 10.
+
+Skip printing the number 5.
+
+---
+
+## Exercise 7 — Multiplication Table
+
+Using nested loops, print the multiplication table from 1 to 5.
+
+---
+
+## Exercise 8 — Draw a Square
+
+Using nested loops, print:
+
+```text
+*****
+*****
+*****
+*****
+*****
+```
+
+---
+
+## Exercise 9 — Count Characters
+
+Given the following string:
+
+```python
+text = "Python Programming"
+```
+
+Count and print the number of characters in the string.
+
+---
+
+## Exercise 10 — Draw a Triangle
+
+Using nested loops, print:
+
+```text
+*
+**
+***
+****
+*****
+```
+
+---
+

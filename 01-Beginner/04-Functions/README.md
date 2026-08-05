@@ -171,3 +171,124 @@ A function runs only when it is called.
 
 ---
 
+# Part 3 — Parameters
+
+A function can receive information from outside.
+
+This information allows the function to work with different values each time it is called.
+
+The variables that receive these values inside the function are called **parameters**.
+
+---
+
+## A Real-World Example
+
+Imagine an ATM machine.
+
+The ATM itself is the same machine every time.
+
+But the amount of money you request can be different.
+
+One person may request:
+
+```
+100 Toman
+```
+
+Another person may request:
+
+```
+500 Toman
+```
+
+The ATM uses the given amount to perform the operation.
+
+In Python, parameters work in the same way.
+
+They allow a function to receive different values.
+
+---
+
+## Basic Syntax
+
+```python
+def function_name(parameter):
+    # function body
+```
+
+The parameter is a variable that receives a value when the function is called.
+
+---
+
+## Example
+
+```python
+def greet(name):
+    print("Hello", name)
+```
+
+The function has one parameter called `name`.
+
+Now we can provide different values:
+
+```python
+greet("Ahmad")
+```
+
+Output:
+
+```text
+Hello Ahmad
+```
+
+Another call:
+
+```python
+greet("Sara")
+```
+
+Output:
+
+```text
+Hello Sara
+```
+
+---
+
+## Multiple Parameters
+
+A function can have more than one parameter.
+
+Example:
+
+```python
+def introduce(name, age):
+    print(name)
+    print(age)
+```
+
+Calling the function:
+
+```python
+introduce("Ahmad", 36)
+```
+
+Output:
+
+```text
+Ahmad
+36
+```
+
+---
+
+## Important Note
+
+Parameters are created when we define a function.
+
+The actual values are provided when we call the function.
+
+The next part will explain these values in detail: **Arguments**.
+
+---
+

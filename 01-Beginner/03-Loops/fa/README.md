@@ -998,3 +998,69 @@ text = "Python Programming"
 ```
 ---
 
+# بخش ۱۰ — پروژه کوچک (`Mini Project`)
+
+## بازی حدس عدد
+
+در این پروژه، یک بازی ساده طراحی می کنیم.
+
+برنامه یک عدد مخفی در اختیار دارد.
+
+کاربر باید آن قدر عدد وارد کند تا عدد صحیح را پیدا کند.
+
+در این پروژه از چند مفهوم مهمی که در این درس یاد گرفتید استفاده می شود:
+
+- حلقه `while`
+- دستور `if`
+- دستور `break`
+- دریافت ورودی از کاربر
+- عملگرهای مقایسه ای
+
+---
+
+## کد پروژه
+
+```python
+secret_number = 7
+
+while True:
+
+    guess = int(input("Enter your guess: "))
+
+    if guess == secret_number:
+        print("Congratulations! You guessed correctly.")
+        break
+
+    print("Wrong guess. Try again.")
+```
+
+---
+
+## نمونه اجرا
+
+```text
+Enter your guess: 3
+Wrong guess. Try again.
+
+Enter your guess: 10
+Wrong guess. Try again.
+
+Enter your guess: 7
+Congratulations! You guessed correctly.
+```
+
+---
+
+## چالش
+
+حالا نوبت شماست که این برنامه را بهتر کنید.
+
+آیا می توانید:
+
+- تعداد تلاش های کاربر را بشمارید؟
+- اگر عدد کوچک تر بود، پیام **"عدد بزرگ تر است"** نمایش دهید؟
+- اگر عدد بزرگ تر بود، پیام **"عدد کوچک تر است"** نمایش دهید؟
+- بعد از برنده شدن، امکان شروع یک بازی جدید را اضافه کنید؟
+
+---
+

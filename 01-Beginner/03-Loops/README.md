@@ -996,3 +996,68 @@ Using nested loops, print:
 
 ---
 
+# Part 10 — Mini Project
+
+## Number Guessing Game
+
+In this project, you will build a simple number guessing game.
+
+The computer stores a secret number.
+
+The user keeps guessing until the correct number is entered.
+
+This project uses several concepts from this lesson:
+
+- `while`
+- `if`
+- `break`
+- User input
+- Comparison operators
+
+---
+
+## Project Code
+
+```python
+secret_number = 7
+
+while True:
+
+    guess = int(input("Enter your guess: "))
+
+    if guess == secret_number:
+        print("Congratulations! You guessed correctly.")
+        break
+
+    print("Wrong guess. Try again.")
+```
+
+---
+
+## Example Output
+
+```text
+Enter your guess: 3
+Wrong guess. Try again.
+
+Enter your guess: 10
+Wrong guess. Try again.
+
+Enter your guess: 7
+Congratulations! You guessed correctly.
+```
+
+---
+
+## Challenge
+
+Improve the program.
+
+Can you:
+
+- Count the number of attempts?
+- Give a hint such as "Higher" or "Lower"?
+- Let the user play again after winning?
+
+---
+

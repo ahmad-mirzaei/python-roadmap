@@ -36,7 +36,7 @@ This repository aims to help developers:
   - Variables And Data Types
   - Input And Output
   - Operators
-- [Conditional Statements](02-Conditional-Statements)
+- [Conditional Statements](01-Beginner/02-Conditional-Statements)
 - Loops
 - Functions
 - Strings

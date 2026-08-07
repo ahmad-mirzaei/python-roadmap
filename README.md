@@ -30,9 +30,9 @@ This repository aims to help developers:
 ### 🟢 Beginner
 
 - [Python Basics](01-Beginner/01-Basics)
- - Variables And Data Types
- - Input And Output
- - Operators
+  - Variables And Data Types
+  - Input And Output
+  - Operators
 - Conditional Statements
 - Loops
 - Functions

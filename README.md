@@ -25,6 +25,8 @@ This repository aims to help developers:
 
 - Problem Solving 
 
+---
+
 ### 🟢 Beginner
 
 - Python Basics

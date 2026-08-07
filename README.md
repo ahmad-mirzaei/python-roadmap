@@ -30,6 +30,9 @@ This repository aims to help developers:
 ### 🟢 Beginner
 
 - [Python Basics](01-Beginner/01-Basics)
+  - What Is Python
+  - Installing Python 
+  - Your First Python Program
   - Variables And Data Types
   - Input And Output
   - Operators

@@ -21,7 +21,9 @@ This repository aims to help developers:
 
 ## 📚 Topics
 
-#### Problem Solving 
+### ⚪ Prerequisite
+
+- Problem Solving 
 
 ### 🟢 Beginner
 

@@ -31,7 +31,7 @@ This repository aims to help developers:
 
 - [Python Basics](01-Beginner/01-Basics)
 
-  - ![What Is Python](https://img.shields.io/badge/What%20Is%20Python-green(
+  - ![What Is Python](https://img.shields.io/badge/What%20Is%20Python-green)
 
   - What Is Python
   - Installing Python 

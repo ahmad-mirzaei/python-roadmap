@@ -21,6 +21,8 @@ This repository aims to help developers:
 
 ## 📚 Topics
 
+#### Problem Solving 
+
 ### 🟢 Beginner
 
 - Python Basics

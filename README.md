@@ -29,7 +29,7 @@ This repository aims to help developers:
 
 ### 🟢 Beginner
 
-- Python Basics
+- [Python Basics](01-beginner/01-basics)
 - Variables
 - Data Types
 - Input / Output

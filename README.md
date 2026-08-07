@@ -37,7 +37,6 @@ This repository aims to help developers:
   - Input And Output
   - Operators
 - [Conditional Statements](01-Beginner/02-Conditional-Statements)
-- [![Conditional Statements](https://img.shields.io/badge/Conditional Statements-28A745?style=for-the-badge)](1-Beginner/02-Conditional-Statements)
 - Loops
 - Functions
 - Strings

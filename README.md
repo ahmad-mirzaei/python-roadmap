@@ -40,7 +40,7 @@ This repository aims to help developers:
 
   - [![Your First Python Program](https://img.shields.io/badge/Your%20First%20Python%20Program-green)](./your-first-python-program.md)
   - [![Variables And Data Types](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](./variables-and-data-types.md)
-  - [![Input And Output](https://img.shields.io/badge/Input%20And%20Output-green)](./input-and-output.md)
+  - [![Input And Output](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/README.md)
   - [![Operators](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/README.md)
 - [Conditional Statements](01-Beginner/02-Conditional-Statements)
 - Loops

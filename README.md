@@ -23,7 +23,7 @@ This repository aims to help developers:
 
 ### ⚪ Prerequisite
 
-- Problem Solving 
+- [Problem Solving](00-Problem-Solving) 
 
 ---
 

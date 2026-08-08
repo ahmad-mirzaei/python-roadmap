@@ -32,6 +32,8 @@
 
 ### 🟢 سطح مبتدی
 
+<div dir="rtl">
+
 - [مبانی پایتون](01-Beginner/01-Basics)
   - [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md) | پایتون چیست؟  
   - [![نصب پایتون](https://img.shields.io/badge/Installing%20Python-green)](01-Beginner/01-Basics/02-Installing-Python/fa/README.md) | نصب پایتون  
@@ -48,6 +50,8 @@
 - [تاپل‌ ها](01-Beginner/07-Tuples/fa/README.md)
 - [مجموعه‌ ها](01-Beginner/08-Sets/fa/README.md)
 - [دیکشنری‌ ها](01-Beginner/09-Dictionaries/fa/README.md)
+
+</div>
 
 ---
 

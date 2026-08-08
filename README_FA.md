@@ -30,9 +30,9 @@
 
 ---
 
-### 🟢 سطح مبتدی
-
 <div dir="rtl">
+
+### 🟢 سطح مبتدی
 
 - [مبانی پایتون](01-Beginner/01-Basics)
   - [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md) | پایتون چیست؟  
@@ -51,7 +51,7 @@
 - [مجموعه‌ ها](01-Beginner/08-Sets/fa/README.md)
 - [دیکشنری‌ ها](01-Beginner/09-Dictionaries/fa/README.md)
 
-</div>
+<div>
 
 ---
 

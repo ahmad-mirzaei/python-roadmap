@@ -2,9 +2,9 @@
 
 # 🐍 نقشه راه پایتون
 
-یک مجموعه آموزشی جامع برای یادگیری زبان برنامه‌نویسی پایتون از **سطح مبتدی تا پیشرفته**.
+یک مجموعه آموزشی جامع برای یادگیری زبان برنامه ‌نویسی پایتون از **سطح مبتدی تا پیشرفته**.
 
-برخلاف بسیاری از مخازن که فقط پاسخ تمرین‌ها را ارائه می‌کنند، هدف این پروژه **یادگیری از طریق حل مسئله** است.
+برخلاف بسیاری از مخازن که فقط پاسخ تمرین‌ ها را ارائه می‌ کنند، هدف این پروژه **یادگیری از طریق حل مسئله** است.
 
 ---
 - 🌐 Language: **فارسی** | [English](README.md)
@@ -12,31 +12,26 @@
 
 ## 🎯 هدف پروژه
 
-هدف این پروژه کمک به برنامه‌نویسان برای:
+هدف این پروژه کمک به برنامه‌ نویسان برای:
 
 - یادگیری اصولی پایتون
 - تقویت مهارت حل مسئله
 - درک عمیق مفاهیم پایتون
 - انجام پروژه‌های عملی
-- آمادگی برای مصاحبه‌های برنامه‌نویسی
+- آمادگی برای مصاحبه‌ های برنامه‌ نویسی
 
 ---
 
-## 📚 سرفصل‌ها
+## 📚 سرفصل‌ ها
 
 ### ⚪ پیش‌ نیاز 
 
-- [Problem Solving](00-Problem-Solving) | حل مسئله
+- [حل مسئله](00-Problem-Solving)
   - [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/01-What-Is-An-Algorithm.md) | الگوریتم چیست؟
- 
   - [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/02-Algorithm-Writing.md) | نوشتن الگوریتم
-
   - [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/03-Step-by-Step-Thinking.md) | تفکر مرحله به مرحله
-
   - [![Practice](https://img.shields.io/badge/Practice-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/04-Practice.md) | تمرین
-
   - [![Quiz](https://img.shields.io/badge/Quiz-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/05-Quiz.md) | آزمون
-
 
 ---
 
@@ -50,24 +45,33 @@
   - [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md) | ورودی و خروجی 
   - [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md) | عملگرها
 
-- [دستورات شرطی](01-Beginner/02-Conditional-Statements/fa/README.md)
+- دستورات شرطی
+- حلقه‌ها
+- توابع
+- رشته‌ها
+- لیست‌ ها
+- تاپل‌ ها
+- مجموعه‌ ها
+- دیکشنری‌ ها
+
+<!-- - [دستورات شرطی](01-Beginner/02-Conditional-Statements/fa/README.md)
 - [حلقه‌ها](01-Beginner/03-Loops/fa/README.md)
 - [توابع](01-Beginner/04-Functions/fa/README.md)
 - [رشته‌ها](01-Beginner/05-Strings/fa/README.md)
 - [لیست‌ ها](01-Beginner/06-Lists/fa/README.md)
 - [تاپل‌ ها](01-Beginner/07-Tuples/fa/README.md)
 - [مجموعه‌ ها](01-Beginner/08-Sets/fa/README.md)
-- [دیکشنری‌ ها](01-Beginner/09-Dictionaries/fa/README.md)
+- [دیکشنری‌ ها](01-Beginner/09-Dictionaries/fa/README.md) -->
 
 ---
 
 ### 🟡 سطح متوسط
 
 - Comprehensions
-- ماژول‌ها
+- ماژول‌ ها
 - مدیریت فایل
-- مدیریت استثناها
-- برنامه‌نویسی شیءگرا
+- مدیریت استثنا ها
+- برنامه ‌نویسی شیء گرا
 - Regular Expressions
 
 ---
@@ -78,14 +82,14 @@
 - Generator
 - Decorator
 - Context Manager
-- چندنخی (Multithreading)
+- چند نخی (Multithreading)
 - Multiprocessing
 - Async Programming
 - Design Patterns
 
 ---
 
-### 🚀 پروژه‌های عملی
+### 🚀 پروژه‌ های عملی
 
 - ماشین حساب
 - Todo App
@@ -199,35 +203,35 @@ python-roadmap/
 
 ## 📖 هر تمرین شامل
 
-هر تمرین دارای بخش‌های زیر است:
+هر تمرین دارای بخش‌ های زیر است:
 
 - شرح مسئله
 - نمونه ورودی
 - نمونه خروجی
 - راهنمای حل (Hint)
 - پاسخ کامل
-- توضیح راه‌حل
+- توضیح راه‌ حل
 - پیچیدگی زمانی
 - پیچیدگی فضایی
-- تمرین‌های مرتبط
+- تمرین‌ های مرتبط
 
 ---
 
-## 🏷 سطح‌بندی سوالات
+## 🏷 سطح‌ بندی سوالات
 
 | سطح | توضیح |
 |------|-------|
-| 🟢 مبتدی | مناسب افراد تازه‌کار |
-| 🟡 متوسط | مناسب افرادی که مفاهیم پایه را یاد گرفته‌اند |
-| 🔴 پیشرفته | شامل مباحث پیشرفته و چالش‌های واقعی |
+| 🟢 مبتدی | مناسب افراد تازه‌ کار |
+| 🟡 متوسط | مناسب افرادی که مفاهیم پایه را یاد گرفته‌ اند |
+| 🔴 پیشرفته | شامل مباحث پیشرفته و چالش‌ های واقعی |
 
 ---
 
 ## 🤝 مشارکت
 
-از مشارکت شما استقبال می‌کنم.
+از مشارکت شما استقبال می‌ کنم.
 
-اگر ایده، پیشنهاد یا سوالی دارید، می‌توانید از طریق **Issue** یا **Pull Request** در توسعه پروژه مشارکت کنید.
+اگر ایده، پیشنهاد یا سوالی دارید، می‌ توانید از طریق **Issue** یا **Pull Request** در توسعه پروژه مشارکت کنید.
 
 لطفاً قبل از مشارکت، فایل **CONTRIBUTING.md** را مطالعه کنید.
 
@@ -237,7 +241,7 @@ python-roadmap/
 
 اگر این پروژه برایتان مفید بود، لطفاً با دادن یک ⭐ در GitHub از آن حمایت کنید.
 
-همین حمایت‌های کوچک انگیزه بزرگی برای ادامه توسعه پروژه است.
+همین حمایت‌ های کوچک انگیزه بزرگی برای ادامه توسعه پروژه است.
 
 موفق باشید ❤️
 

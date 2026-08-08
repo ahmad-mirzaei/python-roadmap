@@ -1,4 +1,4 @@
-<div dir="rtl">
+<div dir="">
 
 # 🐍 نقشه راه پایتون
 
@@ -30,8 +30,6 @@
 
 ---
 
-<div dir="rtl">
-
 ### 🟢 سطح مبتدی
 
 - [مبانی پایتون](01-Beginner/01-Basics)
@@ -50,8 +48,6 @@
 - [تاپل‌ ها](01-Beginner/07-Tuples/fa/README.md)
 - [مجموعه‌ ها](01-Beginner/08-Sets/fa/README.md)
 - [دیکشنری‌ ها](01-Beginner/09-Dictionaries/fa/README.md)
-
-<div>
 
 ---
 

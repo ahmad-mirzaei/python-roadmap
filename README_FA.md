@@ -35,9 +35,13 @@
 - [مبانی پایتون](01-Beginner/01-Basics)
   - [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md)
   - [![نصب پایتون](https://img.shields.io/badge/Installing%20Python-green)](01-Beginner/01-Basics/02-Installing-Python/fa/README.md)
-  - [![اولین برنامه پایتون شما](https://img.shields.io/badge/Your%20First%20Python%20Program-green)](01-Beginner/01-Basics/03-Your-First-Python-Program/fa/README.md)
-  - [![متغیرها و انواع داده](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-and-Data-Types/fa/README.md)
-  - [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-and-Output/fa/README.md)
+
+  - [![اولین برنامه پایتون](https://img.shields.io/badge/Your%20First%20Python%20Program-green)](01-Beginner/01-Basics/03-Your-First-Python-Program/fa/README.md)
+
+  - [![متغیرها و انواع داده](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-And-Data-Types/fa/README.md)
+
+  - [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md)
+
   - [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md)
 - متغیرها
 - انواع داده

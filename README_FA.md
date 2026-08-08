@@ -1,4 +1,4 @@
-<div dir="">
+<div dir="rtl">
 
 # 🐍 نقشه راه پایتون
 
@@ -26,7 +26,17 @@
 
 ### ⚪ پیش‌ نیاز 
 
-- [حل مسئله](00-Problem-Solving/fa)
+- [Problem Solving](00-Problem-Solving) | حل مسئله
+  - [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/01-What-Is-An-Algorithm.md) | الگوریتم چیست؟
+ 
+  - [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/02-Algorithm-Writing.md) | نوشتن الگوریتم
+
+  - [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/03-Step-by-Step-Thinking.md) | تفکر مرحله به مرحله
+
+  - [![Practice](https://img.shields.io/badge/Practice-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/04-Practice.md) | تمرین
+
+  - [![Quiz](https://img.shields.io/badge/Quiz-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/05-Quiz.md) | آزمون
+
 
 ---
 

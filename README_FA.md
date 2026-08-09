@@ -42,6 +42,13 @@
 
 ### 🟢 سطح مبتدی
 
+|---|---|
+||||
+||||
+||||
+||||
+||||
+
 - [مبانی پایتون](01-Beginner/01-Basics)
   - پایتون چیست؟ 
     - [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md)  

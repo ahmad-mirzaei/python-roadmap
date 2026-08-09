@@ -42,15 +42,15 @@
 
 ### 🟢 سطح مبتدی
 
-|ردیف|عنوان و لینک انگلیسی|عنوان فارسی|
-|:---:||:---:|:---:|
-|0| [مبانی پایتون](01-Beginner/01-Basics) | مبانی پایتون |
-|1| [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md) | پایتون چیست؟ |
-|2| [![نصب پایتون](https://img.shields.io/badge/Installing%20Python-green)](01-Beginner/01-Basics/02-Installing-Python/fa/README.md) | نصب پایتون  |
-|3| [![اولین برنامه پایتون](https://img.shields.io/badge/Your%20First%20Python%20Program-green)](01-Beginner/01-Basics/03-Your-First-Python-Program/fa/README.md) | اولین برنامه پایتون |
-|4| [![متغیرها و انواع داده](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-And-Data-Types/fa/README.md) | متغیرها و انواع داده  |
-|5| [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md) | ورودی و خروجی  |
-|6| [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md) | عملگرها |
+| ردیف | عنوان و لینک انگلیسی | عنوان فارسی |
+| :---: | :---: | :---: |
+| 0 | [مبانی پایتون](01-Beginner/01-Basics) | مبانی پایتون |
+| 1 | [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md) | پایتون چیست؟ |
+| 2 | [![نصب پایتون](https://img.shields.io/badge/Installing%20Python-green)](01-Beginner/01-Basics/02-Installing-Python/fa/README.md) | نصب پایتون  |
+| 3 | [![اولین برنامه پایتون](https://img.shields.io/badge/Your%20First%20Python%20Program-green)](01-Beginner/01-Basics/03-Your-First-Python-Program/fa/README.md) | اولین برنامه پایتون |
+| 4 | [![متغیرها و انواع داده](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-And-Data-Types/fa/README.md) | متغیرها و انواع داده  |
+| 5 | [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md) | ورودی و خروجی  |
+| 6 | [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md) | عملگرها |
 
 - [دستورات شرطی](01-Beginner/02-Conditional-Statements/fa/README.md)
 - [حلقه‌ها](01-Beginner/03-Loops/fa/README.md)

@@ -50,23 +50,23 @@
   - ورودی و خروجی | [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md)
   - عملگرها | [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md)
 
-- دستورات شرطی
+<!-- - دستورات شرطی
 - حلقه‌ها
 - توابع
 - رشته‌ها
 - لیست‌ ها
 - تاپل‌ ها
 - مجموعه‌ ها
-- دیکشنری‌ ها
+- دیکشنری‌ ها -->
 
-<!-- - [دستورات شرطی](01-Beginner/02-Conditional-Statements/fa/README.md)
+- [دستورات شرطی](01-Beginner/02-Conditional-Statements/fa/README.md)
 - [حلقه‌ها](01-Beginner/03-Loops/fa/README.md)
 - [توابع](01-Beginner/04-Functions/fa/README.md)
 - [رشته‌ها](01-Beginner/05-Strings/fa/README.md)
 - [لیست‌ ها](01-Beginner/06-Lists/fa/README.md)
 - [تاپل‌ ها](01-Beginner/07-Tuples/fa/README.md)
 - [مجموعه‌ ها](01-Beginner/08-Sets/fa/README.md)
-- [دیکشنری‌ ها](01-Beginner/09-Dictionaries/fa/README.md) -->
+- [دیکشنری‌ ها](01-Beginner/09-Dictionaries/fa/README.md)
 
 ---
 

@@ -26,37 +26,37 @@
 
 ### ⚪ پیش‌ نیاز 
 
-| ردیف | عنوان و لینک انگلیسی | عنوان فارسی |
-| :---: | :---: | :---: |
-| 1 | [ Problem Solving ](00-Problem-Solving) | حل مسئله |
-| 1-1 | [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/01-What-Is-An-Algorithm.md) | الگوریتم چیست؟ |
-| 2-1 | [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/02-Algorithm-Writing.md) | نوشتن الگوریتم |
-| 3-1 | [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/03-Step-by-Step-Thinking.md) | تفکر مرحله به مرحله |
-| 4-1 | [![Practice](https://img.shields.io/badge/Practice-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/04-Practice.md) | تمرین |
-| 5-1 | [![Quiz](https://img.shields.io/badge/Quiz-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/05-Quiz.md) | آزمون |
+| ردیف | عنوان و لینک انگلیسی | عنوان فارسی | وضعیت |
+| :---: | :---: | :---: | :---: |
+| 1 | [ Problem Solving ](00-Problem-Solving) | حل مسئله | 🟢 |
+| 1-1 | [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/01-What-Is-An-Algorithm.md) | الگوریتم چیست؟ | ✅ |
+| 2-1 | [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/02-Algorithm-Writing.md) | نوشتن الگوریتم | ✅ |
+| 3-1 | [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/03-Step-by-Step-Thinking.md) | تفکر مرحله به مرحله | ✅ |
+| 4-1 | [![Practice](https://img.shields.io/badge/Practice-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/04-Practice.md) | تمرین | ✅ |
+| 5-1 | [![Quiz](https://img.shields.io/badge/Quiz-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/05-Quiz.md) | آزمون | ✅ |
 
 ---
 
 ### 🟢 سطح مبتدی
 
-| ردیف | عنوان و لینک انگلیسی | عنوان فارسی |
-| :---: | :---: | :---: |
-| 1 | [ Basics ](01-Beginner/01-Basics) | مبانی پایتون |
-| 1-1 | [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md) | پایتون چیست؟ |
-| 2-1 | [![نصب پایتون](https://img.shields.io/badge/Installing%20Python-green)](01-Beginner/01-Basics/02-Installing-Python/fa/README.md) | نصب پایتون  |
-| 3-1 | [![اولین برنامه پایتون](https://img.shields.io/badge/Your%20First%20Python%20Program-green)](01-Beginner/01-Basics/03-Your-First-Python-Program/fa/README.md) | اولین برنامه پایتون |
-| 4-1 | [![متغیرها و انواع داده](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-And-Data-Types/fa/README.md) | متغیرها و انواع داده  |
-| 5-1 | [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md) | ورودی و خروجی  |
-| 6-1 | [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md) | عملگرها |
-| 🟩 🟩 🟩 🟩 | 🟩 🟩 🟩 🟩 | 🟩 🟩 🟩 🟩 |
-| 2 | [ Conditional Statements ](01-Beginner/02-Conditional-Statements/fa/README.md) | دستورات شرطی |
-| 3 | [Loops](01-Beginner/03-Loops/fa/README.md) | حلقه ها |
-| 4 | [Functions](01-Beginner/04-Functions/fa/README.md) | توابع |
-| 5 | [Strings](01-Beginner/05-Strings/fa/README.md) | رشته ها |
-| 6 | [ Lists ](01-Beginner/06-Lists/fa/README.md) | لیست ها |
-| 7 | [ Tuples ](01-Beginner/07-Tuples/fa/README.md) | تاپل ها |
-| 8 | [ Sets ](01-Beginner/08-Sets/fa/README.md) | مجموعه ها |
-| 9 | [ Dictionaries ](01-Beginner/09-Dictionaries/fa/README.md) | دیکشنری ها |
+| ردیف | عنوان و لینک انگلیسی | عنوان فارسی | وضعیت |
+| :---: | :---: | :---: | :---: |
+| 1 | [ Basics ](01-Beginner/01-Basics) | مبانی پایتون | 🟡 |
+| 1-1 | [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md) | پایتون چیست؟ | ✅ |
+| 2-1 | [![نصب پایتون](https://img.shields.io/badge/Installing%20Python-green)](01-Beginner/01-Basics/02-Installing-Python/fa/README.md) | نصب پایتون  | ✅ |
+| 3-1 | [![اولین برنامه پایتون](https://img.shields.io/badge/Your%20First%20Python%20Program-green)](01-Beginner/01-Basics/03-Your-First-Python-Program/fa/README.md) | اولین برنامه پایتون | ✅ |
+| 4-1 | [![متغیرها و انواع داده](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-And-Data-Types/fa/README.md) | متغیرها و انواع داده  | ✅ |
+| 5-1 | [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md) | ورودی و خروجی  | ✅ |
+| 6-1 | [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md) | عملگرها | ✅ |
+| 🟩 🟩 🟩 🟩 | 🟩 🟩 🟩 🟩 | 🟩 🟩 🟩 🟩 | 🟩 🟩 🟩 🟩 |
+| 2 | [ Conditional Statements ](01-Beginner/02-Conditional-Statements/fa/README.md) | دستورات شرطی | ✅ |
+| 3 | [Loops](01-Beginner/03-Loops/fa/README.md) | حلقه ها | ✅ |
+| 4 | [Functions](01-Beginner/04-Functions/fa/README.md) | توابع | 🟡 |
+| 5 | [Strings](01-Beginner/05-Strings/fa/README.md) | رشته ها | ⬜ |
+| 6 | [ Lists ](01-Beginner/06-Lists/fa/README.md) | لیست ها | ⬜ |
+| 7 | [ Tuples ](01-Beginner/07-Tuples/fa/README.md) | تاپل ها | ⬜ |
+| 8 | [ Sets ](01-Beginner/08-Sets/fa/README.md) | مجموعه ها | ⬜ |
+| 9 | [ Dictionaries ](01-Beginner/09-Dictionaries/fa/README.md) | دیکشنری ها | ⬜ |
 
 ---
 

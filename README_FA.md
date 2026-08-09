@@ -26,17 +26,14 @@
 
 ### ⚪ پیش‌ نیاز 
 
-- [حل مسئله](00-Problem-Solving)
-  - الگوریتم چیست؟
-    - [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/01-What-Is-An-Algorithm.md)
-  - نوشتن الگوریتم
-    - [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/02-Algorithm-Writing.md)
-  - تفکر مرحله به مرحله
-    - [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/03-Step-by-Step-Thinking.md)
-  - تمرین 
-    - [![Practice](https://img.shields.io/badge/Practice-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/04-Practice.md)
-  - آزمون
-    - [![Quiz](https://img.shields.io/badge/Quiz-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/05-Quiz.md)
+| ردیف | عنوان و لینک انگلیسی | عنوان فارسی |
+| :---: | :---: | :---: |
+| 1 | [ Problem Solving ](00-Problem-Solving) | حل مسئله |
+| 1-1 | [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/01-What-Is-An-Algorithm.md) | الگوریتم چیست؟ |
+| 2-1 | [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/02-Algorithm-Writing.md) | نوشتن الگوریتم |
+| 3-1 | [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/03-Step-by-Step-Thinking.md) | تفکر مرحله به مرحله |
+| 4-1 | [![Practice](https://img.shields.io/badge/Practice-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/04-Practice.md) | تمرین |
+| 5-1 | [![Quiz](https://img.shields.io/badge/Quiz-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/05-Quiz.md) | آزمون |
 
 ---
 

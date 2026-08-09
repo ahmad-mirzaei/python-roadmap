@@ -292,3 +292,114 @@ The next part will explain these values in detail: **Arguments**.
 
 ---
 
+# Part 4 — Arguments
+
+In the previous part, you learned about **parameters**.
+
+Now we need to understand another important concept: **arguments**.
+
+A parameter and an argument are related, but they are not the same thing.
+
+---
+
+## What Is an Argument?
+
+An **argument** is the actual value that we provide when we call a function.
+
+For example:
+
+```python
+def greet(name):
+    print("Hello", name)
+```
+
+Here, `name` is a **parameter**.
+
+When we call the function:
+
+```python
+greet("Ahmad")
+```
+
+`"Ahmad"` is an **argument**.
+
+---
+
+## Parameter vs Argument
+
+Think about it this way:
+
+```python
+def greet(name):
+```
+
+`name` is a placeholder.
+
+It tells the function:
+
+> "I will receive a value here."
+
+But when we write:
+
+```python
+greet("Ahmad")
+```
+
+we provide the actual value.
+
+So:
+
+| Term      | Meaning                                                    |
+| --------- | ---------------------------------------------------------- |
+| Parameter | A variable defined in the function definition.             |
+| Argument  | The actual value passed to the function when it is called. |
+
+---
+
+## Multiple Arguments
+
+A function can receive multiple arguments.
+
+```python
+def introduce(name, age):
+    print("Name:", name)
+    print("Age:", age)
+```
+
+Now we can call the function:
+
+```python
+introduce("Ahmad", 36)
+```
+
+Output:
+
+```text
+Name: Ahmad
+Age: 36
+```
+
+Here:
+
+* `name` is a parameter.
+* `age` is a parameter.
+* `"Ahmad"` is an argument.
+* `36` is an argument.
+
+---
+
+## A Simple Way to Remember
+
+You can think of a parameter as an **empty box**.
+
+The argument is the **value that you put inside the box**.
+
+```text
+Parameter → Empty box
+Argument  → Value inside the box
+```
+
+This distinction becomes especially useful when you start working with functions that have many parameters.
+
+---
+

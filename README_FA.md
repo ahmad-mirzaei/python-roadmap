@@ -51,7 +51,7 @@
 | 4-1 | [![متغیرها و انواع داده](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-And-Data-Types/fa/README.md) | متغیرها و انواع داده  |
 | 5-1 | [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md) | ورودی و خروجی  |
 | 6-1 | [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md) | عملگرها |
-| 🔹 | 🔹 | 🔹 |
+| 🟩 🟩 🟩 | 🟩 🟩 🟩 | 🟩 🟩 🟩 |
 | 2 | [ Conditional Statements ](01-Beginner/02-Conditional-Statements/fa/README.md) | دستورات شرطی |
 | 3 | [Loops](01-Beginner/03-Loops/fa/README.md) | حلقه ها |
 | 4 | [Functions](01-Beginner/04-Functions/fa/README.md) | توابع |

@@ -403,3 +403,264 @@ This distinction becomes especially useful when you start working with functions
 
 ---
 
+# Part 5 — The `return` Statement
+
+Until now, our functions have performed actions such as printing messages.
+
+But sometimes we want a function to **calculate something and give the result back to us**.
+
+This is where the `return` statement becomes useful.
+
+---
+
+## What Does `return` Do?
+
+The `return` statement sends a value from a function back to the place where the function was called.
+
+For example:
+
+```python
+def add(a, b):
+    return a + b
+```
+
+When we call the function:
+
+```python
+result = add(5, 3)
+```
+
+The function calculates:
+
+```text
+5 + 3 = 8
+```
+
+and returns `8`.
+
+The value is then stored in the `result` variable.
+
+```python
+print(result)
+```
+
+Output:
+
+```text
+8
+```
+
+---
+
+## `print()` vs `return`
+
+One of the most important things to understand is the difference between `print()` and `return`.
+
+Consider this function:
+
+```python
+def add(a, b):
+    print(a + b)
+```
+
+Calling it:
+
+```python
+result = add(5, 3)
+```
+
+The function prints:
+
+```text
+8
+```
+
+But `result` does not contain `8`.
+
+Now look at this version:
+
+```python
+def add(a, b):
+    return a + b
+```
+
+Calling it:
+
+```python
+result = add(5, 3)
+```
+
+Now `result` contains `8`.
+
+So:
+
+| `print()`                          | `return`                                   |
+| ---------------------------------- | ------------------------------------------ |
+| Displays a value on the screen.    | Sends a value back from the function.      |
+| Mainly used to show information.   | Used when we need to use the result later. |
+| Does not return the printed value. | Returns a value to the caller.             |
+
+---
+
+## A Real-World Example
+
+Imagine using a calculator.
+
+You enter:
+
+```text
+36 + 14
+```
+
+The calculator performs the calculation and gives you:
+
+```text
+50
+```
+
+You can then use that result in another calculation.
+
+For example:
+
+```text
+50 × 2 = 100
+```
+
+A function with `return` works in a similar way.
+
+It performs a task and **gives the result back**, so we can use that result somewhere else.
+
+---
+
+## Using the Returned Value
+
+A returned value does not have to be printed immediately.
+
+We can store it in a variable:
+
+```python
+def multiply(a, b):
+    return a * b
+
+result = multiply(6, 4)
+
+print(result)
+```
+
+Output:
+
+```text
+24
+```
+
+We can also use the returned value directly:
+
+```python
+print(multiply(6, 4))
+```
+
+Output:
+
+```text
+24
+```
+
+Or use it in another calculation:
+
+```python
+result = multiply(6, 4)
+
+final_result = result + 10
+
+print(final_result)
+```
+
+Output:
+
+```text
+34
+```
+
+---
+
+## `return` Ends the Function
+
+When Python reaches a `return` statement, the function immediately stops executing.
+
+For example:
+
+```python
+def test():
+    print("Start")
+    return
+    print("End")
+```
+
+Calling the function:
+
+```python
+test()
+```
+
+Output:
+
+```text
+Start
+```
+
+The `"End"` message is never printed because the function stopped when it reached `return`.
+
+---
+
+## Returning Multiple Values
+
+A function can also return more than one value.
+
+For example:
+
+```python
+def calculate(a, b):
+    return a + b, a * b
+```
+
+We can store both results:
+
+```python
+sum_result, multiply_result = calculate(5, 3)
+```
+
+Now:
+
+```python
+print(sum_result)
+print(multiply_result)
+```
+
+Output:
+
+```text
+8
+15
+```
+
+---
+
+## Important Note
+
+Remember this simple rule:
+
+> `print()` shows a value.
+> `return` gives a value back.
+
+This difference is extremely important because returned values can be stored, reused, compared, or used in other calculations.
+
+<p align="center">
+  <img src="images/return-flowchart.png" width="800" alt="return-flowchart">
+</p>
+
+<p align="center">
+  <em>Figure 2. The flow of receiving input, executing a function, and returning a result with the <code>return</code> statement.</em>
+</p>
+
+---
+

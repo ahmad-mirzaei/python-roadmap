@@ -43,7 +43,7 @@
 ### 🟢 سطح مبتدی
 
 |عنوان و لینک انگلیسی|عنوان فارسی|
-|:---:|:---:|
+|:---:||:---:|:---:|
 |0| [مبانی پایتون](01-Beginner/01-Basics) | مبانی پایتون |
 |1| [![پایتون چیست؟](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/fa/README.md) | پایتون چیست؟ |
 |2| [![نصب پایتون](https://img.shields.io/badge/Installing%20Python-green)](01-Beginner/01-Basics/02-Installing-Python/fa/README.md) | نصب پایتون  |

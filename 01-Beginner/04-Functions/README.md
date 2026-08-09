@@ -650,6 +650,8 @@ Output:
 Remember this simple rule:
 
 > `print()` shows a value.
+<br />
+
 > `return` gives a value back.
 
 This difference is extremely important because returned values can be stored, reused, compared, or used in other calculations.
@@ -661,6 +663,211 @@ This difference is extremely important because returned values can be stored, re
 <p align="center">
   <em>Figure 2. The flow of receiving input, executing a function, and returning a result with the <code>return</code> statement.</em>
 </p>
+
+---
+
+# Part 6 — Local and Global Variables
+
+Variables can exist in different parts of a program.
+
+Depending on where a variable is created, it may be available only inside a function or throughout the program.
+
+These variables are commonly divided into two types:
+
+* **Local Variables**
+* **Global Variables**
+
+---
+
+## Local Variables
+
+A variable created inside a function is called a **local variable**.
+
+A local variable can normally be used only inside that function.
+
+For example:
+
+```python
+def greet():
+    name = "Ahmad"
+    print(name)
+
+greet()
+```
+
+Output:
+
+```text
+Ahmad
+```
+
+Here, `name` is a local variable because it was created inside the `greet()` function.
+
+We cannot normally use it outside the function:
+
+```python
+def greet():
+    name = "Ahmad"
+
+greet()
+
+print(name)
+```
+
+This causes an error because `name` only exists inside the function.
+
+---
+
+## Global Variables
+
+A variable created outside a function is called a **global variable**.
+
+A global variable can be accessed from different parts of the program, including inside functions.
+
+For example:
+
+```python
+name = "Ahmad"
+
+def greet():
+    print(name)
+
+greet()
+```
+
+Output:
+
+```text
+Ahmad
+```
+
+Here, `name` is a global variable because it was created outside the function.
+
+---
+
+## Local vs Global
+
+Consider this example:
+
+```python
+name = "Ahmad"
+
+def greet():
+    message = "Hello"
+    print(name)
+    print(message)
+
+greet()
+```
+
+Here:
+
+* `name` is a global variable.
+* `message` is a local variable.
+
+The function can access the global variable `name`.
+
+But `message` only exists inside the `greet()` function.
+
+---
+
+## Variables With the Same Name
+
+A local variable can have the same name as a global variable.
+
+For example:
+
+```python
+name = "Ahmad"
+
+def greet():
+    name = "Sara"
+    print(name)
+
+greet()
+
+print(name)
+```
+
+Output:
+
+```text
+Sara
+Ahmad
+```
+
+Why?
+
+Because the `name` inside the function is a local variable.
+
+It does not change the global `name`.
+
+---
+
+## Changing a Global Variable
+
+If we want to change a global variable from inside a function, Python provides the `global` keyword.
+
+For example:
+
+```python
+age = 36
+
+def change_age():
+    global age
+    age = 40
+
+change_age()
+
+print(age)
+```
+
+Output:
+
+```text
+40
+```
+
+The `global` keyword tells Python that we want to use the global variable instead of creating a new local variable.
+
+---
+
+## Important Note
+
+Although the `global` keyword can be useful, changing global variables from inside functions can make programs harder to understand and maintain.
+
+In most cases, it is better to pass values into functions using **parameters** and get results back using **`return`**.
+
+For example:
+
+```python
+def increase_age(age):
+    return age + 1
+
+age = 36
+
+age = increase_age(age)
+
+print(age)
+```
+
+Output:
+
+```text
+37
+```
+
+This approach keeps the function more independent and easier to reuse.
+
+---
+
+## A Simple Rule to Remember
+
+> **Local variable:** Created inside a function and normally available only there.
+
+> **Global variable:** Created outside a function and can be accessed from different parts of the program.
+
+When possible, prefer **parameters** and **`return`** instead of relying heavily on global variables.
 
 ---
 

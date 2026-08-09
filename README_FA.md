@@ -27,16 +27,20 @@
 ### ⚪ پیش‌ نیاز 
 
 - [حل مسئله](00-Problem-Solving)
+  - الگوریتم چیست؟
+  - [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/01-What-Is-An-Algorithm.md)
 
-  - [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/01-What-Is-An-Algorithm.md) | الگوریتم چیست؟
+  - نوشتن الگوریتم
+  - [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/02-Algorithm-Writing.md)
 
-  - [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/02-Algorithm-Writing.md) | نوشتن الگوریتم
-
-  - [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/03-Step-by-Step-Thinking.md) | تفکر مرحله به مرحله
+  - تفکر مرحله به مرحله
+  - [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/03-Step-by-Step-Thinking.md)
   
-  - [![Practice](https://img.shields.io/badge/Practice-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/04-Practice.md) | تمرین
+  - تمرین
+  - [![Practice](https://img.shields.io/badge/Practice-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/04-Practice.md)
 
-  - [![Quiz](https://img.shields.io/badge/Quiz-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/05-Quiz.md) | آزمون
+  - آزمون
+  - [![Quiz](https://img.shields.io/badge/Quiz-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/fa/05-Quiz.md)
 
 ---
 
@@ -55,6 +59,7 @@
   - [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md) | ورودی و خروجی 
 
   - [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md) | عملگرها
+
 - دستورات شرطی
 - حلقه‌ها
 - توابع

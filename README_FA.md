@@ -1,4 +1,5 @@
-<div dir="rtl">
+<!-- <div dir="rtl"> -->
+<div dir=&quotrtl&quot>
 
 # 🐍 نقشه راه پایتون
 

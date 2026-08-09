@@ -871,3 +871,176 @@ When possible, prefer **parameters** and **`return`** instead of relying heavily
 
 ---
 
+# Part 7 — Algorithmic Problem
+
+## Calculate the Years Until Age 40
+
+Let's combine what we have learned so far.
+
+We want to write a program that receives the user's age and calculates how many years remain until they reach the age of 40.
+
+The program should use a function and return the result.
+
+---
+
+## Problem
+
+Write a program that:
+
+1. Gets the user's age.
+2. Sends the age to a function.
+3. The function calculates how many years remain until age 40.
+4. The function returns the result.
+5. The program displays the result.
+
+For example, if the user's age is `36`:
+
+```text
+You have 4 years until you reach 40.
+```
+
+---
+
+## Algorithm
+
+Before writing code, let's solve the problem step by step.
+
+```text
+Start
+  ↓
+Get the user's age
+  ↓
+Call the function
+  ↓
+Calculate 40 - age
+  ↓
+Return the result
+  ↓
+Store the returned value
+  ↓
+Display the result
+  ↓
+End
+```
+
+---
+
+## Step-by-Step Algorithm
+
+### Step 1 — Get the age
+
+We need the user's age.
+
+```python
+age = int(input("Enter your age: "))
+```
+
+---
+
+### Step 2 — Define the function
+
+The function receives the age as a parameter.
+
+```python
+def years_until_40(age):
+```
+
+---
+
+### Step 3 — Calculate the result
+
+We subtract the user's age from `40`.
+
+```python
+def years_until_40(age):
+    return 40 - age
+```
+
+---
+
+### Step 4 — Call the function
+
+We pass the user's age as an argument.
+
+```python
+result = years_until_40(age)
+```
+
+Here:
+
+* `age` inside the function is a **parameter**.
+* `age` passed to the function is an **argument**.
+* The function returns the calculated result.
+
+---
+
+### Step 5 — Display the result
+
+```python
+print("You have", result, "years until you reach 40.")
+```
+
+---
+
+## Complete Program
+
+```python
+age = int(input("Enter your age: "))
+
+
+def years_until_40(age):
+    return 40 - age
+
+
+result = years_until_40(age)
+
+print("You have", result, "years until you reach 40.")
+```
+
+---
+
+## Example Run
+
+```text
+Enter your age: 36
+You have 4 years until you reach 40.
+```
+
+---
+
+## What Did We Use?
+
+This small problem combines several concepts:
+
+* Variables
+* `input()`
+* Type conversion with `int()`
+* Functions
+* Parameters
+* Arguments
+* `return`
+* Variables inside and outside functions
+* Basic arithmetic
+
+This is the important part of **algorithmic thinking**.
+
+We did not start by writing code.
+
+First, we understood the problem, broke it into smaller steps, created an algorithm, and then translated that algorithm into Python code.
+
+---
+
+## Think Before You Code
+
+When you face a new problem, ask yourself:
+
+1. What information do I have?
+2. What information do I need?
+3. What should the program calculate?
+4. What steps are needed to reach the result?
+5. Which parts of the problem should become functions?
+
+This way of thinking becomes more important as programs become larger.
+
+---
+

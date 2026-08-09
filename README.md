@@ -45,7 +45,7 @@ This repository aims to help developers:
 | 4-1 | [![Variables And Data Types](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-and-Data-Types/README.md) | ✅ |
 | 5-1 | [![Input And Output](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-and-Output/README.md) | ✅ |
 | 5-1 | [![Operators](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/README.md)
-| 🟩 🟩 🟩 🟩 | 🟩 🟩 🟩 🟩 | 🟩 🟩 🟩 🟩 |
+| ⬇️  ⬇️  ⬇️  ⬇️ | ⬇️  Next Topic ⬇️  | ⬇️  ⬇️  ⬇️  ⬇️  |
 | 2 |[Conditional Statements](01-Beginner/02-Conditional-Statements) | ✅ |
 | 3 | [Loops](01-Beginner/03-Loops) | ✅ |
 | 4 | [Functions](01-Beginner/04-Functions) | 🟡 |

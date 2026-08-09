@@ -51,14 +51,15 @@
 | 4-1 | [![متغیرها و انواع داده](https://img.shields.io/badge/Variables%20And%20Data%20Types-green)](01-Beginner/01-Basics/04-Variables-And-Data-Types/fa/README.md) | متغیرها و انواع داده  |
 | 5-1 | [![ورودی و خروجی](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-And-Output/fa/README.md) | ورودی و خروجی  |
 | 6-1 | [![عملگرها](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/fa/README.md) | عملگرها |
-| 2 | [دستورات شرطی](01-Beginner/02-Conditional-Statements/fa/README.md) | دستورات شرطی |
-| 3 | [حلقه‌ها](01-Beginner/03-Loops/fa/README.md) | حلقه ها |
-| 4 | [توابع](01-Beginner/04-Functions/fa/README.md) | توابع |
-| 5 | [رشته‌ها](01-Beginner/05-Strings/fa/README.md) | رشته ها |
-| 6 | [لیست‌ ها](01-Beginner/06-Lists/fa/README.md) | لیست ها |
-| 7 | [تاپل‌ ها](01-Beginner/07-Tuples/fa/README.md) | تاپل ها |
-| 8 | [مجموعه‌ ها](01-Beginner/08-Sets/fa/README.md) | مجموعه ها |
-| 9 | [دیکشنری‌ ها](01-Beginner/09-Dictionaries/fa/README.md) | دیکشنری ها |
+|  |  |
+| 2 | [ Conditional Statements ](01-Beginner/02-Conditional-Statements/fa/README.md) | دستورات شرطی |
+| 3 | [Loops](01-Beginner/03-Loops/fa/README.md) | حلقه ها |
+| 4 | [Functions](01-Beginner/04-Functions/fa/README.md) | توابع |
+| 5 | [Strings](01-Beginner/05-Strings/fa/README.md) | رشته ها |
+| 6 | [ Lists ](01-Beginner/06-Lists/fa/README.md) | لیست ها |
+| 7 | [ Tuples ](01-Beginner/07-Tuples/fa/README.md) | تاپل ها |
+| 8 | [ Sets ](01-Beginner/08-Sets/fa/README.md) | مجموعه ها |
+| 9 | [ Dictionaries ](01-Beginner/09-Dictionaries/fa/README.md) | دیکشنری ها |
 
 ---
 

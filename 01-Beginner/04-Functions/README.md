@@ -1199,38 +1199,29 @@ Expected output:
 
 ---
 
-## Exercise 9 — Count Down
+# Part 9 — Mini Project
 
-Write a function called `count_down` that receives a positive integer and uses a `for` loop to print the numbers from that number down to `1`.
+## Simple Calculator
 
-Example:
+In this project, you will build a simple calculator program.
 
-```python
-count_down(5)
-```
+The program should allow the user to enter two numbers and choose an arithmetic operation.
 
-Expected output:
-
-```text
-5
-4
-3
-2
-1
-```
+Your program should then perform the selected operation and display the result.
 
 ---
 
-## Exercise 10 — Simple Calculator Function
+## Requirements
 
-Write a function called `calculate` that receives:
+The program should:
 
-* two numbers
-* an operator
+1. Get the first number from the user.
+2. Get the second number from the user.
+3. Get an arithmetic operator from the user.
+4. Perform the selected operation.
+5. Display the result.
 
-The function should perform the requested operation and return the result.
-
-Support these operators:
+The calculator should support these operators:
 
 ```text
 +
@@ -1239,43 +1230,449 @@ Support these operators:
 /
 ```
 
-For example:
+---
 
-```python
-result = calculate(10, 5, "+")
+## Example
 
-print(result)
-```
-
-Expected output:
+If the user enters:
 
 ```text
-15
+First number: 10
+Second number: 5
+Operator: *
 ```
 
-Try the other operators as well.
+The program should display:
 
-### Challenge
+```text
+Result: 50
+```
 
-What should your function do if the user tries to divide by zero?
+Another example:
 
-Try to handle this case safely.
+```text
+First number: 20
+Second number: 4
+Operator: /
+```
+
+Expected result:
+
+```text
+Result: 5
+```
 
 ---
 
-## Before You Start
+## Challenge
 
-Do not immediately write the code.
+After completing the basic calculator, improve your program by adding support for:
 
-For each exercise:
+```text
+%
+//
+**
+```
 
-1. Understand the problem.
-2. Identify the inputs.
-3. Identify the expected output.
-4. Break the problem into smaller steps.
-5. Write the algorithm.
-6. Then write the Python code.
+Your calculator should also handle situations that could cause an error, such as dividing by zero.
 
-The goal is not only to make the code work.
 
-The goal is to learn **how to think like a programmer**.
+
+## Final Challenge
+
+Try to make the calculator capable of performing multiple calculations without restarting the program.
+
+For example:
+
+```text
+First number: 10
+Second number: 3
+Operator: //
+Result: 3
+
+Continue? yes
+
+First number: 5
+Second number: 2
+Operator: **
+Result: 25
+```
+
+### Goal
+
+Try to solve the project **before looking at the solution**.
+
+Think about the problem, break it into smaller steps, and design your own solution.
+
+---
+
+## Mini Project 2 — Number Guessing Game
+
+In this project, you will build a simple **Number Guessing Game**.
+
+The program should choose a secret number, and the user should try to guess it.
+
+After each guess, the program should tell the user whether their guess is:
+
+* Too high
+* Too low
+* Correct
+
+The game should continue until the user finds the secret number.
+
+---
+
+### Requirements
+
+The program should:
+
+1. Choose a secret number between `1` and `100`.
+2. Ask the user to enter a guess.
+3. Compare the guess with the secret number.
+4. Tell the user whether the guess is too high or too low.
+5. Continue asking for guesses until the correct number is found.
+6. Display the number of attempts when the user wins.
+
+---
+
+### Example
+
+```text
+Guess the number between 1 and 100: 50
+Too high!
+
+Guess the number between 1 and 100: 25
+Too low!
+
+Guess the number between 1 and 100: 37
+Too high!
+
+Guess the number between 1 and 100: 32
+Correct!
+
+You found the number in 4 attempts.
+```
+
+---
+
+### Challenge
+
+After completing the basic version, try to improve the game.
+
+Add a feature that allows the user to choose the difficulty:
+
+```text
+1. Easy
+2. Medium
+3. Hard
+```
+
+Each difficulty should use a different maximum number of attempts.
+
+For example:
+
+* Easy → 10 attempts
+* Medium → 7 attempts
+* Hard → 5 attempts
+
+If the user runs out of attempts, the program should end the game and reveal the secret number.
+
+---
+
+### Final Challenge
+
+After finishing the game, try to allow the user to play again without restarting the program.
+
+For example:
+
+```text
+You found the number in 5 attempts!
+
+Play again? yes
+```
+
+The game should start a new round when the user chooses `yes`.
+
+---
+
+### Goal
+
+Try to solve the project yourself before looking at the solution.
+
+Do not start by writing code.
+
+First understand the problem and think about the steps your program needs to perform.
+
+---
+# Part 10 — Project Solutions
+
+## Solution 1 — Simple Calculator
+
+### Algorithm
+
+```text
+Start
+  ↓
+Get the first number
+  ↓
+Get the second number
+  ↓
+Get the operator
+  ↓
+Call the calculation function
+  ↓
+Check the operator
+  ├── + → Add
+  ├── - → Subtract
+  ├── * → Multiply
+  └── / → Divide
+  ↓
+Return the result
+  ↓
+Display the result
+  ↓
+Ask whether the user wants another calculation
+  ├── Yes → Repeat
+  └── No → End
+```
+
+### Complete Solution
+
+```python
+def calculate(a, b, operator):
+    if operator == "+":
+        return a + b
+
+    elif operator == "-":
+        return a - b
+
+    elif operator == "*":
+        return a * b
+
+    elif operator == "/":
+        if b == 0:
+            return None
+        return a / b
+
+    elif operator == "%":
+        if b == 0:
+            return None
+        return a % b
+
+    elif operator == "//":
+        if b == 0:
+            return None
+        return a // b
+
+    elif operator == "**":
+        return a ** b
+
+    return None
+
+
+while True:
+    num1 = float(input("Enter the first number: "))
+    num2 = float(input("Enter the second number: "))
+    operator = input("Enter an operator (+, -, *, /, %, //, **): ")
+
+    result = calculate(num1, num2, operator)
+
+    if result is None:
+        print("Invalid operation.")
+    else:
+        print("Result:", result)
+
+    again = input("Continue? yes/no: ")
+
+    if again != "yes":
+        break
+```
+
+### What Did We Use?
+
+This solution combines:
+
+* Variables
+* `input()`
+* Type conversion
+* Functions
+* Parameters
+* Arguments
+* `return`
+* `if` / `elif` / `else`
+* Arithmetic operators
+* `while`
+* `break`
+
+---
+
+# Solution 2 — Number Guessing Game
+
+## Algorithm
+
+```text
+Start
+  ↓
+Choose a secret number between 1 and 100
+  ↓
+Set attempts to 0
+  ↓
+Ask the user for a guess
+  ↓
+Increase attempts
+  ↓
+Compare the guess with the secret number
+  ├── Guess < secret → Too low
+  ├── Guess > secret → Too high
+  └── Guess == secret → Correct
+                              ↓
+                         Display attempts
+                              ↓
+                             End
+```
+
+For the version with limited attempts:
+
+```text
+Start
+  ↓
+Choose difficulty
+  ↓
+Set maximum attempts
+  ↓
+Choose secret number
+  ↓
+Repeat while attempts remain
+  ↓
+Get a guess
+  ↓
+Compare guess with secret number
+  ↓
+Correct?
+ ├── Yes → Win
+ └── No → Continue
+  ↓
+Attempts finished?
+ ├── Yes → Reveal secret number
+ └── No → Continue guessing
+```
+
+## Complete Basic Solution
+
+```python
+import random
+
+
+def check_guess(secret, guess):
+    if guess < secret:
+        return "Too low!"
+
+    elif guess > secret:
+        return "Too high!"
+
+    return "Correct!"
+
+
+secret_number = random.randint(1, 100)
+attempts = 0
+
+while True:
+    guess = int(input("Guess the number between 1 and 100: "))
+    attempts += 1
+
+    result = check_guess(secret_number, guess)
+
+    print(result)
+
+    if result == "Correct!":
+        print("You found the number in", attempts, "attempts.")
+        break
+```
+
+---
+
+## Improved Version With Difficulty
+
+```python
+import random
+
+
+def check_guess(secret, guess):
+    if guess < secret:
+        return "Too low!"
+
+    elif guess > secret:
+        return "Too high!"
+
+    return "Correct!"
+
+
+while True:
+    print("1. Easy")
+    print("2. Medium")
+    print("3. Hard")
+
+    difficulty = input("Choose difficulty: ")
+
+    if difficulty == "1":
+        max_attempts = 10
+
+    elif difficulty == "2":
+        max_attempts = 7
+
+    elif difficulty == "3":
+        max_attempts = 5
+
+    else:
+        print("Invalid choice.")
+        continue
+
+    secret_number = random.randint(1, 100)
+    attempts = 0
+
+    while attempts < max_attempts:
+        guess = int(input("Guess the number between 1 and 100: "))
+        attempts += 1
+
+        result = check_guess(secret_number, guess)
+
+        print(result)
+
+        if result == "Correct!":
+            print("You found the number in", attempts, "attempts.")
+            break
+
+    else:
+        print("You ran out of attempts.")
+        print("The secret number was:", secret_number)
+
+    again = input("Play again? yes/no: ")
+
+    if again != "yes":
+        break
+```
+
+### What Did We Use?
+
+The guessing game combines several important concepts:
+
+* Variables
+* `input()`
+* Type conversion
+* Functions
+* Parameters
+* Arguments
+* `return`
+* `if` / `elif` / `else`
+* `while`
+* `break`
+* `continue`
+* Counters
+* The `random` module
+
+The important point is not memorizing this code.
+
+The important point is being able to look at the problem and build the solution step by step:
+
+**Problem → Algorithm → Code → Test → Improve**
+

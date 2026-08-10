@@ -1044,3 +1044,238 @@ This way of thinking becomes more important as programs become larger.
 
 ---
 
+# Part 8 — Exercises
+
+## Exercise 1 — Say Hello
+
+Write a function called `say_hello` that prints:
+
+```text
+Hello, Python!
+```
+
+Call the function to see the result.
+
+---
+
+## Exercise 2 — Greet the User
+
+Write a function called `greet` that receives a person's name as a parameter and prints:
+
+```text
+Hello, Ahmad!
+```
+
+For example:
+
+```python
+greet("Ahmad")
+```
+
+---
+
+## Exercise 3 — Add Two Numbers
+
+Write a function called `add` that receives two numbers and returns their sum.
+
+Example:
+
+```python
+result = add(10, 5)
+
+print(result)
+```
+
+Expected output:
+
+```text
+15
+```
+
+---
+
+## Exercise 4 — Calculate the Square
+
+Write a function called `square` that receives a number and returns its square.
+
+Example:
+
+```python
+result = square(6)
+
+print(result)
+```
+
+Expected output:
+
+```text
+36
+```
+
+---
+
+## Exercise 5 — Check the Age
+
+Write a function called `is_adult` that receives an age and returns:
+
+* `True` if the age is 18 or older.
+* `False` otherwise.
+
+Example:
+
+```python
+print(is_adult(20))
+print(is_adult(15))
+```
+
+Expected output:
+
+```text
+True
+False
+```
+
+---
+
+## Exercise 6 — Calculate Remaining Years
+
+Write a function called `years_until_40` that receives a person's age and returns how many years remain until they reach 40.
+
+Example:
+
+```python
+result = years_until_40(36)
+
+print(result)
+```
+
+Expected output:
+
+```text
+4
+```
+
+---
+
+## Exercise 7 — Find the Larger Number
+
+Write a function called `find_larger` that receives two numbers and returns the larger number.
+
+Example:
+
+```python
+result = find_larger(15, 9)
+
+print(result)
+```
+
+Expected output:
+
+```text
+15
+```
+
+Try the function with different numbers.
+
+---
+
+## Exercise 8 — Calculate the Average
+
+Write a function called `average` that receives three numbers and returns their average.
+
+Example:
+
+```python
+result = average(10, 20, 30)
+
+print(result)
+```
+
+Expected output:
+
+```text
+20.0
+```
+
+---
+
+## Exercise 9 — Count Down
+
+Write a function called `count_down` that receives a positive integer and uses a `for` loop to print the numbers from that number down to `1`.
+
+Example:
+
+```python
+count_down(5)
+```
+
+Expected output:
+
+```text
+5
+4
+3
+2
+1
+```
+
+---
+
+## Exercise 10 — Simple Calculator Function
+
+Write a function called `calculate` that receives:
+
+* two numbers
+* an operator
+
+The function should perform the requested operation and return the result.
+
+Support these operators:
+
+```text
++
+-
+*
+/
+```
+
+For example:
+
+```python
+result = calculate(10, 5, "+")
+
+print(result)
+```
+
+Expected output:
+
+```text
+15
+```
+
+Try the other operators as well.
+
+### Challenge
+
+What should your function do if the user tries to divide by zero?
+
+Try to handle this case safely.
+
+---
+
+## Before You Start
+
+Do not immediately write the code.
+
+For each exercise:
+
+1. Understand the problem.
+2. Identify the inputs.
+3. Identify the expected output.
+4. Break the problem into smaller steps.
+5. Write the algorithm.
+6. Then write the Python code.
+
+The goal is not only to make the code work.
+
+The goal is to learn **how to think like a programmer**.

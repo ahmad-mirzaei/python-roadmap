@@ -46,12 +46,12 @@ This repository aims to help developers:
 | 5-1 | [![Input And Output](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-and-Output/README.md) | ✅ |
 | 5-1 | [![Operators](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/README.md)
 | ✦ ✦ ✦ ✦ ✦  | ✦ ✦ ✦ ✦ ✦   | ✦ ✦ ✦ ✦ ✦   |
-| 2 |[Conditional Statements](01-Beginner/02-Conditional-Statements) | ✅ |
-| 3 | [Loops](01-Beginner/03-Loops) | ✅ |
-| 4 | [Functions](01-Beginner/04-Functions) | ✅ |
+| 2 |[Conditional Statements](01-Beginner/02-Conditional-Statements/README.md) | ✅ |
+| 3 | [Loops](01-Beginner/03-Loops/README.md) | ✅ |
+| 4 | [Functions](01-Beginner/04-Functions/README.md) | ✅ |
 | 5 | [Strings](01-Beginner/05-Strings/README.md) | 🟡 |
-| 6 | [Lists](01-Beginner/06-Lists) | ⬜ |
-| 7 | [Tuples](01-Beginner/07-Tuples) | ⬜ |
+| 6 | [Lists](01-Beginner/06-Lists/README.md) | ⬜ |
+| 7 | [Tuples](01-Beginner/07-TuplesREADME.md) | ⬜ |
 | 8 | [Sets](01-Beginner/08-Sets) | ⬜ |
 | 9 | [Dictionaries](01-Beginner/09-Dictionaries) | ⬜ |
 

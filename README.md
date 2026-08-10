@@ -25,7 +25,7 @@ This repository aims to help developers:
 
 | Row | Title And Link | Status |
 | :---: | :---: | :---: |
-| 1 | [Problem Solving](00-Problem-Solving) | 🟢 |
+| 1 | [Problem Solving](00-Problem-Solving/README.md) | 🟢 |
 | 1-1 | [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/01-What-Is-An-Algorithm.md) | ✅ |
 | 2-1 | [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/02-Algorithm-Writing.md) | ✅ |
 | 3-1 | [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/03-Step-by-Step-Thinking.md) | ✅ |

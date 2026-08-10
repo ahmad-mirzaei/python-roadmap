@@ -51,8 +51,8 @@
 | ✦ ✦ ✦ ✦ ✦  | ✦ ✦ ✦ ✦ ✦  | ✦ ✦ ✦ ✦ ✦  | ✦ ✦ ✦ ✦ ✦  |
 | 2 | [ Conditional Statements ](01-Beginner/02-Conditional-Statements/fa/README.md) | دستورات شرطی | ✅ |
 | 3 | [Loops](01-Beginner/03-Loops/fa/README.md) | حلقه ها | ✅ |
-| 4 | [Functions](01-Beginner/04-Functions/fa/README.md) | توابع | 🟡 |
-| 5 | [Strings](01-Beginner/05-Strings/fa/README.md) | رشته ها | ⬜ |
+| 4 | [Functions](01-Beginner/04-Functions/fa/README.md) | توابع | ✅ |
+| 5 | [Strings](01-Beginner/05-Strings/fa/README.md) | رشته ها | 🟡 |
 | 6 | [ Lists ](01-Beginner/06-Lists/fa/README.md) | لیست ها | ⬜ |
 | 7 | [ Tuples ](01-Beginner/07-Tuples/fa/README.md) | تاپل ها | ⬜ |
 | 8 | [ Sets ](01-Beginner/08-Sets/fa/README.md) | مجموعه ها | ⬜ |

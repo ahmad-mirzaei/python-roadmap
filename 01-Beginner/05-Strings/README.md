@@ -3583,3 +3583,1355 @@ In this section, we learned:
 * Using slicing with user input
 
 The next section will move from extracting characters to **working with the content of strings**.
+
+---
+
+# Part 5 — String Methods
+
+> 🌐 Language: **English** | [فارسی](fa/README.md)
+
+## 1. What Is a String Method?
+
+In the previous sections, we learned how to create strings, access characters using indexing, and extract parts of strings using slicing.
+
+Now we will learn how to **process strings** using string methods.
+
+A string method is an operation that belongs to a string object.
+
+```python
+text = "python"
+
+print(text.upper())
+```
+
+Output:
+
+```text
+PYTHON
+```
+
+Here:
+
+* `text` is the string object.
+* `upper()` is a string method.
+* `.` connects the object to its method.
+
+The general structure is:
+
+```python
+string.method()
+```
+
+Some methods also accept arguments:
+
+```python
+string.method(argument)
+```
+
+For example:
+
+```python
+text = "hello world"
+
+print(text.replace("world", "Python"))
+```
+
+Output:
+
+```text
+hello Python
+```
+
+---
+
+## 2. Function vs Method
+
+We have already used functions such as:
+
+```python
+len(text)
+```
+
+`len()` is a **function**.
+
+But:
+
+```python
+text.upper()
+```
+
+uses a **method**.
+
+The important difference is where the operation is called.
+
+```python
+# Function
+len(text)
+
+# Method
+text.upper()
+```
+
+A function receives the object as an argument.
+
+A method is called directly on the object.
+
+You will see this distinction frequently in Python.
+
+---
+
+## 3. `upper()`
+
+The `upper()` method converts letters to uppercase.
+
+```python
+text = "hello"
+
+print(text.upper())
+```
+
+Output:
+
+```text
+HELLO
+```
+
+Another example:
+
+```python
+name = "alexander"
+
+print(name.upper())
+```
+
+Output:
+
+```text
+ALEXANDER
+```
+
+### Does `upper()` change the original string?
+
+No.
+
+```python
+text = "hello"
+
+print(text.upper())
+print(text)
+```
+
+Output:
+
+```text
+HELLO
+hello
+```
+
+Strings are immutable, so `upper()` creates a new string.
+
+If we want to save the result:
+
+```python
+text = text.upper()
+```
+
+Now `text` contains:
+
+```text
+HELLO
+```
+
+---
+
+## 4. `lower()`
+
+`lower()` converts letters to lowercase.
+
+```python
+text = "PYTHON"
+
+print(text.lower())
+```
+
+Output:
+
+```text
+python
+```
+
+This is particularly useful when we want to compare text without worrying about uppercase and lowercase differences.
+
+```python
+answer = input("Continue? ")
+
+if answer.lower() == "yes":
+    print("Continuing...")
+```
+
+Now all of these inputs work:
+
+```text
+yes
+YES
+Yes
+YeS
+```
+
+because they are converted to lowercase before comparison.
+
+---
+
+## 5. `capitalize()`
+
+`capitalize()` makes the first character uppercase and converts the remaining characters to lowercase.
+
+```python
+text = "pYTHON"
+
+print(text.capitalize())
+```
+
+Output:
+
+```text
+Python
+```
+
+Compare:
+
+```python
+text.upper()
+```
+
+with:
+
+```python
+text.capitalize()
+```
+
+For:
+
+```text
+python
+```
+
+`upper()` produces:
+
+```text
+PYTHON
+```
+
+while `capitalize()` produces:
+
+```text
+Python
+```
+
+---
+
+## 6. `title()`
+
+`title()` capitalizes the first character of each word.
+
+```python
+text = "hello world"
+
+print(text.title())
+```
+
+Output:
+
+```text
+Hello World
+```
+
+For example:
+
+```python
+name = input("Enter your name: ")
+
+print(name.title())
+```
+
+If the user enters:
+
+```text
+aLEXANDER hAMILTON
+```
+
+the result is:
+
+```text
+Alexander Hamilton
+```
+
+---
+
+## 7. Comparing `upper()`, `lower()`, `capitalize()`, and `title()`
+
+Suppose:
+
+```python
+text = "hello WORLD"
+```
+
+Then:
+
+```python
+text.upper()
+```
+
+produces:
+
+```text
+HELLO WORLD
+```
+
+```python
+text.lower()
+```
+
+produces:
+
+```text
+hello world
+```
+
+```python
+text.capitalize()
+```
+
+produces:
+
+```text
+Hello world
+```
+
+```python
+text.title()
+```
+
+produces:
+
+```text
+Hello World
+```
+
+| Method         | Result                                 |
+| -------------- | -------------------------------------- |
+| `upper()`      | All uppercase                          |
+| `lower()`      | All lowercase                          |
+| `capitalize()` | First character uppercase              |
+| `title()`      | First character of each word uppercase |
+
+---
+
+## 8. `strip()`
+
+User input may contain unnecessary spaces.
+
+For example:
+
+```python
+name = "   Alice   "
+```
+
+We can remove the spaces at the beginning and end with:
+
+```python
+name.strip()
+```
+
+Example:
+
+```python
+name = "   Alice   "
+
+print(name.strip())
+```
+
+Output:
+
+```text
+Alice
+```
+
+This is very useful with `input()`:
+
+```python
+name = input("Enter your name: ").strip()
+```
+
+Now accidental spaces around the input are removed.
+
+---
+
+## 9. `lstrip()` and `rstrip()`
+
+Sometimes we only want to remove spaces from one side.
+
+`lstrip()` removes whitespace from the left side:
+
+```python
+text = "   Python   "
+
+print(text.lstrip())
+```
+
+Result:
+
+```text
+Python   
+```
+
+`rstrip()` removes whitespace from the right side:
+
+```python
+text = "   Python   "
+
+print(text.rstrip())
+```
+
+Result:
+
+```text
+   Python
+```
+
+Remember:
+
+```text
+strip()   → both sides
+lstrip()  → left side
+rstrip()  → right side
+```
+
+---
+
+## 10. `replace()`
+
+`replace()` replaces one piece of text with another.
+
+Syntax:
+
+```python
+text.replace(old, new)
+```
+
+Example:
+
+```python
+text = "I like Java"
+
+print(text.replace("Java", "Python"))
+```
+
+Output:
+
+```text
+I like Python
+```
+
+It can also replace individual characters:
+
+```python
+text = "banana"
+
+print(text.replace("a", "o"))
+```
+
+Output:
+
+```text
+bonono
+```
+
+Every matching `a` is replaced.
+
+---
+
+## 11. `replace()` Does Not Modify the Original String
+
+Just like `upper()`, `replace()` creates a new string.
+
+```python
+text = "I like Java"
+
+text.replace("Java", "Python")
+
+print(text)
+```
+
+The output is still:
+
+```text
+I like Java
+```
+
+If we want to keep the new value:
+
+```python
+text = text.replace("Java", "Python")
+```
+
+Now:
+
+```text
+I like Python
+```
+
+---
+
+## 12. Limiting `replace()`
+
+We can specify how many replacements should happen.
+
+```python
+text = "banana"
+
+print(text.replace("a", "o", 1))
+```
+
+Output:
+
+```text
+bonana
+```
+
+Only the first matching `a` was replaced.
+
+For example:
+
+```python
+text.replace("a", "o", 2)
+```
+
+produces:
+
+```text
+bonona
+```
+
+The third argument is the maximum number of replacements.
+
+---
+
+## 13. `find()`
+
+`find()` searches for a substring and returns its index.
+
+```python
+text = "Python programming"
+
+print(text.find("programming"))
+```
+
+Output:
+
+```text
+7
+```
+
+Why `7`?
+
+Because `"programming"` starts at index `7`.
+
+```text
+P y t h o n   p r o g r a m m i n g
+0 1 2 3 4 5 6 7 ...
+```
+
+---
+
+## 14. What Happens When `find()` Finds Nothing?
+
+If the substring does not exist, `find()` returns `-1`.
+
+```python
+text = "Python"
+
+print(text.find("Java"))
+```
+
+Output:
+
+```text
+-1
+```
+
+This does not cause an error.
+
+We can use it in a condition:
+
+```python
+text = "Python"
+
+position = text.find("Java")
+
+if position == -1:
+    print("Java was not found")
+```
+
+Output:
+
+```text
+Java was not found
+```
+
+---
+
+## 15. Combining `find()` and Slicing
+
+We can combine concepts we have already learned.
+
+```python
+text = "Python programming"
+
+position = text.find("programming")
+
+print(text[position:])
+```
+
+Output:
+
+```text
+programming
+```
+
+Here we are combining:
+
+1. `find()`
+2. indexing
+3. slicing
+
+This is an important step toward algorithmic thinking: different tools can be combined to solve one problem.
+
+---
+
+## 16. `count()`
+
+`count()` tells us how many times a substring occurs.
+
+```python
+text = "banana"
+
+print(text.count("a"))
+```
+
+Output:
+
+```text
+3
+```
+
+Another example:
+
+```python
+text = "hello hello"
+
+print(text.count("hello"))
+```
+
+Output:
+
+```text
+2
+```
+
+---
+
+## 17. `startswith()`
+
+`startswith()` checks whether a string begins with a specific value.
+
+```python
+text = "Python programming"
+
+print(text.startswith("Python"))
+```
+
+Output:
+
+```text
+True
+```
+
+But:
+
+```python
+print(text.startswith("Java"))
+```
+
+produces:
+
+```text
+False
+```
+
+Because this method returns a Boolean value, it works naturally with `if`:
+
+```python
+username = input("Username: ")
+
+if username.startswith("admin"):
+    print("Administrative account")
+```
+
+---
+
+## 18. `endswith()`
+
+`endswith()` checks whether a string ends with a specific value.
+
+```python
+filename = "report.pdf"
+
+print(filename.endswith(".pdf"))
+```
+
+Output:
+
+```text
+True
+```
+
+This is useful for checking file extensions:
+
+```python
+filename = input("Filename: ")
+
+if filename.endswith(".pdf"):
+    print("PDF file")
+```
+
+---
+
+## 19. `isdigit()`
+
+`isdigit()` checks whether all characters in a string are digits.
+
+```python
+text = "12345"
+
+print(text.isdigit())
+```
+
+Output:
+
+```text
+True
+```
+
+But:
+
+```python
+text = "123a"
+
+print(text.isdigit())
+```
+
+Output:
+
+```text
+False
+```
+
+This is useful when validating user input:
+
+```python
+age = input("Enter your age: ")
+
+if age.isdigit():
+    age = int(age)
+    print("Age:", age)
+else:
+    print("Invalid age")
+```
+
+Notice that `input()` gives us a string, so we can use a string method before converting it to an integer.
+
+---
+
+## 20. `isalpha()`
+
+`isalpha()` checks whether all characters are alphabetic.
+
+```python
+text = "Python"
+
+print(text.isalpha())
+```
+
+Output:
+
+```text
+True
+```
+
+But:
+
+```python
+text = "Python3"
+
+print(text.isalpha())
+```
+
+produces:
+
+```text
+False
+```
+
+because `3` is not a letter.
+
+---
+
+## 21. `isalnum()`
+
+`isalnum()` returns `True` when all characters are letters or numbers.
+
+```python
+print("Python123".isalnum())
+```
+
+Output:
+
+```text
+True
+```
+
+But:
+
+```python
+print("Python 123".isalnum())
+```
+
+returns:
+
+```text
+False
+```
+
+because the space is neither a letter nor a number.
+
+---
+
+## 22. `isspace()`
+
+`isspace()` checks whether all characters are whitespace.
+
+```python
+text = "   "
+
+print(text.isspace())
+```
+
+Output:
+
+```text
+True
+```
+
+But:
+
+```python
+text = " Python "
+
+print(text.isspace())
+```
+
+returns:
+
+```text
+False
+```
+
+This can help us detect input that contains only spaces.
+
+---
+
+## 23. `isupper()` and `islower()`
+
+These methods check the case of a string.
+
+```python
+text = "PYTHON"
+
+print(text.isupper())
+```
+
+Output:
+
+```text
+True
+```
+
+And:
+
+```python
+text = "python"
+
+print(text.islower())
+```
+
+Output:
+
+```text
+True
+```
+
+For mixed case:
+
+```python
+text = "Python"
+
+print(text.isupper())
+print(text.islower())
+```
+
+Both results are:
+
+```text
+False
+```
+
+---
+
+## 24. Converting vs Checking
+
+This distinction is important.
+
+These methods **convert** text:
+
+```text
+upper()
+lower()
+capitalize()
+title()
+```
+
+These methods **check** text:
+
+```text
+isdigit()
+isalpha()
+isalnum()
+isspace()
+isupper()
+islower()
+```
+
+The checking methods return a Boolean:
+
+```text
+True
+```
+
+or:
+
+```text
+False
+```
+
+---
+
+## 25. Method Chaining
+
+Methods can be chained together.
+
+For example:
+
+```python
+name = "   aLEXANDER   "
+
+print(name.strip().lower())
+```
+
+The operations happen from left to right:
+
+```text
+"   aLEXANDER   "
+        ↓
+strip()
+        ↓
+"aLEXANDER"
+        ↓
+lower()
+        ↓
+"alexander"
+```
+
+We can continue chaining:
+
+```python
+name.strip().lower().title()
+```
+
+Result:
+
+```text
+Alexander
+```
+
+This is called **method chaining**.
+
+---
+
+## 26. How to Read a Chained Expression
+
+Consider:
+
+```python
+text.strip().lower().replace("python", "java")
+```
+
+Do not try to understand everything at once.
+
+Read it from left to right:
+
+```text
+1. strip()
+2. lower()
+3. replace()
+```
+
+Each operation produces a new string.
+
+That new string becomes the input for the next method.
+
+---
+
+## 27. Practical Example — Username Validation
+
+We can combine several concepts to validate a username:
+
+```python
+username = input("Enter username: ").strip()
+
+if username == "":
+    print("Username cannot be empty")
+elif not username.isalnum():
+    print("Username can contain only letters and numbers")
+else:
+    print("Username accepted")
+```
+
+The process is:
+
+```text
+input
+  ↓
+strip
+  ↓
+check empty
+  ↓
+check characters
+  ↓
+display result
+```
+
+This is much closer to real programming than using each method in isolation.
+
+---
+
+## 28. Practical Example — Validating a Number
+
+Because `input()` always returns a string, we can validate it before converting it:
+
+```python
+age = input("Enter your age: ").strip()
+
+if age.isdigit():
+    age = int(age)
+    print("Your age is", age)
+else:
+    print("Please enter a valid number")
+```
+
+We are now combining:
+
+* `input()`
+* `strip()`
+* `isdigit()`
+* `if`
+* `int()`
+
+---
+
+## 29. Practical Example — Searching Text
+
+```python
+message = input("Enter a message: ")
+
+if message.lower().find("python") != -1:
+    print("The message contains Python")
+else:
+    print("Python was not found")
+```
+
+Because we convert the message to lowercase first, the program can recognise:
+
+```text
+Python
+python
+PYTHON
+PyThOn
+```
+
+as the same word for this search.
+
+---
+
+# Exercises
+
+## Exercise 1 — Predict the Output
+
+What will this program print?
+
+```python
+text = "python"
+
+print(text.upper())
+print(text.capitalize())
+print(text.title())
+```
+
+---
+
+## Exercise 2 — Whitespace
+
+What will each line print?
+
+```python
+text = "   Hello World   "
+
+print(text.strip())
+print(text.lstrip())
+print(text.rstrip())
+```
+
+---
+
+## Exercise 3 — Searching and Counting
+
+What is the output?
+
+```python
+text = "banana"
+
+print(text.count("a"))
+print(text.find("n"))
+```
+
+---
+
+## Exercise 4 — Combining Methods
+
+What will this print?
+
+```python
+text = "Python Programming"
+
+print(text.lower().startswith("python"))
+```
+
+---
+
+## Exercise 5 — Validation
+
+Predict the output:
+
+```python
+text = "12345"
+
+print(text.isdigit())
+print(text.isalpha())
+print(text.isalnum())
+```
+
+---
+
+## Exercise 6 — Name Formatter
+
+Write a program that:
+
+1. asks the user for a name
+2. removes unnecessary spaces
+3. converts it to lowercase
+4. converts it to title case
+5. prints the final name
+
+---
+
+## Exercise 7 — Number Validation
+
+Ask the user for a number as a string.
+
+If it contains only digits, convert it to an integer.
+
+Otherwise print:
+
+```text
+Invalid number
+```
+
+---
+
+## Exercise 8 — Character Counter
+
+Ask the user for a sentence and count:
+
+* spaces
+* `a`
+* `e`
+* `i`
+
+---
+
+## Exercise 9 — File Extension
+
+Ask the user for a filename.
+
+If it ends with:
+
+```text
+.py
+```
+
+print:
+
+```text
+Python file
+```
+
+Otherwise print:
+
+```text
+Not a Python file
+```
+
+---
+
+## Exercise 10 — Username Validation
+
+Write a program that asks for a username.
+
+The username is valid only if:
+
+* it is not empty
+* it contains only letters and numbers
+* it contains at least 5 characters
+
+Display:
+
+```text
+Valid username
+```
+
+or:
+
+```text
+Invalid username
+```
+
+---
+
+# Section Challenge — Text Analyzer
+
+Create a program that receives a sentence and performs a small text analysis.
+
+The program should:
+
+1. receive a sentence using `input()`
+2. remove unnecessary spaces from the beginning and end
+3. check whether the sentence is empty
+4. display the sentence in lowercase
+5. display the sentence in uppercase
+6. display the sentence in title case
+7. display its length
+8. count the number of spaces
+9. count the number of occurrences of `a`
+10. check whether it starts with `"I"`
+11. check whether it ends with `"."`
+12. ask the user for a word
+13. search for that word
+14. report whether the word was found
+15. ask whether the user wants to analyse another sentence
+
+### Important
+
+Do **not** write the final solution immediately.
+
+First design the algorithm.
+
+For example:
+
+```text
+START
+  ↓
+Receive sentence
+  ↓
+Clean sentence
+  ↓
+Check whether it is empty
+  ↓
+Analyse sentence
+  ↓
+Display results
+  ↓
+Ask for search word
+  ↓
+Search for word
+  ↓
+Display result
+  ↓
+Ask whether to continue
+  ↓
+Repeat or STOP
+```
+
+The goal is not simply to memorise string methods.
+
+The goal is to learn how to **combine methods and control structures to solve a problem**.
+
+---
+
+# Part 5 — Final Algorithmic Question
+
+Before moving to the exercises section, solve this problem conceptually:
+
+> Write a program that receives a sentence and determines whether it is a valid username-like text according to a set of rules.
+
+The program should decide whether:
+
+* the input is empty
+* unnecessary spaces exist
+* the input contains only letters and numbers
+* the input has at least 5 characters
+* the input starts with a specific prefix
+
+### Your Task
+
+Do not write the code yet.
+
+First write the algorithm in plain language.
+
+Then convert the algorithm into Python.
+
+The important part is to show the transition:
+
+```text
+Problem
+   ↓
+Rules
+   ↓
+Algorithm
+   ↓
+Python code
+```
+
+We will implement and solve the final challenge in the next stage, **after the learner has had the opportunity to solve it independently**.
+
+---
+

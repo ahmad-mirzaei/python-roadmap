@@ -3693,3 +3693,1359 @@ Add another user? yes
 * استفاده از Slicing روی ورودی کاربر
 
 در بخش بعدی از استخراج Characterها عبور می کنیم و وارد **کار با محتوای Stringها و متدهای آن ها** می شویم.
+
+---
+
+# بخش ۵ — متدهای رشته
+
+> 🌐 زبان: **فارسی** | [English](../README.md)
+
+## ۱. متد رشته چیست؟
+
+در بخش های قبلی یاد گرفتیم چگونه رشته بسازیم، با استفاده از Indexing به کاراکترها دسترسی پیدا کنیم و با Slicing قسمت هایی از یک رشته را استخراج کنیم.
+
+حالا می خواهیم یاد بگیریم چگونه خود رشته را **پردازش کنیم**.
+
+برای مثال:
+
+```python
+text = "python"
+```
+
+اگر بخواهیم آن را به شکل زیر تبدیل کنیم:
+
+```text
+PYTHON
+```
+
+می توانیم از متد `upper()` استفاده کنیم:
+
+```python
+print(text.upper())
+```
+
+خروجی:
+
+```text
+PYTHON
+```
+
+در اینجا:
+
+* `text` یک String Object است.
+* `upper()` یک String Method است.
+* `.` برای دسترسی به متد شیء استفاده می شود.
+
+ساختار کلی یک متد به این شکل است:
+
+```python
+string.method()
+```
+
+بعضی متدها نیز ورودی دریافت می کنند:
+
+```python
+string.method(argument)
+```
+
+مثلاً:
+
+```python
+text = "hello world"
+
+print(text.replace("world", "Python"))
+```
+
+خروجی:
+
+```text
+hello Python
+```
+
+---
+
+## ۲. تفاوت Function و Method
+
+تا اینجا از توابعی مثل `len()` استفاده کرده ایم:
+
+```python
+len(text)
+```
+
+`len()` یک **Function** است.
+
+اما:
+
+```python
+text.upper()
+```
+
+از یک **Method** استفاده می کند.
+
+به صورت ساده:
+
+```python
+# Function
+len(text)
+
+# Method
+text.upper()
+```
+
+تابع، شیء را به عنوان ورودی دریافت می کند.
+
+اما متد مستقیماً روی خود شیء فراخوانی می شود.
+
+این تفاوت در ادامه مسیر پایتون بسیار مهم خواهد بود.
+
+---
+
+## ۳. متد `upper()`
+
+متد `upper()` حروف را به حروف بزرگ تبدیل می کند.
+
+```python
+text = "hello"
+
+print(text.upper())
+```
+
+خروجی:
+
+```text
+HELLO
+```
+
+مثال دیگر:
+
+```python
+name = "alexander"
+
+print(name.upper())
+```
+
+خروجی:
+
+```text
+ALEXANDER
+```
+
+### آیا `upper()` رشته اصلی را تغییر می دهد؟
+
+خیر.
+
+```python
+text = "hello"
+
+print(text.upper())
+print(text)
+```
+
+خروجی:
+
+```text
+HELLO
+hello
+```
+
+رشته ها Immutable هستند، بنابراین `upper()` یک String جدید ایجاد می کند.
+
+اگر بخواهیم نتیجه را ذخیره کنیم:
+
+```python
+text = text.upper()
+```
+
+حالا مقدار `text` برابر است با:
+
+```text
+HELLO
+```
+
+---
+
+## ۴. متد `lower()`
+
+متد `lower()` حروف را به حروف کوچک تبدیل می کند.
+
+```python
+text = "PYTHON"
+
+print(text.lower())
+```
+
+خروجی:
+
+```text
+python
+```
+
+این متد زمانی بسیار کاربردی است که نخواهیم تفاوت حروف بزرگ و کوچک روی مقایسه تأثیر بگذارد.
+
+مثلاً:
+
+```python
+answer = input("Continue? ")
+
+if answer.lower() == "yes":
+    print("Continuing...")
+```
+
+حالا ورودی های زیر همگی قابل قبول هستند:
+
+```text
+yes
+YES
+Yes
+YeS
+```
+
+چون قبل از مقایسه به حروف کوچک تبدیل شده اند.
+
+---
+
+## ۵. متد `capitalize()`
+
+متد `capitalize()` اولین کاراکتر را بزرگ و باقی حروف را کوچک می کند.
+
+```python
+text = "pYTHON"
+
+print(text.capitalize())
+```
+
+خروجی:
+
+```text
+Python
+```
+
+تفاوت آن با `upper()` را دقت کنید.
+
+برای:
+
+```text
+python
+```
+
+متد `upper()` نتیجه زیر را می دهد:
+
+```text
+PYTHON
+```
+
+اما `capitalize()` نتیجه زیر را می دهد:
+
+```text
+Python
+```
+
+---
+
+## ۶. متد `title()`
+
+متد `title()` اولین حرف هر کلمه را بزرگ می کند.
+
+```python
+text = "hello world"
+
+print(text.title())
+```
+
+خروجی:
+
+```text
+Hello World
+```
+
+مثلاً:
+
+```python
+name = input("Enter your name: ")
+
+print(name.title())
+```
+
+اگر کاربر وارد کند:
+
+```text
+aLEXANDER hAMILTON
+```
+
+نتیجه:
+
+```text
+Alexander Hamilton
+```
+
+خواهد بود.
+
+---
+
+## ۷. مقایسه `upper()`، `lower()`، `capitalize()` و `title()`
+
+فرض کنید:
+
+```python
+text = "hello WORLD"
+```
+
+نتیجه:
+
+```python
+text.upper()
+```
+
+برابر است با:
+
+```text
+HELLO WORLD
+```
+
+نتیجه:
+
+```python
+text.lower()
+```
+
+برابر است با:
+
+```text
+hello world
+```
+
+نتیجه:
+
+```python
+text.capitalize()
+```
+
+برابر است با:
+
+```text
+Hello world
+```
+
+و:
+
+```python
+text.title()
+```
+
+برابر است با:
+
+```text
+Hello World
+```
+
+| متد            | نتیجه                  |
+| -------------- | ---------------------- |
+| `upper()`      | تمام حروف بزرگ         |
+| `lower()`      | تمام حروف کوچک         |
+| `capitalize()` | اولین کاراکتر بزرگ     |
+| `title()`      | اولین حرف هر کلمه بزرگ |
+
+---
+
+## ۸. متد `strip()`
+
+گاهی در ابتدای یا انتهای String فاصله های اضافی وجود دارد.
+
+مثلاً:
+
+```python
+name = "   Alice   "
+```
+
+می توانیم این فاصله ها را با `strip()` حذف کنیم:
+
+```python
+print(name.strip())
+```
+
+خروجی:
+
+```text
+Alice
+```
+
+این متد هنگام دریافت ورودی از کاربر بسیار کاربردی است:
+
+```python
+name = input("Enter your name: ").strip()
+```
+
+---
+
+## ۹. متدهای `lstrip()` و `rstrip()`
+
+گاهی نمی خواهیم فاصله های دو طرف را همزمان حذف کنیم.
+
+`lstrip()` فاصله های سمت چپ را حذف می کند:
+
+```python
+text = "   Python   "
+
+print(text.lstrip())
+```
+
+نتیجه:
+
+```text
+Python   
+```
+
+`rstrip()` فاصله های سمت راست را حذف می کند:
+
+```python
+text = "   Python   "
+
+print(text.rstrip())
+```
+
+نتیجه:
+
+```text
+   Python
+```
+
+پس:
+
+```text
+strip()   → هر دو طرف
+lstrip()  → سمت چپ
+rstrip()  → سمت راست
+```
+
+---
+
+## ۱۰. متد `replace()`
+
+متد `replace()` یک قسمت از متن را با قسمت دیگری جایگزین می کند.
+
+ساختار:
+
+```python
+text.replace(old, new)
+```
+
+مثال:
+
+```python
+text = "I like Java"
+
+print(text.replace("Java", "Python"))
+```
+
+خروجی:
+
+```text
+I like Python
+```
+
+حتی می توانیم یک کاراکتر را جایگزین کنیم:
+
+```python
+text = "banana"
+
+print(text.replace("a", "o"))
+```
+
+خروجی:
+
+```text
+bonono
+```
+
+تمام `a`های موجود جایگزین می شوند.
+
+---
+
+## ۱۱. `replace()` رشته اصلی را تغییر نمی دهد
+
+مانند `upper()`، متد `replace()` نیز یک String جدید ایجاد می کند.
+
+```python
+text = "I like Java"
+
+text.replace("Java", "Python")
+
+print(text)
+```
+
+خروجی همچنان:
+
+```text
+I like Java
+```
+
+است.
+
+اگر بخواهیم نتیجه را ذخیره کنیم:
+
+```python
+text = text.replace("Java", "Python")
+```
+
+اکنون:
+
+```text
+I like Python
+```
+
+---
+
+## ۱۲. محدود کردن تعداد جایگزینی ها
+
+می توانیم مشخص کنیم چند بار جایگزینی انجام شود.
+
+```python
+text = "banana"
+
+print(text.replace("a", "o", 1))
+```
+
+خروجی:
+
+```text
+bonana
+```
+
+فقط اولین `a` جایگزین شده است.
+
+مثلاً:
+
+```python
+text.replace("a", "o", 2)
+```
+
+نتیجه:
+
+```text
+bonona
+```
+
+آرگومان سوم، حداکثر تعداد جایگزینی ها را مشخص می کند.
+
+---
+
+## ۱۳. متد `find()`
+
+متد `find()` به دنبال یک Substring می گردد و Index آن را برمی گرداند.
+
+```python
+text = "Python programming"
+
+print(text.find("programming"))
+```
+
+خروجی:
+
+```text
+7
+```
+
+چرا `7`؟
+
+چون کلمه `programming` از Index شماره ۷ شروع می شود.
+
+```text
+P y t h o n   p r o g r a m m i n g
+0 1 2 3 4 5 6 7 ...
+```
+
+---
+
+## ۱۴. اگر `find()` چیزی پیدا نکند چه می شود؟
+
+اگر Substring مورد نظر وجود نداشته باشد، `find()` مقدار `-1` را برمی گرداند.
+
+```python
+text = "Python"
+
+print(text.find("Java"))
+```
+
+خروجی:
+
+```text
+-1
+```
+
+این یک Error نیست.
+
+می توانیم از آن در شرط استفاده کنیم:
+
+```python
+text = "Python"
+
+position = text.find("Java")
+
+if position == -1:
+    print("Java was not found")
+```
+
+خروجی:
+
+```text
+Java was not found
+```
+
+---
+
+## ۱۵. ترکیب `find()` با Slicing
+
+می توانیم مفاهیم قبلی را با متدهای جدید ترکیب کنیم.
+
+```python
+text = "Python programming"
+
+position = text.find("programming")
+
+print(text[position:])
+```
+
+خروجی:
+
+```text
+programming
+```
+
+اینجا سه مفهوم را ترکیب کرده ایم:
+
+1. `find()`
+2. Indexing
+3. Slicing
+
+این دقیقاً همان مسیری است که ما را به سمت تفکر الگوریتمی می برد.
+
+---
+
+## ۱۶. متد `count()`
+
+متد `count()` مشخص می کند یک Substring چند بار در String ظاهر شده است.
+
+```python
+text = "banana"
+
+print(text.count("a"))
+```
+
+خروجی:
+
+```text
+3
+```
+
+مثال دیگر:
+
+```python
+text = "hello hello"
+
+print(text.count("hello"))
+```
+
+خروجی:
+
+```text
+2
+```
+
+---
+
+## ۱۷. متد `startswith()`
+
+این متد بررسی می کند که آیا String با مقدار مشخصی شروع می شود یا نه.
+
+```python
+text = "Python programming"
+
+print(text.startswith("Python"))
+```
+
+خروجی:
+
+```text
+True
+```
+
+اما:
+
+```python
+print(text.startswith("Java"))
+```
+
+نتیجه:
+
+```text
+False
+```
+
+چون این متد یک مقدار Boolean برمی گرداند، می توانیم آن را مستقیماً در `if` استفاده کنیم:
+
+```python
+username = input("Username: ")
+
+if username.startswith("admin"):
+    print("Administrative account")
+```
+
+---
+
+## ۱۸. متد `endswith()`
+
+این متد بررسی می کند که String با مقدار مشخصی تمام می شود یا نه.
+
+```python
+filename = "report.pdf"
+
+print(filename.endswith(".pdf"))
+```
+
+خروجی:
+
+```text
+True
+```
+
+برای بررسی پسوند فایل نیز بسیار کاربردی است:
+
+```python
+filename = input("Filename: ")
+
+if filename.endswith(".pdf"):
+    print("PDF file")
+```
+
+---
+
+## ۱۹. متد `isdigit()`
+
+این متد بررسی می کند که تمام کاراکترهای String رقم هستند یا نه.
+
+```python
+text = "12345"
+
+print(text.isdigit())
+```
+
+خروجی:
+
+```text
+True
+```
+
+اما:
+
+```python
+text = "123a"
+
+print(text.isdigit())
+```
+
+نتیجه:
+
+```text
+False
+```
+
+این متد برای اعتبارسنجی ورودی کاربر بسیار کاربردی است:
+
+```python
+age = input("Enter your age: ")
+
+if age.isdigit():
+    age = int(age)
+    print("Age:", age)
+else:
+    print("Invalid age")
+```
+
+دقت کنید که `input()` همیشه یک String برمی گرداند، بنابراین می توانیم قبل از تبدیل آن به عدد، String را بررسی کنیم.
+
+---
+
+## ۲۰. متد `isalpha()`
+
+`isalpha()` بررسی می کند که تمام کاراکترهای String حروف الفبا باشند.
+
+```python
+text = "Python"
+
+print(text.isalpha())
+```
+
+خروجی:
+
+```text
+True
+```
+
+اما:
+
+```python
+text = "Python3"
+
+print(text.isalpha())
+```
+
+نتیجه:
+
+```text
+False
+```
+
+چون `3` حرف نیست.
+
+---
+
+## ۲۱. متد `isalnum()`
+
+`isalnum()` زمانی `True` برمی گرداند که تمام کاراکترها حرف یا عدد باشند.
+
+```python
+print("Python123".isalnum())
+```
+
+خروجی:
+
+```text
+True
+```
+
+اما:
+
+```python
+print("Python 123".isalnum())
+```
+
+نتیجه:
+
+```text
+False
+```
+
+چون فاصله نه حرف است و نه عدد.
+
+---
+
+## ۲۲. متد `isspace()`
+
+`isspace()` بررسی می کند که تمام کاراکترهای String از نوع Whitespace باشند.
+
+```python
+text = "   "
+
+print(text.isspace())
+```
+
+خروجی:
+
+```text
+True
+```
+
+اما:
+
+```python
+text = " Python "
+
+print(text.isspace())
+```
+
+نتیجه:
+
+```text
+False
+```
+
+این متد می تواند برای تشخیص ورودی هایی که فقط شامل فاصله هستند استفاده شود.
+
+---
+
+## ۲۳. متدهای `isupper()` و `islower()`
+
+این متدها وضعیت حروف بزرگ و کوچک را بررسی می کنند.
+
+```python
+text = "PYTHON"
+
+print(text.isupper())
+```
+
+خروجی:
+
+```text
+True
+```
+
+و:
+
+```python
+text = "python"
+
+print(text.islower())
+```
+
+خروجی:
+
+```text
+True
+```
+
+برای یک String با حروف ترکیبی:
+
+```python
+text = "Python"
+
+print(text.isupper())
+print(text.islower())
+```
+
+هر دو:
+
+```text
+False
+```
+
+خواهند بود.
+
+---
+
+## ۲۴. تفاوت متدهای تبدیل و بررسی
+
+این تفاوت را حتماً به خاطر بسپارید.
+
+متدهای **تبدیل کننده**:
+
+```text
+upper()
+lower()
+capitalize()
+title()
+```
+
+متدهای **بررسی کننده**:
+
+```text
+isdigit()
+isalpha()
+isalnum()
+isspace()
+isupper()
+islower()
+```
+
+متدهای بررسی کننده معمولاً مقدار Boolean برمی گردانند:
+
+```text
+True
+```
+
+یا:
+
+```text
+False
+```
+
+---
+
+## ۲۵. Method Chaining
+
+می توانیم چند متد را پشت سر هم اجرا کنیم.
+
+مثلاً:
+
+```python
+name = "   aLEXANDER   "
+
+print(name.strip().lower())
+```
+
+عملیات از چپ به راست انجام می شوند:
+
+```text
+"   aLEXANDER   "
+        ↓
+strip()
+        ↓
+"aLEXANDER"
+        ↓
+lower()
+        ↓
+"alexander"
+```
+
+حتی می توانیم یک مرحله دیگر اضافه کنیم:
+
+```python
+name.strip().lower().title()
+```
+
+نتیجه:
+
+```text
+Alexander
+```
+
+به این کار **Method Chaining** گفته می شود.
+
+---
+
+## ۲۶. چگونه یک عبارت زنجیره ای را بخوانیم؟
+
+فرض کنید این عبارت را می بینید:
+
+```python
+text.strip().lower().replace("python", "java")
+```
+
+لازم نیست همه چیز را همزمان بفهمید.
+
+از چپ به راست بخوانید:
+
+```text
+1. strip()
+2. lower()
+3. replace()
+```
+
+هر عملیات یک String جدید تولید می کند و آن String ورودی عملیات بعدی می شود.
+
+---
+
+## ۲۷. مثال کاربردی — اعتبارسنجی Username
+
+می توانیم چند مفهوم را برای ساخت یک اعتبارسنجی ساده ترکیب کنیم:
+
+```python
+username = input("Enter username: ").strip()
+
+if username == "":
+    print("Username cannot be empty")
+elif not username.isalnum():
+    print("Username can contain only letters and numbers")
+else:
+    print("Username accepted")
+```
+
+فرآیند برنامه:
+
+```text
+input
+  ↓
+strip
+  ↓
+بررسی خالی بودن
+  ↓
+بررسی کاراکترها
+  ↓
+نمایش نتیجه
+```
+
+این بسیار به برنامه نویسی واقعی نزدیک تر از استفاده جداگانه از هر متد است.
+
+---
+
+## ۲۸. مثال کاربردی — اعتبارسنجی عدد
+
+چون `input()` همیشه یک String برمی گرداند، می توانیم قبل از تبدیل آن را بررسی کنیم:
+
+```python
+age = input("Enter your age: ").strip()
+
+if age.isdigit():
+    age = int(age)
+    print("Your age is", age)
+else:
+    print("Please enter a valid number")
+```
+
+اینجا چند مفهوم را با هم ترکیب کرده ایم:
+
+* `input()`
+* `strip()`
+* `isdigit()`
+* `if`
+* `int()`
+
+---
+
+## ۲۹. مثال کاربردی — جستجو در متن
+
+```python
+message = input("Enter a message: ")
+
+if message.lower().find("python") != -1:
+    print("The message contains Python")
+else:
+    print("Python was not found")
+```
+
+چون ابتدا متن را به حروف کوچک تبدیل کرده ایم، برنامه می تواند شکل های مختلف کلمه را به صورت یکسان بررسی کند:
+
+```text
+Python
+python
+PYTHON
+PyThOn
+```
+
+---
+
+# تمرین ها
+
+## تمرین ۱ — پیش بینی خروجی
+
+خروجی برنامه زیر چیست؟
+
+```python
+text = "python"
+
+print(text.upper())
+print(text.capitalize())
+print(text.title())
+```
+
+---
+
+## تمرین ۲ — فاصله ها
+
+خروجی هر خط را مشخص کنید:
+
+```python
+text = "   Hello World   "
+
+print(text.strip())
+print(text.lstrip())
+print(text.rstrip())
+```
+
+---
+
+## تمرین ۳ — جستجو و شمارش
+
+خروجی برنامه چیست؟
+
+```python
+text = "banana"
+
+print(text.count("a"))
+print(text.find("n"))
+```
+
+---
+
+## تمرین ۴ — ترکیب متدها
+
+خروجی برنامه زیر چیست؟
+
+```python
+text = "Python Programming"
+
+print(text.lower().startswith("python"))
+```
+
+---
+
+## تمرین ۵ — اعتبارسنجی
+
+خروجی را پیش بینی کنید:
+
+```python
+text = "12345"
+
+print(text.isdigit())
+print(text.isalpha())
+print(text.isalnum())
+```
+
+---
+
+## تمرین ۶ — قالب بندی نام
+
+برنامه ای بنویسید که:
+
+1. نام کاربر را دریافت کند.
+2. فاصله های اضافی ابتدا و انتها را حذف کند.
+3. تمام حروف را کوچک کند.
+4. نام را به حالت Title Case تبدیل کند.
+5. نتیجه نهایی را چاپ کند.
+
+---
+
+## تمرین ۷ — اعتبارسنجی عدد
+
+یک عدد را به صورت String از کاربر دریافت کنید.
+
+اگر فقط شامل رقم بود، آن را به `int` تبدیل کنید.
+
+در غیر این صورت:
+
+```text
+Invalid number
+```
+
+را چاپ کنید.
+
+---
+
+## تمرین ۸ — شمارش کاراکترها
+
+یک جمله از کاربر دریافت کنید و تعداد موارد زیر را محاسبه کنید:
+
+* فاصله ها
+* `a`
+* `e`
+* `i`
+
+---
+
+## تمرین ۹ — پسوند فایل
+
+نام یک فایل را از کاربر دریافت کنید.
+
+اگر با:
+
+```text
+.py
+```
+
+تمام شد، چاپ کنید:
+
+```text
+Python file
+```
+
+در غیر این صورت:
+
+```text
+Not a Python file
+```
+
+---
+
+## تمرین ۱۰ — اعتبارسنجی Username
+
+برنامه ای بنویسید که Username را از کاربر دریافت کند.
+
+Username فقط زمانی معتبر است که:
+
+* خالی نباشد.
+* فقط شامل حروف و اعداد باشد.
+* حداقل ۵ کاراکتر داشته باشد.
+
+در صورت معتبر بودن:
+
+```text
+Valid username
+```
+
+و در غیر این صورت:
+
+```text
+Invalid username
+```
+
+را نمایش دهید.
+
+---
+
+# چالش بخش — Text Analyzer
+
+برنامه ای طراحی کنید که یک جمله را از کاربر دریافت کند و یک تحلیل ساده روی آن انجام دهد.
+
+برنامه باید:
+
+1. جمله را با `input()` دریافت کند.
+2. فاصله های اضافی ابتدا و انتهای آن را حذف کند.
+3. بررسی کند که جمله خالی نباشد.
+4. جمله را با حروف کوچک نمایش دهد.
+5. جمله را با حروف بزرگ نمایش دهد.
+6. جمله را به حالت Title نمایش دهد.
+7. تعداد کاراکترها را نمایش دهد.
+8. تعداد فاصله ها را بشمارد.
+9. تعداد `a`ها را بشمارد.
+10. بررسی کند که آیا جمله با `"I"` شروع می شود.
+11. بررسی کند که آیا جمله با `"."` تمام می شود.
+12. یک کلمه دیگر از کاربر دریافت کند.
+13. آن کلمه را در جمله جستجو کند.
+14. مشخص کند که کلمه پیدا شده است یا نه.
+15. از کاربر بپرسد که آیا می خواهد جمله دیگری را بررسی کند.
+
+### نکته مهم
+
+فعلاً جواب نهایی را ننویسید.
+
+ابتدا الگوریتم را طراحی کنید.
+
+برای مثال:
+
+```text
+شروع
+  ↓
+دریافت جمله
+  ↓
+پاک سازی جمله
+  ↓
+بررسی خالی بودن
+  ↓
+تحلیل جمله
+  ↓
+نمایش نتایج
+  ↓
+دریافت کلمه برای جستجو
+  ↓
+جستجوی کلمه
+  ↓
+نمایش نتیجه
+  ↓
+پرسیدن ادامه دادن یا توقف
+  ↓
+تکرار یا پایان
+```
+
+هدف این بخش فقط حفظ کردن متدهای String نیست.
+
+هدف این است که یاد بگیریم چگونه **چند متد و چند ساختار کنترلی را برای حل یک مسئله ترکیب کنیم.**
+
+---
+
+# سؤال الگوریتمی نهایی بخش ۵
+
+قبل از ورود به مرحله تمرین، این مسئله را ابتدا به صورت الگوریتمی حل کنید:
+
+> برنامه ای بنویسید که یک متن را از کاربر دریافت کند و بر اساس چند قانون مشخص کند که آیا متن وارد شده می تواند یک Username معتبر باشد یا خیر.
+
+برنامه باید بررسی کند:
+
+* آیا ورودی خالی است؟
+* آیا فاصله های اضافی دارد؟
+* آیا فقط شامل حروف و اعداد است؟
+* آیا حداقل ۵ کاراکتر دارد؟
+* آیا با یک Prefix مشخص شروع می شود؟
+
+### وظیفه شما
+
+فعلاً کد را ننویسید.
+
+ابتدا الگوریتم را با زبان خودتان بنویسید.
+
+سپس الگوریتم را به Python تبدیل کنید.
+
+هدف این است که مسیر زیر را به صورت عملی تمرین کنیم:
+
+```text
+مسئله
+   ↓
+قوانین
+   ↓
+الگوریتم
+   ↓
+کد Python
+```
+
+حل نهایی این سؤال را در مرحله بعد، **بعد از اینکه کاربر فرصت حل مستقل مسئله را داشت**، پیاده سازی خواهیم کرد.
+
+---
+

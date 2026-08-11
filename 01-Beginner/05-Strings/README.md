@@ -641,8 +641,6 @@ Before writing code:
 
 ---
 
-# Lesson — Strings & Sequences
-
 # Part 2 — Creating Strings and Working with Quotes
 
 In Part 1, we learned what strings are, how Python identifies them with the `str` type, how `input()` returns strings, and why strings are sequences.
@@ -1318,8 +1316,6 @@ In this section, we learned:
 In the next section, we will learn how to access individual characters using **Indexing**.
 
 ---
-
-# Lesson — Strings & Sequences
 
 # Part 3 — String Indexing
 
@@ -2289,5 +2285,1301 @@ In the next section, we will move from accessing individual characters to access
 
 That brings us to:
 
+---
+
 # Part 4 — String Slicing
 
+In the previous section, we learned how to access a single character using indexing.
+
+For example:
+
+```python
+word = "Python"
+
+print(word[0])
+```
+
+Output:
+
+```text
+P
+```
+
+But what if we want to access **several characters at once**?
+
+For example, suppose we have:
+
+```text
+Python
+```
+
+and we want:
+
+```text
+Pyt
+```
+
+or:
+
+```text
+hon
+```
+
+or even:
+
+```text
+nohtyP
+```
+
+This is where **slicing** becomes useful.
+
+---
+
+# 1. What Is Slicing?
+
+Slicing means extracting a portion of a sequence.
+
+Because strings are sequences, we can slice them.
+
+The basic syntax is:
+
+```python
+text[start:stop]
+```
+
+For example:
+
+```python
+word = "Python"
+
+print(word[0:3])
+```
+
+Output:
+
+```text
+Pyt
+```
+
+We started at index `0` and stopped **before** index `3`.
+
+This leads to one of the most important rules in Python:
+
+> The `start` index is included, but the `stop` index is excluded.
+
+---
+
+# 2. Understanding `start` and `stop`
+
+Consider:
+
+```python
+word = "Python"
+```
+
+Indexes:
+
+```text
+Character:  P   y   t   h   o   n
+Index:      0   1   2   3   4   5
+```
+
+Now:
+
+```python
+word[1:4]
+```
+
+means:
+
+```text
+Start at 1
+Take 1
+Take 2
+Take 3
+Stop before 4
+```
+
+So the result is:
+
+```text
+yth
+```
+
+Example:
+
+```python
+print(word[1:4])
+```
+
+Output:
+
+```text
+yth
+```
+
+---
+
+# 3. Why Is `stop` Excluded?
+
+At first, this rule can feel strange.
+
+Why does:
+
+```python
+word[0:3]
+```
+
+give:
+
+```text
+Pyt
+```
+
+instead of:
+
+```text
+Pyth
+```
+
+Because slicing is designed around a very useful boundary system.
+
+Think of the indexes as positions between characters:
+
+```text
+    0   1   2   3   4   5   6
+    |   |   |   |   |   |   |
+    P   y   t   h   o   n
+```
+
+The slice:
+
+```python
+word[0:3]
+```
+
+takes everything from boundary `0` up to boundary `3`.
+
+That gives:
+
+```text
+P y t
+```
+
+This design makes calculating the size of a slice very convenient:
+
+```text
+number of characters = stop - start
+```
+
+For:
+
+```python
+word[1:4]
+```
+
+we get:
+
+```text
+4 - 1 = 3 characters
+```
+
+and indeed:
+
+```text
+yth
+```
+
+contains three characters.
+
+---
+
+# 4. Basic Slicing Examples
+
+```python
+word = "Python"
+
+print(word[0:2])
+print(word[1:4])
+print(word[2:6])
+```
+
+Output:
+
+```text
+Py
+yth
+thon
+```
+
+Let's break them down:
+
+```python
+word[0:2]
+```
+
+gives:
+
+```text
+Py
+```
+
+```python
+word[1:4]
+```
+
+gives:
+
+```text
+yth
+```
+
+```python
+word[2:6]
+```
+
+gives:
+
+```text
+thon
+```
+
+---
+
+# 5. Omitting `start`
+
+We don't always need to write the `start` value.
+
+For example:
+
+```python
+word = "Python"
+
+print(word[:3])
+```
+
+Output:
+
+```text
+Pyt
+```
+
+When `start` is omitted, Python assumes:
+
+```text
+start = beginning of the string
+```
+
+So:
+
+```python
+word[:3]
+```
+
+is equivalent to:
+
+```python
+word[0:3]
+```
+
+---
+
+# 6. Omitting `stop`
+
+We can also omit `stop`.
+
+Example:
+
+```python
+word = "Python"
+
+print(word[3:])
+```
+
+Output:
+
+```text
+hon
+```
+
+When `stop` is omitted, Python continues to the end of the string.
+
+So:
+
+```python
+word[3:]
+```
+
+means:
+
+> Start at index `3` and continue until the end.
+
+---
+
+# 7. Omitting Both
+
+What happens if we write:
+
+```python
+word[:]
+```
+
+?
+
+It returns the entire string.
+
+Example:
+
+```python
+word = "Python"
+
+print(word[:])
+```
+
+Output:
+
+```text
+Python
+```
+
+This is sometimes useful when working with sequences or creating a copy of a sequence.
+
+---
+
+# 8. Slicing With Negative Indexes
+
+Slicing also works with negative indexes.
+
+Remember:
+
+```text
+Character:  P    y    t    h    o    n
+Positive:   0    1    2    3    4    5
+Negative:  -6   -5   -4   -3   -2   -1
+```
+
+Example:
+
+```python
+word = "Python"
+
+print(word[-3:])
+```
+
+Output:
+
+```text
+hon
+```
+
+This means:
+
+> Start at the third character from the end and continue to the end.
+
+---
+
+# 9. Negative `stop`
+
+We can also use a negative stop value.
+
+Example:
+
+```python
+word = "Python"
+
+print(word[:-2])
+```
+
+Output:
+
+```text
+Pyth
+```
+
+Why?
+
+The last two characters are:
+
+```text
+o
+n
+```
+
+`[:-2]` means:
+
+> Start from the beginning and stop before the second-to-last position.
+
+---
+
+# 10. Combining Positive and Negative Indexes
+
+We can combine them.
+
+Example:
+
+```python
+word = "Python"
+
+print(word[1:-1])
+```
+
+Output:
+
+```text
+ytho
+```
+
+Let's visualize it:
+
+```text
+Character:  P    y    t    h    o    n
+Index:      0    1    2    3    4    5
+Negative:  -6   -5   -4   -3   -2   -1
+```
+
+Start:
+
+```text
+1 → y
+```
+
+Stop:
+
+```text
+-1 → n
+```
+
+But `stop` is excluded.
+
+Therefore:
+
+```text
+y t h o
+```
+
+---
+
+# 11. The Third Part: `step`
+
+So far we have used:
+
+```python
+text[start:stop]
+```
+
+But slicing has another optional value:
+
+```python
+text[start:stop:step]
+```
+
+The `step` controls how many positions Python moves at a time.
+
+Example:
+
+```python
+word = "Python"
+
+print(word[0:6:1])
+```
+
+Output:
+
+```text
+Python
+```
+
+A step of `1` means:
+
+> Move one character at a time.
+
+---
+
+# 12. Step of 2
+
+Now:
+
+```python
+word = "Python"
+
+print(word[0:6:2])
+```
+
+Output:
+
+```text
+Pto
+```
+
+Why?
+
+Indexes visited:
+
+```text
+0 → P
+2 → t
+4 → o
+```
+
+So:
+
+```text
+P t o
+```
+
+---
+
+# 13. Step of 3
+
+Example:
+
+```python
+word = "Python"
+
+print(word[0:6:3])
+```
+
+Output:
+
+```text
+Ph
+```
+
+Indexes:
+
+```text
+0 → P
+3 → h
+```
+
+So the result is:
+
+```text
+Ph
+```
+
+---
+
+# 14. A Simple Way to Understand `step`
+
+Think of `step` as the size of the jump.
+
+```text
+step = 1
+→ take every character
+
+step = 2
+→ take every second character
+
+step = 3
+→ take every third character
+```
+
+For:
+
+```text
+Python
+```
+
+we have:
+
+```text
+Index:  0  1  2  3  4  5
+        P  y  t  h  o  n
+```
+
+With:
+
+```python
+word[::2]
+```
+
+we get:
+
+```text
+P t o
+```
+
+---
+
+# 15. Omitting `start` and `stop` With `step`
+
+We can omit both:
+
+```python
+word[::2]
+```
+
+This means:
+
+> Start at the beginning, go to the end, and move by 2.
+
+Example:
+
+```python
+word = "Python"
+
+print(word[::2])
+```
+
+Output:
+
+```text
+Pto
+```
+
+---
+
+# 16. Reverse a String With `[::-1]`
+
+One of the most useful slicing techniques is:
+
+```python
+[::-1]
+```
+
+Example:
+
+```python
+word = "Python"
+
+print(word[::-1])
+```
+
+Output:
+
+```text
+nohtyP
+```
+
+Why?
+
+Because the step is:
+
+```text
+-1
+```
+
+A negative step tells Python to move backward.
+
+So:
+
+```python
+[::-1]
+```
+
+means:
+
+> Start from the end and move backward one character at a time.
+
+---
+
+# 17. Understanding `[::-1]`
+
+The original:
+
+```text
+P y t h o n
+```
+
+is traversed in reverse:
+
+```text
+n o h t y P
+```
+
+So:
+
+```python
+word[::-1]
+```
+
+returns:
+
+```text
+nohtyP
+```
+
+This is one of the most common Python slicing patterns.
+
+---
+
+# 18. Other Negative Steps
+
+The negative step doesn't have to be `-1`.
+
+Example:
+
+```python
+word = "Python"
+
+print(word[::-2])
+```
+
+Output:
+
+```text
+nhy
+```
+
+The indexes are traversed backward:
+
+```text
+5 → n
+3 → h
+1 → y
+```
+
+Result:
+
+```text
+nhy
+```
+
+---
+
+# 19. Important: A Negative Step Changes the Direction
+
+Compare:
+
+```python
+word[::2]
+```
+
+and:
+
+```python
+word[::-2]
+```
+
+The first moves forward:
+
+```text
+0 → 2 → 4
+```
+
+The second moves backward:
+
+```text
+5 → 3 → 1
+```
+
+So:
+
+```python
+word[::2]
+```
+
+and:
+
+```python
+word[::-2]
+```
+
+are not simply "the same thing with a negative number".
+
+They traverse the sequence in opposite directions.
+
+---
+
+# 20. Slicing Does Not Modify the Original String
+
+Just like indexing, slicing does not modify the original string.
+
+Example:
+
+```python
+word = "Python"
+
+part = word[0:3]
+
+print(part)
+print(word)
+```
+
+Output:
+
+```text
+Pyt
+Python
+```
+
+The original string remains unchanged.
+
+This is another consequence of strings being immutable.
+
+---
+
+# 21. Slicing and Assignment
+
+We can assign the result of a slice to another variable:
+
+```python
+word = "Python"
+
+first_part = word[:3]
+second_part = word[3:]
+
+print(first_part)
+print(second_part)
+```
+
+Output:
+
+```text
+Pyt
+hon
+```
+
+We have effectively divided the string into two parts.
+
+---
+
+# 22. Rebuilding a String With Slicing
+
+Because strings cannot be modified directly, slicing can help us create a new version.
+
+Suppose:
+
+```python
+word = "Python"
+```
+
+and we want:
+
+```text
+Jython
+```
+
+We cannot do:
+
+```python
+word[0] = "J"
+```
+
+Instead:
+
+```python
+word = "J" + word[1:]
+```
+
+Now:
+
+```python
+print(word)
+```
+
+produces:
+
+```text
+Jython
+```
+
+We created a new string from:
+
+```text
+"J"
+```
+
+plus:
+
+```text
+"ython"
+```
+
+---
+
+# 23. Extracting Parts of User Input
+
+Slicing becomes especially useful with user input.
+
+Example:
+
+```python
+name = input("Enter your name: ")
+
+print("First three characters:", name[:3])
+```
+
+If the user enters:
+
+```text
+Alexander
+```
+
+the output is:
+
+```text
+First three characters: Ale
+```
+
+This can be useful when processing real text.
+
+---
+
+# 24. Slicing and `len()`
+
+We can combine slicing with `len()`.
+
+For example:
+
+```python
+word = "Python"
+
+middle = word[1:len(word)-1]
+
+print(middle)
+```
+
+Output:
+
+```text
+ytho
+```
+
+We removed the first and last characters.
+
+A simpler version is:
+
+```python
+word[1:-1]
+```
+
+Both approaches demonstrate the same idea.
+
+---
+
+# 25. Slicing With Loops
+
+Slicing can also be used together with loops.
+
+Example:
+
+```python
+word = "Python"
+
+for i in range(len(word)):
+    print(word[i:])
+```
+
+Output:
+
+```text
+Python
+ython
+thon
+hon
+on
+n
+```
+
+Here each iteration starts the slice at a different index.
+
+This is a good example of how concepts from different sections can work together.
+
+---
+
+# 26. Common Slicing Mistakes
+
+### Mistake 1 — Expecting `stop` to be included
+
+```python
+word = "Python"
+
+print(word[0:3])
+```
+
+Some beginners expect:
+
+```text
+Pyth
+```
+
+But the result is:
+
+```text
+Pyt
+```
+
+Remember:
+
+> `start` is included. `stop` is excluded.
+
+---
+
+### Mistake 2 — Confusing length with last index
+
+For:
+
+```python
+word = "Python"
+```
+
+we have:
+
+```text
+len(word) = 6
+```
+
+but:
+
+```text
+last index = 5
+```
+
+---
+
+### Mistake 3 — Forgetting that `step` can change direction
+
+```python
+word[::2]
+```
+
+moves forward.
+
+```python
+word[::-2]
+```
+
+moves backward.
+
+---
+
+### Mistake 4 — Thinking slicing changes the original string
+
+It does not.
+
+```python
+part = word[:3]
+```
+
+creates another string value.
+
+The original remains unchanged.
+
+---
+
+# Short Exercises
+
+## Exercise 1
+
+What is the output?
+
+```python
+word = "Python"
+
+print(word[1:4])
+```
+
+---
+
+## Exercise 2
+
+What is the output?
+
+```python
+word = "Programming"
+
+print(word[:4])
+print(word[4:])
+```
+
+---
+
+## Exercise 3
+
+What is the output?
+
+```python
+word = "Python"
+
+print(word[-3:])
+print(word[:-3])
+```
+
+---
+
+## Exercise 4
+
+What is the output?
+
+```python
+word = "Python"
+
+print(word[::2])
+```
+
+---
+
+## Exercise 5
+
+What is the output?
+
+```python
+word = "Python"
+
+print(word[::-1])
+```
+
+---
+
+## Exercise 6
+
+Without running the code, predict:
+
+```python
+word = "Programming"
+
+print(word[1:-1])
+```
+
+---
+
+## Exercise 7
+
+Create a program that receives a word and prints:
+
+* The first half
+* The second half
+
+Hint:
+
+Use `len()` and slicing.
+
+---
+
+## Exercise 8
+
+Create a program that receives a word and prints it in reverse.
+
+Do not use a loop.
+
+Use slicing.
+
+---
+
+## Exercise 9
+
+Create a program that receives a word and prints every second character.
+
+For example:
+
+```text
+Input:
+Python
+
+Output:
+Pto
+```
+
+---
+
+## Exercise 10
+
+Create a program that receives a username and displays:
+
+```text
+First 3 characters:
+Last 3 characters:
+Reversed:
+```
+
+Use slicing for all three.
+
+---
+
+# End of Section Challenge
+
+Now combine everything we have learned so far.
+
+Create a program that:
+
+1. Is placed inside a function.
+2. Receives a user's name.
+3. Receives the user's age.
+4. Converts the age to an integer.
+5. Receives the user's city.
+6. Checks whether the user is an adult.
+7. Displays the length of the name.
+8. Displays the first character.
+9. Displays the last character.
+10. Displays the first three characters.
+11. Displays the last three characters.
+12. Displays the name reversed.
+13. Handles an empty name safely.
+14. Asks whether another user should be entered.
+15. Continues until the user chooses to stop.
+
+Example:
+
+```text
+Name:   Alexander
+Age:    22
+City:   Tehran
+
+Name length: 9
+First character: A
+Last character: r
+First 3 characters: Ale
+Last 3 characters: der
+Reversed: rednaxelA
+
+Status: Adult
+
+Add another user? yes
+```
+
+### Algorithmic Thinking
+
+Before writing the code, break the problem into smaller steps.
+
+Ask yourself:
+
+1. What information do I need?
+2. Which values should be converted to numbers?
+3. What should happen if the name is empty?
+4. How can I find the first character?
+5. How can I find the last character?
+6. How can I get the first three characters?
+7. How can I get the last three characters?
+8. How can I reverse the name?
+9. Where should the condition go?
+10. Where should the loop go?
+11. Where should the function go?
+
+The goal is not to memorize:
+
+```python
+[::-1]
+```
+
+The goal is to understand **why** we use it.
+
+---
+
+# What We Learned
+
+In this section, we learned:
+
+* What String Slicing is
+* `start`
+* `stop`
+* Why `stop` is excluded
+* `text[start:stop]`
+* Omitting `start`
+* Omitting `stop`
+* Omitting both
+* Positive indexes in slicing
+* Negative indexes in slicing
+* `step`
+* Positive steps
+* Negative steps
+* `[::-1]`
+* Reversing strings
+* Using `len()` with slicing
+* Combining slicing with loops
+* Rebuilding strings using slicing
+* Common slicing mistakes
+* Using slicing with user input
+
+The next section will move from extracting characters to **working with the content of strings**.

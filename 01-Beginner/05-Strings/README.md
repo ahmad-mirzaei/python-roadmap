@@ -1319,3 +1319,975 @@ In the next section, we will learn how to access individual characters using **I
 
 ---
 
+# Lesson — Strings & Sequences
+
+# Part 3 — String Indexing
+
+In the previous sections, we learned what strings are and how to create them using different types of quotation marks.
+
+We also learned about escape characters such as `\n`, `\t`, `\\`, `\"`, and `\'`.
+
+Now we are going to work with one of the most important features of strings:
+
+**Indexing**
+
+Indexing allows us to access individual characters inside a string.
+
+---
+
+## 1. What Is Indexing?
+
+A string is a sequence of characters.
+
+For example:
+
+```python
+word = "Python"
+```
+
+We can imagine the string like this:
+
+```text
+P   y   t   h   o   n
+```
+
+Each character has a position.
+
+In Python, these positions are called **indexes**.
+
+The important rule is:
+
+> Python starts counting indexes from `0`.
+
+So the string looks like this:
+
+```text
+Character:  P   y   t   h   o   n
+Index:      0   1   2   3   4   5
+```
+
+The first character is at index `0`, not `1`.
+
+---
+
+# 2. Accessing a Character
+
+To access a specific character, we use square brackets:
+
+```python
+word[index]
+```
+
+For example:
+
+```python
+word = "Python"
+
+print(word[0])
+```
+
+Output:
+
+```text
+P
+```
+
+We can access the second character:
+
+```python
+print(word[1])
+```
+
+Output:
+
+```text
+y
+```
+
+The third:
+
+```python
+print(word[2])
+```
+
+Output:
+
+```text
+t
+```
+
+And so on.
+
+---
+
+# 3. Why Does Python Start From Zero?
+
+This can seem strange at first.
+
+Why isn't the first character index `1`?
+
+Because Python follows the common convention used by many programming languages and computer systems where sequence positions are represented as offsets from the beginning.
+
+Think of the index as:
+
+> How many steps do we move from the beginning?
+
+The first character requires zero steps.
+
+The second character requires one step.
+
+The third character requires two steps.
+
+So:
+
+```text
+Index:      0   1   2   3   4   5
+Character:  P   y   t   h   o   n
+            ↑
+         start
+```
+
+This is why the first character is at index `0`.
+
+---
+
+# 4. Accessing the First Character
+
+Because indexing starts at zero:
+
+```python
+word = "Python"
+
+print(word[0])
+```
+
+gives:
+
+```text
+P
+```
+
+This pattern is extremely common.
+
+Whenever you need the first character of a string:
+
+```python
+text[0]
+```
+
+---
+
+# 5. Accessing the Last Character
+
+There are two ways to access the last character.
+
+We could calculate its index.
+
+For `"Python"`:
+
+```text
+P   y   t   h   o   n
+0   1   2   3   4   5
+```
+
+So:
+
+```python
+print(word[5])
+```
+
+prints:
+
+```text
+n
+```
+
+But this approach is not very practical.
+
+What if the string changes?
+
+```python
+word = "Programming"
+```
+
+We would need to calculate the new last index.
+
+Python provides a much better solution:
+
+**Negative indexing.**
+
+---
+
+# 6. Negative Indexing
+
+Python allows us to count from the end of a string using negative indexes.
+
+Example:
+
+```text
+Character:  P   y   t   h   o   n
+Positive:   0   1   2   3   4   5
+Negative:  -6  -5  -4  -3  -2  -1
+```
+
+The last character always has index:
+
+```python
+-1
+```
+
+Therefore:
+
+```python
+word = "Python"
+
+print(word[-1])
+```
+
+Output:
+
+```text
+n
+```
+
+The character before it:
+
+```python
+print(word[-2])
+```
+
+Output:
+
+```text
+o
+```
+
+And:
+
+```python
+print(word[-3])
+```
+
+Output:
+
+```text
+h
+```
+
+Negative indexing is extremely useful when we need characters near the end of a string.
+
+---
+
+# 7. Positive and Negative Indexing Together
+
+Consider:
+
+```python
+word = "Python"
+```
+
+We can visualize all indexes:
+
+```text
+             P    y    t    h    o    n
+Positive:    0    1    2    3    4    5
+Negative:   -6   -5   -4   -3   -2   -1
+```
+
+Notice:
+
+```python
+word[0] == word[-6]
+```
+
+and:
+
+```python
+word[5] == word[-1]
+```
+
+Both refer to the same character.
+
+---
+
+# 8. The `len()` Function
+
+Sometimes we don't know how many characters a string contains.
+
+Python provides:
+
+```python
+len()
+```
+
+to find the length of a string.
+
+Example:
+
+```python
+word = "Python"
+
+print(len(word))
+```
+
+Output:
+
+```text
+6
+```
+
+There are six characters in `"Python"`.
+
+---
+
+# 9. `len()` and Indexing Are Different
+
+This is a very important distinction.
+
+For:
+
+```python
+word = "Python"
+```
+
+we have:
+
+```python
+len(word)
+```
+
+which gives:
+
+```text
+6
+```
+
+But the last index is:
+
+```text
+5
+```
+
+Why?
+
+Because the length counts the number of characters:
+
+```text
+6 characters
+```
+
+while indexes start at zero:
+
+```text
+0 1 2 3 4 5
+```
+
+Therefore:
+
+> Last index = `len(string) - 1`
+
+For example:
+
+```python
+word = "Python"
+
+print(word[len(word) - 1])
+```
+
+Output:
+
+```text
+n
+```
+
+This is one of the most useful patterns when working with strings.
+
+---
+
+# 10. Getting the Last Character With `len()`
+
+Instead of writing:
+
+```python
+word[5]
+```
+
+we can write:
+
+```python
+word[len(word) - 1]
+```
+
+This works even if the string changes.
+
+For example:
+
+```python
+word = "Programming"
+
+print(word[len(word) - 1])
+```
+
+Output:
+
+```text
+g
+```
+
+We do not need to know the length beforehand.
+
+---
+
+# 11. Indexing User Input
+
+Indexing becomes much more useful when working with user input.
+
+Example:
+
+```python
+name = input("Enter your name: ")
+
+print(name[0])
+```
+
+If the user enters:
+
+```text
+Ali
+```
+
+the output is:
+
+```text
+A
+```
+
+We can also get the last character:
+
+```python
+print(name[-1])
+```
+
+Output:
+
+```text
+i
+```
+
+Now the program can work with information that the user provides.
+
+---
+
+# 12. Indexing Does Not Change the String
+
+When we access a character:
+
+```python
+word = "Python"
+
+letter = word[0]
+```
+
+we are only reading the character.
+
+The original string remains unchanged.
+
+```python
+print(word)
+```
+
+still produces:
+
+```text
+Python
+```
+
+This is consistent with what we learned earlier about strings being **immutable**.
+
+---
+
+# 13. You Cannot Assign to an Index
+
+Because strings are immutable, this is not allowed:
+
+```python
+word = "Python"
+
+word[0] = "J"
+```
+
+Python raises an error.
+
+You cannot directly replace one character inside an existing string.
+
+Instead, you create a new string.
+
+For example:
+
+```python
+word = "Python"
+
+word = "J" + word[1:]
+
+print(word)
+```
+
+Output:
+
+```text
+Jython
+```
+
+We will study this technique more deeply when we learn slicing.
+
+---
+
+# 14. IndexError
+
+What happens if we try to access an index that does not exist?
+
+Example:
+
+```python
+word = "Python"
+
+print(word[10])
+```
+
+The string only has indexes:
+
+```text
+0 1 2 3 4 5
+```
+
+Index `10` does not exist.
+
+Python raises:
+
+```text
+IndexError
+```
+
+This is called an **IndexError**.
+
+---
+
+# 15. Understanding the Error
+
+Suppose:
+
+```python
+name = "Ali"
+```
+
+The valid indexes are:
+
+```text
+Character:  A   l   i
+Index:      0   1   2
+```
+
+This works:
+
+```python
+print(name[0])
+print(name[1])
+print(name[2])
+```
+
+But this does not:
+
+```python
+print(name[3])
+```
+
+because index `3` is outside the valid range.
+
+Remember:
+
+```text
+Valid indexes:
+0 → first character
+1 → second character
+2 → third character
+```
+
+The length is `3`, but the last index is `2`.
+
+---
+
+# 16. A Useful Rule
+
+For a string:
+
+```python
+text
+```
+
+the valid positive indexes are:
+
+```text
+0
+through
+len(text) - 1
+```
+
+The valid negative indexes are:
+
+```text
+-1
+through
+-len(text)
+```
+
+This rule helps us understand why an `IndexError` happens.
+
+---
+
+# 17. Checking Before Accessing
+
+Suppose we want to access the first character of user input:
+
+```python
+name = input("Enter your name: ")
+
+print(name[0])
+```
+
+What if the user enters nothing?
+
+Then:
+
+```python
+name = ""
+```
+
+The string has no characters.
+
+Trying:
+
+```python
+name[0]
+```
+
+will cause an `IndexError`.
+
+We can prevent this by checking first:
+
+```python
+name = input("Enter your name: ")
+
+if len(name) > 0:
+    print(name[0])
+else:
+    print("You entered an empty string.")
+```
+
+This is a good example of combining:
+
+* Strings
+* `len()`
+* Conditions
+* Indexing
+
+---
+
+# 18. Indexing and Loops
+
+Because strings are sequences, we can combine indexing with loops.
+
+For example:
+
+```python
+word = "Python"
+
+for i in range(len(word)):
+    print(word[i])
+```
+
+Output:
+
+```text
+P
+y
+t
+h
+o
+n
+```
+
+Here:
+
+```python
+range(len(word))
+```
+
+generates the indexes:
+
+```text
+0 1 2 3 4 5
+```
+
+and:
+
+```python
+word[i]
+```
+
+accesses the character at each index.
+
+This connects the current lesson with the loops and `range()` concepts we learned earlier.
+
+---
+
+# 19. A More Practical Example
+
+Let's ask the user for a word and display its first and last characters:
+
+```python
+word = input("Enter a word: ")
+
+if len(word) > 0:
+    print("First character:", word[0])
+    print("Last character:", word[-1])
+else:
+    print("The string is empty.")
+```
+
+If the user enters:
+
+```text
+Python
+```
+
+the output is:
+
+```text
+First character: P
+Last character: n
+```
+
+This is a small but realistic example of how indexing can be used in a program.
+
+---
+
+# Short Exercises
+
+## Exercise 1
+
+What is the output?
+
+```python
+word = "Python"
+
+print(word[0])
+print(word[3])
+print(word[-1])
+```
+
+---
+
+## Exercise 2
+
+Find the last character without using a negative index:
+
+```python
+word = "Programming"
+```
+
+Use `len()`.
+
+---
+
+## Exercise 3
+
+What is the output?
+
+```python
+text = "Hello"
+
+print(text[-2])
+print(text[-5])
+```
+
+---
+
+## Exercise 4
+
+How many characters does this string contain?
+
+```python
+text = "Hello World"
+```
+
+Remember that the space is also a character.
+
+---
+
+## Exercise 5
+
+Predict whether each line works or raises an error:
+
+```python
+text = "Python"
+
+print(text[0])
+print(text[5])
+print(text[6])
+print(text[-1])
+print(text[-6])
+print(text[-7])
+```
+
+---
+
+## Exercise 6
+
+Write a program that receives a user's name and displays:
+
+```text
+First character: A
+Last character: i
+```
+
+For example, if the user enters:
+
+```text
+Ali
+```
+
+---
+
+## Exercise 7
+
+Write a program that receives a word and displays every character on a separate line.
+
+Do not use a direct `for character in word` loop.
+
+Use indexing and `range()`.
+
+---
+
+## Exercise 8
+
+Write a program that receives a word and prints its first character only if the user entered something.
+
+If the input is empty, display:
+
+```text
+The string is empty.
+```
+
+---
+
+# End of Section Challenge
+
+Now combine the concepts from the previous lessons with indexing.
+
+Create a program that:
+
+1. Is placed inside a function.
+2. Receives a user's name.
+3. Receives the user's age.
+4. Converts the age to an integer.
+5. Receives the user's city.
+6. Checks whether the user is an adult.
+7. Displays the first character of the user's name.
+8. Displays the last character of the user's name.
+9. Displays the length of the user's name.
+10. Handles an empty name without causing an error.
+11. Asks whether another user should be entered.
+12. Continues until the user chooses to stop.
+
+Example:
+
+```text
+Name:   Ali
+Age:    22
+City:   Tehran
+
+First character: A
+Last character: i
+Name length: 3
+
+Status: Adult
+
+Add another user? yes
+```
+
+### Algorithmic Thinking
+
+Before writing the code, think about the problem step by step:
+
+```text
+Start
+↓
+Get user information
+↓
+Check whether the name is empty
+↓
+If it is not empty:
+    Find first character
+    Find last character
+    Find length
+↓
+Check age
+↓
+Display information
+↓
+Ask whether another user should be added
+↓
+If yes → repeat
+If no → finish
+```
+
+Do not copy this algorithm directly into code.
+
+First understand each step, then decide which Python tools you need.
+
+You should recognize several concepts from previous lessons:
+
+* Variables
+* `input()`
+* `int()`
+* Strings
+* `type()`
+* `len()`
+* Indexing
+* `if`
+* `for`
+* `range()`
+* Functions
+* Loops
+
+This is exactly the kind of combination we will continue building throughout the book.
+
+---
+
+# What We Learned
+
+In this section, we learned:
+
+* What indexing means
+* Why Python indexes start from `0`
+* How to access characters with `[]`
+* Positive indexing
+* Negative indexing
+* How to access the first character
+* How to access the last character
+* The `len()` function
+* The relationship between length and the last index
+* `IndexError`
+* How to prevent indexing errors
+* Indexing user input
+* Indexing inside loops
+* Combining indexing with `range()`
+* Why indexing does not modify a string
+* How indexing connects to string immutability
+
+In the next section, we will move from accessing individual characters to accessing **multiple characters at once**.
+
+That brings us to:
+
+# Part 4 — String Slicing
+

@@ -5,20 +5,15 @@
 Welcome to the **Basics** chapter!
 
 ---
-## 📌 Chapter Information
 
-| Property | Value |
-|----------|-------|
-| **Level** | 🟢 Beginner |
-| **Estimated Time** | 30–45 minutes |
-| **Prerequisites** | None |
-| **Topics** | 5 |
-| **Exercises** | Coming Soon |
-| **Mini Project** | Coming Soon |
-| **Status** | 🚧 In Progress |
----
+## 📚 Topics
 
-This chapter introduces the fundamental concepts of Python that every beginner should master before moving on to more advanced topics.
+- [What Is Python](01-What-Is-Python/README.md)
+- [Installing Python](02-Installing-Python/README.md)
+- [Your First Python Program](03-Your-First-Python-Program/README.md)
+- [Variables And Data Types](04-Variables-and-Data-Types/README.md)
+- [Input & Output](05-Input-and-Output/README.md)
+- [Operators](06-Operators/README.md)
 
 ---
 
@@ -31,17 +26,6 @@ After completing this chapter, you will be able to:
 - Receive user input and display output
 - Convert between different data types
 - Use Python operators correctly
-
----
-
-## 📚 Topics
-
-- What Is Python
-- Installing Python
-- Your First Python Program
-- Variables And Data Types
-- Input & Output
-- Operators
 
 ---
 
@@ -76,7 +60,7 @@ Each topic includes:
 
 After completing this chapter, continue with:
 
-➡️ **02-Conditions**
+➡️ **[02-Conditional-Statements](../02-Conditional-Statements/README.md)**
 
 ---
 

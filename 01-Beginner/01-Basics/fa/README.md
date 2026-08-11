@@ -5,20 +5,15 @@
 به فصل **مبانی پایتون** خوش آمدید.
 
 ---
-## 📌 Chapter Information
 
-| Property | Value |
-|----------|-------|
-| **Level** | 🟢 Beginner |
-| **Estimated Time** | 30–45 minutes |
-| **Prerequisites** | None |
-| **Topics** | 5 |
-| **Exercises** | Coming Soon |
-| **Mini Project** | Coming Soon |
-| **Status** | 🚧 In Progress |
----
+## 📚 مباحث این فصل
 
-در این فصل با مفاهیم پایه‌ای زبان برنامه‌نویسی پایتون آشنا می‌شوید؛ مفاهیمی که یادگیری آن‌ها پیش‌نیاز ورود به مباحث پیشرفته‌تر است.
+- [پایتون چیست؟ ](../01-What-Is-Python/fa/README.md)
+- [نصب پایتون ](../02-Installing-Python/fa/README.md)
+- [اولین برنامه ی پایتون شما](../03-Your-First-Python-Program/fa/README.md)
+- [ورودی و خروجی](../05-Input-and-Output/fa/README.md)
+- [متغیر ها و نوع داده ای](../05-Input-and-Output/fa/README.md)
+- [عملگرها](../06-Operators/fa/README.md)
 
 ---
 
@@ -31,17 +26,6 @@
 - از کاربر ورودی دریافت کرده و خروجی نمایش دهید.
 - انواع داده را به یکدیگر تبدیل کنید.
 - از عملگرهای مختلف پایتون به‌درستی استفاده کنید.
-
----
-
-## 📚 مباحث این فصل
-
-- پایتون چیست؟ (What Is Python)
-- نصب پایتون (Installing Python)
-- اولین برنامه ی پایتون شما (Your First Python Program)
-- ورودی و خروجی (Input & Output)
-- متغیر ها و نوع داده ای (Variables And Data Types)
-- عملگرها (Operators)
 
 ---
 
@@ -76,7 +60,7 @@
 
 پس از اتمام این فصل، مطالعه فصل زیر را آغاز کنید:
 
-➡️ **02-Conditions**
+➡️ **[02-Conditional-Statements](../../02-Conditional-Statements/fa/README.md)**
 
 ---
 

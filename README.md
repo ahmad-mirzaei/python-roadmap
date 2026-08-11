@@ -25,7 +25,7 @@ This repository aims to help developers:
 
 | Row | Title And Link | Status |
 | :---: | :---: | :---: |
-| 1 | [Problem Solving](00-Problem-Solving) | 🟢 |
+| 1 | [Problem Solving](00-Problem-Solving/README.md) | 🟢 |
 | 1-1 | [![What Is An Algorithm](https://img.shields.io/badge/What%20Is%20An%20Algorithm-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/01-What-Is-An-Algorithm.md) | ✅ |
 | 2-1 | [![Algorithm Writing](https://img.shields.io/badge/Algorithm%20Writing-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/02-Algorithm-Writing.md) | ✅ |
 | 3-1 | [![Step by Step Thinking](https://img.shields.io/badge/Step%20by%20Step%20Thinking-white?style=flat&labelColor=white&color=white)](00-Problem-Solving/03-Step-by-Step-Thinking.md) | ✅ |
@@ -38,7 +38,7 @@ This repository aims to help developers:
 
 | Row | Title And Link | Status |
 | :---: | :---: | :---: |
-| 1 | [Python Basics](01-Beginner/01-Basics) | 🟡 |
+| 1 | [Python Basics](01-Beginner/01-Basics/README.md) | 🟡 |
 | 1-1 | [![What Is Python](https://img.shields.io/badge/What%20Is%20Python-green)](01-Beginner/01-Basics/01-What-Is-Python/README.md) | ✅ |
 | 2-1 | [![Installing Python](https://img.shields.io/badge/Installing%20Python-green)](01-Beginner/01-Basics/02-Installing-Python/README.md) | ✅ |
 | 3-1 | [![Your First Python Program](https://img.shields.io/badge/Your%20First%20Python%20Program-green)](01-Beginner/01-Basics/03-Your-First-Python-Program/README.md) | ✅ |
@@ -46,12 +46,12 @@ This repository aims to help developers:
 | 5-1 | [![Input And Output](https://img.shields.io/badge/Input%20And%20Output-green)](01-Beginner/01-Basics/05-Input-and-Output/README.md) | ✅ |
 | 5-1 | [![Operators](https://img.shields.io/badge/Operators-green)](01-Beginner/01-Basics/06-Operators/README.md)
 | ✦ ✦ ✦ ✦ ✦  | ✦ ✦ ✦ ✦ ✦   | ✦ ✦ ✦ ✦ ✦   |
-| 2 |[Conditional Statements](01-Beginner/02-Conditional-Statements) | ✅ |
-| 3 | [Loops](01-Beginner/03-Loops) | ✅ |
-| 4 | [Functions](01-Beginner/04-Functions) | ✅ |
-| 5 | [Strings](01-Beginner/05-Strings) | 🟡 |
-| 6 | [Lists](01-Beginner/06-Lists) | ⬜ |
-| 7 | [Tuples](01-Beginner/07-Tuples) | ⬜ |
+| 2 |[Conditional Statements](01-Beginner/02-Conditional-Statements/README.md) | ✅ |
+| 3 | [Loops](01-Beginner/03-Loops/README.md) | ✅ |
+| 4 | [Functions](01-Beginner/04-Functions/README.md) | ✅ |
+| 5 | [Strings](01-Beginner/05-Strings/README.md) | 🟡 |
+| 6 | [Lists](01-Beginner/06-Lists/README.md) | ⬜ |
+| 7 | [Tuples](01-Beginner/07-TuplesREADME.md) | ⬜ |
 | 8 | [Sets](01-Beginner/08-Sets) | ⬜ |
 | 9 | [Dictionaries](01-Beginner/09-Dictionaries) | ⬜ |
 

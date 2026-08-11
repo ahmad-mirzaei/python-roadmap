@@ -36,23 +36,12 @@ After completing this chapter, you will be able to:
 
 ## 📚 Topics
 
-- Variables
-- Data Types
+- What Is Python
+- Installing Python
+- Your First Python Program
+- Variables And Data Types
 - Input & Output
-- Type Casting
 - Operators
-
----
-
-## 📖 Study Order
-
-To get the best learning experience, study the topics in the following order:
-
-1. Variables
-2. Data Types
-3. Input & Output
-4. Type Casting
-5. Operators
 
 ---
 
@@ -60,25 +49,14 @@ To get the best learning experience, study the topics in the following order:
 
 | Topic | Status |
 |--------|:------:|
-| Variables | ✅ complited |
-| Data Types | ✅ complited |
-| Input & Output | ✅ complited |
-| Type Casting | ✅ complited |
-| Operators | ✅ complited |
+| What Is Python | ✅ |
+| Installing Python | ✅ |
+| Your First Python Program | ✅ |
+| Variables And Data Types | ✅ |
+| Input & Output | ✅ |
+| Operators | ✅ |
 
 **Completion:** **100%**
-
----
-
-## 📂 Files
-
-| File | Description |
-|------|-------------|
-| `01-Variables.md` | Learn how to declare and use variables |
-| `02-Data-Types.md` | Learn Python's built-in data types |
-| `03-Input-Output.md` | Learn how to receive input and display output |
-| `04-Type-Casting.md` | Learn how to convert between data types |
-| `05-Operators.md` | Learn arithmetic, comparison, logical, and assignment operators |
 
 ---
 

@@ -36,23 +36,12 @@
 
 ## 📚 مباحث این فصل
 
-- متغیرها (Variables)
-- انواع داده (Data Types)
+- پایتون چیست؟ (What Is Python)
+- نصب پایتون (Installing Python)
+- اولین برنامه ی پایتون شما (Your First Python Program)
 - ورودی و خروجی (Input & Output)
-- تبدیل نوع داده (Type Casting)
+- متغیر ها و نوع داده ای (Variables And Data Types)
 - عملگرها (Operators)
-
----
-
-## 📖 ترتیب پیشنهادی مطالعه
-
-برای یادگیری بهتر، پیشنهاد می‌شود مباحث را به ترتیب زیر مطالعه کنید:
-
-1. Variables
-2. Data Types
-3. Input & Output
-4. Type Casting
-5. Operators
 
 ---
 
@@ -60,25 +49,14 @@
 
 | مبحث | وضعیت |
 |------|:------:|
-| Variables | ✅ تکمیل شده |
-| Data Types | ✅ تکمیل شده |
-| Input & Output | ✅ تکمیل شده |
-| Type Casting | ✅ تکمیل شده |
-| Operators | ✅ تکمیل شده |
+| What Is Python | ✅ |
+| Installing Python | ✅ |
+| Your First Python Program | ✅ |
+| Variables And Data Types | ✅ |
+| Input & Output | ✅ |
+| Operators | ✅ |
 
 **درصد تکمیل:** *100٪**
-
----
-
-## 📂 فایل‌های این فصل
-
-| فایل | توضیحات |
-|------|---------|
-| `01-Variables.md` | آشنایی با متغیرها |
-| `02-Data-Types.md` | آشنایی با انواع داده در پایتون |
-| `03-Input-Output.md` | دریافت ورودی و نمایش خروجی |
-| `04-Type-Casting.md` | تبدیل انواع داده |
-| `05-Operators.md` | آشنایی با عملگرهای پایتون |
 
 ---
 

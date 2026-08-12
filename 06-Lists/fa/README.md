@@ -831,3 +831,1264 @@ for score in scores:
 
 ---
 
+# بخش ۲ — Indexing و دسترسی به عناصر List
+
+در بخش قبلی یاد گرفتیم که List یک مجموعه مرتب از عناصر است.
+
+برای مثال:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+```
+
+این List شامل چهار عنصر است و هر عنصر در یک موقعیت مشخص قرار دارد.
+
+در Python برای دسترسی به یک عنصر مشخص از مفهوم **Indexing** استفاده می‌کنیم.
+
+یادگیری Indexing یکی از مهم‌ترین مهارت‌ها در کار با Listهاست، چون به ما اجازه می‌دهد عناصر مشخصی را انتخاب، بررسی و در ادامه تغییر دهیم.
+
+---
+
+## Index چیست؟
+
+**Index** موقعیت یک عنصر درون List است.
+
+Python از **Zero-Based Indexing** استفاده می‌کند.
+
+یعنی اولین عنصر List دارای Index برابر با `0` است، نه `1`.
+
+برای مثال:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+```
+
+Indexها به این صورت هستند:
+
+```text
+Element    Index
+
+Ahmad      0
+Sara       1
+Alex       2
+John       3
+```
+
+بنابراین:
+
+```text
+First element  → index 0
+Second element → index 1
+Third element  → index 2
+Fourth element → index 3
+```
+
+این یکی از قوانین بنیادی Python است.
+
+---
+
+## دسترسی به اولین عنصر
+
+برای دسترسی به یک عنصر، Index آن را داخل براکت‌های مربعی بعد از نام List قرار می‌دهیم.
+
+برای مثال:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+
+print(students[0])
+```
+
+خروجی:
+
+```text
+Ahmad
+```
+
+چون `Ahmad` اولین عنصر List است، Index آن `0` است.
+
+---
+
+## دسترسی به عناصر دیگر
+
+می‌توانیم با استفاده از Indexهای مختلف به عناصر مختلف دسترسی پیدا کنیم.
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+
+print(students[0])
+print(students[1])
+print(students[2])
+print(students[3])
+```
+
+خروجی:
+
+```text
+Ahmad
+Sara
+Alex
+John
+```
+
+هر Index به یک عنصر مشخص اشاره می‌کند.
+
+---
+
+## نمایش تصویری Indexهای List
+
+برای درک بهتر می‌توانیم List را این‌گونه تصور کنیم:
+
+```text
+Index:      0        1        2        3
+            ↓        ↓        ↓        ↓
+List:    ["Ahmad",  "Sara",  "Alex",  "John"]
+```
+
+Index به Python می‌گوید که کدام عنصر را می‌خواهیم.
+
+برای مثال:
+
+```python
+students[0]
+```
+
+یعنی:
+
+```text
+عنصر موجود در Index شماره 0 را به من بده.
+```
+
+و:
+
+```python
+students[2]
+```
+
+یعنی:
+
+```text
+عنصر موجود در Index شماره 2 را به من بده.
+```
+
+---
+
+## Indexing برای اعداد
+
+Indexing فقط مخصوص Stringها نیست.
+
+برای مثال:
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+print(scores[0])
+print(scores[2])
+print(scores[4])
+```
+
+خروجی:
+
+```text
+18
+15
+20
+```
+
+ساختار List:
+
+```text
+Index:     0    1    2    3    4
+           ↓    ↓    ↓    ↓    ↓
+Scores:   18    8   15    7   20
+```
+
+بنابراین:
+
+```python
+scores[0]  # 18
+scores[2]  # 15
+scores[4]  # 20
+```
+
+---
+
+## چرا Python از صفر شروع می‌کند؟
+
+Zero-Based Indexing ممکن است در ابتدا کمی عجیب به نظر برسد.
+
+اگر یک List پنج عنصر داشته باشد، شاید انتظار داشته باشیم موقعیت‌ها این‌گونه باشند:
+
+```text
+1  2  3  4  5
+```
+
+اما Python از این ساختار استفاده می‌کند:
+
+```text
+0  1  2  3  4
+```
+
+یکی از دلایل مهم این نوع شماره‌گذاری این است که Index را می‌توان به عنوان **فاصله از ابتدای مجموعه** در نظر گرفت.
+
+عنصر اول صفر موقعیت از ابتدای مجموعه فاصله دارد.
+
+عنصر دوم یک موقعیت فاصله دارد.
+
+عنصر سوم دو موقعیت فاصله دارد.
+
+و به همین ترتیب ادامه پیدا می‌کند.
+
+لازم نیست در این مرحله وارد جزئیات تاریخی Zero-Based Indexing شویم.
+
+برای کار عملی فقط این قانون را به خاطر بسپار:
+
+> **در Python، اولین عنصر List دارای Index برابر با 0 است.**
+
+---
+
+## آخرین Index
+
+یک قانون بسیار مهم این است:
+
+```text
+Last index = length - 1
+```
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+```
+
+این List دارای پنج عنصر است.
+
+بنابراین:
+
+```python
+len(numbers)
+```
+
+مقدار زیر را برمی‌گرداند:
+
+```text
+5
+```
+
+اما Indexها این‌ها هستند:
+
+```text
+0  1  2  3  4
+```
+
+پس آخرین Index برابر است با:
+
+```text
+5 - 1 = 4
+```
+
+بنابراین:
+
+```python
+numbers[4]
+```
+
+مقدار زیر را برمی‌گرداند:
+
+```text
+50
+```
+
+این رابطه بسیار مهم است:
+
+```text
+Last index = len(list) - 1
+```
+
+---
+
+## دسترسی به آخرین عنصر
+
+می‌توانیم با استفاده از Index مثبت به آخرین عنصر دسترسی پیدا کنیم.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[4])
+```
+
+خروجی:
+
+```text
+50
+```
+
+اما Python روش راحت‌تری برای دسترسی به آخرین عنصر در اختیار ما قرار می‌دهد.
+
+می‌توانیم از **Negative Indexing** استفاده کنیم.
+
+---
+
+## Negative Indexing
+
+Python اجازه می‌دهد از انتهای List نیز Indexگذاری کنیم.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+```
+
+Indexها را می‌توانیم این‌گونه ببینیم:
+
+```text
+Positive Index:
+
+Index:      0    1    2    3    4
+            ↓    ↓    ↓    ↓    ↓
+List:      10   20   30   40   50
+
+
+Negative Index:
+
+Index:     -5   -4   -3   -2   -1
+            ↓    ↓    ↓    ↓    ↓
+List:      10   20   30   40   50
+```
+
+Indexهای منفی از `-1` شروع می‌شوند.
+
+بنابراین:
+
+```text
+-1 → آخرین عنصر
+-2 → عنصر یکی مانده به آخر
+-3 → عنصر دو تا مانده به آخر
+```
+
+---
+
+## دسترسی به آخرین عنصر با -1
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[-1])
+```
+
+خروجی:
+
+```text
+50
+```
+
+این یکی از رایج‌ترین روش‌های Indexing در Python است.
+
+به جای اینکه آخرین Index مثبت را محاسبه کنیم:
+
+```python
+print(numbers[len(numbers) - 1])
+```
+
+می‌توانیم به سادگی بنویسیم:
+
+```python
+print(numbers[-1])
+```
+
+روش دوم کوتاه‌تر و خواناتر است.
+
+---
+
+## دسترسی به عناصر از انتهای List
+
+می‌توانیم از Indexهای منفی دیگر نیز استفاده کنیم.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[-1])
+print(numbers[-2])
+print(numbers[-3])
+```
+
+خروجی:
+
+```text
+50
+40
+30
+```
+
+بنابراین:
+
+```text
+-1 → 50
+-2 → 40
+-3 → 30
+```
+
+Negative Indexing زمانی بسیار مفید است که به عناصر نزدیک انتهای List نیاز داشته باشیم.
+
+---
+
+## Index مثبت و منفی به یک عنصر اشاره می‌کنند
+
+Indexهای مثبت و منفی می‌توانند به یک عنصر یکسان اشاره کنند.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[0])
+print(numbers[-5])
+```
+
+هر دو خروجی زیر را تولید می‌کنند:
+
+```text
+10
+```
+
+مثال دیگر:
+
+```python
+print(numbers[1])
+print(numbers[-4])
+```
+
+هر دو مقدار زیر را نشان می‌دهند:
+
+```text
+20
+```
+
+و:
+
+```python
+print(numbers[4])
+print(numbers[-1])
+```
+
+هر دو مقدار زیر را نشان می‌دهند:
+
+```text
+50
+```
+
+ساختار کامل List:
+
+```text
+Positive:   0    1    2    3    4
+            ↓    ↓    ↓    ↓    ↓
+Values:    10   20   30   40   50
+            ↑    ↑    ↑    ↑    ↑
+Negative:  -5   -4   -3   -2   -1
+```
+
+---
+
+## Indexing روی Stringهای داخل List
+
+یک List می‌تواند شامل String باشد و خود String نیز قابل Indexing است.
+
+برای مثال:
+
+```python
+names = ["Ahmad", "Sara", "Alex"]
+
+print(names[0])
+```
+
+خروجی:
+
+```text
+Ahmad
+```
+
+اینجا:
+
+```python
+names[0]
+```
+
+اولین String را برمی‌گرداند.
+
+حالا می‌توانیم روی خود String نیز Indexing انجام دهیم:
+
+```python
+print(names[0][0])
+```
+
+خروجی:
+
+```text
+A
+```
+
+این اتفاق به این دلیل است که:
+
+```text
+names[0]     → "Ahmad"
+names[0][0]  → "A"
+```
+
+این موضوع یک ایده مهم را معرفی می‌کند:
+
+> **در Python می‌توانیم عملیات Indexing را هنگام کار با Sequenceهای تو در تو با یکدیگر ترکیب کنیم.**
+
+در ادامه مباحث List و ساختارهای تو در تو، این مفهوم را بیشتر بررسی خواهیم کرد.
+
+---
+
+## استفاده از Variable به عنوان Index
+
+Index الزاماً نباید مستقیماً یک عدد نوشته شده در کد باشد.
+
+می‌توانیم Index را داخل یک متغیر ذخیره کنیم.
+
+برای مثال:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+
+index = 2
+
+print(students[index])
+```
+
+خروجی:
+
+```text
+Alex
+```
+
+اینجا:
+
+```python
+index = 2
+```
+
+و:
+
+```python
+students[index]
+```
+
+از نظر نتیجه معادل:
+
+```python
+students[2]
+```
+
+است.
+
+این روش زمانی بسیار مفید می‌شود که Index در زمان اجرای برنامه تعیین شود.
+
+---
+
+## استفاده از Input به عنوان Index
+
+از آنجا که Index می‌تواند داخل یک Variable قرار داشته باشد، می‌توانیم آن را از کاربر نیز دریافت کنیم.
+
+برای مثال:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+
+index = int(input("Enter an index: "))
+
+print(students[index])
+```
+
+اگر کاربر مقدار زیر را وارد کند:
+
+```text
+2
+```
+
+برنامه خروجی زیر را نمایش می‌دهد:
+
+```text
+Alex
+```
+
+اینجا چند مفهوم قبلی با یکدیگر ترکیب شده‌اند:
+
+```text
+Input
+  ↓
+Type Casting
+  ↓
+Variable
+  ↓
+List Indexing
+  ↓
+Output
+```
+
+---
+
+## خطای IndexError
+
+اگر بخواهیم به Indexای دسترسی پیدا کنیم که وجود ندارد، چه اتفاقی می‌افتد؟
+
+مثال زیر را ببین:
+
+```python
+students = ["Ahmad", "Sara", "Alex"]
+
+print(students[5])
+```
+
+این List فقط سه عنصر دارد.
+
+Indexهای مثبت معتبر آن:
+
+```text
+0
+1
+2
+```
+
+Index شماره `5` وجود ندارد.
+
+در نتیجه Python خطایی ایجاد می‌کند:
+
+```text
+IndexError: list index out of range
+```
+
+این خطا **IndexError** نام دارد.
+
+---
+
+## مفهوم "List Index Out of Range"
+
+عبارت:
+
+```text
+list index out of range
+```
+
+یعنی:
+
+> Index درخواست شده خارج از محدوده Indexهای معتبر آن List است.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30]
+```
+
+Indexهای معتبر:
+
+```text
+0
+1
+2
+```
+
+Indexهای نامعتبر:
+
+```text
+3
+4
+5
+...
+```
+
+برخی Indexهای منفی نیز می‌توانند نامعتبر باشند.
+
+برای مثال:
+
+```python
+numbers[-4]
+```
+
+نامعتبر است، چون List فقط سه عنصر دارد.
+
+---
+
+## جلوگیری از IndexError
+
+قبل از استفاده از یک Index باید اندازه List را در نظر بگیریم.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(len(numbers))
+```
+
+خروجی:
+
+```text
+5
+```
+
+بنابراین Indexهای مثبت معتبر:
+
+```text
+0 تا 4
+```
+
+هستند.
+
+یک رابطه بسیار مهم:
+
+```text
+0 <= index < len(list)
+```
+
+برای Listای که پنج عنصر دارد:
+
+```text
+0 <= index < 5
+```
+
+بنابراین Indexهای زیر معتبر هستند:
+
+```text
+0
+1
+2
+3
+4
+```
+
+---
+
+## بررسی Index با Condition
+
+می‌توانیم قبل از دسترسی به List با استفاده از شرط بررسی کنیم که آیا Index معتبر است یا نه.
+
+برای مثال:
+
+```python
+students = ["Ahmad", "Sara", "Alex"]
+
+index = 2
+
+if 0 <= index < len(students):
+    print(students[index])
+else:
+    print("Invalid index")
+```
+
+خروجی:
+
+```text
+Alex
+```
+
+اگر Index برابر با:
+
+```python
+index = 5
+```
+
+باشد، برنامه خروجی زیر را نمایش می‌دهد:
+
+```text
+Invalid index
+```
+
+این مثال چند مفهوم را با یکدیگر ترکیب می‌کند:
+
+```text
+List
+len()
+Variable
+Condition
+Indexing
+```
+
+---
+
+## Indexing و Loop
+
+می‌توانیم Indexing را با حلقه‌ها نیز ترکیب کنیم.
+
+برای مثال:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+
+for index in range(len(students)):
+    print(index, students[index])
+```
+
+خروجی:
+
+```text
+0 Ahmad
+1 Sara
+2 Alex
+3 John
+```
+
+اینجا:
+
+```python
+range(len(students))
+```
+
+Indexهای معتبر را تولید می‌کند.
+
+سپس:
+
+```python
+students[index]
+```
+
+عنصر موجود در آن Index را دریافت می‌کند.
+
+این یک الگوی مهم است.
+
+با این حال، اگر فقط به خود مقادیر نیاز داشته باشیم و Index برایمان مهم نباشد، Python روش ساده‌تری در اختیارمان قرار می‌دهد:
+
+```python
+for student in students:
+    print(student)
+```
+
+این دو روش را هنگام بررسی Iteration روی Listها با جزئیات بیشتری مقایسه خواهیم کرد.
+
+---
+
+## یک مثال کاربردی — نمره‌های دانش‌آموزان
+
+بیایید از Indexing در یک مثال واقعی استفاده کنیم.
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+print("----- Student Scores -----")
+print()
+
+print(f"First score: {scores[0]}")
+print(f"Second score: {scores[1]}")
+print(f"Last score: {scores[-1]}")
+```
+
+خروجی:
+
+```text
+----- Student Scores -----
+
+First score: 18
+Second score: 8
+Last score: 20
+```
+
+این مثال هم Index مثبت و هم Index منفی را نشان می‌دهد.
+
+---
+
+## یک مثال کاربردی دیگر — دسترسی به محصولات
+
+فرض کن یک فروشگاه اینترنتی List زیر را برای محصولات خود داشته باشد:
+
+```python
+products = ["Laptop", "Mouse", "Keyboard", "Monitor"]
+```
+
+می‌توانیم به محصولات مشخص دسترسی پیدا کنیم:
+
+```python
+print(f"First product: {products[0]}")
+print(f"Last product: {products[-1]}")
+```
+
+خروجی:
+
+```text
+First product: Laptop
+Last product: Monitor
+```
+
+این الگو در برنامه‌های واقعی بسیار رایج است.
+
+---
+
+## یک مثال کاربردی — انتخاب از منو
+
+فرض کن یک منوی ساده داریم:
+
+```python
+menu = ["Pizza", "Burger", "Pasta", "Salad"]
+```
+
+می‌توانیم یک گزینه مشخص را انتخاب کنیم:
+
+```python
+choice = 2
+
+print(f"You selected: {menu[choice]}")
+```
+
+خروجی:
+
+```text
+You selected: Pasta
+```
+
+نکته مهم این است که Index می‌تواند توسط خود برنامه تعیین شود و الزاماً یک مقدار ثابت در کد نباشد.
+
+---
+
+## Indexing با Slicing متفاوت است
+
+باید بین **Indexing** و **Slicing** تفاوت قائل شویم.
+
+Indexing یک عنصر را انتخاب می‌کند:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[2])
+```
+
+خروجی:
+
+```text
+30
+```
+
+اما Slicing یک محدوده از عناصر را انتخاب می‌کند:
+
+```python
+print(numbers[1:4])
+```
+
+خروجی:
+
+```text
+[20, 30, 40]
+```
+
+Slicing قوانین خاص خودش را دارد و در یک بخش جداگانه آن را بررسی خواهیم کرد.
+
+فعلاً این تفاوت را به خاطر بسپار:
+
+```text
+Indexing → یک عنصر
+
+Slicing → یک محدوده از عناصر
+```
+
+---
+
+# مهم‌ترین قوانین Indexing
+
+چند قانون مهم وجود دارد که باید به خاطر بسپاری.
+
+## قانون ۱ — Indexing از صفر شروع می‌شود
+
+```python
+numbers = [10, 20, 30]
+
+print(numbers[0])
+```
+
+خروجی:
+
+```text
+10
+```
+
+---
+
+## قانون ۲ — آخرین Index مثبت برابر Length منهای یک است
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[len(numbers) - 1])
+```
+
+خروجی:
+
+```text
+50
+```
+
+---
+
+## قانون ۳ — مقدار -1 به آخرین عنصر اشاره می‌کند
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[-1])
+```
+
+خروجی:
+
+```text
+50
+```
+
+---
+
+## قانون ۴ — Indexهای منفی از انتها شمارش می‌شوند
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[-2])
+```
+
+خروجی:
+
+```text
+40
+```
+
+---
+
+## قانون ۵ — Index نامعتبر باعث IndexError می‌شود
+
+```python
+numbers = [10, 20, 30]
+
+print(numbers[5])
+```
+
+این کد باعث ایجاد خطای زیر می‌شود:
+
+```text
+IndexError: list index out of range
+```
+
+---
+
+# نکات کلیدی
+
+Indexing به ما اجازه می‌دهد به عناصر تکی یک List دسترسی داشته باشیم.
+
+Python از Zero-Based Indexing استفاده می‌کند.
+
+برای مثال:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+```
+
+Indexها:
+
+```text
+Index:      0        1        2        3
+            ↓        ↓        ↓        ↓
+List:    ["Ahmad",  "Sara",  "Alex",  "John"]
+```
+
+اولین عنصر با این دستور قابل دسترسی است:
+
+```python
+students[0]
+```
+
+آخرین عنصر را می‌توان با این روش دریافت کرد:
+
+```python
+students[-1]
+```
+
+عنصر یکی مانده به آخر:
+
+```python
+students[-2]
+```
+
+آخرین Index مثبت:
+
+```text
+len(list) - 1
+```
+
+یک Index مثبت معتبر باید این شرط را داشته باشد:
+
+```text
+0 <= index < len(list)
+```
+
+Index نامعتبر باعث ایجاد:
+
+```text
+IndexError
+```
+
+می‌شود.
+
+مهم‌ترین مفهوم این بخش:
+
+> **Indexing به ما کنترل دقیق روی عناصر تکی یک List می‌دهد.**
+
+---
+
+# تمرین‌ها
+
+## تمرین ۱ — Indexing پایه
+
+List زیر را بساز:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Grape"]
+```
+
+موارد زیر را چاپ کن:
+
+- اولین عنصر
+- دومین عنصر
+- سومین عنصر
+- آخرین عنصر
+
+در صورت امکان از Indexهای مثبت و منفی استفاده کن.
+
+---
+
+## تمرین ۲ — نمره‌های دانش‌آموزان
+
+List زیر را بساز:
+
+```python
+scores = [18, 8, 15, 7, 20]
+```
+
+موارد زیر را چاپ کن:
+
+- اولین نمره
+- سومین نمره
+- آخرین نمره
+- نمره یکی مانده به آخر
+
+---
+
+## تمرین ۳ — جدول Indexها
+
+یک List با حداقل شش عنصر بساز.
+
+سپس Index مثبت و منفی هر عنصر را مشخص کن.
+
+برای مثال:
+
+```text
+Positive Index    Value    Negative Index
+0                 A        -6
+1                 B        -5
+...
+```
+
+---
+
+## تمرین ۴ — Index پویا
+
+یک List از چند شهر بساز.
+
+یک Index را داخل یک Variable ذخیره کن و با استفاده از آن Variable به یک عنصر دسترسی پیدا کن.
+
+برای مثال:
+
+```python
+cities = ["Tehran", "Shiraz", "Tabriz", "Mashhad"]
+
+index = 2
+
+print(cities[index])
+```
+
+سپس مقدار `index` را تغییر بده و نتیجه را مشاهده کن.
+
+---
+
+## تمرین ۵ — انتخاب عنصر توسط کاربر
+
+یک List از چند غذای مورد علاقه بساز.
+
+از کاربر یک Index دریافت کن و غذای مربوط به آن Index را نمایش بده.
+
+برای دریافت ورودی از `input()` و برای تبدیل نوع داده از Type Casting استفاده کن.
+
+قبل از دسترسی به List مطمئن شو که Index معتبر است.
+
+---
+
+## تمرین ۶ — جلوگیری از IndexError
+
+یک List بساز و از کاربر یک Index دریافت کن.
+
+با استفاده از Condition بررسی کن که آیا Index معتبر است یا نه.
+
+اگر Index معتبر بود، عنصر مربوطه را چاپ کن.
+
+در غیر این صورت پیام زیر را نمایش بده:
+
+```text
+Invalid index
+```
+
+---
+
+# چالش بخش — انتخاب نمره دانش‌آموز
+
+برنامه‌ای بنویس که چند نمره دانش‌آموز را داخل یک List ذخیره کند.
+
+برنامه باید:
+
+1. List را نمایش دهد.
+2. تعداد نمره‌ها را نمایش دهد.
+3. از کاربر یک Index دریافت کند.
+4. معتبر بودن Index را بررسی کند.
+5. اگر Index معتبر بود، نمره انتخاب شده را نمایش دهد.
+6. اگر Index نامعتبر بود، پیام مناسب نمایش دهد.
+7. اولین و آخرین نمره را نیز نمایش دهد.
+
+یک ساختار نمونه:
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+print("----- Student Score Selector -----")
+print()
+
+print(f"Scores: {scores}")
+print(f"Number of scores: {len(scores)}")
+print(f"First score: {scores[0]}")
+print(f"Last score: {scores[-1]}")
+print()
+
+index = int(input("Enter an index: "))
+
+if 0 <= index < len(scores):
+    print(f"Selected score: {scores[index]}")
+else:
+    print("Invalid index")
+```
+
+قبل از نگاه کردن به نمونه، سعی کن خودت مسئله را حل کنی.
+
+هدف این چالش این است که چند مفهوم از درس‌های قبلی را با یکدیگر ترکیب کنی:
+
+```text
+Lists
+Variables
+Input
+Type Casting
+len()
+Conditions
+Indexing
+Output
+```
+
+در بخش بعدی یاد می‌گیریم که چگونه از Indexing فقط برای خواندن عناصر استفاده نکنیم، بلکه **عناصر موجود در یک List را نیز تغییر دهیم**.
+
+---
+

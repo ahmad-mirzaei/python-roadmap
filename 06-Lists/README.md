@@ -1,5 +1,7 @@
 # Part 1 — What Is a List?
 
+> 🌐 Language: **English** | [فارسی](fa/README.md)
+
 A **List** is one of Python's most important built-in data structures.
 
 It allows us to store multiple values inside a single variable and work with those values as one collection.

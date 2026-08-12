@@ -3030,3 +3030,1041 @@ Augmented Assignment
 
 ---
 
+# بخش ۴ — برش‌ زدن List ها (List Slicing)
+
+در این بخش یاد می‌ گیریم چگونه با استفاده از **Slicing** یک محدوده از عناصر یک List پایتون را انتخاب کنیم.
+
+## چیزهایی که یاد می‌ گیریم
+
+- مفهوم List Slicing
+- Syntax اصلی Slicing
+- Start و Stop
+- مفهوم Exclusive بودن Stop
+- برش‌ زدن از ابتدای List
+- برش‌ زدن تا انتهای List
+- انتخاب کل List
+- استفاده از Index های منفی
+- استفاده از Step
+- برعکس کردن List با Slicing
+- کپی کردن List با Slicing
+- تفاوت Indexing و Slicing
+- اشتباهات رایج در Slicing
+- مثال‌ های کاربردی
+- تمرین‌ ها
+- چالش بخش
+
+---
+
+## ۱. List Slicing چیست؟
+
+در بخش‌ های قبلی یاد گرفتیم که با استفاده از Indexing می‌ توانیم به **یک عنصر** دسترسی داشته باشیم:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Sushi"]
+
+print(fruits[1])
+```
+
+خروجی:
+
+```text
+Banana
+```
+
+اما با Slicing می‌ توانیم **چند عنصر پشت سر هم** را انتخاب کنیم:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Sushi"]
+
+print(fruits[1:4])
+```
+
+خروجی:
+
+```text
+['Banana', 'Orange', 'Mango']
+```
+
+بنابراین به جای انتخاب یک موقعیت، می‌ توانیم یک محدوده از موقعیت‌ های List را انتخاب کنیم.
+
+---
+
+## ۲. Syntax اصلی Slicing
+
+Syntax اصلی Slicing به شکل زیر است:
+
+```python
+list_name[start:stop]
+```
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[1:4])
+```
+
+خروجی:
+
+```text
+[20, 30, 40]
+```
+
+برش از Index شماره `1` شروع می‌ شود و قبل از Index شماره `4` متوقف می‌ شود.
+
+بنابراین:
+
+```text
+Index 1 → شامل می‌ شود
+Index 2 → شامل می‌ شود
+Index 3 → شامل می‌ شود
+Index 4 → شامل نمی‌ شود
+```
+
+این یکی از مهم‌ ترین قوانین Slicing در پایتون است.
+
+---
+
+## ۳. Start و Stop
+
+List زیر را در نظر بگیر:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+```
+
+Index ها:
+
+```text
+0 → 10
+1 → 20
+2 → 30
+3 → 40
+4 → 50
+```
+
+حالا:
+
+```python
+print(numbers[1:4])
+```
+
+یعنی:
+
+```text
+شروع از Index 1
+انتخاب Index 1
+انتخاب Index 2
+انتخاب Index 3
+توقف قبل از Index 4
+```
+
+نتیجه:
+
+```text
+[20, 30, 40]
+```
+
+---
+
+## ۴. Stop شامل نتیجه نمی‌ شود
+
+Index مربوط به Stop در نتیجه قرار نمی‌ گیرد.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[0:3])
+```
+
+خروجی:
+
+```text
+[10, 20, 30]
+```
+
+Index شماره `3` شامل مقدار `40` است، اما این مقدار در نتیجه قرار نمی‌ گیرد.
+
+بنابراین:
+
+```python
+numbers[0:3]
+```
+
+یعنی:
+
+```text
+Index 0
+Index 1
+Index 2
+```
+
+اما نه:
+
+```text
+Index 3
+```
+
+یک قانون بسیار مهم:
+
+> **Start شامل می‌ شود، اما Stop شامل نمی‌ شود.**
+
+---
+
+## ۵. برش‌ زدن از ابتدای List
+
+اگر بخواهیم Slicing را از ابتدای List شروع کنیم، می‌ توانیم Start را حذف کنیم:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[:3])
+```
+
+خروجی:
+
+```text
+[10, 20, 30]
+```
+
+این دستور معادل عبارت زیر است:
+
+```python
+numbers[0:3]
+```
+
+وقتی Start را مشخص نمی‌ کنیم، پایتون به صورت خودکار ابتدای List را در نظر می‌ گیرد.
+
+---
+
+## ۶. برش‌ زدن تا انتهای List
+
+اگر بخواهیم از یک Index مشخص تا انتهای List را انتخاب کنیم، می‌ توانیم Stop را حذف کنیم:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[2:])
+```
+
+خروجی:
+
+```text
+[30, 40, 50]
+```
+
+یعنی:
+
+```text
+شروع از Index 2
+ادامه تا انتهای List
+```
+
+---
+
+## ۷. انتخاب کل List
+
+می‌ توانیم هم Start و هم Stop را حذف کنیم:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[:])
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+این دستور تمام عناصر List را انتخاب می‌ کند.
+
+یکی از کاربرد های مهم این روش، ساختن یک **Shallow Copy** از List است:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+numbers_copy = numbers[:]
+
+print(numbers_copy)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+List جدید شامل همان عناصر List اصلی است.
+
+---
+
+## ۸. استفاده از Index های منفی در Slicing
+
+Slicing می‌ تواند با Negative Indexing نیز استفاده شود.
+
+List زیر را در نظر بگیر:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+```
+
+Index های منفی:
+
+```text
+-5 → 10
+-4 → 20
+-3 → 30
+-2 → 40
+-1 → 50
+```
+
+حالا:
+
+```python
+print(numbers[-3:])
+```
+
+خروجی:
+
+```text
+[30, 40, 50]
+```
+
+یعنی:
+
+```text
+شروع از Index -3
+ادامه تا انتهای List
+```
+
+---
+
+## ۹. انتخاب چند عنصر آخر List
+
+Negative Slicing برای انتخاب چند عنصر آخر بسیار کاربردی است:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John", "Michael"]
+
+print(students[-2:])
+```
+
+خروجی:
+
+```text
+['John', 'Michael']
+```
+
+در این مثال دو عنصر آخر انتخاب شده‌ اند.
+
+---
+
+## ۱۰. انتخاب همه عناصر به جز آخرین عنصر
+
+می‌ توانیم از `-1` به عنوان Stop استفاده کنیم:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[:-1])
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40]
+```
+
+Index `-1` به آخرین عنصر اشاره می‌ کند، اما چون Stop شامل نتیجه نمی‌ شود، آخرین عنصر در خروجی قرار نمی‌ گیرد.
+
+---
+
+## ۱۱. استفاده از Step
+
+Slicing یک مقدار سوم نیز دارد که به آن **Step** می‌ گوییم.
+
+Syntax کامل:
+
+```python
+list_name[start:stop:step]
+```
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60]
+
+print(numbers[0:6:2])
+```
+
+خروجی:
+
+```text
+[10, 30, 50]
+```
+
+در اینجا Step برابر `2` است؛ بنابراین پایتون هر دو موقعیت یک بار حرکت می‌ کند.
+
+Index های انتخاب شده:
+
+```text
+0 → 10
+2 → 30
+4 → 50
+```
+
+---
+
+## ۱۲. Slicing با Step برابر ۳
+
+```python
+numbers = [10, 20, 30, 40, 50, 60, 70, 80]
+
+print(numbers[0:8:3])
+```
+
+خروجی:
+
+```text
+[10, 40, 70]
+```
+
+Index های انتخاب شده:
+
+```text
+0
+3
+6
+```
+
+---
+
+## ۱۳. حذف Start و استفاده از Step
+
+می‌ توانیم Start را حذف کنیم و فقط Stop و Step را مشخص کنیم:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60]
+
+print(numbers[:6:2])
+```
+
+خروجی:
+
+```text
+[10, 30, 50]
+```
+
+یعنی:
+
+```text
+شروع از ابتدای List
+توقف قبل از Index 6
+حرکت با Step برابر 2
+```
+
+---
+
+## ۱۴. حذف Stop و استفاده از Step
+
+می‌ توانیم Stop را نیز حذف کنیم:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60]
+
+print(numbers[1::2])
+```
+
+خروجی:
+
+```text
+[20, 40, 60]
+```
+
+یعنی:
+
+```text
+شروع از Index 1
+ادامه تا انتهای List
+حرکت با Step برابر 2
+```
+
+---
+
+## ۱۵. برعکس کردن List
+
+یکی از کاربردی‌ ترین روش‌ های Slicing استفاده از:
+
+```python
+list_name[::-1]
+```
+
+است.
+
+Step منفی باعث می‌ شود پایتون از انتهای List به سمت ابتدای آن حرکت کند.
+
+مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+reversed_numbers = numbers[::-1]
+
+print(reversed_numbers)
+```
+
+خروجی:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+List اصلی تغییری نمی‌ کند:
+
+```python
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+---
+
+## ۱۶. کپی کردن و برعکس کردن List به صورت هم‌ زمان
+
+چون Slicing یک List جدید ایجاد می‌ کند، می‌ توانیم با استفاده از `[::-1]` یک نسخه برعکس شده بسازیم:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+reversed_numbers = numbers[::-1]
+
+print("Original:", numbers)
+print("Reversed:", reversed_numbers)
+```
+
+خروجی:
+
+```text
+Original: [10, 20, 30, 40, 50]
+Reversed: [50, 40, 30, 20, 10]
+```
+
+---
+
+## ۱۷. Slicing در String و List
+
+Slicing فقط مخصوص List نیست.
+
+String ها نیز از Slicing پشتیبانی می‌ کنند:
+
+```python
+name = "Python"
+
+print(name[0:3])
+```
+
+خروجی:
+
+```text
+Pyt
+```
+
+Syntax کلی در هر دو مورد یکسان است:
+
+```text
+[start:stop:step]
+```
+
+در درس String ها نیز با Slicing آشنا شدیم و حالا همان مفهوم را روی List ها اعمال می‌ کنیم.
+
+این موضوع یکی از نمونه‌ های مهم سازگاری Syntax در پایتون است.
+
+---
+
+## ۱۸. Slicing یک List از String ها
+
+می‌ توانیم یک محدوده از List ای که شامل String است انتخاب کنیم:
+
+```python
+languages = ["Python", "Java", "C++", "JavaScript", "Go"]
+
+print(languages[1:4])
+```
+
+خروجی:
+
+```text
+['Java', 'C++', 'JavaScript']
+```
+
+---
+
+## ۱۹. Slicing یک List از نمره ها
+
+فرض کنیم نمره های یک دانش‌ آموز را داریم:
+
+```python
+scores = [18, 8, 15, 7, 20, 17, 19]
+
+print(scores[1:5])
+```
+
+خروجی:
+
+```text
+[8, 15, 7, 20]
+```
+
+در این مثال نمره های موجود از Index `1` تا قبل از Index `5` انتخاب شده‌ اند.
+
+---
+
+## ۲۰. مثال کاربردی — نمره های اخیر
+
+فرض کنیم یک سیستم، نمره چند آزمون اخیر را ذخیره می‌ کند:
+
+```python
+scores = [15, 17, 18, 14, 20, 19, 16]
+
+recent_scores = scores[-3:]
+
+print(f"Recent scores: {recent_scores}")
+```
+
+خروجی:
+
+```text
+Recent scores: [20, 19, 16]
+```
+
+Negative Slicing باعث می‌ شود انتخاب چند داده آخر ساده و خوانا باشد.
+
+---
+
+## ۲۱. مثال کاربردی — پنج محصول اول
+
+فرض کنیم یک فروشگاه آنلاین چند محصول دارد:
+
+```python
+products = [
+    "Laptop",
+    "Phone",
+    "Tablet",
+    "Keyboard",
+    "Mouse",
+    "Monitor",
+    "Headphones"
+]
+
+first_five = products[:5]
+
+print(first_five)
+```
+
+خروجی:
+
+```text
+['Laptop', 'Phone', 'Tablet', 'Keyboard', 'Mouse']
+```
+
+---
+
+## ۲۲. مثال کاربردی — انتخاب هر دومین محصول
+
+می‌ توانیم هر دومین عنصر را انتخاب کنیم:
+
+```python
+products = [
+    "Laptop",
+    "Phone",
+    "Tablet",
+    "Keyboard",
+    "Mouse",
+    "Monitor"
+]
+
+selected_products = products[::2]
+
+print(selected_products)
+```
+
+خروجی:
+
+```text
+['Laptop', 'Tablet', 'Mouse']
+```
+
+---
+
+## ۲۳. Slicing، List اصلی را تغییر نمی‌ دهد
+
+Slicing به طور معمول یک List جدید ایجاد می‌ کند:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+part = numbers[1:4]
+
+print("Original:", numbers)
+print("Part:", part)
+```
+
+خروجی:
+
+```text
+Original: [10, 20, 30, 40, 50]
+Part: [20, 30, 40]
+```
+
+List اصلی تغییری نکرده است.
+
+این رفتار با تغییر مستقیم یک عنصر متفاوت است:
+
+```python
+numbers[1] = 100
+```
+
+این دستور List اصلی را تغییر می‌ دهد.
+
+---
+
+## ۲۴. تفاوت Indexing و Slicing
+
+Indexing:
+
+```python
+numbers = [10, 20, 30]
+
+print(numbers[1])
+```
+
+یک عنصر را برمی‌ گرداند:
+
+```text
+20
+```
+
+اما Slicing:
+
+```python
+print(numbers[1:2])
+```
+
+یک List جدید برمی‌ گرداند:
+
+```text
+[20]
+```
+
+این تفاوت بسیار مهم است:
+
+```text
+numbers[1]   → یک عنصر
+numbers[1:2] → یک List شامل یک عنصر
+```
+
+---
+
+# اشتباهات رایج
+
+## اشتباه ۱ — انتظار داشتن Stop در نتیجه
+
+کد زیر:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[1:4])
+```
+
+Index شماره `4` را در نتیجه قرار نمی‌ دهد.
+
+خروجی:
+
+```text
+[20, 30, 40]
+```
+
+همیشه به خاطر داشته باش:
+
+```text
+Start → شامل
+Stop  → غیر شامل
+```
+
+---
+
+## اشتباه ۲ — اشتباه گرفتن Indexing با Slicing
+
+این:
+
+```python
+numbers[2]
+```
+
+یک عنصر را برمی‌ گرداند.
+
+اما این:
+
+```python
+numbers[2:3]
+```
+
+یک List برمی‌ گرداند.
+
+---
+
+## اشتباه ۳ — استفاده از Step برابر صفر
+
+Step برابر `0` معتبر نیست:
+
+```python
+numbers = [10, 20, 30, 40]
+
+print(numbers[::0])
+```
+
+پایتون خطای زیر را ایجاد می‌ کند:
+
+```text
+ValueError: slice step cannot be zero
+```
+
+بنابراین Step نباید صفر باشد.
+
+---
+
+## اشتباه ۴ — فراموش کردن تأثیر Step منفی
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[::-1])
+```
+
+نتیجه:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+Step منفی باعث می‌ شود حرکت در List از سمت راست به چپ انجام شود.
+
+---
+
+# نکات کلیدی
+
+Syntax اصلی Slicing:
+
+```python
+list_name[start:stop]
+```
+
+Syntax کامل:
+
+```python
+list_name[start:stop:step]
+```
+
+مهم‌ ترین قانون:
+
+```text
+Start شامل می‌ شود.
+Stop شامل نمی‌ شود.
+```
+
+مثال‌ های مهم:
+
+```python
+numbers[:3]
+numbers[2:]
+numbers[:]
+numbers[-3:]
+numbers[::2]
+numbers[::-1]
+```
+
+Slicing می‌ تواند برای موارد زیر استفاده شود:
+
+- انتخاب یک محدوده از عناصر
+- انتخاب چند عنصر ابتدایی
+- انتخاب چند عنصر انتهایی
+- انتخاب هر N امین عنصر
+- برعکس کردن List
+- ساختن یک Shallow Copy
+
+ایده اصلی این بخش:
+
+> **List Slicing به ما اجازه می‌ دهد با استفاده از یک Syntax کوتاه و قدرتمند، محدوده ای از عناصر List را انتخاب کنیم.**
+
+---
+
+# تمرین ها
+
+## تمرین ۱ — برش ساده
+
+List زیر را بساز:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60]
+```
+
+عناصر زیر را انتخاب کن:
+
+```text
+20, 30, 40
+```
+
+---
+
+## تمرین ۲ — انتخاب عناصر اول
+
+List زیر را بساز:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Sushi"]
+```
+
+سه عنصر اول را انتخاب کن.
+
+---
+
+## تمرین ۳ — انتخاب عناصر آخر
+
+List زیر را بساز:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John", "Michael"]
+```
+
+دو دانش‌ آموز آخر را با استفاده از Negative Slicing انتخاب کن.
+
+---
+
+## تمرین ۴ — انتخاب هر دومین عنصر
+
+List زیر را بساز:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60, 70, 80]
+```
+
+هر دومین عنصر را انتخاب کن.
+
+نتیجه مورد انتظار:
+
+```text
+[10, 30, 50, 70]
+```
+
+---
+
+## تمرین ۵ — برعکس کردن List
+
+List زیر را بساز:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+```
+
+با استفاده از Slicing یک نسخه برعکس شده ایجاد کن.
+
+نتیجه مورد انتظار:
+
+```text
+[5, 4, 3, 2, 1]
+```
+
+---
+
+## تمرین ۶ — کپی کردن List
+
+List زیر را بساز:
+
+```python
+languages = ["Python", "Java", "C++", "Go"]
+```
+
+با استفاده از:
+
+```python
+[:]
+```
+
+یک کپی از List ایجاد کن.
+
+سپس هر دو List را چاپ کن.
+
+---
+
+# چالش بخش — تحلیل داده های List
+
+برنامه ای بنویس که با List زیر کار کند:
+
+```python
+scores = [18, 12, 15, 9, 20, 17, 14, 19, 11, 16]
+```
+
+برنامه باید:
+
+1. کل List را نمایش دهد.
+2. سه نمره اول را نمایش دهد.
+3. سه نمره آخر را نمایش دهد.
+4. بخش میانی List را نمایش دهد.
+5. هر دومین نمره را نمایش دهد.
+6. List برعکس شده را نمایش دهد.
+7. با استفاده از Slicing یک کپی از List ایجاد کند.
+8. List اصلی و List کپی شده را نمایش دهد.
+
+تا جای ممکن سعی کن Challenge را فقط با استفاده از قابلیت های Slicing حل کنی.
+
+ساختار نمونه:
+
+```python
+scores = [18, 12, 15, 9, 20, 17, 14, 19, 11, 16]
+
+first_three = scores[:3]
+last_three = scores[-3:]
+middle = scores[3:7]
+every_second = scores[::2]
+reversed_scores = scores[::-1]
+scores_copy = scores[:]
+
+print("----- Score Analyzer -----")
+print()
+
+print(f"All scores: {scores}")
+print(f"First three: {first_three}")
+print(f"Last three: {last_three}")
+print(f"Middle: {middle}")
+print(f"Every second score: {every_second}")
+print(f"Reversed: {reversed_scores}")
+print(f"Copy: {scores_copy}")
+```
+
+این Challenge چند مفهوم را با یکدیگر ترکیب می‌ کند:
+
+```text
+Lists
+Indexing
+Negative Indexing
+Slicing
+Variables
+String Formatting
+```
+
+در بخش بعدی سراغ **List Methods** می‌ رویم و با متدهایی مانند `append()`، `insert()`، `remove()` و `pop()` کار خواهیم کرد.
+
+---
+

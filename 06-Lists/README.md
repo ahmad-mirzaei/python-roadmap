@@ -3014,3 +3014,1036 @@ In the next section, we will learn **List Slicing** and how to select a range of
 
 ---
 
+# Part 4 — List Slicing
+
+In this section, we learn how to select a range of elements from a Python List using **Slicing**.
+
+## What We Will Learn
+
+- What List Slicing is
+- Basic Slicing Syntax
+- Start and Stop
+- Understanding the exclusive Stop index
+- Slicing from the beginning
+- Slicing to the end
+- Slicing the entire List
+- Using Negative Indexes
+- Using a Step
+- Reversing a List with Slicing
+- Copying a List with Slicing
+- Common Slicing Mistakes
+- Practical Examples
+- Exercises
+- Section Challenge
+
+---
+
+## 1. What Is List Slicing?
+
+Indexing allows us to access **one element**:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Sushi"]
+
+print(fruits[1])
+```
+
+Output:
+
+```text
+Banana
+```
+
+Slicing allows us to select **multiple consecutive elements**:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Sushi"]
+
+print(fruits[1:4])
+```
+
+Output:
+
+```text
+['Banana', 'Orange', 'Mango']
+```
+
+Instead of selecting one position, Slicing selects a range of positions.
+
+---
+
+## 2. Basic Slicing Syntax
+
+The basic syntax is:
+
+```python
+list_name[start:stop]
+```
+
+For example:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[1:4])
+```
+
+Output:
+
+```text
+[20, 30, 40]
+```
+
+The Slice starts at Index `1` and stops **before** Index `4`.
+
+Therefore:
+
+```text
+Index 1 → included
+Index 2 → included
+Index 3 → included
+Index 4 → excluded
+```
+
+This is one of the most important rules of Python Slicing.
+
+---
+
+## 3. Start and Stop
+
+Consider this List:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+```
+
+Indexes:
+
+```text
+0 → 10
+1 → 20
+2 → 30
+3 → 40
+4 → 50
+```
+
+Now:
+
+```python
+print(numbers[1:4])
+```
+
+means:
+
+```text
+Start at Index 1
+Take Index 1
+Take Index 2
+Take Index 3
+Stop before Index 4
+```
+
+Result:
+
+```text
+[20, 30, 40]
+```
+
+---
+
+## 4. The Stop Index Is Exclusive
+
+The Stop index is **not included** in the result.
+
+For example:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[0:3])
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+Index `3` contains `40`, but `40` is not included.
+
+So:
+
+```python
+numbers[0:3]
+```
+
+means:
+
+```text
+Index 0
+Index 1
+Index 2
+```
+
+but not:
+
+```text
+Index 3
+```
+
+A useful way to remember this is:
+
+> **Start is included, Stop is excluded.**
+
+---
+
+## 5. Slicing from the Beginning
+
+If we want to start from the beginning of a List, we can omit the Start index.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[:3])
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+This is equivalent to:
+
+```python
+numbers[0:3]
+```
+
+Python automatically assumes the beginning of the List when Start is omitted.
+
+---
+
+## 6. Slicing to the End
+
+If we want everything from a specific position to the end, we can omit the Stop index.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[2:])
+```
+
+Output:
+
+```text
+[30, 40, 50]
+```
+
+This means:
+
+```text
+Start at Index 2
+Continue until the end
+```
+
+---
+
+## 7. Slicing the Entire List
+
+We can omit both Start and Stop:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[:])
+```
+
+Output:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+This selects the entire List.
+
+One important use of this form is creating a shallow copy of a List.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+numbers_copy = numbers[:]
+
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+The new List contains the same elements.
+
+---
+
+## 8. Slicing with Negative Indexes
+
+Slicing can also use Negative Indexing.
+
+Consider:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+```
+
+Negative indexes:
+
+```text
+-5 → 10
+-4 → 20
+-3 → 30
+-2 → 40
+-1 → 50
+```
+
+Now:
+
+```python
+print(numbers[-3:])
+```
+
+Output:
+
+```text
+[30, 40, 50]
+```
+
+This means:
+
+```text
+Start at Index -3
+Continue to the end
+```
+
+---
+
+## 9. Selecting the Last Few Elements
+
+Negative Slicing is especially useful for selecting the last few elements.
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John", "Michael"]
+
+print(students[-2:])
+```
+
+Output:
+
+```text
+['John', 'Michael']
+```
+
+This selects the last two elements.
+
+---
+
+## 10. Selecting Everything Except the Last Element
+
+We can also use:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[:-1])
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+The Stop index `-1` refers to the last element, but because Stop is exclusive, that element is not included.
+
+---
+
+## 11. Using a Step
+
+Slicing supports a third value called **Step**.
+
+The complete syntax is:
+
+```python
+list_name[start:stop:step]
+```
+
+For example:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60]
+
+print(numbers[0:6:2])
+```
+
+Output:
+
+```text
+[10, 30, 50]
+```
+
+The Slice moves through the List two positions at a time.
+
+The selected indexes are:
+
+```text
+0 → 10
+2 → 30
+4 → 50
+```
+
+---
+
+## 12. Slicing with a Step of 3
+
+```python
+numbers = [10, 20, 30, 40, 50, 60, 70, 80]
+
+print(numbers[0:8:3])
+```
+
+Output:
+
+```text
+[10, 40, 70]
+```
+
+The selected indexes are:
+
+```text
+0
+3
+6
+```
+
+---
+
+## 13. Omitting Start with a Step
+
+We can combine omitted Start with Step:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60]
+
+print(numbers[:6:2])
+```
+
+Output:
+
+```text
+[10, 30, 50]
+```
+
+This means:
+
+```text
+Start from the beginning
+Stop before Index 6
+Move by 2
+```
+
+---
+
+## 14. Omitting Stop with a Step
+
+We can also omit Stop:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60]
+
+print(numbers[1::2])
+```
+
+Output:
+
+```text
+[20, 40, 60]
+```
+
+This means:
+
+```text
+Start at Index 1
+Continue to the end
+Move by 2
+```
+
+---
+
+## 15. Reversing a List
+
+One of the most useful Slicing techniques is:
+
+```python
+list_name[::-1]
+```
+
+The negative Step tells Python to move backward.
+
+Example:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+reversed_numbers = numbers[::-1]
+
+print(reversed_numbers)
+```
+
+Output:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+The original List remains unchanged:
+
+```python
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+---
+
+## 16. Copying and Reversing at the Same Time
+
+Because Slicing creates a new List, we can create a reversed copy:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+reversed_numbers = numbers[::-1]
+
+print("Original:", numbers)
+print("Reversed:", reversed_numbers)
+```
+
+Output:
+
+```text
+Original: [10, 20, 30, 40, 50]
+Reversed: [50, 40, 30, 20, 10]
+```
+
+---
+
+## 17. Slicing Strings and Lists
+
+Slicing is not limited to Lists.
+
+Strings also support Slicing:
+
+```python
+name = "Python"
+
+print(name[0:3])
+```
+
+Output:
+
+```text
+Pyt
+```
+
+The same general concept applies:
+
+```text
+[start:stop:step]
+```
+
+We learned String Slicing earlier, and now we can apply the same idea to Lists.
+
+This is an important example of Python's consistent syntax.
+
+---
+
+## 18. Slicing a List of Strings
+
+We can select a range from a List containing Strings:
+
+```python
+languages = ["Python", "Java", "C++", "JavaScript", "Go"]
+
+print(languages[1:4])
+```
+
+Output:
+
+```text
+['Java', 'C++', 'JavaScript']
+```
+
+---
+
+## 19. Slicing a List of Scores
+
+Suppose we have student scores:
+
+```python
+scores = [18, 8, 15, 7, 20, 17, 19]
+
+print(scores[1:5])
+```
+
+Output:
+
+```text
+[8, 15, 7, 20]
+```
+
+We selected the scores from Index `1` through Index `4`.
+
+---
+
+## 20. Practical Example — Recent Scores
+
+Suppose a system stores the scores of several recent exams:
+
+```python
+scores = [15, 17, 18, 14, 20, 19, 16]
+
+recent_scores = scores[-3:]
+
+print(f"Recent scores: {recent_scores}")
+```
+
+Output:
+
+```text
+Recent scores: [20, 19, 16]
+```
+
+Negative Slicing makes this operation simple and readable.
+
+---
+
+## 21. Practical Example — First Five Items
+
+Suppose an online store contains products:
+
+```python
+products = [
+    "Laptop",
+    "Phone",
+    "Tablet",
+    "Keyboard",
+    "Mouse",
+    "Monitor",
+    "Headphones"
+]
+
+first_five = products[:5]
+
+print(first_five)
+```
+
+Output:
+
+```text
+['Laptop', 'Phone', 'Tablet', 'Keyboard', 'Mouse']
+```
+
+---
+
+## 22. Practical Example — Every Second Item
+
+We can select every second element:
+
+```python
+products = [
+    "Laptop",
+    "Phone",
+    "Tablet",
+    "Keyboard",
+    "Mouse",
+    "Monitor"
+]
+
+selected_products = products[::2]
+
+print(selected_products)
+```
+
+Output:
+
+```text
+['Laptop', 'Tablet', 'Mouse']
+```
+
+---
+
+## 23. Slicing Does Not Modify the Original List
+
+Slicing normally creates a new List.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+part = numbers[1:4]
+
+print("Original:", numbers)
+print("Part:", part)
+```
+
+Output:
+
+```text
+Original: [10, 20, 30, 40, 50]
+Part: [20, 30, 40]
+```
+
+The original List is unchanged.
+
+This is different from directly modifying an element:
+
+```python
+numbers[1] = 100
+```
+
+which changes the original List.
+
+---
+
+## 24. Important Difference Between Indexing and Slicing
+
+Indexing:
+
+```python
+numbers = [10, 20, 30]
+
+print(numbers[1])
+```
+
+returns one element:
+
+```text
+20
+```
+
+Slicing:
+
+```python
+print(numbers[1:2])
+```
+
+returns a new List:
+
+```text
+[20]
+```
+
+This difference is important:
+
+```text
+numbers[1]   → one element
+numbers[1:2] → a List containing one element
+```
+
+---
+
+# Common Mistakes
+
+## Mistake 1 — Expecting the Stop Index to Be Included
+
+This:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[1:4])
+```
+
+does not include Index `4`.
+
+Output:
+
+```text
+[20, 30, 40]
+```
+
+Remember:
+
+```text
+Start → included
+Stop  → excluded
+```
+
+---
+
+## Mistake 2 — Confusing Indexing with Slicing
+
+This:
+
+```python
+numbers[2]
+```
+
+returns one element.
+
+But:
+
+```python
+numbers[2:3]
+```
+
+returns a List.
+
+---
+
+## Mistake 3 — Using a Step of Zero
+
+A Step of `0` is invalid:
+
+```python
+numbers = [10, 20, 30, 40]
+
+print(numbers[::0])
+```
+
+Python raises:
+
+```text
+ValueError: slice step cannot be zero
+```
+
+The Step must not be zero.
+
+---
+
+## Mistake 4 — Forgetting That Negative Step Changes Direction
+
+For example:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[::-1])
+```
+
+returns:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+A negative Step moves through the List from right to left.
+
+---
+
+# Key Takeaways
+
+The basic Slicing syntax is:
+
+```python
+list_name[start:stop]
+```
+
+The complete syntax is:
+
+```python
+list_name[start:stop:step]
+```
+
+The most important rule:
+
+```text
+Start is included.
+Stop is excluded.
+```
+
+Examples:
+
+```python
+numbers[:3]
+numbers[2:]
+numbers[:]
+numbers[-3:]
+numbers[::2]
+numbers[::-1]
+```
+
+Slicing can be used to:
+
+- Select a range of elements
+- Select the first elements
+- Select the last elements
+- Select every Nth element
+- Reverse a List
+- Create a shallow copy
+
+The central idea of this section is:
+
+> **List Slicing allows us to select a range of elements using a compact and powerful syntax.**
+
+---
+
+# Exercises
+
+## Exercise 1 — Basic Slice
+
+Create:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60]
+```
+
+Select:
+
+```text
+20, 30, 40
+```
+
+---
+
+## Exercise 2 — First Elements
+
+Create:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Sushi"]
+```
+
+Select the first three elements.
+
+---
+
+## Exercise 3 — Last Elements
+
+Create:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John", "Michael"]
+```
+
+Select the last two students using Negative Slicing.
+
+---
+
+## Exercise 4 — Every Second Element
+
+Create:
+
+```python
+numbers = [10, 20, 30, 40, 50, 60, 70, 80]
+```
+
+Select every second element.
+
+Expected result:
+
+```text
+[10, 30, 50, 70]
+```
+
+---
+
+## Exercise 5 — Reverse the List
+
+Create:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+```
+
+Create a reversed copy using Slicing.
+
+Expected result:
+
+```text
+[5, 4, 3, 2, 1]
+```
+
+---
+
+## Exercise 6 — Copy a List
+
+Create:
+
+```python
+languages = ["Python", "Java", "C++", "Go"]
+```
+
+Create a copy using:
+
+```python
+[:]
+```
+
+Then print both Lists.
+
+---
+
+# Section Challenge — List Data Analyzer
+
+Create a program that works with a List of scores:
+
+```python
+scores = [18, 12, 15, 9, 20, 17, 14, 19, 11, 16]
+```
+
+The program should:
+
+1. Display the complete List.
+2. Display the first three scores.
+3. Display the last three scores.
+4. Display the middle portion of the List.
+5. Display every second score.
+6. Display the reversed List.
+7. Create a copy of the List using Slicing.
+8. Display both the original List and the copied List.
+
+Try to solve the Challenge using Slicing as much as possible.
+
+Example structure:
+
+```python
+scores = [18, 12, 15, 9, 20, 17, 14, 19, 11, 16]
+
+first_three = scores[:3]
+last_three = scores[-3:]
+middle = scores[3:7]
+every_second = scores[::2]
+reversed_scores = scores[::-1]
+scores_copy = scores[:]
+
+print("----- Score Analyzer -----")
+print()
+
+print(f"All scores: {scores}")
+print(f"First three: {first_three}")
+print(f"Last three: {last_three}")
+print(f"Middle: {middle}")
+print(f"Every second score: {every_second}")
+print(f"Reversed: {reversed_scores}")
+print(f"Copy: {scores_copy}")
+```
+
+This Challenge combines several concepts:
+
+```text
+Lists
+Indexing
+Negative Indexing
+Slicing
+Variables
+String Formatting
+```
+
+In the next section, we will move on to **List Methods** and work with methods such as `append()`, `insert()`, `remove()`, and `pop()`.
+
+---
+

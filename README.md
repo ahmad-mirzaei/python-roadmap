@@ -51,7 +51,7 @@ This repository aims to help developers:
 | 2 |[Conditional Statements](01-Beginner/02-Conditional-Statements/README.md) | ✅ |
 | 3 | [Loops](01-Beginner/03-Loops/README.md) | ✅ |
 | 4 | [Functions](01-Beginner/04-Functions/README.md) | ✅ |
-| 5 | [Strings](01-Beginner/05-Strings/README.md) | 🟡 |
+| 5 | [Strings](01-Beginner/05-Strings/README.md) | ✅ |
 | 6 | [Lists](01-Beginner/06-Lists/README.md) | ⬜ |
 | 7 | [Tuples](01-Beginner/07-TuplesREADME.md) | ⬜ |
 | 8 | [Sets](01-Beginner/08-Sets) | ⬜ |

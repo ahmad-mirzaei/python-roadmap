@@ -2076,3 +2076,941 @@ The next step is to learn how indexing can be used not only to read elements, bu
 
 ---
 
+# Part 3 — Modifying List Elements
+
+In this section, we learn how to modify existing elements inside a Python List.
+
+## What We Will Learn
+
+- Modifying a List element using its index
+- Replacing the first and last elements
+- Using positive and negative indexes
+- Using variables as indexes
+- Updating values based on their current values
+- Using augmented assignment operators
+- Modifying List elements with conditions
+- Modifying List elements inside loops
+- Understanding List mutability
+- Common mistakes
+- Practical examples
+- Exercises
+- Section Challenge
+
+---
+
+## 1. Modifying a List Element
+
+In the previous section, we learned how to access an element:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print(fruits[1])
+```
+
+Output:
+
+```text
+Banana
+```
+
+The same index can be used to replace the element:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits[1] = "Mango"
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Mango', 'Orange']
+```
+
+The general syntax is:
+
+```python
+list_name[index] = new_value
+```
+
+The value at that index is replaced with the new value.
+
+---
+
+## 2. Modifying the First Element
+
+Because the first element has index `0`, we can modify it like this:
+
+```python
+colors = ["Red", "Blue", "Green"]
+
+colors[0] = "Yellow"
+
+print(colors)
+```
+
+Output:
+
+```text
+['Yellow', 'Blue', 'Green']
+```
+
+---
+
+## 3. Modifying the Last Element
+
+Negative indexing can also be used when modifying elements.
+
+```python
+colors = ["Red", "Blue", "Green"]
+
+colors[-1] = "Purple"
+
+print(colors)
+```
+
+Output:
+
+```text
+['Red', 'Blue', 'Purple']
+```
+
+Remember:
+
+```text
+-1 → Last element
+-2 → Second-to-last element
+```
+
+---
+
+## 4. Modifying Numeric Elements
+
+List elements can contain numbers as well as Strings.
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+scores[1] = 12
+
+print(scores)
+```
+
+Output:
+
+```text
+[18, 12, 15, 7, 20]
+```
+
+Only the element at index `1` was changed.
+
+---
+
+## 5. Modifying Multiple Elements
+
+Several elements can be modified through separate assignments.
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+scores[1] = 12
+scores[3] = 14
+
+print(scores)
+```
+
+Output:
+
+```text
+[18, 12, 15, 14, 20]
+```
+
+Each assignment modifies the element at its specified index.
+
+---
+
+## 6. Using a Variable as the Index
+
+The index does not have to be written directly inside the brackets.
+
+It can be stored in a variable:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+
+index = 2
+
+students[index] = "Michael"
+
+print(students)
+```
+
+Output:
+
+```text
+['Ahmad', 'Sara', 'Michael', 'John']
+```
+
+This becomes particularly useful when the position is determined dynamically.
+
+---
+
+## 7. Using a Variable as the New Value
+
+The replacement value can also be stored in a variable:
+
+```python
+students = ["Ahmad", "Sara", "Alex", "John"]
+
+new_name = "Michael"
+
+students[2] = new_name
+
+print(students)
+```
+
+Output:
+
+```text
+['Ahmad', 'Sara', 'Michael', 'John']
+```
+
+Both the index and the replacement value can therefore be dynamic:
+
+```python
+index = 2
+new_name = "Michael"
+
+students[index] = new_name
+```
+
+---
+
+## 8. Updating an Element Using Its Current Value
+
+We can read the current value, modify it, and assign the result back to the same position.
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+scores[1] = scores[1] + 2
+
+print(scores)
+```
+
+Output:
+
+```text
+[18, 10, 15, 7, 20]
+```
+
+The expression:
+
+```python
+scores[1] + 2
+```
+
+first reads the current value and then adds `2`.
+
+The result is assigned back to:
+
+```python
+scores[1]
+```
+
+---
+
+## 9. Augmented Assignment
+
+Python provides shorter ways to update numeric values.
+
+Instead of:
+
+```python
+scores[1] = scores[1] + 2
+```
+
+we can write:
+
+```python
+scores[1] += 2
+```
+
+Example:
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+scores[1] += 2
+
+print(scores)
+```
+
+Output:
+
+```text
+[18, 10, 15, 7, 20]
+```
+
+Other augmented assignment operators include:
+
+```python
+scores[1] -= 2
+scores[1] *= 2
+scores[1] /= 2
+```
+
+These are especially useful when working with numeric Lists.
+
+---
+
+## 10. Modifying Elements with Negative Indexing
+
+Negative indexes can also be used with calculations:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+numbers[-1] += 10
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40, 60]
+```
+
+The last element was increased by `10`.
+
+---
+
+## 11. Modifying an Element with a Condition
+
+We can combine List modification with conditions.
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+if scores[1] < 10:
+    scores[1] = 10
+
+print(scores)
+```
+
+Output:
+
+```text
+[18, 10, 15, 7, 20]
+```
+
+The value is changed only when the condition is true.
+
+This gives us an important pattern:
+
+```text
+Read element
+    ↓
+Check condition
+    ↓
+Modify element
+```
+
+---
+
+## 12. Modifying List Elements Inside a Loop
+
+We can use a loop and an index to examine and modify every element.
+
+```python
+scores = [8, 12, 7, 18, 9]
+
+for index in range(len(scores)):
+    if scores[index] < 10:
+        scores[index] = 10
+
+print(scores)
+```
+
+Output:
+
+```text
+[10, 12, 10, 18, 10]
+```
+
+The program examines every position.
+
+If the score is below `10`, it replaces that score with `10`.
+
+This pattern is extremely useful when processing List data.
+
+---
+
+## 13. Practical Example — Correcting Scores
+
+Suppose some student scores were entered incorrectly.
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+print("----- Score Correction -----")
+print()
+
+print(f"Original scores: {scores}")
+
+scores[1] = 13
+
+print(f"Updated scores: {scores}")
+```
+
+Output:
+
+```text
+----- Score Correction -----
+
+Original scores: [18, 8, 15, 7, 20]
+Updated scores: [18, 13, 15, 7, 20]
+```
+
+Only one existing element was replaced.
+
+---
+
+## 14. Practical Example — Updating a Menu
+
+A restaurant menu can also be modified:
+
+```python
+menu = ["Pizza", "Burger", "Pasta", "Salad"]
+
+menu[3] = "Steak"
+
+print(menu)
+```
+
+Output:
+
+```text
+['Pizza', 'Burger', 'Pasta', 'Steak']
+```
+
+The List itself remains the same List; only one of its existing elements changes.
+
+---
+
+## 15. Practical Example — Updating Inventory
+
+Suppose we store the quantity of products:
+
+```python
+stock = [15, 8, 20, 5]
+
+stock[1] = 12
+
+print(stock)
+```
+
+Output:
+
+```text
+[15, 12, 20, 5]
+```
+
+The quantity at index `1` has been updated.
+
+---
+
+## 16. What Does Mutable Mean?
+
+A List is a **mutable** data type.
+
+Mutable means that the contents of the List can be changed after the List has been created.
+
+For example:
+
+```python
+numbers = [10, 20, 30]
+
+numbers[0] = 100
+
+print(numbers)
+```
+
+Output:
+
+```text
+[100, 20, 30]
+```
+
+The List was created first and then one of its existing elements was modified.
+
+This concept will become important later when we compare Lists with **Tuples**, because Tuples are immutable.
+
+---
+
+## 17. Modifying a List Does Not Change Its Length
+
+Replacing an existing element does not change the number of elements.
+
+```python
+numbers = [10, 20, 30]
+
+print(len(numbers))
+
+numbers[1] = 200
+
+print(numbers)
+print(len(numbers))
+```
+
+Output:
+
+```text
+3
+[10, 200, 30]
+3
+```
+
+The value changed, but the number of elements remained `3`.
+
+Adding and removing elements are different operations and will be covered in later sections.
+
+---
+
+## 18. Invalid Indexes Cannot Be Used for Modification
+
+The index must already exist.
+
+This is invalid:
+
+```python
+numbers = [10, 20, 30]
+
+numbers[5] = 100
+```
+
+Python raises:
+
+```text
+IndexError: list assignment index out of range
+```
+
+An assignment through indexing replaces an existing element.
+
+It does not automatically create missing positions.
+
+For example:
+
+```python
+numbers = [10, 20, 30]
+
+numbers[5] = 100
+```
+
+does not create indexes `3` and `4`.
+
+When we want to add new elements, we will use List methods such as `append()` and `insert()`.
+
+---
+
+## 19. Reading vs Modifying
+
+These two operations should not be confused.
+
+Reading:
+
+```python
+numbers = [10, 20, 30]
+
+print(numbers[2])
+```
+
+Output:
+
+```text
+30
+```
+
+Modifying:
+
+```python
+numbers[2] = 100
+```
+
+Now the List becomes:
+
+```text
+[10, 20, 100]
+```
+
+Complete example:
+
+```python
+numbers = [10, 20, 30]
+
+print(numbers[2])
+
+numbers[2] = 100
+
+print(numbers)
+```
+
+Output:
+
+```text
+30
+[10, 20, 100]
+```
+
+---
+
+## 20. A Complete Practical Example
+
+Let's create a small score correction system:
+
+```python
+scores = [18, 8, 15, 7, 20]
+
+print("----- Score Correction -----")
+print()
+
+print(f"Original scores: {scores}")
+
+for index in range(len(scores)):
+    if scores[index] < 10:
+        scores[index] = 10
+
+print(f"Updated scores: {scores}")
+```
+
+Output:
+
+```text
+----- Score Correction -----
+
+Original scores: [18, 8, 15, 7, 20]
+Updated scores: [18, 10, 15, 10, 20]
+```
+
+This example combines several concepts from previous lessons:
+
+```text
+Lists
+Variables
+Indexing
+len()
+range()
+for loops
+Conditions
+Assignment
+```
+
+---
+
+# Common Mistakes
+
+## Mistake 1 — Forgetting Zero-Based Indexing
+
+The first element is at index `0`:
+
+```python
+numbers = [10, 20, 30]
+
+numbers[0] = 100
+
+print(numbers)
+```
+
+Output:
+
+```text
+[100, 20, 30]
+```
+
+---
+
+## Mistake 2 — Using an Index That Does Not Exist
+
+This causes an error:
+
+```python
+numbers = [10, 20, 30]
+
+numbers[3] = 100
+```
+
+The valid positive indexes are:
+
+```text
+0
+1
+2
+```
+
+---
+
+## Mistake 3 — Confusing Replacement with Adding
+
+This:
+
+```python
+numbers[1] = 100
+```
+
+replaces the existing element at index `1`.
+
+It does not add another element.
+
+```python
+numbers = [10, 20, 30]
+
+numbers[1] = 100
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 100, 30]
+```
+
+The List still contains three elements.
+
+---
+
+## Mistake 4 — Expecting Missing Positions to Be Created
+
+This is invalid:
+
+```python
+numbers = [10, 20, 30]
+
+numbers[5] = 100
+```
+
+The List does not automatically create missing positions.
+
+Adding new elements requires List methods such as `append()` or `insert()`.
+
+---
+
+# Key Takeaways
+
+The main syntax for modifying an existing List element is:
+
+```python
+list_name[index] = new_value
+```
+
+Lists are mutable:
+
+```python
+numbers = [10, 20, 30]
+
+numbers[1] = 100
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 100, 30]
+```
+
+Negative indexing can also be used:
+
+```python
+numbers[-1] = 500
+```
+
+An element can be updated based on its current value:
+
+```python
+numbers[1] += 10
+```
+
+A variable can be used as the index:
+
+```python
+index = 1
+
+numbers[index] = 100
+```
+
+Conditions and loops can be combined with indexing:
+
+```python
+for index in range(len(scores)):
+    if scores[index] < 10:
+        scores[index] = 10
+```
+
+The central idea of this section is:
+
+> **A List is mutable, so existing elements can be changed by assigning a new value to their indexes.**
+
+---
+
+# Exercises
+
+## Exercise 1 — Replace an Element
+
+Create:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango"]
+```
+
+Replace `"Banana"` with `"Strawberry"`.
+
+Print the final List.
+
+---
+
+## Exercise 2 — Replace the Last Element
+
+Create:
+
+```python
+colors = ["Red", "Blue", "Green", "Yellow"]
+```
+
+Replace the last element with `"Purple"`.
+
+Use negative indexing.
+
+---
+
+## Exercise 3 — Update a Score
+
+Create:
+
+```python
+scores = [18, 8, 15, 7, 20]
+```
+
+Increase the second score by `2`.
+
+Try using:
+
+```python
++=
+```
+
+---
+
+## Exercise 4 — Dynamic Modification
+
+Create a List of several cities.
+
+Store an Index in a variable and replace the corresponding city with another city.
+
+Example:
+
+```python
+cities = ["Tehran", "Shiraz", "Tabriz", "Mashhad"]
+
+index = 2
+cities[index] = "Isfahan"
+
+print(cities)
+```
+
+---
+
+## Exercise 5 — Minimum Passing Score
+
+Create:
+
+```python
+scores = [18, 8, 15, 7, 20, 9, 17]
+```
+
+Use a loop and indexing to replace every score below `10` with `10`.
+
+The final List should contain no score below `10`.
+
+---
+
+## Exercise 6 — Increase Every Score
+
+Create:
+
+```python
+scores = [10, 12, 15, 18, 20]
+```
+
+Use a loop and indexing to increase every score by `1`.
+
+Expected result:
+
+```text
+[11, 13, 16, 19, 21]
+```
+
+---
+
+# Section Challenge — Student Score Correction System
+
+Create a program that stores several student scores in a List.
+
+The program should:
+
+1. Display the original scores.
+2. Go through every score using its Index.
+3. Replace every score below `10` with `10`.
+4. Increase every passing score by `1`.
+5. Display the updated scores.
+6. Display the number of scores.
+7. Display the first score.
+8. Display the last score.
+
+Example structure:
+
+```python
+scores = [18, 8, 15, 7, 20, 9, 17]
+
+print("----- Student Score Correction -----")
+print()
+
+print(f"Original scores: {scores}")
+print()
+
+for index in range(len(scores)):
+    if scores[index] < 10:
+        scores[index] = 10
+    else:
+        scores[index] += 1
+
+print(f"Updated scores: {scores}")
+print(f"Number of scores: {len(scores)}")
+print(f"First score: {scores[0]}")
+print(f"Last score: {scores[-1]}")
+```
+
+Before looking at the example, try to design the solution yourself.
+
+This challenge combines concepts from previous lessons:
+
+```text
+Lists
+Variables
+Indexing
+Negative Indexing
+len()
+Conditions
+for loops
+Assignment
+Augmented Assignment
+```
+
+In the next section, we will learn **List Slicing** and how to select a range of elements instead of only one element.
+
+---
+

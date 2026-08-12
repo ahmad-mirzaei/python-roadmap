@@ -4068,3 +4068,1741 @@ String Formatting
 
 ---
 
+# بخش ۵ — متد های List
+
+در این بخش یاد می‌ گیریم چگونه با استفاده از متد های داخلی Python، روی List ها عملیات مختلف انجام دهیم.
+
+متد های List به ما اجازه می‌ دهند بدون پیاده‌ سازی دستی عملیات، عناصر را اضافه کنیم، حذف کنیم، جست‌ و جو کنیم، مرتب کنیم و ساختار List را مدیریت کنیم.
+
+## چیزهایی که یاد می‌ گیریم
+
+- مفهوم List Methods
+- متد `append()`
+- متد `insert()`
+- متد `extend()`
+- متد `remove()`
+- متد `pop()`
+- متد `clear()`
+- متد `index()`
+- متد `count()`
+- متد `sort()`
+- متد `reverse()`
+- تفاوت `sort()` و `sorted()`
+- تفاوت `reverse()` و `[::-1]`
+- Return Value متد های List
+- اشتباهات رایج در استفاده از List Methods
+- مثال‌ های کاربردی
+- تمرین‌ های ترکیبی
+- چالش نهایی بخش
+
+---
+
+## ۱. List Method چیست؟
+
+List Method یک عملیات داخلی است که به یک List تعلق دارد.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.append(40)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40]
+```
+
+متد:
+
+```python
+append()
+```
+
+با اضافه کردن یک عنصر جدید، List را تغییر می‌ دهد.
+
+متد های List با استفاده از **Dot Notation** فراخوانی می‌ شوند:
+
+```python
+list_name.method_name()
+```
+
+برخی متد ها نیز Argument دریافت می‌ کنند:
+
+```python
+list_name.method_name(argument)
+```
+
+برای مثال:
+
+```python
+numbers.append(40)
+```
+
+در این مثال:
+
+- `numbers` همان List است.
+- `append` نام متد است.
+- `40` همان Argument است.
+
+---
+
+# ۲. متد `append()`
+
+متد `append()` **یک عنصر را به انتهای List اضافه می‌ کند.**
+
+مثال:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.append(40)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40]
+```
+
+عنصر جدید همیشه به انتهای List اضافه می‌ شود.
+
+---
+
+## ۲.۱ اضافه کردن String با `append()`
+
+`append()` می‌ تواند مقادیر با Data Type های مختلف را اضافه کند:
+
+```python
+languages = ["Python", "Java", "C++"]
+
+languages.append("Go")
+
+print(languages)
+```
+
+خروجی:
+
+```text
+['Python', 'Java', 'C++', 'Go']
+```
+
+---
+
+## ۲.۲ استفاده چند باره از `append()`
+
+می‌ توانیم `append()` را چند بار اجرا کنیم:
+
+```python
+numbers = []
+
+numbers.append(10)
+numbers.append(20)
+numbers.append(30)
+numbers.append(40)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40]
+```
+
+این روش زمانی کاربرد دارد که List را به صورت تدریجی بسازیم.
+
+---
+
+## ۲.۳ `append()` یک Object را اضافه می‌ کند
+
+نکته مهم این است که `append()` مقدار دریافت شده را به عنوان **یک عنصر** اضافه می‌ کند.
+
+برای مثال:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.append([4, 5])
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[1, 2, 3, [4, 5]]
+```
+
+در اینجا List `[4, 5]` به عنوان یک عنصر داخل `numbers` قرار گرفته است.
+
+ساختار نهایی:
+
+```text
+1
+2
+3
+[4, 5]
+```
+
+این رفتار هنگام کار با Nested Lists بسیار مهم است.
+
+---
+
+# ۳. متد `insert()`
+
+متد `insert()` یک عنصر را در یک Index مشخص اضافه می‌ کند.
+
+Syntax:
+
+```python
+list_name.insert(index, value)
+```
+
+مثال:
+
+```python
+numbers = [10, 20, 40]
+
+numbers.insert(2, 30)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40]
+```
+
+مقدار `30` در Index شماره `2` قرار گرفته است.
+
+---
+
+## ۳.۱ درک Index هنگام `insert()`
+
+قبل از Insert:
+
+```text
+Index 0 → 10
+Index 1 → 20
+Index 2 → 40
+```
+
+بعد از:
+
+```python
+numbers.insert(2, 30)
+```
+
+ساختار List به این صورت می‌ شود:
+
+```text
+Index 0 → 10
+Index 1 → 20
+Index 2 → 30
+Index 3 → 40
+```
+
+عناصر قبلی از محل درج به بعد، یک موقعیت به سمت راست منتقل می‌ شوند.
+
+---
+
+## ۳.۲ اضافه کردن عنصر در ابتدای List
+
+می‌ توانیم یک عنصر را در Index `0` قرار دهیم:
+
+```python
+names = ["Sara", "Alex", "John"]
+
+names.insert(0, "Ahmad")
+
+print(names)
+```
+
+خروجی:
+
+```text
+['Ahmad', 'Sara', 'Alex', 'John']
+```
+
+---
+
+## ۳.۳ اضافه کردن عنصر در انتهای List با `insert()`
+
+می‌ توانیم از `insert()` برای اضافه کردن یک عنصر در انتها نیز استفاده کنیم:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.insert(len(numbers), 40)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40]
+```
+
+اما اگر هدف فقط اضافه کردن عنصر به انتهای List باشد، استفاده از `append()` واضح‌ تر و خواناتر است:
+
+```python
+numbers.append(40)
+```
+
+بهتر است متدی را انتخاب کنیم که Intent کد را بهتر نشان دهد.
+
+---
+
+# ۴. متد `extend()`
+
+متد `extend()` چندین عنصر را از یک Iterable گرفته و به انتهای List اضافه می‌ کند.
+
+مثال:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.extend([4, 5, 6])
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[1, 2, 3, 4, 5, 6]
+```
+
+برخلاف `append()`، متد `extend()` عناصر را به صورت جداگانه اضافه می‌ کند.
+
+---
+
+## ۴.۱ تفاوت `append()` و `extend()`
+
+این تفاوت بسیار مهم است.
+
+با `append()`:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.append([4, 5])
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[1, 2, 3, [4, 5]]
+```
+
+اما با `extend()`:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.extend([4, 5])
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[1, 2, 3, 4, 5]
+```
+
+خلاصه:
+
+```text
+append()  → یک Object را اضافه می‌ کند
+extend()  → عناصر یک Iterable را اضافه می‌ کند
+```
+
+---
+
+## ۴.۲ استفاده از `extend()` با یک List دیگر
+
+```python
+first_group = ["Ahmad", "Sara"]
+second_group = ["Alex", "John"]
+
+first_group.extend(second_group)
+
+print(first_group)
+```
+
+خروجی:
+
+```text
+['Ahmad', 'Sara', 'Alex', 'John']
+```
+
+عناصر `second_group` به `first_group` اضافه شده‌ اند.
+
+---
+
+## ۴.۳ استفاده از `extend()` با String
+
+از آنجا که String ها Iterable هستند، `extend()` می‌ تواند حروف آن ها را به صورت جداگانه اضافه کند:
+
+```python
+letters = ["A", "B"]
+
+letters.extend("CD")
+
+print(letters)
+```
+
+خروجی:
+
+```text
+['A', 'B', 'C', 'D']
+```
+
+این مثال نشان می‌ دهد که درک مفهوم Iterable در پایتون اهمیت زیادی دارد.
+
+---
+
+# ۵. متد `remove()`
+
+متد `remove()` **اولین وقوع یک مقدار مشخص** را از List حذف می‌ کند.
+
+مثال:
+
+```python
+numbers = [10, 20, 30, 20, 40]
+
+numbers.remove(20)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 30, 20, 40]
+```
+
+فقط اولین `20` حذف شده است.
+
+---
+
+## ۵.۱ `remove()` با Value کار می‌ کند، نه Index
+
+این:
+
+```python
+numbers.remove(30)
+```
+
+یعنی:
+
+> اولین عنصری را که مقدار آن `30` است پیدا کن و حذف کن.
+
+این دستور به معنی:
+
+> عنصر موجود در Index شماره `30` را حذف کن.
+
+نیست.
+
+برای حذف عنصر بر اساس Index از `pop()` استفاده می‌ کنیم.
+
+---
+
+## ۵.۲ حذف یک String
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango"]
+
+fruits.remove("Orange")
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Mango']
+```
+
+---
+
+## ۵.۳ اگر مقدار مورد نظر وجود نداشته باشد چه می‌ شود؟
+
+اگر مقدار مورد نظر در List وجود نداشته باشد، پایتون یک `ValueError` ایجاد می‌ کند:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.remove(50)
+```
+
+خطایی مشابه زیر ایجاد می‌ شود:
+
+```text
+ValueError: list.remove(x): x not in list
+```
+
+بنابراین اگر مطمئن نیستیم مقدار وجود دارد یا نه، بهتر است ابتدا آن را بررسی کنیم:
+
+```python
+numbers = [10, 20, 30]
+
+if 50 in numbers:
+    numbers.remove(50)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30]
+```
+
+---
+
+# ۶. متد `pop()`
+
+متد `pop()` یک عنصر را بر اساس Index حذف می‌ کند و **عنصر حذف شده را برمی‌ گرداند.**
+
+مثال:
+
+```python
+numbers = [10, 20, 30, 40]
+
+removed_number = numbers.pop(2)
+
+print("Removed:", removed_number)
+print("Numbers:", numbers)
+```
+
+خروجی:
+
+```text
+Removed: 30
+Numbers: [10, 20, 40]
+```
+
+این ویژگی باعث می‌ شود `pop()` با `remove()` تفاوت مهمی داشته باشد.
+
+---
+
+## ۶.۱ استفاده از `pop()` بدون Index
+
+اگر Index مشخص نکنیم، `pop()` آخرین عنصر List را حذف می‌ کند:
+
+```python
+numbers = [10, 20, 30, 40]
+
+removed_number = numbers.pop()
+
+print("Removed:", removed_number)
+print("Numbers:", numbers)
+```
+
+خروجی:
+
+```text
+Removed: 40
+Numbers: [10, 20, 30]
+```
+
+این یکی از رایج‌ ترین کاربرد های `pop()` است.
+
+---
+
+## ۶.۲ استفاده از `pop()` با Index مشخص
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+removed_number = numbers.pop(1)
+
+print("Removed:", removed_number)
+print("Numbers:", numbers)
+```
+
+خروجی:
+
+```text
+Removed: 20
+Numbers: [10, 30, 40, 50]
+```
+
+عنصر موجود در Index `1` حذف شده است.
+
+---
+
+## ۶.۳ استفاده از Index منفی با `pop()`
+
+`pop()` از Negative Indexing نیز پشتیبانی می‌ کند:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+removed_number = numbers.pop(-2)
+
+print("Removed:", removed_number)
+print("Numbers:", numbers)
+```
+
+خروجی:
+
+```text
+Removed: 40
+Numbers: [10, 20, 30, 50]
+```
+
+---
+
+# ۷. متد `clear()`
+
+متد `clear()` تمام عناصر موجود در List را حذف می‌ کند.
+
+مثال:
+
+```python
+numbers = [10, 20, 30, 40]
+
+numbers.clear()
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[]
+```
+
+خود List همچنان وجود دارد، اما دیگر عنصری داخل آن نیست.
+
+---
+
+## ۷.۱ تفاوت `clear()` و ساختن یک List جدید
+
+این دو عملیات از نظر مفهومی همیشه یکسان نیستند.
+
+با:
+
+```python
+numbers.clear()
+```
+
+List موجود را خالی می‌ کنیم.
+
+اما با:
+
+```python
+numbers = []
+```
+
+متغیر را به یک List جدید و خالی متصل می‌ کنیم.
+
+برای این بخش فعلاً این تفاوت را به خاطر بسپار:
+
+```text
+clear() → List موجود را خالی می‌ کند
+[]      → یک List جدید ایجاد می‌ کند
+```
+
+---
+
+# ۸. متد `index()`
+
+متد `index()` Index مربوط به **اولین وقوع** یک مقدار را برمی‌ گرداند.
+
+مثال:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Banana"]
+
+position = fruits.index("Banana")
+
+print(position)
+```
+
+خروجی:
+
+```text
+1
+```
+
+اولین `"Banana"` در Index شماره `1` قرار دارد.
+
+---
+
+## ۸.۱ `index()` و مقادیر تکراری
+
+اگر یک مقدار چند بار در List وجود داشته باشد، `index()` اولین مورد را برمی‌ گرداند:
+
+```python
+numbers = [10, 20, 30, 20, 40]
+
+position = numbers.index(20)
+
+print(position)
+```
+
+خروجی:
+
+```text
+1
+```
+
+Index شماره `3` برگردانده نمی‌ شود، چون Index شماره `1` اولین وقوع `20` است.
+
+---
+
+## ۸.۲ جست‌ و جو از یک Index مشخص
+
+`index()` می‌ تواند Start و Stop اختیاری نیز دریافت کند:
+
+```python
+numbers = [10, 20, 30, 20, 40]
+
+position = numbers.index(20, 2)
+
+print(position)
+```
+
+خروجی:
+
+```text
+3
+```
+
+جست‌ و جو از Index شماره `2` شروع شده است؛ بنابراین دومین `20` پیدا می‌ شود.
+
+---
+
+# ۹. متد `count()`
+
+متد `count()` تعداد دفعاتی را که یک مقدار در List ظاهر شده است، برمی‌ گرداند.
+
+مثال:
+
+```python
+numbers = [10, 20, 20, 30, 20, 40]
+
+number_of_twenty = numbers.count(20)
+
+print(number_of_twenty)
+```
+
+خروجی:
+
+```text
+3
+```
+
+مقدار `20` سه بار در List وجود دارد.
+
+---
+
+## ۹.۱ شمارش String ها
+
+```python
+fruits = ["Apple", "Banana", "Apple", "Orange", "Apple"]
+
+apple_count = fruits.count("Apple")
+
+print(apple_count)
+```
+
+خروجی:
+
+```text
+3
+```
+
+---
+
+# ۱۰. متد `sort()`
+
+متد `sort()` یک List را **در همان List و به صورت In-Place** مرتب می‌ کند.
+
+برای اعداد:
+
+```python
+numbers = [40, 10, 30, 20, 50]
+
+numbers.sort()
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+List اصلی تغییر کرده است.
+
+---
+
+## ۱۰.۱ مرتب‌ سازی نزولی
+
+می‌ توانیم از Argument به نام `reverse` استفاده کنیم:
+
+```python
+numbers = [40, 10, 30, 20, 50]
+
+numbers.sort(reverse=True)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+---
+
+## ۱۰.۲ مرتب‌ سازی String ها
+
+String ها نیز می‌ توانند مرتب شوند:
+
+```python
+names = ["Sara", "Ahmad", "John", "Alex"]
+
+names.sort()
+
+print(names)
+```
+
+خروجی:
+
+```text
+['Ahmad', 'Alex', 'John', 'Sara']
+```
+
+ترتیب بر اساس قوانین Ordering مربوط به مقادیر انجام می‌ شود.
+
+---
+
+# ۱۱. متد `reverse()`
+
+متد `reverse()` ترتیب عناصر List را **در همان List** معکوس می‌ کند.
+
+مثال:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+numbers.reverse()
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+List اصلی تغییر کرده است.
+
+---
+
+## ۱۱.۱ `reverse()` مرتب‌ سازی نمی‌ کند
+
+این تفاوت بسیار مهم است.
+
+متد `reverse()` فقط جهت ترتیب موجود را عوض می‌ کند.
+
+```python
+numbers = [30, 10, 50, 20, 40]
+
+numbers.reverse()
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[40, 20, 50, 10, 30]
+```
+
+مقادیر مرتب نشده‌ اند.
+
+فقط ترتیب قبلی برعکس شده است.
+
+---
+
+# ۱۲. تفاوت `sort()` و `sorted()`
+
+این موضوع یکی از نکات مهم در کار با List ها است.
+
+`sort()` یک List Method است:
+
+```python
+numbers.sort()
+```
+
+و List اصلی را تغییر می‌ دهد.
+
+اما `sorted()` یک Built-in Function در پایتون است:
+
+```python
+sorted(numbers)
+```
+
+و یک List جدید و مرتب شده برمی‌ گرداند.
+
+مثال:
+
+```python
+numbers = [40, 10, 30, 20, 50]
+
+sorted_numbers = sorted(numbers)
+
+print("Original:", numbers)
+print("Sorted:", sorted_numbers)
+```
+
+خروجی:
+
+```text
+Original: [40, 10, 30, 20, 50]
+Sorted: [10, 20, 30, 40, 50]
+```
+
+List اصلی تغییری نکرده است.
+
+در مقابل:
+
+```python
+numbers = [40, 10, 30, 20, 50]
+
+numbers.sort()
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+در این حالت List اصلی تغییر کرده است.
+
+---
+
+# ۱۳. تفاوت `reverse()` و `[::-1]`
+
+هر دو روش می‌ توانند ترتیب یک List را معکوس کنند، اما رفتار آن ها یکسان نیست.
+
+با `reverse()`:
+
+```python
+numbers = [10, 20, 30, 40]
+
+numbers.reverse()
+
+print(numbers)
+```
+
+List اصلی تغییر می‌ کند.
+
+با Slicing:
+
+```python
+numbers = [10, 20, 30, 40]
+
+reversed_numbers = numbers[::-1]
+
+print("Original:", numbers)
+print("Reversed:", reversed_numbers)
+```
+
+خروجی:
+
+```text
+Original: [10, 20, 30, 40]
+Reversed: [40, 30, 20, 10]
+```
+
+List اصلی بدون تغییر باقی می‌ ماند.
+
+بنابراین:
+
+```text
+reverse() → List اصلی را تغییر می‌ دهد
+[::-1]    → یک List برعکس شده جدید ایجاد می‌ کند
+```
+
+---
+
+# ۱۴. Return Value متد های List
+
+یکی از اشتباهات رایج مبتدیان این است که تصور کنند متد های List همیشه List تغییر یافته را برمی‌ گردانند.
+
+این تصور درست نیست.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30]
+
+result = numbers.append(40)
+
+print(result)
+```
+
+خروجی:
+
+```text
+None
+```
+
+اما خود List تغییر کرده است:
+
+```python
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40]
+```
+
+بنابراین:
+
+```text
+append() → List را تغییر می‌ دهد
+append() → مقدار None را برمی‌ گرداند
+```
+
+---
+
+## ۱۴.۱ مثال دیگر با `sort()`
+
+```python
+numbers = [30, 10, 20]
+
+result = numbers.sort()
+
+print(result)
+print(numbers)
+```
+
+خروجی:
+
+```text
+None
+[10, 20, 30]
+```
+
+دوباره می‌ بینیم که `sort()` List اصلی را تغییر می‌ دهد، اما `None` برمی‌ گرداند.
+
+---
+
+## ۱۴.۲ متد هایی که مقدار مفید برمی‌ گردانند
+
+برخی متد ها اطلاعاتی را برمی‌ گردانند.
+
+برای مثال:
+
+```python
+numbers = [10, 20, 30]
+
+removed = numbers.pop()
+
+print(removed)
+```
+
+خروجی:
+
+```text
+30
+```
+
+یا:
+
+```python
+numbers = [10, 20, 30]
+
+position = numbers.index(20)
+
+print(position)
+```
+
+خروجی:
+
+```text
+1
+```
+
+و:
+
+```python
+numbers = [10, 20, 20, 30]
+
+total = numbers.count(20)
+
+print(total)
+```
+
+خروجی:
+
+```text
+2
+```
+
+درک Return Value متد ها برای نوشتن برنامه‌ های بزرگ‌ تر اهمیت زیادی دارد.
+
+---
+
+# ۱۵. مقایسه سریع متد های مهم List
+
+| متد | کاربرد | List را تغییر می‌ دهد؟ | Return Value |
+|---|---|---:|---|
+| `append()` | اضافه کردن یک عنصر به انتها | بله | `None` |
+| `insert()` | اضافه کردن یک عنصر در Index مشخص | بله | `None` |
+| `extend()` | اضافه کردن عناصر یک Iterable | بله | `None` |
+| `remove()` | حذف اولین Value مشابه | بله | `None` |
+| `pop()` | حذف و برگرداندن یک عنصر | بله | عنصر حذف شده |
+| `clear()` | حذف تمام عناصر | بله | `None` |
+| `index()` | پیدا کردن اولین Index مشابه | خیر | Index |
+| `count()` | شمارش تعداد وقوع | خیر | Number |
+| `sort()` | مرتب‌ سازی In-Place | بله | `None` |
+| `reverse()` | معکوس کردن In-Place | بله | `None` |
+
+این جدول برای مرور سریع مفید است، اما درک رفتار هر متد از حفظ کردن جدول مهم‌ تر است.
+
+---
+
+# ۱۶. مثال کاربردی — مدیریت Shopping List
+
+می‌ توانیم چند List Method را در یک برنامه واقعی ترکیب کنیم:
+
+```python
+shopping_list = ["Milk", "Bread", "Eggs"]
+
+shopping_list.append("Cheese")
+shopping_list.insert(1, "Butter")
+shopping_list.remove("Bread")
+
+print("Shopping List:")
+print(shopping_list)
+```
+
+خروجی:
+
+```text
+Shopping List:
+['Milk', 'Butter', 'Eggs', 'Cheese']
+```
+
+در این مثال از موارد زیر استفاده کردیم:
+
+```text
+append()
+insert()
+remove()
+```
+
+---
+
+# ۱۷. مثال کاربردی — پردازش نمره های دانش‌ آموزان
+
+فرض کنیم نمره های جدیدی دریافت کرده‌ ایم:
+
+```python
+scores = [18, 12, 15, 9]
+
+new_scores = [20, 17, 14]
+
+scores.extend(new_scores)
+
+scores.sort()
+
+print(scores)
+```
+
+خروجی:
+
+```text
+[9, 12, 14, 15, 17, 18, 20]
+```
+
+در این مثال چند عملیات List را ترکیب کرده‌ ایم:
+
+```text
+extend()
+sort()
+```
+
+---
+
+# ۱۸. مثال کاربردی — حذف و ذخیره یک Task
+
+فرض کنیم یک Queue از Task ها داریم:
+
+```python
+tasks = [
+    "Study Python",
+    "Practice Lists",
+    "Read a Book",
+    "Exercise"
+]
+
+completed_task = tasks.pop(1)
+
+print(f"Completed: {completed_task}")
+print(f"Remaining tasks: {tasks}")
+```
+
+خروجی:
+
+```text
+Completed: Practice Lists
+Remaining tasks: ['Study Python', 'Read a Book', 'Exercise']
+```
+
+چون `pop()` عنصر حذف شده را برمی‌ گرداند، می‌ توانیم آن را ذخیره کنیم و بعداً استفاده کنیم.
+
+---
+
+# ۱۹. مثال کاربردی — بررسی داده های تکراری
+
+فرض کنیم می‌ خواهیم بدانیم یک نمره چند بار تکرار شده است:
+
+```python
+scores = [18, 15, 20, 15, 17, 15, 19]
+
+count_of_fifteen = scores.count(15)
+
+print(f"Score 15 appears {count_of_fifteen} times.")
+```
+
+خروجی:
+
+```text
+Score 15 appears 3 times.
+```
+
+---
+
+# ۲۰. مثال کاربردی — پیدا کردن یک عنصر
+
+```python
+languages = ["Python", "Java", "C++", "JavaScript"]
+
+language = "C++"
+
+if language in languages:
+    position = languages.index(language)
+    print(f"{language} found at Index {position}.")
+else:
+    print(f"{language} was not found.")
+```
+
+خروجی:
+
+```text
+C++ found at Index 2.
+```
+
+استفاده از `in` قبل از `index()` باعث می‌ شود اگر مقدار وجود نداشت، خطا دریافت نکنیم.
+
+---
+
+# اشتباهات رایج
+
+## اشتباه ۱ — قرار دادن نتیجه `append()` داخل List
+
+روش اشتباه:
+
+```python
+numbers = [10, 20, 30]
+
+numbers = numbers.append(40)
+
+print(numbers)
+```
+
+نتیجه:
+
+```text
+None
+```
+
+چرا؟
+
+چون `append()` List را تغییر می‌ دهد و `None` برمی‌ گرداند.
+
+روش صحیح:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.append(40)
+
+print(numbers)
+```
+
+---
+
+## اشتباه ۲ — استفاده از `append()` به جای `extend()`
+
+این:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.append([4, 5])
+
+print(numbers)
+```
+
+نتیجه:
+
+```text
+[1, 2, 3, [4, 5]]
+```
+
+اگر هدف اضافه کردن `4` و `5` به عنوان دو عنصر جداگانه باشد، باید از `extend()` استفاده کنیم:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.extend([4, 5])
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[1, 2, 3, 4, 5]
+```
+
+---
+
+## اشتباه ۳ — اشتباه گرفتن `remove()` و `pop()`
+
+`remove()` با Value کار می‌ کند:
+
+```python
+numbers.remove(30)
+```
+
+اما `pop()` با Index کار می‌ کند:
+
+```python
+numbers.pop(2)
+```
+
+یک قانون ساده:
+
+```text
+remove(value)
+pop(index)
+```
+
+---
+
+## اشتباه ۴ — استفاده از `remove()` برای مقدار غیر موجود
+
+کد زیر می‌ تواند خطا ایجاد کند:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.remove(50)
+```
+
+روش امن‌ تر:
+
+```python
+numbers = [10, 20, 30]
+
+if 50 in numbers:
+    numbers.remove(50)
+```
+
+---
+
+## اشتباه ۵ — تصور اینکه `reverse()` List را مرتب می‌ کند
+
+این:
+
+```python
+numbers = [30, 10, 20]
+
+numbers.reverse()
+
+print(numbers)
+```
+
+نتیجه:
+
+```text
+[20, 10, 30]
+```
+
+و نه:
+
+```text
+[10, 20, 30]
+```
+
+`reverse()` جهت ترتیب را تغییر می‌ دهد.
+
+`sort()` ترتیب عناصر را بر اساس قوانین مرتب‌ سازی تغییر می‌ دهد.
+
+---
+
+## اشتباه ۶ — فراموش کردن اینکه `sort()` List اصلی را تغییر می‌ دهد
+
+```python
+numbers = [30, 10, 20]
+
+numbers.sort()
+
+print(numbers)
+```
+
+List اصلی اکنون:
+
+```text
+[10, 20, 30]
+```
+
+است.
+
+اگر می‌ خواهیم List اصلی حفظ شود، می‌ توانیم از `sorted()` استفاده کنیم:
+
+```python
+numbers = [30, 10, 20]
+
+sorted_numbers = sorted(numbers)
+
+print("Original:", numbers)
+print("Sorted:", sorted_numbers)
+```
+
+---
+
+# نکات کلیدی
+
+List Methods روش‌ های آماده و قدرتمندی برای مدیریت داده های موجود در List هستند.
+
+مهم‌ ترین متد های این بخش:
+
+```python
+append()
+insert()
+extend()
+remove()
+pop()
+clear()
+index()
+count()
+sort()
+reverse()
+```
+
+تفاوت های مهم را به خاطر بسپار:
+
+```text
+append(value)
+→ اضافه کردن یک Object به انتهای List
+
+insert(index, value)
+→ اضافه کردن یک Object در یک موقعیت مشخص
+
+extend(iterable)
+→ اضافه کردن عناصر یک Iterable
+
+remove(value)
+→ حذف اولین مقدار مشابه
+
+pop(index)
+→ حذف و برگرداندن یک عنصر بر اساس Index
+
+pop()
+→ حذف و برگرداندن آخرین عنصر
+
+clear()
+→ خالی کردن List
+
+index(value)
+→ پیدا کردن اولین Index مشابه
+
+count(value)
+→ شمارش تعداد وقوع یک مقدار
+
+sort()
+→ مرتب کردن List اصلی
+
+reverse()
+→ معکوس کردن List اصلی
+```
+
+همچنین:
+
+```text
+sort()     → List را تغییر می‌ دهد
+sorted()   → یک List مرتب شده جدید برمی‌ گرداند
+
+reverse()  → List را تغییر می‌ دهد
+[::-1]     → یک List برعکس شده جدید ایجاد می‌ کند
+```
+
+یکی از مهم‌ ترین مفاهیم این بخش:
+
+> **بسیاری از List Methods، List اصلی را تغییر می‌ دهند و `None` برمی‌ گردانند.**
+
+درک این رفتار از بسیاری از اشتباهات رایج در ابتدای مسیر جلوگیری می‌ کند.
+
+---
+
+# تمرین ها
+
+## تمرین ۱ — ساختن یک List
+
+از یک List خالی شروع کن:
+
+```python
+numbers = []
+```
+
+با استفاده از `append()` مقادیر زیر را اضافه کن:
+
+```text
+10
+20
+30
+40
+50
+```
+
+سپس List را چاپ کن.
+
+---
+
+## تمرین ۲ — درج یک مقدار
+
+از List زیر شروع کن:
+
+```python
+numbers = [10, 20, 40, 50]
+```
+
+با استفاده از `insert()` مقدار `30` را بین `20` و `40` قرار بده.
+
+نتیجه مورد انتظار:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+---
+
+## تمرین ۳ — مقایسه `append()` و `extend()`
+
+List زیر را ایجاد کن:
+
+```python
+numbers = [1, 2, 3]
+```
+
+ابتدا با `append()` مقدار:
+
+```python
+[4, 5]
+```
+
+را اضافه کن.
+
+سپس یک List دیگر ایجاد کن و با `extend()` همان:
+
+```python
+[4, 5]
+```
+
+را اضافه کن.
+
+نتیجه ها را با یکدیگر مقایسه کن.
+
+---
+
+## تمرین ۴ — حذف یک Value
+
+List زیر را ایجاد کن:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Banana"]
+```
+
+اولین `"Banana"` را حذف کن.
+
+چه اتفاقی برای `"Banana"` دوم می‌ افتد؟
+
+---
+
+## تمرین ۵ — استفاده از `pop()` و ذخیره مقدار
+
+List زیر را ایجاد کن:
+
+```python
+tasks = ["Study", "Exercise", "Read", "Sleep"]
+```
+
+با استفاده از `pop()` آخرین Task را حذف کن.
+
+مقدار حذف شده را داخل یک متغیر ذخیره کن و آن را چاپ کن.
+
+---
+
+## تمرین ۶ — شمارش وقوع
+
+List زیر را ایجاد کن:
+
+```python
+numbers = [10, 20, 10, 30, 10, 40, 20]
+```
+
+با استفاده از `count()` مشخص کن مقدار `10` چند بار ظاهر شده است.
+
+---
+
+## تمرین ۷ — پیدا کردن Index
+
+List زیر را ایجاد کن:
+
+```python
+languages = ["Python", "Java", "C++", "Go"]
+```
+
+با استفاده از `index()` موقعیت `"C++"` را پیدا کن.
+
+---
+
+## تمرین ۸ — مرتب‌ سازی List
+
+List زیر را ایجاد کن:
+
+```python
+scores = [15, 8, 19, 12, 20, 10]
+```
+
+List را به صورت صعودی مرتب کن.
+
+سپس یک کپی دیگر را به صورت نزولی مرتب کن.
+
+---
+
+## تمرین ۹ — برعکس کردن بدون تغییر List اصلی
+
+List زیر را ایجاد کن:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+```
+
+بدون تغییر دادن List اصلی، یک نسخه برعکس شده ایجاد کن.
+
+---
+
+# چالش بخش — Student Score Manager
+
+برنامه‌ ای بنویس که نمره های یک دانش‌ آموز را مدیریت کند.
+
+با List زیر شروع کن:
+
+```python
+scores = [18, 12, 15, 9, 20]
+```
+
+برنامه باید:
+
+1. با استفاده از `append()` یک نمره جدید اضافه کند.
+2. با استفاده از `insert()` یک نمره را در موقعیت مشخص قرار دهد.
+3. با استفاده از `extend()` چند نمره جدید اضافه کند.
+4. با استفاده از `remove()` یک نمره مشخص را حذف کند.
+5. با استفاده از `pop()` آخرین نمره را حذف کرده و آن را ذخیره کند.
+6. تعداد وقوع یک نمره مشخص را با `count()` پیدا کند.
+7. Index یک نمره مشخص را با `index()` پیدا کند.
+8. با استفاده از `sorted()` یک نسخه مرتب شده ایجاد کند.
+9. List اصلی را با `sort()` به صورت In-Place مرتب کند.
+10. با استفاده از Slicing یک نسخه برعکس شده ایجاد کند.
+11. List اصلی و داده های پردازش شده را به شکل واضح نمایش دهد.
+
+ساختار نمونه:
+
+```python
+scores = [18, 12, 15, 9, 20]
+
+scores.append(17)
+scores.insert(2, 14)
+scores.extend([16, 19])
+
+if 9 in scores:
+    scores.remove(9)
+
+removed_score = scores.pop()
+
+score_count = scores.count(15)
+
+if 20 in scores:
+    score_position = scores.index(20)
+else:
+    score_position = None
+
+sorted_scores = sorted(scores)
+
+scores.sort()
+
+reversed_scores = scores[::-1]
+
+print("----- Student Score Manager -----")
+print()
+
+print(f"Current scores: {scores}")
+print(f"Removed score: {removed_score}")
+print(f"Score 15 count: {score_count}")
+print(f"Score 20 position: {score_position}")
+print(f"Sorted copy: {sorted_scores}")
+print(f"Reversed copy: {reversed_scores}")
+```
+
+این Challenge چند مفهوم مختلف از درس Lists را با یکدیگر ترکیب می‌ کند:
+
+```text
+Lists
+Indexing
+Negative Indexing
+Slicing
+List Methods
+Variables
+Conditional Statements
+Membership Testing
+String Formatting
+```
+
+در بخش بعدی سراغ عملیات پیشرفته‌ تر روی List ها می‌ رویم و بررسی می‌ کنیم که چگونه می‌ توانیم List ها را در کنار سایر مفاهیم پایتون برای پردازش و تبدیل داده ها استفاده کنیم.
+
+---
+

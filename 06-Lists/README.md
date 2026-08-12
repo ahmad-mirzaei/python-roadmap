@@ -4047,3 +4047,1733 @@ In the next section, we will move on to **List Methods** and work with methods s
 
 ---
 
+# Part 5 — List Methods
+
+In this section, we learn how to work with Python Lists using their built-in methods.
+
+List Methods allow us to add, remove, search, reorder, and manage elements without manually implementing these operations ourselves.
+
+## What We Will Learn
+
+- What List Methods are
+- `append()`
+- `insert()`
+- `extend()`
+- `remove()`
+- `pop()`
+- `clear()`
+- `index()`
+- `count()`
+- `sort()`
+- `reverse()`
+- The difference between `sort()` and `sorted()`
+- The difference between `reverse()` and `[::-1]`
+- Return Values of List Methods
+- Common List Method mistakes
+- Practical examples
+- Combined exercises
+- Section Challenge
+
+---
+
+## 1. What Is a List Method?
+
+A List Method is a built-in operation that belongs to a List object.
+
+For example:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.append(40)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+The method:
+
+```python
+append()
+```
+
+changes the List by adding a new element.
+
+List Methods are called using Dot Notation:
+
+```python
+list_name.method_name()
+```
+
+Some methods also accept arguments:
+
+```python
+list_name.method_name(argument)
+```
+
+For example:
+
+```python
+numbers.append(40)
+```
+
+Here:
+
+- `numbers` is the List.
+- `append` is the method.
+- `40` is the argument.
+
+---
+
+# 2. `append()`
+
+The `append()` method adds **one element to the end of a List**.
+
+Example:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.append(40)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+The new element is always added to the end.
+
+---
+
+## 2.1 Appending a String
+
+`append()` can add values of different data types:
+
+```python
+languages = ["Python", "Java", "C++"]
+
+languages.append("Go")
+
+print(languages)
+```
+
+Output:
+
+```text
+['Python', 'Java', 'C++', 'Go']
+```
+
+---
+
+## 2.2 Appending Multiple Times
+
+We can call `append()` multiple times:
+
+```python
+numbers = []
+
+numbers.append(10)
+numbers.append(20)
+numbers.append(30)
+numbers.append(40)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+This is useful when we gradually build a List.
+
+---
+
+## 2.3 `append()` Adds One Object
+
+An important detail is that `append()` adds its argument as **one element**.
+
+For example:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.append([4, 5])
+
+print(numbers)
+```
+
+Output:
+
+```text
+[1, 2, 3, [4, 5]]
+```
+
+The List `[4, 5]` becomes one element inside `numbers`.
+
+The resulting structure is:
+
+```text
+1
+2
+3
+[4, 5]
+```
+
+This behavior is important when working with nested Lists.
+
+---
+
+# 3. `insert()`
+
+The `insert()` method adds an element at a specific Index.
+
+Syntax:
+
+```python
+list_name.insert(index, value)
+```
+
+Example:
+
+```python
+numbers = [10, 20, 40]
+
+numbers.insert(2, 30)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+The value `30` was inserted at Index `2`.
+
+---
+
+## 3.1 Understanding the Index
+
+Before insertion:
+
+```text
+Index 0 → 10
+Index 1 → 20
+Index 2 → 40
+```
+
+After:
+
+```python
+numbers.insert(2, 30)
+```
+
+we have:
+
+```text
+Index 0 → 10
+Index 1 → 20
+Index 2 → 30
+Index 3 → 40
+```
+
+The existing elements are shifted to the right.
+
+---
+
+## 3.2 Insert at the Beginning
+
+We can insert an element at Index `0`:
+
+```python
+names = ["Sara", "Alex", "John"]
+
+names.insert(0, "Ahmad")
+
+print(names)
+```
+
+Output:
+
+```text
+['Ahmad', 'Sara', 'Alex', 'John']
+```
+
+---
+
+## 3.3 Insert at the End
+
+Although `insert()` can be used to add an element near the end, `append()` is usually clearer when we simply want to add an element to the end.
+
+```python
+numbers = [10, 20, 30]
+
+numbers.insert(len(numbers), 40)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+For this situation, the simpler approach is:
+
+```python
+numbers.append(40)
+```
+
+Use the method that best communicates your intention.
+
+---
+
+# 4. `extend()`
+
+The `extend()` method adds multiple elements from another Iterable to the end of a List.
+
+Example:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.extend([4, 5, 6])
+
+print(numbers)
+```
+
+Output:
+
+```text
+[1, 2, 3, 4, 5, 6]
+```
+
+Unlike `append()`, `extend()` adds the elements individually.
+
+---
+
+## 4.1 `append()` vs `extend()`
+
+This difference is extremely important.
+
+Using `append()`:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.append([4, 5])
+
+print(numbers)
+```
+
+Output:
+
+```text
+[1, 2, 3, [4, 5]]
+```
+
+Using `extend()`:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.extend([4, 5])
+
+print(numbers)
+```
+
+Output:
+
+```text
+[1, 2, 3, 4, 5]
+```
+
+The difference can be summarized as:
+
+```text
+append()  → adds one object
+extend()  → adds elements from an Iterable
+```
+
+---
+
+## 4.2 Extending with Another List
+
+```python
+first_group = ["Ahmad", "Sara"]
+second_group = ["Alex", "John"]
+
+first_group.extend(second_group)
+
+print(first_group)
+```
+
+Output:
+
+```text
+['Ahmad', 'Sara', 'Alex', 'John']
+```
+
+The elements from `second_group` are added to `first_group`.
+
+---
+
+## 4.3 Extending with a String
+
+Because Strings are Iterables, `extend()` can add their characters individually:
+
+```python
+letters = ["A", "B"]
+
+letters.extend("CD")
+
+print(letters)
+```
+
+Output:
+
+```text
+['A', 'B', 'C', 'D']
+```
+
+This is a good example of why understanding Iterables becomes important later in Python.
+
+---
+
+# 5. `remove()`
+
+The `remove()` method removes the **first occurrence** of a specific value.
+
+Example:
+
+```python
+numbers = [10, 20, 30, 20, 40]
+
+numbers.remove(20)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 30, 20, 40]
+```
+
+Only the first `20` was removed.
+
+---
+
+## 5.1 `remove()` Uses a Value, Not an Index
+
+This:
+
+```python
+numbers.remove(30)
+```
+
+means:
+
+> Find the first element whose value is `30` and remove it.
+
+It does not mean:
+
+> Remove the element at Index `30`.
+
+For removing an element by Index, we use `pop()`.
+
+---
+
+## 5.2 Removing a String
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango"]
+
+fruits.remove("Orange")
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Mango']
+```
+
+---
+
+## 5.3 What Happens If the Value Does Not Exist?
+
+If the value is not present, Python raises a `ValueError`.
+
+```python
+numbers = [10, 20, 30]
+
+numbers.remove(50)
+```
+
+This produces an error similar to:
+
+```text
+ValueError: list.remove(x): x not in list
+```
+
+Therefore, if the existence of the value is uncertain, we can check first:
+
+```python
+numbers = [10, 20, 30]
+
+if 50 in numbers:
+    numbers.remove(50)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+---
+
+# 6. `pop()`
+
+The `pop()` method removes an element by Index and **returns the removed element**.
+
+Example:
+
+```python
+numbers = [10, 20, 30, 40]
+
+removed_number = numbers.pop(2)
+
+print("Removed:", removed_number)
+print("Numbers:", numbers)
+```
+
+Output:
+
+```text
+Removed: 30
+Numbers: [10, 20, 40]
+```
+
+This makes `pop()` different from `remove()`.
+
+---
+
+## 6.1 `pop()` Without an Index
+
+If we do not provide an Index, `pop()` removes the last element:
+
+```python
+numbers = [10, 20, 30, 40]
+
+removed_number = numbers.pop()
+
+print("Removed:", removed_number)
+print("Numbers:", numbers)
+```
+
+Output:
+
+```text
+Removed: 40
+Numbers: [10, 20, 30]
+```
+
+This is a very common use of `pop()`.
+
+---
+
+## 6.2 `pop()` with a Specific Index
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+removed_number = numbers.pop(1)
+
+print("Removed:", removed_number)
+print("Numbers:", numbers)
+```
+
+Output:
+
+```text
+Removed: 20
+Numbers: [10, 30, 40, 50]
+```
+
+The element at Index `1` was removed.
+
+---
+
+## 6.3 Negative Index with `pop()`
+
+`pop()` also supports Negative Indexing:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+removed_number = numbers.pop(-2)
+
+print("Removed:", removed_number)
+print("Numbers:", numbers)
+```
+
+Output:
+
+```text
+Removed: 40
+Numbers: [10, 20, 30, 50]
+```
+
+---
+
+# 7. `clear()`
+
+The `clear()` method removes all elements from a List.
+
+Example:
+
+```python
+numbers = [10, 20, 30, 40]
+
+numbers.clear()
+
+print(numbers)
+```
+
+Output:
+
+```text
+[]
+```
+
+The List still exists, but it is now empty.
+
+---
+
+## 7.1 `clear()` vs Creating a New List
+
+These two operations are not always conceptually identical.
+
+Using:
+
+```python
+numbers.clear()
+```
+
+we empty the existing List.
+
+Using:
+
+```python
+numbers = []
+```
+
+we make the variable refer to a new empty List.
+
+For beginners, the important distinction is:
+
+```text
+clear() → empties the existing List
+[]      → creates a new empty List
+```
+
+---
+
+# 8. `index()`
+
+The `index()` method returns the Index of the **first occurrence** of a value.
+
+Example:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Banana"]
+
+position = fruits.index("Banana")
+
+print(position)
+```
+
+Output:
+
+```text
+1
+```
+
+The first `"Banana"` is at Index `1`.
+
+---
+
+## 8.1 `index()` with Duplicate Values
+
+If a value appears multiple times, `index()` returns the first matching Index:
+
+```python
+numbers = [10, 20, 30, 20, 40]
+
+position = numbers.index(20)
+
+print(position)
+```
+
+Output:
+
+```text
+1
+```
+
+It does not return Index `3`, because Index `1` is the first occurrence.
+
+---
+
+## 8.2 Searching from a Specific Position
+
+`index()` can also accept optional Start and Stop positions:
+
+```python
+numbers = [10, 20, 30, 20, 40]
+
+position = numbers.index(20, 2)
+
+print(position)
+```
+
+Output:
+
+```text
+3
+```
+
+Python starts searching from Index `2`, so it finds the second `20`.
+
+---
+
+# 9. `count()`
+
+The `count()` method returns how many times a value appears in a List.
+
+Example:
+
+```python
+numbers = [10, 20, 20, 30, 20, 40]
+
+number_of_twenty = numbers.count(20)
+
+print(number_of_twenty)
+```
+
+Output:
+
+```text
+3
+```
+
+The value `20` appears three times.
+
+---
+
+## 9.1 Counting Strings
+
+```python
+fruits = ["Apple", "Banana", "Apple", "Orange", "Apple"]
+
+apple_count = fruits.count("Apple")
+
+print(apple_count)
+```
+
+Output:
+
+```text
+3
+```
+
+---
+
+# 10. `sort()`
+
+The `sort()` method sorts a List **in place**.
+
+For numbers:
+
+```python
+numbers = [40, 10, 30, 20, 50]
+
+numbers.sort()
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+The original List has been changed.
+
+---
+
+## 10.1 Sorting in Descending Order
+
+We can use the `reverse` parameter:
+
+```python
+numbers = [40, 10, 30, 20, 50]
+
+numbers.sort(reverse=True)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+---
+
+## 10.2 Sorting Strings
+
+Strings can also be sorted:
+
+```python
+names = ["Sara", "Ahmad", "John", "Alex"]
+
+names.sort()
+
+print(names)
+```
+
+Output:
+
+```text
+['Ahmad', 'Alex', 'John', 'Sara']
+```
+
+The strings are sorted according to their ordering rules.
+
+---
+
+# 11. `reverse()`
+
+The `reverse()` method reverses the order of the elements **in place**.
+
+Example:
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+numbers.reverse()
+
+print(numbers)
+```
+
+Output:
+
+```text
+[50, 40, 30, 20, 10]
+```
+
+The original List is changed.
+
+---
+
+## 11.1 `reverse()` Does Not Sort
+
+This is an important distinction.
+
+`reverse()` only changes the direction of the existing order.
+
+```python
+numbers = [30, 10, 50, 20, 40]
+
+numbers.reverse()
+
+print(numbers)
+```
+
+Output:
+
+```text
+[40, 20, 50, 10, 30]
+```
+
+The values were not sorted.
+
+They were simply reversed.
+
+---
+
+# 12. `sort()` vs `sorted()`
+
+This is an important concept.
+
+`sort()` is a List Method:
+
+```python
+numbers.sort()
+```
+
+It modifies the original List.
+
+`sorted()` is a built-in Python function:
+
+```python
+sorted(numbers)
+```
+
+It returns a new sorted List.
+
+Example:
+
+```python
+numbers = [40, 10, 30, 20, 50]
+
+sorted_numbers = sorted(numbers)
+
+print("Original:", numbers)
+print("Sorted:", sorted_numbers)
+```
+
+Output:
+
+```text
+Original: [40, 10, 30, 20, 50]
+Sorted: [10, 20, 30, 40, 50]
+```
+
+The original List remains unchanged.
+
+Compare this with:
+
+```python
+numbers = [40, 10, 30, 20, 50]
+
+numbers.sort()
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+The original List has changed.
+
+---
+
+# 13. `reverse()` vs `[::-1]`
+
+These two approaches can both reverse a List, but they behave differently.
+
+Using `reverse()`:
+
+```python
+numbers = [10, 20, 30, 40]
+
+numbers.reverse()
+
+print(numbers)
+```
+
+The original List is modified.
+
+Using Slicing:
+
+```python
+numbers = [10, 20, 30, 40]
+
+reversed_numbers = numbers[::-1]
+
+print("Original:", numbers)
+print("Reversed:", reversed_numbers)
+```
+
+Output:
+
+```text
+Original: [10, 20, 30, 40]
+Reversed: [40, 30, 20, 10]
+```
+
+The original List remains unchanged.
+
+Therefore:
+
+```text
+reverse() → modifies the original List
+[::-1]    → creates a reversed List
+```
+
+---
+
+# 14. Return Values of List Methods
+
+One of the most common beginner mistakes is assuming that List Methods always return the modified List.
+
+They do not.
+
+For example:
+
+```python
+numbers = [10, 20, 30]
+
+result = numbers.append(40)
+
+print(result)
+```
+
+Output:
+
+```text
+None
+```
+
+The List itself was modified:
+
+```python
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+This means:
+
+```text
+append() → modifies the List
+append() → returns None
+```
+
+---
+
+## 14.1 Another Example with `sort()`
+
+```python
+numbers = [30, 10, 20]
+
+result = numbers.sort()
+
+print(result)
+print(numbers)
+```
+
+Output:
+
+```text
+None
+[10, 20, 30]
+```
+
+Again, `sort()` modifies the original List but returns `None`.
+
+---
+
+## 14.2 Methods That Return a Useful Value
+
+Some List Methods do return information.
+
+For example:
+
+```python
+numbers = [10, 20, 30]
+
+removed = numbers.pop()
+
+print(removed)
+```
+
+Output:
+
+```text
+30
+```
+
+And:
+
+```python
+numbers = [10, 20, 30]
+
+position = numbers.index(20)
+
+print(position)
+```
+
+Output:
+
+```text
+1
+```
+
+And:
+
+```python
+numbers = [10, 20, 20, 30]
+
+total = numbers.count(20)
+
+print(total)
+```
+
+Output:
+
+```text
+2
+```
+
+Understanding the Return Value of a Method is important when writing larger programs.
+
+---
+
+# 15. Quick Comparison of Common List Methods
+
+| Method | Purpose | Modifies List? | Returns |
+|---|---|---:|---|
+| `append()` | Add one element to the end | Yes | `None` |
+| `insert()` | Add one element at an Index | Yes | `None` |
+| `extend()` | Add elements from an Iterable | Yes | `None` |
+| `remove()` | Remove the first matching value | Yes | `None` |
+| `pop()` | Remove and return an element | Yes | Removed element |
+| `clear()` | Remove all elements | Yes | `None` |
+| `index()` | Find the first matching Index | No | Index |
+| `count()` | Count occurrences | No | Number |
+| `sort()` | Sort the List in place | Yes | `None` |
+| `reverse()` | Reverse the List in place | Yes | `None` |
+
+This table is useful as a quick reference, but understanding the behavior of each method is more important than memorizing the table.
+
+---
+
+# 16. Practical Example — Managing a Shopping List
+
+We can combine several List Methods in a practical program:
+
+```python
+shopping_list = ["Milk", "Bread", "Eggs"]
+
+shopping_list.append("Cheese")
+shopping_list.insert(1, "Butter")
+shopping_list.remove("Bread")
+
+print("Shopping List:")
+print(shopping_list)
+```
+
+Output:
+
+```text
+Shopping List:
+['Milk', 'Butter', 'Eggs', 'Cheese']
+```
+
+The program demonstrates:
+
+```text
+append()
+insert()
+remove()
+```
+
+---
+
+# 17. Practical Example — Processing Student Scores
+
+Suppose we receive additional scores:
+
+```python
+scores = [18, 12, 15, 9]
+
+new_scores = [20, 17, 14]
+
+scores.extend(new_scores)
+
+scores.sort()
+
+print(scores)
+```
+
+Output:
+
+```text
+[9, 12, 14, 15, 17, 18, 20]
+```
+
+Several List operations were combined:
+
+```text
+extend()
+sort()
+```
+
+---
+
+# 18. Practical Example — Removing and Saving an Item
+
+Suppose we have a queue of tasks:
+
+```python
+tasks = [
+    "Study Python",
+    "Practice Lists",
+    "Read a Book",
+    "Exercise"
+]
+
+completed_task = tasks.pop(1)
+
+print(f"Completed: {completed_task}")
+print(f"Remaining tasks: {tasks}")
+```
+
+Output:
+
+```text
+Completed: Practice Lists
+Remaining tasks: ['Study Python', 'Read a Book', 'Exercise']
+```
+
+Because `pop()` returns the removed element, we can save it and use it later.
+
+---
+
+# 19. Practical Example — Checking Duplicate Data
+
+Suppose we want to know how many times a score appears:
+
+```python
+scores = [18, 15, 20, 15, 17, 15, 19]
+
+count_of_fifteen = scores.count(15)
+
+print(f"Score 15 appears {count_of_fifteen} times.")
+```
+
+Output:
+
+```text
+Score 15 appears 3 times.
+```
+
+---
+
+# 20. Practical Example — Finding an Item
+
+```python
+languages = ["Python", "Java", "C++", "JavaScript"]
+
+language = "C++"
+
+if language in languages:
+    position = languages.index(language)
+    print(f"{language} found at Index {position}.")
+else:
+    print(f"{language} was not found.")
+```
+
+Output:
+
+```text
+C++ found at Index 2.
+```
+
+Using `in` before `index()` prevents an error when the value does not exist.
+
+---
+
+# Common Mistakes
+
+## Mistake 1 — Assigning the Result of `append()`
+
+Incorrect:
+
+```python
+numbers = [10, 20, 30]
+
+numbers = numbers.append(40)
+
+print(numbers)
+```
+
+Result:
+
+```text
+None
+```
+
+Why?
+
+Because `append()` modifies the List and returns `None`.
+
+Correct:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.append(40)
+
+print(numbers)
+```
+
+---
+
+## Mistake 2 — Using `append()` When You Need `extend()`
+
+This:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.append([4, 5])
+
+print(numbers)
+```
+
+produces:
+
+```text
+[1, 2, 3, [4, 5]]
+```
+
+If the goal is to add `4` and `5` as separate elements, use:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.extend([4, 5])
+
+print(numbers)
+```
+
+Output:
+
+```text
+[1, 2, 3, 4, 5]
+```
+
+---
+
+## Mistake 3 — Confusing `remove()` and `pop()`
+
+`remove()` works with a value:
+
+```python
+numbers.remove(30)
+```
+
+`pop()` works with an Index:
+
+```python
+numbers.pop(2)
+```
+
+A useful rule:
+
+```text
+remove(value)
+pop(index)
+```
+
+---
+
+## Mistake 4 — Calling `remove()` on a Missing Value
+
+This can raise an error:
+
+```python
+numbers = [10, 20, 30]
+
+numbers.remove(50)
+```
+
+Safer approach:
+
+```python
+numbers = [10, 20, 30]
+
+if 50 in numbers:
+    numbers.remove(50)
+```
+
+---
+
+## Mistake 5 — Assuming `reverse()` Sorts the List
+
+This:
+
+```python
+numbers = [30, 10, 20]
+
+numbers.reverse()
+
+print(numbers)
+```
+
+produces:
+
+```text
+[20, 10, 30]
+```
+
+It does not produce:
+
+```text
+[10, 20, 30]
+```
+
+`reverse()` changes direction.
+
+`sort()` changes ordering according to sorting rules.
+
+---
+
+## Mistake 6 — Forgetting That `sort()` Changes the Original List
+
+```python
+numbers = [30, 10, 20]
+
+numbers.sort()
+
+print(numbers)
+```
+
+The original List is now:
+
+```text
+[10, 20, 30]
+```
+
+If you need to preserve the original List, use:
+
+```python
+numbers = [30, 10, 20]
+
+sorted_numbers = sorted(numbers)
+
+print("Original:", numbers)
+print("Sorted:", sorted_numbers)
+```
+
+---
+
+# Key Takeaways
+
+List Methods provide convenient ways to manage List data.
+
+The most important methods from this section are:
+
+```python
+append()
+insert()
+extend()
+remove()
+pop()
+clear()
+index()
+count()
+sort()
+reverse()
+```
+
+Remember these core differences:
+
+```text
+append(value)
+→ Add one object to the end
+
+insert(index, value)
+→ Add one object at a specific position
+
+extend(iterable)
+→ Add elements from another Iterable
+
+remove(value)
+→ Remove the first matching value
+
+pop(index)
+→ Remove and return an element by Index
+
+pop()
+→ Remove and return the last element
+
+clear()
+→ Empty the List
+
+index(value)
+→ Find the first matching Index
+
+count(value)
+→ Count occurrences
+
+sort()
+→ Sort the original List
+
+reverse()
+→ Reverse the original List
+```
+
+Also remember:
+
+```text
+sort()     → modifies the List
+sorted()   → returns a new sorted List
+
+reverse()  → modifies the List
+[::-1]     → creates a reversed List
+```
+
+And one of the most important concepts:
+
+> **Many List Methods modify the original List and return `None`.**
+
+Understanding this behavior prevents many beginner mistakes.
+
+---
+
+# Exercises
+
+## Exercise 1 — Building a List
+
+Start with an empty List:
+
+```python
+numbers = []
+```
+
+Use `append()` to add:
+
+```text
+10
+20
+30
+40
+50
+```
+
+Then print the List.
+
+---
+
+## Exercise 2 — Inserting a Value
+
+Start with:
+
+```python
+numbers = [10, 20, 40, 50]
+```
+
+Use `insert()` to add `30` between `20` and `40`.
+
+Expected result:
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+---
+
+## Exercise 3 — Append vs Extend
+
+Create:
+
+```python
+numbers = [1, 2, 3]
+```
+
+First use `append()` with:
+
+```python
+[4, 5]
+```
+
+Then create another List and use `extend()` with:
+
+```python
+[4, 5]
+```
+
+Compare the results.
+
+---
+
+## Exercise 4 — Remove a Value
+
+Create:
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Mango", "Banana"]
+```
+
+Remove the first `"Banana"`.
+
+What happens to the second `"Banana"`?
+
+---
+
+## Exercise 5 — Pop and Save
+
+Create:
+
+```python
+tasks = ["Study", "Exercise", "Read", "Sleep"]
+```
+
+Use `pop()` to remove the last task.
+
+Save the removed task in a variable and print it.
+
+---
+
+## Exercise 6 — Count Occurrences
+
+Create:
+
+```python
+numbers = [10, 20, 10, 30, 10, 40, 20]
+```
+
+Use `count()` to find how many times `10` appears.
+
+---
+
+## Exercise 7 — Find an Index
+
+Create:
+
+```python
+languages = ["Python", "Java", "C++", "Go"]
+```
+
+Use `index()` to find the position of `"C++"`.
+
+---
+
+## Exercise 8 — Sort a List
+
+Create:
+
+```python
+scores = [15, 8, 19, 12, 20, 10]
+```
+
+Sort the List in ascending order.
+
+Then sort another copy in descending order.
+
+---
+
+## Exercise 9 — Reverse Without Modifying
+
+Create:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+```
+
+Create a reversed copy without changing the original List.
+
+---
+
+# Section Challenge — Student Score Manager
+
+Create a program that manages student scores.
+
+Start with:
+
+```python
+scores = [18, 12, 15, 9, 20]
+```
+
+The program should:
+
+1. Add a new score using `append()`.
+2. Insert a score at a specific position using `insert()`.
+3. Add several scores using `extend()`.
+4. Remove one specific score using `remove()`.
+5. Remove the last score using `pop()` and save it.
+6. Count how many times a specific score appears.
+7. Find the Index of a specific score.
+8. Create a sorted copy using `sorted()`.
+9. Sort the original List in place using `sort()`.
+10. Create a reversed copy using Slicing.
+11. Display the original and modified data clearly.
+
+Example structure:
+
+```python
+scores = [18, 12, 15, 9, 20]
+
+scores.append(17)
+scores.insert(2, 14)
+scores.extend([16, 19])
+
+if 9 in scores:
+    scores.remove(9)
+
+removed_score = scores.pop()
+
+score_count = scores.count(15)
+
+if 20 in scores:
+    score_position = scores.index(20)
+else:
+    score_position = None
+
+sorted_scores = sorted(scores)
+
+scores.sort()
+
+reversed_scores = scores[::-1]
+
+print("----- Student Score Manager -----")
+print()
+
+print(f"Current scores: {scores}")
+print(f"Removed score: {removed_score}")
+print(f"Score 15 count: {score_count}")
+print(f"Score 20 position: {score_position}")
+print(f"Sorted copy: {sorted_scores}")
+print(f"Reversed copy: {reversed_scores}")
+```
+
+This Challenge combines several concepts from the Lists lessons:
+
+```text
+Lists
+Indexing
+Negative Indexing
+Slicing
+List Methods
+Variables
+Conditional Statements
+Membership Testing
+String Formatting
+```
+
+In the next section, we will explore more advanced List operations and learn how Lists can be used with other Python concepts to process and transform data.
+
+---
+

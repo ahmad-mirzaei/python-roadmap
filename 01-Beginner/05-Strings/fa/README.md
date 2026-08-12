@@ -5049,3 +5049,1724 @@ Invalid username
 
 ---
 
+# بخش ۶ — قالب بندی رشته ها
+
+تا اینجا یاد گرفتیم چگونه String بسازیم، به کاراکترهای آن دسترسی پیدا کنیم، بخشی از آن را با Slicing استخراج کنیم و با String Methodها کار کنیم.
+
+اما یک سؤال مهم دیگر وجود دارد:
+
+چطور می توانیم خروجی برنامه را مرتب، خوانا و حرفه ای نمایش دهیم؟
+
+برای مثال فرض کنید برنامه این اطلاعات را دارد:
+
+name = "Ahmad"
+age = 25
+score = 92.5
+
+ممکن است بخواهیم خروجی به این شکل باشد:
+
+Name: Ahmad
+Age: 25
+Score: 92.5
+
+به این فرآیند **String Formatting** یا قالب بندی رشته می گوییم.
+
+---
+
+## چرا به String Formatting نیاز داریم؟
+
+برنامه ها دائماً باید متن را با داده های مختلف ترکیب کنند.
+
+برای مثال:
+
+- یک بازی امتیاز بازیکن را نمایش می دهد.
+- یک برنامه بانکی موجودی حساب را نمایش می دهد.
+- یک برنامه ثبت نام نام کاربر را نمایش می دهد.
+- یک برنامه فروشگاهی قیمت محصول را نمایش می دهد.
+- یک برنامه آموزشی اطلاعات دانش آموز را نمایش می دهد.
+
+ما به روشی نیاز داریم که بتوانیم مقدارها را داخل متن قرار دهیم.
+
+پایتون روش های مختلفی برای این کار دارد.
+
+مهم ترین روش مدرن:
+
+**f-string**
+
+است.
+
+---
+
+# String Concatenation
+
+ساده ترین روش ترکیب Stringها استفاده از `+` است.
+
+برای مثال:
+
+first_name = "Ahmad"
+last_name = "Ahmadi"
+
+full_name = first_name + " " + last_name
+
+print(full_name)
+
+خروجی:
+
+Ahmad Ahmadi
+
+عملگر `+` چند String را به یکدیگر متصل می کند.
+
+---
+
+## ترکیب چند مقدار
+
+می توانیم چند String را نیز با هم ترکیب کنیم:
+
+first_name = "Ahmad"
+last_name = "Ahmadi"
+city = "Tehran"
+
+message = first_name + " " + last_name + " lives in " + city
+
+print(message)
+
+خروجی:
+
+Ahmad Ahmadi lives in Tehran
+
+این روش کار می کند، اما وقتی تعداد مقدارها زیاد شود، کد طولانی و سخت خوانا می شود.
+
+---
+
+# مشکل ترکیب Data Typeهای مختلف
+
+کد زیر را در نظر بگیرید:
+
+age = 25
+
+print("I am " + age + " years old.")
+
+این کد خطا ایجاد می کند.
+
+چرا؟
+
+چون:
+
+"I am "
+
+یک String است، اما:
+
+age
+
+یک Integer است.
+
+پایتون اجازه نمی دهد Integer را مستقیماً با `+` به String متصل کنیم.
+
+باید Integer را به String تبدیل کنیم:
+
+age = 25
+
+print("I am " + str(age) + " years old.")
+
+خروجی:
+
+I am 25 years old.
+
+---
+
+# تابع `str()`
+
+تابع `str()` یک مقدار را به String تبدیل می کند.
+
+برای مثال:
+
+age = 25
+
+text = str(age)
+
+print(text)
+print(type(text))
+
+خروجی:
+
+25
+<class 'str'>
+
+قبل از تبدیل:
+
+age
+
+یک Integer بود.
+
+بعد از:
+
+str(age)
+
+یک String داریم.
+
+همین کار با عدد اعشاری نیز امکان پذیر است:
+
+score = 92.5
+
+print("My score is " + str(score))
+
+خروجی:
+
+My score is 92.5
+
+---
+
+# چرا Concatenation می تواند سخت شود؟
+
+این کد را ببینید:
+
+name = "Ahmad"
+age = 25
+city = "Tehran"
+score = 92.5
+
+print(
+    "My name is " + name +
+    ", I am " + str(age) +
+    " years old, I live in " + city +
+    ", and my score is " + str(score) + "."
+)
+
+برنامه درست کار می کند، اما عبارت طولانی و نگهداری آن سخت است.
+
+پایتون راه تمیزتری ارائه می دهد.
+
+---
+
+# f-String
+
+f-string به ما اجازه می دهد مقدار متغیرها را مستقیماً داخل متن قرار دهیم.
+
+ساختار پایه:
+
+f"text {variable}"
+
+برای مثال:
+
+name = "Ahmad"
+age = 25
+
+print(f"My name is {name} and I am {age} years old.")
+
+خروجی:
+
+My name is Ahmad and I am 25 years old.
+
+به `f` قبل از علامت نقل قول توجه کنید:
+
+f"..."
+
+متغیر داخل آکولاد قرار می گیرد:
+
+{name}
+
+و:
+
+{age}
+
+این یکی از مهم ترین روش های String Formatting در پایتون است.
+
+---
+
+# قرار دادن چند متغیر در f-String
+
+می توانیم چند متغیر را داخل یک f-string قرار دهیم:
+
+name = "Ahmad"
+age = 25
+city = "Tehran"
+
+print(f"My name is {name}, I am {age} years old, and I live in {city}.")
+
+خروجی:
+
+My name is Ahmad, I am 25 years old, and I live in Tehran.
+
+---
+
+# قرار دادن Expression داخل `{}`
+
+محتوای داخل `{}` فقط نباید یک متغیر باشد.
+
+می توانیم Expression نیز داخل آن قرار دهیم.
+
+برای مثال:
+
+age = 25
+
+print(f"Next year I will be {age + 1}.")
+
+خروجی:
+
+Next year I will be 26.
+
+مثال دیگر:
+
+a = 10
+b = 20
+
+print(f"The sum is {a + b}.")
+
+خروجی:
+
+The sum is 30.
+
+حتی می توانیم تابع استفاده کنیم:
+
+name = "ahmad"
+
+print(f"Hello {name.title()}!")
+
+خروجی:
+
+Hello Ahmad!
+
+یا از Method استفاده کنیم:
+
+text = "python programming"
+
+print(f"Uppercase: {text.upper()}")
+
+خروجی:
+
+Uppercase: PYTHON PROGRAMMING
+
+نکته مهم:
+
+Expression داخل `{}` توسط پایتون محاسبه می شود.
+
+---
+
+# ترکیب مطالب بخش های قبلی با f-String
+
+حالا می توانیم مطالب بخش های قبلی را با هم ترکیب کنیم.
+
+فرض کنید:
+
+text = "Python Programming"
+
+می توانیم از Indexing استفاده کنیم:
+
+print(f"First character: {text[0]}")
+
+خروجی:
+
+First character: P
+
+از Slicing استفاده کنیم:
+
+print(f"First three characters: {text[:3]}")
+
+خروجی:
+
+First three characters: Pyt
+
+از String Method استفاده کنیم:
+
+print(f"Lowercase: {text.lower()}")
+
+خروجی:
+
+Lowercase: python programming
+
+از `len()` استفاده کنیم:
+
+print(f"Length: {len(text)}")
+
+خروجی:
+
+Length: 18
+
+این دقیقاً همان جایی است که مفاهیم مختلف شروع به ترکیب شدن می کنند.
+
+---
+
+# قالب بندی اعداد
+
+String Formatting هنگام کار با اعداد اهمیت بسیار زیادی پیدا می کند.
+
+فرض کنید:
+
+price = 19.987654
+
+اگر بنویسیم:
+
+print(f"Price: {price}")
+
+خروجی:
+
+Price: 19.987654
+
+اما شاید فقط دو رقم اعشار بخواهیم.
+
+می توانیم بنویسیم:
+
+print(f"Price: {price:.2f}")
+
+خروجی:
+
+Price: 19.99
+
+ساختار کلی:
+
+{value:.2f}
+
+در اینجا:
+
+- `:` شروع دستور قالب بندی است.
+- `.2` یعنی دو رقم اعشار.
+- `f` یعنی Fixed-Point notation.
+
+---
+
+# مثال های بیشتر با `.2f`
+
+number = 10
+
+print(f"{number:.2f}")
+
+خروجی:
+
+10.00
+
+مثال دیگر:
+
+number = 3.14159265
+
+print(f"{number:.2f}")
+
+خروجی:
+
+3.14
+
+و:
+
+print(f"{number:.4f}")
+
+خروجی:
+
+3.1416
+
+---
+
+# گرد کردن و قالب بندی
+
+وقتی یک عدد را با دو رقم اعشار نمایش می دهیم، نحوه نمایش آن تغییر می کند.
+
+برای مثال:
+
+number = 7.456
+
+print(f"{number:.2f}")
+
+خروجی:
+
+7.46
+
+اما مقدار اصلی متغیر تغییر نکرده است:
+
+number = 7.456
+
+print(f"{number:.2f}")
+print(number)
+
+خروجی:
+
+7.46
+7.456
+
+قالب بندی فقط نحوه نمایش مقدار را کنترل می کند.
+
+---
+
+# جداکننده هزارگان
+
+اعداد بزرگ ممکن است خواندن سختی داشته باشند.
+
+برای مثال:
+
+population = 12500000
+
+print(f"{population:,}")
+
+خروجی:
+
+12,500,000
+
+می توانیم جداکننده هزارگان را با قالب بندی اعشار ترکیب کنیم:
+
+number = 1234567.891
+
+print(f"{number:,.2f}")
+
+خروجی:
+
+1,234,567.89
+
+این قابلیت برای مواردی مثل:
+
+- پول
+- جمعیت
+- آمار
+- مقادیر بزرگ
+- داده های مالی
+
+بسیار کاربردی است.
+
+---
+
+# قالب بندی درصد
+
+فرض کنید:
+
+rate = 0.875
+
+اگر بنویسیم:
+
+print(f"{rate}")
+
+خروجی:
+
+0.875
+
+اما شاید بخواهیم:
+
+87.5%
+
+نمایش داده شود.
+
+از قالب بندی `%` استفاده می کنیم:
+
+print(f"{rate:.1%}")
+
+خروجی:
+
+87.5%
+
+پایتون مقدار را به درصد تبدیل می کند و علامت `%` را اضافه می کند.
+
+مثال دیگر:
+
+success_rate = 0.9234
+
+print(f"Success rate: {success_rate:.2%}")
+
+خروجی:
+
+Success rate: 92.34%
+
+---
+
+# تفاوت `.2f` و `.2%`
+
+این دو قالب با هم متفاوت هستند.
+
+برای:
+
+rate = 0.92
+
+اگر بنویسیم:
+
+print(f"{rate:.2f}")
+
+خروجی:
+
+0.92
+
+اما:
+
+print(f"{rate:.2%}")
+
+خروجی:
+
+92.00%
+
+پس:
+
+`.2f`
+
+یعنی دو رقم اعشار.
+
+`.2%`
+
+یعنی درصد با دو رقم اعشار.
+
+---
+
+# نمایش علامت مثبت و منفی
+
+می توانیم نحوه نمایش علامت اعداد را نیز کنترل کنیم.
+
+برای مثال:
+
+profit = 2500
+
+print(f"Profit: {profit:+}")
+
+خروجی:
+
+Profit: +2500
+
+و:
+
+loss = -500
+
+print(f"Loss: {loss:+}")
+
+خروجی:
+
+Loss: -500
+
+گزینه `+` باعث می شود علامت عدد به صورت صریح نمایش داده شود.
+
+---
+
+# Width
+
+گاهی می خواهیم مقدار در یک فضای مشخص قرار بگیرد.
+
+برای مثال:
+
+name = "Ahmad"
+
+print(f"{name:10}")
+
+String داخل یک Field با عرض ۱۰ کاراکتر قرار می گیرد.
+
+این قابلیت هنگام ساخت جدول بسیار کاربردی است.
+
+---
+
+# تراز کردن از چپ
+
+برای تراز کردن از سمت چپ از:
+
+`<`
+
+استفاده می کنیم.
+
+مثال:
+
+name = "Ahmad"
+
+print(f"{name:<10}")
+
+متن از سمت چپ Field قرار می گیرد.
+
+به صورت مفهومی:
+
+Ahmad     
+
+---
+
+# تراز کردن از راست
+
+برای تراز کردن از سمت راست از:
+
+`>`
+
+استفاده می کنیم.
+
+مثال:
+
+name = "Ahmad"
+
+print(f"{name:>10}")
+
+به صورت مفهومی:
+
+     Ahmad
+
+متن از سمت راست Field قرار می گیرد.
+
+---
+
+# تراز کردن در مرکز
+
+برای قرار دادن متن در مرکز از:
+
+`^`
+
+استفاده می کنیم.
+
+مثال:
+
+name = "Ahmad"
+
+print(f"{name:^10}")
+
+متن در مرکز Field قرار می گیرد.
+
+---
+
+# کاراکتر پرکننده
+
+می توانیم تعیین کنیم فضای خالی با چه کاراکتری پر شود.
+
+برای مثال:
+
+name = "Ahmad"
+
+print(f"{name:*<10}")
+
+خروجی:
+
+Ahmad*****
+
+کاراکتر `*` به عنوان Fill Character استفاده شده است.
+
+می توانیم با Right Alignment نیز استفاده کنیم:
+
+print(f"{name:*>10}")
+
+خروجی:
+
+*****Ahmad
+
+یا Center Alignment:
+
+print(f"{name:*^10}")
+
+خروجی:
+
+**Ahmad***
+
+این قابلیت برای ساخت رابط های ساده در Console مفید است.
+
+---
+
+# قالب بندی اعداد با Width
+
+Width را می توان برای اعداد نیز استفاده کرد.
+
+score = 95
+
+print(f"{score:>10}")
+
+عدد در سمت راست یک Field با عرض ۱۰ قرار می گیرد.
+
+این روش هنگام ساخت ستون های عددی بسیار کاربردی است.
+
+---
+
+# ساخت یک جدول ساده
+
+فرض کنید:
+
+name1 = "Ahmad"
+score1 = 95
+
+name2 = "Sara"
+score2 = 88
+
+می توانیم بنویسیم:
+
+print(f"{'Name':<10}{'Score':>10}")
+print(f"{name1:<10}{score1:>10}")
+print(f"{name2:<10}{score2:>10}")
+
+خروجی:
+
+Name           Score
+Ahmad             95
+Sara              88
+
+حالا خروجی بسیار مرتب تر شده است.
+
+---
+
+# ترکیب Width و قالب بندی اعشار
+
+می توانیم چند دستور قالب بندی را با هم ترکیب کنیم.
+
+برای مثال:
+
+price = 1234.5678
+
+print(f"{price:>15,.2f}")
+
+خروجی:
+
+       1,234.57
+
+در اینجا داریم:
+
+`>` → تراز کردن از راست
+
+`15` → عرض Field
+
+`,` → جداکننده هزارگان
+
+`.2f` → دو رقم اعشار
+
+این مثال خوبی برای ترکیب چند دستور قالب بندی است.
+
+---
+
+# ساختار کلی Format Specifier
+
+به صورت ساده می توانیم قالب بندی را این طور تصور کنیم:
+
+{value:[fill][align][width][,][.precision][type]}
+
+لازم نیست همیشه همه قسمت ها را بنویسیم.
+
+مثلاً:
+
+{price:.2f}
+
+فقط Precision و Type را دارد.
+
+یا:
+
+{name:<10}
+
+از Alignment و Width استفاده می کند.
+
+یا:
+
+{number:,.2f}
+
+از جداکننده هزارگان و Precision استفاده می کند.
+
+وقتی اجزای مختلف را بشناسیم، قالب بندی های پیچیده تر نیز بسیار ساده تر می شوند.
+
+---
+
+# قالب بندی با `format()`
+
+قبل از اینکه f-string به روش رایج تبدیل شود، برنامه نویسان پایتون زیاد از متد `format()` استفاده می کردند.
+
+مثال:
+
+name = "Ahmad"
+age = 25
+
+print("My name is {} and I am {} years old.".format(name, age))
+
+خروجی:
+
+My name is Ahmad and I am 25 years old.
+
+علامت های `{}` نقش Placeholder دارند.
+
+مقدارها با:
+
+format()
+
+تأمین می شوند.
+
+---
+
+# آرگومان های Position در `format()`
+
+می توانیم موقعیت آرگومان ها را مشخص کنیم.
+
+name = "Ahmad"
+age = 25
+
+print("Name: {0}, Age: {1}".format(name, age))
+
+خروجی:
+
+Name: Ahmad, Age: 25
+
+می توانیم ترتیب را نیز تغییر دهیم:
+
+print("Age: {1}, Name: {0}".format(name, age))
+
+خروجی:
+
+Age: 25, Name: Ahmad
+
+---
+
+# آرگومان های نام گذاری شده در `format()`
+
+می توانیم از آرگومان های نام گذاری شده نیز استفاده کنیم.
+
+print(
+    "Name: {name}, Age: {age}".format(
+        name="Ahmad",
+        age=25
+    )
+)
+
+خروجی:
+
+Name: Ahmad, Age: 25
+
+این روش در Formattingهای پیچیده می تواند خوانایی را بهتر کند.
+
+---
+
+# قالب بندی اعداد با `format()`
+
+همان روش های قالب بندی را می توانیم با `format()` نیز استفاده کنیم.
+
+price = 19.987654
+
+print("Price: {:.2f}".format(price))
+
+خروجی:
+
+Price: 19.99
+
+جداکننده هزارگان:
+
+number = 1234567
+
+print("{:,}".format(number))
+
+خروجی:
+
+1,234,567
+
+درصد:
+
+rate = 0.875
+
+print("{:.1%}".format(rate))
+
+خروجی:
+
+87.5%
+
+---
+
+# مقایسه f-String و `format()`
+
+مقایسه کنید:
+
+### f-string
+
+name = "Ahmad"
+age = 25
+
+print(f"My name is {name} and I am {age} years old.")
+
+### `format()`
+
+name = "Ahmad"
+age = 25
+
+print("My name is {} and I am {} years old.".format(name, age))
+
+هر دو روش درست هستند.
+
+اما در Python مدرن معمولاً f-string به دلیل کوتاه تر و خواناتر بودن ترجیح داده می شود.
+
+---
+
+# قالب بندی Expressionها
+
+در f-string می توانیم نتیجه یک Expression را نیز قالب بندی کنیم.
+
+a = 10
+b = 3
+
+print(f"Result: {a / b:.2f}")
+
+خروجی:
+
+Result: 3.33
+
+در اینجا:
+
+a / b
+
+ابتدا محاسبه می شود.
+
+سپس نتیجه با دو رقم اعشار نمایش داده می شود.
+
+---
+
+# قالب بندی نتیجه یک محاسبه
+
+می توانیم محاسبات و Formatting را با هم ترکیب کنیم.
+
+price = 100
+discount = 0.15
+
+final_price = price * (1 - discount)
+
+print(f"Final price: ${final_price:.2f}")
+
+خروجی:
+
+Final price: $85.00
+
+این مثال نسبت به قالب بندی یک متغیر ساده، کاربرد واقعی تری دارد.
+
+---
+
+# قالب بندی ورودی کاربر
+
+به یاد داشته باشید که `input()` همیشه یک String برمی گرداند.
+
+فرض کنید:
+
+age = input("Enter your age: ")
+
+اگر کاربر وارد کند:
+
+25
+
+متغیر:
+
+age
+
+هنوز String است.
+
+اگر به Integer نیاز داشته باشیم:
+
+age = int(input("Enter your age: "))
+
+حالا می توانیم محاسبات انجام دهیم:
+
+age = int(input("Enter your age: "))
+
+print(f"Next year you will be {age + 1}.")
+
+---
+
+# مثال کاربردی — گزارش دانش آموز
+
+فرض کنید:
+
+name = "Ahmad"
+math = 18.5
+physics = 17.75
+programming = 19.25
+
+average = (math + physics + programming) / 3
+
+print(f"Student: {name}")
+print(f"Math: {math:.2f}")
+print(f"Physics: {physics:.2f}")
+print(f"Programming: {programming:.2f}")
+print(f"Average: {average:.2f}")
+
+خروجی:
+
+Student: Ahmad
+Math: 18.50
+Physics: 17.75
+Programming: 19.25
+Average: 18.50
+
+---
+
+# مثال کاربردی — رسید خرید
+
+product = "Keyboard"
+price = 49.987
+quantity = 2
+
+total = price * quantity
+
+print("----- Receipt -----")
+print(f"Product: {product}")
+print(f"Price: ${price:.2f}")
+print(f"Quantity: {quantity}")
+print(f"Total: ${total:.2f}")
+
+خروجی:
+
+----- Receipt -----
+Product: Keyboard
+Price: $49.99
+Quantity: 2
+Total: $99.97
+
+---
+
+# مثال کاربردی — امتیاز بازی
+
+player = "Ahmad"
+score = 12500
+accuracy = 0.9345
+
+print(f"Player: {player}")
+print(f"Score: {score:,}")
+print(f"Accuracy: {accuracy:.1%}")
+
+خروجی:
+
+Player: Ahmad
+Score: 12,500
+Accuracy: 93.5%
+
+---
+
+# مثال کاربردی — تایمر
+
+seconds = 125
+
+minutes = seconds // 60
+remaining_seconds = seconds % 60
+
+print(f"Time remaining: {minutes}:{remaining_seconds:02d}")
+
+خروجی:
+
+Time remaining: 2:05
+
+قسمت مهم:
+
+`02d`
+
+یعنی عدد باید حداقل دو رقم داشته باشد.
+
+بنابراین:
+
+5
+
+به شکل:
+
+05
+
+نمایش داده می شود.
+
+این تکنیک برای مواردی مثل:
+
+- Timer
+- ساعت
+- تاریخ
+- امتیاز
+- شمارنده
+
+بسیار کاربردی است.
+
+---
+
+# Zero Padding
+
+فرض کنید:
+
+number = 7
+
+print(f"{number:02d}")
+
+خروجی:
+
+07
+
+برای سه رقم:
+
+print(f"{number:03d}")
+
+خروجی:
+
+007
+
+مثال دیگر:
+
+hour = 9
+minute = 5
+second = 3
+
+print(f"{hour:02d}:{minute:02d}:{second:02d}")
+
+خروجی:
+
+09:05:03
+
+این یکی از تکنیک های رایج Formatting است.
+
+---
+
+# نمایش آکولادهای واقعی
+
+آکولادها داخل f-string معنای خاصی دارند.
+
+برای مثال:
+
+name = "Ahmad"
+
+print(f"Hello {name}")
+
+اینجا:
+
+{name}
+
+یعنی مقدار متغیر `name` را قرار بده.
+
+اما اگر واقعاً بخواهیم آکولاد نمایش دهیم چه؟
+
+از آکولاد دوتایی استفاده می کنیم:
+
+print(f"{{name}}")
+
+خروجی:
+
+{name}
+
+بنابراین:
+
+`{{`
+
+یک:
+
+{
+
+می سازد.
+
+و:
+
+`}}`
+
+یک:
+
+}
+
+می سازد.
+
+---
+
+# قالب بندی Boolean
+
+می توانیم مقدارهای Boolean را نیز داخل f-string قرار دهیم.
+
+is_logged_in = True
+
+print(f"Logged in: {is_logged_in}")
+
+خروجی:
+
+Logged in: True
+
+می توانیم Expression نیز استفاده کنیم:
+
+age = 20
+
+print(f"Adult: {age >= 18}")
+
+خروجی:
+
+Adult: True
+
+این مثال نشان می دهد Expression داخل `{}` می تواند یک مقدار Boolean نیز تولید کند.
+
+---
+
+# استفاده از Conditional Expression
+
+پایتون اجازه می دهد Conditional Expression را نیز داخل f-string قرار دهیم.
+
+age = 20
+
+print(f"Status: {'Adult' if age >= 18 else 'Minor'}")
+
+خروجی:
+
+Status: Adult
+
+این قابلیت قدرتمند است، اما بهتر است قبل از استفاده از Expressionهای پیچیده، ساختار ساده f-string را کاملاً یاد بگیریم.
+
+---
+
+# Formatting و خوانایی
+
+String Formatting فقط برای زیباتر کردن خروجی نیست.
+
+باعث خواناتر شدن خود کد نیز می شود.
+
+این دو کد را مقایسه کنید:
+
+name = "Ahmad"
+score = 95
+
+print("Student " + name + " has a score of " + str(score) + ".")
+
+و:
+
+print(f"Student {name} has a score of {score}.")
+
+نسخه دوم بسیار ساده تر خوانده می شود.
+
+Formatting خوب کمک می کند کدی بنویسیم که افراد دیگر نیز بتوانند آن را راحت تر بخوانند و نگهداری کنند.
+
+---
+
+# یک مثال کامل
+
+حالا چند مفهوم بخش های قبلی را با هم ترکیب کنیم.
+
+برنامه از کاربر:
+
+- نام
+- سن
+- نمره
+
+را دریافت می کند و یک گزارش مرتب می سازد.
+
+name = input("Enter your name: ").strip().title()
+age = int(input("Enter your age: "))
+score = float(input("Enter your score: "))
+
+print()
+print("----- Student Report -----")
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"Score: {score:.2f}")
+
+خروجی می تواند چیزی شبیه این باشد:
+
+----- Student Report -----
+Name: Ahmad
+Age: 25
+Score: 92.50
+
+در این مثال چند مفهوم را با هم ترکیب کرده ایم:
+
+- `input()`
+- `strip()`
+- `title()`
+- `int()`
+- `float()`
+- f-string
+- Number Formatting
+
+این دقیقاً نوع ترکیبی است که باید در ادامه پروژه بیشتر تمرین کنیم.
+
+---
+
+# تمرین ها
+
+## تمرین ۱ — f-String ساده
+
+کد زیر را ایجاد کنید:
+
+name = "Ali"
+age = 20
+
+با استفاده از f-string خروجی زیر را ایجاد کنید:
+
+My name is Ali and I am 20 years old.
+
+---
+
+## تمرین ۲ — چند متغیر
+
+ایجاد کنید:
+
+name = "Sara"
+city = "Shiraz"
+age = 22
+
+هر سه مقدار را با استفاده از یک f-string در یک جمله نمایش دهید.
+
+---
+
+## تمرین ۳ — Expression داخل `{}`
+
+ایجاد کنید:
+
+a = 15
+b = 7
+
+خروجی:
+
+The sum is 22.
+
+را تولید کنید.
+
+این بار Expression را مستقیماً داخل f-string قرار دهید.
+
+---
+
+## تمرین ۴ — استفاده از String Method داخل f-String
+
+ایجاد کنید:
+
+name = "aHMAD"
+
+با استفاده از `title()` داخل f-string خروجی:
+
+Hello Ahmad!
+
+را ایجاد کنید.
+
+---
+
+## تمرین ۵ — Indexing و Formatting
+
+ایجاد کنید:
+
+text = "Python"
+
+با استفاده از یک f-string نمایش دهید:
+
+First character: P
+Last character: n
+
+برای پیدا کردن این دو کاراکتر از String Indexing استفاده کنید.
+
+---
+
+## تمرین ۶ — Slicing و Formatting
+
+ایجاد کنید:
+
+text = "Programming"
+
+خروجی:
+
+First four characters: Prog
+
+را با استفاده از Slicing داخل f-string تولید کنید.
+
+---
+
+## تمرین ۷ — قالب بندی اعشار
+
+ایجاد کنید:
+
+price = 19.98765
+
+قیمت را دقیقاً با دو رقم اعشار نمایش دهید.
+
+نتیجه:
+
+19.99
+
+---
+
+## تمرین ۸ — درصد
+
+ایجاد کنید:
+
+success_rate = 0.8765
+
+خروجی:
+
+87.65%
+
+را با استفاده از Percentage Formatting نمایش دهید.
+
+---
+
+## تمرین ۹ — جداکننده هزارگان
+
+ایجاد کنید:
+
+population = 12500000
+
+خروجی:
+
+12,500,000
+
+را تولید کنید.
+
+---
+
+## تمرین ۱۰ — ترکیب قالب های عددی
+
+ایجاد کنید:
+
+price = 1234567.8912
+
+خروجی:
+
+1,234,567.89
+
+را تولید کنید.
+
+از:
+
+- جداکننده هزارگان
+- دو رقم اعشار
+
+هم زمان استفاده کنید.
+
+---
+
+## تمرین ۱۱ — Alignment
+
+ایجاد کنید:
+
+name = "Ahmad"
+
+نام را:
+
+- از چپ در یک Field با عرض ۱۵
+- از راست در یک Field با عرض ۱۵
+- در مرکز یک Field با عرض ۱۵
+
+نمایش دهید.
+
+---
+
+## تمرین ۱۲ — Custom Fill
+
+ایجاد کنید:
+
+name = "Python"
+
+با استفاده از `*` به عنوان Fill Character خروجی هایی مشابه این ایجاد کنید:
+
+Python*********
+*********Python
+****Python*****
+
+سعی کنید دقیقاً متوجه شوید Width و Alignment چگونه کار می کنند.
+
+---
+
+## تمرین ۱۳ — میانگین دانش آموز
+
+ایجاد کنید:
+
+math = 18.5
+physics = 17.25
+programming = 19.75
+
+میانگین را محاسبه کنید و با دو رقم اعشار نمایش دهید.
+
+---
+
+## تمرین ۱۴ — رسید خرید
+
+ایجاد کنید:
+
+product = "Mouse"
+price = 25.987
+quantity = 3
+
+مجموع قیمت را محاسبه کنید.
+
+خروجی:
+
+----- Receipt -----
+Product: Mouse
+Price: $25.99
+Quantity: 3
+Total: $77.96
+
+---
+
+## تمرین ۱۵ — ورودی کاربر
+
+از کاربر:
+
+- نام
+- سن
+- شهر
+
+را دریافت کنید.
+
+سپس تمام اطلاعات را با استفاده از f-string نمایش دهید.
+
+نام را حتماً با `strip()` تمیز کنید.
+
+---
+
+## تمرین ۱۶ — محاسبه سن
+
+سن کاربر را دریافت کنید.
+
+نمایش دهید:
+
+Current age: 25
+Next year: 26
+In five years: 30
+
+عددها باید توسط برنامه محاسبه شوند و نباید دستی نوشته شوند.
+
+---
+
+## تمرین ۱۷ — قالب بندی Timer
+
+از کاربر تعداد ثانیه را دریافت کنید.
+
+آن را به:
+
+minutes
+seconds
+
+تبدیل کنید.
+
+سپس در قالب زیر نمایش دهید:
+
+02:05
+
+از Zero Padding استفاده کنید.
+
+---
+
+## تمرین ۱۸ — امتیاز بازی
+
+ایجاد کنید:
+
+player = "Ahmad"
+score = 12500
+accuracy = 0.9345
+
+خروجی:
+
+Player: Ahmad
+Score: 12,500
+Accuracy: 93.45%
+
+را ایجاد کنید.
+
+---
+
+# چالش نهایی الگوریتمی
+
+برنامه ای با نام:
+
+Student Report Generator
+
+بسازید.
+
+برنامه باید از کاربر اطلاعات زیر را دریافت کند:
+
+1. نام دانش آموز
+2. سن دانش آموز
+3. نمره ریاضی
+4. نمره فیزیک
+5. نمره برنامه نویسی
+
+سپس برنامه باید:
+
+1. نام دانش آموز را با `strip()` تمیز کند.
+2. نام را با `title()` قالب بندی کند.
+3. سن را به Integer تبدیل کند.
+4. نمره ها را به Floating-Point تبدیل کند.
+5. میانگین نمره ها را محاسبه کند.
+6. درصد میانگین نسبت به ۲۰ را محاسبه کند.
+7. مشخص کند دانش آموز قبول شده یا نه.
+8. یک گزارش مرتب و قالب بندی شده نمایش دهد.
+
+خروجی باید چیزی شبیه این باشد:
+
+----- Student Report -----
+
+Name: Ahmad Ahmadi
+Age: 20
+
+Math:         18.50
+Physics:      17.75
+Programming:  19.25
+
+Average:      18.50
+Percentage:   92.50%
+Status:       Passed
+
+تمام مقدارها باید به صورت Dynamic محاسبه شوند.
+
+نباید عددهای نهایی را به صورت دستی داخل خروجی بنویسید.
+
+---
+
+# با تفکر الگوریتمی شروع کنید
+
+قبل از نوشتن کد، مسئله را به چند مرحله کوچک تقسیم کنید.
+
+به این روند فکر کنید:
+
+دریافت نام
+↓
+تمیز کردن نام
+↓
+قالب بندی نام
+↓
+دریافت سن
+↓
+تبدیل سن به Integer
+↓
+دریافت نمره ریاضی
+↓
+تبدیل به Float
+↓
+دریافت نمره فیزیک
+↓
+تبدیل به Float
+↓
+دریافت نمره برنامه نویسی
+↓
+تبدیل به Float
+↓
+محاسبه میانگین
+↓
+محاسبه درصد
+↓
+بررسی وضعیت قبولی
+↓
+قالب بندی اعداد
+↓
+نمایش گزارش
+
+حالا مشخص کنید برای حل این مسئله به کدام مفاهیم بخش های قبلی نیاز دارید.
+
+باید متوجه شوید که این چالش چند مفهوم را با هم ترکیب می کند:
+
+- input
+- String
+- String Method
+- `strip()`
+- `title()`
+- Type Conversion
+- Integer
+- Float
+- Arithmetic
+- Condition
+- f-String
+- Number Formatting
+
+این ترکیب کاملاً عمدی است.
+
+هدف فقط یادگیری String Formatting نیست.
+
+هدف این است که یاد بگیریم چگونه چند مفهوم برنامه نویسی را برای حل یک مسئله واقعی با هم ترکیب کنیم.
+
+---
+
+# پاسخ چالش نهایی
+
+قبل از دیدن جواب، ابتدا خودتان مسئله را حل کنید.
+
+یک راه حل ممکن:
+
+name = input("Enter student name: ").strip().title()
+age = int(input("Enter student age: "))
+
+math = float(input("Enter Math score: "))
+physics = float(input("Enter Physics score: "))
+programming = float(input("Enter Programming score: "))
+
+average = (math + physics + programming) / 3
+percentage = (average / 20) * 100
+
+if average >= 10:
+    status = "Passed"
+else:
+    status = "Failed"
+
+print()
+print("----- Student Report -----")
+print()
+print(f"Name: {name}")
+print(f"Age: {age}")
+print()
+print(f"Math:         {math:.2f}")
+print(f"Physics:      {physics:.2f}")
+print(f"Programming:  {programming:.2f}")
+print()
+print(f"Average:      {average:.2f}")
+print(f"Percentage:   {percentage:.2f}%")
+print(f"Status:       {status}")
+
+نکته مهم این است که هدف، حفظ کردن این جواب نیست.
+
+هدف این است که بفهمیم چگونه الگوریتم را به کد تبدیل کرده ایم.
+
+---
+

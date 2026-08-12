@@ -6678,3 +6678,639 @@ The main goal is to practice **nested lists together with the beginner concepts 
 
 ---
 
+# Part 7 — Copying Lists
+
+## 1. Why Do We Need to Copy a List?
+
+Sometimes we want to create another list based on an existing list.
+
+For example:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers.copy()
+
+print(numbers)
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+[10, 20, 30]
+```
+
+At first glance, both lists look exactly the same.
+
+However, an important question is:
+
+> Are they actually two separate lists?
+
+To answer this, we need to understand the difference between **assigning a list** and **copying a list**.
+
+---
+
+## 2. Assigning One List to Another Variable
+
+Consider this example:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers
+
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+It may look like we created a new list.
+
+But we did not create a new list.
+
+Both variables refer to the same list.
+
+We can see this by changing the second variable:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers
+
+numbers_copy[0] = 100
+
+print(numbers)
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[100, 20, 30]
+[100, 20, 30]
+```
+
+Changing `numbers_copy` also changed `numbers`.
+
+This happens because both variables refer to the same list.
+
+---
+
+## 3. The Difference Between Assignment and Copying
+
+Assignment:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers
+```
+
+does not create a new list.
+
+Instead, both variables refer to the same list.
+
+Copying:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers.copy()
+```
+
+creates a separate list.
+
+Now changing one list does not change the other.
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers.copy()
+
+numbers_copy[0] = 100
+
+print(numbers)
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+[100, 20, 30]
+```
+
+The original list remains unchanged.
+
+---
+
+## 4. Copying a List with `copy()`
+
+The `copy()` method is one of the simplest ways to create a copy of a list.
+
+```python
+numbers = [10, 20, 30, 40]
+
+numbers_copy = numbers.copy()
+
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+The two lists contain the same values, but they are separate lists.
+
+For beginner-level Python, this is usually the clearest way to communicate that we intentionally want a copy.
+
+---
+
+## 5. Copying a List with Slicing
+
+We can also create a copy using list slicing.
+
+```python
+numbers = [10, 20, 30, 40]
+
+numbers_copy = numbers[:]
+
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+The `[:]` slice selects all elements of the list and creates a new list.
+
+For example:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers[:]
+
+numbers_copy[1] = 200
+
+print(numbers)
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+[10, 200, 30]
+```
+
+The original list is not changed.
+
+---
+
+## 6. Copying a List with `list()`
+
+Another simple way to create a copy is to use the `list()` function.
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = list(numbers)
+
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+We can also verify that changing the copy does not change the original:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = list(numbers)
+
+numbers_copy.append(40)
+
+print(numbers)
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+[10, 20, 30, 40]
+```
+
+---
+
+## 7. Comparing the Three Simple Copying Methods
+
+There are several beginner-friendly ways to copy a list.
+
+### Using `copy()`
+
+```python
+numbers_copy = numbers.copy()
+```
+
+### Using slicing
+
+```python
+numbers_copy = numbers[:]
+```
+
+### Using `list()`
+
+```python
+numbers_copy = list(numbers)
+```
+
+All three create a separate list for a normal list of simple values.
+
+For readability, `copy()` is often the easiest choice when the intention is clearly to copy a list:
+
+```python
+numbers_copy = numbers.copy()
+```
+
+---
+
+## 8. Changing the Original and Copied List
+
+Once we have a real copy, we can change either list independently.
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers.copy()
+
+numbers[0] = 100
+
+print(numbers)
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[100, 20, 30]
+[10, 20, 30]
+```
+
+Changing the original did not change the copy.
+
+We can also change the copy:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers.copy()
+
+numbers_copy[2] = 300
+
+print(numbers)
+print(numbers_copy)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+[10, 20, 300]
+```
+
+The two lists are independent.
+
+---
+
+## 9. A Practical Example
+
+Suppose we have a list of student scores.
+
+```python
+scores = [18, 15, 20, 12, 17]
+
+original_scores = scores.copy()
+
+scores[0] = 10
+
+print(f"Original scores: {original_scores}")
+print(f"Updated scores: {scores}")
+```
+
+Output:
+
+```text
+Original scores: [18, 15, 20, 12, 17]
+Updated scores: [10, 15, 20, 12, 17]
+```
+
+The copied list preserves the original values.
+
+This can be useful when we want to keep the original data while working with a modified version.
+
+---
+
+## 10. Copying Before Making Changes
+
+A common practical pattern is:
+
+```python
+scores = [18, 15, 20, 12, 17]
+
+updated_scores = scores.copy()
+
+updated_scores.append(19)
+
+print(f"Original: {scores}")
+print(f"Updated: {updated_scores}")
+```
+
+Output:
+
+```text
+Original: [18, 15, 20, 12, 17]
+Updated: [18, 15, 20, 12, 17, 19]
+```
+
+This allows us to keep the original list unchanged.
+
+---
+
+## 11. Common Beginner Mistakes
+
+### Mistake 1 — Thinking Assignment Creates a Copy
+
+This does not create a separate list:
+
+```python
+numbers = [1, 2, 3]
+
+numbers_copy = numbers
+```
+
+If we change one:
+
+```python
+numbers_copy[0] = 100
+```
+
+the other one changes too.
+
+---
+
+### Mistake 2 — Forgetting to Copy Before Modification
+
+Suppose we want to preserve the original list.
+
+This is not enough:
+
+```python
+numbers = [1, 2, 3]
+
+new_numbers = numbers
+
+new_numbers.append(4)
+```
+
+Now both variables refer to:
+
+```text
+[1, 2, 3, 4]
+```
+
+Instead, create a copy:
+
+```python
+numbers = [1, 2, 3]
+
+new_numbers = numbers.copy()
+
+new_numbers.append(4)
+```
+
+Now:
+
+```text
+numbers     → [1, 2, 3]
+new_numbers → [1, 2, 3, 4]
+```
+
+---
+
+### Mistake 3 — Confusing Equal Values with the Same List
+
+Two lists can contain the same values while still being separate lists.
+
+```python
+numbers = [1, 2, 3]
+
+numbers_copy = numbers.copy()
+```
+
+Both contain:
+
+```text
+[1, 2, 3]
+```
+
+But changing one does not change the other.
+
+---
+
+# 12. Important Summary
+
+When we write:
+
+```python
+numbers_copy = numbers
+```
+
+we do not create a new list.
+
+Both variables refer to the same list.
+
+When we write:
+
+```python
+numbers_copy = numbers.copy()
+```
+
+we create a separate list.
+
+Other beginner-friendly ways to copy a list include:
+
+```python
+numbers_copy = numbers[:]
+```
+
+and:
+
+```python
+numbers_copy = list(numbers)
+```
+
+The most important distinction is:
+
+```text
+Assignment → same list
+Copying    → separate list
+```
+
+---
+
+# Exercises
+
+## Exercise 1 — Assignment or Copy?
+
+Predict the output before running this code:
+
+```python
+numbers = [10, 20, 30]
+
+numbers_copy = numbers
+
+numbers_copy[0] = 100
+
+print(numbers)
+print(numbers_copy)
+```
+
+Explain why both outputs are the same.
+
+---
+
+## Exercise 2 — Using `copy()`
+
+Create a list of five numbers.
+
+Create a copy using `copy()`.
+
+Change one element in the copied list.
+
+Print both lists and verify that the original list has not changed.
+
+---
+
+## Exercise 3 — Using Slicing
+
+Create a list of names.
+
+Create a copy using:
+
+```python
+names_copy = names[:]
+```
+
+Add a new name to the copied list.
+
+Print both lists.
+
+---
+
+## Exercise 4 — Using `list()`
+
+Create a list of numbers.
+
+Create a copy using:
+
+```python
+numbers_copy = list(numbers)
+```
+
+Remove one element from the copied list.
+
+Print both lists.
+
+---
+
+## Exercise 5 — Original and Updated Scores
+
+Create a list of student scores.
+
+Make a copy called `updated_scores`.
+
+Change some scores in `updated_scores`.
+
+Print:
+
+```text
+Original scores:
+Updated scores:
+```
+
+Verify that the original list remains unchanged.
+
+---
+
+## Exercise 6 — Three Lists
+
+Create an original list:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+```
+
+Create three separate copies using:
+
+1. `copy()`
+2. slicing
+3. `list()`
+
+Change an element in each copy.
+
+Print all four lists.
+
+---
+
+# Comprehensive Challenge
+
+Create a simple **Score Update System**.
+
+Start with:
+
+```python
+scores = [18, 15, 20, 12, 17]
+```
+
+Your program should:
+
+1. Preserve the original scores.
+2. Create a separate copy called `updated_scores`.
+3. Change at least two scores in `updated_scores`.
+4. Add a new score.
+5. Print the original scores.
+6. Print the updated scores.
+7. Make sure changing `updated_scores` does not change `scores`.
+
+Example output:
+
+```text
+----- Score Update System -----
+
+Original scores:
+[18, 15, 20, 12, 17]
+
+Updated scores:
+[18, 19, 20, 14, 17, 16]
+```
+
+The main goal is to understand the difference between **referring to the same list** and **creating a separate copy of a list**.
+
+---
+

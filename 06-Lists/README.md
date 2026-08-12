@@ -5777,3 +5777,904 @@ In the next section, we will explore more advanced List operations and learn how
 
 ---
 
+# Part 6 — Nested Lists
+
+A nested list is a list that contains one or more other lists as its elements.
+
+Nested lists are useful when data naturally has multiple levels.
+
+For example, a list of students can contain a list of scores for each student:
+
+```python
+student_scores = [
+    ["Ali", 18, 15, 20],
+    ["Sara", 17, 19, 16],
+    ["Reza", 12, 14, 10]
+]
+
+print(student_scores)
+```
+
+Output:
+
+```text
+[['Ali', 18, 15, 20], ['Sara', 17, 19, 16], ['Reza', 12, 14, 10]]
+```
+
+In this example, the outer list contains three inner lists.
+
+---
+
+## 1. What Are Nested Lists?
+
+A normal list can contain simple values:
+
+```python
+numbers = [10, 20, 30]
+```
+
+A nested list can contain other lists:
+
+```python
+numbers = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+```
+
+We can think of this structure as rows and columns:
+
+```text
+Row 1 → [1, 2, 3]
+Row 2 → [4, 5, 6]
+Row 3 → [7, 8, 9]
+```
+
+Each inner list is an element of the outer list.
+
+---
+
+## 2. Creating Nested Lists
+
+A nested list is created by placing lists inside another list.
+
+```python
+numbers = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print(numbers)
+```
+
+Output:
+
+```text
+[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+```
+
+Another example:
+
+```python
+students = [
+    ["Ali", 18],
+    ["Sara", 17],
+    ["Reza", 15]
+]
+
+print(students)
+```
+
+Output:
+
+```text
+[['Ali', 18], ['Sara', 17], ['Reza', 15]]
+```
+
+Here each inner list contains a student's name and score.
+
+---
+
+## 3. Accessing Elements in Nested Lists
+
+The first index selects an element from the outer list.
+
+```python
+numbers = [
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+]
+
+print(numbers[0])
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+`numbers[0]` gives us the first inner list.
+
+Similarly:
+
+```python
+print(numbers[1])
+```
+
+Output:
+
+```text
+[40, 50, 60]
+```
+
+And:
+
+```python
+print(numbers[2])
+```
+
+Output:
+
+```text
+[70, 80, 90]
+```
+
+---
+
+## 4. Using Multiple Indexes
+
+To access an individual value inside a nested list, we use two indexes.
+
+The first index selects the inner list.
+
+The second index selects an element inside that inner list.
+
+```python
+numbers = [
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+]
+
+print(numbers[0][1])
+```
+
+Output:
+
+```text
+20
+```
+
+Let's understand the two steps:
+
+```python
+numbers[0]
+```
+
+gives:
+
+```text
+[10, 20, 30]
+```
+
+Then:
+
+```python
+numbers[0][1]
+```
+
+selects index `1` from that inner list:
+
+```text
+20
+```
+
+Another example:
+
+```python
+print(numbers[2][0])
+```
+
+Output:
+
+```text
+70
+```
+
+The first `2` selects:
+
+```text
+[70, 80, 90]
+```
+
+The second `0` selects:
+
+```text
+70
+```
+
+---
+
+## 5. Accessing Nested Lists with Negative Indexes
+
+Negative indexes work with nested lists just like normal lists.
+
+```python
+numbers = [
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+]
+
+print(numbers[-1])
+```
+
+Output:
+
+```text
+[70, 80, 90]
+```
+
+We can also use a negative index for the inner list:
+
+```python
+print(numbers[-1][-1])
+```
+
+Output:
+
+```text
+90
+```
+
+The first `-1` selects the last inner list.
+
+The second `-1` selects the last element of that inner list.
+
+---
+
+## 6. Changing Elements in Nested Lists
+
+Nested lists are mutable, so their elements can be changed.
+
+```python
+numbers = [
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+]
+
+numbers[0][1] = 25
+
+print(numbers)
+```
+
+Output:
+
+```text
+[[10, 25, 30], [40, 50, 60], [70, 80, 90]]
+```
+
+The value `20` was changed to `25`.
+
+Another example:
+
+```python
+students = [
+    ["Ali", 18],
+    ["Sara", 17],
+    ["Reza", 15]
+]
+
+students[1][1] = 19
+
+print(students)
+```
+
+Output:
+
+```text
+[['Ali', 18], ['Sara', 19], ['Reza', 15]]
+```
+
+The score of `"Sara"` was changed from `17` to `19`.
+
+---
+
+## 7. Changing an Entire Inner List
+
+We can also replace an entire inner list.
+
+```python
+numbers = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+numbers[1] = [40, 50, 60]
+
+print(numbers)
+```
+
+Output:
+
+```text
+[[1, 2, 3], [40, 50, 60], [7, 8, 9]]
+```
+
+The entire second inner list was replaced.
+
+---
+
+## 8. Nested Lists with Loops
+
+We can use loops to process the elements of a nested list.
+
+First, we can use one loop to access each inner list:
+
+```python
+numbers = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for row in numbers:
+    print(row)
+```
+
+Output:
+
+```text
+[1, 2, 3]
+[4, 5, 6]
+[7, 8, 9]
+```
+
+The variable `row` represents one inner list at a time.
+
+---
+
+## 9. Nested Loops
+
+If we want to access every individual element, we can use a loop inside another loop.
+
+```python
+numbers = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for row in numbers:
+    for number in row:
+        print(number)
+```
+
+Output:
+
+```text
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+The outer loop processes each inner list.
+
+The inner loop processes each element inside that inner list.
+
+This is called a **nested loop**.
+
+---
+
+## 10. Printing a Nested List as Rows
+
+Nested lists are often easier to understand when printed row by row.
+
+```python
+numbers = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for row in numbers:
+    print(row)
+```
+
+Output:
+
+```text
+[1, 2, 3]
+[4, 5, 6]
+[7, 8, 9]
+```
+
+We can also print the individual values:
+
+```python
+for row in numbers:
+    for number in row:
+        print(number, end=" ")
+
+    print()
+```
+
+Output:
+
+```text
+1 2 3
+4 5 6
+7 8 9
+```
+
+The `print()` after the inner loop moves to the next line.
+
+---
+
+## 11. A Practical Example — Student Scores
+
+Suppose we have several students and their scores:
+
+```python
+students = [
+    ["Ali", 18, 15, 20],
+    ["Sara", 17, 19, 16],
+    ["Reza", 12, 14, 10]
+]
+
+for student in students:
+    print(student)
+```
+
+Output:
+
+```text
+['Ali', 18, 15, 20]
+['Sara', 17, 19, 16]
+['Reza', 12, 14, 10]
+```
+
+We can access each student's information separately:
+
+```python
+students = [
+    ["Ali", 18, 15, 20],
+    ["Sara", 17, 19, 16],
+    ["Reza", 12, 14, 10]
+]
+
+for student in students:
+    name = student[0]
+
+    print(f"Student: {name}")
+```
+
+Output:
+
+```text
+Student: Ali
+Student: Sara
+Student: Reza
+```
+
+---
+
+## 12. Calculating Scores
+
+We can combine nested lists with functions and loops learned earlier.
+
+```python
+students = [
+    ["Ali", 18, 15, 20],
+    ["Sara", 17, 19, 16],
+    ["Reza", 12, 14, 10]
+]
+
+for student in students:
+    name = student[0]
+    scores = student[1:]
+
+    total = sum(scores)
+    average = total / len(scores)
+
+    print(f"{name}: {average}")
+```
+
+Output:
+
+```text
+Ali: 17.666666666666668
+Sara: 17.333333333333332
+Reza: 12.0
+```
+
+We are combining several concepts we have already learned:
+
+- Lists
+- Indexing
+- Slicing
+- Variables
+- Loops
+- Functions
+- Arithmetic
+- Formatted strings
+
+---
+
+## 13. Nested Lists and Conditions
+
+We can also use conditions while processing nested lists.
+
+```python
+students = [
+    ["Ali", 18],
+    ["Sara", 9],
+    ["Reza", 15]
+]
+
+for student in students:
+    name = student[0]
+    score = student[1]
+
+    if score >= 10:
+        print(f"{name} → Passing")
+    else:
+        print(f"{name} → Failing")
+```
+
+Output:
+
+```text
+Ali → Passing
+Sara → Failing
+Reza → Passing
+```
+
+This is a good example of combining lists with conditions and loops.
+
+---
+
+## 14. Common Beginner Mistakes
+
+### Mistake 1 — Forgetting the second index
+
+Suppose we have:
+
+```python
+numbers = [
+    [10, 20],
+    [30, 40]
+]
+```
+
+This:
+
+```python
+print(numbers[0])
+```
+
+prints:
+
+```text
+[10, 20]
+```
+
+If we want `20`, we need:
+
+```python
+print(numbers[0][1])
+```
+
+---
+
+### Mistake 2 — Mixing Up the Indexes
+
+For:
+
+```python
+numbers = [
+    [10, 20],
+    [30, 40]
+]
+```
+
+This:
+
+```python
+numbers[1][0]
+```
+
+means:
+
+1. Select the second inner list.
+2. Select the first element.
+
+The result is:
+
+```text
+30
+```
+
+---
+
+### Mistake 3 — Using the Wrong Level of Loop
+
+If we only need each inner list:
+
+```python
+for row in numbers:
+    print(row)
+```
+
+If we need every individual number:
+
+```python
+for row in numbers:
+    for number in row:
+        print(number)
+```
+
+The second loop is necessary because each `row` is itself a list.
+
+---
+
+### Mistake 4 — Assuming Every Inner List Has the Same Size
+
+For example:
+
+```python
+students = [
+    ["Ali", 18, 15],
+    ["Sara", 17],
+    ["Reza", 12, 14, 10]
+]
+```
+
+The inner lists do not have the same number of elements.
+
+We should be careful when accessing indexes that may not exist.
+
+---
+
+# 15. Important Summary
+
+A nested list is a list that contains other lists.
+
+Example:
+
+```python
+numbers = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+```
+
+The first index selects an inner list:
+
+```python
+numbers[1]
+```
+
+Result:
+
+```text
+[4, 5, 6]
+```
+
+The second index selects an element from that inner list:
+
+```python
+numbers[1][2]
+```
+
+Result:
+
+```text
+6
+```
+
+We can change individual elements:
+
+```python
+numbers[0][1] = 20
+```
+
+And we can use nested loops to process all elements:
+
+```python
+for row in numbers:
+    for number in row:
+        print(number)
+```
+
+The most important idea in this section is:
+
+```text
+First index  → choose the inner list
+Second index → choose an element inside that list
+```
+
+---
+
+# Exercises
+
+## Exercise 1 — Create a Nested List
+
+Create a nested list containing three rows of numbers.
+
+Each row should contain three numbers.
+
+Print the nested list.
+
+---
+
+## Exercise 2 — Access Elements
+
+Using this list:
+
+```python
+numbers = [
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+]
+```
+
+Print:
+
+1. `10`
+2. `50`
+3. `90`
+
+---
+
+## Exercise 3 — Change Elements
+
+Using the same list, change:
+
+- `20` to `25`
+- `60` to `65`
+- `80` to `85`
+
+Print the final list.
+
+---
+
+## Exercise 4 — Print Rows
+
+Create a nested list containing three rows.
+
+Use a loop to print each row separately.
+
+---
+
+## Exercise 5 — Print Every Element
+
+Create a nested list containing numbers from `1` to `9`.
+
+Use nested loops to print every number separately.
+
+---
+
+## Exercise 6 — Student Scores
+
+Create a nested list like this:
+
+```python
+students = [
+    ["Ali", 18],
+    ["Sara", 12],
+    ["Reza", 9]
+]
+```
+
+Use a loop to print each student's name and score.
+
+---
+
+## Exercise 7 — Passing and Failing
+
+Using the same student list, use a condition to print:
+
+```text
+Ali → Passing
+Sara → Passing
+Reza → Failing
+```
+
+A score of `10` or higher should be considered passing.
+
+---
+
+## Exercise 8 — Student Averages
+
+Create a nested list containing student names and three scores for each student.
+
+Calculate and print the average score of every student.
+
+---
+
+# Comprehensive Challenge
+
+Create a simple **Student Score Manager** using a nested list.
+
+Start with:
+
+```python
+students = [
+    ["Ali", 18, 15, 20],
+    ["Sara", 17, 9, 16],
+    ["Reza", 12, 14, 10],
+    ["Mina", 20, 19, 18]
+]
+```
+
+Your program should:
+
+1. Print every student's name.
+2. Print every student's scores.
+3. Calculate the total score for each student.
+4. Calculate the average score for each student.
+5. Determine whether each student is passing or failing.
+6. Print the results in a readable format.
+7. Use concepts learned in previous sections such as variables, lists, indexing, slicing, loops, conditions, functions, and formatted strings.
+
+The goal is to understand how a nested list can represent a simple structured collection of data without introducing more advanced data structures.
+
+---
+
+# Final Challenge
+
+Create a small **Classroom Table** using a nested list.
+
+Use this starting data:
+
+```python
+classroom = [
+    ["Ali", 18],
+    ["Sara", 15],
+    ["Reza", 9],
+    ["Mina", 20]
+]
+```
+
+Your program should:
+
+1. Print all students.
+2. Print each student's score.
+3. Determine whether each student passed or failed.
+4. Calculate the total of all scores.
+5. Calculate the average score of the class.
+6. Use loops and conditions to produce a clean report.
+
+Example output:
+
+```text
+----- Classroom Report -----
+
+Ali → 18 → Passing
+Sara → 15 → Passing
+Reza → 9 → Failing
+Mina → 20 → Passing
+
+Total: 62
+Average: 15.5
+```
+
+The main goal is to practice **nested lists together with the beginner concepts learned in previous lessons**.
+
+---
+

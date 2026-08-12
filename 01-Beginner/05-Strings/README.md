@@ -6510,3 +6510,838 @@ format the final output
 ```
 
 This is the beginning of **algorithmic thinking**: taking raw information, transforming it step by step, making decisions, and producing a useful result.
+
+---
+
+# Part 8 — Strings and User Input
+
+In the previous parts, you learned how to:
+
+- Create strings
+- Use quotation marks
+- Access characters with indexing
+- Extract parts of strings with slicing
+- Use string methods
+- Format strings with f-strings
+
+Now we will combine these concepts with user input.
+
+A program becomes much more useful when it can receive text from the user, process that text, and produce a meaningful result.
+
+A common pattern in real programs is:
+
+    Input
+    ↓
+    Clean
+    ↓
+    Process
+    ↓
+    Format
+    ↓
+    Output
+
+The exercises in this section gradually combine the concepts you have learned so far.
+
+---
+
+## Exercise 1 — Ask for a Name
+
+Ask the user to enter their name.
+
+Then display:
+
+    Hello, Ahmad!
+
+Replace `Ahmad` with the user's input.
+
+Use an f-string.
+
+---
+
+## Exercise 2 — Clean the Name
+
+Ask the user to enter their name.
+
+The user might accidentally type spaces before or after the name.
+
+For example:
+
+    "   Ahmad   "
+
+Remove the unnecessary spaces and display:
+
+    Hello, Ahmad!
+
+Use `.strip()`.
+
+---
+
+## Exercise 3 — Format the Name
+
+Ask the user to enter their name in lowercase.
+
+Example:
+
+    Enter your name: ahmad
+
+Display:
+
+    Name: Ahmad
+
+Use an appropriate string method.
+
+---
+
+## Exercise 4 — Analyze the Name
+
+Ask the user to enter their name.
+
+Display:
+
+    Name: Ahmad
+    Length: 5
+    First character: A
+    Last character: d
+
+Use:
+
+- `.strip()`
+- `.title()`
+- `len()`
+- Indexing
+- f-strings
+
+---
+
+## Exercise 5 — Username Generator
+
+Ask the user for:
+
+- First name
+- Last name
+
+Create a username using this format:
+
+    first.last
+
+Example:
+
+    First name: Ahmad
+    Last name: Rezaei
+
+    Username: ahmad.rezaei
+
+The username must be lowercase.
+
+Clean the input before creating the username.
+
+---
+
+## Exercise 6 — Email Generator
+
+Ask the user for:
+
+- First name
+- Last name
+
+Create an email address using:
+
+    first.last@example.com
+
+Example:
+
+    First name: Ahmad
+    Last name: Rezaei
+
+    Email: ahmad.rezaei@example.com
+
+Clean and format the names before creating the email.
+
+---
+
+## Exercise 7 — Extract Username from Email
+
+Ask the user for an email address.
+
+Example:
+
+    Enter email: ahmad@example.com
+
+Display:
+
+    Username: ahmad
+
+Use string methods or slicing.
+
+Do not manually type the username.
+
+---
+
+## Exercise 8 — Extract Domain
+
+Ask the user for an email address.
+
+Example:
+
+    Enter email: ahmad@example.com
+
+Display:
+
+    Domain: example.com
+
+Think about the position of `@` and how slicing can help you.
+
+---
+
+## Exercise 9 — Email Analyzer
+
+Ask the user for an email address.
+
+Example:
+
+    Enter email: ahmad@example.com
+
+Display:
+
+    Email: ahmad@example.com
+    Username: ahmad
+    Domain: example.com
+    Length: 17
+
+Combine:
+
+- String methods
+- Indexing or slicing
+- `len()`
+- f-strings
+
+---
+
+## Exercise 10 — Sentence Cleaner
+
+Ask the user to enter a sentence.
+
+The program should:
+
+1. Remove unnecessary spaces.
+2. Convert the sentence to lowercase.
+3. Display the cleaned sentence.
+
+Example:
+
+    Input:
+       PYTHON IS FUN
+
+    Output:
+    python is fun
+
+---
+
+## Exercise 11 — Sentence Information
+
+Ask the user to enter a sentence.
+
+Display:
+
+    Sentence: Python is easy.
+    Length: 16
+    Uppercase: PYTHON IS EASY.
+    Lowercase: python is easy.
+
+Use string methods.
+
+---
+
+## Exercise 12 — Search in a Sentence
+
+Ask the user for:
+
+- A sentence
+- A word to search for
+
+Example:
+
+    Sentence: Python is easy to learn.
+    Search: easy
+
+Display:
+
+    Found: True
+    Position: 10
+
+Use `.find()`.
+
+Do not manually count the position.
+
+---
+
+## Exercise 13 — Count a Character
+
+Ask the user for:
+
+- A sentence
+- A character
+
+Example:
+
+    Sentence: programming
+    Character: m
+
+Display:
+
+    Character: m
+    Count: 2
+
+Use `.count()`.
+
+---
+
+## Exercise 14 — Replace a Word
+
+Ask the user for:
+
+- A sentence
+- A word to replace
+- A replacement word
+
+Example:
+
+    Sentence: I like Java
+    Word to replace: Java
+    Replacement: Python
+
+Display:
+
+    Result: I like Python
+
+Use `.replace()`.
+
+---
+
+## Exercise 15 — Check an Email
+
+Ask the user to enter an email address.
+
+Check whether it:
+
+- Contains `@`
+- Ends with `.com`
+
+Example:
+
+    Email: ahmad@example.com
+
+    Contains @: True
+    Ends with .com: True
+
+Use appropriate string methods.
+
+---
+
+## Exercise 16 — Check a File Name
+
+Ask the user for a filename.
+
+Determine whether it is a Python file.
+
+Example:
+
+    Filename: calculator.py
+
+    Python file: True
+
+Use `.endswith()`.
+
+---
+
+## Exercise 17 — Generate Initials
+
+Ask the user for:
+
+- First name
+- Last name
+
+Example:
+
+    First name: Ahmad
+    Last name: Rezaei
+
+Display:
+
+    Full name: Ahmad Rezaei
+    Initials: AR
+
+Use indexing.
+
+---
+
+## Exercise 18 — Generate a Short ID
+
+Ask the user for:
+
+- First name
+- Last name
+- Birth year
+
+Create an ID using:
+
+    first three letters of first name
+    +
+    first three letters of last name
+    +
+    birth year
+
+Example:
+
+    First name: Ahmad
+    Last name: Rezaei
+    Birth year: 2001
+
+    ID: ahmrez2001
+
+Requirements:
+
+- Convert names to lowercase.
+- Use slicing.
+- Combine the values with an f-string.
+
+---
+
+## Exercise 19 — Password Mask
+
+Ask the user to enter a password.
+
+Do not display the actual password.
+
+Instead, display a number of `*` characters equal to the password length.
+
+Example:
+
+    Enter password: python123
+
+    Password: *********
+    Length: 9
+
+Use:
+
+- `len()`
+- String multiplication
+
+---
+
+## Exercise 20 — Password Analyzer
+
+Ask the user to enter a password.
+
+Display:
+
+    Password length: 10
+    Contains @: True
+    Starts with P: True
+    Ends with 123: False
+
+Use appropriate string methods.
+
+Do not display the actual password.
+
+---
+
+## Exercise 21 — Product Information
+
+Ask the user for:
+
+- Product name
+- Price
+- Quantity
+
+Example:
+
+    Product: Keyboard
+    Price: 49.99
+    Quantity: 2
+
+Display:
+
+    ----- Product Information -----
+
+    Product: Keyboard
+    Price: $49.99
+    Quantity: 2
+    Total: $99.98
+
+Requirements:
+
+- Clean the product name.
+- Convert price to `float`.
+- Convert quantity to `int`.
+- Calculate the total.
+- Format monetary values with two decimal places.
+- Use f-strings.
+
+---
+
+## Exercise 22 — Student Profile
+
+Ask the user for:
+
+- Name
+- Age
+- Score
+
+Example:
+
+    Name:   alex
+    Age: 20
+    Score: 0.875
+
+Display:
+
+    ----- Student Profile -----
+
+    Name: Alex
+    Age: 20
+    Score: 87.50%
+
+Requirements:
+
+- Remove unnecessary spaces.
+- Format the name.
+- Convert age to `int`.
+- Convert score to `float`.
+- Display the score as a percentage.
+- Use an f-string.
+
+---
+
+## Exercise 23 — Username and Email Generator
+
+Ask the user for:
+
+- First name
+- Last name
+
+Generate both:
+
+    Username: ahmad.rezaei
+    Email: ahmad.rezaei@example.com
+
+Requirements:
+
+- Remove unnecessary spaces.
+- Convert names to lowercase.
+- Use f-strings.
+
+---
+
+## Exercise 24 — Text Cleaner
+
+Ask the user to enter a sentence.
+
+The program should:
+
+1. Remove spaces from the beginning and end.
+2. Convert the sentence to lowercase.
+3. Replace `python` with `Python`.
+4. Display the result.
+
+Example:
+
+    Input:
+       I LOVE PYTHON PROGRAMMING
+
+    Output:
+    i love Python programming
+
+Think carefully about the order of the operations.
+
+---
+
+## Exercise 25 — Word Reverser
+
+Ask the user for a word.
+
+Display:
+
+    Original: Python
+    Reversed: nohtyP
+
+Use slicing.
+
+Do not use a loop.
+
+---
+
+## Exercise 26 — First and Last Three Characters
+
+Ask the user for a word.
+
+Display its first three and last three characters.
+
+Example:
+
+    Word: Programming
+
+    First three: Pro
+    Last three: ing
+
+Use slicing.
+
+---
+
+## Exercise 27 — Word Analyzer
+
+Ask the user for a word.
+
+Display:
+
+    Word: Python
+    Length: 6
+    First character: P
+    Last character: n
+    First three: Pyt
+    Last three: hon
+    Reversed: nohtyP
+    Uppercase: PYTHON
+    Lowercase: python
+
+You should combine:
+
+- `len()`
+- Indexing
+- Slicing
+- String methods
+- f-strings
+
+---
+
+## Exercise 28 — Sentence Analyzer
+
+Ask the user for a sentence.
+
+Display:
+
+    Sentence: Python is easy to learn.
+    Length: 25
+    Uppercase: PYTHON IS EASY TO LEARN.
+    Lowercase: python is easy to learn.
+    Starts with Python: True
+    Ends with learn.: True
+
+Use string methods wherever appropriate.
+
+---
+
+## Exercise 29 — Simple Receipt
+
+Ask the user for:
+
+- Product name
+- Price
+- Quantity
+
+Example:
+
+    Product: Mouse
+    Price: 25.5
+    Quantity: 3
+
+Display:
+
+    ----- Receipt -----
+
+    Product: Mouse
+    Price: $25.50
+    Quantity: 3
+    Total: $76.50
+
+Requirements:
+
+- Clean the product name.
+- Convert the price to a float.
+- Convert the quantity to an integer.
+- Calculate the total.
+- Format the price and total to two decimal places.
+- Use an f-string.
+
+---
+
+## Exercise 30 — Student Report
+
+Ask the user for:
+
+- Student name
+- Age
+- Math score
+- Physics score
+- Programming score
+
+Each score is out of 20.
+
+Calculate the average and percentage.
+
+Example:
+
+    ----- Student Report -----
+
+    Name: Alex
+    Age: 20
+
+    Math: 18.00
+    Physics: 17.50
+    Programming: 19.00
+
+    Average: 18.17
+    Percentage: 90.83%
+
+Requirements:
+
+- Clean and format the student's name.
+- Convert numeric input to the correct types.
+- Calculate the average.
+- Convert the average to a percentage.
+- Format decimal values with two decimal places.
+- Use f-strings.
+
+---
+
+# Final Challenge — User Information Card
+
+Do not look at the answer before trying to solve the problem.
+
+Build a program that creates a formatted user information card.
+
+The program should ask the user for:
+
+- First name
+- Last name
+- Email
+- Age
+- City
+
+The program must then:
+
+1. Remove unnecessary spaces from all text inputs.
+2. Format the first and last names correctly.
+3. Create the full name.
+4. Extract the username from the email.
+5. Extract the domain from the email.
+6. Convert the age to an integer.
+7. Create a username using the person's first and last name.
+8. Display all information in a clean format.
+
+For example:
+
+    First name:   alex
+    Last name: johnson
+    Email: alex.johnson@example.com
+    Age: 20
+    City:   London
+
+The output should look like:
+
+    ----- User Information -----
+
+    Full name: Alex Johnson
+    Age: 20
+    City: London
+
+    Email: alex.johnson@example.com
+    Email username: alex.johnson
+    Email domain: example.com
+
+    Generated username: alex.johnson
+
+Concepts you should combine:
+
+- `input()`
+- Variables
+- Strings
+- `.strip()`
+- `.lower()`
+- `.title()`
+- Indexing
+- Slicing
+- `.find()`
+- `len()`
+- f-strings
+- `int()`
+
+Think about the problem as an algorithm:
+
+    Input
+    ↓
+    Clean
+    ↓
+    Format
+    ↓
+    Extract
+    ↓
+    Convert
+    ↓
+    Generate
+    ↓
+    Display
+
+The goal is not simply to make the program work.
+
+The goal is to practice breaking a larger problem into smaller, logical steps.
+
+---
+
+# Final Challenge — Answer
+
+Try to solve the challenge yourself first.
+
+One possible solution is:
+
+    first_name = input("First name: ").strip().title()
+    last_name = input("Last name: ").strip().title()
+    email = input("Email: ").strip().lower()
+    age = int(input("Age: "))
+    city = input("City: ").strip().title()
+
+    full_name = f"{first_name} {last_name}"
+
+    at_position = email.find("@")
+
+    email_username = email[:at_position]
+    email_domain = email[at_position + 1:]
+
+    generated_username = f"{first_name.lower()}.{last_name.lower()}"
+
+    print()
+    print("----- User Information -----")
+    print()
+    print(f"Full name: {full_name}")
+    print(f"Age: {age}")
+    print(f"City: {city}")
+    print()
+    print(f"Email: {email}")
+    print(f"Email username: {email_username}")
+    print(f"Email domain: {email_domain}")
+    print()
+    print(f"Generated username: {generated_username}")
+
+The important part is not memorizing the solution.
+
+Focus on the sequence of operations:
+
+    Input
+    ↓
+    Clean
+    ↓
+    Format
+    ↓
+    Find
+    ↓
+    Slice
+    ↓
+    Convert
+    ↓
+    Generate
+    ↓
+    Format output
+
+This way of thinking will become increasingly important as your programs become larger and more complex.
+
+---

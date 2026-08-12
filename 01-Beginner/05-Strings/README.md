@@ -4937,6 +4937,7 @@ We will implement and solve the final challenge in the next stage, **after the l
 
 # Part 6 — String Formatting
 
+<<<<<<< HEAD
 In the previous parts, we learned how to create strings, access individual characters, slice strings, and use string methods.
 
 Now we are going to learn how to make strings more useful and readable by **putting values inside them**.
@@ -4964,11 +4965,33 @@ print(f"My name is {name} and I am {age} years old.")
 ```
 
 The second approach is much more useful because the values can change.
+=======
+So far, we have learned how to create Strings, access individual characters, extract parts of a String, and work with String Methods.
+
+But there is another important question:
+
+How can we create clean, readable, and professional output?
+
+For example, imagine that our program stores:
+
+name = "Ahmad"
+age = 25
+score = 92.5
+
+We may want to display:
+
+Name: Ahmad
+Age: 25
+Score: 92.5
+
+This is where String Formatting becomes important.
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 ---
 
 ## Why Do We Need String Formatting?
 
+<<<<<<< HEAD
 Imagine a program that displays a student's information.
 
 We might have:
@@ -5008,11 +5031,172 @@ String formatting allows us to combine:
 - Expressions
 
 inside one formatted string.
+=======
+Programs constantly need to combine text with data.
+
+For example:
+
+- A game displays the player's score.
+- A banking program displays the account balance.
+- A registration program displays the user's name.
+- A shopping program displays the product price.
+- A school program displays student information.
+
+We need a way to place values inside text in a clean and readable way.
+
+Python provides several approaches for this.
+
+The most important modern approach is:
+
+f-string
+
+---
+
+# String Concatenation
+
+The simplest way to combine Strings is using `+`.
+
+For example:
+
+first_name = "Ahmad"
+last_name = "Ahmadi"
+
+full_name = first_name + " " + last_name
+
+print(full_name)
+
+Output:
+
+Ahmad Ahmadi
+
+The `+` operator joins Strings together.
+
+---
+
+## Concatenating More Values
+
+We can combine several Strings:
+
+first_name = "Ahmad"
+last_name = "Ahmadi"
+city = "Tehran"
+
+message = first_name + " " + last_name + " lives in " + city
+
+print(message)
+
+Output:
+
+Ahmad Ahmadi lives in Tehran
+
+This works, but the code can become difficult to read when there are many values.
+
+---
+
+# The Problem with Different Data Types
+
+Consider:
+
+age = 25
+
+print("I am " + age + " years old.")
+
+This produces an error.
+
+Why?
+
+Because:
+
+"I am "
+
+is a String, while:
+
+age
+
+is an Integer.
+
+Python does not automatically combine an Integer with a String using `+`.
+
+We need to convert the Integer:
+
+age = 25
+
+print("I am " + str(age) + " years old.")
+
+Output:
+
+I am 25 years old.
+
+---
+
+# The `str()` Function
+
+The `str()` function converts a value into a String.
+
+For example:
+
+age = 25
+
+text = str(age)
+
+print(text)
+print(type(text))
+
+Output:
+
+25
+<class 'str'>
+
+Before conversion:
+
+age
+
+was an Integer.
+
+After:
+
+str(age)
+
+we have a String.
+
+The same thing works with Floating-Point numbers:
+
+score = 92.5
+
+print("My score is " + str(score))
+
+Output:
+
+My score is 92.5
+
+---
+
+# Why Concatenation Can Become Difficult
+
+Consider this:
+
+name = "Ahmad"
+age = 25
+city = "Tehran"
+score = 92.5
+
+print(
+    "My name is " + name +
+    ", I am " + str(age) +
+    " years old, I live in " + city +
+    ", and my score is " + str(score) + "."
+)
+
+The program works, but the expression is long and difficult to maintain.
+
+Python provides a cleaner solution.
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 ---
 
 # f-Strings
 
+<<<<<<< HEAD
 The most common and recommended way to format strings in modern Python is the **f-string**.
 
 The `f` is written before the opening quotation mark.
@@ -5280,11 +5464,155 @@ the output becomes:
 ```text
 Welcome, Ahmad!
 ```
+=======
+An f-string allows us to insert values directly inside a String.
+
+The basic syntax is:
+
+f"text {variable}"
+
+For example:
+
+name = "Ahmad"
+age = 25
+
+print(f"My name is {name} and I am {age} years old.")
+
+Output:
+
+My name is Ahmad and I am 25 years old.
+
+Notice the `f` before the quotation mark:
+
+f"..."
+
+The variable goes inside curly braces:
+
+{name}
+
+and:
+
+{age}
+
+---
+
+# Multiple Variables in an f-String
+
+We can insert many variables:
+
+name = "Ahmad"
+age = 25
+city = "Tehran"
+
+print(f"My name is {name}, I am {age} years old, and I live in {city}.")
+
+Output:
+
+My name is Ahmad, I am 25 years old, and I live in Tehran.
+
+---
+
+# Expressions Inside `{}`
+
+The content inside `{}` does not have to be only a variable.
+
+We can put expressions there.
+
+For example:
+
+age = 25
+
+print(f"Next year I will be {age + 1}.")
+
+Output:
+
+Next year I will be 26.
+
+Another example:
+
+a = 10
+b = 20
+
+print(f"The sum is {a + b}.")
+
+Output:
+
+The sum is 30.
+
+We can also use functions:
+
+name = "ahmad"
+
+print(f"Hello {name.title()}!")
+
+Output:
+
+Hello Ahmad!
+
+We can even use methods:
+
+text = "python programming"
+
+print(f"Uppercase: {text.upper()}")
+
+Output:
+
+Uppercase: PYTHON PROGRAMMING
+
+This is an important idea:
+
+The expression inside `{}` is evaluated by Python.
+
+---
+
+# Combining Previous Lessons with f-Strings
+
+Now we can combine what we learned in previous sections.
+
+Suppose:
+
+text = "Python Programming"
+
+We can use Indexing:
+
+print(f"First character: {text[0]}")
+
+Output:
+
+First character: P
+
+We can use Slicing:
+
+print(f"First three characters: {text[:3]}")
+
+Output:
+
+First three characters: Pyt
+
+We can use String Methods:
+
+print(f"Lowercase: {text.lower()}")
+
+Output:
+
+Lowercase: python programming
+
+We can use `len()`:
+
+print(f"Length: {len(text)}")
+
+Output:
+
+Length: 18
+
+This is exactly how different concepts start working together.
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 ---
 
 # Formatting Numbers
 
+<<<<<<< HEAD
 String formatting becomes especially useful when working with numbers.
 
 Suppose we have:
@@ -5505,11 +5833,111 @@ Total: $149.97
 ---
 
 # Thousands Separators
+=======
+String Formatting becomes especially useful when working with numbers.
+
+Suppose:
+
+price = 19.987654
+
+If we write:
+
+print(f"Price: {price}")
+
+Output:
+
+Price: 19.987654
+
+Maybe we only want two decimal places.
+
+We can write:
+
+print(f"Price: {price:.2f}")
+
+Output:
+
+Price: 19.99
+
+The general structure is:
+
+{value:.2f}
+
+Here:
+
+- `:` starts the formatting instructions.
+- `.2` means two decimal places.
+- `f` means fixed-point notation.
+
+---
+
+# More Examples with `.2f`
+
+number = 10
+
+print(f"{number:.2f}")
+
+Output:
+
+10.00
+
+Another example:
+
+number = 3.14159265
+
+print(f"{number:.2f}")
+
+Output:
+
+3.14
+
+And:
+
+print(f"{number:.4f}")
+
+Output:
+
+3.1416
+
+---
+
+# Rounding and Formatting
+
+Formatting a number to two decimal places changes how it is displayed.
+
+For example:
+
+number = 7.456
+
+print(f"{number:.2f}")
+
+Output:
+
+7.46
+
+The original variable is not changed:
+
+number = 7.456
+
+print(f"{number:.2f}")
+print(number)
+
+Output:
+
+7.46
+7.456
+
+Formatting controls the representation shown in the output.
+
+---
+
+# Thousands Separator
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 Large numbers can be difficult to read.
 
 For example:
 
+<<<<<<< HEAD
 ```python
 population = 12500000
 
@@ -5638,11 +6066,255 @@ print(f"{name:^10}")
 ```
 
 These are especially useful when creating simple tables.
+=======
+population = 12500000
+
+print(f"{population:,}")
+
+Output:
+
+12,500,000
+
+We can combine the comma separator with decimal formatting:
+
+number = 1234567.891
+
+print(f"{number:,.2f}")
+
+Output:
+
+1,234,567.89
+
+This is useful for:
+
+- money
+- population
+- statistics
+- large quantities
+- financial data
+
+---
+
+# Percentage Formatting
+
+Suppose:
+
+rate = 0.875
+
+If we write:
+
+print(f"{rate}")
+
+Output:
+
+0.875
+
+But perhaps we want:
+
+87.5%
+
+We can use `%` formatting:
+
+print(f"{rate:.1%}")
+
+Output:
+
+87.5%
+
+Python converts the value into a percentage and adds `%`.
+
+Another example:
+
+success_rate = 0.9234
+
+print(f"Success rate: {success_rate:.2%}")
+
+Output:
+
+Success rate: 92.34%
+
+---
+
+# `.2f` vs `.2%`
+
+These two formats are different.
+
+For:
+
+rate = 0.92
+
+Using:
+
+print(f"{rate:.2f}")
+
+produces:
+
+0.92
+
+But:
+
+print(f"{rate:.2%}")
+
+produces:
+
+92.00%
+
+So:
+
+`.2f`
+
+means two decimal places.
+
+`.2%`
+
+means percentage with two decimal places.
+
+---
+
+# Formatting Positive and Negative Numbers
+
+We can control how numbers appear.
+
+For example:
+
+profit = 2500
+
+print(f"Profit: {profit:+}")
+
+Output:
+
+Profit: +2500
+
+And:
+
+loss = -500
+
+print(f"Loss: {loss:+}")
+
+Output:
+
+Loss: -500
+
+The `+` formatting option explicitly shows the sign.
+
+---
+
+# Width
+
+Sometimes we want a value to occupy a certain amount of space.
+
+For example:
+
+name = "Ahmad"
+
+print(f"{name:10}")
+
+The String is placed inside a field with a width of 10 characters.
+
+This becomes useful when creating tables.
+
+---
+
+# Left Alignment
+
+Use `<` for left alignment.
+
+name = "Ahmad"
+
+print(f"{name:<10}")
+
+The text is aligned to the left side of the field.
+
+Conceptually:
+
+Ahmad     
+
+---
+
+# Right Alignment
+
+Use `>` for right alignment.
+
+name = "Ahmad"
+
+print(f"{name:>10}")
+
+Conceptually:
+
+     Ahmad
+
+The text is aligned to the right.
+
+---
+
+# Center Alignment
+
+Use `^` for center alignment.
+
+name = "Ahmad"
+
+print(f"{name:^10}")
+
+The text is centered inside the field.
+
+---
+
+# Custom Fill Characters
+
+We can choose what character fills the empty space.
+
+For example:
+
+name = "Ahmad"
+
+print(f"{name:*<10}")
+
+Output:
+
+Ahmad*****
+
+The `*` is the fill character.
+
+We can also combine fill characters with alignment.
+
+Right alignment:
+
+print(f"{name:*>10}")
+
+Output:
+
+*****Ahmad
+
+Center alignment:
+
+print(f"{name:*^10}")
+
+Output:
+
+**Ahmad***
+
+This can be useful for creating simple console interfaces.
+
+---
+
+# Formatting Numbers with Width
+
+Width can also be used with numbers.
+
+score = 95
+
+print(f"{score:>10}")
+
+The number is aligned to the right inside a field of width 10.
+
+This is useful when displaying columns of numbers.
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 ---
 
 # Creating a Simple Table
 
+<<<<<<< HEAD
 For example:
 
 ```python
@@ -5651,10 +6323,22 @@ score1 = 18
 
 name2 = "Sara"
 score2 = 19
+=======
+Suppose:
+
+name1 = "Ahmad"
+score1 = 95
+
+name2 = "Sara"
+score2 = 88
+
+We can write:
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 print(f"{'Name':<10}{'Score':>10}")
 print(f"{name1:<10}{score1:>10}")
 print(f"{name2:<10}{score2:>10}")
+<<<<<<< HEAD
 ```
 
 Output:
@@ -5823,11 +6507,245 @@ Age: 25
 ```
 
 This is useful for reports and formatted output.
+=======
+
+Output:
+
+Name           Score
+Ahmad             95
+Sara              88
+
+Now our output looks much more organized.
+
+---
+
+# Combining Width and Decimal Formatting
+
+We can combine multiple formatting rules.
+
+For example:
+
+price = 1234.5678
+
+print(f"{price:>15,.2f}")
+
+Output:
+
+       1,234.57
+
+Here we have:
+
+`>` → right alignment
+
+`15` → field width
+
+`,` → thousands separator
+
+`.2f` → two decimal places
+
+This is a good example of how multiple formatting instructions can work together.
+
+---
+
+# The General Structure of a Format Specifier
+
+A simplified way to think about formatting is:
+
+{value:[fill][align][width][,][.precision][type]}
+
+Not every part is required.
+
+For example:
+
+{price:.2f}
+
+Only precision and type are used.
+
+Or:
+
+{name:<10}
+
+Alignment and width are used.
+
+Or:
+
+{number:,.2f}
+
+Thousands separator and decimal precision are used.
+
+Understanding the pieces makes more complicated formatting much easier.
+
+---
+
+# Formatting Strings with `format()`
+
+Before f-strings became the preferred approach, Python programmers often used the `format()` method.
+
+For example:
+
+name = "Ahmad"
+age = 25
+
+print("My name is {} and I am {} years old.".format(name, age))
+
+Output:
+
+My name is Ahmad and I am 25 years old.
+
+The `{}` symbols are placeholders.
+
+The values are supplied to:
+
+format()
+
+---
+
+# Positional Arguments in `format()`
+
+We can explicitly specify the position.
+
+name = "Ahmad"
+age = 25
+
+print("Name: {0}, Age: {1}".format(name, age))
+
+Output:
+
+Name: Ahmad, Age: 25
+
+We can also change the order:
+
+print("Age: {1}, Name: {0}".format(name, age))
+
+Output:
+
+Age: 25, Name: Ahmad
+
+---
+
+# Named Arguments in `format()`
+
+We can also use named arguments.
+
+print(
+    "Name: {name}, Age: {age}".format(
+        name="Ahmad",
+        age=25
+    )
+)
+
+Output:
+
+Name: Ahmad, Age: 25
+
+This can make complex formatting easier to understand.
+
+---
+
+# Formatting Numbers with `format()`
+
+We can use the same formatting ideas.
+
+price = 19.987654
+
+print("Price: {:.2f}".format(price))
+
+Output:
+
+Price: 19.99
+
+Thousands separator:
+
+number = 1234567
+
+print("{:,}".format(number))
+
+Output:
+
+1,234,567
+
+Percentage:
+
+rate = 0.875
+
+print("{:.1%}".format(rate))
+
+Output:
+
+87.5%
+
+---
+
+# f-String vs `format()`
+
+Compare:
+
+### f-string
+
+name = "Ahmad"
+age = 25
+
+print(f"My name is {name} and I am {age} years old.")
+
+### `format()`
+
+name = "Ahmad"
+age = 25
+
+print("My name is {} and I am {} years old.".format(name, age))
+
+Both work.
+
+However, modern Python code generally prefers f-strings because they are concise and readable.
+
+---
+
+# Formatting Expressions
+
+With f-strings, we can format the result of an expression.
+
+a = 10
+b = 3
+
+print(f"Result: {a / b:.2f}")
+
+Output:
+
+Result: 3.33
+
+Notice that:
+
+a / b
+
+is calculated first.
+
+Then the result is formatted to two decimal places.
+
+---
+
+# Formatting a Calculation
+
+We can combine calculations and formatting.
+
+price = 100
+discount = 0.15
+
+final_price = price * (1 - discount)
+
+print(f"Final price: ${final_price:.2f}")
+
+Output:
+
+Final price: $85.00
+
+This is much more realistic than simply formatting a variable.
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 ---
 
 # Formatting User Input
 
+<<<<<<< HEAD
 String formatting becomes much more useful when combined with `input()`.
 
 For example:
@@ -5929,11 +6847,308 @@ if average >= 10:
     status = "Passed"
 else:
     status = "Failed"
+=======
+Remember that `input()` always returns a String.
+
+Suppose:
+
+age = input("Enter your age: ")
+
+If the user enters:
+
+25
+
+then:
+
+age
+
+is a String.
+
+If we need an Integer:
+
+age = int(input("Enter your age: "))
+
+Now we can use it in calculations:
+
+age = int(input("Enter your age: "))
+
+print(f"Next year you will be {age + 1}.")
+
+---
+
+# A Practical Example — Student Report
+
+Suppose:
+
+name = "Ahmad"
+math = 18.5
+physics = 17.75
+programming = 19.25
+
+average = (math + physics + programming) / 3
+
+print(f"Student: {name}")
+print(f"Math: {math:.2f}")
+print(f"Physics: {physics:.2f}")
+print(f"Programming: {programming:.2f}")
+print(f"Average: {average:.2f}")
+
+Output:
+
+Student: Ahmad
+Math: 18.50
+Physics: 17.75
+Programming: 19.25
+Average: 18.50
+
+---
+
+# A Practical Example — Shopping Receipt
+
+product = "Keyboard"
+price = 49.987
+quantity = 2
+
+total = price * quantity
+
+print("----- Receipt -----")
+print(f"Product: {product}")
+print(f"Price: ${price:.2f}")
+print(f"Quantity: {quantity}")
+print(f"Total: ${total:.2f}")
+
+Output:
+
+----- Receipt -----
+Product: Keyboard
+Price: $49.99
+Quantity: 2
+Total: $99.97
+
+---
+
+# A Practical Example — Game Score
+
+player = "Ahmad"
+score = 12500
+accuracy = 0.9345
+
+print(f"Player: {player}")
+print(f"Score: {score:,}")
+print(f"Accuracy: {accuracy:.1%}")
+
+Output:
+
+Player: Ahmad
+Score: 12,500
+Accuracy: 93.5%
+
+---
+
+# A Practical Example — Countdown
+
+seconds = 125
+
+minutes = seconds // 60
+remaining_seconds = seconds % 60
+
+print(f"Time remaining: {minutes}:{remaining_seconds:02d}")
+
+Output:
+
+Time remaining: 2:05
+
+The important part is:
+
+`02d`
+
+It means that the number should occupy at least two digits.
+
+So:
+
+5
+
+becomes:
+
+05
+
+This is extremely useful for:
+
+- timers
+- clocks
+- dates
+- scores
+- counters
+
+---
+
+# Zero Padding
+
+Suppose:
+
+number = 7
+
+print(f"{number:02d}")
+
+Output:
+
+07
+
+For three digits:
+
+print(f"{number:03d}")
+
+Output:
+
+007
+
+Another example:
+
+hour = 9
+minute = 5
+second = 3
+
+print(f"{hour:02d}:{minute:02d}:{second:02d}")
+
+Output:
+
+09:05:03
+
+This is a very common formatting technique.
+
+---
+
+# Escaping Curly Braces
+
+Curly braces have a special meaning inside f-strings.
+
+For example:
+
+name = "Ahmad"
+
+print(f"Hello {name}")
+
+Here:
+
+{name}
+
+means "insert the value of name".
+
+But what if we actually want to display curly braces?
+
+We use double braces:
+
+print(f"{{name}}")
+
+Output:
+
+{name}
+
+So:
+
+`{{`
+
+produces:
+
+{
+
+and:
+
+`}}`
+
+produces:
+
+}
+
+---
+
+# Formatting Boolean Values
+
+We can also place Boolean values inside f-strings.
+
+is_logged_in = True
+
+print(f"Logged in: {is_logged_in}")
+
+Output:
+
+Logged in: True
+
+We can also use expressions:
+
+age = 20
+
+print(f"Adult: {age >= 18}")
+
+Output:
+
+Adult: True
+
+This demonstrates that expressions inside `{}` can return Boolean values too.
+
+---
+
+# Formatting with Conditional Expressions
+
+Python allows a conditional expression inside an f-string.
+
+age = 20
+
+print(f"Status: {'Adult' if age >= 18 else 'Minor'}")
+
+Output:
+
+Status: Adult
+
+This is powerful, but beginners should first understand the simpler forms of f-strings before using complex expressions.
+
+---
+
+# Formatting and Readability
+
+String Formatting is not only about making output look nice.
+
+It also improves the readability of the program.
+
+Compare:
+
+name = "Ahmad"
+score = 95
+
+print("Student " + name + " has a score of " + str(score) + ".")
+
+with:
+
+print(f"Student {name} has a score of {score}.")
+
+The second version is easier to understand.
+
+Good formatting helps us write code that other people can read and maintain.
+
+---
+
+# A Complete Example
+
+Let's combine several concepts from previous sections.
+
+The program asks for:
+
+- name
+- age
+- score
+
+Then it creates a formatted report.
+
+name = input("Enter your name: ").strip().title()
+age = int(input("Enter your age: "))
+score = float(input("Enter your score: "))
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 print()
 print("----- Student Report -----")
 print(f"Name: {name}")
 print(f"Age: {age}")
+<<<<<<< HEAD
 print(f"Math: {math:.2f}")
 print(f"Physics: {physics:.2f}")
 print(f"Programming: {programming:.2f}")
@@ -6119,11 +7334,34 @@ This distinction is important:
 
 - Formatting controls **display**.
 - `round()` changes the value stored in the variable.
+=======
+print(f"Score: {score:.2f}")
+
+Output could be:
+
+----- Student Report -----
+Name: Ahmad
+Age: 25
+Score: 92.50
+
+Notice how this one example combines:
+
+- `input()`
+- `strip()`
+- `title()`
+- `int()`
+- `float()`
+- f-strings
+- number formatting
+
+This is the kind of combination we want to practice throughout the project.
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 ---
 
 # Exercises
 
+<<<<<<< HEAD
 ## Exercise 1 — Personal Introduction
 
 Create these variables:
@@ -6220,11 +7458,118 @@ display:
 ```text
 Score: 87.50%
 ```
+=======
+## Exercise 1 — Basic f-String
+
+Create:
+
+name = "Ali"
+age = 20
+
+Use an f-string to display:
+
+My name is Ali and I am 20 years old.
+
+---
+
+## Exercise 2 — Multiple Variables
+
+Create:
+
+name = "Sara"
+city = "Shiraz"
+age = 22
+
+Display all three values in one sentence using an f-string.
+
+---
+
+## Exercise 3 — Expression Inside `{}`
+
+Create:
+
+a = 15
+b = 7
+
+Display:
+
+The sum is 22.
+
+Use an expression directly inside the f-string.
+
+---
+
+## Exercise 4 — String Method Inside an f-String
+
+Create:
+
+name = "aHMAD"
+
+Use `title()` inside an f-string to display:
+
+Hello Ahmad!
+
+---
+
+## Exercise 5 — Indexing and Formatting
+
+Create:
+
+text = "Python"
+
+Use an f-string to display:
+
+First character: P
+Last character: n
+
+Use String Indexing.
+
+---
+
+## Exercise 6 — Slicing and Formatting
+
+Create:
+
+text = "Programming"
+
+Display:
+
+First four characters: Prog
+
+Use Slicing inside the f-string.
+
+---
+
+## Exercise 7 — Decimal Formatting
+
+Create:
+
+price = 19.98765
+
+Display the price with exactly two decimal places.
+
+Expected:
+
+19.99
+
+---
+
+## Exercise 8 — Percentage
+
+Create:
+
+success_rate = 0.8765
+
+Display:
+
+87.65%
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 
 Use percentage formatting.
 
 ---
 
+<<<<<<< HEAD
 ## Exercise 6 — User Profile
 
 Ask the user for:
@@ -6464,6 +7809,273 @@ Try to solve it without looking at the answer.
 One possible solution is:
 
 ```python
+=======
+## Exercise 9 — Thousands Separator
+
+Create:
+
+population = 12500000
+
+Display:
+
+12,500,000
+
+---
+
+## Exercise 10 — Combine Number Formats
+
+Create:
+
+price = 1234567.8912
+
+Display:
+
+1,234,567.89
+
+Use both:
+
+- thousands separator
+- two decimal places
+
+---
+
+## Exercise 11 — Alignment
+
+Create:
+
+name = "Ahmad"
+
+Print the name:
+
+- left aligned in a field of 15 characters
+- right aligned in a field of 15 characters
+- centered in a field of 15 characters
+
+---
+
+## Exercise 12 — Custom Fill
+
+Create:
+
+name = "Python"
+
+Create outputs using `*` as the fill character:
+
+Python*********
+*********Python
+****Python*****
+
+Try to understand how width and alignment work.
+
+---
+
+## Exercise 13 — Student Average
+
+Create:
+
+math = 18.5
+physics = 17.25
+programming = 19.75
+
+Calculate the average and display it with two decimal places.
+
+---
+
+## Exercise 14 — Shopping Receipt
+
+Create:
+
+product = "Mouse"
+price = 25.987
+quantity = 3
+
+Calculate the total.
+
+Display:
+
+----- Receipt -----
+Product: Mouse
+Price: $25.99
+Quantity: 3
+Total: $77.96
+
+---
+
+## Exercise 15 — User Input
+
+Ask the user for:
+
+- name
+- age
+- city
+
+Then display all information using f-strings.
+
+Make sure the name is cleaned with `strip()`.
+
+---
+
+## Exercise 16 — Age Calculator
+
+Ask the user for their age.
+
+Display:
+
+Current age: 25
+Next year: 26
+In five years: 30
+
+The numbers must be calculated rather than manually written.
+
+---
+
+## Exercise 17 — Timer Formatting
+
+Ask the user for a number of seconds.
+
+Convert it to:
+
+minutes
+seconds
+
+Then display it in this format:
+
+02:05
+
+Use zero padding.
+
+---
+
+## Exercise 18 — Game Score
+
+Create:
+
+player = "Ahmad"
+score = 12500
+accuracy = 0.9345
+
+Display:
+
+Player: Ahmad
+Score: 12,500
+Accuracy: 93.45%
+
+---
+
+# Final Algorithmic Challenge
+
+Create a program called:
+
+Student Report Generator
+
+The program should ask the user for:
+
+1. Student name
+2. Student age
+3. Math score
+4. Physics score
+5. Programming score
+
+The program should then:
+
+1. Clean the student's name using `strip()`.
+2. Format the student's name using `title()`.
+3. Convert the age to an Integer.
+4. Convert the scores to Floating-Point numbers.
+5. Calculate the average score.
+6. Calculate the percentage of the average relative to 20.
+7. Determine whether the student passed.
+8. Display a clean formatted report.
+
+The output should look similar to:
+
+----- Student Report -----
+
+Name: Ahmad Ahmadi
+Age: 20
+
+Math:         18.50
+Physics:      17.75
+Programming:  19.25
+
+Average:      18.50
+Percentage:   92.50%
+Status:       Passed
+
+Your program should calculate all values dynamically.
+
+Do not manually write the final numbers into the output.
+
+---
+
+# Think Algorithmically
+
+Before writing code, break the problem into steps.
+
+Think about:
+
+Receive name
+↓
+Clean name
+↓
+Format name
+↓
+Receive age
+↓
+Convert age to Integer
+↓
+Receive Math score
+↓
+Convert to Float
+↓
+Receive Physics score
+↓
+Convert to Float
+↓
+Receive Programming score
+↓
+Calculate average
+↓
+Calculate percentage
+↓
+Check pass condition
+↓
+Format numbers
+↓
+Display report
+
+Now identify which concepts from previous sections are needed.
+
+You should notice that this challenge combines:
+
+- input
+- Strings
+- String Methods
+- `strip()`
+- `title()`
+- Type Conversion
+- Integers
+- Floats
+- Arithmetic
+- Conditions
+- f-Strings
+- Number Formatting
+
+This is intentional.
+
+The goal is not only to learn String Formatting.
+
+The goal is to learn how to combine several programming concepts to solve a problem.
+
+---
+
+# Final Challenge — Answer
+
+Try to solve the challenge yourself before looking at the solution.
+
+A possible solution is:
+
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136
 name = input("Enter student name: ").strip().title()
 age = int(input("Enter student age: "))
 
@@ -6481,6 +8093,7 @@ else:
 
 print()
 print("----- Student Report -----")
+<<<<<<< HEAD
 print(f"Name: {name}")
 print(f"Age: {age}")
 print(f"Math: {math:.2f}")
@@ -6510,3 +8123,23 @@ format the final output
 ```
 
 This is the beginning of **algorithmic thinking**: taking raw information, transforming it step by step, making decisions, and producing a useful result.
+=======
+print()
+print(f"Name: {name}")
+print(f"Age: {age}")
+print()
+print(f"Math:         {math:.2f}")
+print(f"Physics:      {physics:.2f}")
+print(f"Programming:  {programming:.2f}")
+print()
+print(f"Average:      {average:.2f}")
+print(f"Percentage:   {percentage:.2f}%")
+print(f"Status:       {status}")
+
+The important part is not memorizing this solution.
+
+The important part is understanding how the algorithm was converted into code.
+
+---
+
+>>>>>>> bd4c93c0b4131cfd6334526e8f2d9f805ef4a136

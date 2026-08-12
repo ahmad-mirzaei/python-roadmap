@@ -7345,3 +7345,1141 @@ Focus on the sequence of operations:
 This way of thinking will become increasingly important as your programs become larger and more complex.
 
 ---
+
+# Part 9 — Advanced String Operations
+
+By now, strings should no longer feel like simple pieces of text.
+
+You have learned how to:
+
+- Create strings
+- Store strings in variables
+- Access individual characters
+- Extract sections with slicing
+- Change text with string methods
+- Format values with f-strings
+- Receive text from users
+- Clean and process user input
+
+In this section, we will go one step further.
+
+The goal is to start treating strings as **structured data**.
+
+A string may look like ordinary text, but it often contains information with a structure that a program can analyze.
+
+For example:
+
+    alex.johnson@example.com
+
+This is one string, but it contains several meaningful parts:
+
+    username → alex.johnson
+    domain   → example.com
+
+Another example:
+
+    Python,Java,C++,JavaScript
+
+This is also one string, but it contains four separate values.
+
+To work effectively with this kind of data, we need to learn how to split strings, combine strings, inspect their contents, and process them systematically.
+
+---
+
+## 1. Splitting a String
+
+One of the most useful string operations is `.split()`.
+
+It separates a string into multiple pieces.
+
+For example:
+
+    text = "Python is easy"
+
+    words = text.split()
+
+After splitting, the result contains:
+
+    Python
+    is
+    easy
+
+By default, `.split()` separates the string wherever whitespace appears.
+
+You can also specify a separator.
+
+For example:
+
+    fruits = "apple,banana,orange"
+
+    result = fruits.split(",")
+
+The result is conceptually:
+
+    apple
+    banana
+    orange
+
+The important idea is that `.split()` transforms one string into multiple pieces.
+
+---
+
+## 2. Splitting User Input
+
+Suppose the user enters several names separated by commas:
+
+    Enter names: Ahmad, Sara, Alex
+
+We can process the input:
+
+    names = input("Enter names: ").split(",")
+
+Now the program can work with each name separately.
+
+However, notice something important.
+
+The values may contain unnecessary spaces:
+
+    "Ahmad"
+    " Sara"
+    " Alex"
+
+A good program should clean those values.
+
+For example:
+
+    names = input("Enter names: ").split(",")
+
+    first_name = names[0].strip()
+    second_name = names[1].strip()
+    third_name = names[2].strip()
+
+This is an early example of a very important programming pattern:
+
+    Receive data
+    ↓
+    Split data
+    ↓
+    Clean data
+    ↓
+    Process data
+
+---
+
+## 3. Splitting with a Specific Separator
+
+You are not limited to commas.
+
+For example:
+
+    date = "2026-08-05"
+
+    parts = date.split("-")
+
+The resulting pieces are:
+
+    2026
+    08
+    05
+
+This allows the program to extract structured information from a simple string.
+
+---
+
+## 4. Joining Strings
+
+The opposite of `split()` is often `join()`.
+
+Suppose we have:
+
+    words = ["Python", "is", "powerful"]
+
+We can combine them into one string:
+
+    sentence = " ".join(words)
+
+The result is:
+
+    Python is powerful
+
+The string before `.join()` determines what is placed between the items.
+
+For example:
+
+    "-".join(["2026", "08", "05"])
+
+produces:
+
+    2026-08-05
+
+And:
+
+    ", ".join(["Python", "Java", "C++"])
+
+produces:
+
+    Python, Java, C++
+
+This is a fundamental distinction:
+
+    split()
+    string → multiple pieces
+
+    join()
+    multiple pieces → string
+
+---
+
+## 5. Split and Join Together
+
+A powerful technique is to split a string, modify its pieces, and then join them again.
+
+For example:
+
+    text = "python programming language"
+
+    words = text.split()
+
+    words = [word.title() for word in words]
+
+    result = " ".join(words)
+
+The final result is:
+
+    Python Programming Language
+
+The important idea is not the exact syntax.
+
+The important idea is the transformation:
+
+    Original string
+          ↓
+        split
+          ↓
+      individual words
+          ↓
+       process
+          ↓
+        join
+          ↓
+    new string
+
+This pattern appears frequently in real applications.
+
+---
+
+## 6. Checking Whether Text Exists
+
+You can check whether a smaller string exists inside another string with `in`.
+
+For example:
+
+    text = "Python is powerful"
+
+    print("Python" in text)
+
+The result is:
+
+    True
+
+You can also use:
+
+    print("Java" in text)
+
+which produces:
+
+    False
+
+This is useful when the program needs to search for specific text.
+
+---
+
+## 7. Using `not in`
+
+The opposite operation is:
+
+    not in
+
+For example:
+
+    text = "Python is powerful"
+
+    print("Java" not in text)
+
+The result is:
+
+    True
+
+This can make conditions easier to read.
+
+---
+
+## 8. Checking Individual Characters
+
+The `in` operator also works with characters.
+
+For example:
+
+    text = "Python"
+
+    print("P" in text)
+
+Result:
+
+    True
+
+And:
+
+    print("z" in text)
+
+Result:
+
+    False
+
+This can be useful when validating user input.
+
+---
+
+## 9. Checking for Digits
+
+Python provides methods for checking the contents of a string.
+
+For example:
+
+    text = "12345"
+
+    print(text.isdigit())
+
+Result:
+
+    True
+
+But:
+
+    text = "123abc"
+
+    print(text.isdigit())
+
+Result:
+
+    False
+
+This is useful when the program expects a string containing only digits.
+
+---
+
+## 10. Checking for Alphabetic Characters
+
+You can use `.isalpha()` to determine whether all characters are alphabetic.
+
+For example:
+
+    text = "Python"
+
+    print(text.isalpha())
+
+Result:
+
+    True
+
+But:
+
+    text = "Python3"
+
+    print(text.isalpha())
+
+Result:
+
+    False
+
+Spaces also cause `.isalpha()` to return `False`.
+
+For example:
+
+    text = "Python Programming"
+
+    print(text.isalpha())
+
+Result:
+
+    False
+
+---
+
+## 11. Checking for Alphanumeric Characters
+
+`.isalnum()` checks whether all characters are letters or numbers.
+
+For example:
+
+    print("Python123".isalnum())
+
+Result:
+
+    True
+
+But:
+
+    print("Python 123".isalnum())
+
+Result:
+
+    False
+
+The space is not an alphanumeric character.
+
+---
+
+## 12. Checking for Whitespace
+
+`.isspace()` checks whether a string contains only whitespace characters.
+
+For example:
+
+    text = "   "
+
+    print(text.isspace())
+
+Result:
+
+    True
+
+But:
+
+    text = " Python "
+
+    print(text.isspace())
+
+Result:
+
+    False
+
+This can be useful when validating empty-looking input.
+
+---
+
+## 13. Empty Strings
+
+An empty string contains no characters.
+
+You can create one with:
+
+    text = ""
+
+Its length is:
+
+    len(text)
+
+which gives:
+
+    0
+
+An empty string is different from a string containing spaces.
+
+Compare:
+
+    text1 = ""
+
+    text2 = "   "
+
+The first string has length `0`.
+
+The second string has length `3`.
+
+This distinction is important when validating user input.
+
+---
+
+## 14. Checking Empty User Input
+
+Suppose you ask the user for their name:
+
+    name = input("Enter your name: ").strip()
+
+The user might simply press Enter.
+
+Then:
+
+    name == ""
+
+will be `True`.
+
+You can check this with:
+
+    if name == "":
+        print("Name cannot be empty.")
+
+This is much better than allowing an empty value to continue through the program.
+
+---
+
+## 15. A Shorter Empty-String Check
+
+Python also allows:
+
+    if not name:
+        print("Name cannot be empty.")
+
+For an empty string, Python treats the value as false in a condition.
+
+This is called **truthiness**.
+
+For now, the important rule is:
+
+    "" → False
+
+while a non-empty string behaves as true in a condition.
+
+For example:
+
+    name = "Ahmad"
+
+    if name:
+        print("Name was entered.")
+
+---
+
+## 16. Counting Words
+
+Suppose the user enters a sentence:
+
+    Python is easy to learn
+
+We can count the words:
+
+    sentence = "Python is easy to learn"
+
+    words = sentence.split()
+
+    count = len(words)
+
+The result is:
+
+    5
+
+This is a powerful example because we are combining several concepts:
+
+    String
+    ↓
+    split()
+    ↓
+    multiple words
+    ↓
+    len()
+    ↓
+    number of words
+
+---
+
+## 17. Counting Words from User Input
+
+Ask the user for a sentence and count its words.
+
+A possible approach:
+
+    sentence = input("Enter a sentence: ").strip()
+
+    words = sentence.split()
+
+    word_count = len(words)
+
+    print(f"Word count: {word_count}")
+
+If the user enters:
+
+    Python is easy to learn
+
+the output is:
+
+    Word count: 5
+
+Notice that `.split()` handles multiple spaces better than manually searching for spaces.
+
+---
+
+## 18. Creating a Clean Sentence
+
+Suppose the user enters:
+
+    Python    is     very     powerful
+
+There are many unnecessary spaces.
+
+Using:
+
+    words = text.split()
+
+removes the extra whitespace between words.
+
+Then:
+
+    clean_text = " ".join(words)
+
+produces:
+
+    Python is very powerful
+
+This is an important text-cleaning technique.
+
+The transformation is:
+
+    "Python    is     very     powerful"
+                    ↓
+                split()
+                    ↓
+        ["Python", "is", "very", "powerful"]
+                    ↓
+                join()
+                    ↓
+        "Python is very powerful"
+
+---
+
+## 19. Extracting Parts of a Name
+
+Suppose we have:
+
+    full_name = "Alex Johnson"
+
+We can split it:
+
+    parts = full_name.split()
+
+Then:
+
+    first_name = parts[0]
+    last_name = parts[1]
+
+Now we can use the individual values separately.
+
+For example:
+
+    print(f"First name: {first_name}")
+    print(f"Last name: {last_name}")
+
+Output:
+
+    First name: Alex
+    Last name: Johnson
+
+This is useful, but there is an important limitation.
+
+What happens with:
+
+    Alex Michael Johnson
+
+There are now three pieces.
+
+Therefore, real programs must think carefully about the structure of the input they expect.
+
+---
+
+## 20. Splitting Only Once
+
+Sometimes you do not want to split a string into every possible piece.
+
+For example:
+
+    text = "name@example.com"
+
+You might want to separate it at `@`.
+
+You can use:
+
+    username, domain = text.split("@", 1)
+
+The `1` means that the split should happen at most once.
+
+The result is:
+
+    username → name
+    domain   → example.com
+
+This is especially useful when working with structured text.
+
+---
+
+## 21. Cleaning a List of Names
+
+Suppose the user enters:
+
+    Ahmad, Sara, Alex
+
+We can create clean names:
+
+    names = input("Enter names: ").split(",")
+
+    clean_names = [name.strip().title() for name in names]
+
+Now the program has:
+
+    Ahmad
+    Sara
+    Alex
+
+The list comprehension may look unfamiliar at first.
+
+Do not worry about memorizing it immediately.
+
+The underlying process is:
+
+    Split
+    ↓
+    Take each name
+    ↓
+    Strip spaces
+    ↓
+    Format the name
+    ↓
+    Store the cleaned result
+
+---
+
+## 22. A More Explicit Version
+
+The previous example can also be written using a normal loop:
+
+    names = input("Enter names: ").split(",")
+
+    clean_names = []
+
+    for name in names:
+        clean_name = name.strip().title()
+        clean_names.append(clean_name)
+
+This version is longer, but it makes the algorithm easier to see.
+
+Understanding the explicit version first is often useful before learning the shorter version.
+
+---
+
+## 23. Joining Cleaned Names
+
+After cleaning the names, we can turn them back into one string:
+
+    names = ["Ahmad", "Sara", "Alex"]
+
+    result = ", ".join(names)
+
+The result is:
+
+    Ahmad, Sara, Alex
+
+This gives us a complete data transformation:
+
+    User input
+        ↓
+    Split
+        ↓
+    Clean
+        ↓
+    Format
+        ↓
+    Join
+        ↓
+    Final text
+
+---
+
+## 24. Building a Search Program
+
+Ask the user for a sentence and a word.
+
+Then determine whether the word exists.
+
+For example:
+
+    sentence = input("Enter a sentence: ")
+    search_word = input("Search for: ")
+
+    if search_word in sentence:
+        print("Word found.")
+    else:
+        print("Word not found.")
+
+This is a simple example of a program that reacts to text.
+
+---
+
+## 25. Case-Insensitive Searching
+
+The previous program has a problem.
+
+Suppose the sentence is:
+
+    Python is powerful
+
+and the user searches for:
+
+    python
+
+The exact search may fail because:
+
+    Python
+
+and:
+
+    python
+
+are different strings.
+
+A common solution is to normalize both values:
+
+    sentence = input("Enter a sentence: ").lower()
+    search_word = input("Search for: ").lower()
+
+    if search_word in sentence:
+        print("Word found.")
+    else:
+        print("Word not found.")
+
+Now capitalization does not affect the basic search.
+
+---
+
+## 26. Building a Text Normalizer
+
+A text normalizer prepares user input for consistent processing.
+
+For example:
+
+    text = input("Enter text: ")
+
+    text = text.strip()
+    text = text.lower()
+
+Now different forms such as:
+
+    " PYTHON "
+    "Python"
+    "PYTHON"
+
+can all become:
+
+    "python"
+
+This is especially useful before:
+
+- Searching
+- Comparing
+- Validating
+- Storing user input
+
+---
+
+## 27. Important Idea: Normalize Before Comparing
+
+Suppose you want to compare two names.
+
+The user enters:
+
+    first_name = " Ahmad "
+    second_name = "ahmad"
+
+If you compare them directly:
+
+    first_name == second_name
+
+the result is:
+
+    False
+
+But if you normalize them:
+
+    first_name = first_name.strip().lower()
+    second_name = second_name.strip().lower()
+
+then:
+
+    first_name == second_name
+
+becomes:
+
+    True
+
+This teaches an important programming principle:
+
+**Before comparing user-provided text, make sure the text is in a consistent form.**
+
+---
+
+## 28. Common Mistake — Forgetting `strip()`
+
+Consider:
+
+    name = input("Name: ")
+
+The user enters:
+
+    Ahmad
+
+This may look correct.
+
+But the user could enter:
+
+    "   Ahmad   "
+
+If the program stores the value without cleaning it, those spaces remain part of the string.
+
+A safer pattern is:
+
+    name = input("Name: ").strip()
+
+Clean data early when possible.
+
+---
+
+## 29. Common Mistake — Assuming Input Has the Expected Structure
+
+Suppose your program expects:
+
+    first_name,last_name
+
+and the user enters:
+
+    Ahmad,Rezaei
+
+Splitting works:
+
+    parts = text.split(",")
+
+But what if the user enters:
+
+    Ahmad
+
+Now there is no second value.
+
+A program should not blindly assume that user input is always valid.
+
+This leads to a broader programming idea:
+
+**Input should be validated before it is processed.**
+
+You will study validation and error handling more deeply later.
+
+---
+
+# Practice Challenge 1 — Word Counter
+
+Write a program that asks the user for a sentence.
+
+The program should display:
+
+    ----- Text Analysis -----
+
+    Sentence: Python is easy to learn.
+    Word count: 5
+
+Requirements:
+
+- Remove unnecessary spaces.
+- Split the sentence into words.
+- Count the words.
+- Use an f-string.
+
+---
+
+# Practice Challenge 2 — Clean Name List
+
+Ask the user to enter several names separated by commas.
+
+Example:
+
+    Enter names:   ahmad, sara , ALEX, john
+
+The program should produce:
+
+    ----- Names -----
+
+    Ahmad
+    Sara
+    Alex
+    John
+
+Requirements:
+
+- Split the input using `,`.
+- Remove unnecessary spaces.
+- Format each name correctly.
+- Display the cleaned names.
+
+---
+
+# Practice Challenge 3 — Email Analyzer
+
+Ask the user for an email address.
+
+The program should display:
+
+    ----- Email Analysis -----
+
+    Email: ahmad@example.com
+    Username: ahmad
+    Domain: example.com
+
+Requirements:
+
+- Clean the input.
+- Convert it to lowercase.
+- Separate the username and domain.
+- Use string operations rather than manually typing the result.
+
+---
+
+# Practice Challenge 4 — Text Normalizer
+
+Ask the user for a sentence.
+
+The sentence may contain:
+
+- Extra spaces
+- Uppercase letters
+- Lowercase letters
+
+Convert it into a clean sentence with:
+
+- One space between words
+- Lowercase letters
+
+Example:
+
+    Input:
+       PYTHON     IS       VERY     POWERFUL
+
+    Output:
+    python is very powerful
+
+Think about why `split()` followed by `join()` is useful here.
+
+---
+
+# Practice Challenge 5 — Simple Search Engine
+
+Ask the user for:
+
+- A sentence
+- A search word
+
+The program should perform a case-insensitive search.
+
+Example:
+
+    Sentence: Python is a powerful programming language.
+    Search: PYTHON
+
+Output:
+
+    Result: Found
+
+If the word does not exist:
+
+    Result: Not found
+
+---
+
+# Final Challenge — Contact List Processor
+
+Do not look at the answer before trying to solve the problem.
+
+Build a program that receives several contacts from the user.
+
+The user enters contacts using this format:
+
+    Ahmad Rezaei:ahmad@example.com,Sara Smith:sara@example.com,Alex Johnson:alex@example.com
+
+The program should process the input and produce:
+
+    ----- Contact List -----
+
+    1. Ahmad Rezaei
+       Email: ahmad@example.com
+
+    2. Sara Smith
+       Email: sara@example.com
+
+    3. Alex Johnson
+       Email: alex@example.com
+
+The program should:
+
+1. Receive the complete string from the user.
+2. Split the contacts using `,`.
+3. Process each contact separately.
+4. Separate the name from the email using `:`.
+5. Clean unnecessary spaces.
+6. Format the name correctly.
+7. Convert the email to lowercase.
+8. Display the contacts in a readable format.
+
+Think about the problem as a sequence of transformations:
+
+    Raw input
+        ↓
+    Split contacts
+        ↓
+    Process one contact
+        ↓
+    Split name and email
+        ↓
+    Clean values
+        ↓
+    Format values
+        ↓
+    Display result
+
+The challenge is not mainly about syntax.
+
+It is about learning how to take a large string containing structured information and gradually transform it into useful pieces of data.
+
+---
+
+# Final Challenge — Answer
+
+Try to solve the challenge yourself first.
+
+One possible solution is:
+
+    contacts_text = input("Enter contacts: ").strip()
+
+    contacts = contacts_text.split(",")
+
+    print()
+    print("----- Contact List -----")
+    print()
+
+    number = 1
+
+    for contact in contacts:
+        name, email = contact.split(":", 1)
+
+        name = name.strip().title()
+        email = email.strip().lower()
+
+        print(f"{number}. {name}")
+        print(f"   Email: {email}")
+        print()
+
+        number += 1
+
+Notice how the solution follows the same algorithm:
+
+    Input
+        ↓
+    Split contacts
+        ↓
+    Loop through contacts
+        ↓
+    Split each contact
+        ↓
+    Clean values
+        ↓
+    Format values
+        ↓
+    Display
+
+The important lesson is that strings can contain structured information.
+
+Once you learn how to split, clean, search, normalize, and join strings, you can begin turning raw text into data that a program can actually work with.
+
+---
+

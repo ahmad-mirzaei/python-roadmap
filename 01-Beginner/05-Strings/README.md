@@ -4935,3 +4935,1578 @@ We will implement and solve the final challenge in the next stage, **after the l
 
 ---
 
+# Part 6 — String Formatting
+
+In the previous parts, we learned how to create strings, access individual characters, slice strings, and use string methods.
+
+Now we are going to learn how to make strings more useful and readable by **putting values inside them**.
+
+This is called **string formatting**.
+
+String formatting is extremely common in real programs because programs usually need to display information that comes from variables.
+
+For example, instead of writing:
+
+```python
+name = "Ahmad"
+age = 25
+
+print("My name is Ahmad and I am 25 years old.")
+```
+
+we want the program to use the variables:
+
+```python
+name = "Ahmad"
+age = 25
+
+print(f"My name is {name} and I am {age} years old.")
+```
+
+The second approach is much more useful because the values can change.
+
+---
+
+## Why Do We Need String Formatting?
+
+Imagine a program that displays a student's information.
+
+We might have:
+
+```python
+name = "Sara"
+age = 20
+score = 18.75
+```
+
+We could print every value separately:
+
+```python
+print("Name:", name)
+print("Age:", age)
+print("Score:", score)
+```
+
+This works, but sometimes we want to build a complete sentence:
+
+```python
+print(f"{name} is {age} years old and scored {score}.")
+```
+
+Output:
+
+```text
+Sara is 20 years old and scored 18.75.
+```
+
+String formatting allows us to combine:
+
+- Text
+- Variables
+- Calculated values
+- Numbers
+- Expressions
+
+inside one formatted string.
+
+---
+
+# f-Strings
+
+The most common and recommended way to format strings in modern Python is the **f-string**.
+
+The `f` is written before the opening quotation mark.
+
+For example:
+
+```python
+name = "Ahmad"
+
+print(f"Hello, {name}!")
+```
+
+Output:
+
+```text
+Hello, Ahmad!
+```
+
+Without the `f`, Python does not treat `{name}` as a variable:
+
+```python
+name = "Ahmad"
+
+print("Hello, {name}!")
+```
+
+Output:
+
+```text
+Hello, {name}!
+```
+
+So remember:
+
+```python
+f"Hello, {name}!"
+```
+
+not:
+
+```python
+"Hello, {name}!"
+```
+
+---
+
+## How Does an f-String Work?
+
+Consider:
+
+```python
+name = "Ahmad"
+age = 25
+
+message = f"My name is {name} and I am {age} years old."
+
+print(message)
+```
+
+Python sees:
+
+```python
+f"My name is {name} and I am {age} years old."
+```
+
+The parts inside `{}` are evaluated and replaced with their values.
+
+So:
+
+```python
+{name}
+```
+
+becomes:
+
+```text
+Ahmad
+```
+
+and:
+
+```python
+{age}
+```
+
+becomes:
+
+```text
+25
+```
+
+The final string becomes:
+
+```text
+My name is Ahmad and I am 25 years old.
+```
+
+---
+
+# Putting Multiple Variables Inside a String
+
+You can use as many variables as you need.
+
+```python
+first_name = "Ali"
+last_name = "Ahmadi"
+age = 22
+
+print(f"Name: {first_name} {last_name}")
+print(f"Age: {age}")
+```
+
+Output:
+
+```text
+Name: Ali Ahmadi
+Age: 22
+```
+
+Another example:
+
+```python
+product = "Keyboard"
+price = 49.99
+quantity = 2
+
+print(f"Product: {product}")
+print(f"Price: {price}")
+print(f"Quantity: {quantity}")
+```
+
+Output:
+
+```text
+Product: Keyboard
+Price: 49.99
+Quantity: 2
+```
+
+---
+
+# Expressions Inside f-Strings
+
+One of the most useful features of f-strings is that we can put **expressions** inside `{}`.
+
+For example:
+
+```python
+a = 10
+b = 5
+
+print(f"Sum: {a + b}")
+```
+
+Output:
+
+```text
+Sum: 15
+```
+
+We can also multiply:
+
+```python
+price = 20
+quantity = 3
+
+print(f"Total: {price * quantity}")
+```
+
+Output:
+
+```text
+Total: 60
+```
+
+We can use more complicated expressions:
+
+```python
+math = 18
+physics = 16
+programming = 20
+
+average = (math + physics + programming) / 3
+
+print(f"Average: {average}")
+```
+
+Output:
+
+```text
+Average: 18.0
+```
+
+The important idea is:
+
+> Anything inside `{}` in an f-string is evaluated as a Python expression.
+
+For example:
+
+```python
+name = "Ahmad"
+age = 25
+
+print(f"{name} will be {age + 1} next year.")
+```
+
+Output:
+
+```text
+Ahmad will be 26 next year.
+```
+
+---
+
+# Using String Methods Inside f-Strings
+
+We can even use methods inside `{}`.
+
+For example:
+
+```python
+name = "ahmad"
+
+print(f"Hello, {name.title()}!")
+```
+
+Output:
+
+```text
+Hello, Ahmad!
+```
+
+Another example:
+
+```python
+name = "  ahmad  "
+
+print(f"Hello, {name.strip().title()}!")
+```
+
+Output:
+
+```text
+Hello, Ahmad!
+```
+
+This is useful when the original input may contain unnecessary spaces or inconsistent capitalization.
+
+For example:
+
+```python
+name = input("Enter your name: ").strip().title()
+
+print(f"Welcome, {name}!")
+```
+
+If the user enters:
+
+```text
+   ahmad
+```
+
+the output becomes:
+
+```text
+Welcome, Ahmad!
+```
+
+---
+
+# Formatting Numbers
+
+String formatting becomes especially useful when working with numbers.
+
+Suppose we have:
+
+```python
+price = 49.99
+```
+
+We can display it directly:
+
+```python
+print(f"Price: {price}")
+```
+
+Output:
+
+```text
+Price: 49.99
+```
+
+But sometimes we want to control how many decimal places are displayed.
+
+For example:
+
+```python
+price = 49.999999
+
+print(f"Price: {price:.2f}")
+```
+
+Output:
+
+```text
+Price: 50.00
+```
+
+The important part is:
+
+```python
+:.2f
+```
+
+Let's break it down.
+
+---
+
+## Understanding `:.2f`
+
+Consider:
+
+```python
+f"{price:.2f}"
+```
+
+The structure is:
+
+```text
+{value:format}
+```
+
+Here:
+
+- `price` is the value.
+- `:` starts the formatting instructions.
+- `.2` means two digits after the decimal point.
+- `f` means fixed-point decimal formatting.
+
+For example:
+
+```python
+number = 12.34567
+
+print(f"{number:.1f}")
+print(f"{number:.2f}")
+print(f"{number:.3f}")
+```
+
+Output:
+
+```text
+12.3
+12.35
+12.346
+```
+
+Python also rounds the number when necessary.
+
+For example:
+
+```python
+score = 17.876
+
+print(f"Score: {score:.2f}")
+```
+
+Output:
+
+```text
+Score: 17.88
+```
+
+---
+
+# Formatting Percentages
+
+Suppose a score is stored as a decimal:
+
+```python
+score = 0.875
+```
+
+If we print it normally:
+
+```python
+print(score)
+```
+
+we get:
+
+```text
+0.875
+```
+
+But maybe we want:
+
+```text
+87.50%
+```
+
+We can use `%` formatting:
+
+```python
+print(f"{score:.2%}")
+```
+
+Output:
+
+```text
+87.50%
+```
+
+Notice that:
+
+```python
+.2%
+```
+
+does two things:
+
+1. Converts the decimal to a percentage.
+2. Displays two decimal places.
+
+For example:
+
+```python
+value = 0.5
+
+print(f"{value:.2%}")
+```
+
+Output:
+
+```text
+50.00%
+```
+
+Another example:
+
+```python
+value = 0.875
+
+print(f"{value:.1%}")
+```
+
+Output:
+
+```text
+87.5%
+```
+
+---
+
+# Formatting Money
+
+A common real-world situation is displaying prices.
+
+For example:
+
+```python
+price = 1499.5
+
+print(f"${price:.2f}")
+```
+
+Output:
+
+```text
+$1499.50
+```
+
+We can combine formatting with calculations:
+
+```python
+price = 49.99
+quantity = 3
+
+total = price * quantity
+
+print(f"Total: ${total:.2f}")
+```
+
+Output:
+
+```text
+Total: $149.97
+```
+
+---
+
+# Thousands Separators
+
+Large numbers can be difficult to read.
+
+For example:
+
+```python
+population = 12500000
+
+print(population)
+```
+
+Output:
+
+```text
+12500000
+```
+
+We can use a comma separator:
+
+```python
+print(f"{population:,}")
+```
+
+Output:
+
+```text
+12,500,000
+```
+
+This is useful for:
+
+- Population
+- Money
+- Large measurements
+- Statistics
+- Scores
+- File sizes
+
+Another example:
+
+```python
+salary = 125000
+
+print(f"Salary: ${salary:,}")
+```
+
+Output:
+
+```text
+Salary: $125,000
+```
+
+---
+
+# Combining Number Formatting
+
+Formatting instructions can be combined.
+
+For example:
+
+```python
+price = 1234567.89123
+
+print(f"${price:,.2f}")
+```
+
+Output:
+
+```text
+$1,234,567.89
+```
+
+Here:
+
+```text
+,
+```
+
+adds thousands separators.
+
+And:
+
+```text
+.2f
+```
+
+keeps two decimal places.
+
+This pattern is extremely useful when displaying financial information.
+
+---
+
+# Alignment
+
+Sometimes we want information to line up neatly.
+
+Python allows us to control the width of a formatted value.
+
+For example:
+
+```python
+name = "Ali"
+
+print(f"{name:10}")
+```
+
+This reserves a width of 10 characters.
+
+We can also align text to the left:
+
+```python
+name = "Ali"
+
+print(f"{name:<10}")
+```
+
+Right alignment:
+
+```python
+name = "Ali"
+
+print(f"{name:>10}")
+```
+
+Center alignment:
+
+```python
+name = "Ali"
+
+print(f"{name:^10}")
+```
+
+These are especially useful when creating simple tables.
+
+---
+
+# Creating a Simple Table
+
+For example:
+
+```python
+name1 = "Ali"
+score1 = 18
+
+name2 = "Sara"
+score2 = 19
+
+print(f"{'Name':<10}{'Score':>10}")
+print(f"{name1:<10}{score1:>10}")
+print(f"{name2:<10}{score2:>10}")
+```
+
+Output:
+
+```text
+Name           Score
+Ali               18
+Sara              19
+```
+
+The formatting makes the output easier to read.
+
+---
+
+# Formatting Boolean Values
+
+Boolean values can also be placed inside f-strings.
+
+```python
+is_student = True
+
+print(f"Student: {is_student}")
+```
+
+Output:
+
+```text
+Student: True
+```
+
+Another example:
+
+```python
+age = 20
+is_adult = age >= 18
+
+print(f"Age: {age}")
+print(f"Adult: {is_adult}")
+```
+
+Output:
+
+```text
+Age: 20
+Adult: True
+```
+
+---
+
+# Formatting Results of Conditions
+
+We can calculate a value and immediately display it.
+
+```python
+age = 20
+
+print(f"Can vote: {age >= 18}")
+```
+
+Output:
+
+```text
+Can vote: True
+```
+
+This is useful when debugging programs or displaying the result of a logical operation.
+
+---
+
+# Using Conditional Expressions
+
+Python also allows a conditional expression inside an f-string.
+
+For example:
+
+```python
+age = 20
+
+print(f"Status: {'Adult' if age >= 18 else 'Minor'}")
+```
+
+Output:
+
+```text
+Status: Adult
+```
+
+Another example:
+
+```python
+score = 17
+
+print(f"Result: {'Passed' if score >= 10 else 'Failed'}")
+```
+
+Output:
+
+```text
+Result: Passed
+```
+
+This is compact, but for complicated logic it is usually better to calculate the result first.
+
+For example:
+
+```python
+score = 17
+
+if score >= 10:
+    result = "Passed"
+else:
+    result = "Failed"
+
+print(f"Result: {result}")
+```
+
+This version is often easier to read.
+
+---
+
+# Building Multi-Line Output
+
+f-strings are not limited to one line.
+
+We can use `\n`:
+
+```python
+name = "Ahmad"
+age = 25
+score = 18.5
+
+print(f"Name: {name}\nAge: {age}\nScore: {score}")
+```
+
+Output:
+
+```text
+Name: Ahmad
+Age: 25
+Score: 18.5
+```
+
+We can also use triple quotes for larger blocks of text:
+
+```python
+name = "Ahmad"
+age = 25
+
+message = f"""
+----- Student Profile -----
+Name: {name}
+Age: {age}
+---------------------------
+"""
+
+print(message)
+```
+
+Output:
+
+```text
+----- Student Profile -----
+Name: Ahmad
+Age: 25
+---------------------------
+```
+
+This is useful for reports and formatted output.
+
+---
+
+# Formatting User Input
+
+String formatting becomes much more useful when combined with `input()`.
+
+For example:
+
+```python
+name = input("Enter your name: ").strip().title()
+age = int(input("Enter your age: "))
+
+print(f"Hello, {name}!")
+print(f"You are {age} years old.")
+```
+
+If the user enters:
+
+```text
+ahmad
+25
+```
+
+the output is:
+
+```text
+Hello, Ahmad!
+You are 25 years old.
+```
+
+Notice how several concepts from previous parts are working together:
+
+- `input()` receives data.
+- `.strip()` removes unnecessary spaces.
+- `.title()` changes capitalization.
+- `int()` converts the age to an integer.
+- f-strings format the final output.
+
+This is an important example of how Python concepts build on each other.
+
+---
+
+# Formatting Calculated Values
+
+Suppose a user enters three scores.
+
+```python
+math = float(input("Enter Math score: "))
+physics = float(input("Enter Physics score: "))
+programming = float(input("Enter Programming score: "))
+
+average = (math + physics + programming) / 3
+
+print(f"Average: {average:.2f}")
+```
+
+If the user enters:
+
+```text
+18
+16
+19
+```
+
+the output is:
+
+```text
+Average: 17.67
+```
+
+We can also calculate a percentage:
+
+```python
+percentage = (average / 20) * 100
+
+print(f"Percentage: {percentage:.2f}%")
+```
+
+Output:
+
+```text
+Percentage: 88.33%
+```
+
+---
+
+# A Complete Student Report
+
+Now let's combine everything we have learned.
+
+```python
+name = input("Enter student name: ").strip().title()
+age = int(input("Enter student age: "))
+
+math = float(input("Enter Math score: "))
+physics = float(input("Enter Physics score: "))
+programming = float(input("Enter Programming score: "))
+
+average = (math + physics + programming) / 3
+percentage = (average / 20) * 100
+
+if average >= 10:
+    status = "Passed"
+else:
+    status = "Failed"
+
+print()
+print("----- Student Report -----")
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"Math: {math:.2f}")
+print(f"Physics: {physics:.2f}")
+print(f"Programming: {programming:.2f}")
+print(f"Average: {average:.2f}")
+print(f"Percentage: {percentage:.2f}%")
+print(f"Status: {status}")
+```
+
+Example input:
+
+```text
+Enter student name:   alex
+Enter student age: 20
+Enter Math score: 18
+Enter Physics score: 17
+Enter Programming score: 18.5
+```
+
+Output:
+
+```text
+----- Student Report -----
+Name: Alex
+Age: 20
+Math: 18.00
+Physics: 17.00
+Programming: 18.50
+Average: 17.83
+Percentage: 89.17%
+Status: Passed
+```
+
+This small program combines many concepts:
+
+- Variables
+- Strings
+- `input()`
+- `int()`
+- `float()`
+- `.strip()`
+- `.title()`
+- Arithmetic
+- Comparison
+- `if / else`
+- f-strings
+- Number formatting
+
+This is exactly how programming concepts start working together to create useful programs.
+
+---
+
+# Common Mistake — Forgetting the `f`
+
+Wrong:
+
+```python
+name = "Ahmad"
+
+print("Hello, {name}!")
+```
+
+Output:
+
+```text
+Hello, {name}!
+```
+
+Correct:
+
+```python
+print(f"Hello, {name}!")
+```
+
+Output:
+
+```text
+Hello, Ahmad!
+```
+
+---
+
+# Common Mistake — Putting Quotes Inside the Braces
+
+Wrong:
+
+```python
+name = "Ahmad"
+
+print(f"Hello, {"name"}!")
+```
+
+This creates a syntax problem.
+
+Correct:
+
+```python
+print(f"Hello, {name}!")
+```
+
+The variable name does not need quotes.
+
+---
+
+# Common Mistake — Confusing the Value with Its Formatting
+
+Consider:
+
+```python
+score = 0.875
+
+print(f"{score:.2f}")
+```
+
+This gives:
+
+```text
+0.88
+```
+
+But:
+
+```python
+print(f"{score:.2%}")
+```
+
+gives:
+
+```text
+87.50%
+```
+
+The difference is important.
+
+`.2f` means:
+
+> Show the number with two decimal places.
+
+`.2%` means:
+
+> Convert the decimal to a percentage and show two decimal places.
+
+---
+
+# Common Mistake — Formatting Does Not Change the Original Variable
+
+Consider:
+
+```python
+price = 12.3456
+
+print(f"{price:.2f}")
+print(price)
+```
+
+Output:
+
+```text
+12.35
+12.3456
+```
+
+The formatting only changes how the value is displayed.
+
+It does not permanently change `price`.
+
+If we actually want a rounded value, we can use:
+
+```python
+price = 12.3456
+
+price = round(price, 2)
+
+print(price)
+```
+
+Output:
+
+```text
+12.35
+```
+
+This distinction is important:
+
+- Formatting controls **display**.
+- `round()` changes the value stored in the variable.
+
+---
+
+# Exercises
+
+## Exercise 1 — Personal Introduction
+
+Create these variables:
+
+```python
+name = "Ali"
+age = 21
+city = "Tehran"
+```
+
+Print:
+
+```text
+My name is Ali.
+I am 21 years old.
+I live in Tehran.
+```
+
+Use an f-string.
+
+---
+
+## Exercise 2 — Product Information
+
+Create:
+
+```python
+product = "Keyboard"
+price = 49.99
+quantity = 2
+```
+
+Display:
+
+```text
+Product: Keyboard
+Price: $49.99
+Quantity: 2
+```
+
+Use f-strings.
+
+---
+
+## Exercise 3 — Calculate Total
+
+Using:
+
+```python
+price = 49.99
+quantity = 2
+```
+
+calculate the total price and display:
+
+```text
+Total: $99.98
+```
+
+The price must have exactly two decimal places.
+
+---
+
+## Exercise 4 — Average Score
+
+Create three scores:
+
+```python
+math = 18
+physics = 16
+programming = 19
+```
+
+Calculate the average and display it with two decimal places.
+
+Expected output:
+
+```text
+Average: 17.67
+```
+
+---
+
+## Exercise 5 — Percentage
+
+Given:
+
+```python
+score = 0.875
+```
+
+display:
+
+```text
+Score: 87.50%
+```
+
+Use percentage formatting.
+
+---
+
+## Exercise 6 — User Profile
+
+Ask the user for:
+
+- Name
+- Age
+- City
+
+Then display:
+
+```text
+----- User Profile -----
+Name: Alex
+Age: 25
+City: Tehran
+```
+
+The name should be cleaned using `.strip().title()`.
+
+---
+
+## Exercise 7 — Rectangle Report
+
+Create:
+
+```python
+width = 12.5
+height = 8.2
+```
+
+Calculate:
+
+- Area
+- Perimeter
+
+Display both with two decimal places.
+
+Expected format:
+
+```text
+Width: 12.50
+Height: 8.20
+Area: 102.50
+Perimeter: 41.40
+```
+
+---
+
+## Exercise 8 — Shopping Receipt
+
+Ask the user for:
+
+- Product name
+- Price
+- Quantity
+
+Calculate the total and display:
+
+```text
+----- Receipt -----
+Product: Keyboard
+Price: $49.99
+Quantity: 2
+Total: $99.98
+```
+
+Use proper number formatting.
+
+---
+
+## Exercise 9 — Temperature Converter
+
+Ask the user for a temperature in Celsius.
+
+Convert it to Fahrenheit using:
+
+```text
+F = C × 9 / 5 + 32
+```
+
+Display:
+
+```text
+Celsius: 25.00°C
+Fahrenheit: 77.00°F
+```
+
+---
+
+## Exercise 10 — Student Profile
+
+Ask the user for:
+
+- Name
+- Age
+- Score
+
+Then display:
+
+```text
+----- Student Profile -----
+Name: Alex
+Age: 20
+Score: 87.50%
+```
+
+The score should be entered as a decimal such as:
+
+```text
+0.875
+```
+
+and displayed as:
+
+```text
+87.50%
+```
+
+---
+
+## Exercise 11 — Simple Table
+
+Create three students:
+
+```python
+name1 = "Ali"
+score1 = 18
+
+name2 = "Sara"
+score2 = 19
+
+name3 = "Reza"
+score3 = 17
+```
+
+Display them in an aligned table:
+
+```text
+Name           Score
+Ali               18
+Sara              19
+Reza              17
+```
+
+Use alignment formatting.
+
+---
+
+## Exercise 12 — Bank Account
+
+Create:
+
+```python
+name = "Ahmad"
+balance = 1250000.5
+```
+
+Display:
+
+```text
+----- Bank Account -----
+Name: Ahmad
+Balance: $1,250,000.50
+```
+
+Use thousands separators and two decimal places.
+
+---
+
+# Final Challenge — Student Report System
+
+Before looking at the solution, try to solve the problem yourself.
+
+Create a program that asks the user for:
+
+- Student name
+- Student age
+- Math score
+- Physics score
+- Programming score
+
+The name must be cleaned using:
+
+```python
+.strip().title()
+```
+
+The scores should be entered as numbers between `0` and `20`.
+
+Calculate:
+
+- Average score
+- Percentage
+
+The percentage should be calculated relative to a maximum score of `20`.
+
+Then determine whether the student passed.
+
+A student passes if the average is at least `10`.
+
+Finally, display a formatted report similar to:
+
+```text
+----- Student Report -----
+Name: Alex
+Age: 20
+Math: 18.00
+Physics: 17.00
+Programming: 18.50
+Average: 17.83
+Percentage: 89.17%
+Status: Passed
+```
+
+### Requirements
+
+Your program must use:
+
+- `input()`
+- `int()`
+- `float()`
+- `.strip()`
+- `.title()`
+- Variables
+- Arithmetic operators
+- `if / else`
+- f-strings
+- Number formatting with `.2f`
+- Percentage formatting or a calculated percentage
+
+Try to solve it without looking at the answer.
+
+---
+
+# Final Challenge — Solution
+
+One possible solution is:
+
+```python
+name = input("Enter student name: ").strip().title()
+age = int(input("Enter student age: "))
+
+math = float(input("Enter Math score: "))
+physics = float(input("Enter Physics score: "))
+programming = float(input("Enter Programming score: "))
+
+average = (math + physics + programming) / 3
+percentage = (average / 20) * 100
+
+if average >= 10:
+    status = "Passed"
+else:
+    status = "Failed"
+
+print()
+print("----- Student Report -----")
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"Math: {math:.2f}")
+print(f"Physics: {physics:.2f}")
+print(f"Programming: {programming:.2f}")
+print(f"Average: {average:.2f}")
+print(f"Percentage: {percentage:.2f}%")
+print(f"Status: {status}")
+```
+
+The important part is not memorizing this exact program.
+
+The goal is to understand how the different pieces work together:
+
+```text
+input
+  ↓
+clean / convert data
+  ↓
+store values in variables
+  ↓
+calculate results
+  ↓
+make a decision
+  ↓
+format the final output
+```
+
+This is the beginning of **algorithmic thinking**: taking raw information, transforming it step by step, making decisions, and producing a useful result.

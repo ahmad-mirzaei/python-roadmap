@@ -8669,615 +8669,7 @@ my_list[-1]
 
 ---
 
-# بخش ۱۱ — بررسی وجود یک عنصر در لیست
-
-## ۱. مقدمه
-
-گاهی لازم است بررسی کنیم که آیا یک مقدار مشخص در یک لیست وجود دارد یا نه.
-
-پایتون برای این کار دو عملگر مفید دارد:
-
-- `in`
-- `not in`
-
-این عملگرها به ما اجازه می دهند بررسی کنیم یک مقدار در لیست وجود دارد یا وجود ندارد.
-
-## ۲. استفاده از عملگر `in`
-
-عملگر `in` بررسی می کند که آیا یک مقدار در لیست وجود دارد یا نه.
-
-برای مثال:
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-print("Apple" in fruits)
-```
-
-خروجی:
-
-```text
-True
-```
-
-چون `"Apple"` در لیست وجود دارد، نتیجه `True` است.
-
-## ۳. بررسی مقداری که وجود ندارد
-
-اگر مقدار مورد نظر در لیست نباشد، نتیجه `False` خواهد بود.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-print("Mango" in fruits)
-```
-
-خروجی:
-
-```text
-False
-```
-
-`"Mango"` در لیست وجود ندارد.
-
-## ۴. استفاده از `not in`
-
-عملگر `not in` بررسی می کند که آیا یک مقدار در لیست وجود ندارد یا نه.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-print("Mango" not in fruits)
-```
-
-خروجی:
-
-```text
-True
-```
-
-چون `"Mango"` در لیست وجود ندارد، نتیجه `True` است.
-
-## ۵. استفاده از بررسی عضویت با `if`
-
-بررسی وجود یک مقدار در لیست به ویژه همراه با شرط ها کاربرد زیادی دارد.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-if "Apple" in fruits:
-    print("Apple is in the list.")
-```
-
-خروجی:
-
-```text
-Apple is in the list.
-```
-
-همچنین می توانیم بررسی کنیم که یک مقدار وجود ندارد.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-if "Mango" not in fruits:
-    print("Mango is not in the list.")
-```
-
-خروجی:
-
-```text
-Mango is not in the list.
-```
-
-## ۶. بررسی ورودی کاربر
-
-می توانیم `input()` را با عملگر `in` ترکیب کنیم.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-fruit = input("Enter a fruit: ")
-
-if fruit in fruits:
-    print("The fruit is in the list.")
-else:
-    print("The fruit is not in the list.")
-```
-
-نمونه خروجی:
-
-```text
-Enter a fruit: Banana
-The fruit is in the list.
-```
-
-مقداری که کاربر وارد کرده است با لیست مقایسه می شود.
-
-## ۷. حساس بودن بررسی رشته ها به حروف کوچک و بزرگ
-
-مقایسه رشته ها به حروف کوچک و بزرگ حساس است.
-
-برای مثال:
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-print("Apple" in fruits)
-print("apple" in fruits)
-```
-
-خروجی:
-
-```text
-True
-False
-```
-
-`"Apple"` و `"apple"` دو رشته متفاوت هستند.
-
-## ۸. بررسی اعداد
-
-عملگر `in` برای اعداد نیز کار می کند.
-
-```python
-numbers = [10, 20, 30, 40, 50]
-
-print(30 in numbers)
-print(100 in numbers)
-```
-
-خروجی:
-
-```text
-True
-False
-```
-
-## ۹. بررسی چند مقدار
-
-می توانیم بررسی های عضویت را با `and` و `or` ترکیب کنیم.
-
-برای مثال:
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-if "Apple" in fruits and "Banana" in fruits:
-    print("Both fruits are in the list.")
-```
-
-خروجی:
-
-```text
-Both fruits are in the list.
-```
-
-همچنین می توانیم بررسی کنیم که حداقل یکی از مقادیر وجود داشته باشد.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-if "Apple" in fruits or "Mango" in fruits:
-    print("At least one fruit is in the list.")
-```
-
-خروجی:
-
-```text
-At least one fruit is in the list.
-```
-
-## ۱۰. جلوگیری از اضافه کردن مقدار تکراری
-
-بررسی عضویت می تواند به ما کمک کند یک مقدار را بیشتر از یک بار به لیست اضافه نکنیم.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-new_fruit = "Apple"
-
-if new_fruit not in fruits:
-    fruits.append(new_fruit)
-
-print(fruits)
-```
-
-خروجی:
-
-```text
-['Apple', 'Banana', 'Orange']
-```
-
-چون `"Apple"` از قبل در لیست وجود داشت، دوباره اضافه نشد.
-
-اگر یک مقدار جدید داشته باشیم:
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-new_fruit = "Mango"
-
-if new_fruit not in fruits:
-    fruits.append(new_fruit)
-
-print(fruits)
-```
-
-خروجی:
-
-```text
-['Apple', 'Banana', 'Orange', 'Mango']
-```
-
-## ۱۱. جستجوی نام دانش آموز
-
-بررسی عضویت در برنامه های ساده کاربرد زیادی دارد.
-
-```python
-students = ["Ali", "Sara", "Reza", "Mina"]
-
-name = input("Enter a student name: ")
-
-if name in students:
-    print("Student found.")
-else:
-    print("Student not found.")
-```
-
-نمونه خروجی:
-
-```text
-Enter a student name: Sara
-Student found.
-```
-
-## ۱۲. بررسی مقادیر مجاز
-
-می توانیم یک لیست را برای مشخص کردن انتخاب های مجاز استفاده کنیم.
-
-```python
-allowed_colors = ["red", "green", "blue"]
-
-color = input("Enter a color: ")
-
-if color in allowed_colors:
-    print("This color is allowed.")
-else:
-    print("This color is not allowed.")
-```
-
-نمونه خروجی:
-
-```text
-Enter a color: green
-This color is allowed.
-```
-
-## ۱۳. بررسی یک عدد قبل از پردازش
-
-قبل از کار با یک عدد می توانیم بررسی کنیم که آیا در لیست وجود دارد یا نه.
-
-```python
-numbers = [10, 20, 30, 40, 50]
-
-number = int(input("Enter a number: "))
-
-if number in numbers:
-    print("Number found.")
-else:
-    print("Number not found.")
-```
-
-نمونه خروجی:
-
-```text
-Enter a number: 30
-Number found.
-```
-
-## ۱۴. تفاوت `in` و `count()`
-
-هر دو برای کار با وجود مقادیر در لیست استفاده می شوند، اما سوال متفاوتی را پاسخ می دهند.
-
-عملگر `in` بررسی می کند که آیا یک مقدار وجود دارد:
-
-```python
-fruits = ["Apple", "Banana", "Apple"]
-
-print("Apple" in fruits)
-```
-
-خروجی:
-
-```text
-True
-```
-
-متد `count()` مشخص می کند مقدار چند بار وجود دارد:
-
-```python
-print(fruits.count("Apple"))
-```
-
-خروجی:
-
-```text
-2
-```
-
-بنابراین:
-
-```python
-"Apple" in fruits
-```
-
-می پرسد:
-
-> آیا `"Apple"` وجود دارد؟
-
-اما:
-
-```python
-fruits.count("Apple")
-```
-
-می پرسد:
-
-> `"Apple"` چند بار وجود دارد؟
-
-## ۱۵. بررسی عضویت همراه با حلقه
-
-می توانیم بررسی عضویت را داخل حلقه نیز انجام دهیم.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-for fruit in fruits:
-    if fruit in ["Apple", "Orange"]:
-        print(fruit)
-```
-
-خروجی:
-
-```text
-Apple
-Orange
-```
-
-حلقه هر عنصر را بررسی می کند و مشخص می کند آیا آن عنصر در لیست دیگر وجود دارد یا نه.
-
-## ۱۶. اشتباه های رایج
-
-### اشتباه ۱ — استفاده از `=` به جای `in`
-
-این کد اشتباه است:
-
-```python
-fruits = ["Apple", "Banana"]
-
-if "Apple" = fruits:
-    print("Found")
-```
-
-شکل درست:
-
-```python
-if "Apple" in fruits:
-    print("Found")
-```
-
-از `=` برای انتساب استفاده می کنیم.
-
-از `in` برای بررسی وجود یک مقدار استفاده می کنیم.
-
-### اشتباه ۲ — فراموش کردن حساس بودن حروف
-
-این کد:
-
-```python
-fruits = ["Apple", "Banana"]
-
-print("apple" in fruits)
-```
-
-نتیجه زیر را می دهد:
-
-```text
-False
-```
-
-چون `"apple"` و `"Apple"` متفاوت هستند.
-
-### اشتباه ۳ — اشتباه گرفتن `in` با `count()`
-
-این:
-
-```python
-"Apple" in fruits
-```
-
-یک مقدار بولی برمی گرداند:
-
-```text
-True
-```
-
-اما:
-
-```python
-fruits.count("Apple")
-```
-
-یک عدد برمی گرداند، برای مثال:
-
-```text
-2
-```
-
-## ۱۷. جمع بندی
-
-برای بررسی وجود یک مقدار در لیست از `in` استفاده می کنیم:
-
-```python
-value in my_list
-```
-
-برای بررسی نبودن یک مقدار از `not in` استفاده می کنیم:
-
-```python
-value not in my_list
-```
-
-نتیجه بررسی عضویت یکی از این دو مقدار است:
-
-```text
-True
-```
-
-یا:
-
-```text
-False
-```
-
-بررسی عضویت معمولاً همراه با `if` استفاده می شود:
-
-```python
-if value in my_list:
-    print("Found")
-```
-
-همچنین می توانیم آن را با `and` و `or` ترکیب کنیم:
-
-```python
-if value1 in my_list and value2 in my_list:
-    print("Both found")
-```
-
-به یاد داشته باشید که بررسی رشته ها به حروف کوچک و بزرگ حساس است.
-
-# تمرین ها
-
-## تمرین ۱ — بررسی یک میوه
-
-یک لیست شامل پنج میوه بسازید.
-
-بررسی کنید که آیا `"Apple"` در لیست وجود دارد یا نه.
-
-## تمرین ۲ — بررسی یک عدد
-
-یک لیست از اعداد بسازید.
-
-از کاربر یک عدد دریافت کنید و بررسی کنید که آیا آن عدد در لیست وجود دارد یا نه.
-
-## تمرین ۳ — استفاده از `not in`
-
-یک لیست از نام ها بسازید.
-
-بررسی کنید که آیا `"Ali"` در لیست وجود ندارد.
-
-## تمرین ۴ — انتخاب های مجاز
-
-یک لیست شامل سه رنگ مجاز بسازید.
-
-از کاربر یک رنگ دریافت کنید و مشخص کنید که آیا آن رنگ مجاز است یا نه.
-
-## تمرین ۵ — جلوگیری از مقدار تکراری
-
-یک لیست از میوه ها بسازید.
-
-از کاربر یک میوه جدید دریافت کنید.
-
-فقط زمانی آن را به لیست اضافه کنید که از قبل در لیست وجود نداشته باشد.
-
-# مرور جامع
-
-به پنج سوال زیر با استفاده از مطالبی که تا اینجا در درس Lists یاد گرفته اید پاسخ دهید.
-
-## سوال ۱
-
-تفاوت این دو چیست؟
-
-```python
-len(fruits)
-```
-
-و:
-
-```python
-fruits.count("Apple")
-```
-
-## سوال ۲
-
-این برنامه چه چیزی چاپ می کند؟
-
-```python
-numbers = [10, 20, 30, 20, 40]
-
-print(len(numbers))
-print(numbers.count(20))
-print(30 in numbers)
-```
-
-## سوال ۳
-
-برنامه ای بنویسید که یک نام از کاربر دریافت کند و بررسی کند آیا آن نام در لیست دانش آموزان وجود دارد یا نه.
-
-## سوال ۴
-
-یک لیست از نمره ها بسازید و با استفاده از حلقه تعداد نمره های بزرگ تر یا مساوی `10` را بشمارید.
-
-## سوال ۵
-
-یک لیست از میوه ها بسازید و یک میوه جدید را فقط زمانی اضافه کنید که از قبل در لیست وجود نداشته باشد.
-
-# چالش
-
-## چالش Python Roadmap
-
-یک برنامه ساده با نام **Student Score Manager** بسازید و از مفاهیمی که تا اینجا در Python یاد گرفته اید استفاده کنید.
-
-برنامه باید:
-
-1. چند نمره دانش آموزان را در یک لیست ذخیره کند.
-2. لیست نمره ها را چاپ کند.
-3. تعداد کل نمره ها را چاپ کند.
-4. تعداد نمره های قبولی را بشمارد.
-5. تعداد نمره های مردودی را بشمارد.
-6. درصد قبولی را محاسبه کند.
-7. یک نمره از کاربر دریافت کند.
-8. بررسی کند که آیا آن نمره در لیست وجود دارد یا نه.
-9. مشخص کند آن نمره چند بار در لیست وجود دارد.
-10. از متغیرها، `input`، تبدیل نوع، عملگرها، شرط ها، حلقه ها، لیست ها، `len()`، `count()`، `in` و `not in` استفاده کند.
-
-برنامه را با این لیست شروع کنید:
-
-```python
-scores = [18, 8, 15, 7, 20, 12, 9, 15, 18]
-```
-
-نمونه اجرا:
-
-```text
------ Student Score Manager -----
-
-Scores: [18, 8, 15, 7, 20, 12, 9, 15, 18]
-Total scores: 9
-Passing scores: 6
-Failing scores: 3
-Passing percentage: 66.67%
-
-Enter a score to search: 15
-
-Score found.
-Score 15 appears 2 times.
-```
-
----
-
-# بخش ۱۲ — حذف عناصر از لیست
+# بخش ۱۱ — حذف عناصر از لیست
 
 ## ۱. مقدمه
 
@@ -9831,6 +9223,756 @@ tasks = ["Study Python", "Exercise", "Read", "Practice Lists"]
 9. در صورت پیدا نشدن کار، پیام مناسب نمایش دهد.
 
 در این برنامه از متغیرها، `input`، تبدیل نوع در صورت نیاز، شرط ها، لیست ها، `len()`، `in`، `not in`، `remove()` و در صورت مناسب بودن `pop()` استفاده کنید.
+
+---
+
+### بخش انگلیسی
+
+````markdown
+# Part 13 — Copying a List
+
+## 1. Introduction
+
+Sometimes we need to create a copy of a list so that we can change the copy without changing the original list.
+
+This is important because simply assigning one list to another variable does not create an independent copy.
+
+## 2. The Problem with Simple Assignment
+
+Consider this example:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange', 'Mango']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+Both variables refer to the same list.
+
+Changing `new_fruits` also changes `fruits`.
+
+## 3. Copying with `copy()`
+
+Lists have a `copy()` method that creates a separate copy.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits.copy()
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+Now the two lists are separate.
+
+Changing `new_fruits` does not change `fruits`.
+
+## 4. Copying with Slicing
+
+We can also create a copy using slicing.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits[:]
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+The expression:
+
+```python
+fruits[:]
+```
+
+creates a new list containing all elements of `fruits`.
+
+## 5. Comparing the Methods
+
+These two methods create a separate list:
+
+```python
+new_fruits = fruits.copy()
+```
+
+and:
+
+```python
+new_fruits = fruits[:]
+```
+
+But this does not:
+
+```python
+new_fruits = fruits
+```
+
+The important difference is whether a new list is created.
+
+## 6. Changing the Copy
+
+After creating a copy, we can change it independently.
+
+```python
+numbers = [10, 20, 30]
+
+copied_numbers = numbers.copy()
+
+copied_numbers[0] = 100
+
+print(numbers)
+print(copied_numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+[100, 20, 30]
+```
+
+Only the copied list was changed.
+
+## 7. Removing an Element from the Copy
+
+We can also use list methods on the copied list.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.remove("Banana")
+
+print(fruits)
+print(copied_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Orange']
+```
+
+The original list remains unchanged.
+
+## 8. Adding Elements to the Copy
+
+We can add new elements to the copy.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.append("Mango")
+
+print(fruits)
+print(copied_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+## 9. Using a Copy for Safe Changes
+
+Copying is useful when we want to keep the original data.
+
+For example:
+
+```python
+scores = [18, 15, 12, 9, 20]
+
+updated_scores = scores.copy()
+
+updated_scores.remove(9)
+
+print("Original:", scores)
+print("Updated:", updated_scores)
+```
+
+Output:
+
+```text
+Original: [18, 15, 12, 9, 20]
+Updated: [18, 15, 12, 20]
+```
+
+The original scores are still available.
+
+## 10. Common Beginner Mistakes
+
+### Mistake 1 — Thinking Assignment Creates a Copy
+
+This does not create an independent list:
+
+```python
+new_list = old_list
+```
+
+Both variables refer to the same list.
+
+### Mistake 2 — Changing the Wrong List
+
+After making a copy, make sure you modify the intended variable.
+
+```python
+fruits = ["Apple", "Banana"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.append("Orange")
+```
+
+Only `copied_fruits` changes.
+
+## 11. Important Summary
+
+Use `copy()` to create an independent copy of a list:
+
+```python
+new_list = old_list.copy()
+```
+
+You can also copy a list with slicing:
+
+```python
+new_list = old_list[:]
+```
+
+Do not use simple assignment when you need an independent list:
+
+```python
+new_list = old_list
+```
+
+Remember:
+
+```text
+copy() → creates a new list
+[:]    → creates a new list
+=      → refers to the same list
+```
+
+# Exercises
+
+## Exercise 1 — Create a Copy
+
+Create a list of five fruits and make a copy using `copy()`.
+
+Add a new fruit to the copy and print both lists.
+
+## Exercise 2 — Copy with Slicing
+
+Create a list of numbers and create a copy using `[:]`.
+
+Change one element in the copy and print both lists.
+
+## Exercise 3 — Compare Assignment and Copy
+
+Create a list and assign it to another variable using `=`.
+
+Change the second variable and observe what happens to the original list.
+
+Then repeat the example using `copy()`.
+
+## Exercise 4 — Copy and Remove
+
+Create a list of names.
+
+Make a copy and remove one name from the copy.
+
+Print both lists.
+
+## Exercise 5 — Copy and Update
+
+Create a list of scores.
+
+Make a copy, remove one score, and add another score to the copy.
+
+Print the original and updated lists.
+
+# Comprehensive Review
+
+## Question 1
+
+What is the difference between:
+
+```python
+new_list = old_list
+```
+
+and:
+
+```python
+new_list = old_list.copy()
+```
+
+## Question 2
+
+What will this program print?
+
+```python
+numbers = [10, 20, 30]
+
+copied_numbers = numbers.copy()
+
+copied_numbers.append(40)
+
+print(numbers)
+print(copied_numbers)
+```
+
+## Question 3
+
+Write a program that creates a copy of a list using slicing.
+
+## Question 4
+
+Create a list of fruits, make a copy, remove one fruit from the copy, and print both lists.
+
+## Question 5
+
+Why can copying a list be useful when we want to keep the original data unchanged?
+
+# Challenge
+
+## Python Roadmap Challenge
+
+Create a simple **Shopping List Manager**.
+
+Start with:
+
+```python
+shopping_list = ["Milk", "Bread", "Eggs", "Apples"]
+```
+
+Your program should:
+
+1. Print the original shopping list.
+2. Create a copy of the list.
+3. Ask the user for a new item.
+4. Add the new item only if it is not already in the copied list.
+5. Ask the user for an item to remove.
+6. Remove that item from the copied list only if it exists.
+7. Print the original list.
+8. Print the updated copied list.
+9. Print the number of items in the updated list.
+
+Use concepts learned so far, including variables, input, conditions, lists, `len()`, `in`, `not in`, `append()`, `remove()`, and `copy()`.
+````
+
+### بخش فارسی
+
+````markdown
+# بخش ۱۳ — کپی کردن یک لیست
+
+## ۱. مقدمه
+
+گاهی لازم است یک کپی از یک لیست ایجاد کنیم تا بتوانیم کپی را تغییر دهیم بدون اینکه لیست اصلی تغییر کند.
+
+این موضوع مهم است، چون قرار دادن یک لیست در یک متغیر دیگر با استفاده از انتساب ساده، یک کپی مستقل ایجاد نمی کند.
+
+## ۲. مشکل انتساب ساده
+
+این مثال را در نظر بگیرید:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange', 'Mango']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+هر دو متغیر به یک لیست اشاره می کنند.
+
+بنابراین تغییر `new_fruits` باعث تغییر `fruits` نیز می شود.
+
+## ۳. کپی کردن با `copy()`
+
+لیست ها یک متد به نام `copy()` دارند که یک کپی جداگانه ایجاد می کند.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits.copy()
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+حالا دو لیست از هم جدا هستند.
+
+تغییر `new_fruits` باعث تغییر `fruits` نمی شود.
+
+## ۴. کپی کردن با برش
+
+می توانیم با استفاده از برش نیز یک کپی ایجاد کنیم.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits[:]
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+عبارت:
+
+```python
+fruits[:]
+```
+
+یک لیست جدید شامل تمام عناصر `fruits` ایجاد می کند.
+
+## ۵. مقایسه روش ها
+
+این دو روش یک لیست جداگانه ایجاد می کنند:
+
+```python
+new_fruits = fruits.copy()
+```
+
+و:
+
+```python
+new_fruits = fruits[:]
+```
+
+اما این روش یک لیست جداگانه ایجاد نمی کند:
+
+```python
+new_fruits = fruits
+```
+
+تفاوت اصلی در این است که آیا یک لیست جدید ساخته می شود یا نه.
+
+## ۶. تغییر کپی
+
+بعد از ایجاد کپی می توانیم آن را به صورت مستقل تغییر دهیم.
+
+```python
+numbers = [10, 20, 30]
+
+copied_numbers = numbers.copy()
+
+copied_numbers[0] = 100
+
+print(numbers)
+print(copied_numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30]
+[100, 20, 30]
+```
+
+فقط لیست کپی شده تغییر کرده است.
+
+## ۷. حذف یک عنصر از کپی
+
+می توانیم از متدهای لیست برای کپی نیز استفاده کنیم.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.remove("Banana")
+
+print(fruits)
+print(copied_fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Orange']
+```
+
+لیست اصلی بدون تغییر باقی می ماند.
+
+## ۸. اضافه کردن عناصر به کپی
+
+می توانیم عناصر جدیدی به کپی اضافه کنیم.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.append("Mango")
+
+print(fruits)
+print(copied_fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+## ۹. استفاده از کپی برای تغییرات امن
+
+کپی کردن زمانی مفید است که بخواهیم داده اصلی را حفظ کنیم.
+
+برای مثال:
+
+```python
+scores = [18, 15, 12, 9, 20]
+
+updated_scores = scores.copy()
+
+updated_scores.remove(9)
+
+print("Original:", scores)
+print("Updated:", updated_scores)
+```
+
+خروجی:
+
+```text
+Original: [18, 15, 12, 9, 20]
+Updated: [18, 15, 12, 20]
+```
+
+نمره های اصلی همچنان در دسترس هستند.
+
+## ۱۰. اشتباه های رایج
+
+### اشتباه ۱ — تصور اینکه انتساب یک کپی ایجاد می کند
+
+این کد یک لیست مستقل ایجاد نمی کند:
+
+```python
+new_list = old_list
+```
+
+هر دو متغیر به یک لیست اشاره می کنند.
+
+### اشتباه ۲ — تغییر دادن لیست اشتباه
+
+بعد از ایجاد کپی باید دقت کنیم کدام متغیر را تغییر می دهیم.
+
+```python
+fruits = ["Apple", "Banana"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.append("Orange")
+```
+
+در این حالت فقط `copied_fruits` تغییر می کند.
+
+## ۱۱. جمع بندی
+
+برای ایجاد یک کپی مستقل از لیست از `copy()` استفاده می کنیم:
+
+```python
+new_list = old_list.copy()
+```
+
+همچنین می توانیم با برش یک کپی ایجاد کنیم:
+
+```python
+new_list = old_list[:]
+```
+
+اگر به یک لیست مستقل نیاز داریم، نباید فقط از انتساب ساده استفاده کنیم:
+
+```python
+new_list = old_list
+```
+
+به یاد داشته باشید:
+
+```text
+copy() → یک لیست جدید ایجاد می کند
+[:]    → یک لیست جدید ایجاد می کند
+=      → به همان لیست اشاره می کند
+```
+
+# تمرین ها
+
+## تمرین ۱ — ایجاد کپی
+
+یک لیست شامل پنج میوه بسازید و با استفاده از `copy()` یک کپی از آن ایجاد کنید.
+
+یک میوه جدید به کپی اضافه کنید و هر دو لیست را چاپ کنید.
+
+## تمرین ۲ — کپی با برش
+
+یک لیست از اعداد بسازید و با استفاده از `[:]` یک کپی ایجاد کنید.
+
+یکی از عناصر کپی را تغییر دهید و هر دو لیست را چاپ کنید.
+
+## تمرین ۳ — مقایسه انتساب و کپی
+
+یک لیست بسازید و آن را با استفاده از `=` به یک متغیر دیگر نسبت دهید.
+
+متغیر دوم را تغییر دهید و مشاهده کنید چه اتفاقی برای لیست اصلی می افتد.
+
+سپس همین مثال را با `copy()` انجام دهید.
+
+## تمرین ۴ — کپی و حذف
+
+یک لیست از نام ها بسازید.
+
+یک کپی از آن ایجاد کنید و یک نام را از کپی حذف کنید.
+
+هر دو لیست را چاپ کنید.
+
+## تمرین ۵ — کپی و به روز رسانی
+
+یک لیست از نمره ها بسازید.
+
+یک کپی ایجاد کنید، یک نمره را حذف کنید و یک نمره جدید به کپی اضافه کنید.
+
+لیست اصلی و لیست به روز شده را چاپ کنید.
+
+# مرور جامع
+
+## سوال ۱
+
+تفاوت این دو چیست؟
+
+```python
+new_list = old_list
+```
+
+و:
+
+```python
+new_list = old_list.copy()
+```
+
+## سوال ۲
+
+این برنامه چه چیزی چاپ می کند؟
+
+```python
+numbers = [10, 20, 30]
+
+copied_numbers = numbers.copy()
+
+copied_numbers.append(40)
+
+print(numbers)
+print(copied_numbers)
+```
+
+## سوال ۳
+
+برنامه ای بنویسید که با استفاده از برش یک کپی از یک لیست ایجاد کند.
+
+## سوال ۴
+
+یک لیست از میوه ها بسازید، یک کپی از آن ایجاد کنید، یک میوه را از کپی حذف کنید و هر دو لیست را چاپ کنید.
+
+## سوال ۵
+
+چرا وقتی می خواهیم داده اصلی بدون تغییر باقی بماند، کپی کردن لیست می تواند مفید باشد؟
+
+# چالش
+
+## چالش Python Roadmap
+
+یک برنامه ساده با نام **Shopping List Manager** بسازید.
+
+برنامه را با این لیست شروع کنید:
+
+```python
+shopping_list = ["Milk", "Bread", "Eggs", "Apples"]
+```
+
+برنامه باید:
+
+1. لیست خرید اصلی را چاپ کند.
+2. یک کپی از لیست ایجاد کند.
+3. یک آیتم جدید از کاربر دریافت کند.
+4. فقط در صورتی آیتم جدید را به لیست کپی شده اضافه کند که از قبل در آن وجود نداشته باشد.
+5. یک آیتم برای حذف از کاربر دریافت کند.
+6. فقط در صورتی آن آیتم را از لیست کپی شده حذف کند که وجود داشته باشد.
+7. لیست اصلی را چاپ کند.
+8. لیست کپی شده و به روز شده را چاپ کند.
+9. تعداد آیتم های لیست به روز شده را چاپ کند.
+
+در این برنامه از مفاهیمی که تا اینجا یاد گرفته اید استفاده کنید، از جمله متغیرها، ورودی، شرط ها، لیست ها، `len()`، `in`، `not in`، `append()`، `remove()` و `copy()`.
+````
+
+`docs(lists): add list copying section`
 
 ---
 

@@ -7316,7 +7316,7 @@ The main goal is to understand the difference between **referring to the same li
 
 ---
 
-# Part 10 — List Iteration
+# Part 8 — List Iteration
 
 ## 1. Introduction to List Iteration
 

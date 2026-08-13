@@ -8480,304 +8480,93 @@ At the Beginner level, `in` and `not in` are simple and useful tools for working
 
 Sometimes we need to know how many elements a list contains.
 
-Python provides the `len()` function for this purpose.
-
 For example:
 
-python---
+```python
 fruits = ["Apple", "Banana", "Orange"]
 
 print(len(fruits))
----
+```
 
 Output:
 
-python---
+```text
 3
----
+```
 
-The `len()` function returns the number of elements in the list.
+The `len()` function returns the number of elements in a list.
 
 ## 2. Using `len()`
 
 The basic syntax is:
 
-python---
+```python
 len(list_name)
----
+```
 
 For example:
 
-python---
+```python
 numbers = [10, 20, 30, 40, 50]
-
-number_of_elements = len(numbers)
-
-print(number_of_elements)
----
-
-Output:
-
-python---
-5
----
-
-The list contains five elements.
-
-## 3. Using `len()` with an Empty List
-
-An empty list contains zero elements.
-
-python---
-numbers = []
 
 print(len(numbers))
----
+```
 
 Output:
 
-python---
-0
----
+```text
+5
+```
 
-This can be useful when we want to check whether a list contains anything.
-
-## 4. Checking Whether a List Is Empty
-
-We can use `len()` with an `if` statement.
-
-python---
-fruits = []
-
-if len(fruits) == 0:
-    print("The list is empty.")
-else:
-    print("The list contains elements.")
----
-
-Output:
-
-python---
-The list is empty.
----
-
-Python also provides a shorter way to check this:
-
-python---
-fruits = []
-
-if not fruits:
-    print("The list is empty.")
----
-
-An empty list is considered `False` in a condition.
-
-At the Beginner level, it is useful to understand both approaches.
-
-## 5. Using `len()` with Conditions
-
-We can check whether a list has a specific number of elements.
-
-python---
-numbers = [10, 20, 30, 40]
-
-if len(numbers) == 4:
-    print("The list contains four numbers.")
----
-
-Output:
-
-python---
-The list contains four numbers.
----
-
-We can also compare the length with another value.
-
-python---
-numbers = [10, 20, 30, 40, 50]
-
-if len(numbers) > 3:
-    print("The list contains more than three elements.")
----
-
-Output:
-
-python---
-The list contains more than three elements.
----
-
-## 6. Getting the First and Last Element
-
-Knowing the length of a list can help us work with its indexes.
-
-python---
-fruits = ["Apple", "Banana", "Orange", "Mango"]
-
-print(fruits[0])
-print(fruits[len(fruits) - 1])
----
-
-Output:
-
-python---
-Apple
-Mango
----
-
-The first element has index `0`.
-
-The last element has index:
-
-python---
-len(fruits) - 1
----
-
-For a list with four elements, `len(fruits)` is `4`, so the last index is `3`.
-
-## 7. Using Negative Indexing
-
-Python provides a simpler way to access the last element.
-
-We can use `-1`.
-
-python---
-fruits = ["Apple", "Banana", "Orange", "Mango"]
-
-print(fruits[-1])
----
-
-Output:
-
-python---
-Mango
----
-
-The second-to-last element can be accessed with `-2`.
-
-python---
-print(fruits[-2])
----
-
-Output:
-
-python---
-Orange
----
-
-Negative indexes count from the end of the list.
-
-## 8. Counting a Specific Value
+## 3. Using `count()`
 
 The `count()` method tells us how many times a specific value appears in a list.
 
-python---
-numbers = [10, 20, 10, 30, 10, 40]
-
-print(numbers.count(10))
----
-
-Output:
-
-python---
-3
----
-
-The number `10` appears three times.
-
-## 9. Counting Strings
-
-The `count()` method also works with strings.
-
-python---
+```python
 fruits = ["Apple", "Banana", "Apple", "Orange", "Apple"]
 
 print(fruits.count("Apple"))
----
+```
 
 Output:
 
-python---
+```text
 3
----
+```
 
-The string `"Apple"` appears three times.
+## 4. `len()` vs `count()`
 
-## 10. Checking Whether a Value Appears More Than Once
+`len()` counts all elements:
 
-We can combine `count()` with a condition.
-
-python---
-fruits = ["Apple", "Banana", "Apple", "Orange", "Apple"]
-
-if fruits.count("Apple") > 1:
-    print("Apple appears more than once.")
----
-
-Output:
-
-python---
-Apple appears more than once.
----
-
-## 11. Counting While Iterating
-
-We can also count elements manually while using a loop.
-
-python---
-numbers = [5, 12, 8, 20, 3, 15]
-
-count = 0
-
-for number in numbers:
-    if number > 10:
-        count += 1
-
-print(f"Numbers greater than 10: {count}")
----
-
-Output:
-
-python---
-Numbers greater than 10: 3
----
-
-This approach is useful when we want to count elements based on a condition.
-
-## 12. `len()` vs `count()`
-
-These two are used for different purposes.
-
-`len()` counts all elements in the list:
-
-python---
+```python
 fruits = ["Apple", "Banana", "Apple", "Orange"]
 
 print(len(fruits))
----
+```
 
 Output:
 
-python---
+```text
 4
----
+```
 
-`count()` counts how many times one specific value appears:
+`count()` counts a specific value:
 
-python---
+```python
 print(fruits.count("Apple"))
----
+```
 
 Output:
 
-python---
+```text
 2
----
+```
 
 So:
 
-python---
+```python
 len(fruits)
----
+```
 
 means:
 
@@ -8785,385 +8574,57 @@ How many elements are in the list?
 
 While:
 
-python---
+```python
 fruits.count("Apple")
----
+```
 
 means:
 
 How many times does `"Apple"` appear?
 
-## 13. Counting Passing Scores
+## 5. Important Summary
 
-We can combine `len()` and loops when working with student scores.
+Use `len()` to find the number of elements:
 
-python---
-scores = [18, 8, 15, 7, 20]
-
-number_of_scores = len(scores)
-passing_count = 0
-
-for score in scores:
-    if score >= 10:
-        passing_count += 1
-
-print(f"Number of scores: {number_of_scores}")
-print(f"Passing scores: {passing_count}")
----
-
-Output:
-
-python---
-Number of scores: 5
-Passing scores: 3
----
-
-## 14. Calculating the Percentage of Passing Scores
-
-We can use the list length to calculate a percentage.
-
-python---
-scores = [18, 8, 15, 7, 20]
-
-passing_count = 0
-
-for score in scores:
-    if score >= 10:
-        passing_count += 1
-
-total_scores = len(scores)
-passing_percentage = (passing_count / total_scores) * 100
-
-print(f"Passing percentage: {passing_percentage}%")
----
-
-Output:
-
-python---
-Passing percentage: 60.0%
----
-
-The calculation is:
-
-python---
-passing percentage = passing count / total count × 100
----
-
-## 15. Counting Elements in a List of Names
-
-We can use `len()` with a list of names.
-
-python---
-students = ["Ali", "Sara", "Reza", "Mina", "Nima"]
-
-print(f"Number of students: {len(students)}")
----
-
-Output:
-
-python---
-Number of students: 5
----
-
-## 16. Practical Example — Shopping List
-
-We can use `len()` to display the number of items in a shopping list.
-
-python---
-shopping_list = ["Milk", "Bread", "Eggs", "Rice"]
-
-print("----- Shopping List -----")
-print()
-
-for item in shopping_list:
-    print(item)
-
-print()
-print(f"Number of items: {len(shopping_list)}")
----
-
-Output:
-
-python---
------ Shopping List -----
-
-Milk
-Bread
-Eggs
-Rice
-
-Number of items: 4
----
-
-## 17. Practical Example — Student Analyzer
-
-We can combine list length, counting and iteration.
-
-python---
-scores = [18, 8, 15, 7, 20, 12, 9]
-
-total_scores = len(scores)
-passing_scores = 0
-failing_scores = 0
-
-for score in scores:
-    if score >= 10:
-        passing_scores += 1
-    else:
-        failing_scores += 1
-
-print("----- Student Analyzer -----")
-print()
-print(f"Scores: {scores}")
-print(f"Total scores: {total_scores}")
-print(f"Passing scores: {passing_scores}")
-print(f"Failing scores: {failing_scores}")
----
-
-Output:
-
-python---
------ Student Analyzer -----
-
-Scores: [18, 8, 15, 7, 20, 12, 9]
-Total scores: 7
-Passing scores: 4
-Failing scores: 3
----
-
-## 18. Common Beginner Mistakes
-
-### Mistake 1 — Confusing `len()` with the Last Index
-
-For example:
-
-python---
-fruits = ["Apple", "Banana", "Orange"]
----
-
-The length is:
-
-python---
-len(fruits)
----
-
-which is:
-
-python---
-3
----
-
-But the last index is:
-
-python---
-2
----
-
-Remember:
-
-python---
-last_index = len(fruits) - 1
----
-
-### Mistake 2 — Using `count()` to Count All Elements
-
-This is not correct:
-
-python---
-fruits.count()
----
-
-The `count()` method needs a value to search for.
-
-For example:
-
-python---
-fruits.count("Apple")
----
-
-To count all elements, use:
-
-python---
-len(fruits)
----
-
-### Mistake 3 — Forgetting That `count()` Counts Exact Values
-
-For strings:
-
-python---
-fruits = ["Apple", "apple", "Apple"]
-
-print(fruits.count("Apple"))
----
-
-Output:
-
-python---
-2
----
-
-`"Apple"` and `"apple"` are different strings.
-
-## 19. Important Summary
-
-Use `len()` to find the number of elements in a list:
-
-python---
+```python
 len(my_list)
----
+```
 
-Use `count()` to find how many times a specific value appears:
+Use `count()` to count a specific value:
 
-python---
+```python
 my_list.count(value)
----
-
-The first element has index:
-
-python---
-0
----
-
-The last element has index:
-
-python---
-len(my_list) - 1
----
-
-The last element can also be accessed with:
-
-python---
-my_list[-1]
----
+```
 
 An empty list has a length of:
 
-python---
+```text
 0
----
+```
 
-We can combine these tools with loops and conditions to build useful programs.
+The last element can be accessed with:
 
-For example:
+```python
+my_list[-1]
+```
 
-python---
-scores = [18, 8, 15, 7, 20]
+## Exercises
 
-passing_count = 0
+### Exercise 1
 
-for score in scores:
-    if score >= 10:
-        passing_count += 1
+Create a list containing five favorite foods and print its length.
 
-print(f"Total scores: {len(scores)}")
-print(f"Passing scores: {passing_count}")
----
+### Exercise 2
 
-# Exercises
+Create a list containing repeated numbers and use `count()` to count one of the numbers.
 
-## Exercise 1 — Count List Elements
+### Exercise 3
 
-Create a list containing five favorite foods.
+Create a list of student scores and count how many scores are greater than or equal to `10`.
 
-Print the number of elements using `len()`.
+### Exercise 4
 
-## Exercise 2 — Check the List Length
-
-Create a list of numbers.
-
-Check whether the list contains more than five elements.
-
-## Exercise 3 — First and Last Element
-
-Create a list of names.
-
-Print the first and last name.
-
-## Exercise 4 — Count a Value
-
-Create a list containing repeated numbers.
-
-Use `count()` to find how many times a specific number appears.
-
-## Exercise 5 — Count Passing Scores
-
-Create a list of student scores.
-
-Use a loop to count how many scores are greater than or equal to `10`.
-
-## Exercise 6 — Calculate Passing Percentage
-
-Create a list of student scores.
-
-Calculate the percentage of passing scores.
-
-## Exercise 7 — Empty List
-
-Create an empty list.
-
-Check whether the list is empty.
-
-## Exercise 8 — Shopping List
-
-Create a shopping list.
-
-Print every item and then print the total number of items.
-
-## Exercise 9 — Count a Name
-
-Create a list of names where some names appear more than once.
-
-Ask the user for a name and print how many times that name appears.
-
-## Exercise 10 — Student Analyzer
-
-Create a list of student scores.
-
-Print:
-
-1. Total number of scores.
-2. Number of passing scores.
-3. Number of failing scores.
-4. Passing percentage.
-
-# Comprehensive Challenge
-
-Create a **Student Score Counter**.
-
-Start with:
-
-python---
-scores = [18, 8, 15, 7, 20, 12, 9, 15, 18]
----
-
-Your program should:
-
-1. Print all scores.
-2. Print the total number of scores.
-3. Count the passing scores.
-4. Count the failing scores.
-5. Calculate the passing percentage.
-6. Ask the user for a score.
-7. Tell the user how many times that score appears in the list.
-
-Example output:
-
-python---
------ Student Score Counter -----
-
-Scores: [18, 8, 15, 7, 20, 12, 9, 15, 18]
-
-Total scores: 9
-Passing scores: 6
-Failing scores: 3
-Passing percentage: 66.67%
-
-Enter a score to search: 15
-Score 15 appears 2 times.
----
-
-The goal is to practice `len()`, `count()`, list iteration, conditions, counters and basic calculations together.
+Create an empty list and check whether it is empty.
 
 ---
 

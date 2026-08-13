@@ -8519,690 +8519,153 @@ Updated scores:
 
 گاهی لازم است بدانیم یک لیست چند عنصر دارد.
 
-پایتون برای این کار تابع `len()` را در اختیار ما قرار می دهد.
+برای این کار از تابع `len()` استفاده می کنیم.
 
 برای مثال:
 
-python---
+```python
 fruits = ["Apple", "Banana", "Orange"]
 
 print(len(fruits))
----
+```
 
 خروجی:
 
-python---
+```text
 3
----
+```
 
 تابع `len()` تعداد عناصر موجود در لیست را برمی گرداند.
 
 ## ۲. استفاده از `len()`
 
-ساختار اصلی استفاده از `len()` به این شکل است:
+ساختار اصلی:
 
-python---
+```python
 len(list_name)
----
+```
 
 برای مثال:
 
-python---
+```python
 numbers = [10, 20, 30, 40, 50]
-
-number_of_elements = len(numbers)
-
-print(number_of_elements)
----
-
-خروجی:
-
-python---
-5
----
-
-این لیست پنج عنصر دارد.
-
-## ۳. استفاده از `len()` با یک لیست خالی
-
-یک لیست خالی هیچ عنصری ندارد.
-
-python---
-numbers = []
 
 print(len(numbers))
----
+```
 
 خروجی:
 
-python---
-0
----
+```text
+5
+```
 
-این موضوع زمانی کاربرد دارد که بخواهیم بررسی کنیم یک لیست چیزی داخل خود دارد یا نه.
+## ۳. استفاده از `count()`
 
-## ۴. بررسی خالی بودن یک لیست
+متد `count()` مشخص می کند یک مقدار مشخص چند بار در لیست وجود دارد.
 
-می توانیم `len()` را با `if` ترکیب کنیم.
-
-python---
-fruits = []
-
-if len(fruits) == 0:
-    print("The list is empty.")
-else:
-    print("The list contains elements.")
----
-
-خروجی:
-
-python---
-The list is empty.
----
-
-پایتون یک روش کوتاه تر نیز برای بررسی این موضوع دارد:
-
-python---
-fruits = []
-
-if not fruits:
-    print("The list is empty.")
----
-
-یک لیست خالی در یک شرط مقدار `False` دارد.
-
-## ۵. استفاده از `len()` همراه با شرط
-
-می توانیم بررسی کنیم که یک لیست تعداد مشخصی عنصر دارد یا نه.
-
-python---
-numbers = [10, 20, 30, 40]
-
-if len(numbers) == 4:
-    print("The list contains four numbers.")
----
-
-خروجی:
-
-python---
-The list contains four numbers.
----
-
-همچنین می توانیم طول لیست را با مقدار دیگری مقایسه کنیم.
-
-python---
-numbers = [10, 20, 30, 40, 50]
-
-if len(numbers) > 3:
-    print("The list contains more than three elements.")
----
-
-خروجی:
-
-python---
-The list contains more than three elements.
----
-
-## ۶. پیدا کردن اولین و آخرین عنصر
-
-دانستن طول یک لیست می تواند به ما کمک کند با اندیس های آن کار کنیم.
-
-python---
-fruits = ["Apple", "Banana", "Orange", "Mango"]
-
-print(fruits[0])
-print(fruits[len(fruits) - 1])
----
-
-خروجی:
-
-python---
-Apple
-Mango
----
-
-اولین عنصر اندیس `0` دارد.
-
-آخرین عنصر اندیس زیر را دارد:
-
-python---
-len(fruits) - 1
----
-
-برای یک لیست با چهار عنصر، `len(fruits)` برابر `4` است، بنابراین آخرین اندیس `3` خواهد بود.
-
-## ۷. استفاده از اندیس منفی
-
-پایتون روش ساده تری برای دسترسی به آخرین عنصر دارد.
-
-می توانیم از `-1` استفاده کنیم.
-
-python---
-fruits = ["Apple", "Banana", "Orange", "Mango"]
-
-print(fruits[-1])
----
-
-خروجی:
-
-python---
-Mango
----
-
-عنصر یکی مانده به آخر را می توان با `-2` دریافت کرد.
-
-python---
-print(fruits[-2])
----
-
-خروجی:
-
-python---
-Orange
----
-
-اندیس های منفی از انتهای لیست شروع به شمارش می کنند.
-
-## ۸. شمارش یک مقدار مشخص
-
-متد `count()` به ما می گوید یک مقدار مشخص چند بار در لیست ظاهر شده است.
-
-python---
-numbers = [10, 20, 10, 30, 10, 40]
-
-print(numbers.count(10))
----
-
-خروجی:
-
-python---
-3
----
-
-عدد `10` سه بار در لیست وجود دارد.
-
-## ۹. شمارش رشته ها
-
-متد `count()` برای رشته ها نیز کار می کند.
-
-python---
+```python
 fruits = ["Apple", "Banana", "Apple", "Orange", "Apple"]
 
 print(fruits.count("Apple"))
----
+```
 
 خروجی:
 
-python---
+```text
 3
----
+```
 
-رشته `"Apple"` سه بار در لیست وجود دارد.
+## ۴. تفاوت `len()` و `count()`
 
-## ۱۰. بررسی اینکه یک مقدار بیشتر از یک بار وجود دارد
+`len()` تعداد تمام عناصر را می شمارد:
 
-می توانیم `count()` را با یک شرط ترکیب کنیم.
-
-python---
-fruits = ["Apple", "Banana", "Apple", "Orange", "Apple"]
-
-if fruits.count("Apple") > 1:
-    print("Apple appears more than once.")
----
-
-خروجی:
-
-python---
-Apple appears more than once.
----
-
-## ۱۱. شمارش هنگام پیمایش
-
-می توانیم هنگام استفاده از حلقه نیز عناصر را به صورت دستی بشماریم.
-
-python---
-numbers = [5, 12, 8, 20, 3, 15]
-
-count = 0
-
-for number in numbers:
-    if number > 10:
-        count += 1
-
-print(f"Numbers greater than 10: {count}")
----
-
-خروجی:
-
-python---
-Numbers greater than 10: 3
----
-
-این روش زمانی مفید است که بخواهیم عناصری را بر اساس یک شرط بشماریم.
-
-## ۱۲. تفاوت `len()` و `count()`
-
-این دو ابزار کاربرد متفاوتی دارند.
-
-`len()` تمام عناصر لیست را می شمارد:
-
-python---
+```python
 fruits = ["Apple", "Banana", "Apple", "Orange"]
 
 print(len(fruits))
----
+```
 
 خروجی:
 
-python---
+```text
 4
----
+```
 
 اما `count()` تعداد تکرار یک مقدار مشخص را می شمارد:
 
-python---
+```python
 print(fruits.count("Apple"))
----
+```
 
 خروجی:
 
-python---
+```text
 2
----
+```
 
-پس:
+بنابراین:
 
-python---
+```python
 len(fruits)
----
+```
 
 یعنی:
 
-چند عنصر در لیست وجود دارد؟
+تعداد عناصر موجود در لیست چقدر است؟
 
-در حالی که:
+و:
 
-python---
+```python
 fruits.count("Apple")
----
+```
 
 یعنی:
 
 `"Apple"` چند بار در لیست وجود دارد؟
 
-## ۱۳. شمارش نمرات قبولی
+## ۵. جمع بندی
 
-می توانیم `len()` و حلقه ها را هنگام کار با نمرات دانش آموزان با هم استفاده کنیم.
+برای پیدا کردن تعداد عناصر از `len()` استفاده می کنیم:
 
-python---
-scores = [18, 8, 15, 7, 20]
-
-number_of_scores = len(scores)
-passing_count = 0
-
-for score in scores:
-    if score >= 10:
-        passing_count += 1
-
-print(f"Number of scores: {number_of_scores}")
-print(f"Passing scores: {passing_count}")
----
-
-خروجی:
-
-python---
-Number of scores: 5
-Passing scores: 3
----
-
-## ۱۴. محاسبه درصد نمرات قبولی
-
-می توانیم از طول لیست برای محاسبه درصد استفاده کنیم.
-
-python---
-scores = [18, 8, 15, 7, 20]
-
-passing_count = 0
-
-for score in scores:
-    if score >= 10:
-        passing_count += 1
-
-total_scores = len(scores)
-passing_percentage = (passing_count / total_scores) * 100
-
-print(f"Passing percentage: {passing_percentage}%")
----
-
-خروجی:
-
-python---
-Passing percentage: 60.0%
----
-
-محاسبه به این شکل است:
-
-python---
-passing percentage = passing count / total count × 100
----
-
-## ۱۵. شمارش عناصر در یک لیست از نام ها
-
-می توانیم از `len()` برای یک لیست از نام ها استفاده کنیم.
-
-python---
-students = ["Ali", "Sara", "Reza", "Mina", "Nima"]
-
-print(f"Number of students: {len(students)}")
----
-
-خروجی:
-
-python---
-Number of students: 5
----
-
-## ۱۶. مثال کاربردی — لیست خرید
-
-می توانیم از `len()` برای نمایش تعداد کالاهای موجود در لیست خرید استفاده کنیم.
-
-python---
-shopping_list = ["Milk", "Bread", "Eggs", "Rice"]
-
-print("----- Shopping List -----")
-print()
-
-for item in shopping_list:
-    print(item)
-
-print()
-print(f"Number of items: {len(shopping_list)}")
----
-
-خروجی:
-
-python---
------ Shopping List -----
-
-Milk
-Bread
-Eggs
-Rice
-
-Number of items: 4
----
-
-## ۱۷. مثال کاربردی — تحلیل نمرات دانش آموزان
-
-می توانیم طول لیست، شمارش و پیمایش را با هم ترکیب کنیم.
-
-python---
-scores = [18, 8, 15, 7, 20, 12, 9]
-
-total_scores = len(scores)
-passing_scores = 0
-failing_scores = 0
-
-for score in scores:
-    if score >= 10:
-        passing_scores += 1
-    else:
-        failing_scores += 1
-
-print("----- Student Analyzer -----")
-print()
-print(f"Scores: {scores}")
-print(f"Total scores: {total_scores}")
-print(f"Passing scores: {passing_scores}")
-print(f"Failing scores: {failing_scores}")
----
-
-خروجی:
-
-python---
------ Student Analyzer -----
-
-Scores: [18, 8, 15, 7, 20, 12, 9]
-Total scores: 7
-Passing scores: 4
-Failing scores: 3
----
-
-## ۱۸. اشتباهات رایج مبتدی ها
-
-### اشتباه اول — اشتباه گرفتن `len()` با آخرین اندیس
-
-برای مثال:
-
-python---
-fruits = ["Apple", "Banana", "Orange"]
----
-
-طول لیست:
-
-python---
-len(fruits)
----
-
-برابر است با:
-
-python---
-3
----
-
-اما آخرین اندیس:
-
-python---
-2
----
-
-است.
-
-به یاد داشته باشید:
-
-python---
-last_index = len(fruits) - 1
----
-
-### اشتباه دوم — استفاده از `count()` برای شمارش تمام عناصر
-
-این روش درست نیست:
-
-python---
-fruits.count()
----
-
-متد `count()` برای شمارش یک مقدار مشخص به یک مقدار نیاز دارد.
-
-برای مثال:
-
-python---
-fruits.count("Apple")
----
-
-اما برای شمارش تمام عناصر از این روش استفاده می کنیم:
-
-python---
-len(fruits)
----
-
-### اشتباه سوم — فراموش کردن اینکه `count()` مقدار دقیق را می شمارد
-
-برای رشته ها:
-
-python---
-fruits = ["Apple", "apple", "Apple"]
-
-print(fruits.count("Apple"))
----
-
-خروجی:
-
-python---
-2
----
-
-`"Apple"` و `"apple"` دو رشته متفاوت هستند.
-
-## ۱۹. جمع بندی مهم
-
-برای پیدا کردن تعداد عناصر یک لیست از `len()` استفاده می کنیم:
-
-python---
+```python
 len(my_list)
----
+```
 
-برای پیدا کردن تعداد تکرار یک مقدار مشخص از `count()` استفاده می کنیم:
+برای شمارش یک مقدار مشخص از `count()` استفاده می کنیم:
 
-python---
+```python
 my_list.count(value)
----
-
-اولین عنصر لیست اندیس زیر را دارد:
-
-python---
-0
----
-
-آخرین عنصر لیست اندیس زیر را دارد:
-
-python---
-len(my_list) - 1
----
-
-آخرین عنصر را همچنین می توان با این روش دریافت کرد:
-
-python---
-my_list[-1]
----
+```
 
 طول یک لیست خالی برابر است با:
 
-python---
+```text
 0
----
+```
 
-می توانیم این ابزارها را با حلقه ها و شرط ها ترکیب کنیم و برنامه های کاربردی بسازیم.
+برای دسترسی به آخرین عنصر می توانیم از این روش استفاده کنیم:
 
-برای مثال:
+```python
+my_list[-1]
+```
 
-python---
-scores = [18, 8, 15, 7, 20]
+## تمرین ها
 
-passing_count = 0
+### تمرین ۱
 
-for score in scores:
-    if score >= 10:
-        passing_count += 1
+یک لیست شامل پنج غذای مورد علاقه خود بسازید و طول آن را چاپ کنید.
 
-print(f"Total scores: {len(scores)}")
-print(f"Passing scores: {passing_count}")
----
+### تمرین ۲
 
-# تمرین ها
+یک لیست شامل چند عدد تکراری بسازید و تعداد تکرار یکی از اعداد را با `count()` پیدا کنید.
 
-## تمرین ۱ — شمارش عناصر لیست
+### تمرین ۳
 
-یک لیست شامل پنج غذای مورد علاقه خود ایجاد کنید.
+یک لیست از نمره های دانش آموزان بسازید و تعداد نمره های بزرگ تر یا مساوی `10` را بشمارید.
 
-تعداد عناصر را با استفاده از `len()` چاپ کنید.
+### تمرین ۴
 
-## تمرین ۲ — بررسی طول لیست
-
-یک لیست از اعداد ایجاد کنید.
-
-بررسی کنید که آیا لیست بیشتر از پنج عنصر دارد یا نه.
-
-## تمرین ۳ — اولین و آخرین عنصر
-
-یک لیست از نام ها ایجاد کنید.
-
-اولین و آخرین نام را چاپ کنید.
-
-## تمرین ۴ — شمارش یک مقدار
-
-یک لیست شامل اعداد تکراری ایجاد کنید.
-
-با استفاده از `count()` تعداد تکرار یک عدد مشخص را پیدا کنید.
-
-## تمرین ۵ — شمارش نمرات قبولی
-
-یک لیست از نمرات دانش آموزان ایجاد کنید.
-
-با استفاده از حلقه تعداد نمراتی را که بزرگ تر یا مساوی `10` هستند بشمارید.
-
-## تمرین ۶ — محاسبه درصد قبولی
-
-یک لیست از نمرات دانش آموزان ایجاد کنید.
-
-درصد نمرات قبولی را محاسبه کنید.
-
-## تمرین ۷ — لیست خالی
-
-یک لیست خالی ایجاد کنید.
-
-بررسی کنید که آیا لیست خالی است یا نه.
-
-## تمرین ۸ — لیست خرید
-
-یک لیست خرید ایجاد کنید.
-
-تمام کالاها را چاپ کنید و سپس تعداد کل کالاها را چاپ کنید.
-
-## تمرین ۹ — شمارش یک نام
-
-یک لیست از نام ها ایجاد کنید که بعضی از نام ها بیشتر از یک بار در آن وجود داشته باشند.
-
-از کاربر یک نام دریافت کنید و تعداد تکرار آن نام را چاپ کنید.
-
-## تمرین ۱۰ — تحلیل نمرات دانش آموزان
-
-یک لیست از نمرات دانش آموزان ایجاد کنید.
-
-موارد زیر را چاپ کنید:
-
-1. تعداد کل نمرات
-2. تعداد نمرات قبولی
-3. تعداد نمرات مردودی
-4. درصد قبولی
-
-# چالش جامع
-
-یک **شمارنده نمرات دانش آموزان** ایجاد کنید.
-
-با این داده شروع کنید:
-
-python---
-scores = [18, 8, 15, 7, 20, 12, 9, 15, 18]
----
-
-برنامه باید:
-
-1. تمام نمرات را چاپ کند.
-2. تعداد کل نمرات را چاپ کند.
-3. تعداد نمرات قبولی را بشمارد.
-4. تعداد نمرات مردودی را بشمارد.
-5. درصد نمرات قبولی را محاسبه کند.
-6. از کاربر یک نمره دریافت کند.
-7. مشخص کند آن نمره چند بار در لیست وجود دارد.
-
-نمونه خروجی:
-
-python---
------ Student Score Counter -----
-
-Scores: [18, 8, 15, 7, 20, 12, 9, 15, 18]
-
-Total scores: 9
-Passing scores: 6
-Failing scores: 3
-Passing percentage: 66.67%
-
-Enter a score to search: 15
-Score 15 appears 2 times.
----
-
-هدف این بخش تمرین `len()`، `count()`، پیمایش لیست، شرط ها، شمارنده ها و محاسبات پایه ای در کنار یکدیگر است.
+یک لیست خالی بسازید و بررسی کنید که آیا خالی است یا نه.
 
 ---
 

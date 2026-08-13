@@ -8031,3 +8031,485 @@ Updated scores:
 
 ---
 
+# بخش ۹ — بررسی وجود یک عنصر در لیست
+
+## ۱. مقدمه
+
+گاهی لازم است بررسی کنیم که آیا یک مقدار مشخص در یک لیست وجود دارد یا نه.
+
+برای مثال:
+
+    fruits = ["Apple", "Banana", "Orange", "Mango"]
+
+ممکن است بخواهیم بدانیم آیا `"Banana"` در لیست وجود دارد یا خیر.
+
+پایتون برای این کار عملگر `in` را در اختیار ما قرار می دهد.
+
+    fruits = ["Apple", "Banana", "Orange", "Mango"]
+
+    print("Banana" in fruits)
+
+خروجی:
+
+    True
+
+نتیجه یک مقدار Boolean است:
+
+    True
+
+یا:
+
+    False
+
+---
+
+## ۲. استفاده از `in`
+
+عملگر `in` بررسی می کند که آیا یک مقدار در لیست وجود دارد یا خیر.
+
+    numbers = [10, 20, 30, 40, 50]
+
+    print(30 in numbers)
+    print(100 in numbers)
+
+خروجی:
+
+    True
+    False
+
+بررسی اول درست است، چون `30` در لیست وجود دارد.
+
+بررسی دوم نادرست است، چون `100` در لیست وجود ندارد.
+
+---
+
+## ۳. استفاده از `not in`
+
+می توانیم بررسی کنیم که یک مقدار در لیست وجود ندارد.
+
+برای این کار از `not in` استفاده می کنیم.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    print("Apple" not in fruits)
+    print("Mango" not in fruits)
+
+خروجی:
+
+    False
+    True
+
+`"Apple"` در لیست وجود دارد، بنابراین `"Apple" not in fruits` برابر `False` است.
+
+`"Mango"` در لیست وجود ندارد، بنابراین `"Mango" not in fruits` برابر `True` است.
+
+---
+
+## ۴. استفاده از `in` با `if`
+
+عملگر `in` معمولا همراه با `if` استفاده می شود.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    if "Banana" in fruits:
+        print("Banana is available.")
+
+خروجی:
+
+    Banana is available.
+
+به این شکل برنامه می تواند بر اساس وجود یا عدم وجود یک عنصر تصمیم گیری کند.
+
+---
+
+## ۵. استفاده از `else`
+
+می توانیم حالت وجود نداشتن عنصر را نیز مدیریت کنیم.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    if "Mango" in fruits:
+        print("Mango is available.")
+    else:
+        print("Mango is not available.")
+
+خروجی:
+
+    Mango is not available.
+
+---
+
+## ۶. بررسی ورودی کاربر
+
+می توانیم از `in` برای بررسی مقداری که کاربر وارد کرده است استفاده کنیم.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    favorite = input("Enter a fruit: ")
+
+    if favorite in fruits:
+        print("This fruit is in the list.")
+    else:
+        print("This fruit is not in the list.")
+
+اگر کاربر وارد کند:
+
+    Banana
+
+خروجی خواهد بود:
+
+    This fruit is in the list.
+
+---
+
+## ۷. بررسی اعداد
+
+همین روش برای اعداد نیز کاربرد دارد.
+
+    numbers = [10, 20, 30, 40, 50]
+
+    number = int(input("Enter a number: "))
+
+    if number in numbers:
+        print("Number found.")
+    else:
+        print("Number not found.")
+
+اگر کاربر وارد کند:
+
+    30
+
+خروجی:
+
+    Number found.
+
+---
+
+## ۸. بررسی چند مقدار مجاز
+
+می توانیم زمانی که چند مقدار قابل قبول داریم از `in` استفاده کنیم.
+
+برای مثال:
+
+    allowed_colors = ["red", "green", "blue"]
+
+    color = input("Enter a color: ")
+
+    if color in allowed_colors:
+        print("This color is allowed.")
+    else:
+        print("This color is not allowed.")
+
+این روش نسبت به نوشتن چند مقایسه جداگانه ساده تر و خواناتر است.
+
+---
+
+## ۹. بررسی چند مقدار غیر مجاز با `not in`
+
+می توانیم زمانی که می خواهیم بعضی مقادیر را رد کنیم از `not in` استفاده کنیم.
+
+    blocked_users = ["admin", "root", "guest"]
+
+    username = input("Enter a username: ")
+
+    if username not in blocked_users:
+        print("Username is available.")
+    else:
+        print("This username is blocked.")
+
+---
+
+## ۱۰. حساس بودن حروف به بزرگی و کوچکی
+
+مقایسه رشته ها به بزرگی و کوچکی حروف حساس است.
+
+برای مثال:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    print("Apple" in fruits)
+    print("apple" in fruits)
+
+خروجی:
+
+    True
+    False
+
+`"Apple"` و `"apple"` دو رشته متفاوت هستند.
+
+اگر بخواهیم حروف بزرگ و کوچک تفاوتی نداشته باشند، می توانیم ابتدا ورودی را تبدیل کنیم.
+
+    fruits = ["apple", "banana", "orange"]
+
+    fruit = input("Enter a fruit: ").lower()
+
+    if fruit in fruits:
+        print("Fruit found.")
+    else:
+        print("Fruit not found.")
+
+حالا اگر کاربر وارد کند:
+
+    APPLE
+
+این ورودی نیز کار خواهد کرد، چون `.lower()` آن را به:
+
+    apple
+
+تبدیل می کند.
+
+---
+
+## ۱۱. بررسی قبل از اضافه کردن یک عنصر
+
+می توانیم از `in` استفاده کنیم تا از ایجاد عناصر تکراری جلوگیری کنیم.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    new_fruit = "Banana"
+
+    if new_fruit not in fruits:
+        fruits.append(new_fruit)
+
+    print(fruits)
+
+خروجی:
+
+    ['Apple', 'Banana', 'Orange']
+
+چون `"Banana"` از قبل وجود دارد، دوباره به لیست اضافه نمی شود.
+
+اگر از:
+
+    new_fruit = "Mango"
+
+استفاده کنیم، نتیجه می شود:
+
+    ['Apple', 'Banana', 'Orange', 'Mango']
+
+---
+
+## ۱۲. بررسی قبل از حذف یک عنصر
+
+می توانیم قبل از استفاده از `remove()` بررسی کنیم که عنصر مورد نظر وجود دارد یا نه.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    fruit = "Banana"
+
+    if fruit in fruits:
+        fruits.remove(fruit)
+
+    print(fruits)
+
+خروجی:
+
+    ['Apple', 'Orange']
+
+این روش از خطایی که ممکن است هنگام حذف مقداری که در لیست وجود ندارد ایجاد شود جلوگیری می کند.
+
+---
+
+## ۱۳. بررسی یک لیست از نام ها
+
+یک مثال ساده و کاربردی:
+
+    students = ["Ali", "Sara", "Reza", "Mina"]
+
+    name = input("Enter a student name: ")
+
+    if name in students:
+        print(f"{name} is a student.")
+    else:
+        print(f"{name} is not in the student list.")
+
+---
+
+## ۱۴. ترکیب `in` با شرط های دیگر
+
+می توانیم بررسی وجود یک عنصر را با شرط های دیگر ترکیب کنیم.
+
+    scores = [18, 15, 20, 12, 9]
+
+    score = 20
+
+    if score in scores and score >= 10:
+        print("This is a passing score and it exists in the list.")
+
+خروجی:
+
+    This is a passing score and it exists in the list.
+
+به این شکل می توانیم چند شرط را هم زمان بررسی کنیم.
+
+---
+
+## ۱۵. تفاوت `in` و `index()`
+
+عملگر `in` به یک سوال ساده پاسخ می دهد:
+
+    آیا این مقدار در لیست وجود دارد؟
+
+برای مثال:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    print("Banana" in fruits)
+
+خروجی:
+
+    True
+
+اما متد `index()` به سوال دیگری پاسخ می دهد:
+
+    این مقدار در چه موقعیتی قرار دارد؟
+
+برای مثال:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    print(fruits.index("Banana"))
+
+خروجی:
+
+    1
+
+در سطح مقدماتی، اگر فقط می خواهیم بدانیم یک عنصر وجود دارد یا نه، از `in` استفاده می کنیم.
+
+اگر به موقعیت عنصر نیاز داشته باشیم، از `index()` استفاده می کنیم.
+
+---
+
+## ۱۶. مثال کاربردی — لیست خرید
+
+می توانیم بررسی کنیم که آیا یک کالا از قبل در لیست خرید وجود دارد یا نه.
+
+    shopping_list = ["Milk", "Bread", "Eggs"]
+
+    item = input("Enter an item: ")
+
+    if item in shopping_list:
+        print(f"{item} is already in the shopping list.")
+    else:
+        shopping_list.append(item)
+        print(f"{item} was added to the shopping list.")
+
+    print(f"Shopping list: {shopping_list}")
+
+این الگوی ساده برای جلوگیری از اضافه شدن کالاهای تکراری کاربرد دارد.
+
+---
+
+## ۱۷. مثال کاربردی — درس های مجاز
+
+می توانیم از یک لیست برای نگهداری درس های مجاز استفاده کنیم.
+
+    subjects = ["Python", "Math", "English", "Science"]
+
+    subject = input("Enter a subject: ")
+
+    if subject in subjects:
+        print("This subject is available.")
+    else:
+        print("This subject is not available.")
+
+---
+
+## ۱۸. مثال کاربردی — بررسی ساده نام کاربری
+
+می توانیم از یک لیست برای نگهداری نام های کاربری مجاز استفاده کنیم.
+
+    usernames = ["ali", "sara", "reza"]
+
+    username = input("Enter your username: ")
+
+    if username in usernames:
+        print("Welcome!")
+    else:
+        print("Username not found.")
+
+این فقط یک مثال ساده برای بررسی وجود یک مقدار در لیست است و یک سیستم احراز هویت واقعی نیست.
+
+---
+
+## ۱۹. اشتباهات رایج مبتدی ها
+
+### اشتباه اول — فراموش کردن حساس بودن حروف
+
+این عبارت:
+
+    "Ali" in ["Ali", "Sara"]
+
+برابر `True` است.
+
+اما این عبارت:
+
+    "ali" in ["Ali", "Sara"]
+
+برابر `False` است.
+
+### اشتباه دوم — حذف کردن بدون بررسی
+
+این کد می تواند باعث خطا شود:
+
+    fruits = ["Apple", "Banana"]
+
+    fruits.remove("Mango")
+
+روش امن تر در سطح مقدماتی:
+
+    fruits = ["Apple", "Banana"]
+
+    if "Mango" in fruits:
+        fruits.remove("Mango")
+
+### اشتباه سوم — استفاده از `index()` وقتی فقط به `in` نیاز داریم
+
+اگر فقط می خواهیم بدانیم یک عنصر وجود دارد یا نه، این روش ساده تر است:
+
+    if "Banana" in fruits:
+        print("Found.")
+
+نیازی نیست ابتدا موقعیت عنصر را پیدا کنیم.
+
+---
+
+## ۲۰. جمع بندی مهم
+
+عملگر `in` بررسی می کند که آیا یک عنصر در لیست وجود دارد یا خیر:
+
+    "Apple" in fruits
+
+نتیجه یکی از این دو مقدار است:
+
+    True
+
+یا:
+
+    False
+
+عملگر `not in` بررسی می کند که یک عنصر در لیست وجود ندارد:
+
+    "Mango" not in fruits
+
+می توانیم بررسی وجود عنصر را با `if` ترکیب کنیم:
+
+    if item in my_list:
+        print("Found.")
+
+می توانیم از ایجاد عناصر تکراری جلوگیری کنیم:
+
+    if item not in my_list:
+        my_list.append(item)
+
+می توانیم قبل از حذف یک عنصر وجود آن را بررسی کنیم:
+
+    if item in my_list:
+        my_list.remove(item)
+
+به یاد داشته باشید که مقایسه رشته ها به بزرگی و کوچکی حروف حساس است.
+
+در سطح مقدماتی، `in` و `not in` ابزارهای ساده و کاربردی برای کار با لیست ها هستند.
+
+---
+

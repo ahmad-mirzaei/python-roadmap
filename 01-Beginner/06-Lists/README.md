@@ -7994,3 +7994,483 @@ The goal is to practice list iteration together with the `for` loop, conditions,
 
 ---
 
+# Part 9 — Checking Whether an Element Exists in a List
+
+## 1. Introduction
+
+Sometimes we need to check whether a specific value exists inside a list.
+
+For example:
+
+    fruits = ["Apple", "Banana", "Orange", "Mango"]
+
+We may want to know whether `"Banana"` is in the list.
+
+Python provides the `in` operator for this purpose.
+
+    fruits = ["Apple", "Banana", "Orange", "Mango"]
+
+    print("Banana" in fruits)
+
+Output:
+
+    True
+
+The result is a Boolean value:
+
+    True
+
+or:
+
+    False
+
+---
+
+## 2. Using `in`
+
+The `in` operator checks whether a value exists in a list.
+
+    numbers = [10, 20, 30, 40, 50]
+
+    print(30 in numbers)
+    print(100 in numbers)
+
+Output:
+
+    True
+    False
+
+The first check succeeds because `30` exists in the list.
+
+The second check fails because `100` does not exist in the list.
+
+---
+
+## 3. Using `not in`
+
+We can also check whether a value does not exist in a list.
+
+For this, we use `not in`.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    print("Apple" not in fruits)
+    print("Mango" not in fruits)
+
+Output:
+
+    False
+    True
+
+`"Apple"` exists in the list, so `"Apple" not in fruits` is `False`.
+
+`"Mango"` does not exist in the list, so `"Mango" not in fruits` is `True`.
+
+---
+
+## 4. Using `in` with `if`
+
+The `in` operator is often used together with `if`.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    if "Banana" in fruits:
+        print("Banana is available.")
+
+Output:
+
+    Banana is available.
+
+This allows our program to make a decision based on whether an element exists.
+
+---
+
+## 5. Using `else`
+
+We can also handle the case where the element does not exist.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    if "Mango" in fruits:
+        print("Mango is available.")
+    else:
+        print("Mango is not available.")
+
+Output:
+
+    Mango is not available.
+
+---
+
+## 6. Checking User Input
+
+We can use `in` to check a value entered by the user.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    favorite = input("Enter a fruit: ")
+
+    if favorite in fruits:
+        print("This fruit is in the list.")
+    else:
+        print("This fruit is not in the list.")
+
+If the user enters:
+
+    Banana
+
+The output will be:
+
+    This fruit is in the list.
+
+---
+
+## 7. Checking Numbers
+
+The same idea works with numbers.
+
+    numbers = [10, 20, 30, 40, 50]
+
+    number = int(input("Enter a number: "))
+
+    if number in numbers:
+        print("Number found.")
+    else:
+        print("Number not found.")
+
+If the user enters:
+
+    30
+
+The output will be:
+
+    Number found.
+
+---
+
+## 8. Checking Multiple Allowed Values
+
+We can use `in` when several values are acceptable.
+
+For example:
+
+    allowed_colors = ["red", "green", "blue"]
+
+    color = input("Enter a color: ")
+
+    if color in allowed_colors:
+        print("This color is allowed.")
+    else:
+        print("This color is not allowed.")
+
+This is cleaner than writing several separate comparisons.
+
+---
+
+## 9. Checking Multiple Values with `not in`
+
+We can also use `not in` when we want to reject certain values.
+
+    blocked_users = ["admin", "root", "guest"]
+
+    username = input("Enter a username: ")
+
+    if username not in blocked_users:
+        print("Username is available.")
+    else:
+        print("This username is blocked.")
+
+---
+
+## 10. Case Sensitivity
+
+String comparisons are case-sensitive.
+
+For example:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    print("Apple" in fruits)
+    print("apple" in fruits)
+
+Output:
+
+    True
+    False
+
+`"Apple"` and `"apple"` are different strings.
+
+If we want to accept different letter cases, we can convert the input first.
+
+    fruits = ["apple", "banana", "orange"]
+
+    fruit = input("Enter a fruit: ").lower()
+
+    if fruit in fruits:
+        print("Fruit found.")
+    else:
+        print("Fruit not found.")
+
+Now entering:
+
+    APPLE
+
+will also work because `.lower()` converts it to:
+
+    apple
+
+---
+
+## 11. Checking Before Adding an Element
+
+We can use `in` to prevent duplicate values.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    new_fruit = "Banana"
+
+    if new_fruit not in fruits:
+        fruits.append(new_fruit)
+
+    print(fruits)
+
+Output:
+
+    ['Apple', 'Banana', 'Orange']
+
+Because `"Banana"` already exists, it is not added again.
+
+If we use:
+
+    new_fruit = "Mango"
+
+The result becomes:
+
+    ['Apple', 'Banana', 'Orange', 'Mango']
+
+---
+
+## 12. Checking Before Removing an Element
+
+We can also check whether an element exists before using `remove()`.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    fruit = "Banana"
+
+    if fruit in fruits:
+        fruits.remove(fruit)
+
+    print(fruits)
+
+Output:
+
+    ['Apple', 'Orange']
+
+This prevents an error that could happen if we tried to remove a value that does not exist.
+
+---
+
+## 13. Checking a List of Names
+
+Here is a simple practical example.
+
+    students = ["Ali", "Sara", "Reza", "Mina"]
+
+    name = input("Enter a student name: ")
+
+    if name in students:
+        print(f"{name} is a student.")
+    else:
+        print(f"{name} is not in the student list.")
+
+---
+
+## 14. Combining `in` with Conditions
+
+We can combine membership checking with other conditions.
+
+    scores = [18, 15, 20, 12, 9]
+
+    score = 20
+
+    if score in scores and score >= 10:
+        print("This is a passing score and it exists in the list.")
+
+Output:
+
+    This is a passing score and it exists in the list.
+
+This allows us to check more than one condition at the same time.
+
+---
+
+## 15. `in` vs `index()`
+
+The `in` operator answers a simple question:
+
+    Does this value exist in the list?
+
+For example:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    print("Banana" in fruits)
+
+Output:
+
+    True
+
+The `index()` method answers a different question:
+
+    Where is this value located?
+
+For example:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    print(fruits.index("Banana"))
+
+Output:
+
+    1
+
+At the Beginner level, use `in` when you only need to know whether an element exists.
+
+Use `index()` when you actually need its position.
+
+---
+
+## 16. Practical Example — Shopping List
+
+We can check whether an item is already in a shopping list.
+
+    shopping_list = ["Milk", "Bread", "Eggs"]
+
+    item = input("Enter an item: ")
+
+    if item in shopping_list:
+        print(f"{item} is already in the shopping list.")
+    else:
+        shopping_list.append(item)
+        print(f"{item} was added to the shopping list.")
+
+    print(f"Shopping list: {shopping_list}")
+
+This simple pattern is useful for preventing duplicate items.
+
+---
+
+## 17. Practical Example — Allowed Subjects
+
+We can use a list to store allowed subjects.
+
+    subjects = ["Python", "Math", "English", "Science"]
+
+    subject = input("Enter a subject: ")
+
+    if subject in subjects:
+        print("This subject is available.")
+    else:
+        print("This subject is not available.")
+
+---
+
+## 18. Practical Example — Simple Login Check
+
+We can use a list to store allowed usernames.
+
+    usernames = ["ali", "sara", "reza"]
+
+    username = input("Enter your username: ")
+
+    if username in usernames:
+        print("Welcome!")
+    else:
+        print("Username not found.")
+
+This is only a simple example of list membership. It is not a real authentication system.
+
+---
+
+## 19. Common Beginner Mistakes
+
+### Mistake 1 — Forgetting that strings are case-sensitive
+
+This:
+
+    "Ali" in ["Ali", "Sara"]
+
+is `True`.
+
+But this:
+
+    "ali" in ["Ali", "Sara"]
+
+is `False`.
+
+### Mistake 2 — Removing without checking
+
+This can cause an error:
+
+    fruits = ["Apple", "Banana"]
+
+    fruits.remove("Mango")
+
+A safer beginner approach is:
+
+    fruits = ["Apple", "Banana"]
+
+    if "Mango" in fruits:
+        fruits.remove("Mango")
+
+### Mistake 3 — Using `index()` when `in` is enough
+
+If you only want to know whether an element exists, this is simpler:
+
+    if "Banana" in fruits:
+        print("Found.")
+
+There is no need to find its index first.
+
+---
+
+## 20. Important Summary
+
+The `in` operator checks whether an element exists in a list:
+
+    "Apple" in fruits
+
+The result is either:
+
+    True
+
+or:
+
+    False
+
+The `not in` operator checks whether an element does not exist:
+
+    "Mango" not in fruits
+
+We can use membership checking with `if`:
+
+    if item in my_list:
+        print("Found.")
+
+We can prevent duplicates:
+
+    if item not in my_list:
+        my_list.append(item)
+
+We can safely remove an element:
+
+    if item in my_list:
+        my_list.remove(item)
+
+Remember that string comparisons are case-sensitive.
+
+At the Beginner level, `in` and `not in` are simple and useful tools for working with lists.
+
+---
+

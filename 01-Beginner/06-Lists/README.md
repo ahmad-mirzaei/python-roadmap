@@ -9238,3 +9238,560 @@ Score 15 appears 2 times.
 
 ---
 
+# Part 12 — Removing Elements from a List
+
+## 1. Introduction
+
+Sometimes we need to remove elements from a list.
+
+Python provides several ways to remove elements from a list.
+
+In this section, we will learn:
+
+- `remove()`
+- `pop()`
+- `del`
+- `clear()`
+
+Each one has a different purpose.
+
+## 2. Using `remove()`
+
+The `remove()` method removes the first occurrence of a specific value.
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Banana"]
+
+fruits.remove("Banana")
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Orange', 'Banana']
+```
+
+Only the first `"Banana"` was removed.
+
+## 3. Removing a Value That Does Not Exist
+
+If the value does not exist, `remove()` causes an error.
+
+For example:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.remove("Mango")
+```
+
+This produces a `ValueError`.
+
+Before using `remove()`, we can check whether the value exists.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Mango" in fruits:
+    fruits.remove("Mango")
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+```
+
+## 4. Using `pop()`
+
+The `pop()` method removes an element using its index.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.pop(1)
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Orange']
+```
+
+Index `1` contained `"Banana"`, so it was removed.
+
+## 5. `pop()` Without an Index
+
+If we do not provide an index, `pop()` removes the last element.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.pop()
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana']
+```
+
+## 6. Getting the Removed Element
+
+One useful feature of `pop()` is that it returns the removed element.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+removed_fruit = fruits.pop(1)
+
+print(removed_fruit)
+print(fruits)
+```
+
+Output:
+
+```text
+Banana
+['Apple', 'Orange']
+```
+
+This is different from `remove()`.
+
+## 7. Using `del`
+
+The `del` statement can remove an element using its index.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+del fruits[1]
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Orange']
+```
+
+The element at index `1` was deleted.
+
+## 8. Using `del` with Multiple Elements
+
+We can also use `del` with a slice.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+del numbers[1:4]
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 50]
+```
+
+The elements at indexes `1`, `2`, and `3` were removed.
+
+## 9. Using `clear()`
+
+The `clear()` method removes all elements from a list.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.clear()
+
+print(fruits)
+```
+
+Output:
+
+```text
+[]
+```
+
+The list still exists, but it is now empty.
+
+## 10. `remove()` vs `pop()`
+
+The main difference is what we use to identify the element.
+
+`remove()` uses a value:
+
+```python
+fruits.remove("Apple")
+```
+
+`pop()` uses an index:
+
+```python
+fruits.pop(0)
+```
+
+For example:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.remove("Banana")
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Orange']
+```
+
+But:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.pop(1)
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Orange']
+```
+
+Both remove `"Banana"`, but they identify it differently.
+
+## 11. `pop()` vs `del`
+
+Both can remove an element using its index.
+
+The important difference is that `pop()` returns the removed element.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+removed = fruits.pop(1)
+
+print(removed)
+```
+
+Output:
+
+```text
+Banana
+```
+
+With `del`, the removed element is not returned.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+del fruits[1]
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Orange']
+```
+
+## 12. Choosing the Right Method
+
+Use `remove()` when you know the value:
+
+```python
+fruits.remove("Banana")
+```
+
+Use `pop()` when you know the index and need the removed value:
+
+```python
+removed = fruits.pop(1)
+```
+
+Use `del` when you want to delete an element or a range by index:
+
+```python
+del fruits[1]
+```
+
+Use `clear()` when you want to remove everything:
+
+```python
+fruits.clear()
+```
+
+## 13. Removing a User's Choice
+
+We can combine `input()`, `in`, and `remove()`.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruit = input("Enter a fruit to remove: ")
+
+if fruit in fruits:
+    fruits.remove(fruit)
+    print(f"{fruit} was removed.")
+else:
+    print(f"{fruit} was not found.")
+
+print(fruits)
+```
+
+Example output:
+
+```text
+Enter a fruit to remove: Banana
+Banana was removed.
+['Apple', 'Orange']
+```
+
+## 14. Removing the Last Item
+
+We can use `pop()` to remove the last element.
+
+```python
+tasks = ["Study", "Exercise", "Read"]
+
+last_task = tasks.pop()
+
+print(f"Removed task: {last_task}")
+print(tasks)
+```
+
+Output:
+
+```text
+Removed task: Read
+['Study', 'Exercise']
+```
+
+## 15. Removing All Occurrences of a Value
+
+The `remove()` method removes only the first occurrence.
+
+If we want to remove every occurrence, we can use a loop.
+
+```python
+fruits = ["Apple", "Banana", "Apple", "Orange", "Apple"]
+
+while "Apple" in fruits:
+    fruits.remove("Apple")
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Banana', 'Orange']
+```
+
+The loop continues while `"Apple"` exists in the list.
+
+## 16. Common Beginner Mistakes
+
+### Mistake 1 — Confusing Value and Index
+
+This:
+
+```python
+fruits.remove(1)
+```
+
+tries to remove the value `1`.
+
+It does not mean "remove the element at index 1".
+
+To remove the element at index `1`, use:
+
+```python
+fruits.pop(1)
+```
+
+or:
+
+```python
+del fruits[1]
+```
+
+### Mistake 2 — Removing a Missing Value
+
+This can cause an error:
+
+```python
+fruits = ["Apple", "Banana"]
+
+fruits.remove("Mango")
+```
+
+A safer approach is:
+
+```python
+if "Mango" in fruits:
+    fruits.remove("Mango")
+```
+
+### Mistake 3 — Forgetting That `pop()` Returns a Value
+
+This:
+
+```python
+removed = fruits.pop(1)
+```
+
+stores the removed element in `removed`.
+
+This is useful when we need to use that element after removing it.
+
+## 17. Important Summary
+
+Use `remove()` to remove the first matching value:
+
+```python
+my_list.remove(value)
+```
+
+Use `pop()` to remove an element by index:
+
+```python
+my_list.pop(index)
+```
+
+Use `pop()` without an index to remove the last element:
+
+```python
+my_list.pop()
+```
+
+Use `del` to remove an element or a range by index:
+
+```python
+del my_list[index]
+```
+
+Use `clear()` to remove all elements:
+
+```python
+my_list.clear()
+```
+
+Remember:
+
+```text
+remove() → value
+pop()    → index
+del      → index or slice
+clear()  → everything
+```
+
+# Exercises
+
+## Exercise 1 — Remove a Fruit
+
+Create a list of fruits and remove `"Banana"` using `remove()`.
+
+## Exercise 2 — Remove by Index
+
+Create a list of numbers and remove the element at index `2` using `pop()`.
+
+## Exercise 3 — Save the Removed Value
+
+Create a list of names.
+
+Remove one name with `pop()` and print the removed name.
+
+## Exercise 4 — Remove the Last Element
+
+Create a list of tasks and remove the last task using `pop()`.
+
+## Exercise 5 — Empty a List
+
+Create a list of several elements and use `clear()` to make it empty.
+
+# Comprehensive Review
+
+## Question 1
+
+What is the difference between `remove()` and `pop()`?
+
+## Question 2
+
+What will this program print?
+
+```python
+fruits = ["Apple", "Banana", "Orange", "Banana"]
+
+fruits.remove("Banana")
+
+print(fruits)
+```
+
+## Question 3
+
+What is the difference between:
+
+```python
+fruits.pop(1)
+```
+
+and:
+
+```python
+del fruits[1]
+```
+
+## Question 4
+
+Write a program that asks the user for a fruit and removes it from a list only if it exists.
+
+## Question 5
+
+Create a list of numbers and remove all occurrences of a specific number.
+
+# Challenge
+
+## Python Roadmap Challenge
+
+Create a simple **Task Manager** using the concepts learned so far.
+
+Start with:
+
+```python
+tasks = ["Study Python", "Exercise", "Read", "Practice Lists"]
+```
+
+Your program should:
+
+1. Print the task list.
+2. Print the number of tasks.
+3. Ask the user for a task to remove.
+4. Check whether the task exists using `in`.
+5. Remove the task if it exists.
+6. Print the removed task.
+7. Print the updated list.
+8. Print the number of remaining tasks.
+9. If the task does not exist, display an appropriate message.
+
+Use variables, input, type casting where necessary, conditions, lists, `len()`, `in`, `not in`, `remove()`, and `pop()` where appropriate.
+
+---
+

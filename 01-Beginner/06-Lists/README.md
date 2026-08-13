@@ -7316,3 +7316,681 @@ The main goal is to understand the difference between **referring to the same li
 
 ---
 
+# Part 10 — List Iteration
+
+## 1. Introduction to List Iteration
+
+One of the most common things we do with a list is to go through its elements one by one.
+
+This process is called **iteration**.
+
+For example:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+We can use a `for` loop to visit each element:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    for fruit in fruits:
+        print(fruit)
+
+Output:
+
+    Apple
+    Banana
+    Orange
+
+The variable `fruit` represents the current element during each iteration.
+
+---
+
+## 2. Basic List Iteration
+
+The simplest way to iterate over a list is with a `for` loop.
+
+    numbers = [10, 20, 30, 40, 50]
+
+    for number in numbers:
+        print(number)
+
+Output:
+
+    10
+    20
+    30
+    40
+    50
+
+Python automatically moves from one element to the next.
+
+---
+
+## 3. Iterating Over Strings in a List
+
+A list can contain strings, and we can process each string individually.
+
+    names = ["Ali", "Sara", "Reza", "Mina"]
+
+    for name in names:
+        print(f"Hello, {name}!")
+
+Output:
+
+    Hello, Ali!
+    Hello, Sara!
+    Hello, Reza!
+    Hello, Mina!
+
+This is useful when we want to perform the same operation on every item.
+
+---
+
+## 4. Performing Calculations During Iteration
+
+We can perform calculations for every element.
+
+    numbers = [2, 4, 6, 8]
+
+    for number in numbers:
+        square = number ** 2
+        print(f"{number} squared = {square}")
+
+Output:
+
+    2 squared = 4
+    4 squared = 16
+    6 squared = 36
+    8 squared = 64
+
+Each element is processed separately.
+
+---
+
+## 5. Using Conditions While Iterating
+
+We can combine a `for` loop with an `if` statement.
+
+    scores = [18, 8, 15, 7, 20]
+
+    for score in scores:
+        if score >= 10:
+            print(f"{score} → Passing")
+        else:
+            print(f"{score} → Failing")
+
+Output:
+
+    18 → Passing
+    8 → Failing
+    15 → Passing
+    7 → Failing
+    20 → Passing
+
+This is one of the most useful patterns when working with lists.
+
+---
+
+## 6. Finding Specific Elements
+
+We can use iteration to find elements that satisfy a condition.
+
+    numbers = [5, 12, 8, 20, 3, 15]
+
+    for number in numbers:
+        if number > 10:
+            print(number)
+
+Output:
+
+    12
+    20
+    15
+
+Only numbers greater than `10` are printed.
+
+---
+
+## 7. Counting Elements During Iteration
+
+We can create a counter and increase it while iterating.
+
+    numbers = [5, 12, 8, 20, 3, 15]
+
+    count = 0
+
+    for number in numbers:
+        if number > 10:
+            count += 1
+
+    print(f"Numbers greater than 10: {count}")
+
+Output:
+
+    Numbers greater than 10: 3
+
+This pattern is useful when we want to count elements that meet a condition.
+
+---
+
+## 8. Calculating a Total During Iteration
+
+We can use a variable to keep track of a running total.
+
+    numbers = [10, 20, 30, 40]
+
+    total = 0
+
+    for number in numbers:
+        total += number
+
+    print(f"Total: {total}")
+
+Output:
+
+    Total: 100
+
+The value of `total` changes during each iteration.
+
+---
+
+## 9. Finding the Largest Value
+
+We can use a loop to find the largest value in a list.
+
+    numbers = [12, 45, 7, 32, 18]
+
+    largest = numbers[0]
+
+    for number in numbers:
+        if number > largest:
+            largest = number
+
+    print(f"Largest number: {largest}")
+
+Output:
+
+    Largest number: 45
+
+The variable `largest` stores the largest value found so far.
+
+---
+
+## 10. Finding the Smallest Value
+
+The same idea can be used to find the smallest value.
+
+    numbers = [12, 45, 7, 32, 18]
+
+    smallest = numbers[0]
+
+    for number in numbers:
+        if number < smallest:
+            smallest = number
+
+    print(f"Smallest number: {smallest}")
+
+Output:
+
+    Smallest number: 7
+
+We start with the first element and compare every other element with it.
+
+---
+
+## 11. Creating a New List During Iteration
+
+We can create a new list and add selected elements to it.
+
+For example, we can create a list containing only passing scores.
+
+    scores = [18, 8, 15, 7, 20]
+
+    passing_scores = []
+
+    for score in scores:
+        if score >= 10:
+            passing_scores.append(score)
+
+    print(f"Passing scores: {passing_scores}")
+
+Output:
+
+    Passing scores: [18, 15, 20]
+
+This is an important beginner pattern:
+
+1. Create an empty list.
+2. Iterate over the original list.
+3. Check a condition.
+4. Add matching elements to the new list.
+
+---
+
+## 12. Iterating Over a List and Creating Another List
+
+We can use one list as the source and another list as the result.
+
+    numbers = [1, 2, 3, 4, 5]
+
+    doubled_numbers = []
+
+    for number in numbers:
+        doubled = number * 2
+        doubled_numbers.append(doubled)
+
+    print(f"Original: {numbers}")
+    print(f"Doubled: {doubled_numbers}")
+
+Output:
+
+    Original: [1, 2, 3, 4, 5]
+    Doubled: [2, 4, 6, 8, 10]
+
+The original list remains unchanged.
+
+---
+
+## 13. Using `range()` with a List
+
+Sometimes we want to work with the indexes of a list.
+
+We can use `range()` together with `len()`.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    for index in range(len(fruits)):
+        print(f"Index: {index} → {fruits[index]}")
+
+Output:
+
+    Index: 0 → Apple
+    Index: 1 → Banana
+    Index: 2 → Orange
+
+Here:
+
+    len(fruits)
+
+gives the number of elements in the list.
+
+And:
+
+    range(len(fruits))
+
+creates the indexes we need.
+
+For beginner-level list work, direct iteration is usually simpler when we do not need the index.
+
+---
+
+## 14. Direct Iteration vs Index-Based Iteration
+
+### Direct iteration
+
+Use this when you only need the values.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    for fruit in fruits:
+        print(fruit)
+
+### Index-based iteration
+
+Use this when you need the indexes.
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    for index in range(len(fruits)):
+        print(f"{index}: {fruits[index]}")
+
+The first approach is usually cleaner when the index is not needed.
+
+---
+
+## 15. Using `break` While Iterating
+
+The `break` statement stops the loop completely.
+
+For example, we can stop when we find a specific number.
+
+    numbers = [10, 20, 30, 40, 50]
+
+    for number in numbers:
+        if number == 30:
+            print("Number found!")
+            break
+
+        print(number)
+
+Output:
+
+    10
+    20
+    Number found!
+
+When Python reaches `break`, the loop stops.
+
+---
+
+## 16. Using `continue` While Iterating
+
+The `continue` statement skips the current iteration and moves to the next one.
+
+For example, we can skip failing scores.
+
+    scores = [18, 8, 15, 7, 20]
+
+    for score in scores:
+        if score < 10:
+            continue
+
+        print(f"Passing score: {score}")
+
+Output:
+
+    Passing score: 18
+    Passing score: 15
+    Passing score: 20
+
+When `score < 10` is true, `continue` skips the remaining code for that iteration.
+
+---
+
+## 17. Practical Example — Student Scores
+
+We can combine list iteration, conditions, counting, and calculations.
+
+    scores = [18, 8, 15, 7, 20]
+
+    print("----- Student Scores -----")
+    print()
+
+    print(f"Scores: {scores}")
+
+    number_of_scores = len(scores)
+    total = 0
+    passing_count = 0
+
+    for score in scores:
+        total += score
+
+        if score >= 10:
+            passing_count += 1
+            print(f"{score} → Passing")
+        else:
+            print(f"{score} → Failing")
+
+    average = total / number_of_scores
+
+    print()
+    print(f"Number of scores: {number_of_scores}")
+    print(f"Total: {total}")
+    print(f"Average: {average}")
+    print(f"Passing students: {passing_count}")
+
+Output:
+
+    ----- Student Scores -----
+
+    Scores: [18, 8, 15, 7, 20]
+    18 → Passing
+    8 → Failing
+    15 → Passing
+    7 → Failing
+    20 → Passing
+
+    Number of scores: 5
+    Total: 68
+    Average: 13.6
+    Passing students: 3
+
+---
+
+## 18. Practical Example — Finding a Product
+
+We can search through a list of products.
+
+    products = ["Laptop", "Mouse", "Keyboard", "Monitor"]
+
+    search_item = "Keyboard"
+
+    found = False
+
+    for product in products:
+        if product == search_item:
+            found = True
+            break
+
+    if found:
+        print(f"{search_item} was found.")
+    else:
+        print(f"{search_item} was not found.")
+
+Output:
+
+    Keyboard was found.
+
+This example combines a list, a `for` loop, an `if` statement, a Boolean variable, and `break`.
+
+---
+
+## 19. Common Beginner Mistakes
+
+### Mistake 1 — Forgetting indentation
+
+Correct:
+
+    numbers = [1, 2, 3]
+
+    for number in numbers:
+        print(number)
+
+The `print()` statement belongs to the loop because it is indented.
+
+### Mistake 2 — Changing the list while iterating over it
+
+Avoid changing the same list while directly iterating over it.
+
+For example:
+
+    numbers = [1, 2, 3, 4, 5]
+
+    for number in numbers:
+        if number % 2 == 0:
+            numbers.remove(number)
+
+At the Beginner level, prefer creating a new list instead:
+
+    numbers = [1, 2, 3, 4, 5]
+
+    odd_numbers = []
+
+    for number in numbers:
+        if number % 2 != 0:
+            odd_numbers.append(number)
+
+    print(odd_numbers)
+
+Output:
+
+    [1, 3, 5]
+
+### Mistake 3 — Using an unnecessary index
+
+If we only need the values, this is simpler:
+
+    fruits = ["Apple", "Banana", "Orange"]
+
+    for fruit in fruits:
+        print(fruit)
+
+There is usually no need to write:
+
+    for index in range(len(fruits)):
+        print(fruits[index])
+
+Use the index-based approach when you actually need the index.
+
+---
+
+## 20. Important Summary
+
+List iteration means visiting the elements of a list one by one.
+
+The most common pattern is:
+
+    for item in my_list:
+        print(item)
+
+We can combine iteration with conditions:
+
+    for item in my_list:
+        if condition:
+            print(item)
+
+We can count matching elements:
+
+    count = 0
+
+    for item in my_list:
+        if condition:
+            count += 1
+
+We can calculate a total:
+
+    total = 0
+
+    for number in numbers:
+        total += number
+
+We can create a new list:
+
+    result = []
+
+    for item in my_list:
+        if condition:
+            result.append(item)
+
+We can stop a loop with:
+
+    break
+
+And skip one iteration with:
+
+    continue
+
+---
+
+# Exercises
+
+## Exercise 1 — Print All Elements
+
+Create a list containing five favorite foods.
+
+Use a `for` loop to print each food.
+
+## Exercise 2 — Print Numbers
+
+Create a list containing several numbers.
+
+Use a loop to print each number.
+
+## Exercise 3 — Print Even Numbers
+
+Create a list of numbers.
+
+Use iteration and an `if` statement to print only even numbers.
+
+## Exercise 4 — Count Passing Scores
+
+Create a list of student scores.
+
+Use a loop to count how many scores are greater than or equal to `10`.
+
+## Exercise 5 — Calculate the Total
+
+Create a list of numbers.
+
+Use iteration to calculate the total without using `sum()`.
+
+## Exercise 6 — Find the Largest Number
+
+Create a list of numbers.
+
+Use a loop to find the largest number without using `max()`.
+
+## Exercise 7 — Find the Smallest Number
+
+Create a list of numbers.
+
+Use a loop to find the smallest number without using `min()`.
+
+## Exercise 8 — Create a New List
+
+Create a list of numbers.
+
+Create a second list containing only numbers greater than `10`.
+
+## Exercise 9 — Double the Numbers
+
+Create a list of numbers.
+
+Create a new list where every number is multiplied by `2`.
+
+## Exercise 10 — Search a List
+
+Create a list of names.
+
+Ask the user for a name.
+
+Search through the list and print whether the name exists.
+
+---
+
+# Comprehensive Challenge
+
+Create a **Student Score Analyzer**.
+
+Start with:
+
+    scores = [18, 8, 15, 7, 20, 12, 9]
+
+Your program should:
+
+1. Print all scores.
+2. Count the number of scores.
+3. Calculate the total without using `sum()`.
+4. Calculate the average.
+5. Count passing scores.
+6. Count failing scores.
+7. Find the highest score without using `max()`.
+8. Find the lowest score without using `min()`.
+9. Print whether each score is passing or failing.
+
+Example output:
+
+    ----- Student Score Analyzer -----
+
+    Scores: [18, 8, 15, 7, 20, 12, 9]
+
+    18 → Passing
+    8 → Failing
+    15 → Passing
+    7 → Failing
+    20 → Passing
+    12 → Passing
+    9 → Failing
+
+    Number of scores: 7
+    Total: 89
+    Average: 12.71
+    Passing scores: 4
+    Failing scores: 3
+    Highest score: 20
+    Lowest score: 7
+
+The goal is to practice list iteration together with the `for` loop, conditions, variables, counters, and basic calculations learned in previous sections.
+
+---
+

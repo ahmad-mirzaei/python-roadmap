@@ -8628,3 +8628,613 @@ Create an empty list and check whether it is empty.
 
 ---
 
+# Part 11 — Checking Membership in a List
+
+## 1. Introduction
+
+Sometimes we need to check whether a specific value exists in a list.
+
+Python provides two useful operators for this:
+
+- `in`
+- `not in`
+
+These operators allow us to check whether a value exists or does not exist in a list.
+
+## 2. Using the `in` Operator
+
+The `in` operator checks whether a value exists in a list.
+
+For example:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Apple" in fruits)
+```
+
+Output:
+
+```text
+True
+```
+
+Because `"Apple"` exists in the list, the result is `True`.
+
+## 3. Checking for a Value That Does Not Exist
+
+If the value is not in the list, the result is `False`.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Mango" in fruits)
+```
+
+Output:
+
+```text
+False
+```
+
+`"Mango"` is not in the list.
+
+## 4. Using `not in`
+
+The `not in` operator checks whether a value does not exist in a list.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Mango" not in fruits)
+```
+
+Output:
+
+```text
+True
+```
+
+Because `"Mango"` does not exist in the list, the result is `True`.
+
+## 5. Using Membership Checks with `if`
+
+Membership checks are especially useful with conditions.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Apple" in fruits:
+    print("Apple is in the list.")
+```
+
+Output:
+
+```text
+Apple is in the list.
+```
+
+We can also check whether something is missing.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Mango" not in fruits:
+    print("Mango is not in the list.")
+```
+
+Output:
+
+```text
+Mango is not in the list.
+```
+
+## 6. Checking User Input
+
+We can combine `input()` with the `in` operator.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruit = input("Enter a fruit: ")
+
+if fruit in fruits:
+    print("The fruit is in the list.")
+else:
+    print("The fruit is not in the list.")
+```
+
+Example output:
+
+```text
+Enter a fruit: Banana
+The fruit is in the list.
+```
+
+The value entered by the user is checked against the list.
+
+## 7. Membership Checks Are Case-Sensitive
+
+String comparisons are case-sensitive.
+
+For example:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Apple" in fruits)
+print("apple" in fruits)
+```
+
+Output:
+
+```text
+True
+False
+```
+
+`"Apple"` and `"apple"` are different strings.
+
+## 8. Checking Numbers
+
+The `in` operator also works with numbers.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(30 in numbers)
+print(100 in numbers)
+```
+
+Output:
+
+```text
+True
+False
+```
+
+## 9. Checking Multiple Values
+
+We can combine membership checks with `and` and `or`.
+
+For example:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Apple" in fruits and "Banana" in fruits:
+    print("Both fruits are in the list.")
+```
+
+Output:
+
+```text
+Both fruits are in the list.
+```
+
+We can also check whether at least one value exists:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Apple" in fruits or "Mango" in fruits:
+    print("At least one fruit is in the list.")
+```
+
+Output:
+
+```text
+At least one fruit is in the list.
+```
+
+## 10. Preventing Duplicate Values
+
+Membership checks can help us avoid adding the same value more than once.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruit = "Apple"
+
+if new_fruit not in fruits:
+    fruits.append(new_fruit)
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+```
+
+Because `"Apple"` was already in the list, it was not added again.
+
+If we use a new value:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruit = "Mango"
+
+if new_fruit not in fruits:
+    fruits.append(new_fruit)
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+## 11. Searching for a Student
+
+Membership checks are useful in simple programs.
+
+```python
+students = ["Ali", "Sara", "Reza", "Mina"]
+
+name = input("Enter a student name: ")
+
+if name in students:
+    print("Student found.")
+else:
+    print("Student not found.")
+```
+
+Example output:
+
+```text
+Enter a student name: Sara
+Student found.
+```
+
+## 12. Checking Allowed Values
+
+We can use a list to define allowed choices.
+
+```python
+allowed_colors = ["red", "green", "blue"]
+
+color = input("Enter a color: ")
+
+if color in allowed_colors:
+    print("This color is allowed.")
+else:
+    print("This color is not allowed.")
+```
+
+Example output:
+
+```text
+Enter a color: green
+This color is allowed.
+```
+
+## 13. Checking a Number Before Processing It
+
+We can check whether a number exists before performing an operation.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+number = int(input("Enter a number: "))
+
+if number in numbers:
+    print("Number found.")
+else:
+    print("Number not found.")
+```
+
+Example output:
+
+```text
+Enter a number: 30
+Number found.
+```
+
+## 14. `in` vs `count()`
+
+Both `in` and `count()` can be used to work with list membership, but they answer different questions.
+
+The `in` operator checks whether a value exists:
+
+```python
+fruits = ["Apple", "Banana", "Apple"]
+
+print("Apple" in fruits)
+```
+
+Output:
+
+```text
+True
+```
+
+The `count()` method tells us how many times the value appears:
+
+```python
+print(fruits.count("Apple"))
+```
+
+Output:
+
+```text
+2
+```
+
+So:
+
+```python
+"Apple" in fruits
+```
+
+asks:
+
+> Does `"Apple"` exist?
+
+While:
+
+```python
+fruits.count("Apple")
+```
+
+asks:
+
+> How many times does `"Apple"` appear?
+
+## 15. Membership Checks with Lists and Loops
+
+Membership checks can also be used inside loops.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+for fruit in fruits:
+    if fruit in ["Apple", "Orange"]:
+        print(fruit)
+```
+
+Output:
+
+```text
+Apple
+Orange
+```
+
+The loop goes through each element and checks whether it belongs to another list.
+
+## 16. Common Beginner Mistakes
+
+### Mistake 1 — Using `=` Instead of `in`
+
+This is incorrect:
+
+```python
+fruits = ["Apple", "Banana"]
+
+if "Apple" = fruits:
+    print("Found")
+```
+
+The correct syntax is:
+
+```python
+if "Apple" in fruits:
+    print("Found")
+```
+
+`=` is used for assignment.
+
+`in` is used for membership checking.
+
+### Mistake 2 — Forgetting Case Sensitivity
+
+This:
+
+```python
+fruits = ["Apple", "Banana"]
+
+print("apple" in fruits)
+```
+
+returns:
+
+```text
+False
+```
+
+because `"apple"` and `"Apple"` are different strings.
+
+### Mistake 3 — Confusing `in` with `count()`
+
+This:
+
+```python
+"Apple" in fruits
+```
+
+returns a Boolean value:
+
+```text
+True
+```
+
+But:
+
+```python
+fruits.count("Apple")
+```
+
+returns a number.
+
+For example:
+
+```text
+2
+```
+
+## 17. Important Summary
+
+Use `in` to check whether a value exists in a list:
+
+```python
+value in my_list
+```
+
+Use `not in` to check whether a value does not exist:
+
+```python
+value not in my_list
+```
+
+The result of a membership check is either:
+
+```text
+True
+```
+
+or:
+
+```text
+False
+```
+
+Membership checks are commonly used with `if`:
+
+```python
+if value in my_list:
+    print("Found")
+```
+
+They can also be combined with `and` and `or`:
+
+```python
+if value1 in my_list and value2 in my_list:
+    print("Both found")
+```
+
+Remember that string membership checks are case-sensitive.
+
+# Exercises
+
+## Exercise 1 — Check a Fruit
+
+Create a list of five fruits.
+
+Check whether `"Apple"` exists in the list.
+
+## Exercise 2 — Check a Number
+
+Create a list of numbers.
+
+Ask the user for a number and check whether it exists in the list.
+
+## Exercise 3 — Use `not in`
+
+Create a list of names.
+
+Check whether `"Ali"` does not exist in the list.
+
+## Exercise 4 — Allowed Choices
+
+Create a list containing three allowed colors.
+
+Ask the user for a color and tell them whether the color is allowed.
+
+## Exercise 5 — Avoid Duplicates
+
+Create a list of fruits.
+
+Ask the user for a new fruit.
+
+Add it to the list only if it does not already exist.
+
+# Comprehensive Review
+
+Answer these five questions using the concepts learned throughout the Lists lesson so far.
+
+## Question 1
+
+What is the difference between:
+
+```python
+len(fruits)
+```
+
+and:
+
+```python
+fruits.count("Apple")
+```
+
+## Question 2
+
+What will this program print?
+
+```python
+numbers = [10, 20, 30, 20, 40]
+
+print(len(numbers))
+print(numbers.count(20))
+print(30 in numbers)
+```
+
+## Question 3
+
+Write a program that receives a name from the user and checks whether that name exists in a list of students.
+
+## Question 4
+
+Create a list of scores and use a loop to count how many scores are greater than or equal to `10`.
+
+## Question 5
+
+Create a list of fruits and add a new fruit only when that fruit does not already exist in the list.
+
+# Challenge
+
+## Python Roadmap Challenge
+
+Create a small **Student Score Manager** using the Python concepts learned so far.
+
+Your program should:
+
+1. Store several student scores in a list.
+2. Print the list of scores.
+3. Print the total number of scores.
+4. Count the number of passing scores.
+5. Count the number of failing scores.
+6. Calculate the passing percentage.
+7. Ask the user for a score.
+8. Check whether that score exists in the list.
+9. Tell the user how many times the score appears.
+10. Use variables, input, type casting, operators, conditions, loops, lists, `len()`, `count()`, `in`, and `not in`.
+
+Start with:
+
+```python
+scores = [18, 8, 15, 7, 20, 12, 9, 15, 18]
+```
+
+Example interaction:
+
+```text
+----- Student Score Manager -----
+
+Scores: [18, 8, 15, 7, 20, 12, 9, 15, 18]
+Total scores: 9
+Passing scores: 6
+Failing scores: 3
+Passing percentage: 66.67%
+
+Enter a score to search: 15
+
+Score found.
+Score 15 appears 2 times.
+```
+
+---
+

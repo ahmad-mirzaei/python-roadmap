@@ -8669,3 +8669,611 @@ my_list[-1]
 
 ---
 
+# بخش ۱۱ — بررسی وجود یک عنصر در لیست
+
+## ۱. مقدمه
+
+گاهی لازم است بررسی کنیم که آیا یک مقدار مشخص در یک لیست وجود دارد یا نه.
+
+پایتون برای این کار دو عملگر مفید دارد:
+
+- `in`
+- `not in`
+
+این عملگرها به ما اجازه می دهند بررسی کنیم یک مقدار در لیست وجود دارد یا وجود ندارد.
+
+## ۲. استفاده از عملگر `in`
+
+عملگر `in` بررسی می کند که آیا یک مقدار در لیست وجود دارد یا نه.
+
+برای مثال:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Apple" in fruits)
+```
+
+خروجی:
+
+```text
+True
+```
+
+چون `"Apple"` در لیست وجود دارد، نتیجه `True` است.
+
+## ۳. بررسی مقداری که وجود ندارد
+
+اگر مقدار مورد نظر در لیست نباشد، نتیجه `False` خواهد بود.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Mango" in fruits)
+```
+
+خروجی:
+
+```text
+False
+```
+
+`"Mango"` در لیست وجود ندارد.
+
+## ۴. استفاده از `not in`
+
+عملگر `not in` بررسی می کند که آیا یک مقدار در لیست وجود ندارد یا نه.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Mango" not in fruits)
+```
+
+خروجی:
+
+```text
+True
+```
+
+چون `"Mango"` در لیست وجود ندارد، نتیجه `True` است.
+
+## ۵. استفاده از بررسی عضویت با `if`
+
+بررسی وجود یک مقدار در لیست به ویژه همراه با شرط ها کاربرد زیادی دارد.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Apple" in fruits:
+    print("Apple is in the list.")
+```
+
+خروجی:
+
+```text
+Apple is in the list.
+```
+
+همچنین می توانیم بررسی کنیم که یک مقدار وجود ندارد.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Mango" not in fruits:
+    print("Mango is not in the list.")
+```
+
+خروجی:
+
+```text
+Mango is not in the list.
+```
+
+## ۶. بررسی ورودی کاربر
+
+می توانیم `input()` را با عملگر `in` ترکیب کنیم.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruit = input("Enter a fruit: ")
+
+if fruit in fruits:
+    print("The fruit is in the list.")
+else:
+    print("The fruit is not in the list.")
+```
+
+نمونه خروجی:
+
+```text
+Enter a fruit: Banana
+The fruit is in the list.
+```
+
+مقداری که کاربر وارد کرده است با لیست مقایسه می شود.
+
+## ۷. حساس بودن بررسی رشته ها به حروف کوچک و بزرگ
+
+مقایسه رشته ها به حروف کوچک و بزرگ حساس است.
+
+برای مثال:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Apple" in fruits)
+print("apple" in fruits)
+```
+
+خروجی:
+
+```text
+True
+False
+```
+
+`"Apple"` و `"apple"` دو رشته متفاوت هستند.
+
+## ۸. بررسی اعداد
+
+عملگر `in` برای اعداد نیز کار می کند.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(30 in numbers)
+print(100 in numbers)
+```
+
+خروجی:
+
+```text
+True
+False
+```
+
+## ۹. بررسی چند مقدار
+
+می توانیم بررسی های عضویت را با `and` و `or` ترکیب کنیم.
+
+برای مثال:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Apple" in fruits and "Banana" in fruits:
+    print("Both fruits are in the list.")
+```
+
+خروجی:
+
+```text
+Both fruits are in the list.
+```
+
+همچنین می توانیم بررسی کنیم که حداقل یکی از مقادیر وجود داشته باشد.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Apple" in fruits or "Mango" in fruits:
+    print("At least one fruit is in the list.")
+```
+
+خروجی:
+
+```text
+At least one fruit is in the list.
+```
+
+## ۱۰. جلوگیری از اضافه کردن مقدار تکراری
+
+بررسی عضویت می تواند به ما کمک کند یک مقدار را بیشتر از یک بار به لیست اضافه نکنیم.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruit = "Apple"
+
+if new_fruit not in fruits:
+    fruits.append(new_fruit)
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange']
+```
+
+چون `"Apple"` از قبل در لیست وجود داشت، دوباره اضافه نشد.
+
+اگر یک مقدار جدید داشته باشیم:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruit = "Mango"
+
+if new_fruit not in fruits:
+    fruits.append(new_fruit)
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+## ۱۱. جستجوی نام دانش آموز
+
+بررسی عضویت در برنامه های ساده کاربرد زیادی دارد.
+
+```python
+students = ["Ali", "Sara", "Reza", "Mina"]
+
+name = input("Enter a student name: ")
+
+if name in students:
+    print("Student found.")
+else:
+    print("Student not found.")
+```
+
+نمونه خروجی:
+
+```text
+Enter a student name: Sara
+Student found.
+```
+
+## ۱۲. بررسی مقادیر مجاز
+
+می توانیم یک لیست را برای مشخص کردن انتخاب های مجاز استفاده کنیم.
+
+```python
+allowed_colors = ["red", "green", "blue"]
+
+color = input("Enter a color: ")
+
+if color in allowed_colors:
+    print("This color is allowed.")
+else:
+    print("This color is not allowed.")
+```
+
+نمونه خروجی:
+
+```text
+Enter a color: green
+This color is allowed.
+```
+
+## ۱۳. بررسی یک عدد قبل از پردازش
+
+قبل از کار با یک عدد می توانیم بررسی کنیم که آیا در لیست وجود دارد یا نه.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+number = int(input("Enter a number: "))
+
+if number in numbers:
+    print("Number found.")
+else:
+    print("Number not found.")
+```
+
+نمونه خروجی:
+
+```text
+Enter a number: 30
+Number found.
+```
+
+## ۱۴. تفاوت `in` و `count()`
+
+هر دو برای کار با وجود مقادیر در لیست استفاده می شوند، اما سوال متفاوتی را پاسخ می دهند.
+
+عملگر `in` بررسی می کند که آیا یک مقدار وجود دارد:
+
+```python
+fruits = ["Apple", "Banana", "Apple"]
+
+print("Apple" in fruits)
+```
+
+خروجی:
+
+```text
+True
+```
+
+متد `count()` مشخص می کند مقدار چند بار وجود دارد:
+
+```python
+print(fruits.count("Apple"))
+```
+
+خروجی:
+
+```text
+2
+```
+
+بنابراین:
+
+```python
+"Apple" in fruits
+```
+
+می پرسد:
+
+> آیا `"Apple"` وجود دارد؟
+
+اما:
+
+```python
+fruits.count("Apple")
+```
+
+می پرسد:
+
+> `"Apple"` چند بار وجود دارد؟
+
+## ۱۵. بررسی عضویت همراه با حلقه
+
+می توانیم بررسی عضویت را داخل حلقه نیز انجام دهیم.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+for fruit in fruits:
+    if fruit in ["Apple", "Orange"]:
+        print(fruit)
+```
+
+خروجی:
+
+```text
+Apple
+Orange
+```
+
+حلقه هر عنصر را بررسی می کند و مشخص می کند آیا آن عنصر در لیست دیگر وجود دارد یا نه.
+
+## ۱۶. اشتباه های رایج
+
+### اشتباه ۱ — استفاده از `=` به جای `in`
+
+این کد اشتباه است:
+
+```python
+fruits = ["Apple", "Banana"]
+
+if "Apple" = fruits:
+    print("Found")
+```
+
+شکل درست:
+
+```python
+if "Apple" in fruits:
+    print("Found")
+```
+
+از `=` برای انتساب استفاده می کنیم.
+
+از `in` برای بررسی وجود یک مقدار استفاده می کنیم.
+
+### اشتباه ۲ — فراموش کردن حساس بودن حروف
+
+این کد:
+
+```python
+fruits = ["Apple", "Banana"]
+
+print("apple" in fruits)
+```
+
+نتیجه زیر را می دهد:
+
+```text
+False
+```
+
+چون `"apple"` و `"Apple"` متفاوت هستند.
+
+### اشتباه ۳ — اشتباه گرفتن `in` با `count()`
+
+این:
+
+```python
+"Apple" in fruits
+```
+
+یک مقدار بولی برمی گرداند:
+
+```text
+True
+```
+
+اما:
+
+```python
+fruits.count("Apple")
+```
+
+یک عدد برمی گرداند، برای مثال:
+
+```text
+2
+```
+
+## ۱۷. جمع بندی
+
+برای بررسی وجود یک مقدار در لیست از `in` استفاده می کنیم:
+
+```python
+value in my_list
+```
+
+برای بررسی نبودن یک مقدار از `not in` استفاده می کنیم:
+
+```python
+value not in my_list
+```
+
+نتیجه بررسی عضویت یکی از این دو مقدار است:
+
+```text
+True
+```
+
+یا:
+
+```text
+False
+```
+
+بررسی عضویت معمولاً همراه با `if` استفاده می شود:
+
+```python
+if value in my_list:
+    print("Found")
+```
+
+همچنین می توانیم آن را با `and` و `or` ترکیب کنیم:
+
+```python
+if value1 in my_list and value2 in my_list:
+    print("Both found")
+```
+
+به یاد داشته باشید که بررسی رشته ها به حروف کوچک و بزرگ حساس است.
+
+# تمرین ها
+
+## تمرین ۱ — بررسی یک میوه
+
+یک لیست شامل پنج میوه بسازید.
+
+بررسی کنید که آیا `"Apple"` در لیست وجود دارد یا نه.
+
+## تمرین ۲ — بررسی یک عدد
+
+یک لیست از اعداد بسازید.
+
+از کاربر یک عدد دریافت کنید و بررسی کنید که آیا آن عدد در لیست وجود دارد یا نه.
+
+## تمرین ۳ — استفاده از `not in`
+
+یک لیست از نام ها بسازید.
+
+بررسی کنید که آیا `"Ali"` در لیست وجود ندارد.
+
+## تمرین ۴ — انتخاب های مجاز
+
+یک لیست شامل سه رنگ مجاز بسازید.
+
+از کاربر یک رنگ دریافت کنید و مشخص کنید که آیا آن رنگ مجاز است یا نه.
+
+## تمرین ۵ — جلوگیری از مقدار تکراری
+
+یک لیست از میوه ها بسازید.
+
+از کاربر یک میوه جدید دریافت کنید.
+
+فقط زمانی آن را به لیست اضافه کنید که از قبل در لیست وجود نداشته باشد.
+
+# مرور جامع
+
+به پنج سوال زیر با استفاده از مطالبی که تا اینجا در درس Lists یاد گرفته اید پاسخ دهید.
+
+## سوال ۱
+
+تفاوت این دو چیست؟
+
+```python
+len(fruits)
+```
+
+و:
+
+```python
+fruits.count("Apple")
+```
+
+## سوال ۲
+
+این برنامه چه چیزی چاپ می کند؟
+
+```python
+numbers = [10, 20, 30, 20, 40]
+
+print(len(numbers))
+print(numbers.count(20))
+print(30 in numbers)
+```
+
+## سوال ۳
+
+برنامه ای بنویسید که یک نام از کاربر دریافت کند و بررسی کند آیا آن نام در لیست دانش آموزان وجود دارد یا نه.
+
+## سوال ۴
+
+یک لیست از نمره ها بسازید و با استفاده از حلقه تعداد نمره های بزرگ تر یا مساوی `10` را بشمارید.
+
+## سوال ۵
+
+یک لیست از میوه ها بسازید و یک میوه جدید را فقط زمانی اضافه کنید که از قبل در لیست وجود نداشته باشد.
+
+# چالش
+
+## چالش Python Roadmap
+
+یک برنامه ساده با نام **Student Score Manager** بسازید و از مفاهیمی که تا اینجا در Python یاد گرفته اید استفاده کنید.
+
+برنامه باید:
+
+1. چند نمره دانش آموزان را در یک لیست ذخیره کند.
+2. لیست نمره ها را چاپ کند.
+3. تعداد کل نمره ها را چاپ کند.
+4. تعداد نمره های قبولی را بشمارد.
+5. تعداد نمره های مردودی را بشمارد.
+6. درصد قبولی را محاسبه کند.
+7. یک نمره از کاربر دریافت کند.
+8. بررسی کند که آیا آن نمره در لیست وجود دارد یا نه.
+9. مشخص کند آن نمره چند بار در لیست وجود دارد.
+10. از متغیرها، `input`، تبدیل نوع، عملگرها، شرط ها، حلقه ها، لیست ها، `len()`، `count()`، `in` و `not in` استفاده کند.
+
+برنامه را با این لیست شروع کنید:
+
+```python
+scores = [18, 8, 15, 7, 20, 12, 9, 15, 18]
+```
+
+نمونه اجرا:
+
+```text
+----- Student Score Manager -----
+
+Scores: [18, 8, 15, 7, 20, 12, 9, 15, 18]
+Total scores: 9
+Passing scores: 6
+Failing scores: 3
+Passing percentage: 66.67%
+
+Enter a score to search: 15
+
+Score found.
+Score 15 appears 2 times.
+```
+
+---
+

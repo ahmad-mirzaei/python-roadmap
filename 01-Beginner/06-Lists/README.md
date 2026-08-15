@@ -10321,3 +10321,316 @@ Use only concepts learned so far.
 
 ---
 
+# Part 15 — Lists Mini Project
+
+## 1. Project Overview
+
+In this project, we will build a simple **Student Scores Manager** using the list concepts we have learned.
+
+The program will allow us to:
+
+- Store student scores in a list
+- Add a new score
+- Display the scores
+- Find the lowest score
+- Find the highest score
+- Calculate the total
+- Calculate the average
+- Count the number of scores
+- Check whether a score exists
+- Create a sorted copy of the scores
+
+We will use only beginner concepts that we have learned so far.
+
+## 2. Starting List
+
+We start with a list of scores:
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print(scores)
+```
+
+Output:
+
+```text
+[15, 18, 12, 20, 17]
+```
+
+## 3. Adding a New Score
+
+We can ask the user for a new score.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+new_score = int(input("Enter a new score: "))
+
+scores.append(new_score)
+
+print(scores)
+```
+
+If the user enters `19`:
+
+```text
+Enter a new score: 19
+[15, 18, 12, 20, 17, 19]
+```
+
+## 4. Displaying the Number of Scores
+
+We can use `len()` to find how many scores are stored.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print("Number of scores:", len(scores))
+```
+
+Output:
+
+```text
+Number of scores: 5
+```
+
+## 5. Finding the Lowest and Highest Scores
+
+We can use `min()` and `max()`.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print("Lowest score:", min(scores))
+print("Highest score:", max(scores))
+```
+
+Output:
+
+```text
+Lowest score: 12
+Highest score: 20
+```
+
+## 6. Calculating the Total
+
+We can use `sum()`.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+total = sum(scores)
+
+print("Total:", total)
+```
+
+Output:
+
+```text
+Total: 82
+```
+
+## 7. Calculating the Average
+
+We can combine `sum()` and `len()`.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+average = sum(scores) / len(scores)
+
+print("Average:", average)
+```
+
+Output:
+
+```text
+Average: 16.4
+```
+
+## 8. Checking Whether a Score Exists
+
+We can use `in`.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+search_score = int(input("Enter a score to search for: "))
+
+if search_score in scores:
+    print("Score exists.")
+else:
+    print("Score does not exist.")
+```
+
+If the user enters `18`:
+
+```text
+Enter a score to search for: 18
+Score exists.
+```
+
+## 9. Creating a Sorted Copy
+
+We do not want to change the original list.
+
+So we can use `copy()` and then `sort()`.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+sorted_scores = scores.copy()
+
+sorted_scores.sort(reverse=True)
+
+print("Original:", scores)
+print("Sorted:", sorted_scores)
+```
+
+Output:
+
+```text
+Original: [15, 18, 12, 20, 17]
+Sorted: [20, 18, 17, 15, 12]
+```
+
+## 10. Complete Project
+
+Now we can combine everything into one program.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print("Original scores:", scores)
+
+new_score = int(input("Enter a new score: "))
+scores.append(new_score)
+
+print("Updated scores:", scores)
+
+print("Number of scores:", len(scores))
+print("Lowest score:", min(scores))
+print("Highest score:", max(scores))
+print("Total score:", sum(scores))
+
+average = sum(scores) / len(scores)
+print("Average score:", average)
+
+search_score = int(input("Enter a score to search for: "))
+
+if search_score in scores:
+    print("Score exists.")
+else:
+    print("Score does not exist.")
+
+sorted_scores = scores.copy()
+sorted_scores.sort(reverse=True)
+
+print("Original scores:", scores)
+print("Sorted scores:", sorted_scores)
+```
+
+Example output:
+
+```text
+Original scores: [15, 18, 12, 20, 17]
+Enter a new score: 19
+Updated scores: [15, 18, 12, 20, 17, 19]
+Number of scores: 6
+Lowest score: 12
+Highest score: 20
+Total score: 101
+Average score: 16.833333333333332
+Enter a score to search for: 18
+Score exists.
+Original scores: [15, 18, 12, 20, 17, 19]
+Sorted scores: [20, 19, 18, 17, 15, 12]
+```
+
+## 11. What We Used
+
+In this project, we used concepts from the Lists lesson:
+
+```text
+list
+indexing
+append()
+remove()
+in
+not in
+len()
+count()
+copy()
+sort()
+sorted()
+min()
+max()
+sum()
+for
+if
+input()
+int()
+```
+
+We also used variables and basic arithmetic that we learned earlier.
+
+# Exercises
+
+## Exercise 1
+
+Change the starting scores to:
+
+```python
+scores = [10, 15, 18, 13, 20]
+```
+
+Run the program and check the results.
+
+## Exercise 2
+
+Modify the program so the sorted scores are displayed from smallest to largest.
+
+## Exercise 3
+
+Ask the user for a score and remove it from the list if it exists.
+
+## Exercise 4
+
+Print how many times a specific score appears in the list.
+
+## Exercise 5
+
+Display the first and last score using indexing.
+
+# Final Challenge
+
+Create your own **Shopping List Manager** using the Lists concepts you have learned.
+
+The program should:
+
+1. Start with a list of at least five items.
+2. Print the list.
+3. Ask the user for a new item.
+4. Add the new item.
+5. Display the number of items.
+6. Ask the user for an item to search for.
+7. Check whether the item exists.
+8. Ask the user for an item to remove.
+9. Remove the item if it exists.
+10. Create a copy of the final list.
+11. Sort the copied list alphabetically.
+12. Print both the original list and the sorted copy.
+
+Use only concepts learned so far.
+
+# Lists Complete
+
+You have now completed the beginner **Lists** section.
+
+Next topic:
+
+**Tuples**
+
+---
+

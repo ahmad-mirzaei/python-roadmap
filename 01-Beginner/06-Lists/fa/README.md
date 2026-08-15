@@ -10364,3 +10364,316 @@ scores = [15, 18, 12, 20, 17]
 
 ---
 
+# بخش ۱۵ — پروژه کوچک لیست ها
+
+## ۱. معرفی پروژه
+
+در این پروژه یک برنامه ساده با نام **Student Scores Manager** می سازیم.
+
+در این برنامه با استفاده از مفاهیمی که در درس لیست ها یاد گرفته ایم می توانیم:
+
+- نمره ها را در یک لیست نگه داریم.
+- یک نمره جدید اضافه کنیم.
+- نمره ها را نمایش دهیم.
+- کمترین نمره را پیدا کنیم.
+- بیشترین نمره را پیدا کنیم.
+- مجموع نمره ها را محاسبه کنیم.
+- میانگین نمره ها را محاسبه کنیم.
+- تعداد نمره ها را بشماریم.
+- وجود یک نمره را بررسی کنیم.
+- یک نسخه مرتب شده از نمره ها ایجاد کنیم.
+
+در این پروژه فقط از مفاهیم مقدماتی که تا اینجا یاد گرفته ایم استفاده می کنیم.
+
+## ۲. لیست اولیه
+
+ابتدا یک لیست از نمره ها می سازیم:
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print(scores)
+```
+
+خروجی:
+
+```text
+[15, 18, 12, 20, 17]
+```
+
+## ۳. اضافه کردن یک نمره جدید
+
+می توانیم یک نمره جدید از کاربر دریافت کنیم.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+new_score = int(input("Enter a new score: "))
+
+scores.append(new_score)
+
+print(scores)
+```
+
+اگر کاربر عدد `19` را وارد کند:
+
+```text
+Enter a new score: 19
+[15, 18, 12, 20, 17, 19]
+```
+
+## ۴. نمایش تعداد نمره ها
+
+با استفاده از `len()` می توانیم تعداد نمره های موجود در لیست را پیدا کنیم.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print("Number of scores:", len(scores))
+```
+
+خروجی:
+
+```text
+Number of scores: 5
+```
+
+## ۵. پیدا کردن کمترین و بیشترین نمره
+
+برای این کار از `min()` و `max()` استفاده می کنیم.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print("Lowest score:", min(scores))
+print("Highest score:", max(scores))
+```
+
+خروجی:
+
+```text
+Lowest score: 12
+Highest score: 20
+```
+
+## ۶. محاسبه مجموع نمره ها
+
+برای محاسبه مجموع از `sum()` استفاده می کنیم.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+total = sum(scores)
+
+print("Total:", total)
+```
+
+خروجی:
+
+```text
+Total: 82
+```
+
+## ۷. محاسبه میانگین
+
+می توانیم `sum()` و `len()` را با هم استفاده کنیم.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+average = sum(scores) / len(scores)
+
+print("Average:", average)
+```
+
+خروجی:
+
+```text
+Average: 16.4
+```
+
+## ۸. بررسی وجود یک نمره
+
+برای بررسی وجود یک عنصر می توانیم از `in` استفاده کنیم.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+search_score = int(input("Enter a score to search for: "))
+
+if search_score in scores:
+    print("Score exists.")
+else:
+    print("Score does not exist.")
+```
+
+اگر کاربر `18` را وارد کند:
+
+```text
+Enter a score to search for: 18
+Score exists.
+```
+
+## ۹. ایجاد یک کپی مرتب شده
+
+نمی خواهیم لیست اصلی تغییر کند.
+
+بنابراین می توانیم ابتدا با `copy()` یک کپی بسازیم و سپس آن را مرتب کنیم.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+sorted_scores = scores.copy()
+
+sorted_scores.sort(reverse=True)
+
+print("Original:", scores)
+print("Sorted:", sorted_scores)
+```
+
+خروجی:
+
+```text
+Original: [15, 18, 12, 20, 17]
+Sorted: [20, 18, 17, 15, 12]
+```
+
+## ۱۰. پروژه کامل
+
+حالا می توانیم تمام موارد را در یک برنامه قرار دهیم.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print("Original scores:", scores)
+
+new_score = int(input("Enter a new score: "))
+scores.append(new_score)
+
+print("Updated scores:", scores)
+
+print("Number of scores:", len(scores))
+print("Lowest score:", min(scores))
+print("Highest score:", max(scores))
+print("Total score:", sum(scores))
+
+average = sum(scores) / len(scores)
+print("Average score:", average)
+
+search_score = int(input("Enter a score to search for: "))
+
+if search_score in scores:
+    print("Score exists.")
+else:
+    print("Score does not exist.")
+
+sorted_scores = scores.copy()
+sorted_scores.sort(reverse=True)
+
+print("Original scores:", scores)
+print("Sorted scores:", sorted_scores)
+```
+
+نمونه خروجی:
+
+```text
+Original scores: [15, 18, 12, 20, 17]
+Enter a new score: 19
+Updated scores: [15, 18, 12, 20, 17, 19]
+Number of scores: 6
+Lowest score: 12
+Highest score: 20
+Total score: 101
+Average score: 16.833333333333332
+Enter a score to search for: 18
+Score exists.
+Original scores: [15, 18, 12, 20, 17, 19]
+Sorted scores: [20, 19, 18, 17, 15, 12]
+```
+
+## ۱۱. مفاهیمی که استفاده کردیم
+
+در این پروژه از مفاهیم درس لیست ها استفاده کردیم:
+
+```text
+list
+indexing
+append()
+remove()
+in
+not in
+len()
+count()
+copy()
+sort()
+sorted()
+min()
+max()
+sum()
+for
+if
+input()
+int()
+```
+
+همچنین از متغیرها و محاسبات ساده ای که در بخش های قبلی یاد گرفته ایم استفاده کردیم.
+
+# تمرین ها
+
+## تمرین ۱
+
+نمره های اولیه را به این موارد تغییر دهید:
+
+```python
+scores = [10, 15, 18, 13, 20]
+```
+
+برنامه را اجرا کنید و نتایج را بررسی کنید.
+
+## تمرین ۲
+
+برنامه را طوری تغییر دهید که نمره های مرتب شده را از کوچک ترین به بزرگ ترین نمایش دهد.
+
+## تمرین ۳
+
+از کاربر یک نمره دریافت کنید و اگر در لیست وجود داشت آن را حذف کنید.
+
+## تمرین ۴
+
+تعداد تکرار یک نمره مشخص را در لیست نمایش دهید.
+
+## تمرین ۵
+
+اولین و آخرین نمره را با استفاده از اندیس گذاری نمایش دهید.
+
+# چالش نهایی
+
+یک **Shopping List Manager** ساده با استفاده از مفاهیم لیست ها بسازید.
+
+برنامه باید:
+
+1. با یک لیست شامل حداقل پنج کالا شروع شود.
+2. لیست را چاپ کند.
+3. یک کالای جدید از کاربر دریافت کند.
+4. کالای جدید را اضافه کند.
+5. تعداد کالاها را نمایش دهد.
+6. یک کالا برای جستجو از کاربر دریافت کند.
+7. وجود آن کالا را بررسی کند.
+8. یک کالا برای حذف از کاربر دریافت کند.
+9. اگر کالا وجود داشت آن را حذف کند.
+10. از لیست نهایی یک کپی ایجاد کند.
+11. کپی را به ترتیب الفبایی مرتب کند.
+12. لیست اصلی و کپی مرتب شده را چاپ کند.
+
+فقط از مفاهیمی استفاده کنید که تا اینجا یاد گرفته اید.
+
+# پایان Lists
+
+حالا بخش مقدماتی **Lists** را کامل کرده اید.
+
+موضوع بعدی:
+
+**Tuples**
+
+---
+

@@ -935,3 +935,339 @@ We use indexing such as `tuple[2]` to access one element, slicing such as `tuple
 
 ---
 
+# Part 5 — Tuple Immutability
+
+## 1. The Core Idea of Tuples
+
+One of the most important characteristics of a Tuple is **immutability**.
+
+When we create a Tuple, its structure cannot be changed afterward.
+
+For example:
+
+```python
+student = ("Ali", 20, 18.5)
+
+print(student)
+```
+
+The Tuple has three elements. After it is created, we cannot directly replace one of those elements.
+
+```python
+student = ("Ali", 20, 18.5)
+
+student[1] = 21
+```
+
+This produces an error because the Tuple is immutable.
+
+The important idea is not that the values are somehow "permanently frozen" in every possible sense. Rather, the **Tuple itself does not provide operations for changing its existing elements**.
+
+## 2. Comparing Tuple Immutability with List Mutability
+
+To understand immutability properly, it helps to compare a Tuple with a List.
+
+A List allows us to change an existing element:
+
+```python
+student = ["Ali", 20, 18.5]
+
+student[1] = 21
+
+print(student)
+```
+
+Output:
+
+```text
+['Ali', 21, 18.5]
+```
+
+The same operation does not work with a Tuple:
+
+```python
+student = ("Ali", 20, 18.5)
+
+student[1] = 21
+```
+
+The difference is fundamental:
+
+```text
+List  → elements can be changed
+Tuple → elements cannot be changed
+```
+
+This is one of the main reasons Python has both Lists and Tuples.
+
+## 3. Why Does Immutability Matter?
+
+Immutability can be useful when we want to represent data that should remain stable.
+
+For example, suppose we have a fixed coordinate:
+
+```python
+point = (10, 20)
+```
+
+If this Tuple represents a specific point, allowing arbitrary changes to its elements may not be desirable.
+
+Another example could be a date:
+
+```python
+birthday = (15, 8, 2005)
+```
+
+The three values belong together as one fixed group of information.
+
+The Tuple communicates an important idea:
+
+> These values belong together, and the structure itself should not be modified.
+
+## 4. You Can Still Create a New Tuple
+
+Immutability does not mean that we can never have a different Tuple.
+
+It means that we cannot modify the existing Tuple in place.
+
+We can create another Tuple instead:
+
+```python
+numbers = (10, 20, 30)
+
+new_numbers = (100, 20, 30)
+
+print(numbers)
+print(new_numbers)
+```
+
+Output:
+
+```text
+(10, 20, 30)
+(100, 20, 30)
+```
+
+The original Tuple remains unchanged.
+
+This distinction is important:
+
+```text
+Changing an existing Tuple → not allowed
+Creating another Tuple     → allowed
+```
+
+## 5. Operations That Do Not Change the Tuple
+
+Many operations can read or use a Tuple without modifying it.
+
+For example:
+
+```python
+numbers = (10, 20, 30, 40)
+
+print(numbers[1])
+print(len(numbers))
+print(20 in numbers)
+```
+
+Output:
+
+```text
+20
+4
+True
+```
+
+None of these operations changes the Tuple.
+
+This is an important distinction between **reading data** and **modifying data**.
+
+## 6. Methods That Change a List Are Not Available for Tuples
+
+Lists provide methods such as:
+
+```python
+append()
+remove()
+sort()
+```
+
+These methods can modify a List.
+
+Tuples do not provide these modification methods.
+
+For example:
+
+```python
+numbers = (10, 20, 30)
+
+numbers.append(40)
+```
+
+This produces an error because a Tuple has no `append()` method.
+
+Likewise:
+
+```python
+numbers = (10, 20, 30)
+
+numbers.remove(20)
+```
+
+This also produces an error.
+
+The absence of these methods is directly related to the immutable nature of Tuples.
+
+## 7. Immutability and Slicing
+
+Slicing does not modify the original Tuple.
+
+Instead, it creates a new Tuple containing the selected elements.
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+part = numbers[1:4]
+
+print(numbers)
+print(part)
+```
+
+Output:
+
+```text
+(10, 20, 30, 40, 50)
+(20, 30, 40)
+```
+
+The original Tuple remains unchanged.
+
+This is another example of the difference between **creating a new value** and **modifying an existing value**.
+
+## 8. An Important Exception: Mutable Objects Inside a Tuple
+
+There is a deeper point worth understanding.
+
+A Tuple itself is immutable, but an element inside a Tuple can be a mutable object such as a List.
+
+For example:
+
+```python
+data = ("Ali", [10, 20, 30])
+
+data[1].append(40)
+
+print(data)
+```
+
+Output:
+
+```text
+('Ali', [10, 20, 30, 40])
+```
+
+We did not replace the second element of the Tuple.
+
+The second element is still the same List object.
+
+We changed the **contents of that List**.
+
+This leads to an important distinction:
+
+```text
+The Tuple structure is immutable.
+An object stored inside the Tuple may still be mutable.
+```
+
+For beginner Python programming, this distinction is extremely useful because it prevents a common misunderstanding:
+
+> "If a Tuple is immutable, absolutely nothing inside it can ever change."
+
+That statement is not always correct.
+
+## 9. The Mental Model
+
+A useful way to think about Tuple immutability is:
+
+```text
+Tuple
+ ├── element 1
+ ├── element 2
+ └── element 3
+```
+
+The Tuple does not allow us to replace, add, or remove its element references.
+
+But if one of those elements refers to a mutable object:
+
+```text
+Tuple
+ ├── "Ali"
+ └── List → [10, 20, 30]
+```
+
+the List itself may still be changed.
+
+Understanding this now will make more advanced Python concepts much easier later.
+
+# Questions
+
+## Question 1
+
+Why does this code produce an error?
+
+```python
+numbers = (10, 20, 30)
+
+numbers[0] = 100
+```
+
+## Question 2
+
+What is the difference between modifying an existing Tuple and creating a new Tuple?
+
+## Question 3
+
+Will the following code change the Tuple itself?
+
+```python
+data = ("Ali", [10, 20])
+
+data[1].append(30)
+
+print(data)
+```
+
+Explain your answer.
+
+## Review Question
+
+Compare Lists and Tuples based on everything learned so far. Explain when you would choose a List and when you would choose a Tuple, and include the role of immutability in your explanation.
+
+# Answers
+
+## Answer 1
+
+The code produces an error because Tuple elements cannot be replaced after the Tuple has been created.
+
+## Answer 2
+
+An existing Tuple cannot be modified in place, but we can create another Tuple with different values.
+
+## Answer 3
+
+The Tuple structure itself is not changed. The second element refers to a mutable List, and the contents of that List are changed.
+
+The result is:
+
+```text
+('Ali', [10, 20, 30])
+```
+
+## Review Answer
+
+A List is appropriate when the collection needs to be modified, while a Tuple is useful when the group of values should remain structurally unchanged. Immutability is the key characteristic that distinguishes the two.
+
+---
+

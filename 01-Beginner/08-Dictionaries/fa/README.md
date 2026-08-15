@@ -6,21 +6,21 @@
 
 | بخش | موضوع                                   |
 | --: | --------------------------------------- |
-|   ۱ | مقدمه ای بر Dictionaryها                |
-|   ۲ | ساخت Dictionary                         |
-|   ۳ | دسترسی به Valueهای Dictionary           |
+|   ۱ | مقدمه ای بر دیکشنری ها                |
+|   ۲ | ساخت دیکشنری                         |
+|   ۳ | دسترسی به مقادیر دیکشنری           |
 |   ۴ | اضافه کردن و به روز رسانی عناصر         |
-|   ۵ | حذف عناصر                               |
-|   ۶ | بررسی وجود Key                          |
-|   ۷ | طول Dictionary                          |
-|   ۸ | پیمایش Dictionaryها                     |
-|   ۹ | Keyها و Valueهای Dictionary             |
-|  ۱۰ | جفت های Key-Value                       |
-|  ۱۱ | Dictionaryهای تو در تو                  |
-|  ۱۲ | کپی کردن Dictionary                     |
-|  ۱۳ | تبدیل Dictionary به ساختارهای داده دیگر |
-|  ۱۴ | مرور نهایی Dictionaryها                 |
-|  ۱۵ | پروژه کوچک Dictionaryها                 |
+|   ۵ |  حذف عناصر دیکشنری                     |
+|   ۶ | بررسی وجود کلید و مقدار                 |
+|   ۷ | طول دیکشنری                          |
+|   ۸ | پیمایش دیکشنری ها                     |
+|   ۹ | کلید ها و مقادیر دیکشنری             |
+|  ۱۰ | جفت های کلید-مقدار                       |
+|  ۱۱ | دیکشنری های تو در تو                  |
+|  ۱۲ | کپی کردن دیکشنری                     |
+|  ۱۳ | تبدیل دیکشنری به ساختارهای داده دیگر |
+|  ۱۴ | مرور نهایی دیکشنری ها                 |
+|  ۱۵ | پروژه کوچک دیکشنری                  |
 
 ---
 
@@ -3086,6 +3086,844 @@ data.clear()
 سپس از `popitem()` استفاده کردیم تا آخرین آیتم باقی مانده را حذف کرده و Key و Value آن را دریافت کنیم.
 
 در نهایت `clear()` را به کار بردیم تا تمام آیتم های باقی مانده حذف شوند و خود Dictionary به صورت یک Dictionary خالی باقی بماند.
+
+---
+
+# بخش ۶ — بررسی وجود Key و Value در Dictionary
+
+## مقدمه
+
+Dictionary داده ها را به صورت **جفت های Key-Value** نگه داری می کند. در برنامه های واقعی، خیلی وقت ها لازم است قبل از انجام یک عملیات بررسی کنیم که یک Key یا Value خاص وجود دارد یا نه.
+
+برای مثال ممکن است بخواهیم بدانیم:
+
+* آیا Keyای به نام `"name"` وجود دارد؟
+* آیا Keyای به نام `"score"` وجود دارد؟
+* آیا Value برابر `20` در Dictionary وجود دارد؟
+* اگر یک Key وجود نداشت، برنامه چه کاری باید انجام دهد؟
+
+Python ابزارهای مختلفی برای پاسخ دادن به این سوال ها دارد.
+
+مهم ترین آن ها عملگر `in` است.
+
+---
+
+## ۱. بررسی وجود یک Key
+
+عملگر `in` بررسی می کند که آیا یک Key در Dictionary وجود دارد یا نه:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+print("name" in student)
+```
+
+خروجی:
+
+```text
+True
+```
+
+چون `"name"` یکی از Keyهای Dictionary است.
+
+اگر Key وجود نداشته باشد:
+
+```python
+print("email" in student)
+```
+
+خروجی:
+
+```text
+False
+```
+
+خواهد بود.
+
+الگوی کلی:
+
+```python
+key in dictionary
+```
+
+و نتیجه همیشه یک مقدار Boolean است:
+
+```text
+True
+False
+```
+
+---
+
+## ۲. چرا `in`، Keyها را بررسی می کند؟
+
+این یک قانون مهم در Dictionary است:
+
+```python
+"name" in student
+```
+
+**Keyها** را بررسی می کند، نه Valueها را.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+در این حالت:
+
+```python
+print("name" in student)
+```
+
+برابر است با:
+
+```text
+True
+```
+
+اما:
+
+```python
+print("Ali" in student)
+```
+
+برابر است با:
+
+```text
+False
+```
+
+با اینکه `"Ali"` داخل Dictionary وجود دارد، اما `"Ali"` یک Value است، نه یک Key.
+
+این رفتار با List متفاوت است؛ در List، `in` عناصر خود List را بررسی می کند.
+
+---
+
+## ۳. بررسی نبودن یک Key با `not in`
+
+اگر بخواهیم بررسی کنیم که یک Key **وجود ندارد**، می توانیم از `not in` استفاده کنیم:
+
+```python
+if "email" not in student:
+    print("Email is not available.")
+```
+
+این روش هنگام اضافه کردن اطلاعات نیز کاربردی است:
+
+```python
+if "email" not in student:
+    student["email"] = "ali@example.com"
+```
+
+در این حالت فقط زمانی `"email"` اضافه می شود که از قبل وجود نداشته باشد.
+
+این الگو می تواند از تغییر ناخواسته یک Value موجود جلوگیری کند.
+
+---
+
+## ۴. استفاده از بررسی وجود Key در شرط
+
+بررسی وجود Key وقتی با `if` ترکیب شود، بسیار کاربردی می شود:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+if "age" in student:
+    print("Age exists.")
+```
+
+خروجی:
+
+```text
+Age exists.
+```
+
+همچنین می توانیم حالت دیگر را نیز مدیریت کنیم:
+
+```python
+if "email" in student:
+    print("Email exists.")
+else:
+    print("Email does not exist.")
+```
+
+در این حالت برنامه بر اساس ساختار Dictionary تصمیم می گیرد.
+
+---
+
+## ۵. بررسی وجود یک Value
+
+همان طور که گفتیم، `in` وقتی مستقیماً روی Dictionary استفاده شود، Keyها را بررسی می کند.
+
+اگر بخواهیم Valueها را بررسی کنیم، باید از متد `values()` استفاده کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+print(20 in student.values())
+```
+
+خروجی:
+
+```text
+True
+```
+
+چون `20` یکی از Valueهای Dictionary است.
+
+برای Valueای که وجود ندارد:
+
+```python
+print(25 in student.values())
+```
+
+خروجی:
+
+```text
+False
+```
+
+بنابراین تفاوت مهم این است:
+
+```python
+key in dictionary
+```
+
+Keyها را بررسی می کند.
+
+اما:
+
+```python
+value in dictionary.values()
+```
+
+Valueها را بررسی می کند.
+
+---
+
+## ۶. بررسی هم زمان Key و Value
+
+فرض کنید:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+برای بررسی Key:
+
+```python
+print("name" in student)
+```
+
+و برای بررسی Value:
+
+```python
+print("Ali" in student.values())
+```
+
+استفاده می کنیم.
+
+این دو عملیات سوال های متفاوتی را پاسخ می دهند.
+
+یک روش ساده برای به خاطر سپردن:
+
+```text
+dictionary
+    ↓
+Keys   →  key in dictionary
+Values →  value in dictionary.values()
+```
+
+---
+
+## ۷. استفاده از `values()` برای بررسی عضویت
+
+متد `values()` یک View از Valueهای Dictionary در اختیارمان قرار می دهد:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+values = student.values()
+
+print(values)
+```
+
+مقدار `values` یک Dictionary Values View خواهد بود.
+
+مهم تر از نحوه نمایش آن این است که می توانیم مستقیماً از آن برای بررسی وجود Value استفاده کنیم:
+
+```python
+print(18 in student.values())
+```
+
+خروجی:
+
+```text
+True
+```
+
+لازم نیست فقط برای بررسی وجود یک Value، آن را به List تبدیل کنیم.
+
+مثلاً این کار معمولاً غیر ضروری است:
+
+```python
+print(18 in list(student.values()))
+```
+
+شکل مستقیم و واضح تر این است:
+
+```python
+print(18 in student.values())
+```
+
+---
+
+## ۸. استفاده از `get()` وقتی Value را لازم داریم
+
+گاهی فقط نمی خواهیم بدانیم یک Key وجود دارد یا نه.
+
+بلکه واقعاً Value مربوط به آن Key را لازم داریم.
+
+در چنین شرایطی `get()` کاربرد زیادی دارد:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+age = student.get("age")
+
+print(age)
+```
+
+خروجی:
+
+```text
+20
+```
+
+اگر Key وجود نداشته باشد:
+
+```python
+email = student.get("email")
+print(email)
+```
+
+نتیجه:
+
+```text
+None
+```
+
+خواهد بود.
+
+در حالی که استفاده مستقیم از:
+
+```python
+student["email"]
+```
+
+باعث ایجاد خطای:
+
+```text
+KeyError: 'email'
+```
+
+می شود.
+
+بنابراین `get()` زمانی بسیار مناسب است که ممکن است Key وجود نداشته باشد و بخواهیم بدون ایجاد Exception این حالت را مدیریت کنیم.
+
+---
+
+## ۹. تعیین مقدار پیش فرض در `get()`
+
+می توانیم برای `get()` یک مقدار پیش فرض نیز مشخص کنیم:
+
+```python
+email = student.get("email", "Not provided")
+```
+
+حالا:
+
+```python
+print(email)
+```
+
+خروجی:
+
+```text
+Not provided
+```
+
+است.
+
+ساختار کلی:
+
+```python
+dictionary.get(key, default)
+```
+
+این قابلیت زمانی کاربردی است که برنامه برای نبودن Key یک مقدار جایگزین نیاز دارد.
+
+مثلاً:
+
+```python
+score = student.get("score", 0)
+```
+
+اگر `"score"` وجود داشته باشد، Value آن برگردانده می شود.
+
+اگر وجود نداشته باشد، `0` برگردانده می شود.
+
+---
+
+## ۱۰. تفاوت `in` و `get()`
+
+این دو عملیات سوال های متفاوتی را پاسخ می دهند.
+
+### `in`
+
+زمانی از `in` استفاده می کنیم که سوال اصلی این باشد:
+
+> آیا این Key وجود دارد؟
+
+```python
+if "score" in student:
+    print("Score exists.")
+```
+
+### `get()`
+
+زمانی از `get()` استفاده می کنیم که سوال اصلی این باشد:
+
+> Value مربوط به این Key چیست و اگر Key وجود نداشت، چه مقداری استفاده کنیم؟
+
+```python
+score = student.get("score", 0)
+```
+
+این تفاوت باعث می شود کد هدف خود را واضح تر بیان کند.
+
+---
+
+## ۱۱. تفاوت `in` و دسترسی مستقیم
+
+فرض کنید:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+این کد ایمن است:
+
+```python
+if "email" in student:
+    print(student["email"])
+```
+
+چون فقط بعد از اطمینان از وجود Key، به Value آن دسترسی پیدا می کنیم.
+
+اما:
+
+```python
+print(student["email"])
+```
+
+مستقیماً تلاش می کند به یک Key موجود نباشد دسترسی پیدا کند و در نتیجه:
+
+```text
+KeyError: 'email'
+```
+
+ایجاد می شود.
+
+بنابراین می توان از بررسی عضویت به عنوان یک Guard قبل از دسترسی به Keyهای احتمالی استفاده کرد.
+
+---
+
+## ۱۲. یک الگوی رایج: بررسی قبل از به روز رسانی
+
+فرض کنید می خواهیم Score را فقط زمانی تغییر دهیم که Key آن از قبل وجود داشته باشد:
+
+```python
+if "score" in student:
+    student["score"] = 20
+```
+
+اگر `"score"` وجود نداشته باشد، عملیات به روز رسانی انجام نمی شود.
+
+حالت دیگر این است که بخواهیم اگر Key وجود نداشت، آن را ایجاد کنیم:
+
+```python
+if "score" not in student:
+    student["score"] = 0
+```
+
+و بعد:
+
+```python
+student["score"] += 1
+```
+
+این الگو برای Counterها و داده هایی که به صورت تدریجی ساخته می شوند بسیار کاربردی است.
+
+---
+
+## ۱۳. بررسی Value قبل از انجام عملیات
+
+می توانیم وجود یک Value را نیز بررسی کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+if 18 in student.values():
+    print("A score of 18 exists.")
+```
+
+خروجی:
+
+```text
+A score of 18 exists.
+```
+
+اما باید توجه کنیم که Valueها الزاماً Unique نیستند.
+
+مثلاً:
+
+```python
+data = {
+    "first": 10,
+    "second": 10
+}
+```
+
+در این حالت:
+
+```python
+10 in data.values()
+```
+
+برابر با `True` است، اما مقدار `10` به دو Key مختلف مربوط است.
+
+---
+
+## ۱۴. Key و Value مفاهیم متفاوتی هستند
+
+فرض کنید:
+
+```python
+data = {
+    "name": "Ali",
+    "city": "Tehran"
+}
+```
+
+Key `"name"` و Value `"Ali"` قابل جایگزینی با یک دیگر نیستند.
+
+بنابراین:
+
+```python
+"name" in data
+```
+
+نتیجه:
+
+```text
+True
+```
+
+اما:
+
+```python
+"Ali" in data
+```
+
+نتیجه:
+
+```text
+False
+```
+
+است.
+
+برای جست و جوی `"Ali"` در Valueها باید بنویسیم:
+
+```python
+"Ali" in data.values()
+```
+
+که نتیجه آن:
+
+```text
+True
+```
+
+خواهد بود.
+
+این تفاوت در زمان کار با Dictionaryهای پیچیده اهمیت بیشتری پیدا می کند.
+
+---
+
+## ۱۵. مثال کاربردی: اطلاعات کاربر
+
+فرض کنید:
+
+```python
+user = {
+    "username": "ali123",
+    "age": 22,
+    "country": "Iran"
+}
+```
+
+می توانیم بررسی کنیم که اطلاعات کشور وجود دارد:
+
+```python
+if "country" in user:
+    print("Country information exists.")
+```
+
+می توانیم آن را به صورت ایمن دریافت کنیم:
+
+```python
+country = user.get("country", "Unknown")
+```
+
+و می توانیم بررسی کنیم که کشور `"Iran"` به عنوان یک Value در Dictionary وجود دارد:
+
+```python
+if "Iran" in user.values():
+    print("Iran is stored as a Value.")
+```
+
+هر یک از این عملیات یک سوال متفاوت را پاسخ می دهد.
+
+---
+
+## ۱۶. مثال کاربردی: بررسی Keyهای ضروری
+
+فرض کنید برنامه ما انتظار دارد یک Dictionary شامل اطلاعات مشخصی باشد:
+
+```python
+user = {
+    "username": "ali123",
+    "email": "ali@example.com",
+    "age": 22
+}
+```
+
+می توانیم بررسی کنیم که Keyهای ضروری وجود دارند:
+
+```python
+required_keys = ["username", "email", "age"]
+
+for key in required_keys:
+    if key not in user:
+        print(f"Missing key: {key}")
+```
+
+اگر همه Keyهای ضروری وجود داشته باشند، چیزی چاپ نمی شود.
+
+این الگو برای **اعتبار سنجی داده های ساخت یافته** قبل از پردازش آن ها بسیار کاربردی است.
+
+---
+
+## ۱۷. نگاه دقیق تر به عملکرد
+
+در Dictionaryهای معمول Python، بررسی وجود یک Key با `in` برای Lookup بسیار بهینه طراحی شده است.
+
+بنابراین روش استاندارد برای بررسی یک Key این است:
+
+```python
+if "username" in user:
+    ...
+```
+
+معمولاً نباید برای جست و جوی یک Key، ابتدا Keyها را به List تبدیل کنیم:
+
+```python
+if "username" in list(user.keys()):
+    ...
+```
+
+این تبدیل کار اضافی ایجاد می کند و هدف کد را نیز کمتر واضح می کند.
+
+روش بهتر:
+
+```python
+if "username" in user:
+    ...
+```
+
+برای Valueها وضعیت متفاوت است. بررسی:
+
+```python
+value in dictionary.values()
+```
+
+باید Valueها را تا پیدا شدن نتیجه بررسی کند؛ بنابراین از نظر هدف و ویژگی عملکردی با بررسی Key متفاوت است.
+
+---
+
+## نکات کلیدی
+
+* `in` بررسی می کند که یک Key در Dictionary وجود دارد یا نه.
+* `not in` بررسی می کند که یک Key وجود ندارد.
+* استفاده مستقیم از `in` روی Dictionary، Valueها را جست و جو نمی کند.
+* برای جست و جوی Valueها از `dictionary.values()` استفاده می کنیم.
+* `get()` زمانی کاربردی است که Value یک Key را لازم داریم و ممکن است Key وجود نداشته باشد.
+* `get(key, default)` یک مقدار جایگزین برای Keyهای موجود نباشد فراهم می کند.
+* `in` می تواند قبل از دسترسی به Key احتمالی به عنوان Guard استفاده شود.
+* بررسی وجود Key و بررسی وجود Value دو سوال متفاوت هستند.
+* برای بررسی معمول Key نیازی به تبدیل `dictionary.keys()` به List نیست.
+* بررسی عضویت در Dictionary برای اعتبار سنجی، منطق شرطی و به روز رسانی ایمن داده ها بسیار مهم است.
+
+---
+
+# سوال های بخش
+
+## سوال ۱
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+کدی بنویسید که بررسی کند آیا Key `"score"` وجود دارد یا نه.
+
+## سوال ۲
+
+با استفاده از همین Dictionary، کدی بنویسید که بررسی کند آیا Value برابر `20` وجود دارد یا نه.
+
+## سوال ۳
+
+با استفاده از `get()` مقدار مربوط به Key `"email"` را دریافت کنید و اگر Key وجود نداشت، مقدار `"Not provided"` را برگردانید.
+
+---
+
+# سوال جامع
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+user = {
+    "username": "ali123",
+    "age": 22
+}
+```
+
+کدی بنویسید که:
+
+1. بررسی کند آیا `"email"` وجود دارد یا نه.
+2. اگر وجود نداشت، آن را با استفاده از `get()` و مقدار پیش فرض `"Not provided"` دریافت کند.
+3. بررسی کند آیا Value برابر `22` در Dictionary وجود دارد یا نه.
+4. توضیح دهید چرا `"email" in user` و `"Not provided" in user` دو سوال کاملاً متفاوت را بررسی می کنند.
+
+---
+
+# پاسخ ها
+
+## پاسخ سوال ۱
+
+```python
+"score" in student
+```
+
+یا:
+
+```python
+if "score" in student:
+    print("Score exists.")
+```
+
+## پاسخ سوال ۲
+
+```python
+20 in student.values()
+```
+
+## پاسخ سوال ۳
+
+```python
+email = student.get("email", "Not provided")
+```
+
+## پاسخ سوال جامع
+
+```python
+user = {
+    "username": "ali123",
+    "age": 22
+}
+
+if "email" in user:
+    print("Email exists.")
+
+email = user.get("email", "Not provided")
+
+if 22 in user.values():
+    print("Age value exists.")
+```
+
+عبارت:
+
+```python
+"email" in user
+```
+
+بررسی می کند که `"email"` به عنوان یک **Key** وجود دارد یا نه.
+
+اما:
+
+```python
+"Not provided" in user
+```
+
+نیز Keyها را بررسی می کند، نه Valueها؛ چون `in` وقتی مستقیماً روی Dictionary استفاده شود، Keyها را جست و جو می کند.
+
+برای جست و جوی Valueها باید بنویسیم:
+
+```python
+"Not provided" in user.values()
+```
+
+این تفاوت یکی از مفاهیم پایه ای و مهم در کار با Dictionary است.
 
 ---
 

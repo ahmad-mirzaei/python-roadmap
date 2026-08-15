@@ -10,8 +10,8 @@
 |    2 | Creating Dictionaries                                     |
 |    3 | Accessing Dictionary Values                               |
 |    4 | Adding and Updating Items                                 |
-|    5 | Removing Items                                            |
-|    6 | Checking for Keys                                         |
+|    5 | Removing Dictionary Items                                 |
+|    6 | Checking for Keys and Values                              |
 |    7 | Dictionary Length                                         |
 |    8 | Iterating Through Dictionaries                            |
 |    9 | Dictionary Keys and Values                                |
@@ -3090,6 +3090,822 @@ data.clear()
 `popitem()` is then used to remove the last inserted remaining item and retrieve its Key and Value.
 
 Finally, `clear()` removes everything that remains while keeping `data` as an empty Dictionary.
+
+---
+
+# Part 6 — Checking for Keys and Values
+
+## Introduction
+
+A Dictionary stores data as **Key-Value pairs**. In real programs, we often need to determine whether a particular Key or Value exists before performing an operation.
+
+For example, we may need to ask:
+
+* Does this Dictionary contain the Key `"name"`?
+* Does it contain the Key `"score"`?
+* Is the Value `20` present?
+* What should the program do if a Key does not exist?
+
+Python provides several tools for answering these questions.
+
+The most important one is the `in` operator.
+
+---
+
+## 1. Checking Whether a Key Exists
+
+The `in` operator checks whether a Key exists in a Dictionary:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+print("name" in student)
+```
+
+Output:
+
+```text
+True
+```
+
+Because `"name"` is one of the Dictionary's Keys.
+
+We can also check a Key that does not exist:
+
+```python
+print("email" in student)
+```
+
+Output:
+
+```text
+False
+```
+
+The general pattern is:
+
+```python
+key in dictionary
+```
+
+The result is always a Boolean:
+
+```text
+True
+False
+```
+
+---
+
+## 2. Why `in` Checks Keys
+
+This is an important Dictionary rule:
+
+```python
+"name" in student
+```
+
+checks the **Keys**, not the Values.
+
+Consider:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+Then:
+
+```python
+print("name" in student)
+```
+
+returns:
+
+```text
+True
+```
+
+But:
+
+```python
+print("Ali" in student)
+```
+
+returns:
+
+```text
+False
+```
+
+Even though `"Ali"` is stored in the Dictionary, it is a Value, not a Key.
+
+This behavior is different from checking membership in a List, where `in` searches through the elements themselves.
+
+---
+
+## 3. Checking for a Missing Key with `not in`
+
+We can use `not in` when we want to check that a Key does **not** exist:
+
+```python
+if "email" not in student:
+    print("Email is not available.")
+```
+
+This is especially useful before adding data:
+
+```python
+if "email" not in student:
+    student["email"] = "ali@example.com"
+```
+
+The program adds the Key only if it is not already present.
+
+This can prevent an existing Value from being accidentally overwritten.
+
+---
+
+## 4. Using Membership Checks in Conditional Statements
+
+Membership checks become especially useful when combined with `if`.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+if "age" in student:
+    print("Age exists.")
+```
+
+Output:
+
+```text
+Age exists.
+```
+
+We can create an alternative branch:
+
+```python
+if "email" in student:
+    print("Email exists.")
+else:
+    print("Email does not exist.")
+```
+
+This allows the program to make decisions based on the structure of the Dictionary.
+
+---
+
+## 5. Checking Whether a Value Exists
+
+The `in` operator checks Keys by default.
+
+If we specifically want to check Values, we can use the `values()` method:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+print(20 in student.values())
+```
+
+Output:
+
+```text
+True
+```
+
+Because `20` is one of the Values.
+
+For a Value that does not exist:
+
+```python
+print(25 in student.values())
+```
+
+Output:
+
+```text
+False
+```
+
+The distinction is:
+
+```python
+key in dictionary
+```
+
+checks Keys.
+
+While:
+
+```python
+value in dictionary.values()
+```
+
+checks Values.
+
+---
+
+## 6. Checking Both Keys and Values
+
+Suppose:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+Then:
+
+```python
+print("name" in student)
+```
+
+checks for the Key.
+
+And:
+
+```python
+print("Ali" in student.values())
+```
+
+checks for the Value.
+
+These are different questions.
+
+A useful way to remember them is:
+
+```text
+dictionary
+    ↓
+Keys   →  key in dictionary
+Values →  value in dictionary.values()
+```
+
+---
+
+## 7. Using `values()` for Membership Tests
+
+`values()` provides a view containing the Dictionary's Values:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+values = student.values()
+
+print(values)
+```
+
+The exact representation is a Dictionary Values view.
+
+More importantly, we can use it for membership testing:
+
+```python
+print(18 in student.values())
+```
+
+Output:
+
+```text
+True
+```
+
+We do not need to convert the Values into a List just to perform this check.
+
+For example, this is unnecessary:
+
+```python
+print(18 in list(student.values()))
+```
+
+The direct form is clearer:
+
+```python
+print(18 in student.values())
+```
+
+---
+
+## 8. Using `get()` When You Need the Value
+
+Sometimes we do not only want to know whether a Key exists.
+
+We actually need the Value associated with it.
+
+For that situation, `get()` can be useful:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+age = student.get("age")
+
+print(age)
+```
+
+Output:
+
+```text
+20
+```
+
+If the Key does not exist:
+
+```python
+email = student.get("email")
+print(email)
+```
+
+The result is:
+
+```text
+None
+```
+
+Unlike direct indexing:
+
+```python
+student["email"]
+```
+
+which would raise:
+
+```text
+KeyError: 'email'
+```
+
+Therefore, `get()` is useful when a Key may be missing and we want to handle that situation without an exception.
+
+---
+
+## 9. Providing a Default Value with `get()`
+
+We can provide a default Value:
+
+```python
+email = student.get("email", "Not provided")
+```
+
+Now:
+
+```python
+print(email)
+```
+
+outputs:
+
+```text
+Not provided
+```
+
+The general form is:
+
+```python
+dictionary.get(key, default)
+```
+
+This is useful when the program needs a fallback Value.
+
+For example:
+
+```python
+score = student.get("score", 0)
+```
+
+If `"score"` exists, its Value is returned.
+
+If it does not exist, `0` is returned.
+
+---
+
+## 10. `in` vs `get()`
+
+These two operations answer different questions.
+
+### `in`
+
+Use `in` when the main question is:
+
+> Does this Key exist?
+
+```python
+if "score" in student:
+    print("Score exists.")
+```
+
+### `get()`
+
+Use `get()` when the main question is:
+
+> What Value is associated with this Key, and what should I use if it is missing?
+
+```python
+score = student.get("score", 0)
+```
+
+This distinction helps make code more expressive.
+
+---
+
+## 11. `in` vs Direct Indexing
+
+Consider:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+This:
+
+```python
+if "email" in student:
+    print(student["email"])
+```
+
+is safe because the Value is accessed only after confirming that the Key exists.
+
+But this:
+
+```python
+print(student["email"])
+```
+
+immediately attempts to access the missing Key and raises:
+
+```text
+KeyError: 'email'
+```
+
+So membership checking can be used as a guard before accessing a potentially missing Key.
+
+---
+
+## 12. A Common Pattern: Check Before Updating
+
+Suppose we want to update a score only if the Key already exists:
+
+```python
+if "score" in student:
+    student["score"] = 20
+```
+
+If `"score"` is missing, the update does not happen.
+
+Alternatively, if we want to create it when missing:
+
+```python
+if "score" not in student:
+    student["score"] = 0
+```
+
+Then later:
+
+```python
+student["score"] += 1
+```
+
+This pattern is especially useful for counters and progressively built data.
+
+---
+
+## 13. Checking for a Value Before Adding Data
+
+Membership checks can also be used with Values.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+if 18 in student.values():
+    print("A score of 18 exists.")
+```
+
+Output:
+
+```text
+A score of 18 exists.
+```
+
+However, remember that Values do not have to be unique.
+
+For example:
+
+```python
+data = {
+    "first": 10,
+    "second": 10
+}
+```
+
+Here:
+
+```python
+10 in data.values()
+```
+
+is `True`, but the Value `10` belongs to two different Keys.
+
+---
+
+## 14. Keys and Values Are Different Concepts
+
+Consider:
+
+```python
+data = {
+    "name": "Ali",
+    "city": "Tehran"
+}
+```
+
+The Key `"name"` and the Value `"Ali"` are not interchangeable.
+
+Therefore:
+
+```python
+"name" in data
+```
+
+returns:
+
+```text
+True
+```
+
+while:
+
+```python
+"Ali" in data
+```
+
+returns:
+
+```text
+False
+```
+
+To search for `"Ali"`:
+
+```python
+"Ali" in data.values()
+```
+
+returns:
+
+```text
+True
+```
+
+This distinction becomes increasingly important when Dictionaries contain complex data.
+
+---
+
+## 15. Practical Example: User Information
+
+Suppose we have:
+
+```python
+user = {
+    "username": "ali123",
+    "age": 22,
+    "country": "Iran"
+}
+```
+
+We can check whether the country information exists:
+
+```python
+if "country" in user:
+    print("Country information exists.")
+```
+
+We can safely retrieve it:
+
+```python
+country = user.get("country", "Unknown")
+```
+
+And we can check whether a particular country appears among the Values:
+
+```python
+if "Iran" in user.values():
+    print("Iran is stored as a Value.")
+```
+
+Each operation answers a different question.
+
+---
+
+## 16. Practical Example: Validating Required Keys
+
+Imagine a program that expects a Dictionary containing certain information:
+
+```python
+user = {
+    "username": "ali123",
+    "email": "ali@example.com",
+    "age": 22
+}
+```
+
+We can verify that required Keys exist:
+
+```python
+required_keys = ["username", "email", "age"]
+
+for key in required_keys:
+    if key not in user:
+        print(f"Missing key: {key}")
+```
+
+If all required Keys exist, nothing is printed.
+
+This pattern is useful for validating structured data before processing it.
+
+---
+
+## 17. Important Performance Perspective
+
+For normal Python Dictionaries, Key lookup with `in` is designed to be very efficient.
+
+For example:
+
+```python
+if "username" in user:
+    ...
+```
+
+is the standard way to check whether a Key exists.
+
+We should not normally convert the Keys to a List just to search:
+
+```python
+if "username" in list(user.keys()):
+    ...
+```
+
+The conversion creates unnecessary work and makes the intention less clear.
+
+Prefer:
+
+```python
+if "username" in user:
+    ...
+```
+
+For Values, however, searching with:
+
+```python
+value in dictionary.values()
+```
+
+requires checking the Values until a match is found, so Value membership is generally different from Key membership in both purpose and performance characteristics.
+
+---
+
+## Key Takeaways
+
+* `in` checks whether a Key exists in a Dictionary.
+* `not in` checks whether a Key does not exist.
+* `in` on a Dictionary does **not** search its Values.
+* Use `dictionary.values()` when you need to search Values.
+* `get()` is useful when you need a Value and the Key may be missing.
+* `get(key, default)` provides a fallback Value.
+* `in` is useful for guarding access to potentially missing Keys.
+* Key membership and Value membership answer different questions.
+* Avoid unnecessary conversions such as `list(dictionary.keys())` for normal membership checks.
+* Dictionary membership checks are especially useful for validation, conditional logic, and safely updating data.
+
+---
+
+# Section Questions
+
+## Question 1
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Write code that checks whether the Key `"score"` exists.
+
+## Question 2
+
+Using the same Dictionary, write code that checks whether the Value `20` exists.
+
+## Question 3
+
+Use `get()` to retrieve the `"email"` Key while returning `"Not provided"` if the Key does not exist.
+
+---
+
+# Comprehensive Question
+
+Consider:
+
+```python
+user = {
+    "username": "ali123",
+    "age": 22
+}
+```
+
+Write code that:
+
+1. Checks whether `"email"` exists.
+2. If it does not exist, safely retrieves it with a default Value of `"Not provided"`.
+3. Checks whether the Value `22` exists in the Dictionary.
+4. Explain why `"email" in user` and `"Not provided" in user` answer completely different questions.
+
+---
+
+# Answers
+
+## Answer 1
+
+```python
+"score" in student
+```
+
+Or:
+
+```python
+if "score" in student:
+    print("Score exists.")
+```
+
+## Answer 2
+
+```python
+20 in student.values()
+```
+
+## Answer 3
+
+```python
+email = student.get("email", "Not provided")
+```
+
+## Comprehensive Answer
+
+```python
+user = {
+    "username": "ali123",
+    "age": 22
+}
+
+if "email" in user:
+    print("Email exists.")
+
+email = user.get("email", "Not provided")
+
+if 22 in user.values():
+    print("Age value exists.")
+```
+
+`"email" in user` checks whether `"email"` is a **Key**.
+
+`"Not provided" in user` would also check Keys, not Values, because the `in` operator applied directly to a Dictionary searches its Keys.
+
+To search Values, we need:
+
+```python
+"Not provided" in user.values()
+```
+
+This distinction is fundamental when working with Dictionary membership.
 
 ---
 

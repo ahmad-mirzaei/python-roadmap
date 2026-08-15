@@ -4480,3 +4480,579 @@ The `_` convention can be used when a value is intentionally ignored, and `*` ca
 
 ---
 
+# Part 13 — Nested Tuples
+
+A Tuple can contain other Tuples as its elements.
+
+This structure is called a **nested Tuple**.
+
+Nested Tuples allow us to represent data that has more than one level of structure while keeping the outer structure immutable.
+
+For example:
+
+```python
+student = ("Ali", (18, 20, 19))
+
+print(student)
+```
+
+Output:
+
+```text
+('Ali', (18, 20, 19))
+```
+
+Here, `student` contains two elements:
+
+```text
+"Ali"
+(18, 20, 19)
+```
+
+The second element is itself another Tuple.
+
+## 1. Accessing an Inner Tuple
+
+We can use multiple indexes to access values at different levels.
+
+```python
+student = ("Ali", (18, 20, 19))
+
+print(student[0])
+print(student[1])
+```
+
+Output:
+
+```text
+Ali
+(18, 20, 19)
+```
+
+To access a specific score:
+
+```python
+print(student[1][0])
+```
+
+Output:
+
+```text
+18
+```
+
+The first `[1]` accesses the inner Tuple.
+
+The second `[0]` accesses the first element inside that inner Tuple.
+
+Conceptually:
+
+```text
+student
+   ↓
+[1]
+   ↓
+(18, 20, 19)
+   ↓
+[0]
+   ↓
+18
+```
+
+## 2. More Than Two Levels
+
+Nested Tuples are not limited to two levels.
+
+For example:
+
+```python
+data = (
+    "Python",
+    (
+        "Tuples",
+        (
+            "Nested",
+            "Data"
+        )
+    )
+)
+
+print(data[1][1][0])
+```
+
+Output:
+
+```text
+Nested
+```
+
+Each additional level requires another indexing operation.
+
+Although Python allows this, deeply nested structures can become difficult to understand.
+
+For beginner-level code, it is usually better to keep the structure as simple as the problem allows.
+
+## 3. Nested Tuples with Several Records
+
+Nested Tuples become more useful when each inner Tuple represents one record.
+
+For example:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+print(students)
+```
+
+Output:
+
+```text
+(('Ali', 18), ('Sara', 20), ('Reza', 17))
+```
+
+The outer Tuple contains three inner Tuples.
+
+Each inner Tuple represents one student:
+
+```text
+("Ali", 18)
+("Sara", 20)
+("Reza", 17)
+```
+
+This is a simple way to represent structured data.
+
+## 4. Accessing a Record
+
+We can access an entire inner Tuple:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+print(students[1])
+```
+
+Output:
+
+```text
+('Sara', 20)
+```
+
+Then we can access one value inside that record:
+
+```python
+print(students[1][0])
+```
+
+Output:
+
+```text
+Sara
+```
+
+And:
+
+```python
+print(students[1][1])
+```
+
+Output:
+
+```text
+20
+```
+
+The first index identifies the record.
+
+The second index identifies a field inside that record.
+
+## 5. Traversing Nested Tuples
+
+Instead of accessing each record manually, we can use a loop.
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+for student in students:
+    print(student)
+```
+
+Output:
+
+```text
+('Ali', 18)
+('Sara', 20)
+('Reza', 17)
+```
+
+Because every inner Tuple contains two values, we can use Tuple unpacking:
+
+```python
+for name, score in students:
+    print(name, score)
+```
+
+Output:
+
+```text
+Ali 18
+Sara 20
+Reza 17
+```
+
+This is one of the most practical uses of nested Tuples.
+
+## 6. Nested Tuples and Different Data Types
+
+The elements of a nested Tuple do not have to be the same type.
+
+For example:
+
+```python
+person = (
+    "Ali",
+    20,
+    ("Baku", "Azerbaijan")
+)
+
+print(person)
+```
+
+Output:
+
+```text
+('Ali', 20, ('Baku', 'Azerbaijan'))
+```
+
+Here:
+
+```text
+"Ali"                  → str
+20                     → int
+("Baku", "Azerbaijan") → Tuple
+```
+
+This allows us to group related information into a structured object.
+
+## 7. Nested Tuples and Immutability
+
+The outer Tuple itself is immutable.
+
+For example:
+
+```python
+student = ("Ali", (18, 20, 19))
+
+student[0] = "Sara"
+```
+
+This causes:
+
+```text
+TypeError
+```
+
+because we are trying to replace an element of the outer Tuple.
+
+However, there is an important detail when nested structures contain mutable objects.
+
+For example:
+
+```python
+data = ("Ali", [18, 20, 19])
+
+data[1][0] = 100
+
+print(data)
+```
+
+Output:
+
+```text
+('Ali', [100, 20, 19])
+```
+
+The outer Tuple did not change its element.
+
+Instead, the List stored inside the Tuple was modified.
+
+This gives us an important rule:
+
+> Tuple immutability applies to the Tuple's references to its elements. It does not automatically make mutable objects stored inside the Tuple immutable.
+
+This distinction will become especially important when working with Lists and other mutable objects later.
+
+## 8. Nested Tuples with `len()`
+
+The `len()` function counts the elements at the current level.
+
+For example:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+print(len(students))
+```
+
+Output:
+
+```text
+3
+```
+
+There are three elements in the outer Tuple.
+
+But:
+
+```python
+print(len(students[0]))
+```
+
+Output:
+
+```text
+2
+```
+
+The first inner Tuple contains two elements.
+
+Therefore, `len()` does not automatically count every value at every nested level.
+
+It operates on the specific object we give it.
+
+## 9. Nested Tuples and Slicing
+
+Slicing can also be applied at different levels.
+
+For example:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17),
+    ("Mina", 19)
+)
+
+print(students[1:3])
+```
+
+Output:
+
+```text
+(('Sara', 20), ('Reza', 17))
+```
+
+The slice operates on the outer Tuple.
+
+We can also slice an inner Tuple:
+
+```python
+student = ("Ali", 18, 20, 19)
+
+print(student[1:3])
+```
+
+Output:
+
+```text
+(18, 20)
+```
+
+The important point is that slicing operates at the level of the object being indexed.
+
+## 10. Nested Tuples and Unpacking
+
+Nested Tuples can be unpacked according to their structure.
+
+For example:
+
+```python
+student = ("Ali", (18, 20, 19))
+
+name, (score1, score2, score3) = student
+
+print(name)
+print(score1)
+print(score2)
+print(score3)
+```
+
+Output:
+
+```text
+Ali
+18
+20
+19
+```
+
+The structure on the left mirrors the structure on the right.
+
+This is a natural combination of the previous topic, Tuple Unpacking, with nested data.
+
+## 11. Updating Nested Data
+
+Because Tuples are immutable, we cannot replace one of their elements directly.
+
+For example:
+
+```python
+student = ("Ali", (18, 20, 19))
+
+student[1] = (20, 20, 20)
+```
+
+This causes a `TypeError`.
+
+If we need a different Tuple, we must create a new one:
+
+```python
+student = ("Ali", (18, 20, 19))
+
+student = ("Ali", (20, 20, 20))
+
+print(student)
+```
+
+Output:
+
+```text
+('Ali', (20, 20, 20))
+```
+
+The original Tuple was not modified.
+
+A new Tuple was created and assigned to `student`.
+
+## 12. When Are Nested Tuples Useful?
+
+Nested Tuples are useful when data naturally has multiple levels and those levels should remain fixed.
+
+For example, coordinates for several points:
+
+```python
+points = (
+    (10, 20),
+    (30, 40),
+    (50, 60)
+)
+```
+
+Each inner Tuple represents one point.
+
+Or a simple collection of student records:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+```
+
+The outer Tuple represents the collection.
+
+Each inner Tuple represents one record.
+
+The structure itself communicates how the data is organized.
+
+# Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+student = ("Ali", (18, 20, 19))
+
+print(student[1][2])
+```
+
+## Question 2
+
+What will this code print?
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+for name, score in students:
+    print(name, score)
+```
+
+## Question 3
+
+Why does this code raise an error?
+
+```python
+student = ("Ali", (18, 20, 19))
+
+student[1] = (20, 20, 20)
+```
+
+## Review Question
+
+Explain how nested Tuples are structured and accessed. Also explain the relationship between nested Tuples, indexing, `len()`, slicing, unpacking, and Tuple immutability.
+
+# Answers
+
+## Answer 1
+
+```text
+19
+```
+
+`student[1]` accesses the inner Tuple, and `[2]` accesses its third element.
+
+## Answer 2
+
+```text
+Ali 18
+Sara 20
+Reza 17
+```
+
+Each inner Tuple is unpacked into `name` and `score`.
+
+## Answer 3
+
+Because the outer Tuple is immutable. We cannot replace one of its elements after creation.
+
+## Review Answer
+
+A nested Tuple is a Tuple that contains other Tuples. Each level can be accessed using another index.
+
+For example:
+
+```python
+data[1][0]
+```
+
+uses two indexing operations to reach a value inside an inner Tuple.
+
+`len()` and slicing work at the specific level on which they are applied. Tuple unpacking can follow the nested structure, and Tuple immutability prevents replacing elements of the Tuple itself.
+
+However, if a mutable object such as a List is stored inside a Tuple, that inner mutable object can still be modified.
+
+---
+

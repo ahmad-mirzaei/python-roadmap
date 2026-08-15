@@ -1576,3 +1576,351 @@ Indexing is used to access a value at a known position, while membership checkin
 
 ---
 
+# Part 7 — Tuple Length and Counting Elements
+
+## 1. Understanding the Size of a Tuple
+
+A Tuple can contain any number of elements, from zero elements to many elements.
+
+To find out how many elements a Tuple contains, we use the `len()` function.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print(len(fruits))
+```
+
+Output:
+
+```text
+3
+```
+
+The result is `3` because the Tuple contains three elements.
+
+The important point is that `len()` counts the **elements of the Tuple**, not the number of characters inside those elements.
+
+For example:
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print(len(fruits))
+```
+
+Output:
+
+```text
+3
+```
+
+It does not count all the letters in the words.
+
+## 2. Empty and Single-Element Tuples
+
+`len()` also works with empty and single-element Tuples.
+
+```python
+empty = ()
+
+single = (10,)
+
+print(len(empty))
+print(len(single))
+```
+
+Output:
+
+```text
+0
+1
+```
+
+This is especially useful for understanding why `(10,)` is a Tuple while `(10)` is simply the number `10`.
+
+## 3. Length and Indexes
+
+There is an important relationship between the length of a Tuple and its indexes.
+
+Consider:
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+print(len(numbers))
+```
+
+Output:
+
+```text
+5
+```
+
+There are five elements, but the indexes are:
+
+```text
+0
+1
+2
+3
+4
+```
+
+Therefore:
+
+```text
+last index = length - 1
+```
+
+So for this Tuple:
+
+```text
+length = 5
+last index = 4
+```
+
+This relationship is fundamental when working with indexed collections.
+
+## 4. Counting Repeated Elements
+
+`len()` tells us how many elements the entire Tuple contains.
+
+But sometimes we want to know how many times a **specific value** appears.
+
+For this, Tuples provide the `count()` method.
+
+```python
+numbers = (10, 20, 10, 30, 10)
+
+print(numbers.count(10))
+```
+
+Output:
+
+```text
+3
+```
+
+The number `10` appears three times.
+
+If the value does not appear:
+
+```python
+numbers = (10, 20, 30)
+
+print(numbers.count(50))
+```
+
+Output:
+
+```text
+0
+```
+
+## 5. `len()` vs `count()`
+
+These two operations answer different questions.
+
+```python
+numbers = (10, 20, 10, 30, 10)
+
+print(len(numbers))
+print(numbers.count(10))
+```
+
+Output:
+
+```text
+5
+3
+```
+
+The difference is:
+
+```text
+len(tuple)       → How many elements are there in total?
+tuple.count(x)   → How many times does x appear?
+```
+
+This distinction is important.
+
+For example, if we have:
+
+```python
+colors = ("Red", "Blue", "Red", "Green", "Red")
+```
+
+then:
+
+```python
+len(colors)
+```
+
+asks:
+
+> How many elements are in the Tuple?
+
+while:
+
+```python
+colors.count("Red")
+```
+
+asks:
+
+> How many times does `"Red"` occur?
+
+## 6. Counting Elements in Real Data
+
+Suppose we store the results of several tests:
+
+```python
+results = ("Pass", "Fail", "Pass", "Pass", "Fail")
+
+print("Total results:", len(results))
+print("Pass results:", results.count("Pass"))
+print("Fail results:", results.count("Fail"))
+```
+
+Output:
+
+```text
+Total results: 5
+Pass results: 3
+Fail results: 2
+```
+
+This gives us useful information without changing the Tuple.
+
+## 7. Case Sensitivity
+
+`count()` compares values according to Python's normal equality rules.
+
+For Strings, uppercase and lowercase letters are different.
+
+```python
+fruits = ("Apple", "apple", "Apple")
+
+print(fruits.count("Apple"))
+print(fruits.count("apple"))
+```
+
+Output:
+
+```text
+2
+1
+```
+
+`"Apple"` and `"apple"` are different Strings.
+
+## 8. Counting Does Not Modify the Tuple
+
+Both `len()` and `count()` are operations that read information from the Tuple.
+
+They do not change it.
+
+```python
+numbers = (10, 20, 10, 30)
+
+print(len(numbers))
+print(numbers.count(10))
+
+print(numbers)
+```
+
+Output:
+
+```text
+4
+2
+(10, 20, 10, 30)
+```
+
+The Tuple remains exactly the same.
+
+This connects directly to what we learned about Tuple immutability.
+
+## 9. A Useful Mental Model
+
+Think of these operations as answering different questions about the same Tuple:
+
+```text
+Tuple
+(10, 20, 10, 30, 10)
+```
+
+```text
+len(tuple)
+      ↓
+How many elements are there?
+      ↓
+5
+```
+
+and:
+
+```text
+tuple.count(10)
+      ↓
+How many times does 10 appear?
+      ↓
+3
+```
+
+Once this distinction is clear, `len()` and `count()` become simple but powerful tools for inspecting Tuple data.
+
+# Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+numbers = (10, 20, 30, 40)
+
+print(len(numbers))
+```
+
+## Question 2
+
+What will this code print?
+
+```python
+numbers = (10, 20, 10, 30, 10)
+
+print(numbers.count(10))
+```
+
+## Question 3
+
+What is the difference between `len(numbers)` and `numbers.count(10)`?
+
+## Review Question
+
+Explain how indexing, membership checking, `len()`, and `count()` answer four different questions about a Tuple.
+
+# Answers
+
+## Answer 1
+
+```text
+4
+```
+
+## Answer 2
+
+```text
+3
+```
+
+## Answer 3
+
+`len(numbers)` returns the total number of elements, while `numbers.count(10)` returns the number of times `10` appears.
+
+## Review Answer
+
+Indexing asks which value is located at a specific position. Membership checking asks whether a value exists. `len()` asks how many elements the Tuple contains in total. `count()` asks how many times a specific value occurs.
+
+---
+

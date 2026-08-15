@@ -3916,3 +3916,567 @@ The outer List becomes a Tuple, while the nested List remains a List.
 
 ---
 
+# Part 12 — Tuple Unpacking
+
+Tuple unpacking is a convenient way to take the elements of a Tuple and assign them to separate variables.
+
+Instead of accessing each element individually:
+
+```python
+person = ("Ali", 20)
+
+name = person[0]
+age = person[1]
+
+print(name)
+print(age)
+```
+
+we can unpack the Tuple directly:
+
+```python
+person = ("Ali", 20)
+
+name, age = person
+
+print(name)
+print(age)
+```
+
+Output:
+
+```text
+Ali
+20
+```
+
+The values are assigned from left to right.
+
+```text
+"Ali" → name
+20    → age
+```
+
+## 1. The Number of Variables Must Match
+
+Normally, the number of variables on the left must match the number of elements in the Tuple.
+
+This works:
+
+```python
+numbers = (10, 20, 30)
+
+a, b, c = numbers
+
+print(a)
+print(b)
+print(c)
+```
+
+Output:
+
+```text
+10
+20
+30
+```
+
+But this does not:
+
+```python
+numbers = (10, 20, 30)
+
+a, b = numbers
+```
+
+Python raises:
+
+```text
+ValueError: too many values to unpack
+```
+
+There are three values but only two variables.
+
+The opposite problem also causes an error:
+
+```python
+numbers = (10, 20)
+
+a, b, c = numbers
+```
+
+Output:
+
+```text
+ValueError: not enough values to unpack
+```
+
+There are only two values but three variables.
+
+## 2. Unpacking Is Not Limited to Tuples
+
+Unpacking works with other iterable objects too.
+
+For example:
+
+```python
+numbers = [10, 20, 30]
+
+a, b, c = numbers
+
+print(a, b, c)
+```
+
+Output:
+
+```text
+10 20 30
+```
+
+It also works with strings:
+
+```python
+word = "ABC"
+
+a, b, c = word
+
+print(a)
+print(b)
+print(c)
+```
+
+Output:
+
+```text
+A
+B
+C
+```
+
+The important idea is that Python takes the elements produced by the iterable and assigns them to the variables from left to right.
+
+## 3. Swapping Variables
+
+One of the most useful beginner applications of Tuple unpacking is swapping two variables.
+
+Without unpacking, we might need a temporary variable:
+
+```python
+a = 10
+b = 20
+
+temp = a
+a = b
+b = temp
+
+print(a)
+print(b)
+```
+
+Output:
+
+```text
+20
+10
+```
+
+Python allows us to do this much more simply:
+
+```python
+a = 10
+b = 20
+
+a, b = b, a
+
+print(a)
+print(b)
+```
+
+Output:
+
+```text
+20
+10
+```
+
+Conceptually, Python creates the values on the right and then assigns them to the variables on the left.
+
+```text
+b, a
+ ↓
+20, 10
+ ↓
+a, b
+```
+
+This is a common and useful Python pattern.
+
+## 4. Unpacking Nested Tuples
+
+We can also unpack nested structures.
+
+For example:
+
+```python
+student = ("Ali", (18, 20, 19))
+
+name, scores = student
+
+print(name)
+print(scores)
+```
+
+Output:
+
+```text
+Ali
+(18, 20, 19)
+```
+
+We can go one step further:
+
+```python
+student = ("Ali", (18, 20, 19))
+
+name, (score1, score2, score3) = student
+
+print(name)
+print(score1)
+print(score2)
+print(score3)
+```
+
+Output:
+
+```text
+Ali
+18
+20
+19
+```
+
+The structure of the variables on the left can match the structure of the data on the right.
+
+## 5. Unpacking in a `for` Loop
+
+Tuple unpacking is especially useful when iterating over a Tuple containing smaller Tuples.
+
+For example:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+for name, score in students:
+    print(name, score)
+```
+
+Output:
+
+```text
+Ali 18
+Sara 20
+Reza 17
+```
+
+Each inner Tuple is unpacked during each iteration.
+
+Conceptually:
+
+```text
+("Ali", 18)  → name = "Ali",  score = 18
+("Sara", 20) → name = "Sara", score = 20
+("Reza", 17) → name = "Reza", score = 17
+```
+
+This makes structured data much easier to work with.
+
+## 6. Using `_` for an Unneeded Value
+
+Sometimes we receive several values but do not need all of them.
+
+For example:
+
+```python
+person = ("Ali", 20, "Baku")
+
+name, _, city = person
+
+print(name)
+print(city)
+```
+
+Output:
+
+```text
+Ali
+Baku
+```
+
+The underscore `_` is commonly used to communicate:
+
+> "I am intentionally ignoring this value."
+
+It is still a normal variable name from Python's perspective, but by convention `_` tells other programmers that the value is not important to us.
+
+## 7. Using `*` to Collect Remaining Values
+
+Sometimes we do not know exactly how many values should be assigned to individual variables.
+
+Python provides extended unpacking with `*`.
+
+For example:
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+first, *middle, last = numbers
+
+print(first)
+print(middle)
+print(last)
+```
+
+Output:
+
+```text
+10
+[20, 30, 40]
+50
+```
+
+Notice an important detail:
+
+`middle` is a **List**, even though `numbers` is a Tuple.
+
+The `*` variable collects the remaining values into a List.
+
+We can also put the `*` variable in another position:
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+first, second, *rest = numbers
+
+print(first)
+print(second)
+print(rest)
+```
+
+Output:
+
+```text
+10
+20
+[30, 40, 50]
+```
+
+## 8. Extended Unpacking with One Remaining Value
+
+The starred variable can also receive no values.
+
+```python
+numbers = (10, 20)
+
+first, *rest = numbers
+
+print(first)
+print(rest)
+```
+
+Output:
+
+```text
+10
+[20]
+```
+
+But:
+
+```python
+numbers = (10,)
+
+first, *rest = numbers
+
+print(first)
+print(rest)
+```
+
+Output:
+
+```text
+10
+[]
+```
+
+The starred variable always receives the remaining values as a List.
+
+## 9. Why Unpacking Is Useful
+
+Tuple unpacking helps us write code that matches the structure of our data.
+
+Instead of:
+
+```python
+student = ("Ali", 18)
+
+name = student[0]
+score = student[1]
+```
+
+we can write:
+
+```python
+name, score = student
+```
+
+This becomes especially useful when working with structured data:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+for name, score in students:
+    print(f"{name}: {score}")
+```
+
+Output:
+
+```text
+Ali: 18
+Sara: 20
+Reza: 17
+```
+
+The code becomes shorter while also making the relationship between the data and the variables clearer.
+
+## 10. The Core Rule
+
+The most important rule to remember is:
+
+> The structure on the left must be compatible with the values on the right.
+
+For simple unpacking:
+
+```python
+a, b, c = (10, 20, 30)
+```
+
+we have three variables and three values.
+
+For nested unpacking:
+
+```python
+name, (x, y) = ("Ali", (10, 20))
+```
+
+the structure also matches.
+
+For extended unpacking:
+
+```python
+first, *middle, last = (10, 20, 30, 40)
+```
+
+the starred variable allows the middle portion to contain multiple values.
+
+Understanding this structure is more important than memorizing individual examples.
+
+# Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+person = ("Ali", 20)
+
+name, age = person
+
+print(name)
+print(age)
+```
+
+## Question 2
+
+What will happen here, and why?
+
+```python
+numbers = (10, 20, 30)
+
+a, b = numbers
+```
+
+## Question 3
+
+What will this code print?
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+first, *middle, last = numbers
+
+print(first)
+print(middle)
+print(last)
+```
+
+## Review Question
+
+Explain Tuple unpacking and describe how it can be used with nested Tuples, `for` loops, ignored values using `_`, and extended unpacking using `*`.
+
+# Answers
+
+## Answer 1
+
+```text
+Ali
+20
+```
+
+## Answer 2
+
+Python raises:
+
+```text
+ValueError: too many values to unpack
+```
+
+There are three values but only two variables.
+
+## Answer 3
+
+```text
+10
+[20, 30, 40]
+50
+```
+
+`middle` receives the remaining values as a List.
+
+## Review Answer
+
+Tuple unpacking assigns the elements of an iterable to multiple variables from left to right.
+
+It can be used to unpack nested structures, such as:
+
+```python
+name, (x, y) = ("Ali", (10, 20))
+```
+
+It is useful in `for` loops:
+
+```python
+for name, score in students:
+```
+
+The `_` convention can be used when a value is intentionally ignored, and `*` can collect multiple remaining values into a List.
+
+---
+

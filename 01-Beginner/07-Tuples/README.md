@@ -1271,3 +1271,308 @@ A List is appropriate when the collection needs to be modified, while a Tuple is
 
 ---
 
+# Part 6 — Checking for an Element in a Tuple
+
+## 1. Checking Whether an Element Exists
+
+After learning how to access Tuple elements, the next important step is learning how to determine whether a specific value exists in a Tuple.
+
+Python provides the `in` operator for this purpose.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print("Banana" in fruits)
+```
+
+Output:
+
+```text
+True
+```
+
+Because `"Banana"` exists in the Tuple, the expression returns `True`.
+
+If the value does not exist:
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print("Mango" in fruits)
+```
+
+Output:
+
+```text
+False
+```
+
+The `in` operator does not return the element itself. It checks membership and returns a Boolean value:
+
+```text
+True  → the element exists
+False → the element does not exist
+```
+
+## 2. Using `not in`
+
+We can also check that an element does **not** exist in a Tuple by using `not in`.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print("Mango" not in fruits)
+```
+
+Output:
+
+```text
+True
+```
+
+This is `True` because `"Mango"` is not inside the Tuple.
+
+If the element does exist:
+
+```python
+print("Apple" not in fruits)
+```
+
+Output:
+
+```text
+False
+```
+
+## 3. Membership Is Based on Value
+
+When we use `in`, Python checks whether the specified value exists among the elements.
+
+For example:
+
+```python
+numbers = (10, 20, 30, 40)
+
+print(20 in numbers)
+print(25 in numbers)
+```
+
+Output:
+
+```text
+True
+False
+```
+
+The position of the element does not matter for this check.
+
+We are asking:
+
+> Is this value a member of the Tuple?
+
+not:
+
+> What is the position of this value?
+
+If we need the position, we will use `index()` in a later section.
+
+## 4. Using Membership Checks in Conditions
+
+Membership checks become especially useful when combined with `if`.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+if "Banana" in fruits:
+    print("Banana is available.")
+```
+
+Output:
+
+```text
+Banana is available.
+```
+
+We can also handle the case where an element is missing:
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+if "Mango" not in fruits:
+    print("Mango is not available.")
+```
+
+Output:
+
+```text
+Mango is not available.
+```
+
+This makes membership checks useful in real programs where the program needs to make a decision based on whether some data exists.
+
+## 5. Membership Checks and Strings
+
+The `in` operator is not limited to numbers.
+
+It can be used with strings and other data types as long as Python can compare the values.
+
+```python
+names = ("Ali", "Sara", "Reza")
+
+print("Sara" in names)
+print("sara" in names)
+```
+
+Output:
+
+```text
+True
+False
+```
+
+The comparison is case-sensitive.
+
+`"Sara"` and `"sara"` are different strings.
+
+## 6. Membership Checks and Nested Tuples
+
+When a Tuple contains another Tuple, `in` checks the elements at the current level.
+
+```python
+data = ("Ali", (10, 20, 30))
+
+print(10 in data)
+print((10, 20, 30) in data)
+```
+
+Output:
+
+```text
+False
+True
+```
+
+Why is `10 in data` false?
+
+Because the elements of `data` are:
+
+```text
+"Ali"
+(10, 20, 30)
+```
+
+The number `10` is inside the nested Tuple, not directly inside `data`.
+
+To check inside the nested Tuple, we need to access it first:
+
+```python
+data = ("Ali", (10, 20, 30))
+
+print(10 in data[1])
+```
+
+Output:
+
+```text
+True
+```
+
+This distinction becomes important when working with nested data structures.
+
+## 7. Membership Checking vs Indexing
+
+Indexing and membership checking answer different questions.
+
+Indexing:
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print(fruits[1])
+```
+
+Output:
+
+```text
+Banana
+```
+
+Here we already know the position and want the value.
+
+Membership checking:
+
+```python
+print("Banana" in fruits)
+```
+
+Output:
+
+```text
+True
+```
+
+Here we have a value and want to know whether it exists.
+
+A useful mental model is:
+
+```text
+Indexing    → "What value is at this position?"
+Membership  → "Does this value exist?"
+```
+
+Understanding this difference helps us choose the correct operation instead of trying to solve every problem with indexing.
+
+# Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+colors = ("Red", "Green", "Blue")
+
+print("Green" in colors)
+print("Yellow" in colors)
+```
+
+## Question 2
+
+What is the difference between `in` and `not in`?
+
+## Question 3
+
+Why does this code print `False`?
+
+```python
+data = ("Ali", (10, 20, 30))
+
+print(10 in data)
+```
+
+## Review Question
+
+What is the difference between indexing and membership checking, and how can membership checking be used with an `if` statement?
+
+# Answers
+
+## Answer 1
+
+```text
+True
+False
+```
+
+## Answer 2
+
+`in` checks whether a value exists in a Tuple, while `not in` checks whether a value does not exist in a Tuple.
+
+## Answer 3
+
+Because `10` is not a direct element of `data`. It is inside the nested Tuple `(10, 20, 30)`.
+
+## Review Answer
+
+Indexing is used to access a value at a known position, while membership checking is used to determine whether a specific value exists. Membership checks can be combined with `if` to make decisions based on whether a value exists in the Tuple.
+
+---
+

@@ -81,7 +81,7 @@ print(student)
 
 ## ۳. تفاوت Tuple و List
 
-برای ساخت تاپل از براکت استفاده می کنیم:
+برای ساخت لیست از براکت استفاده می کنیم:
 
 ```python
 fruits = ["Apple", "Banana", "Orange"]

@@ -4907,3 +4907,808 @@ is_empty = not scores
 
 ---
 
+# بخش ۸ — پیمایش در Dictionary
+
+## مقدمه
+
+وقتی بتوانیم فقط یک Key را از Dictionary دریافت کنیم، هنوز از تمام قدرت Dictionary استفاده نکرده ایم.
+
+یکی از مهارت های مهم این است که بتوانیم **تمام داده های Dictionary را یکی یکی بررسی کنیم**.
+
+به این کار **Iteration** یا **پیمایش** می گوییم.
+
+پیمایش یعنی عناصر یک مجموعه را یکی یکی بررسی کنیم و روی هر عنصر عملی انجام دهیم.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+به جای اینکه برای هر مقدار جداگانه بنویسیم:
+
+```python
+print(student["name"])
+print(student["age"])
+print(student["score"])
+```
+
+می توانیم از Loop استفاده کنیم:
+
+```python
+for key in student:
+    print(key)
+```
+
+خروجی:
+
+```text
+name
+age
+score
+```
+
+این ساده ترین شکل پیمایش در Dictionary است.
+
+---
+
+## ۱. پیمایش مستقیم در Dictionary
+
+ساده ترین شکل:
+
+```python
+for key in student:
+    print(key)
+```
+
+وقتی مستقیماً روی یک Dictionary پیمایش می کنیم، Python در هر مرحله یک **Key** را در اختیار ما قرار می دهد.
+
+بنابراین:
+
+```python
+for key in student:
+```
+
+را می توانیم این طور در ذهن خود تفسیر کنیم:
+
+> برای هر Key موجود در این Dictionary...
+
+این رفتار با پیمایش در List متفاوت است؛ در List معمولاً خود عناصر را دریافت می کنیم.
+
+---
+
+## ۲. چاپ تمام Keyها
+
+مثلاً:
+
+```python
+person = {
+    "name": "Sara",
+    "age": 22,
+    "city": "Baku"
+}
+```
+
+می توانیم تمام Keyها را چاپ کنیم:
+
+```python
+for key in person:
+    print(key)
+```
+
+خروجی:
+
+```text
+name
+age
+city
+```
+
+نام `key` فقط یک نام متغیر است و می توانیم نام دیگری نیز انتخاب کنیم:
+
+```python
+for item in person:
+    print(item)
+```
+
+مهم این است که بدانیم Python در هر مرحله چه چیزی در اختیار ما قرار می دهد.
+
+---
+
+## ۳. استفاده از Key برای دسترسی به Value
+
+چون پیمایش مستقیم Dictionary، Keyها را در اختیار ما قرار می دهد، می توانیم با استفاده از هر Key به Value متناظر دسترسی پیدا کنیم:
+
+```python
+for key in person:
+    print(key, person[key])
+```
+
+خروجی:
+
+```text
+name Sara
+age 22
+city Baku
+```
+
+الگوی مهم:
+
+```python
+for key in dictionary:
+    value = dictionary[key]
+```
+
+ابتدا Key را دریافت می کنیم و سپس با استفاده از همان Key، Value مربوط به آن را دریافت می کنیم.
+
+---
+
+## ۴. پیمایش Keyها با `keys()`
+
+Python متد `keys()` را نیز در اختیار ما قرار می دهد:
+
+```python
+for key in person.keys():
+    print(key)
+```
+
+خروجی:
+
+```text
+name
+age
+city
+```
+
+در سطح مقدماتی این دو شکل بسیار نزدیک به هم هستند:
+
+```python
+for key in person:
+```
+
+و:
+
+```python
+for key in person.keys():
+```
+
+شکل اول کوتاه تر است و زمانی که منظور از کد واضح باشد، معمولاً استفاده می شود.
+
+---
+
+## ۵. پیمایش Valueها با `values()`
+
+گاهی Keyها برای ما مهم نیستند و فقط می خواهیم Valueها را بررسی کنیم.
+
+برای این کار:
+
+```python
+for value in person.values():
+    print(value)
+```
+
+خروجی:
+
+```text
+Sara
+22
+Baku
+```
+
+در این حالت هر مرحله از Loop یک Value را در اختیار ما قرار می دهد.
+
+مدل ذهنی:
+
+```text
+dictionary
+   ↓
+values()
+   ↓
+هر بار یک Value
+```
+
+---
+
+## ۶. پیمایش هم زمان Key و Value با `items()`
+
+وقتی هم Key و هم Value را لازم داریم، معمولاً `items()` بهترین و واضح ترین انتخاب است:
+
+```python
+for key, value in person.items():
+    print(key, value)
+```
+
+خروجی:
+
+```text
+name Sara
+age 22
+city Baku
+```
+
+در هر مرحله دو داده در اختیار ما قرار می گیرد:
+
+```text
+Key → Value
+```
+
+مثلاً:
+
+```text
+"name" → "Sara"
+```
+
+سپس:
+
+```text
+"age" → 22
+```
+
+و به همین شکل ادامه پیدا می کند.
+
+---
+
+## ۷. درک `key, value`
+
+این بخش:
+
+```python
+for key, value in person.items():
+```
+
+ممکن است در ابتدا با Loopهای ساده متفاوت به نظر برسد.
+
+اما مفهوم آن ساده است.
+
+هر `item` شامل دو بخش است:
+
+```text
+Key
+Value
+```
+
+Python این دو بخش را به ترتیب داخل متغیرهای:
+
+```text
+key
+value
+```
+
+قرار می دهد.
+
+مثلاً:
+
+```python
+person = {
+    "name": "Sara",
+    "age": 22
+}
+```
+
+کد:
+
+```python
+for key, value in person.items():
+    print("Key:", key)
+    print("Value:", value)
+```
+
+خروجی:
+
+```text
+Key: name
+Value: Sara
+Key: age
+Value: 22
+```
+
+این یکی از مهم ترین الگوهای پیمایش Dictionary است.
+
+---
+
+## ۸. انجام عملیات روی تمام Valueها
+
+یکی از دلایل اصلی استفاده از Iteration این است که بتوانیم یک عملیات مشخص را روی تمام داده ها انجام دهیم.
+
+مثلاً:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+
+for score in scores.values():
+    print(score + 1)
+```
+
+خروجی:
+
+```text
+19
+16
+20
+```
+
+Dictionary اصلی تغییر نکرده است.
+
+ما فقط برای هر Value یک محاسبه انجام داده ایم.
+
+---
+
+## ۹. انجام عملیات روی تمام Keyها
+
+می توانیم روی Keyها نیز عملیات انجام دهیم:
+
+```python
+users = {
+    "ali": 18,
+    "sara": 20,
+    "reza": 17
+}
+
+for username in users:
+    print(username.upper())
+```
+
+خروجی:
+
+```text
+ALI
+SARA
+REZA
+```
+
+در اینجا نیز Dictionary اصلی تغییر نکرده است و فقط روی هر Key یک عملیات انجام داده ایم.
+
+---
+
+## ۱۰. فیلتر کردن داده ها هنگام پیمایش
+
+یکی از کاربردهای بسیار مهم Iteration، پیدا کردن داده های خاص است.
+
+مثلاً:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+```
+
+اگر بخواهیم دانش آموزانی را پیدا کنیم که نمره آن ها حداقل `18` است:
+
+```python
+for name, score in scores.items():
+    if score >= 18:
+        print(name)
+```
+
+خروجی:
+
+```text
+Ali
+Reza
+```
+
+Loop تمام Key-Valueها را بررسی می کند و شرط `if` مشخص می کند کدام موارد باید پردازش شوند.
+
+الگوی مهم:
+
+```python
+for key, value in dictionary.items():
+    if condition:
+        ...
+```
+
+---
+
+## ۱۱. شمارش هنگام پیمایش
+
+می توانیم هنگام پیمایش، مواردی را که با یک شرط مطابقت دارند بشماریم.
+
+مثلاً:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 18,
+    "Mina": 12
+}
+
+count = 0
+
+for score in scores.values():
+    if score == 18:
+        count += 1
+
+print(count)
+```
+
+خروجی:
+
+```text
+2
+```
+
+Loop تمام Valueها را بررسی می کند و هر بار که شرط برقرار باشد، `count` یکی افزایش پیدا می کند.
+
+---
+
+## ۱۲. جستجو هنگام پیمایش
+
+فرض کنید می خواهیم دانش آموزی را پیدا کنیم که نمره `19` دارد:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+
+for name, score in scores.items():
+    if score == 19:
+        print(name)
+```
+
+خروجی:
+
+```text
+Reza
+```
+
+است.
+
+در اینجا `items()` به ما اجازه می دهد Key و Value را هم زمان بررسی کنیم.
+
+---
+
+## ۱۳. ساخت خروجی هنگام پیمایش
+
+می توانیم از Iteration برای ساخت خروجی مرتب و قابل خواندن نیز استفاده کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+for key, value in student.items():
+    print(f"{key}: {value}")
+```
+
+خروجی:
+
+```text
+name: Ali
+age: 20
+score: 18
+```
+
+این الگو برای نمایش اطلاعات Dictionary بسیار کاربردی است.
+
+---
+
+## ۱۴. استفاده از شرط های تو در تو هنگام پیمایش
+
+می توانیم Loop و شرط را با هم ترکیب کنیم:
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+
+for name, score in students.items():
+    if score >= 18:
+        print(name, "passed")
+    else:
+        print(name, "needs improvement")
+```
+
+خروجی:
+
+```text
+Ali passed
+Sara needs improvement
+Reza passed
+Mina needs improvement
+```
+
+در اینجا Dictionary داده را در اختیار ما قرار می دهد، Loop هر مورد را بررسی می کند و شرط تعیین می کند چه عملی انجام شود.
+
+---
+
+## ۱۵. انتخاب روش مناسب برای پیمایش
+
+در سطح مقدماتی سه حالت اصلی داریم.
+
+### فقط Keyها
+
+```python
+for key in dictionary:
+    ...
+```
+
+یا:
+
+```python
+for key in dictionary.keys():
+    ...
+```
+
+### فقط Valueها
+
+```python
+for value in dictionary.values():
+    ...
+```
+
+### Key و Value با هم
+
+```python
+for key, value in dictionary.items():
+    ...
+```
+
+مدل ذهنی:
+
+```text
+dictionary
+   │
+   ├── keys()   → Keyها
+   │
+   ├── values() → Valueها
+   │
+   └── items()  → Key + Value
+```
+
+---
+
+## ۱۶. تفاوت پیمایش Dictionary با Index در List
+
+در List معمولاً با Index نیز کار می کنیم:
+
+```python
+numbers = [10, 20, 30]
+
+for number in numbers:
+    print(number)
+```
+
+Loop هر عنصر را در اختیار ما قرار می دهد.
+
+اما در Dictionary:
+
+```python
+numbers = {
+    "first": 10,
+    "second": 20,
+    "third": 30
+}
+
+for key in numbers:
+    print(key)
+```
+
+Loop Keyها را در اختیار ما قرار می دهد.
+
+اگر Valueها را بخواهیم:
+
+```python
+for value in numbers.values():
+    print(value)
+```
+
+این تفاوت مهم است، زیرا Dictionary بر اساس **رابطه Key-Value** سازمان دهی شده است، نه Index عددی.
+
+---
+
+## ۱۷. تغییر Dictionary هنگام پیمایش
+
+هنگام تغییر ساختار Dictionary در حین پیمایش باید دقت کنیم.
+
+برای مثال، اضافه یا حذف کردن Keyها در همان Dictionary که در حال پیمایش آن هستیم می تواند باعث مشکل شود.
+
+مثلاً بهتر است چنین کاری را به شکل مستقیم انجام ندهیم:
+
+```python
+for key in data:
+    del data[key]
+```
+
+روش مناسب به هدف برنامه بستگی دارد و این موضوع در مباحث بعدی اهمیت بیشتری پیدا می کند.
+
+در سطح مقدماتی فعلاً این نکته را به خاطر بسپارید:
+
+> **در هنگام پیمایش یک Dictionary، بدون دلیل مشخص Keyهای همان Dictionary را اضافه یا حذف نکنید.**
+
+---
+
+## ۱۸. مثال کاربردی
+
+فرض کنید موجودی یک فروشگاه را داریم:
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8
+}
+```
+
+می توانیم نام محصول و تعداد آن را نمایش دهیم:
+
+```python
+for product, quantity in inventory.items():
+    print(f"{product}: {quantity}")
+```
+
+خروجی:
+
+```text
+apple: 10
+banana: 5
+orange: 8
+```
+
+همچنین می توانیم محصولاتی را پیدا کنیم که بیشتر از پنج عدد موجودی دارند:
+
+```python
+for product, quantity in inventory.items():
+    if quantity > 5:
+        print(product)
+```
+
+خروجی:
+
+```text
+apple
+orange
+```
+
+این مثال نشان می دهد که یک ساختار ساده از Iteration می تواند برای نمایش، فیلتر کردن، شمارش و بررسی داده های Dictionary استفاده شود.
+
+---
+
+## نکات کلیدی
+
+* پیمایش مستقیم در Dictionary، **Keyها** را در اختیار ما قرار می دهد.
+* `keys()` به صورت مشخص Keyهای Dictionary را در اختیار ما قرار می دهد.
+* `values()` برای پیمایش Valueها استفاده می شود.
+* `items()` Key و Value را به صورت هم زمان در اختیار ما قرار می دهد.
+* هنگام پیمایش Keyها، می توانیم با `dictionary[key]` به Value متناظر دسترسی پیدا کنیم.
+* الگوی `for key, value in dictionary.items()` زمانی مناسب است که هر دو بخش داده را لازم داریم.
+* می توانیم داخل Loop از شرط برای فیلتر کردن داده ها استفاده کنیم.
+* با استفاده از Counter می توانیم داده های مطابق یک شرط را بشماریم.
+* پیمایش Dictionary بر اساس رابطه Key-Value است، نه Index عددی.
+* هنگام پیمایش، نباید بدون دقت ساختار همان Dictionary را تغییر دهیم.
+
+---
+
+# سوال های بخش
+
+## سوال ۱
+
+با توجه به Dictionary زیر، یک Loop بنویسید که تمام Keyها را چاپ کند:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+## سوال ۲
+
+یک Loop بنویسید که فقط Valueهای Dictionary زیر را چاپ کند:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+```
+
+## سوال ۳
+
+با استفاده از `items()` کدی بنویسید که نام و نمره هر دانش آموز را به شکل زیر چاپ کند:
+
+```text
+Ali: 18
+Sara: 15
+Reza: 19
+```
+
+---
+
+# سوال جامع
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+```
+
+برنامه ای بنویسید که با پیمایش در Dictionary:
+
+1. نام و نمره تمام دانش آموزان را چاپ کند.
+2. فقط دانش آموزانی را چاپ کند که نمره آن ها حداقل `18` است.
+3. تعداد دانش آموزانی را که نمره آن ها `18` یا بیشتر است بشمارد.
+
+---
+
+# پاسخ ها
+
+## پاسخ سوال ۱
+
+```python
+for key in student:
+    print(key)
+```
+
+## پاسخ سوال ۲
+
+```python
+for score in scores.values():
+    print(score)
+```
+
+## پاسخ سوال ۳
+
+```python
+for name, score in scores.items():
+    print(f"{name}: {score}")
+```
+
+## پاسخ سوال جامع
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+
+count = 0
+
+for name, score in students.items():
+    print(f"{name}: {score}")
+
+    if score >= 18:
+        print(f"{name} passed.")
+        count += 1
+
+print("Number of students with a score of 18 or higher:", count)
+```
+
+خروجی:
+
+```text
+Ali: 18
+Ali passed.
+Sara: 15
+Reza: 19
+Reza passed.
+Mina: 12
+Number of students with a score of 18 or higher: 2
+```

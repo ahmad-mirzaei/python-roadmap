@@ -4875,3 +4875,811 @@ The conditional count only counts Values that satisfy the condition `score >= 18
 
 ---
 
+# Part 8 — Iterating Through Dictionaries
+
+## Introduction
+
+A Dictionary becomes much more useful when we can work with **all of its data**, rather than accessing one Key at a time.
+
+For this purpose, Python provides **iteration**.
+
+Iteration means going through the elements of a collection one by one and performing an operation on each element.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Instead of writing:
+
+```python
+print(student["name"])
+print(student["age"])
+print(student["score"])
+```
+
+we can use a loop:
+
+```python
+for key in student:
+    print(key)
+```
+
+Output:
+
+```text
+name
+age
+score
+```
+
+This is the basic idea of iterating through a Dictionary.
+
+---
+
+## 1. Iterating Directly Through a Dictionary
+
+The simplest form is:
+
+```python
+for key in student:
+    print(key)
+```
+
+When we iterate directly over a Dictionary, Python gives us its **Keys**.
+
+So:
+
+```python
+for key in student:
+```
+
+should be mentally understood as:
+
+> For each Key in this Dictionary...
+
+This is different from iterating through a List, where the loop normally gives us each element directly.
+
+---
+
+## 2. Printing Every Key
+
+Consider:
+
+```python
+person = {
+    "name": "Sara",
+    "age": 22,
+    "city": "Baku"
+}
+```
+
+We can print all Keys:
+
+```python
+for key in person:
+    print(key)
+```
+
+Output:
+
+```text
+name
+age
+city
+```
+
+The variable `key` is simply a name chosen by us. We could use another valid variable name:
+
+```python
+for item in person:
+    print(item)
+```
+
+The important part is understanding what Python provides during each iteration.
+
+---
+
+## 3. Using the Key to Access Its Value
+
+Because direct Dictionary iteration gives us Keys, we can use each Key to retrieve its Value:
+
+```python
+for key in person:
+    print(key, person[key])
+```
+
+Output:
+
+```text
+name Sara
+age 22
+city Baku
+```
+
+This creates an important pattern:
+
+```python
+for key in dictionary:
+    value = dictionary[key]
+```
+
+We first receive the Key, then use that Key to access the corresponding Value.
+
+---
+
+## 4. Iterating Through Keys with `keys()`
+
+Python also provides the `keys()` method:
+
+```python
+for key in person.keys():
+    print(key)
+```
+
+Output:
+
+```text
+name
+age
+city
+```
+
+For basic Dictionary iteration, these two forms are closely related:
+
+```python
+for key in person:
+```
+
+and:
+
+```python
+for key in person.keys():
+```
+
+The first is shorter and is commonly used when the intention is already clear.
+
+---
+
+## 5. Iterating Through Values with `values()`
+
+Sometimes we are not interested in Keys. We only want the Values.
+
+For that, we can use:
+
+```python
+for value in person.values():
+    print(value)
+```
+
+Output:
+
+```text
+Sara
+22
+Baku
+```
+
+Here, each iteration gives us a Value.
+
+The mental model is:
+
+```text
+dictionary
+   ↓
+values()
+   ↓
+one Value at a time
+```
+
+---
+
+## 6. Iterating Through Keys and Values with `items()`
+
+When we need both the Key and the Value, `items()` is usually the clearest approach:
+
+```python
+for key, value in person.items():
+    print(key, value)
+```
+
+Output:
+
+```text
+name Sara
+age 22
+city Baku
+```
+
+Each iteration provides two pieces of information:
+
+```text
+Key → Value
+```
+
+For example, the first iteration can conceptually be viewed as:
+
+```text
+"name" → "Sara"
+```
+
+The second:
+
+```text
+"age" → 22
+```
+
+And so on.
+
+---
+
+## 7. Understanding `key, value`
+
+This syntax:
+
+```python
+for key, value in person.items():
+```
+
+may look different from a normal loop.
+
+The important idea is that each item contains two parts:
+
+```text
+Key
+Value
+```
+
+Python assigns them to:
+
+```text
+key
+value
+```
+
+respectively.
+
+For example:
+
+```python
+person = {
+    "name": "Sara",
+    "age": 22
+}
+```
+
+Then:
+
+```python
+for key, value in person.items():
+    print("Key:", key)
+    print("Value:", value)
+```
+
+Output:
+
+```text
+Key: name
+Value: Sara
+Key: age
+Value: 22
+```
+
+This is one of the most important Dictionary iteration patterns.
+
+---
+
+## 8. Performing an Operation on Every Value
+
+Iteration is useful because we can perform the same operation on every element.
+
+For example:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+
+for score in scores.values():
+    print(score + 1)
+```
+
+Output:
+
+```text
+19
+16
+20
+```
+
+The original Dictionary has not changed.
+
+We simply calculated a new result for each Value.
+
+---
+
+## 9. Performing an Operation on Every Key
+
+We can also work with Keys:
+
+```python
+users = {
+    "ali": 18,
+    "sara": 20,
+    "reza": 17
+}
+
+for username in users:
+    print(username.upper())
+```
+
+Output:
+
+```text
+ALI
+SARA
+REZA
+```
+
+Again, the Dictionary itself has not been modified.
+
+We are simply performing an operation on each Key.
+
+---
+
+## 10. Filtering Data During Iteration
+
+A common use of iteration is finding specific data.
+
+For example:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+```
+
+Suppose we want students whose score is at least `18`:
+
+```python
+for name, score in scores.items():
+    if score >= 18:
+        print(name)
+```
+
+Output:
+
+```text
+Ali
+Reza
+```
+
+The loop examines every Key-Value pair, while the `if` statement decides which ones should be processed.
+
+This pattern is extremely important:
+
+```python
+for key, value in dictionary.items():
+    if condition:
+        ...
+```
+
+---
+
+## 11. Counting While Iterating
+
+Iteration can also be used to count matching Values.
+
+For example:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 18,
+    "Mina": 12
+}
+
+count = 0
+
+for score in scores.values():
+    if score == 18:
+        count += 1
+
+print(count)
+```
+
+Output:
+
+```text
+2
+```
+
+The loop checks every Value and increases `count` whenever the condition is true.
+
+---
+
+## 12. Searching During Iteration
+
+Suppose we want to find whether a student has a particular score:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+
+for name, score in scores.items():
+    if score == 19:
+        print(name)
+```
+
+Output:
+
+```text
+Reza
+```
+
+The important point is that `items()` allows us to inspect the Key and Value together.
+
+---
+
+## 13. Building Output During Iteration
+
+We can use iteration to produce formatted output:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+for key, value in student.items():
+    print(f"{key}: {value}")
+```
+
+Output:
+
+```text
+name: Ali
+age: 20
+score: 18
+```
+
+This pattern is useful when displaying Dictionary data.
+
+---
+
+## 14. Nested Conditions During Iteration
+
+We can combine iteration with conditions:
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+
+for name, score in students.items():
+    if score >= 18:
+        print(name, "passed")
+    else:
+        print(name, "needs improvement")
+```
+
+Output:
+
+```text
+Ali passed
+Sara needs improvement
+Reza passed
+Mina needs improvement
+```
+
+The Dictionary provides the data, the loop visits each entry, and the condition determines what happens.
+
+---
+
+## 15. Choosing the Correct Iteration Method
+
+There are three basic situations.
+
+### Only Keys
+
+```python
+for key in dictionary:
+    ...
+```
+
+or:
+
+```python
+for key in dictionary.keys():
+    ...
+```
+
+### Only Values
+
+```python
+for value in dictionary.values():
+    ...
+```
+
+### Keys and Values
+
+```python
+for key, value in dictionary.items():
+    ...
+```
+
+A useful mental model:
+
+```text
+dictionary
+   │
+   ├── keys()   → Keys
+   │
+   ├── values() → Values
+   │
+   └── items()  → Key + Value
+```
+
+---
+
+## 16. Dictionary Iteration Is Different from List Indexing
+
+With a List, we often work with indexes:
+
+```python
+numbers = [10, 20, 30]
+
+for number in numbers:
+    print(number)
+```
+
+The loop gives us each element.
+
+With a Dictionary:
+
+```python
+numbers = {
+    "first": 10,
+    "second": 20,
+    "third": 30
+}
+
+for key in numbers:
+    print(key)
+```
+
+the loop gives us the Keys.
+
+If we want the Values:
+
+```python
+for value in numbers.values():
+    print(value)
+```
+
+This difference is important because Dictionary data is organized around **Key-Value relationships**, not numeric indexes.
+
+---
+
+## 17. Modifying a Dictionary While Iterating
+
+A beginner should be careful when changing the structure of a Dictionary during iteration.
+
+For example, adding or removing Keys while directly iterating through the same Dictionary can cause problems.
+
+Instead of doing structural changes carelessly inside the loop, first understand the data you are iterating over.
+
+For example, this kind of operation should be avoided:
+
+```python
+for key in data:
+    del data[key]
+```
+
+The safer approach depends on what we are trying to accomplish and will become more important in later topics.
+
+At the beginner level, the key lesson is:
+
+> **Do not casually add or remove Dictionary Keys while iterating over that same Dictionary.**
+
+---
+
+## 18. A Practical Example
+
+Consider a small product inventory:
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8
+}
+```
+
+We can display every product and its quantity:
+
+```python
+for product, quantity in inventory.items():
+    print(f"{product}: {quantity}")
+```
+
+Output:
+
+```text
+apple: 10
+banana: 5
+orange: 8
+```
+
+We can also find products with more than five items:
+
+```python
+for product, quantity in inventory.items():
+    if quantity > 5:
+        print(product)
+```
+
+Output:
+
+```text
+apple
+orange
+```
+
+This shows why iteration is so important: the same basic structure can be used for displaying, filtering, counting, and analyzing Dictionary data.
+
+---
+
+## Key Takeaways
+
+* Direct iteration over a Dictionary gives its **Keys**.
+* `keys()` explicitly provides the Dictionary's Keys.
+* `values()` provides its Values.
+* `items()` provides Key-Value pairs.
+* Use `dictionary[key]` when iterating through Keys and you need the corresponding Value.
+* `for key, value in dictionary.items()` is the clearest pattern when both pieces of data are needed.
+* Conditions can be placed inside loops to filter Dictionary data.
+* Counters can be used during iteration to count matching entries.
+* Dictionary iteration is based on Key-Value relationships rather than numeric indexes.
+* Avoid casually adding or removing Keys from the same Dictionary while iterating over it.
+
+---
+
+# Section Questions
+
+## Question 1
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Write a loop that prints all Keys.
+
+## Question 2
+
+Write a loop that prints only the Values of the following Dictionary:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+```
+
+## Question 3
+
+Write a loop using `items()` that prints each student's name and score in this format:
+
+```text
+Ali: 18
+Sara: 15
+Reza: 19
+```
+
+---
+
+# Comprehensive Question
+
+Given:
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+```
+
+Write a program that iterates through the Dictionary and:
+
+1. Prints every student's name and score.
+2. Prints only students with a score of at least `18`.
+3. Counts how many students have a score of `18` or higher.
+
+---
+
+# Answers
+
+## Answer 1
+
+```python
+for key in student:
+    print(key)
+```
+
+## Answer 2
+
+```python
+for score in scores.values():
+    print(score)
+```
+
+## Answer 3
+
+```python
+for name, score in scores.items():
+    print(f"{name}: {score}")
+```
+
+## Comprehensive Answer
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+
+count = 0
+
+for name, score in students.items():
+    print(f"{name}: {score}")
+
+    if score >= 18:
+        print(f"{name} passed.")
+        count += 1
+
+print("Number of students with a score of 18 or higher:", count)
+```
+
+The result is:
+
+```text
+Ali: 18
+Ali passed.
+Sara: 15
+Reza: 19
+Reza passed.
+Mina: 12
+Number of students with a score of 18 or higher: 2
+```
+
+---
+

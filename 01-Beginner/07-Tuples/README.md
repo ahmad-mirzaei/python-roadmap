@@ -685,3 +685,253 @@ The basic indexing method is the same for Lists and Tuples. Both support positiv
 
 ---
 
+# Part 4 — Tuple Slicing
+
+## 1. What Is Tuple Slicing?
+
+Just like Lists, we can use slicing to select a part of a Tuple.
+
+The basic syntax is:
+
+```python
+tuple[start:stop]
+```
+
+The `start` index is included, but the `stop` index is not included.
+
+For example:
+
+```python
+fruits = ("Apple", "Banana", "Orange", "Mango", "Grape")
+
+print(fruits[1:4])
+```
+
+Output:
+
+```text
+('Banana', 'Orange', 'Mango')
+```
+
+Indexes `1`, `2`, and `3` are included, but index `4` is not.
+
+## 2. Slicing from the Beginning
+
+We can leave the `start` index empty.
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+print(numbers[:3])
+```
+
+Output:
+
+```text
+(10, 20, 30)
+```
+
+This means:
+
+```text
+Start from the beginning
+Stop before index 3
+```
+
+## 3. Slicing to the End
+
+We can also leave the `stop` index empty.
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+print(numbers[2:])
+```
+
+Output:
+
+```text
+(30, 40, 50)
+```
+
+This means:
+
+```text
+Start from index 2
+Continue to the end
+```
+
+## 4. Copying a Tuple with Slicing
+
+We can use slicing to create a Tuple containing all elements.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+new_fruits = fruits[:]
+
+print(new_fruits)
+```
+
+Output:
+
+```text
+('Apple', 'Banana', 'Orange')
+```
+
+## 5. Using a Step
+
+We can provide a third value in the slice:
+
+```python
+tuple[start:stop:step]
+```
+
+For example:
+
+```python
+numbers = (10, 20, 30, 40, 50, 60)
+
+print(numbers[0:6:2])
+```
+
+Output:
+
+```text
+(10, 30, 50)
+```
+
+The step `2` means that Python selects every second element.
+
+## 6. Reversing a Tuple
+
+A negative step allows us to move backward.
+
+The simplest way to reverse a Tuple is:
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+reversed_numbers = numbers[::-1]
+
+print(reversed_numbers)
+```
+
+Output:
+
+```text
+(50, 40, 30, 20, 10)
+```
+
+Here:
+
+```text
+start → omitted
+stop  → omitted
+step  → -1
+```
+
+So Python moves through the Tuple from the end to the beginning.
+
+## 7. Negative Indexes in Slicing
+
+We can also use negative indexes when slicing.
+
+```python
+fruits = ("Apple", "Banana", "Orange", "Mango", "Grape")
+
+print(fruits[-4:-1])
+```
+
+Output:
+
+```text
+('Banana', 'Orange', 'Mango')
+```
+
+The same slicing rules apply. The `stop` index is still excluded.
+
+## 8. Important Rule
+
+Remember:
+
+```text
+tuple[start:stop]
+```
+
+means:
+
+```text
+start → included
+stop  → excluded
+```
+
+And:
+
+```python
+tuple[::-1]
+```
+
+is a common way to reverse a Tuple.
+
+# Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+print(numbers[1:4])
+```
+
+## Question 2
+
+What is the difference between these two?
+
+```python
+numbers[:3]
+numbers[3:]
+```
+
+## Question 3
+
+What will this code print?
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+print(numbers[::-1])
+```
+
+## Review Question
+
+How can we access a specific element of a Tuple, select a range of elements, and reverse the entire Tuple?
+
+# Answers
+
+## Answer 1
+
+```text
+(20, 30, 40)
+```
+
+## Answer 2
+
+`numbers[:3]` selects elements from the beginning up to, but not including, index `3`.
+
+`numbers[3:]` selects elements starting at index `3` and continues to the end.
+
+## Answer 3
+
+```text
+(50, 40, 30, 20, 10)
+```
+
+## Review Answer
+
+We use indexing such as `tuple[2]` to access one element, slicing such as `tuple[1:4]` to select a range, and `tuple[::-1]` to reverse the Tuple.
+
+---
+

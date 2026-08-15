@@ -6035,3 +6035,891 @@ Sara 20
 
 ---
 
+# Part 15 — Tuples Mini Project
+
+This is the final section of the Tuple chapter.
+
+Instead of learning another isolated Tuple feature, we will use the concepts from the entire chapter together in a small project.
+
+The project will model a simple collection of student records using **nested Tuples**.
+
+Each student will have:
+
+- a name;
+- an age;
+- a score.
+
+Our data will look like this:
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Reza", 21, 17),
+    ("Mina", 20, 19)
+)
+```
+
+The outer Tuple represents the collection of students.
+
+Each inner Tuple represents one student.
+
+---
+
+## 1. Understanding the Structure
+
+Before writing the program, we need to understand the structure.
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Reza", 21, 17),
+    ("Mina", 20, 19)
+)
+```
+
+The outer Tuple contains four elements.
+
+Therefore:
+
+```python
+len(students)
+```
+
+returns:
+
+```text
+4
+```
+
+The first student is:
+
+```python
+students[0]
+```
+
+which gives:
+
+```text
+('Ali', 20, 18)
+```
+
+We can then access individual fields:
+
+```python
+students[0][0]
+```
+
+returns:
+
+```text
+Ali
+```
+
+and:
+
+```python
+students[0][2]
+```
+
+returns:
+
+```text
+18
+```
+
+This demonstrates the two levels of indexing in a Nested Tuple.
+
+---
+
+## 2. Displaying All Students
+
+The first requirement of our project is to display every student.
+
+We can traverse the outer Tuple:
+
+```python
+for student in students:
+    print(student)
+```
+
+Output:
+
+```text
+('Ali', 20, 18)
+('Sara', 19, 20)
+('Reza', 21, 17)
+('Mina', 20, 19)
+```
+
+But this output is not very readable.
+
+Because we know the structure of each inner Tuple, we can unpack it:
+
+```python
+for name, age, score in students:
+    print(name, age, score)
+```
+
+Output:
+
+```text
+Ali 20 18
+Sara 19 20
+Reza 21 17
+Mina 20 19
+```
+
+We can make the output clearer:
+
+```python
+for name, age, score in students:
+    print(f"Name: {name}, Age: {age}, Score: {score}")
+```
+
+Output:
+
+```text
+Name: Ali, Age: 20, Score: 18
+Name: Sara, Age: 19, Score: 20
+Name: Reza, Age: 21, Score: 17
+Name: Mina, Age: 20, Score: 19
+```
+
+---
+
+## 3. Checking Whether a Student Exists
+
+We can use the `in` operator to check whether a complete record exists.
+
+```python
+target = ("Sara", 19, 20)
+
+print(target in students)
+```
+
+Output:
+
+```text
+True
+```
+
+If we check a record that does not exist:
+
+```python
+target = ("Omid", 20, 18)
+
+print(target in students)
+```
+
+Output:
+
+```text
+False
+```
+
+The `in` operator compares the complete inner Tuple.
+
+---
+
+## 4. Finding a Student's Position
+
+We can use `index()` to find the position of a complete record.
+
+```python
+target = ("Sara", 19, 20)
+
+print(students.index(target))
+```
+
+Output:
+
+```text
+1
+```
+
+Remember that Tuple indexing starts from `0`.
+
+Therefore:
+
+```text
+Ali  → 0
+Sara → 1
+Reza → 2
+Mina → 3
+```
+
+If the record might not exist, checking with `in` first prevents `ValueError`:
+
+```python
+if target in students:
+    print(students.index(target))
+```
+
+---
+
+## 5. Counting a Record
+
+The `count()` method can tell us how many times a complete record appears.
+
+```python
+target = ("Sara", 19, 20)
+
+print(students.count(target))
+```
+
+Output:
+
+```text
+1
+```
+
+If the same record appeared more than once, `count()` would return the number of occurrences.
+
+For example:
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Reza", 21, 17),
+    ("Sara", 19, 20)
+)
+
+print(students.count(("Sara", 19, 20)))
+```
+
+Output:
+
+```text
+2
+```
+
+---
+
+## 6. Finding a Student by Name
+
+So far, `in`, `index()`, and `count()` work naturally with complete records.
+
+But what if we only know the student's name?
+
+For example:
+
+```python
+target_name = "Reza"
+```
+
+We can traverse the records and inspect the first field:
+
+```python
+for name, age, score in students:
+    if name == target_name:
+        print(name, age, score)
+```
+
+Output:
+
+```text
+Reza 21 17
+```
+
+This demonstrates an important idea:
+
+> Membership testing with `in` checks an object against the elements of the Tuple. Searching by one field requires us to inspect the individual records.
+
+---
+
+## 7. Finding the Highest Score
+
+We can also process the records while traversing them.
+
+Suppose we want to find the student with the highest score.
+
+We can start with the first student:
+
+```python
+best_student = students[0]
+```
+
+Then compare every other student with it:
+
+```python
+for student in students[1:]:
+    if student[2] > best_student[2]:
+        best_student = student
+
+print(best_student)
+```
+
+Output:
+
+```text
+('Sara', 19, 20)
+```
+
+Here:
+
+```python
+student[2]
+```
+
+is the score.
+
+The important part is that we are not modifying the Tuple.
+
+We are only reading its values and storing a reference to the record that currently has the highest score.
+
+---
+
+## 8. Finding the Average Score
+
+We can calculate the total score while traversing the Tuple.
+
+```python
+total = 0
+
+for name, age, score in students:
+    total += score
+
+average = total / len(students)
+
+print(average)
+```
+
+For our original data:
+
+```text
+18
+20
+17
+19
+```
+
+the result is:
+
+```text
+18.5
+```
+
+This combines:
+
+- traversal;
+- unpacking;
+- `len()`;
+- arithmetic.
+
+The Tuple itself remains unchanged.
+
+---
+
+## 9. Creating a Summary
+
+We can combine several operations into a simple summary:
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Reza", 21, 17),
+    ("Mina", 20, 19)
+)
+
+total = 0
+best_student = students[0]
+
+for name, age, score in students:
+    total += score
+
+    if score > best_student[2]:
+        best_student = (name, age, score)
+
+average = total / len(students)
+
+print("Number of students:", len(students))
+print("Average score:", average)
+print("Best student:", best_student)
+```
+
+Output:
+
+```text
+Number of students: 4
+Average score: 18.5
+Best student: ('Sara', 19, 20)
+```
+
+Notice that the Tuple was never modified.
+
+---
+
+## 10. Adding a New Student
+
+This is where Tuple immutability becomes important.
+
+Suppose we have:
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20)
+)
+```
+
+We cannot do this:
+
+```python
+students.append(("Reza", 21, 17))
+```
+
+A Tuple does not have `append()`.
+
+We also cannot change an existing element:
+
+```python
+students[0] = ("Omid", 20, 18)
+```
+
+This causes `TypeError`.
+
+If we need a new collection, we can create another Tuple:
+
+```python
+students = students + (("Reza", 21, 17),)
+
+print(students)
+```
+
+Output:
+
+```text
+(
+    ('Ali', 20, 18),
+    ('Sara', 19, 20),
+    ('Reza', 21, 17)
+)
+```
+
+The original Tuple was not modified.
+
+A new Tuple was created.
+
+---
+
+## 11. Removing a Student
+
+The same principle applies to removing records.
+
+There is no `remove()` method for Tuples.
+
+If we need to remove a record, one beginner-friendly approach is to create a new Tuple containing the records we want to keep.
+
+For example:
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Reza", 21, 17)
+)
+
+students = tuple(
+    student
+    for student in students
+    if student[0] != "Sara"
+)
+
+print(students)
+```
+
+Output:
+
+```text
+(
+    ('Ali', 20, 18),
+    ('Reza', 21, 17)
+)
+```
+
+The important concept is not the filtering syntax itself.
+
+The important idea is:
+
+> Because Tuples are immutable, operations that appear to modify a Tuple actually require creating a new Tuple.
+
+More advanced filtering techniques will be studied later when we have more tools available.
+
+---
+
+## 12. Converting to a List When Modification Is Required
+
+Sometimes the data should be temporarily mutable.
+
+In that situation, we can convert the Tuple to a List:
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20)
+)
+
+students = list(students)
+
+students.append(("Reza", 21, 17))
+
+students = tuple(students)
+
+print(students)
+```
+
+Output:
+
+```text
+(
+    ('Ali', 20, 18),
+    ('Sara', 19, 20),
+    ('Reza', 21, 17)
+)
+```
+
+This demonstrates a useful relationship between Lists and Tuples:
+
+```text
+Tuple
+  ↓
+List
+  ↓
+modify
+  ↓
+Tuple
+```
+
+The choice depends on whether the collection should be mutable or immutable at a particular stage of the program.
+
+---
+
+## 13. Final Project
+
+Now we can combine the concepts into one small program.
+
+The program will:
+
+1. store student records;
+2. display the records;
+3. print the number of students;
+4. check whether a record exists;
+5. find the position of a record;
+6. count a record;
+7. search for a student by name;
+8. calculate the average score;
+9. find the student with the highest score.
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Reza", 21, 17),
+    ("Mina", 20, 19)
+)
+
+target_record = ("Sara", 19, 20)
+target_name = "Reza"
+
+print("=== Students ===")
+
+for name, age, score in students:
+    print(f"Name: {name}, Age: {age}, Score: {score}")
+
+print("\nNumber of students:", len(students))
+
+print(
+    "Target record exists:",
+    target_record in students
+)
+
+if target_record in students:
+    print(
+        "Target record position:",
+        students.index(target_record)
+    )
+
+print(
+    "Target record count:",
+    students.count(target_record)
+)
+
+print("\n=== Search by Name ===")
+
+for name, age, score in students:
+    if name == target_name:
+        print(
+            f"Found: {name}, Age: {age}, Score: {score}"
+        )
+
+total = 0
+best_student = students[0]
+
+for name, age, score in students:
+    total += score
+
+    if score > best_student[2]:
+        best_student = (name, age, score)
+
+average = total / len(students)
+
+print("\n=== Summary ===")
+print("Average score:", average)
+print("Best student:", best_student)
+```
+
+Output:
+
+```text
+=== Students ===
+Name: Ali, Age: 20, Score: 18
+Name: Sara, Age: 19, Score: 20
+Name: Reza, Age: 21, Score: 17
+Name: Mina, Age: 20, Score: 19
+
+Number of students: 4
+Target record exists: True
+Target record position: 1
+Target record count: 1
+
+=== Search by Name ===
+Found: Reza, Age: 21, Score: 17
+
+=== Summary ===
+Average score: 18.5
+Best student: ('Sara', 19, 20)
+```
+
+---
+
+## 14. What This Project Taught Us
+
+This project did not depend on one special Tuple command.
+
+Instead, it combined the concepts from the entire chapter:
+
+| Concept | Used for |
+|---|---|
+| Creating Tuples | Storing the student collection |
+| Nested Tuples | Representing individual records |
+| Indexing | Accessing individual fields |
+| Slicing | Working with a range of records |
+| Immutability | Keeping the collection fixed |
+| `in` | Checking whether a record exists |
+| `len()` | Counting records |
+| `count()` | Counting repeated records |
+| `index()` | Finding a record's position |
+| Traversing | Processing every record |
+| Tuple Unpacking | Separating fields into variables |
+| Concatenation | Creating a new Tuple with additional data |
+| List/Tuple conversion | Temporarily changing mutability |
+
+The important lesson is that programming knowledge becomes useful when individual concepts can be combined to solve a problem.
+
+---
+
+# Final Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Reza", 21, 17)
+)
+
+print(len(students))
+print(students[1][0])
+print(("Sara", 19, 20) in students)
+```
+
+## Question 2
+
+What will this code print?
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Sara", 19, 20)
+)
+
+target = ("Sara", 19, 20)
+
+print(students.count(target))
+print(students.index(target))
+```
+
+## Question 3
+
+Why does this code fail?
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20)
+)
+
+students.append(("Reza", 21, 17))
+```
+
+How could we add the new record while keeping the result as a Tuple?
+
+## Question 4
+
+Write a loop that prints only the names of students whose score is at least `18`.
+
+Given:
+
+```python
+students = (
+    ("Ali", 20, 18),
+    ("Sara", 19, 20),
+    ("Reza", 21, 17),
+    ("Mina", 20, 19)
+)
+```
+
+## Question 5
+
+Without changing the original Tuple, create a new Tuple that contains only the records of students whose score is `18` or higher.
+
+## Challenge Question
+
+Create your own small Tuple-based data model containing at least four records.
+
+Your program must:
+
+1. use Nested Tuples;
+2. traverse all records;
+3. search by one field;
+4. check whether a complete record exists;
+5. find a record's position;
+6. count a repeated record;
+7. calculate at least one numerical summary;
+8. identify one record based on a numerical value;
+9. avoid modifying the original Tuple.
+
+Try to design the structure yourself rather than copying the project above.
+
+# Answers
+
+## Answer 1
+
+```text
+3
+Sara
+True
+```
+
+There are three records.
+
+`students[1][0]` accesses the name in the second record.
+
+The complete Sara record exists in the outer Tuple.
+
+## Answer 2
+
+```text
+2
+1
+```
+
+The record appears twice.
+
+`index()` returns the position of the first occurrence.
+
+## Answer 3
+
+Tuples do not have an `append()` method because they are immutable.
+
+One solution is to create a new Tuple:
+
+```python
+students = students + (("Reza", 21, 17),)
+```
+
+The original Tuple is not modified.
+
+## Answer 4
+
+```python
+for name, age, score in students:
+    if score >= 18:
+        print(name)
+```
+
+Output:
+
+```text
+Ali
+Sara
+Mina
+```
+
+## Answer 5
+
+```python
+result = tuple(
+    student
+    for student in students
+    if student[2] >= 18
+)
+
+print(result)
+```
+
+Output:
+
+```text
+(
+    ('Ali', 20, 18),
+    ('Sara', 19, 20),
+    ('Mina', 20, 19)
+)
+```
+
+A new Tuple is created. The original `students` Tuple remains unchanged.
+
+## Challenge Answer
+
+One possible solution is:
+
+```python
+books = (
+    ("Python", 2024, 450),
+    ("Java", 2023, 380),
+    ("C++", 2022, 520),
+    ("Python", 2024, 450)
+)
+
+target = ("Python", 2024, 450)
+
+print("Number of books:", len(books))
+print("Target exists:", target in books)
+print("Target position:", books.index(target))
+print("Target count:", books.count(target))
+
+for title, year, pages in books:
+    print(title, year, pages)
+
+largest_book = books[0]
+
+for book in books:
+    if book[2] > largest_book[2]:
+        largest_book = book
+
+print("Largest book:", largest_book)
+```
+
+The exact structure of the solution can vary. What matters is that the program demonstrates the required Tuple concepts without modifying the original collection.
+
+---
+

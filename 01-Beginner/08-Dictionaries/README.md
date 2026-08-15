@@ -3909,3 +3909,969 @@ This distinction is fundamental when working with Dictionary membership.
 
 ---
 
+# Part 7 — Dictionary Length and Counting Elements
+
+## Introduction
+
+A Dictionary can contain zero, one, or many Key-Value pairs. As programs become more dynamic, we often need to know **how many items a Dictionary currently contains**.
+
+Python provides the built-in `len()` function for this purpose.
+
+Although the operation itself is simple, understanding exactly **what `len()` counts**, how it behaves with empty Dictionaries, and how it differs from counting Keys or Values individually is important for writing reliable programs.
+
+---
+
+## 1. Getting the Number of Items
+
+Consider:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+print(len(student))
+```
+
+Output:
+
+```text
+3
+```
+
+The Dictionary contains three Key-Value pairs, so its length is `3`.
+
+The general form is:
+
+```python
+len(dictionary)
+```
+
+For a Dictionary, `len()` returns the number of **Key-Value pairs**.
+
+---
+
+## 2. What Exactly Does `len()` Count?
+
+Suppose we have:
+
+```python
+data = {
+    "a": 10,
+    "b": 20,
+    "c": 30
+}
+```
+
+There are:
+
+* 3 Keys
+* 3 Values
+* 3 Key-Value pairs
+
+Therefore:
+
+```python
+len(data)
+```
+
+returns:
+
+```text
+3
+```
+
+This is because every Dictionary item consists of one Key and its corresponding Value.
+
+---
+
+## 3. An Empty Dictionary
+
+An empty Dictionary has no Key-Value pairs:
+
+```python
+data = {}
+
+print(len(data))
+```
+
+Output:
+
+```text
+0
+```
+
+This makes `len()` useful when we need to determine whether a Dictionary contains any items.
+
+For example:
+
+```python
+if len(data) == 0:
+    print("Dictionary is empty.")
+```
+
+---
+
+## 4. A More Pythonic Empty Check
+
+Although this works:
+
+```python
+if len(data) == 0:
+    print("Empty")
+```
+
+Python allows a simpler form:
+
+```python
+if not data:
+    print("Empty")
+```
+
+An empty Dictionary is considered **Falsy**, while a non-empty Dictionary is considered **Truthy**.
+
+For example:
+
+```python
+data = {}
+
+print(bool(data))
+```
+
+Output:
+
+```text
+False
+```
+
+After adding an item:
+
+```python
+data["name"] = "Ali"
+
+print(bool(data))
+```
+
+Output:
+
+```text
+True
+```
+
+This gives us two common approaches:
+
+```python
+len(data) == 0
+```
+
+and:
+
+```python
+not data
+```
+
+The second form is usually preferred when the only question is whether the Dictionary is empty.
+
+---
+
+## 5. Checking Whether a Dictionary Contains Items
+
+We can also write:
+
+```python
+if data:
+    print("Dictionary contains items.")
+```
+
+This executes only when the Dictionary is non-empty.
+
+For example:
+
+```python
+data = {
+    "name": "Ali"
+}
+
+if data:
+    print("There is data.")
+```
+
+Output:
+
+```text
+There is data.
+```
+
+This pattern is very common in Python programs.
+
+---
+
+## 6. Length Changes When Items Are Added
+
+Dictionary length is dynamic.
+
+Consider:
+
+```python
+data = {}
+
+print(len(data))
+```
+
+Output:
+
+```text
+0
+```
+
+Add an item:
+
+```python
+data["name"] = "Ali"
+
+print(len(data))
+```
+
+Output:
+
+```text
+1
+```
+
+Add another:
+
+```python
+data["age"] = 20
+
+print(len(data))
+```
+
+Output:
+
+```text
+2
+```
+
+The length changes as the Dictionary structure changes.
+
+---
+
+## 7. Updating a Value Does Not Change the Length
+
+This distinction is important.
+
+Consider:
+
+```python
+student = {
+    "name": "Ali",
+    "score": 18
+}
+
+print(len(student))
+```
+
+Output:
+
+```text
+2
+```
+
+Now update the existing Value:
+
+```python
+student["score"] = 20
+
+print(len(student))
+```
+
+The result is still:
+
+```text
+2
+```
+
+Why?
+
+Because we did not create a new Key. We only changed the Value associated with an existing Key.
+
+Therefore:
+
+```text
+New Key      → length increases
+Existing Key → length stays the same
+```
+
+---
+
+## 8. Adding a New Key Changes the Length
+
+Compare that with:
+
+```python
+student["age"] = 20
+```
+
+Now the Dictionary contains:
+
+```python
+{
+    "name": "Ali",
+    "score": 20,
+    "age": 20
+}
+```
+
+Therefore:
+
+```python
+len(student)
+```
+
+returns:
+
+```text
+3
+```
+
+The important point is that Dictionary length depends on the number of **unique Keys**.
+
+---
+
+## 9. Removing an Item Changes the Length
+
+If we remove an item:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+del student["score"]
+
+print(len(student))
+```
+
+Output:
+
+```text
+2
+```
+
+Likewise, using `pop()` changes the length:
+
+```python
+student.pop("age")
+
+print(len(student))
+```
+
+Now the length is:
+
+```text
+1
+```
+
+So the relationship is:
+
+```text
+Add new Key     → length + 1
+Remove Key      → length - 1
+Update Value    → length unchanged
+```
+
+---
+
+## 10. `clear()` and Dictionary Length
+
+The `clear()` method removes all items:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+student.clear()
+
+print(len(student))
+```
+
+Output:
+
+```text
+0
+```
+
+The Dictionary still exists, but it contains no items.
+
+---
+
+## 11. Counting Keys Explicitly
+
+Because Dictionary length represents the number of Key-Value pairs, it is also equal to the number of Keys.
+
+For example:
+
+```python
+data = {
+    "a": 10,
+    "b": 20,
+    "c": 30
+}
+```
+
+These produce the same count:
+
+```python
+len(data)
+```
+
+and:
+
+```python
+len(data.keys())
+```
+
+Both return:
+
+```text
+3
+```
+
+However, for simply getting the Dictionary's size, this is usually preferable:
+
+```python
+len(data)
+```
+
+There is no need to explicitly create the Keys view first.
+
+---
+
+## 12. Counting Values
+
+The same idea applies to Values:
+
+```python
+len(data.values())
+```
+
+also returns:
+
+```text
+3
+```
+
+because every Key has one corresponding Value.
+
+So for a normal Dictionary:
+
+```python
+len(data)
+len(data.keys())
+len(data.values())
+```
+
+all produce the same number.
+
+However, they represent different concepts:
+
+* `len(data)` → number of Dictionary items
+* `len(data.keys())` → number of Keys
+* `len(data.values())` → number of Values
+
+---
+
+## 13. Counting Unique Values
+
+Here we encounter an important distinction.
+
+Dictionary Keys must be unique, but Values do not.
+
+Consider:
+
+```python
+data = {
+    "first": 10,
+    "second": 10,
+    "third": 20
+}
+```
+
+Then:
+
+```python
+len(data)
+```
+
+returns:
+
+```text
+3
+```
+
+There are three Key-Value pairs.
+
+But there are only two **unique Values**:
+
+```text
+10
+20
+```
+
+We can count them with a Set:
+
+```python
+print(len(set(data.values())))
+```
+
+Output:
+
+```text
+2
+```
+
+This is a useful example of the difference between:
+
+```text
+number of Values
+```
+
+and:
+
+```text
+number of unique Values
+```
+
+---
+
+## 14. Counting Items That Match a Condition
+
+Sometimes we do not want the total number of items.
+
+We want to count only the items satisfying a condition.
+
+For example:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+```
+
+Suppose we want to count students whose score is at least `18`.
+
+We can write:
+
+```python
+count = 0
+
+for score in scores.values():
+    if score >= 18:
+        count += 1
+
+print(count)
+```
+
+Output:
+
+```text
+2
+```
+
+Here, `len(scores)` would tell us that there are four students, but our loop counts only the Values satisfying the condition.
+
+---
+
+## 15. Counting Matching Items with `sum()`
+
+Python also allows a compact approach:
+
+```python
+count = sum(score >= 18 for score in scores.values())
+```
+
+Then:
+
+```python
+print(count)
+```
+
+outputs:
+
+```text
+2
+```
+
+The expression:
+
+```python
+score >= 18
+```
+
+produces Boolean values:
+
+```text
+True
+False
+True
+False
+```
+
+Python treats:
+
+```text
+True  → 1
+False → 0
+```
+
+when used in this numerical context.
+
+Therefore:
+
+```text
+1 + 0 + 1 + 0 = 2
+```
+
+This technique is useful once you are comfortable with Boolean expressions and iteration.
+
+---
+
+## 16. Counting Keys That Match a Condition
+
+We can also count Keys based on a condition.
+
+For example:
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18,
+    "city": "Tehran"
+}
+```
+
+Suppose we want to count Keys whose names contain the letter `"a"`:
+
+```python
+count = 0
+
+for key in data:
+    if "a" in key:
+        count += 1
+```
+
+Then:
+
+```python
+print(count)
+```
+
+The important concept is that iterating directly over a Dictionary gives us its Keys.
+
+---
+
+## 17. Dictionary Length in Loops
+
+The length of a Dictionary can be useful when controlling or validating program behavior.
+
+For example:
+
+```python
+data = {
+    "a": 10,
+    "b": 20,
+    "c": 30
+}
+
+print(f"Number of items: {len(data)}")
+```
+
+Output:
+
+```text
+Number of items: 3
+```
+
+This can be useful when reporting the current state of dynamically changing data.
+
+---
+
+## 18. A Dictionary Can Grow and Shrink
+
+Consider a Dictionary that changes throughout a program:
+
+```python
+data = {}
+
+data["a"] = 10
+data["b"] = 20
+
+print(len(data))
+```
+
+Output:
+
+```text
+2
+```
+
+Then:
+
+```python
+data["c"] = 30
+
+print(len(data))
+```
+
+Output:
+
+```text
+3
+```
+
+Then:
+
+```python
+data.pop("a")
+
+print(len(data))
+```
+
+Output:
+
+```text
+2
+```
+
+The length always reflects the Dictionary's **current state**.
+
+---
+
+## 19. Why Length Matters in Real Programs
+
+Dictionary length is useful in many situations:
+
+### Validation
+
+```python
+if len(user_data) < 3:
+    print("Some information is missing.")
+```
+
+### Empty-state handling
+
+```python
+if not cache:
+    print("Cache is empty.")
+```
+
+### Reporting
+
+```python
+print(f"Loaded {len(records)} records.")
+```
+
+### Controlling logic
+
+```python
+if len(settings) == 5:
+    print("All settings are configured.")
+```
+
+The important idea is that `len()` is not just a way to display a number. It can become part of the program's decision-making logic.
+
+---
+
+## 20. Important Concept: Length Is Not the Same as Data Size
+
+A Dictionary's `len()` tells us the number of Key-Value pairs.
+
+It does **not** tell us:
+
+* how many characters are inside its Strings,
+* how many elements are inside a nested List,
+* how much memory the Dictionary uses,
+* how many unique Values it contains.
+
+For example:
+
+```python
+data = {
+    "name": "Alexander",
+    "scores": [18, 19, 20]
+}
+```
+
+Then:
+
+```python
+len(data)
+```
+
+is:
+
+```text
+2
+```
+
+because there are only two top-level Keys:
+
+```text
+"name"
+"scores"
+```
+
+The List inside `"scores"` does not affect the Dictionary's length.
+
+---
+
+## Key Takeaways
+
+* `len(dictionary)` returns the number of Key-Value pairs.
+* An empty Dictionary has length `0`.
+* Updating an existing Value does not change the length.
+* Adding a new Key increases the length.
+* Removing a Key decreases the length.
+* `clear()` makes the Dictionary's length `0`.
+* `len(dictionary.keys())` and `len(dictionary.values())` normally produce the same count as `len(dictionary)`.
+* Values can repeat, while Keys must be unique.
+* `len(set(dictionary.values()))` can be used to count unique Values.
+* `len()` counts only top-level Dictionary items; it does not recursively count nested data.
+* `not dictionary` is a concise way to check whether a Dictionary is empty.
+* Length can be used for validation, reporting, and program logic.
+
+---
+
+# Section Questions
+
+## Question 1
+
+Given:
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+What is the result of:
+
+```python
+len(data)
+```
+
+## Question 2
+
+Given:
+
+```python
+data = {
+    "a": 10,
+    "b": 20
+}
+
+data["a"] = 100
+```
+
+Does the length of `data` change? Explain why.
+
+## Question 3
+
+Write two different ways to check whether a Dictionary is empty.
+
+---
+
+# Comprehensive Question
+
+Consider:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+```
+
+Write code that:
+
+1. Finds the total number of students.
+2. Counts how many students have a score of at least `18`.
+3. Checks whether the Dictionary is empty.
+4. Explain why `len(scores)` and the number of students with scores of at least `18` are different concepts.
+
+---
+
+# Answers
+
+## Answer 1
+
+```python
+len(data)
+```
+
+returns:
+
+```text
+3
+```
+
+## Answer 2
+
+No.
+
+The length remains `2` because the existing Key `"a"` was updated. No new Key was added.
+
+## Answer 3
+
+Using `len()`:
+
+```python
+len(data) == 0
+```
+
+Or the more Pythonic form:
+
+```python
+not data
+```
+
+## Comprehensive Answer
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19,
+    "Mina": 12
+}
+
+total_students = len(scores)
+
+high_scores = sum(score >= 18 for score in scores.values())
+
+is_empty = not scores
+```
+
+The total number of students is `4`, while the number of students with a score of at least `18` is `2`.
+
+`len(scores)` counts all Key-Value pairs.
+
+The conditional count only counts Values that satisfy the condition `score >= 18`.
+
+---
+

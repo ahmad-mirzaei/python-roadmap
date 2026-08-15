@@ -9181,378 +9181,403 @@ Your program should:
 8. Print the number of remaining tasks.
 9. If the task does not exist, display an appropriate message.
 
-Use variables, input, type casting where necessary, conditions, lists, `len()`, `in`, `not in`, `remove()`, and `pop()` where appropriate.
-
 ---
 
-# Part 12 — Copying a List
+# Part 12 — Sorting Lists
+
+> 🌐 Language: **English** | [فارسی](fa/README.md)
 
 ## 1. Introduction
 
-Sometimes we need to create a copy of a list so that we can change the copy without changing the original list.
+Sometimes we need to arrange the elements of a list in a specific order.
 
-This is important because simply assigning one list to another variable does not create an independent copy.
+Python provides simple ways to sort lists.
 
-## 2. The Problem with Simple Assignment
+In this section, we will learn:
 
-Consider this example:
+* `sort()`
+* Sorting numbers
+* Sorting strings
+* Ascending order
+* Descending order
+* `reverse=True`
+* `sorted()`
+* The difference between `sort()` and `sorted()`
 
-```python
-fruits = ["Apple", "Banana", "Orange"]
+## 2. Sorting Numbers
 
-new_fruits = fruits
-
-new_fruits.append("Mango")
-
-print(fruits)
-print(new_fruits)
-```
-
-Output:
-
-```text
-['Apple', 'Banana', 'Orange', 'Mango']
-['Apple', 'Banana', 'Orange', 'Mango']
-```
-
-Both variables refer to the same list.
-
-Changing `new_fruits` also changes `fruits`.
-
-## 3. Copying with `copy()`
-
-Lists have a `copy()` method that creates a separate copy.
+We can use `sort()` to arrange numbers from smallest to largest.
 
 ```python
-fruits = ["Apple", "Banana", "Orange"]
+numbers = [40, 10, 30, 20]
 
-new_fruits = fruits.copy()
-
-new_fruits.append("Mango")
-
-print(fruits)
-print(new_fruits)
-```
-
-Output:
-
-```text
-['Apple', 'Banana', 'Orange']
-['Apple', 'Banana', 'Orange', 'Mango']
-```
-
-Now the two lists are separate.
-
-Changing `new_fruits` does not change `fruits`.
-
-## 4. Copying with Slicing
-
-We can also create a copy using slicing.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-new_fruits = fruits[:]
-
-new_fruits.append("Mango")
-
-print(fruits)
-print(new_fruits)
-```
-
-Output:
-
-```text
-['Apple', 'Banana', 'Orange']
-['Apple', 'Banana', 'Orange', 'Mango']
-```
-
-The expression:
-
-```python
-fruits[:]
-```
-
-creates a new list containing all elements of `fruits`.
-
-## 5. Comparing the Methods
-
-These two methods create a separate list:
-
-```python
-new_fruits = fruits.copy()
-```
-
-and:
-
-```python
-new_fruits = fruits[:]
-```
-
-But this does not:
-
-```python
-new_fruits = fruits
-```
-
-The important difference is whether a new list is created.
-
-## 6. Changing the Copy
-
-After creating a copy, we can change it independently.
-
-```python
-numbers = [10, 20, 30]
-
-copied_numbers = numbers.copy()
-
-copied_numbers[0] = 100
+numbers.sort()
 
 print(numbers)
-print(copied_numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+By default, `sort()` uses ascending order.
+
+## 3. Sorting in Descending Order
+
+We can use `reverse=True` to sort from largest to smallest.
+
+```python
+numbers = [40, 10, 30, 20]
+
+numbers.sort(reverse=True)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[40, 30, 20, 10]
+```
+
+## 4. Sorting Strings
+
+We can also sort a list of strings.
+
+```python
+fruits = ["Orange", "Apple", "Banana", "Mango"]
+
+fruits.sort()
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Mango', 'Orange']
+```
+
+The strings are sorted alphabetically.
+
+## 5. Reverse Sorting Strings
+
+We can sort strings in reverse order.
+
+```python
+fruits = ["Orange", "Apple", "Banana", "Mango"]
+
+fruits.sort(reverse=True)
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Orange', 'Mango', 'Banana', 'Apple']
+```
+
+## 6. `sort()` Changes the Original List
+
+An important point is that `sort()` changes the original list.
+
+```python
+numbers = [30, 10, 20]
+
+numbers.sort()
+
+print(numbers)
 ```
 
 Output:
 
 ```text
 [10, 20, 30]
-[100, 20, 30]
 ```
 
-Only the copied list was changed.
+The original order is gone.
 
-## 7. Removing an Element from the Copy
+If we need to keep the original order, we can use `sorted()`.
 
-We can also use list methods on the copied list.
+## 7. Using `sorted()`
+
+The `sorted()` function creates a new sorted list.
 
 ```python
-fruits = ["Apple", "Banana", "Orange"]
+numbers = [30, 10, 20]
 
-copied_fruits = fruits.copy()
+sorted_numbers = sorted(numbers)
 
-copied_fruits.remove("Banana")
-
-print(fruits)
-print(copied_fruits)
+print(numbers)
+print(sorted_numbers)
 ```
 
 Output:
 
 ```text
-['Apple', 'Banana', 'Orange']
-['Apple', 'Orange']
+[30, 10, 20]
+[10, 20, 30]
 ```
 
-The original list remains unchanged.
+The original list did not change.
 
-## 8. Adding Elements to the Copy
+## 8. `sort()` vs `sorted()`
 
-We can add new elements to the copy.
+The main difference is:
+
+```text
+sort()   → changes the original list
+sorted() → creates a new sorted list
+```
+
+Example:
 
 ```python
-fruits = ["Apple", "Banana", "Orange"]
+numbers = [3, 1, 2]
 
-copied_fruits = fruits.copy()
+numbers.sort()
 
-copied_fruits.append("Mango")
-
-print(fruits)
-print(copied_fruits)
+print(numbers)
 ```
 
 Output:
 
 ```text
-['Apple', 'Banana', 'Orange']
-['Apple', 'Banana', 'Orange', 'Mango']
+[1, 2, 3]
 ```
 
-## 9. Using a Copy for Safe Changes
-
-Copying is useful when we want to keep the original data.
-
-For example:
+But:
 
 ```python
-scores = [18, 15, 12, 9, 20]
+numbers = [3, 1, 2]
 
-updated_scores = scores.copy()
+new_numbers = sorted(numbers)
 
-updated_scores.remove(9)
-
-print("Original:", scores)
-print("Updated:", updated_scores)
+print(numbers)
+print(new_numbers)
 ```
 
 Output:
 
 ```text
-Original: [18, 15, 12, 9, 20]
-Updated: [18, 15, 12, 20]
+[3, 1, 2]
+[1, 2, 3]
 ```
 
-The original scores are still available.
+## 9. Sorting a List of Scores
 
-## 10. Common Beginner Mistakes
-
-### Mistake 1 — Thinking Assignment Creates a Copy
-
-This does not create an independent list:
+Sorting can be useful when working with scores.
 
 ```python
-new_list = old_list
+scores = [15, 18, 12, 20, 17]
+
+scores.sort()
+
+print(scores)
 ```
 
-Both variables refer to the same list.
+Output:
 
-### Mistake 2 — Changing the Wrong List
-
-After making a copy, make sure you modify the intended variable.
-
-```python
-fruits = ["Apple", "Banana"]
-
-copied_fruits = fruits.copy()
-
-copied_fruits.append("Orange")
+```text
+[12, 15, 17, 18, 20]
 ```
 
-Only `copied_fruits` changes.
-
-## 11. Important Summary
-
-Use `copy()` to create an independent copy of a list:
+We can also sort from highest to lowest.
 
 ```python
-new_list = old_list.copy()
+scores.sort(reverse=True)
+
+print(scores)
 ```
 
-You can also copy a list with slicing:
+Output:
 
-```python
-new_list = old_list[:]
+```text
+[20, 18, 17, 15, 12]
 ```
 
-Do not use simple assignment when you need an independent list:
+## 10. Sorting a Copy
+
+If we want to keep the original list unchanged, we can combine `copy()` and `sort()`.
 
 ```python
-new_list = old_list
+numbers = [30, 10, 20]
+
+sorted_numbers = numbers.copy()
+
+sorted_numbers.sort()
+
+print(numbers)
+print(sorted_numbers)
+```
+
+Output:
+
+```text
+[30, 10, 20]
+[10, 20, 30]
+```
+
+This is useful when we want both the original and sorted versions.
+
+## 11. Common Beginner Mistakes
+
+### Mistake 1 — Expecting `sort()` to Create a New List
+
+This does not work as expected:
+
+```python
+numbers = [3, 1, 2]
+
+new_numbers = numbers.sort()
+
+print(new_numbers)
+```
+
+Output:
+
+```text
+None
+```
+
+`sort()` changes the original list instead of creating and returning a new list.
+
+### Mistake 2 — Forgetting `reverse=True`
+
+For descending order, write:
+
+```python
+numbers.sort(reverse=True)
+```
+
+Not:
+
+```python
+numbers.sort(reverse)
+```
+
+## 12. Important Summary
+
+Use `sort()` when you want to change the original list:
+
+```python
+numbers.sort()
+```
+
+Use `reverse=True` for descending order:
+
+```python
+numbers.sort(reverse=True)
+```
+
+Use `sorted()` when you want a new sorted list:
+
+```python
+new_numbers = sorted(numbers)
 ```
 
 Remember:
 
 ```text
-copy() → creates a new list
-[:]    → creates a new list
-=      → refers to the same list
+sort()   → changes the original list
+sorted() → creates a new list
+reverse=True → descending order
 ```
 
 # Exercises
 
-## Exercise 1 — Create a Copy
+## Exercise 1 — Sort Numbers
 
-Create a list of five fruits and make a copy using `copy()`.
+Create a list of five numbers and sort them from smallest to largest.
 
-Add a new fruit to the copy and print both lists.
+## Exercise 2 — Reverse Sorting
 
-## Exercise 2 — Copy with Slicing
+Create a list of numbers and sort them from largest to smallest.
 
-Create a list of numbers and create a copy using `[:]`.
+## Exercise 3 — Sort Fruits
 
-Change one element in the copy and print both lists.
+Create a list of fruits and sort them alphabetically.
 
-## Exercise 3 — Compare Assignment and Copy
+## Exercise 4 — Keep the Original
 
-Create a list and assign it to another variable using `=`.
-
-Change the second variable and observe what happens to the original list.
-
-Then repeat the example using `copy()`.
-
-## Exercise 4 — Copy and Remove
-
-Create a list of names.
-
-Make a copy and remove one name from the copy.
+Create a list of numbers and use `sorted()` to create a new sorted list.
 
 Print both lists.
 
-## Exercise 5 — Copy and Update
+## Exercise 5 — Sort a Copy
 
-Create a list of scores.
+Create a list of scores, copy it, and sort the copy.
 
-Make a copy, remove one score, and add another score to the copy.
-
-Print the original and updated lists.
+Print the original and sorted lists.
 
 # Comprehensive Review
 
 ## Question 1
 
-What is the difference between:
-
-```python
-new_list = old_list
-```
-
-and:
-
-```python
-new_list = old_list.copy()
-```
+What is the difference between `sort()` and `sorted()`?
 
 ## Question 2
 
 What will this program print?
 
 ```python
-numbers = [10, 20, 30]
+numbers = [30, 10, 20]
 
-copied_numbers = numbers.copy()
-
-copied_numbers.append(40)
+numbers.sort()
 
 print(numbers)
-print(copied_numbers)
 ```
 
 ## Question 3
 
-Write a program that creates a copy of a list using slicing.
+What will this program print?
+
+```python
+numbers = [30, 10, 20]
+
+new_numbers = sorted(numbers)
+
+print(numbers)
+print(new_numbers)
+```
 
 ## Question 4
 
-Create a list of fruits, make a copy, remove one fruit from the copy, and print both lists.
+Write a program that sorts a list of numbers from largest to smallest.
 
 ## Question 5
 
-Why can copying a list be useful when we want to keep the original data unchanged?
+Write a program that creates a sorted copy of a list while keeping the original list unchanged.
 
 # Challenge
 
 ## Python Roadmap Challenge
 
-Create a simple **Shopping List Manager**.
+Create a simple **Score Manager**.
 
 Start with:
 
 ```python
-shopping_list = ["Milk", "Bread", "Eggs", "Apples"]
+scores = [14, 18, 11, 20, 16]
 ```
 
 Your program should:
 
-1. Print the original shopping list.
-2. Create a copy of the list.
-3. Ask the user for a new item.
-4. Add the new item only if it is not already in the copied list.
-5. Ask the user for an item to remove.
-6. Remove that item from the copied list only if it exists.
-7. Print the original list.
-8. Print the updated copied list.
-9. Print the number of items in the updated list.
+1. Print the original scores.
+2. Create a copy of the scores.
+3. Ask the user for a new score.
+4. Convert the input to an integer.
+5. Add the new score to the copied list.
+6. Sort the copied list from smallest to largest.
+7. Print the original scores.
+8. Print the updated sorted scores.
+9. Print the highest score.
+10. Print the lowest score.
 
-Use concepts learned so far, including variables, input, conditions, lists, `len()`, `in`, `not in`, `append()`, `remove()`, and `copy()`.
+Use concepts learned so far, including variables, `input()`, type casting, lists, `copy()`, `append()`, `sort()`, `len()`, and indexing.
 
 ---
 

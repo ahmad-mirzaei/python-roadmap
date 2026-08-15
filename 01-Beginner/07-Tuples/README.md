@@ -455,3 +455,233 @@ A List is mutable, while a Tuple is immutable. To create a tuple with one elemen
 
 ---
 
+# Part 3 — Accessing Tuple Elements
+
+## 1. Accessing Elements with Indexing
+
+Just like Lists, we can access Tuple elements using their index.
+
+Python starts counting indexes from `0`.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print(fruits[0])
+print(fruits[1])
+print(fruits[2])
+```
+
+Output:
+
+```text
+Apple
+Banana
+Orange
+```
+
+## 2. Using Negative Indexes
+
+We can also use negative indexes.
+
+`-1` refers to the last element, `-2` to the second-to-last element, and so on.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print(fruits[-1])
+print(fruits[-2])
+print(fruits[-3])
+```
+
+Output:
+
+```text
+Orange
+Banana
+Apple
+```
+
+## 3. Accessing a Specific Element
+
+We can use an index to access any element we need.
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+print(numbers[3])
+```
+
+Output:
+
+```text
+40
+```
+
+The index `3` refers to the fourth element because indexing starts from `0`.
+
+## 4. Using Indexing with Different Data Types
+
+Indexing works regardless of the type of values stored in the Tuple.
+
+```python
+student = ("Ali", 20, 18.5, True)
+
+print(student[0])
+print(student[1])
+print(student[2])
+print(student[3])
+```
+
+Output:
+
+```text
+Ali
+20
+18.5
+True
+```
+
+## 5. Indexing a Nested Tuple
+
+A Tuple can contain another Tuple.
+
+We can use multiple indexes to access an element inside the nested Tuple.
+
+```python
+student = ("Ali", (18, 20, 17))
+
+print(student[1])
+print(student[1][0])
+```
+
+Output:
+
+```text
+(18, 20, 17)
+18
+```
+
+Here:
+
+```text
+student[1]
+```
+
+accesses the inner Tuple.
+
+Then:
+
+```text
+student[1][0]
+```
+
+accesses the first element of that inner Tuple.
+
+We will study nested Tuples in more detail later.
+
+## 6. Index Out of Range
+
+The index must exist in the Tuple.
+
+For example:
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print(fruits[3])
+```
+
+This causes an error because the available indexes are:
+
+```text
+0
+1
+2
+```
+
+The index `3` does not exist.
+
+## 7. Important Point
+
+Tuple indexing works in the same basic way as List indexing.
+
+For example:
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+print(fruits[0])
+print(fruits[-1])
+```
+
+Output:
+
+```text
+Apple
+Orange
+```
+
+The important difference is not how we access the elements.
+
+The important difference is that Tuple elements cannot be changed after the Tuple is created.
+
+# Questions
+
+## Question 1
+
+What is the index of `"Orange"`?
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+```
+
+## Question 2
+
+What will this program print?
+
+```python
+numbers = (10, 20, 30, 40)
+
+print(numbers[-1])
+print(numbers[-3])
+```
+
+## Question 3
+
+Why does this code cause an error?
+
+```python
+colors = ("Red", "Green", "Blue")
+
+print(colors[3])
+```
+
+## Review Question
+
+What are the main differences between accessing elements in a List and a Tuple, and what happens if we try to change a Tuple element?
+
+# Answers
+
+## Answer 1
+
+The index of `"Orange"` is `2`.
+
+## Answer 2
+
+Output:
+
+```text
+40
+20
+```
+
+## Answer 3
+
+The Tuple has only three elements, so its valid indexes are `0`, `1`, and `2`. Index `3` does not exist.
+
+## Review Answer
+
+The basic indexing method is the same for Lists and Tuples. Both support positive and negative indexes. However, Tuple elements cannot be changed after the Tuple is created.
+
+---
+

@@ -5056,3 +5056,982 @@ However, if a mutable object such as a List is stored inside a Tuple, that inner
 
 ---
 
+# Part 14 — Final Review: Tuples
+
+This section reviews the complete set of beginner-level Tuple concepts covered so far.
+
+The goal is not to introduce a large new concept, but to connect the ideas and make sure the fundamental Tuple skills work together.
+
+---
+
+## 1. What Is a Tuple?
+
+A Tuple is an ordered collection of values.
+
+```python
+numbers = (10, 20, 30)
+```
+
+A Tuple:
+
+- preserves the order of its elements;
+- can contain different data types;
+- supports indexing and slicing;
+- is immutable.
+
+For example:
+
+```python
+person = ("Ali", 20, True)
+
+print(person)
+```
+
+Output:
+
+```text
+('Ali', 20, True)
+```
+
+---
+
+## 2. Creating Tuples
+
+A Tuple is commonly created using parentheses:
+
+```python
+numbers = (10, 20, 30)
+```
+
+An empty Tuple is:
+
+```python
+empty = ()
+```
+
+A one-element Tuple requires a comma:
+
+```python
+single = (10,)
+```
+
+This is not a Tuple:
+
+```python
+single = (10)
+```
+
+Here, `single` is simply an integer.
+
+---
+
+## 3. Accessing Elements
+
+Tuple elements are accessed using indexes.
+
+```python
+numbers = (10, 20, 30, 40)
+
+print(numbers[0])
+print(numbers[2])
+```
+
+Output:
+
+```text
+10
+30
+```
+
+Negative indexes can access elements from the end:
+
+```python
+print(numbers[-1])
+```
+
+Output:
+
+```text
+40
+```
+
+The first element has index `0`, not `1`.
+
+---
+
+## 4. Slicing Tuples
+
+Slicing allows us to retrieve a range of elements.
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+print(numbers[1:4])
+```
+
+Output:
+
+```text
+(20, 30, 40)
+```
+
+The start index is included, while the stop index is excluded.
+
+We can also use a step:
+
+```python
+print(numbers[::2])
+```
+
+Output:
+
+```text
+(10, 30, 50)
+```
+
+Slicing creates another Tuple.
+
+---
+
+## 5. Tuple Immutability
+
+A Tuple cannot have its existing elements replaced.
+
+This is invalid:
+
+```python
+numbers = (10, 20, 30)
+
+numbers[1] = 100
+```
+
+Python raises:
+
+```text
+TypeError
+```
+
+However, we can assign a completely new Tuple to the variable:
+
+```python
+numbers = (10, 20, 30)
+
+numbers = (10, 100, 30)
+
+print(numbers)
+```
+
+Output:
+
+```text
+(10, 100, 30)
+```
+
+The original Tuple was not modified.
+
+A new Tuple was created.
+
+---
+
+## 6. Searching for an Element
+
+The `in` operator checks whether a value exists in a Tuple.
+
+```python
+numbers = (10, 20, 30)
+
+print(20 in numbers)
+print(50 in numbers)
+```
+
+Output:
+
+```text
+True
+False
+```
+
+The opposite operation is `not in`:
+
+```python
+print(50 not in numbers)
+```
+
+Output:
+
+```text
+True
+```
+
+This is useful when we only need to know whether a value exists.
+
+---
+
+## 7. Finding the Length
+
+The `len()` function returns the number of elements in a Tuple.
+
+```python
+numbers = (10, 20, 30, 40)
+
+print(len(numbers))
+```
+
+Output:
+
+```text
+4
+```
+
+For a nested Tuple, `len()` works at the level of the object we provide:
+
+```python
+data = (
+    ("Ali", 18),
+    ("Sara", 20)
+)
+
+print(len(data))
+```
+
+Output:
+
+```text
+2
+```
+
+The outer Tuple has two elements.
+
+---
+
+## 8. Counting Elements
+
+The `count()` method tells us how many times a value occurs.
+
+```python
+numbers = (10, 20, 10, 30, 10)
+
+print(numbers.count(10))
+```
+
+Output:
+
+```text
+3
+```
+
+If the value does not exist:
+
+```python
+print(numbers.count(50))
+```
+
+Output:
+
+```text
+0
+```
+
+`count()` does not modify the Tuple.
+
+---
+
+## 9. Finding the Position of an Element
+
+The `index()` method returns the position of the first occurrence of a value.
+
+```python
+numbers = (10, 20, 30, 20)
+
+print(numbers.index(20))
+```
+
+Output:
+
+```text
+1
+```
+
+Although `20` appears twice, `index()` returns the position of its first occurrence.
+
+If the value does not exist:
+
+```python
+numbers = (10, 20, 30)
+
+print(numbers.index(50))
+```
+
+Python raises:
+
+```text
+ValueError
+```
+
+Therefore, when using `index()`, we should know that the value exists or check first.
+
+---
+
+## 10. Traversing a Tuple
+
+A `for` loop can be used to process every element.
+
+```python
+numbers = (10, 20, 30)
+
+for number in numbers:
+    print(number)
+```
+
+Output:
+
+```text
+10
+20
+30
+```
+
+Traversal is useful when we want to perform an operation on each element.
+
+For example:
+
+```python
+numbers = (10, 20, 30)
+
+for number in numbers:
+    print(number * 2)
+```
+
+Output:
+
+```text
+20
+40
+60
+```
+
+---
+
+## 11. Combining Tuples
+
+The `+` operator concatenates Tuples.
+
+```python
+a = (1, 2)
+b = (3, 4)
+
+result = a + b
+
+print(result)
+```
+
+Output:
+
+```text
+(1, 2, 3, 4)
+```
+
+A new Tuple is created.
+
+The original Tuples remain unchanged.
+
+---
+
+## 12. Repeating Tuples
+
+The `*` operator repeats a Tuple.
+
+```python
+numbers = (1, 2)
+
+print(numbers * 3)
+```
+
+Output:
+
+```text
+(1, 2, 1, 2, 1, 2)
+```
+
+Repeating zero or a negative number of times produces an empty Tuple:
+
+```python
+print(numbers * 0)
+```
+
+Output:
+
+```text
+()
+```
+
+---
+
+## 13. Converting Between Lists and Tuples
+
+A List can be converted to a Tuple with `tuple()`:
+
+```python
+numbers = [10, 20, 30]
+
+numbers = tuple(numbers)
+
+print(numbers)
+```
+
+Output:
+
+```text
+(10, 20, 30)
+```
+
+A Tuple can be converted to a List with `list()`:
+
+```python
+numbers = (10, 20, 30)
+
+numbers = list(numbers)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+```
+
+The conversion is useful when the required behavior changes.
+
+For example, we may temporarily convert a Tuple to a List when we need to modify its elements.
+
+---
+
+## 14. Tuple Unpacking
+
+Unpacking assigns Tuple elements to separate variables.
+
+```python
+person = ("Ali", 20)
+
+name, age = person
+
+print(name)
+print(age)
+```
+
+Output:
+
+```text
+Ali
+20
+```
+
+The number of variables must normally match the number of values.
+
+Python also supports extended unpacking:
+
+```python
+numbers = (10, 20, 30, 40)
+
+first, *middle, last = numbers
+
+print(first)
+print(middle)
+print(last)
+```
+
+Output:
+
+```text
+10
+[20, 30]
+40
+```
+
+The starred variable collects the remaining values into a List.
+
+---
+
+## 15. Nested Tuples
+
+A Tuple can contain other Tuples.
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+```
+
+We can access nested values using multiple indexes:
+
+```python
+print(students[1][0])
+```
+
+Output:
+
+```text
+Sara
+```
+
+Nested Tuples are useful when data naturally has multiple levels.
+
+They can also be unpacked:
+
+```python
+for name, score in students:
+    print(name, score)
+```
+
+Output:
+
+```text
+Ali 18
+Sara 20
+Reza 17
+```
+
+---
+
+## 16. The Relationship Between These Concepts
+
+The individual topics become more useful when combined.
+
+Consider:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17),
+    ("Mina", 19)
+)
+```
+
+We can check whether a complete record exists:
+
+```python
+print(("Sara", 20) in students)
+```
+
+Output:
+
+```text
+True
+```
+
+We can find the number of records:
+
+```python
+print(len(students))
+```
+
+Output:
+
+```text
+4
+```
+
+We can access a specific record:
+
+```python
+print(students[2])
+```
+
+Output:
+
+```text
+('Reza', 17)
+```
+
+We can access a field:
+
+```python
+print(students[2][1])
+```
+
+Output:
+
+```text
+17
+```
+
+We can traverse all records:
+
+```python
+for name, score in students:
+    print(name, score)
+```
+
+Output:
+
+```text
+Ali 18
+Sara 20
+Reza 17
+Mina 19
+```
+
+This is where the individual Tuple concepts start becoming one coherent skill.
+
+---
+
+## 17. A Complete Beginner Example
+
+Consider a small collection of fixed student records:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17),
+    ("Mina", 19)
+)
+
+print("Number of students:", len(students))
+
+print("Sara exists:", ("Sara", 20) in students)
+
+for name, score in students:
+    print(name, score)
+```
+
+Output:
+
+```text
+Number of students: 4
+Sara exists: True
+Ali 18
+Sara 20
+Reza 17
+Mina 19
+```
+
+This small example combines:
+
+- Tuple creation;
+- Nested Tuples;
+- `len()`;
+- membership testing;
+- `for` traversal;
+- Tuple unpacking.
+
+The purpose of a review is to recognize how these concepts work together rather than treating them as isolated commands.
+
+---
+
+## 18. Choosing Between a List and a Tuple
+
+At the beginner level, a useful rule is:
+
+```text
+Need to change the collection?
+        ↓
+      List
+
+Need a fixed collection?
+        ↓
+      Tuple
+```
+
+For example:
+
+```python
+shopping_cart = ["Milk", "Bread", "Eggs"]
+```
+
+A shopping cart can change, so a List is appropriate.
+
+But:
+
+```python
+point = (10, 20)
+```
+
+can naturally be represented as a Tuple when the pair is intended to remain fixed.
+
+This is not an absolute rule for every program, but it is a useful starting point.
+
+---
+
+## 19. Common Beginner Mistakes
+
+### Mistake 1 — Forgetting the comma
+
+```python
+value = (10)
+```
+
+This is an integer, not a Tuple.
+
+Correct:
+
+```python
+value = (10,)
+```
+
+### Mistake 2 — Trying to modify a Tuple
+
+```python
+numbers = (1, 2, 3)
+
+numbers[0] = 100
+```
+
+This raises `TypeError`.
+
+### Mistake 3 — Assuming `index()` searches safely
+
+```python
+numbers = (1, 2, 3)
+
+numbers.index(10)
+```
+
+This raises `ValueError`.
+
+If necessary, check first:
+
+```python
+if 10 in numbers:
+    print(numbers.index(10))
+```
+
+### Mistake 4 — Confusing the outer and inner levels
+
+For:
+
+```python
+data = (
+    ("A", 10),
+    ("B", 20)
+)
+```
+
+these are different:
+
+```python
+data[0]
+```
+
+and:
+
+```python
+data[0][0]
+```
+
+The first returns the complete inner Tuple:
+
+```text
+('A', 10)
+```
+
+The second returns:
+
+```text
+A
+```
+
+Understanding the level at which an operation occurs is essential when working with nested Tuples.
+
+---
+
+# Final Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+numbers = (10, 20, 10, 30)
+
+print(numbers.count(10))
+print(numbers.index(30))
+print(len(numbers))
+```
+
+## Question 2
+
+What will this code print?
+
+```python
+data = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+print(data[1][0])
+print(data[2][1])
+```
+
+## Question 3
+
+What is the difference between these two operations?
+
+```python
+numbers[1]
+numbers[1:2]
+```
+
+Assume:
+
+```python
+numbers = (10, 20, 30)
+```
+
+## Question 4
+
+What will this code print?
+
+```python
+numbers = (1, 2, 3, 4)
+
+a, *b, c = numbers
+
+print(a)
+print(b)
+print(c)
+```
+
+## Question 5
+
+Explain why this code is valid:
+
+```python
+data = ("Ali", [18, 20, 19])
+
+data[1][0] = 100
+```
+
+Even though Tuples are immutable.
+
+## Challenge Question
+
+Using everything learned about Tuples so far, write a program that stores several student records as a nested Tuple.
+
+Your program should:
+
+1. print the number of students;
+2. check whether a specific student record exists;
+3. traverse all records;
+4. print each student's name and score;
+5. find the position of one record;
+6. count how many times a specific record appears.
+
+Do not modify the original Tuple.
+
+# Answers
+
+## Answer 1
+
+```text
+2
+3
+4
+```
+
+`count(10)` returns `2`, `index(30)` returns `3`, and `len()` returns `4`.
+
+## Answer 2
+
+```text
+Sara
+17
+```
+
+`data[1][0]` accesses the name in the second record.
+
+`data[2][1]` accesses the score in the third record.
+
+## Answer 3
+
+```python
+numbers[1]
+```
+
+returns one element:
+
+```text
+20
+```
+
+while:
+
+```python
+numbers[1:2]
+```
+
+returns a Tuple containing that element:
+
+```text
+(20,)
+```
+
+Indexing returns an element, while slicing returns another sequence.
+
+## Answer 4
+
+```text
+1
+[2, 3]
+4
+```
+
+`b` collects the remaining values into a List.
+
+## Answer 5
+
+The outer Tuple is immutable, but its second element is a List.
+
+The Tuple does not allow us to replace the List itself:
+
+```python
+data[1] = [100, 20, 19]
+```
+
+But the List object stored inside the Tuple is mutable, so one of its elements can be changed:
+
+```python
+data[1][0] = 100
+```
+
+## Challenge Answer
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17),
+    ("Sara", 20)
+)
+
+target = ("Sara", 20)
+
+print("Number of students:", len(students))
+print("Record exists:", target in students)
+print("Record position:", students.index(target))
+print("Record count:", students.count(target))
+
+for name, score in students:
+    print(name, score)
+```
+
+Output:
+
+```text
+Number of students: 4
+Record exists: True
+Record position: 1
+Record count: 2
+Ali 18
+Sara 20
+Reza 17
+Sara 20
+```
+
+---
+

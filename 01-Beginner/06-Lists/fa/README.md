@@ -10029,3 +10029,338 @@ scores = [14, 18, 11, 20, 16]
 
 ---
 
+# بخش ۱۴ — مرور نهایی: لیست ها
+
+## ۱. مرور کلی
+
+در این درس با نحوه کار با لیست ها در پایتون آشنا شدیم.
+
+مباحثی که یاد گرفتیم:
+
+- ساخت لیست
+- دسترسی به عناصر
+- اندیس گذاری
+- برش
+- تغییر عناصر
+- اضافه کردن عناصر با `append()`
+- حذف عناصر با `remove()`
+- بررسی وجود عنصر با `in` و `not in`
+- پیدا کردن طول لیست با `len()`
+- شمارش عناصر با `count()`
+- کپی کردن لیست با `copy()`
+- پیمایش لیست با حلقه
+- مرتب سازی با `sort()`
+- ایجاد لیست مرتب شده با `sorted()`
+- پیدا کردن کوچک ترین عنصر با `min()`
+- پیدا کردن بزرگ ترین عنصر با `max()`
+- محاسبه مجموع با `sum()`
+
+## ۲. ساخت و دسترسی به لیست ها
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print(fruits)
+print(fruits[0])
+print(fruits[-1])
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange']
+Apple
+Orange
+```
+
+## ۳. برش لیست ها
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[1:4])
+print(numbers[:3])
+print(numbers[2:])
+```
+
+خروجی:
+
+```text
+[20, 30, 40]
+[10, 20, 30]
+[30, 40, 50]
+```
+
+## ۴. تغییر عناصر
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits[1] = "Mango"
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Mango', 'Orange']
+```
+
+## ۵. اضافه و حذف کردن عناصر
+
+```python
+fruits = ["Apple", "Banana"]
+
+fruits.append("Orange")
+fruits.remove("Banana")
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Orange']
+```
+
+## ۶. بررسی وجود یک عنصر
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Apple" in fruits)
+print("Mango" not in fruits)
+```
+
+خروجی:
+
+```text
+True
+True
+```
+
+## ۷. طول و شمارش
+
+```python
+fruits = ["Apple", "Banana", "Apple", "Orange"]
+
+print(len(fruits))
+print(fruits.count("Apple"))
+```
+
+خروجی:
+
+```text
+4
+2
+```
+
+## ۸. پیمایش لیست
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+for fruit in fruits:
+    print(fruit)
+```
+
+خروجی:
+
+```text
+Apple
+Banana
+Orange
+```
+
+## ۹. کپی کردن لیست
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.append("Mango")
+
+print(fruits)
+print(copied_fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+## ۱۰. مرتب سازی لیست ها
+
+```python
+numbers = [40, 10, 30, 20]
+
+numbers.sort()
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 20, 30, 40]
+```
+
+برای مرتب سازی نزولی:
+
+```python
+numbers.sort(reverse=True)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[40, 30, 20, 10]
+```
+
+همچنین می توانیم یک لیست مرتب شده جدید ایجاد کنیم:
+
+```python
+numbers = [30, 10, 20]
+
+sorted_numbers = sorted(numbers)
+
+print(numbers)
+print(sorted_numbers)
+```
+
+خروجی:
+
+```text
+[30, 10, 20]
+[10, 20, 30]
+```
+
+## ۱۱. پیدا کردن اطلاعات کاربردی
+
+```python
+scores = [14, 18, 11, 20, 16]
+
+print(min(scores))
+print(max(scores))
+print(sum(scores))
+print(len(scores))
+```
+
+خروجی:
+
+```text
+11
+20
+79
+5
+```
+
+می توانیم میانگین را نیز محاسبه کنیم:
+
+```python
+scores = [14, 18, 11, 20, 16]
+
+average = sum(scores) / len(scores)
+
+print(average)
+```
+
+خروجی:
+
+```text
+15.8
+```
+
+# مرور جامع
+
+## سوال ۱
+
+تفاوت این دو چیست؟
+
+```python
+numbers = [1, 2, 3]
+
+numbers[0] = 10
+```
+
+و:
+
+```python
+numbers.append(10)
+```
+
+## سوال ۲
+
+این برنامه چه چیزی چاپ می کند؟
+
+```python
+fruits = ["Apple", "Banana", "Apple", "Orange"]
+
+print(len(fruits))
+print(fruits.count("Apple"))
+print("Mango" in fruits)
+```
+
+خروجی:
+
+```text
+4
+2
+False
+```
+
+## سوال ۳
+
+تفاوت `sort()` و `sorted()` چیست؟
+
+## سوال ۴
+
+برنامه ای بنویسید که کوچک ترین، بزرگ ترین، مجموع و میانگین این لیست را پیدا کند:
+
+```python
+numbers = [12, 8, 20, 15, 10]
+```
+
+## سوال ۵
+
+چرا زمانی که به یک کپی مستقل از لیست نیاز داریم باید از `copy()` استفاده کنیم؟
+
+# چالش نهایی Lists
+
+یک برنامه ساده با نام **Student Scores Analyzer** بسازید.
+
+برنامه را با این لیست شروع کنید:
+
+```python
+scores = [15, 18, 12, 20, 17]
+```
+
+برنامه باید:
+
+1. نمره های اصلی را چاپ کند.
+2. یک نمره جدید از کاربر دریافت کند.
+3. ورودی را به عدد صحیح تبدیل کند.
+4. نمره جدید را به لیست اضافه کند.
+5. لیست به روز شده را چاپ کند.
+6. تعداد نمره ها را چاپ کند.
+7. بیشترین نمره را چاپ کند.
+8. کمترین نمره را چاپ کند.
+9. مجموع نمره ها را چاپ کند.
+10. میانگین نمره ها را چاپ کند.
+11. یک کپی از لیست نمره ها ایجاد کند.
+12. کپی را از بیشترین به کمترین مرتب کند.
+13. لیست اصلی را چاپ کند.
+14. کپی مرتب شده را چاپ کند.
+15. یک نمره برای جستجو از کاربر دریافت کند.
+16. مشخص کند آیا آن نمره در لیست وجود دارد یا نه.
+
+فقط از مفاهیمی استفاده کنید که تا اینجا یاد گرفته اید.
+
+---
+

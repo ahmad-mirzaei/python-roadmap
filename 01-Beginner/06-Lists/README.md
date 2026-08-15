@@ -9986,3 +9986,338 @@ Use concepts learned so far, including variables, `input()`, type casting, lists
 
 ---
 
+# Part 14 — Final Review: Lists
+
+## 1. Overview
+
+In this lesson, we have learned how to work with Python lists.
+
+We have covered:
+
+- Creating lists
+- Accessing elements
+- Indexing
+- Slicing
+- Changing elements
+- Adding elements with `append()`
+- Removing elements with `remove()`
+- Checking whether an element exists with `in` and `not in`
+- Finding the length with `len()`
+- Counting elements with `count()`
+- Copying lists with `copy()`
+- Looping through lists
+- Sorting lists with `sort()`
+- Creating sorted lists with `sorted()`
+- Finding the smallest element with `min()`
+- Finding the largest element with `max()`
+- Calculating the total with `sum()`
+
+## 2. Creating and Accessing Lists
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print(fruits)
+print(fruits[0])
+print(fruits[-1])
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+Apple
+Orange
+```
+
+## 3. Slicing Lists
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[1:4])
+print(numbers[:3])
+print(numbers[2:])
+```
+
+Output:
+
+```text
+[20, 30, 40]
+[10, 20, 30]
+[30, 40, 50]
+```
+
+## 4. Changing Elements
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits[1] = "Mango"
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Mango', 'Orange']
+```
+
+## 5. Adding and Removing Elements
+
+```python
+fruits = ["Apple", "Banana"]
+
+fruits.append("Orange")
+fruits.remove("Banana")
+
+print(fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Orange']
+```
+
+## 6. Checking for an Element
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print("Apple" in fruits)
+print("Mango" not in fruits)
+```
+
+Output:
+
+```text
+True
+True
+```
+
+## 7. Length and Counting
+
+```python
+fruits = ["Apple", "Banana", "Apple", "Orange"]
+
+print(len(fruits))
+print(fruits.count("Apple"))
+```
+
+Output:
+
+```text
+4
+2
+```
+
+## 8. Looping Through a List
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+for fruit in fruits:
+    print(fruit)
+```
+
+Output:
+
+```text
+Apple
+Banana
+Orange
+```
+
+## 9. Copying a List
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.append("Mango")
+
+print(fruits)
+print(copied_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+## 10. Sorting Lists
+
+```python
+numbers = [40, 10, 30, 20]
+
+numbers.sort()
+
+print(numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30, 40]
+```
+
+For descending order:
+
+```python
+numbers.sort(reverse=True)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[40, 30, 20, 10]
+```
+
+We can also create a new sorted list:
+
+```python
+numbers = [30, 10, 20]
+
+sorted_numbers = sorted(numbers)
+
+print(numbers)
+print(sorted_numbers)
+```
+
+Output:
+
+```text
+[30, 10, 20]
+[10, 20, 30]
+```
+
+## 11. Finding Useful Information
+
+```python
+scores = [14, 18, 11, 20, 16]
+
+print(min(scores))
+print(max(scores))
+print(sum(scores))
+print(len(scores))
+```
+
+Output:
+
+```text
+11
+20
+79
+5
+```
+
+We can also calculate the average:
+
+```python
+scores = [14, 18, 11, 20, 16]
+
+average = sum(scores) / len(scores)
+
+print(average)
+```
+
+Output:
+
+```text
+15.8
+```
+
+# Comprehensive Review
+
+## Question 1
+
+What is the difference between these two?
+
+```python
+numbers = [1, 2, 3]
+
+numbers[0] = 10
+```
+
+and:
+
+```python
+numbers.append(10)
+```
+
+## Question 2
+
+What will this program print?
+
+```python
+fruits = ["Apple", "Banana", "Apple", "Orange"]
+
+print(len(fruits))
+print(fruits.count("Apple"))
+print("Mango" in fruits)
+```
+
+Output:
+
+```text
+4
+2
+False
+```
+
+## Question 3
+
+What is the difference between `sort()` and `sorted()`?
+
+## Question 4
+
+Write a program that finds the smallest, largest, total, and average value of:
+
+```python
+numbers = [12, 8, 20, 15, 10]
+```
+
+## Question 5
+
+Why should we use `copy()` when we need an independent copy of a list?
+
+# Final Lists Challenge
+
+Create a simple **Student Scores Analyzer**.
+
+Start with:
+
+```python
+scores = [15, 18, 12, 20, 17]
+```
+
+Your program should:
+
+1. Print the original scores.
+2. Ask the user for a new score.
+3. Convert the input to an integer.
+4. Add the new score to the list.
+5. Print the updated list.
+6. Print the number of scores.
+7. Print the highest score.
+8. Print the lowest score.
+9. Print the total score.
+10. Print the average score.
+11. Create a copy of the scores.
+12. Sort the copied list from highest to lowest.
+13. Print the original scores.
+14. Print the sorted copy.
+15. Ask the user for a score to search for.
+16. Tell the user whether that score exists in the list.
+
+Use only concepts learned so far.
+
+---
+

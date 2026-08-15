@@ -2882,3 +2882,496 @@ for value1, value2 in tuple:
 
 ---
 
+# Part 10 — Combining and Repeating Tuples
+
+## 1. Combining Tuples with `+`
+
+Tuples can be combined using the `+` operator.
+
+This operation is called **concatenation**.
+
+For example:
+
+```python
+first = (1, 2, 3)
+second = (4, 5, 6)
+
+result = first + second
+
+print(result)
+```
+
+Output:
+
+```text
+(1, 2, 3, 4, 5, 6)
+```
+
+The elements of `second` are placed after the elements of `first`.
+
+The original Tuples are not changed:
+
+```python
+print(first)
+print(second)
+```
+
+Output:
+
+```text
+(1, 2, 3)
+(4, 5, 6)
+```
+
+The `+` operator creates a **new Tuple**.
+
+## 2. Combining More Than Two Tuples
+
+We can combine several Tuples in one expression.
+
+```python
+a = (1, 2)
+b = (3, 4)
+c = (5, 6)
+
+result = a + b + c
+
+print(result)
+```
+
+Output:
+
+```text
+(1, 2, 3, 4, 5, 6)
+```
+
+Python evaluates the concatenation from left to right.
+
+Conceptually:
+
+```text
+(1, 2)
+   +
+(3, 4)
+   ↓
+(1, 2, 3, 4)
+   +
+(5, 6)
+   ↓
+(1, 2, 3, 4, 5, 6)
+```
+
+## 3. Combining Tuples with Different Data Types
+
+A Tuple can contain different data types, so concatenated Tuples can also contain different types.
+
+```python
+numbers = (10, 20)
+words = ("Python", "Tuple")
+
+result = numbers + words
+
+print(result)
+```
+
+Output:
+
+```text
+(10, 20, 'Python', 'Tuple')
+```
+
+The elements are not converted into a common type.
+
+Each element keeps its original type.
+
+## 4. Tuple Concatenation Does Not Modify the Originals
+
+Because Tuples are immutable, concatenation does not add elements to an existing Tuple.
+
+For example:
+
+```python
+numbers = (1, 2, 3)
+
+numbers = numbers + (4, 5)
+
+print(numbers)
+```
+
+Output:
+
+```text
+(1, 2, 3, 4, 5)
+```
+
+It may look as though we added elements to the original Tuple.
+
+However, conceptually, a new Tuple was created and the variable `numbers` was assigned to that new Tuple.
+
+The original Tuple itself was not modified.
+
+This distinction becomes important when the same Tuple is referenced by more than one variable.
+
+## 5. Repeating a Tuple with `*`
+
+The `*` operator can be used to repeat a Tuple.
+
+For example:
+
+```python
+numbers = (1, 2, 3)
+
+print(numbers * 3)
+```
+
+Output:
+
+```text
+(1, 2, 3, 1, 2, 3, 1, 2, 3)
+```
+
+The entire sequence is repeated three times.
+
+The number on the right determines how many repetitions occur.
+
+```python
+(1, 2) * 2
+```
+
+produces:
+
+```text
+(1, 2, 1, 2)
+```
+
+while:
+
+```python
+(1, 2) * 4
+```
+
+produces:
+
+```text
+(1, 2, 1, 2, 1, 2, 1, 2)
+```
+
+## 6. Repeating Zero Times
+
+A Tuple can be repeated zero times.
+
+```python
+numbers = (1, 2, 3)
+
+print(numbers * 0)
+```
+
+Output:
+
+```text
+()
+```
+
+The result is an empty Tuple.
+
+This is useful for understanding that repetition creates a new sequence based on the requested number of repetitions.
+
+## 7. Repeating a Tuple with Negative Numbers
+
+A negative repetition count also produces an empty Tuple.
+
+```python
+numbers = (1, 2, 3)
+
+print(numbers * -2)
+```
+
+Output:
+
+```text
+()
+```
+
+Python does not repeat the Tuple a negative number of times.
+
+Instead, the result is an empty Tuple.
+
+## 8. Combining and Repeating Together
+
+Concatenation and repetition can be combined.
+
+```python
+a = (1, 2)
+b = (3, 4)
+
+result = (a + b) * 2
+
+print(result)
+```
+
+Output:
+
+```text
+(1, 2, 3, 4, 1, 2, 3, 4)
+```
+
+First:
+
+```python
+a + b
+```
+
+produces:
+
+```text
+(1, 2, 3, 4)
+```
+
+Then:
+
+```python
+* 2
+```
+
+repeats that Tuple.
+
+The order of operations therefore matters.
+
+## 9. Operator Precedence and Parentheses
+
+When combining operations, parentheses can make the intended operation explicit.
+
+Compare:
+
+```python
+a = (1, 2)
+b = (3, 4)
+
+print(a + b * 2)
+```
+
+with:
+
+```python
+print((a + b) * 2)
+```
+
+The first expression repeats `b` first:
+
+```text
+(1, 2, 3, 4, 3, 4)
+```
+
+The second combines `a` and `b` first and then repeats the result:
+
+```text
+(1, 2, 3, 4, 1, 2, 3, 4)
+```
+
+This is an important lesson:
+
+> Parentheses can change the structure of a Tuple expression.
+
+## 10. Combining Tuples with a Single Element
+
+A common mistake is forgetting that a single element must be represented as a Tuple when using `+`.
+
+This is incorrect:
+
+```python
+numbers = (1, 2, 3)
+
+result = numbers + (4)
+
+print(result)
+```
+
+It raises a `TypeError`.
+
+Why?
+
+Because:
+
+```python
+(4)
+```
+
+is just the integer `4`, not a Tuple.
+
+A one-element Tuple requires a trailing comma:
+
+```python
+(4,)
+```
+
+Therefore:
+
+```python
+numbers = (1, 2, 3)
+
+result = numbers + (4,)
+
+print(result)
+```
+
+Output:
+
+```text
+(1, 2, 3, 4)
+```
+
+This is one of the most important details when working with one-element Tuples.
+
+## 11. Combining Tuples with Lists
+
+The `+` operator requires compatible sequence types.
+
+For example:
+
+```python
+numbers = (1, 2, 3)
+values = [4, 5, 6]
+
+print(numbers + values)
+```
+
+This raises a `TypeError`.
+
+A Tuple and a List cannot be directly concatenated with `+`.
+
+If we want to combine them, we first need to convert one of them:
+
+```python
+numbers = (1, 2, 3)
+values = [4, 5, 6]
+
+result = numbers + tuple(values)
+
+print(result)
+```
+
+Output:
+
+```text
+(1, 2, 3, 4, 5, 6)
+```
+
+This reinforces the distinction between Lists and Tuples.
+
+## 12. Practical Use of Tuple Combination
+
+Combining Tuples can be useful when constructing larger fixed collections from smaller ones.
+
+For example:
+
+```python
+morning = ("Breakfast", "Study")
+evening = ("Exercise", "Reading")
+
+day = morning + evening
+
+print(day)
+```
+
+Output:
+
+```text
+('Breakfast', 'Study', 'Exercise', 'Reading')
+```
+
+Similarly, repetition can be useful when creating a repeated fixed structure:
+
+```python
+pattern = ("A", "B")
+
+print(pattern * 3)
+```
+
+Output:
+
+```text
+('A', 'B', 'A', 'B', 'A', 'B')
+```
+
+The important point is that both operations create a **new Tuple** rather than modifying an existing one.
+
+# Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+a = (1, 2)
+b = (3, 4)
+
+print(a + b)
+```
+
+## Question 2
+
+What is the difference between these two expressions?
+
+```python
+(1, 2) * 3
+(1, 2, 3) * 2
+```
+
+## Question 3
+
+Why does this code raise an error?
+
+```python
+numbers = (1, 2, 3)
+
+result = numbers + (4)
+```
+
+How should it be corrected?
+
+## Review Question
+
+Explain how `+` and `*` work with Tuples, why these operations do not modify the original Tuple, and why `(4,)` is different from `(4)`.
+
+# Answers
+
+## Answer 1
+
+```text
+(1, 2, 3, 4)
+```
+
+## Answer 2
+
+The first expression repeats the Tuple `(1, 2)` three times:
+
+```text
+(1, 2, 1, 2, 1, 2)
+```
+
+The second repeats `(1, 2, 3)` two times:
+
+```text
+(1, 2, 3, 1, 2, 3)
+```
+
+## Answer 3
+
+`(4)` is an integer expression, not a Tuple.
+
+A one-element Tuple requires a comma:
+
+```python
+numbers = (1, 2, 3)
+
+result = numbers + (4,)
+```
+
+## Review Answer
+
+`+` concatenates Tuples and `*` repeats them. Both operations create a new Tuple rather than modifying the original Tuple.
+
+`(4)` is simply the integer `4`, while `(4,)` is a one-element Tuple because of the trailing comma.
+
+---
+

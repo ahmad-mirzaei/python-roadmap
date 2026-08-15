@@ -1131,3 +1131,699 @@ The result is:
 
 ---
 
+# Part 3 — Accessing Dictionary Values
+
+## Introduction
+
+Creating a Dictionary is only the beginning. The next essential skill is learning how to **retrieve the values stored inside it**.
+
+Unlike Lists and Tuples, which normally use numeric indexes, Dictionaries use **Keys** to access their corresponding Values.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+To retrieve the student's name:
+
+```python
+print(student["name"])
+```
+
+Output:
+
+```text
+Ali
+```
+
+The Key `"name"` tells Python exactly which Value we want.
+
+---
+
+## 1. Accessing a Value with Square Brackets
+
+The most direct way to access a Dictionary Value is to place its Key inside square brackets:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+print(student["name"])
+```
+
+Output:
+
+```text
+Ali
+```
+
+We can access other Values in the same way:
+
+```python
+print(student["age"])
+```
+
+Output:
+
+```text
+20
+```
+
+The general pattern is:
+
+```python
+dictionary[key]
+```
+
+This is fundamentally different from:
+
+```python
+list[index]
+```
+
+because the Dictionary uses the **identity of the data**, rather than its numeric position.
+
+---
+
+## 2. Accessing Different Types of Values
+
+The Value associated with a Key can have any appropriate data type.
+
+```python
+user = {
+    "name": "Ali",
+    "age": 20,
+    "active": True
+}
+```
+
+We can retrieve each Value:
+
+```python
+print(user["name"])
+print(user["age"])
+print(user["active"])
+```
+
+Output:
+
+```text
+Ali
+20
+True
+```
+
+The Key determines which Value is returned.
+
+---
+
+## 3. Using Variables as Keys
+
+The Key used for access does not have to be written directly.
+
+We can store it in a Variable:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+field = "name"
+
+print(student[field])
+```
+
+Output:
+
+```text
+Ali
+```
+
+Python evaluates `field`, obtains `"name"`, and then uses that value as the Key.
+
+This becomes useful when the Key we want to access is determined dynamically.
+
+For example:
+
+```python
+field = input("Enter a field: ")
+
+print(student[field])
+```
+
+If the user enters:
+
+```text
+age
+```
+
+Python effectively evaluates:
+
+```python
+student["age"]
+```
+
+---
+
+## 4. What Happens When a Key Does Not Exist?
+
+Suppose our Dictionary is:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+Now consider:
+
+```python
+print(student["score"])
+```
+
+There is no `"score"` Key.
+
+Python raises a `KeyError`:
+
+```text
+KeyError: 'score'
+```
+
+This is an important behavior to understand.
+
+When using square brackets, Python expects the requested Key to exist.
+
+Therefore, this form:
+
+```python
+dictionary[key]
+```
+
+is appropriate when the Key is expected to exist.
+
+---
+
+## 5. Accessing Values with `.get()`
+
+Python provides another way to retrieve Dictionary Values:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+print(student.get("name"))
+```
+
+Output:
+
+```text
+Ali
+```
+
+The major difference appears when the Key does not exist.
+
+```python
+print(student.get("score"))
+```
+
+Instead of raising `KeyError`, this returns:
+
+```text
+None
+```
+
+This makes `.get()` useful when a Key may or may not exist.
+
+---
+
+## 6. Providing a Default Value to `.get()`
+
+`.get()` can also receive a second argument.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+print(student.get("score", 0))
+```
+
+Output:
+
+```text
+0
+```
+
+The general form is:
+
+```python
+dictionary.get(key, default)
+```
+
+If the Key exists, its Value is returned.
+
+If the Key does not exist, the default Value is returned.
+
+For example:
+
+```python
+print(student.get("age", 0))
+```
+
+Output:
+
+```text
+20
+```
+
+Because `"age"` exists, the default `0` is ignored.
+
+---
+
+## 7. `[]` vs `.get()`
+
+These two approaches serve different purposes.
+
+### Square brackets
+
+```python
+student["score"]
+```
+
+Use this when the Key is expected to exist.
+
+If it does not exist:
+
+```text
+KeyError
+```
+
+### `.get()`
+
+```python
+student.get("score")
+```
+
+Use this when the Key may not exist.
+
+If it does not exist:
+
+```text
+None
+```
+
+Or:
+
+```python
+student.get("score", 0)
+```
+
+which returns:
+
+```text
+0
+```
+
+A useful mental model is:
+
+```text
+[]     → "I expect this Key to exist."
+
+.get() → "This Key might not exist."
+```
+
+---
+
+## 8. Accessing Nested Values
+
+Dictionary Values can themselves be Dictionaries.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "address": {
+        "city": "Tehran",
+        "country": "Iran"
+    }
+}
+```
+
+To access `"city"`:
+
+```python
+print(student["address"]["city"])
+```
+
+Output:
+
+```text
+Tehran
+```
+
+The access happens in two stages:
+
+```text
+student
+   ↓
+"address"
+   ↓
+"city"
+```
+
+We first retrieve the `"address"` Dictionary, then retrieve `"city"` from that Dictionary.
+
+Nested Dictionaries will be studied more deeply later.
+
+---
+
+## 9. Accessing Values Inside Other Data Structures
+
+A Dictionary Value can also be a List:
+
+```python
+student = {
+    "name": "Ali",
+    "scores": [18, 20, 17]
+}
+```
+
+We can first access the List:
+
+```python
+print(student["scores"])
+```
+
+Output:
+
+```text
+[18, 20, 17]
+```
+
+Then we can access an element of that List:
+
+```python
+print(student["scores"][0])
+```
+
+Output:
+
+```text
+18
+```
+
+This demonstrates an important principle:
+
+> Each data structure uses its own access mechanism.
+
+The Dictionary uses a Key:
+
+```python
+student["scores"]
+```
+
+The List then uses an Index:
+
+```python
+student["scores"][0]
+```
+
+---
+
+## 10. Reading Values Without Changing the Dictionary
+
+Accessing a Value does not modify the Dictionary.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+age = student["age"]
+
+print(age)
+print(student)
+```
+
+Output:
+
+```text
+20
+{'name': 'Ali', 'age': 20}
+```
+
+The Dictionary remains unchanged.
+
+This is different from assigning a new Value:
+
+```python
+student["age"] = 21
+```
+
+Here we are no longer just accessing a Value; we are modifying the Dictionary.
+
+---
+
+## 11. Using Dictionary Access in Expressions
+
+Retrieved Values can be used directly in calculations and conditions.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "score": 18
+}
+
+if student["score"] >= 10:
+    print("Passed")
+```
+
+Output:
+
+```text
+Passed
+```
+
+Or:
+
+```python
+total = student["score"] + 2
+
+print(total)
+```
+
+Output:
+
+```text
+20
+```
+
+The retrieved Value behaves like the original data stored in the Dictionary.
+
+---
+
+## 12. Accessing a Key with Special Characters
+
+Keys do not have to be simple words.
+
+For example:
+
+```python
+data = {
+    "first-name": "Ali",
+    "email.address": "ali@example.com"
+}
+```
+
+These Values can still be accessed with square brackets:
+
+```python
+print(data["first-name"])
+print(data["email.address"])
+```
+
+Output:
+
+```text
+Ali
+ali@example.com
+```
+
+This is another reason square-bracket access is important: it works with arbitrary valid Dictionary Keys.
+
+---
+
+## Key Takeaways
+
+* Dictionary Values are normally accessed through their Keys.
+* Square brackets use the form `dictionary[key]`.
+* If the Key does not exist, square-bracket access raises `KeyError`.
+* `.get()` provides a safer alternative when a Key may be missing.
+* `.get(key, default)` lets us specify a fallback Value.
+* Variables can be used as Keys during access.
+* Dictionary Values can contain other data structures.
+* Nested structures can be accessed one level at a time.
+* Reading a Value does not modify the Dictionary.
+* Retrieved Values can be used directly in expressions and conditions.
+
+---
+
+# Section Questions
+
+## Question 1
+
+Given:
+
+```python
+student = {
+    "name": "Sara",
+    "age": 19,
+    "score": 20
+}
+```
+
+Write code to print the student's `name` and `score`.
+
+## Question 2
+
+What is the difference between these two expressions?
+
+```python
+student["score"]
+```
+
+and:
+
+```python
+student.get("score")
+```
+
+What happens if `"score"` does not exist?
+
+## Question 3
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "address": {
+        "city": "Tehran",
+        "country": "Iran"
+    }
+}
+```
+
+Write code to print the value of `"city"`.
+
+---
+
+# Comprehensive Question
+
+Consider:
+
+```python
+user = {
+    "name": "Ali",
+    "age": 20,
+    "profile": {
+        "city": "Tehran",
+        "active": True
+    },
+    "scores": [18, 20, 17]
+}
+```
+
+Write code to:
+
+1. Access the user's name.
+2. Access the city.
+3. Access the first score.
+4. Safely access a Key named `"email"` and return `"Not provided"` if it does not exist.
+
+Explain which access mechanism you used in each case and why.
+
+---
+
+# Answers
+
+## Answer 1
+
+```python
+print(student["name"])
+print(student["score"])
+```
+
+## Answer 2
+
+Both can retrieve the Value associated with `"score"` when that Key exists.
+
+```python
+student["score"]
+```
+
+raises `KeyError` if `"score"` does not exist.
+
+```python
+student.get("score")
+```
+
+returns `None` if `"score"` does not exist.
+
+A default can also be provided:
+
+```python
+student.get("score", 0)
+```
+
+## Answer 3
+
+```python
+print(student["address"]["city"])
+```
+
+First `"address"` is retrieved, then `"city"` is retrieved from the nested Dictionary.
+
+## Comprehensive Answer
+
+```python
+user = {
+    "name": "Ali",
+    "age": 20,
+    "profile": {
+        "city": "Tehran",
+        "active": True
+    },
+    "scores": [18, 20, 17]
+}
+
+print(user["name"])
+print(user["profile"]["city"])
+print(user["scores"][0])
+print(user.get("email", "Not provided"))
+```
+
+The first access uses a Key directly because `"name"` is known to exist.
+
+The second combines two Dictionary Key accesses because `"city"` is inside the nested `"profile"` Dictionary.
+
+The third combines Dictionary access with List indexing because `"scores"` contains a List.
+
+The fourth uses `.get()` because `"email"` may not exist, and we want a meaningful fallback instead of a `KeyError`.
+
+---
+

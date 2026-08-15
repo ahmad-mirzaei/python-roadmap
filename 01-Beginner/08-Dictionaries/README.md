@@ -2444,3 +2444,652 @@ After that, the Dictionary contains:
 
 ---
 
+# Part 5 — Removing Dictionary Items
+
+## Introduction
+
+So far, we have learned how to create a Dictionary, access its Values, and add or update Key-Value pairs.
+
+The next step is learning how to **remove data from a Dictionary**.
+
+Python provides several ways to remove Dictionary items, and each one has a different purpose:
+
+* `del`
+* `pop()`
+* `popitem()`
+* `clear()`
+
+Choosing the correct method matters because these operations differ in what they remove, what they return, and what happens when the requested Key does not exist.
+
+---
+
+## 1. Removing an Item with `del`
+
+The `del` statement can remove a specific Dictionary item by its Key:
+
+```python id="7m2qd1"
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+del student["score"]
+```
+
+Now:
+
+```python id="4q8n1v"
+print(student)
+```
+
+produces:
+
+```text id="r7k3ps"
+{'name': 'Ali', 'age': 20}
+```
+
+The general form is:
+
+```python id="4v7xq0"
+del dictionary[key]
+```
+
+`del` removes the Key-Value pair directly.
+
+---
+
+## 2. What Happens if the Key Does Not Exist?
+
+Consider:
+
+```python id="x5k9tr"
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+del student["score"]
+```
+
+Because `"score"` does not exist, Python raises:
+
+```text id="p5j8r2"
+KeyError: 'score'
+```
+
+Therefore, `del` is appropriate when we know that the Key exists.
+
+---
+
+## 3. Removing an Item with `pop()`
+
+The `pop()` method removes a specific Key and **returns its Value**.
+
+```python id="3c7n5k"
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+score = student.pop("score")
+```
+
+Now:
+
+```python id="h6s4x1"
+print(score)
+print(student)
+```
+
+produces:
+
+```text id="m4t8q2"
+18
+{'name': 'Ali', 'age': 20}
+```
+
+This is an important difference:
+
+```text id="z1k6pd"
+del       → removes the item
+pop()     → removes the item and returns its Value
+```
+
+---
+
+## 4. Using `pop()` with a Default Value
+
+Like `.get()`, `pop()` can receive a default Value.
+
+```python id="v9x2ka"
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+score = student.pop("score", None)
+```
+
+Because `"score"` does not exist, no `KeyError` occurs.
+
+Instead:
+
+```python id="1f5q8z"
+print(score)
+```
+
+outputs:
+
+```text id="e7m3ax"
+None
+```
+
+We can choose another default:
+
+```python id="9s4h2c"
+score = student.pop("score", 0)
+```
+
+Now `score` becomes `0`.
+
+This is useful when a Key may or may not exist.
+
+---
+
+## 5. Removing the Last Inserted Item with `popitem()`
+
+`popitem()` removes and returns the **last inserted Key-Value pair**.
+
+```python id="k8r4wp"
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+item = student.popitem()
+```
+
+Now:
+
+```python id="4m2z8n"
+print(item)
+print(student)
+```
+
+produces:
+
+```text id="n6x3qd"
+('score', 18)
+{'name': 'Ali', 'age': 20}
+```
+
+The returned result is a Tuple containing:
+
+```text id="2s7w9p"
+(Key, Value)
+```
+
+For example:
+
+```python id="h1d6qa"
+key, value = student.popitem()
+```
+
+can unpack the returned pair.
+
+---
+
+## 6. `popitem()` and Dictionary Order
+
+In modern Python versions, Dictionaries preserve insertion order.
+
+Therefore, `popitem()` removes the **last inserted item**.
+
+For example:
+
+```python id="u3f8rm"
+data = {}
+
+data["a"] = 10
+data["b"] = 20
+data["c"] = 30
+
+print(data.popitem())
+```
+
+Output:
+
+```text id="w9n4qs"
+('c', 30)
+```
+
+Then:
+
+```python id="p6h2xd"
+print(data)
+```
+
+gives:
+
+```text id="b5m1vk"
+{'a': 10, 'b': 20}
+```
+
+---
+
+## 7. What Happens if `popitem()` Is Used on an Empty Dictionary?
+
+Consider:
+
+```python id="v8k3zr"
+data = {}
+
+data.popitem()
+```
+
+There is no item to remove.
+
+Python raises:
+
+```text id="f4x2nm"
+KeyError: 'popitem(): dictionary is empty'
+```
+
+So `popitem()` should only be used when we know that the Dictionary contains at least one item, or when we deliberately handle the possibility of an empty Dictionary.
+
+---
+
+## 8. Removing Everything with `clear()`
+
+If we want to remove all items from a Dictionary, we can use `clear()`:
+
+```python id="q7d3ka"
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+student.clear()
+```
+
+Now:
+
+```python id="v2h8ms"
+print(student)
+```
+
+outputs:
+
+```text id="a6j3pw"
+{}
+```
+
+The Dictionary still exists, but it contains no items.
+
+This is different from deleting the Dictionary itself.
+
+---
+
+## 9. `clear()` vs `del`
+
+These two operations should not be confused.
+
+### `clear()`
+
+```python id="b8k5r1"
+student.clear()
+```
+
+removes all items but keeps the Dictionary.
+
+Afterwards:
+
+```python id="8p2m4x"
+student
+```
+
+is still a valid Dictionary:
+
+```python id="0n7x5q"
+{}
+```
+
+### `del`
+
+```python id="1v6k3c"
+del student
+```
+
+removes the Dictionary variable itself.
+
+After that:
+
+```python id="w4p9sj"
+print(student)
+```
+
+causes:
+
+```text
+NameError
+```
+
+So:
+
+```text id="m3f8kd"
+clear() → empty the Dictionary
+del      → delete the Dictionary variable
+```
+
+---
+
+## 10. Choosing the Right Removal Method
+
+The four main methods have different purposes:
+
+| Method              | Removes                 | Returns          | Missing Key Behavior |
+| ------------------- | ----------------------- | ---------------- | -------------------- |
+| `del`               | Specific Key-Value pair | Nothing          | `KeyError`           |
+| `pop(key)`          | Specific Key-Value pair | Value            | `KeyError`           |
+| `pop(key, default)` | Specific Key if present | Value or default | No error             |
+| `popitem()`         | Last inserted pair      | `(Key, Value)`   | `KeyError` if empty  |
+| `clear()`           | All items               | `None`           | Not applicable       |
+
+A useful mental model:
+
+```text
+del              → "Remove this Key."
+pop()            → "Remove this Key and give me its Value."
+popitem()        → "Remove the last item and give me the pair."
+clear()          → "Remove everything."
+```
+
+---
+
+## 11. Removing an Item While Keeping Its Value
+
+One of the biggest practical advantages of `pop()` is that it lets us remove data and use it at the same time.
+
+```python id="x7m2pc"
+cart = {
+    "product": "Keyboard",
+    "price": 50,
+    "quantity": 2
+}
+
+price = cart.pop("price")
+
+print(price)
+print(cart)
+```
+
+Output:
+
+```text id="s4n8qk"
+50
+{'product': 'Keyboard', 'quantity': 2}
+```
+
+This is useful when an item needs to be processed before or after being removed.
+
+---
+
+## 12. Using `popitem()` in a Loop
+
+Because `popitem()` removes one item at a time, it can be used to consume a Dictionary.
+
+```python id="r2j6wb"
+data = {
+    "a": 10,
+    "b": 20,
+    "c": 30
+}
+
+while data:
+    key, value = data.popitem()
+    print(key, value)
+```
+
+Output:
+
+```text id="p7d3xm"
+c 30
+b 20
+a 10
+```
+
+The Dictionary gradually becomes empty.
+
+This pattern is useful when we intentionally want to process and remove items until nothing remains.
+
+---
+
+## 13. Removing Data Does Not Require Rebuilding the Dictionary
+
+A common beginner mistake is creating a new Dictionary without the unwanted item.
+
+For example, instead of manually rebuilding:
+
+```python id="w3f5ka"
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+student = {
+    "name": student["name"],
+    "age": student["age"]
+}
+```
+
+we can simply write:
+
+```python id="g8p1zr"
+del student["score"]
+```
+
+The direct operation is clearer and expresses the actual intention: remove one item.
+
+---
+
+## 14. Important Difference Between `del`, `pop()`, and `clear()`
+
+Consider this Dictionary:
+
+```python id="t5n2yx"
+data = {
+    "a": 10,
+    "b": 20,
+    "c": 30
+}
+```
+
+### Remove `"b"`
+
+```python id="q8m4ds"
+del data["b"]
+```
+
+Result:
+
+```python id="7j3x9f"
+{'a': 10, 'c': 30}
+```
+
+### Remove `"b"` and receive its Value
+
+```python id="z6p1vc"
+value = data.pop("b")
+```
+
+The Value is stored in `value`.
+
+### Remove the last inserted item
+
+```python id="c4x8mk"
+item = data.popitem()
+```
+
+The result is a `(Key, Value)` pair.
+
+### Remove all items
+
+```python id="m7q2la"
+data.clear()
+```
+
+Result:
+
+```python id="e5h9sw"
+{}
+```
+
+The correct method depends on what information we need after the removal.
+
+---
+
+## Key Takeaways
+
+* `del` removes a specific Key-Value pair.
+* `pop()` removes a specific Key and returns its Value.
+* `pop(key, default)` avoids `KeyError` when a Key may be missing.
+* `popitem()` removes and returns the last inserted Key-Value pair.
+* `clear()` removes every item but keeps the Dictionary itself.
+* `del dictionary` removes the Dictionary variable itself.
+* `pop()` is useful when the removed Value is still needed.
+* `popitem()` can be used to process a Dictionary item by item.
+* Choosing the removal method should depend on what needs to be removed and whether the removed data is needed afterward.
+
+---
+
+# Section Questions
+
+## Question 1
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Remove the `"score"` item using `del`.
+
+## Question 2
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Remove `"score"` using `pop()` and store its Value in a Variable.
+
+## Question 3
+
+What is the difference between:
+
+```python
+student.clear()
+```
+
+and:
+
+```python
+del student
+```
+
+---
+
+# Comprehensive Question
+
+Consider:
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Write code that:
+
+1. Removes `"score"` while keeping its Value.
+2. Removes the last inserted item.
+3. Removes all remaining items from the Dictionary.
+
+Explain why you chose `pop()`, `popitem()`, and `clear()` for the three operations.
+
+---
+
+# Answers
+
+## Answer 1
+
+```python
+del student["score"]
+```
+
+## Answer 2
+
+```python
+score = student.pop("score")
+```
+
+Now `score` contains:
+
+```text
+18
+```
+
+## Answer 3
+
+```python
+student.clear()
+```
+
+removes all items but keeps the Dictionary.
+
+```python
+del student
+```
+
+removes the Dictionary variable itself.
+
+## Comprehensive Answer
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+score = data.pop("score")
+
+key, value = data.popitem()
+
+data.clear()
+```
+
+`pop()` is used first because we need the removed Value.
+
+`popitem()` is then used to remove the last inserted remaining item and retrieve its Key and Value.
+
+Finally, `clear()` removes everything that remains while keeping `data` as an empty Dictionary.
+
+---
+

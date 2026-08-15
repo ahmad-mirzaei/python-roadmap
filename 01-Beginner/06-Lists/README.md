@@ -9579,3 +9579,410 @@ Use concepts learned so far, including variables, `input()`, type casting, lists
 
 ---
 
+# Part 13 — Finding Minimum, Maximum, and Sum in Lists
+
+## 1. Introduction
+
+Python provides simple functions for finding useful information in a list.
+
+In this section, we will learn:
+
+* `min()`
+* `max()`
+* `sum()`
+* Using these functions with lists of numbers
+* Combining `sum()` and `len()`
+* Finding an average using a list
+
+## 2. Finding the Smallest Element with `min()`
+
+The `min()` function returns the smallest element in a list.
+
+```python
+numbers = [40, 10, 30, 20]
+
+smallest = min(numbers)
+
+print(smallest)
+```
+
+Output:
+
+```text
+10
+```
+
+## 3. Finding the Largest Element with `max()`
+
+The `max()` function returns the largest element in a list.
+
+```python
+numbers = [40, 10, 30, 20]
+
+largest = max(numbers)
+
+print(largest)
+```
+
+Output:
+
+```text
+40
+```
+
+## 4. Finding the Sum with `sum()`
+
+The `sum()` function adds all numbers in a list.
+
+```python
+numbers = [10, 20, 30, 40]
+
+total = sum(numbers)
+
+print(total)
+```
+
+Output:
+
+```text
+100
+```
+
+## 5. Using `min()`, `max()`, and `sum()` Together
+
+We can use these functions together.
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+print(min(scores))
+print(max(scores))
+print(sum(scores))
+```
+
+Output:
+
+```text
+12
+20
+82
+```
+
+Here:
+
+* `min(scores)` gives the lowest score.
+* `max(scores)` gives the highest score.
+* `sum(scores)` gives the total of all scores.
+
+## 6. Combining `sum()` and `len()`
+
+We can use `sum()` and `len()` together to calculate the average of a list of numbers.
+
+The basic idea is:
+
+```text
+average = total / number of elements
+```
+
+In Python:
+
+```python
+scores = [15, 18, 12, 20, 17]
+
+total = sum(scores)
+count = len(scores)
+
+average = total / count
+
+print(average)
+```
+
+Output:
+
+```text
+16.4
+```
+
+## 7. Finding Information About Scores
+
+These functions are useful when working with scores.
+
+```python
+scores = [14, 18, 11, 20, 16]
+
+lowest = min(scores)
+highest = max(scores)
+total = sum(scores)
+
+print("Lowest:", lowest)
+print("Highest:", highest)
+print("Total:", total)
+```
+
+Output:
+
+```text
+Lowest: 11
+Highest: 20
+Total: 79
+```
+
+## 8. Finding the Average Score
+
+We can also calculate the average score.
+
+```python
+scores = [14, 18, 11, 20, 16]
+
+total = sum(scores)
+count = len(scores)
+
+average = total / count
+
+print("Average:", average)
+```
+
+Output:
+
+```text
+Average: 15.8
+```
+
+## 9. Using the Functions with a Sorted List
+
+These functions work with a list whether it is sorted or not.
+
+```python
+numbers = [50, 10, 30, 20, 40]
+
+print(min(numbers))
+print(max(numbers))
+print(sum(numbers))
+```
+
+Output:
+
+```text
+10
+50
+150
+```
+
+The list does not need to be sorted first.
+
+## 10. Important Difference Between the Functions
+
+Each function gives us different information:
+
+```text
+min() → smallest element
+max() → largest element
+sum() → total of numeric elements
+len() → number of elements
+```
+
+For example:
+
+```python
+numbers = [10, 20, 30, 40]
+
+print(min(numbers))
+print(max(numbers))
+print(sum(numbers))
+print(len(numbers))
+```
+
+Output:
+
+```text
+10
+40
+100
+4
+```
+
+## 11. Common Beginner Mistakes
+
+### Mistake 1 — Using `sum()` with Strings
+
+`sum()` is used for numbers.
+
+This is not valid:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+print(sum(fruits))
+```
+
+`sum()` cannot add strings together.
+
+### Mistake 2 — Forgetting `len()` When Calculating an Average
+
+Do not divide by a number that you guessed.
+
+Instead, use `len()`:
+
+```python
+scores = [10, 15, 20]
+
+average = sum(scores) / len(scores)
+
+print(average)
+```
+
+Output:
+
+```text
+15.0
+```
+
+### Mistake 3 — Sorting Before Using `min()` or `max()`
+
+Sorting is not necessary.
+
+Instead of:
+
+```python
+numbers.sort()
+
+print(numbers[0])
+print(numbers[-1])
+```
+
+we can simply use:
+
+```python
+print(min(numbers))
+print(max(numbers))
+```
+
+## 12. Important Summary
+
+Use `min()` to find the smallest element:
+
+```python
+smallest = min(numbers)
+```
+
+Use `max()` to find the largest element:
+
+```python
+largest = max(numbers)
+```
+
+Use `sum()` to calculate the total:
+
+```python
+total = sum(numbers)
+```
+
+Use `len()` to count the elements:
+
+```python
+count = len(numbers)
+```
+
+To calculate the average:
+
+```python
+average = sum(numbers) / len(numbers)
+```
+
+Remember:
+
+```text
+min() → smallest
+max() → largest
+sum() → total
+len() → number of elements
+```
+
+# Exercises
+
+## Exercise 1 — Smallest Number
+
+Create a list of five numbers and use `min()` to find the smallest number.
+
+## Exercise 2 — Largest Number
+
+Create a list of five numbers and use `max()` to find the largest number.
+
+## Exercise 3 — Total
+
+Create a list of numbers and use `sum()` to calculate their total.
+
+## Exercise 4 — Average
+
+Create a list of five scores and calculate the average using `sum()` and `len()`.
+
+## Exercise 5 — Score Information
+
+Create a list of scores and print:
+
+* The lowest score
+* The highest score
+* The total score
+* The number of scores
+* The average score
+
+# Comprehensive Review
+
+## Question 1
+
+What does `min()` return?
+
+## Question 2
+
+What does `max()` return?
+
+## Question 3
+
+What will this program print?
+
+```python
+numbers = [10, 20, 30, 40]
+
+print(min(numbers))
+print(max(numbers))
+print(sum(numbers))
+print(len(numbers))
+```
+
+## Question 4
+
+Write a program that calculates the average of a list of numbers using `sum()` and `len()`.
+
+## Question 5
+
+Why do we not need to sort a list before using `min()` and `max()`?
+
+# Challenge
+
+## Python Roadmap Challenge
+
+Create a simple **Score Analyzer**.
+
+Start with:
+
+```python
+scores = [14, 18, 11, 20, 16]
+```
+
+Your program should:
+
+1. Print the original scores.
+2. Ask the user for a new score.
+3. Convert the input to an integer.
+4. Add the new score to the list.
+5. Print the updated scores.
+6. Print the lowest score.
+7. Print the highest score.
+8. Print the total score.
+9. Print the number of scores.
+10. Calculate and print the average score.
+
+Use concepts learned so far, including variables, `input()`, type casting, lists, `append()`, `min()`, `max()`, `sum()`, and `len()`.
+
+---
+

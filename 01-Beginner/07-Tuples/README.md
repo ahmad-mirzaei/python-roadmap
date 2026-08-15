@@ -2364,3 +2364,521 @@ Explain the difference between `in`, `count()`, and `index()` and describe what 
 
 ---
 
+# Part 9 — Iterating Through Tuples
+
+## 1. What Does Iterating Mean?
+
+In the previous section, we learned how to find the position of an element using `index()`.
+
+However, many problems require us to work with **every element of a Tuple**, not just one specific element.
+
+For example:
+
+```python
+fruits = ("Apple", "Banana", "Orange", "Mango")
+```
+
+If we want to process every fruit, manually accessing each index would be repetitive:
+
+```python
+print(fruits[0])
+print(fruits[1])
+print(fruits[2])
+print(fruits[3])
+```
+
+Instead, we can **iterate through the Tuple**.
+
+Iteration means going through the elements of a collection one by one and performing an operation on each element.
+
+In Python, the most common way to iterate through a Tuple is with a `for` loop.
+
+## 2. Iterating with `for`
+
+The basic structure is:
+
+```python
+for element in tuple:
+    # code
+```
+
+For example:
+
+```python
+fruits = ("Apple", "Banana", "Orange", "Mango")
+
+for fruit in fruits:
+    print(fruit)
+```
+
+Output:
+
+```text
+Apple
+Banana
+Orange
+Mango
+```
+
+Python automatically gives `fruit` the value of the current element during each iteration.
+
+Conceptually:
+
+```text
+Iteration 1 → Apple
+Iteration 2 → Banana
+Iteration 3 → Orange
+Iteration 4 → Mango
+```
+
+The loop continues until all elements have been processed.
+
+## 3. The Loop Variable
+
+The variable after `for` represents the current element.
+
+For example:
+
+```python
+numbers = (10, 20, 30)
+
+for number in numbers:
+    print(number)
+```
+
+Output:
+
+```text
+10
+20
+30
+```
+
+During each iteration:
+
+```text
+number = 10
+number = 20
+number = 30
+```
+
+The variable name itself is not special.
+
+This also works:
+
+```python
+for x in numbers:
+    print(x)
+```
+
+However, meaningful names are usually better:
+
+```python
+for number in numbers:
+```
+
+is easier to understand than:
+
+```python
+for x in numbers:
+```
+
+when the Tuple contains numbers.
+
+## 4. Performing Operations During Iteration
+
+Iteration allows us to process each value.
+
+For example:
+
+```python
+numbers = (10, 20, 30, 40)
+
+for number in numbers:
+    print(number * 2)
+```
+
+Output:
+
+```text
+20
+40
+60
+80
+```
+
+The original Tuple remains unchanged.
+
+We are reading each value and performing an operation on it.
+
+This is especially important with Tuples because their elements cannot be replaced directly.
+
+## 5. Iteration with Conditions
+
+We can combine `for` with `if`.
+
+For example, suppose we only want numbers greater than `20`:
+
+```python
+numbers = (10, 25, 15, 40, 30)
+
+for number in numbers:
+    if number > 20:
+        print(number)
+```
+
+Output:
+
+```text
+25
+40
+30
+```
+
+The general pattern is:
+
+```text
+iterate
+   ↓
+inspect current element
+   ↓
+check condition
+   ↓
+perform action when condition is true
+```
+
+This pattern appears throughout Python programming.
+
+## 6. Iteration for Counting
+
+We can also count elements that satisfy a condition.
+
+```python
+numbers = (10, 25, 15, 40, 30)
+
+count = 0
+
+for number in numbers:
+    if number > 20:
+        count += 1
+
+print(count)
+```
+
+Output:
+
+```text
+3
+```
+
+The Tuple is traversed once.
+
+Each time a number greater than `20` is found, `count` increases by one.
+
+Notice that this is different from `count()`:
+
+```python
+numbers.count(10)
+```
+
+`count()` counts occurrences of a **specific value**.
+
+The loop allows us to count elements based on a **condition**.
+
+## 7. Iterating with Indexes Using `enumerate()`
+
+Sometimes we need both the element and its index.
+
+Python provides `enumerate()` for this purpose.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+```
+
+Output:
+
+```text
+0 Apple
+1 Banana
+2 Orange
+```
+
+Each iteration provides two values:
+
+```text
+index → position
+fruit → value
+```
+
+This is usually cleaner than manually creating and updating an index variable.
+
+For example, instead of:
+
+```python
+index = 0
+
+for fruit in fruits:
+    print(index, fruit)
+    index += 1
+```
+
+we can use:
+
+```python
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+```
+
+## 8. Starting `enumerate()` from Another Number
+
+By default, `enumerate()` starts counting from `0`.
+
+We can change the starting number with `start`:
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+for index, fruit in enumerate(fruits, start=1):
+    print(index, fruit)
+```
+
+Output:
+
+```text
+1 Apple
+2 Banana
+3 Orange
+```
+
+This changes only the displayed counter.
+
+It does **not** change the actual Tuple indexes.
+
+The real indexes are still:
+
+```text
+Apple   → 0
+Banana  → 1
+Orange  → 2
+```
+
+## 9. Iterating in Reverse
+
+Sometimes we need to process the elements from the last one to the first one.
+
+We can use `reversed()`:
+
+```python
+numbers = (10, 20, 30, 40)
+
+for number in reversed(numbers):
+    print(number)
+```
+
+Output:
+
+```text
+40
+30
+20
+10
+```
+
+This allows us to reverse the traversal order without changing the original Tuple.
+
+The Tuple remains:
+
+```python
+(10, 20, 30, 40)
+```
+
+## 10. Iterating Through Nested Tuples
+
+A Tuple can contain other Tuples.
+
+For example:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+```
+
+We can iterate through the outer Tuple:
+
+```python
+for student in students:
+    print(student)
+```
+
+Output:
+
+```text
+('Ali', 18)
+('Sara', 20)
+('Reza', 17)
+```
+
+But because each element is itself a Tuple, we can unpack it during iteration:
+
+```python
+for name, score in students:
+    print(name, score)
+```
+
+Output:
+
+```text
+Ali 18
+Sara 20
+Reza 17
+```
+
+This is especially useful when a Tuple represents a structured piece of information.
+
+## 11. Iteration Does Not Modify the Tuple
+
+A common misunderstanding is thinking that changing the loop variable changes the Tuple.
+
+For example:
+
+```python
+numbers = (10, 20, 30)
+
+for number in numbers:
+    number = number * 2
+
+print(numbers)
+```
+
+Output:
+
+```text
+(10, 20, 30)
+```
+
+The assignment:
+
+```python
+number = number * 2
+```
+
+changes only the loop variable.
+
+It does not replace the corresponding element inside the Tuple.
+
+This is consistent with Tuple immutability.
+
+## 12. Why Iteration Matters
+
+Iteration is more than a convenient way to print values.
+
+It allows us to build algorithms that operate on collections.
+
+For example, we can:
+
+```text
+Read every element
+      ↓
+Analyze its value
+      ↓
+Compare it with a condition
+      ↓
+Count or process it
+      ↓
+Produce a result
+```
+
+This makes iteration one of the fundamental mechanisms for processing collections in Python.
+
+The important question is not:
+
+> "How do I loop through this Tuple?"
+
+but rather:
+
+> "What should my program do with each element as it visits it?"
+
+That shift in thinking is what turns a loop from simple syntax into an algorithmic tool.
+
+# Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+numbers = (5, 10, 15, 20)
+
+for number in numbers:
+    if number >= 15:
+        print(number)
+```
+
+## Question 2
+
+What is the purpose of `enumerate()` when iterating through a Tuple?
+
+## Question 3
+
+What will this code print?
+
+```python
+numbers = (10, 20, 30)
+
+for number in reversed(numbers):
+    print(number)
+```
+
+## Review Question
+
+Explain how you would iterate through a Tuple when you need only its values, when you need both the index and value, and when the Tuple contains nested structured data.
+
+# Answers
+
+## Answer 1
+
+```text
+15
+20
+```
+
+## Answer 2
+
+`enumerate()` allows us to receive both the index and the current element during each iteration.
+
+## Answer 3
+
+```text
+30
+20
+10
+```
+
+## Review Answer
+
+For values only:
+
+```python
+for element in tuple:
+```
+
+For both index and value:
+
+```python
+for index, element in enumerate(tuple):
+```
+
+For nested structured Tuples, we can unpack the elements directly:
+
+```python
+for value1, value2 in tuple:
+```
+
+---
+

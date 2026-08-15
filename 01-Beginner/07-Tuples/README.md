@@ -1924,3 +1924,464 @@ Indexing asks which value is located at a specific position. Membership checking
 
 ---
 
+# Part 8 — Traversing a Tuple
+
+## 1. What Does Traversing Mean?
+
+So far, we have learned how to access a specific element of a Tuple when we know its index.
+
+But in real programs, we often need to work with **all elements** of a Tuple.
+
+For example, suppose we have:
+
+```python
+fruits = ("Apple", "Banana", "Orange", "Mango")
+```
+
+If we want to print every fruit, checking each index separately would be repetitive:
+
+```python
+print(fruits[0])
+print(fruits[1])
+print(fruits[2])
+print(fruits[3])
+```
+
+A better approach is to **traverse** the Tuple.
+
+Traversing means moving through the elements of a collection one by one and performing an operation on each element.
+
+In Python, the most natural way to traverse a Tuple is with a `for` loop.
+
+## 2. Traversing with a `for` Loop
+
+The basic structure is:
+
+```python
+for element in tuple:
+    # code to process element
+```
+
+For example:
+
+```python
+fruits = ("Apple", "Banana", "Orange", "Mango")
+
+for fruit in fruits:
+    print(fruit)
+```
+
+Output:
+
+```text
+Apple
+Banana
+Orange
+Mango
+```
+
+Python automatically assigns each element to the variable `fruit` as the loop moves through the Tuple.
+
+The process can be thought of as:
+
+```text
+Apple   → process
+Banana  → process
+Orange  → process
+Mango   → process
+```
+
+This is much more useful than manually accessing every index.
+
+## 3. The Loop Variable
+
+The variable used in a `for` loop represents the **current element**.
+
+For example:
+
+```python
+numbers = (10, 20, 30)
+
+for number in numbers:
+    print(number)
+```
+
+Output:
+
+```text
+10
+20
+30
+```
+
+During each iteration, `number` refers to a different element.
+
+Conceptually:
+
+```text
+Iteration 1 → number = 10
+Iteration 2 → number = 20
+Iteration 3 → number = 30
+```
+
+The name of the variable is not special.
+
+We could write:
+
+```python
+for x in numbers:
+    print(x)
+```
+
+The result is the same.
+
+However, choosing a meaningful name such as `number` or `fruit` makes the code easier to understand.
+
+## 4. Performing Operations While Traversing
+
+Traversing is not limited to printing elements.
+
+We can perform calculations or other operations during each iteration.
+
+```python
+numbers = (10, 20, 30, 40)
+
+for number in numbers:
+    print(number * 2)
+```
+
+Output:
+
+```text
+20
+40
+60
+80
+```
+
+The Tuple itself has not changed.
+
+We simply read each element and perform an operation on the value.
+
+This is especially important because Tuples are immutable.
+
+## 5. Traversing with Conditions
+
+We can combine traversal with `if` statements.
+
+For example, we can print only numbers greater than `20`:
+
+```python
+numbers = (10, 25, 15, 40, 30)
+
+for number in numbers:
+    if number > 20:
+        print(number)
+```
+
+Output:
+
+```text
+25
+40
+30
+```
+
+This pattern is fundamental in programming:
+
+```text
+Traverse the data
+      ↓
+Check each element
+      ↓
+Perform an action when a condition is true
+```
+
+## 6. Traversing and Counting
+
+We can also use a loop to count elements that satisfy a condition.
+
+For example:
+
+```python
+numbers = (10, 25, 15, 40, 30)
+
+count = 0
+
+for number in numbers:
+    if number > 20:
+        count += 1
+
+print(count)
+```
+
+Output:
+
+```text
+3
+```
+
+Here, the Tuple is traversed once.
+
+Every time an element greater than `20` is found, `count` increases by one.
+
+This is a useful example because it combines several concepts we have already learned:
+
+- Tuple
+- `for` loop
+- `if`
+- comparison
+- variable update
+
+## 7. Traversing with Indexes
+
+Sometimes we need not only the value but also its position.
+
+In that situation, `enumerate()` is useful.
+
+```python
+fruits = ("Apple", "Banana", "Orange")
+
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+```
+
+Output:
+
+```text
+0 Apple
+1 Banana
+2 Orange
+```
+
+Now each iteration gives us two pieces of information:
+
+```text
+index → position of the element
+fruit → value of the element
+```
+
+This is preferable to manually managing an index variable in many situations.
+
+## 8. Traversing in Reverse
+
+Because Tuple supports indexing and slicing, we can also traverse its elements in reverse.
+
+One simple approach is:
+
+```python
+numbers = (10, 20, 30, 40)
+
+for number in numbers[::-1]:
+    print(number)
+```
+
+Output:
+
+```text
+40
+30
+20
+10
+```
+
+This creates a reversed Tuple and then traverses it.
+
+For larger or more general collections, Python also provides `reversed()`:
+
+```python
+numbers = (10, 20, 30, 40)
+
+for number in reversed(numbers):
+    print(number)
+```
+
+Output:
+
+```text
+40
+30
+20
+10
+```
+
+The important idea is that traversal does not have to move from the first element to the last element.
+
+## 9. Traversing Nested Tuples
+
+A Tuple may contain another Tuple.
+
+For example:
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+```
+
+We can traverse the outer Tuple:
+
+```python
+for student in students:
+    print(student)
+```
+
+Output:
+
+```text
+('Ali', 18)
+('Sara', 20)
+('Reza', 17)
+```
+
+If we want to access the individual values inside each nested Tuple, we can unpack them directly:
+
+```python
+for name, score in students:
+    print(name, score)
+```
+
+Output:
+
+```text
+Ali 18
+Sara 20
+Reza 17
+```
+
+This is one of the most useful patterns when Tuples are used to represent structured records.
+
+## 10. Traversal Does Not Mean Modification
+
+Remember that traversing a Tuple does not modify it.
+
+For example:
+
+```python
+numbers = (10, 20, 30)
+
+for number in numbers:
+    number = number * 2
+
+print(numbers)
+```
+
+Output:
+
+```text
+(10, 20, 30)
+```
+
+The variable `number` is only a reference to the current value during the iteration.
+
+Assigning a new value to `number` does not replace the corresponding element inside the Tuple.
+
+This is another consequence of Tuple immutability.
+
+## 11. Choosing the Right Traversal Pattern
+
+Different problems require different traversal patterns.
+
+```text
+Need only the values?
+→ for element in tuple
+
+Need the index and the value?
+→ for index, element in enumerate(tuple)
+
+Need to process elements conditionally?
+→ for + if
+
+Need to traverse backward?
+→ reversed(tuple)
+
+Need to work with structured Tuple elements?
+→ unpack elements inside the for loop
+```
+
+The goal is not simply to know several syntaxes.
+
+The important skill is recognizing **what information the problem requires while traversing the data**.
+
+# Questions
+
+## Question 1
+
+What will this code print?
+
+```python
+numbers = (5, 10, 15, 20)
+
+for number in numbers:
+    if number > 10:
+        print(number)
+```
+
+## Question 2
+
+What is the purpose of `enumerate()` when traversing a Tuple?
+
+## Question 3
+
+What will this code print?
+
+```python
+students = (
+    ("Ali", 18),
+    ("Sara", 20),
+    ("Reza", 17)
+)
+
+for name, score in students:
+    print(name, score)
+```
+
+## Review Question
+
+Explain how you would traverse a Tuple when you need only its values, when you need both indexes and values, and when the Tuple contains structured nested Tuples.
+
+# Answers
+
+## Answer 1
+
+```text
+15
+20
+```
+
+## Answer 2
+
+`enumerate()` allows us to receive both the index and the corresponding element during each iteration.
+
+## Answer 3
+
+```text
+Ali 18
+Sara 20
+Reza 17
+```
+
+## Review Answer
+
+When only the values are needed, we can use:
+
+```python
+for element in tuple:
+```
+
+When both the index and value are needed, we can use:
+
+```python
+for index, element in enumerate(tuple):
+```
+
+For structured nested Tuples, we can unpack their elements directly:
+
+```python
+for value1, value2 in tuple:
+```
+
+---
+

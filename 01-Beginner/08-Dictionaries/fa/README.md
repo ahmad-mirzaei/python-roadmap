@@ -611,3 +611,524 @@ Dictionary مناسب است چون هر Value یک نام مشخص دارد و 
 
 ---
 
+# بخش ۲ — ساخت Dictionary
+
+## مقدمه
+
+حالا که با مفهوم Dictionary و دلیل استفاده از آن آشنا شدیم، قدم بعدی یادگیری **روش های مختلف ساخت Dictionary** است.
+
+رایج ترین روش استفاده از آکولاد `{}` و جفت های Key-Value است:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+الگوی اصلی:
+
+```python
+dictionary = {
+    key: value,
+    key: value
+}
+```
+
+روش های مختلف ساخت Dictionary زمانی اهمیت پیدا می کنند که داده های ما از شکل های متفاوتی در اختیارمان باشند.
+
+---
+
+## ۱. ساخت Dictionary خالی
+
+می توانیم با `{}` یک Dictionary خالی بسازیم:
+
+```python
+student = {}
+```
+
+در این لحظه Dictionary هیچ عضوی ندارد.
+
+بعداً می توانیم اطلاعات را به آن اضافه کنیم:
+
+```python
+student["name"] = "Ali"
+student["age"] = 20
+```
+
+حالا:
+
+```python
+print(student)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+این روش زمانی مفید است که اطلاعات از ابتدا به صورت کامل در اختیار برنامه نباشد.
+
+---
+
+## ۲. ساخت Dictionary همراه با داده های اولیه
+
+اگر از ابتدا داده ها را داشته باشیم، می توانیم آن ها را هنگام ساخت Dictionary قرار دهیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "major": "Computer Science"
+}
+```
+
+هر ورودی از ساختار زیر پیروی می کند:
+
+```text
+Key: Value
+```
+
+و جفت های مختلف با کاما از هم جدا می شوند.
+
+برای مثال:
+
+```text
+"name": "Ali"
+```
+
+یعنی:
+
+```text
+Key   → "name"
+Value → "Ali"
+```
+
+---
+
+## ۳. ساخت Dictionary با `dict()`
+
+پایتون Constructorای به نام `dict()` نیز دارد:
+
+```python
+student = dict()
+```
+
+این دستور یک Dictionary خالی ایجاد می کند.
+
+از نظر نتیجه با این کد یکسان است:
+
+```python
+student = {}
+```
+
+برای حالت های ساده، `{}` معمولاً کوتاه تر و مستقیم تر است.
+
+اما `dict()` زمانی اهمیت بیشتری پیدا می کند که بخواهیم Dictionary را از داده های موجود بسازیم.
+
+---
+
+## ۴. استفاده از Keyword Argumentها در `dict()`
+
+می توانیم هنگام استفاده از `dict()` از Keyword Argument استفاده کنیم:
+
+```python
+student = dict(
+    name="Ali",
+    age=20,
+    major="Computer Science"
+)
+```
+
+نتیجه:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "major": "Computer Science"
+}
+```
+
+نام Keywordها به عنوان Key استفاده می شود.
+
+این روش زمانی مناسب است که Keyها شناسه های معتبر پایتون باشند.
+
+مثلاً:
+
+```python
+user = dict(
+    username="ali123",
+    active=True
+)
+```
+
+اما نمی توانیم مستقیماً Keyهایی مانند:
+
+```text
+"first-name"
+```
+
+را با این روش بنویسیم، چون `first-name` یک Python Identifier معتبر نیست.
+
+در چنین شرایطی استفاده از `{}` انعطاف بیشتری دارد:
+
+```python
+user = {
+    "first-name": "Ali"
+}
+```
+
+---
+
+## ۵. ساخت Dictionary از جفت های Key-Value
+
+اگر داده های ما از قبل به صورت جفت وجود داشته باشند، می توانیم از `dict()` استفاده کنیم:
+
+```python
+student = dict([
+    ("name", "Ali"),
+    ("age", 20),
+    ("score", 18)
+])
+```
+
+هر Tuple داخلی شامل:
+
+```text
+(Key, Value)
+```
+
+است.
+
+پایتون این جفت ها را به ورودی های Dictionary تبدیل می کند.
+
+نتیجه:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+این روش زمانی مفید است که داده های ما از قبل به صورت مجموعه ای از جفت ها در اختیارمان باشند.
+
+---
+
+## ۶. ساخت Dictionary از دو Sequence با `zip()`
+
+یکی از روش های مهم دیگر استفاده از `zip()` است.
+
+فرض کنید Keyها و Valueها در دو Sequence جداگانه قرار دارند:
+
+```python
+keys = ["name", "age", "score"]
+values = ["Ali", 20, 18]
+
+student = dict(zip(keys, values))
+```
+
+نتیجه:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+در واقع `zip()` عناصر متناظر را به هم متصل می کند:
+
+```text
+"name"  → "Ali"
+"age"   → 20
+"score" → 18
+```
+
+این روش زمانی بسیار کاربردی است که Keyها و Valueها از قبل جدا از یکدیگر ذخیره شده باشند.
+
+---
+
+## ۷. ساخت Dictionary از یک Dictionary موجود
+
+می توانیم بر اساس یک Dictionary موجود، Dictionary دیگری بسازیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+copy_student = dict(student)
+```
+
+حالا `copy_student` همان جفت های Key-Value را دارد:
+
+```python
+print(copy_student)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+در این حالت یک Dictionary جدید ایجاد می شود که ورودی های سطح اول Dictionary قبلی را دارد.
+
+این موضوع با صرفاً اختصاص دادن یک Variable دیگر به همان Dictionary متفاوت است:
+
+```python
+student = {
+    "name": "Ali"
+}
+
+other = student
+```
+
+در این حالت `student` و `other` به یک شیء Dictionary اشاره می کنند.
+
+موضوع Copy کردن را در بخش مربوط به خودش با جزئیات بیشتری بررسی خواهیم کرد.
+
+---
+
+## ۸. Keyهای تکراری
+
+Keyهای Dictionary یکتا هستند.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "name": "Sara"
+}
+```
+
+Value دوم جای Value اول را می گیرد.
+
+در نتیجه:
+
+```python
+{
+    "name": "Sara"
+}
+```
+
+بنابراین تکرار یک Key باعث ایجاد چند ورودی مستقل نمی شود.
+
+این ویژگی به دلیل نقش Key در شناسایی یک Value اهمیت زیادی دارد.
+
+---
+
+## ۹. اضافه کردن اطلاعات بعد از ساخت
+
+لازم نیست Dictionary از همان ابتدا کامل باشد.
+
+می توانیم ابتدا این Dictionary را بسازیم:
+
+```python
+student = {
+    "name": "Ali"
+}
+```
+
+و بعد اطلاعات بیشتری به آن اضافه کنیم:
+
+```python
+student["age"] = 20
+student["score"] = 18
+```
+
+در نهایت:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+این رفتار یکی از نتایج تغییر پذیر بودن Dictionary است.
+
+---
+
+## ۱۰. انتخاب روش مناسب برای ساخت Dictionary
+
+هر روش ساخت در موقعیت خاصی مناسب تر است.
+
+### زمانی که داده از قبل مشخص است
+
+از `{}` استفاده می کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+### زمانی که Keyها Identifierهای ساده هستند
+
+می توانیم از `dict()` استفاده کنیم:
+
+```python
+student = dict(name="Ali", age=20)
+```
+
+### زمانی که داده به صورت جفت در اختیارمان است
+
+می توانیم از `dict()` استفاده کنیم:
+
+```python
+pairs = [
+    ("name", "Ali"),
+    ("age", 20)
+]
+
+student = dict(pairs)
+```
+
+### زمانی که Keyها و Valueها جدا هستند
+
+می توانیم از `zip()` استفاده کنیم:
+
+```python
+keys = ["name", "age"]
+values = ["Ali", 20]
+
+student = dict(zip(keys, values))
+```
+
+نکته مهم این نیست که تمام Syntaxها را حفظ کنیم؛ مهم این است که بدانیم **داده فعلی ما چه شکلی دارد** و مناسب ترین روش ساخت را بر اساس همان انتخاب کنیم.
+
+---
+
+## نکات کلیدی
+
+* `{}` مستقیم ترین روش ساخت Dictionary است.
+* `dict()` می تواند Dictionary خالی بسازد یا از داده های موجود یک Dictionary ایجاد کند.
+* می توان از Keyword Argumentها در `dict()` استفاده کرد.
+* Dictionary را می توان از مجموعه ای از جفت های `(Key, Value)` ساخت.
+* `zip()` برای ترکیب Sequenceهای جداگانه Key و Value بسیار مفید است.
+* Keyهای تکراری باعث ایجاد ورودی های جداگانه نمی شوند.
+* در صورت تکرار Key، Value بعدی جای Value قبلی را می گیرد.
+* می توان Dictionary را خالی ساخت و بعداً آن را تکمیل کرد.
+* انتخاب روش ساخت باید بر اساس شکل داده های موجود انجام شود.
+
+---
+
+# سوال های بخش
+
+## سوال ۱
+
+با استفاده از `{}` یک Dictionary به نام `book` بسازید که شامل اطلاعات زیر باشد:
+
+```text
+title  → "Python"
+author → "Ali"
+pages  → 300
+```
+
+## سوال ۲
+
+Dictionary زیر را با استفاده از `dict()` و Keyword Argumentها بسازید:
+
+```text
+name → "Sara"
+age  → 21
+```
+
+## سوال ۳
+
+با توجه به کد زیر، با استفاده از `zip()` یک Dictionary بسازید:
+
+```python
+keys = ["name", "age", "city"]
+values = ["Ali", 20, "Tehran"]
+```
+
+---
+
+# سوال جامع
+
+داده های زیر را دریافت کرده اید:
+
+```python
+keys = ["username", "age", "active"]
+values = ["ali123", 20, True]
+```
+
+با استفاده از این داده ها یک Dictionary بسازید و توضیح دهید چرا در این شرایط استفاده از `zip()` نسبت به نوشتن دستی تمام جفت های Key-Value مناسب تر است.
+
+---
+
+# پاسخ ها
+
+## پاسخ سوال ۱
+
+```python
+book = {
+    "title": "Python",
+    "author": "Ali",
+    "pages": 300
+}
+```
+
+## پاسخ سوال ۲
+
+```python
+student = dict(
+    name="Sara",
+    age=21
+)
+```
+
+## پاسخ سوال ۳
+
+```python
+keys = ["name", "age", "city"]
+values = ["Ali", 20, "Tehran"]
+
+data = dict(zip(keys, values))
+```
+
+نتیجه:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "city": "Tehran"
+}
+```
+
+## پاسخ سوال جامع
+
+```python
+keys = ["username", "age", "active"]
+values = ["ali123", 20, True]
+
+user = dict(zip(keys, values))
+```
+
+نتیجه:
+
+```python
+{
+    "username": "ali123",
+    "age": 20,
+    "active": True
+}
+```
+
+استفاده از `zip()` مناسب است چون Keyها و Valueها از قبل در دو Sequence جداگانه قرار دارند. `zip()` عناصر متناظر را به صورت خودکار به یکدیگر متصل می کند و نیاز به نوشتن دستی هر جفت را از بین می برد.
+
+---
+

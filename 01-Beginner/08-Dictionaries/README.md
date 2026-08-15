@@ -1827,3 +1827,620 @@ The fourth uses `.get()` because `"email"` may not exist, and we want a meaningf
 
 ---
 
+# Part 4 — Adding and Updating Dictionary Items
+
+## Introduction
+
+So far, we have learned how to create a Dictionary and access the Values stored inside it.
+
+The next important skill is learning how to **change a Dictionary after it has been created**.
+
+Dictionaries are **mutable**, which means their contents can be changed after creation.
+
+There are two closely related operations:
+
+* **Adding** a new Key-Value pair
+* **Updating** the Value of an existing Key
+
+Understanding the difference between these two operations is essential for working with real data.
+
+---
+
+## 1. Adding a New Item
+
+We can add a new Key-Value pair by assigning a Value to a Key that does not currently exist:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+student["score"] = 18
+```
+
+Now the Dictionary contains:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+The general pattern is:
+
+```python
+dictionary[key] = value
+```
+
+If `key` does not already exist, Python creates a new entry.
+
+---
+
+## 2. Updating an Existing Item
+
+The same syntax is used to update an existing Value.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+student["score"] = 20
+```
+
+Now:
+
+```python
+print(student)
+```
+
+produces:
+
+```text
+{'name': 'Ali', 'age': 20, 'score': 20}
+```
+
+Python does not create another `"score"` entry.
+
+Instead, the existing Value is replaced.
+
+Therefore:
+
+```python
+dictionary[key] = value
+```
+
+can mean either:
+
+```text
+New Key     → Add a new item
+Existing Key → Update its Value
+```
+
+This dual behavior is one of the most important things to understand about Dictionary assignment.
+
+---
+
+## 3. Adding Several Items
+
+We can add several items one by one:
+
+```python
+student = {}
+
+student["name"] = "Ali"
+student["age"] = 20
+student["score"] = 18
+```
+
+The final result is:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+This approach is useful when the information becomes available gradually.
+
+For example, data may arrive from user input:
+
+```python
+student = {}
+
+student["name"] = input("Name: ")
+student["age"] = int(input("Age: "))
+```
+
+The Dictionary can then be completed as more information becomes available.
+
+---
+
+## 4. Updating Several Items with `update()`
+
+When we need to add or update multiple Key-Value pairs at once, the `update()` method is useful.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+student.update({
+    "age": 21,
+    "score": 19
+})
+```
+
+After the operation:
+
+```python
+{
+    "name": "Ali",
+    "age": 21,
+    "score": 19
+}
+```
+
+Notice what happened:
+
+* `"age"` already existed, so its Value was updated.
+* `"score"` did not exist, so a new item was added.
+
+Therefore, `update()` can perform both operations simultaneously.
+
+---
+
+## 5. Updating with Keyword Arguments
+
+For suitable Key names, `update()` can also receive Keyword Arguments:
+
+```python
+student.update(
+    age=21,
+    score=19
+)
+```
+
+This is convenient when the Keys are valid Python identifiers.
+
+However, if a Key contains characters such as `-` or `.`, use a Dictionary:
+
+```python
+student.update({
+    "first-name": "Ali",
+    "email.address": "ali@example.com"
+})
+```
+
+---
+
+## 6. Updating from Another Dictionary
+
+A common situation is merging information from another Dictionary into an existing one.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+extra_data = {
+    "age": 21,
+    "score": 19
+}
+
+student.update(extra_data)
+```
+
+The result is:
+
+```python
+{
+    "name": "Ali",
+    "age": 21,
+    "score": 19
+}
+```
+
+Existing Keys are updated, while new Keys are added.
+
+---
+
+## 7. Updating from an Iterable of Pairs
+
+`update()` can also receive an iterable containing Key-Value pairs:
+
+```python
+student = {
+    "name": "Ali"
+}
+
+student.update([
+    ("age", 20),
+    ("score", 18)
+])
+```
+
+The result is:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+This is useful when the incoming data already has the form of pairs.
+
+---
+
+## 8. `update()` Changes the Original Dictionary
+
+An important property of `update()` is that it modifies the existing Dictionary.
+
+```python
+student = {
+    "name": "Ali"
+}
+
+result = student.update({
+    "age": 20
+})
+```
+
+The Dictionary is changed:
+
+```python
+print(student)
+```
+
+Output:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+But:
+
+```python
+print(result)
+```
+
+outputs:
+
+```text
+None
+```
+
+This is because `update()` performs an in-place modification rather than returning a new Dictionary.
+
+This distinction becomes important when writing larger programs.
+
+---
+
+## 9. Assignment vs `update()`
+
+Both approaches can modify a Dictionary:
+
+```python
+student["age"] = 21
+```
+
+and:
+
+```python
+student.update({
+    "age": 21
+})
+```
+
+For a single Key-Value pair, direct assignment is usually simpler.
+
+For multiple updates:
+
+```python
+student.update({
+    "age": 21,
+    "score": 19,
+    "active": True
+})
+```
+
+is often clearer.
+
+The choice should depend on how the data is structured and how many entries need to be changed.
+
+---
+
+## 10. Updating a Value Based on Its Current Value
+
+We can read a Value, modify it, and assign it back.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "score": 18
+}
+
+student["score"] = student["score"] + 1
+```
+
+Now:
+
+```python
+print(student["score"])
+```
+
+outputs:
+
+```text
+19
+```
+
+This can be shortened with an augmented assignment:
+
+```python
+student["score"] += 1
+```
+
+Similarly:
+
+```python
+student["score"] -= 1
+```
+
+can decrease the Value.
+
+This pattern is especially useful for counters and accumulated values.
+
+---
+
+## 11. Building a Dictionary Gradually
+
+Dictionaries are often constructed dynamically.
+
+For example, suppose we want to count something:
+
+```python
+counts = {}
+
+counts["Python"] = 1
+counts["Java"] = 1
+counts["Python"] += 1
+```
+
+The final Dictionary is:
+
+```python
+{
+    "Python": 2,
+    "Java": 1
+}
+```
+
+Here we first create the `"Python"` Key and then update its Value.
+
+This illustrates why it is important to understand the difference between **creating an entry** and **modifying an existing entry**.
+
+---
+
+## 12. Important Difference: Missing Keys and Updates
+
+This code works:
+
+```python
+student = {}
+
+student["score"] = 18
+```
+
+because assigning to a missing Key creates it.
+
+But this does not work:
+
+```python
+student = {}
+
+student["score"] += 1
+```
+
+because Python first needs to read `student["score"]`, and that Key does not exist yet.
+
+The result is:
+
+```text
+KeyError: 'score'
+```
+
+A common solution is to provide an initial value first:
+
+```python
+student["score"] = 0
+student["score"] += 1
+```
+
+Now the result is:
+
+```python
+{
+    "score": 1
+}
+```
+
+This distinction is extremely important when working with counters.
+
+---
+
+## Key Takeaways
+
+* Dictionaries are mutable.
+* `dictionary[key] = value` adds a new item when the Key does not exist.
+* The same syntax updates the Value when the Key already exists.
+* `update()` can add and update multiple items at once.
+* `update()` can receive a Dictionary, Keyword Arguments, or an iterable of Key-Value pairs.
+* `update()` modifies the original Dictionary.
+* `update()` returns `None`.
+* Values can be updated based on their current Values.
+* Augmented assignments such as `+=` and `-=` are useful for modifying numeric Values.
+* A missing Key must be initialized before using an expression such as `+=`.
+
+---
+
+# Section Questions
+
+## Question 1
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+Add a new Key named `"score"` with the Value `18`.
+
+## Question 2
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Change the student's age to `21` and score to `20`.
+
+## Question 3
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+Use `update()` to:
+
+* change `"age"` to `21`
+* add `"score"` with the Value `19`
+* add `"active"` with the Value `True`
+
+---
+
+# Comprehensive Question
+
+Consider:
+
+```python
+counts = {}
+
+counts["Python"] = 1
+counts["Java"] = 1
+```
+
+Now suppose another Python item is encountered.
+
+Write the code needed to increase the `"Python"` counter by one.
+
+Then explain why this works:
+
+```python
+counts["Python"] += 1
+```
+
+but the following code fails when `"Python"` has never been added:
+
+```python
+counts["Python"] += 1
+```
+
+---
+
+# Answers
+
+## Answer 1
+
+```python
+student["score"] = 18
+```
+
+## Answer 2
+
+```python
+student["age"] = 21
+student["score"] = 20
+```
+
+## Answer 3
+
+```python
+student.update({
+    "age": 21,
+    "score": 19,
+    "active": True
+})
+```
+
+## Comprehensive Answer
+
+After `"Python"` has already been initialized:
+
+```python
+counts["Python"] += 1
+```
+
+works because Python can first retrieve the existing Value:
+
+```python
+counts["Python"]
+```
+
+and then add `1`.
+
+If the Key does not exist, Python cannot retrieve its current Value, so:
+
+```python
+counts["Python"] += 1
+```
+
+raises:
+
+```text
+KeyError: 'Python'
+```
+
+A safe initialization is:
+
+```python
+counts["Python"] = 0
+counts["Python"] += 1
+```
+
+After that, the Dictionary contains:
+
+```python
+{
+    "Python": 1
+}
+```
+
+---
+

@@ -9185,7 +9185,7 @@ Use variables, input, type casting where necessary, conditions, lists, `len()`, 
 
 ---
 
-# Part 13 — Copying a List
+# Part 12 — Copying a List
 
 ## 1. Introduction
 

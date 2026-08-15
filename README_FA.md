@@ -7,7 +7,7 @@
 برخلاف بسیاری از مخازن که فقط پاسخ تمرین‌ ها را ارائه می‌ کنند، هدف این پروژه **یادگیری از طریق حل مسئله** است.
 
 ---
-- 🌐 Language: **فارسی** | [English](README.md)
+> 🌐 Language: **فارسی** | [English](README.md)
 ---
 
 ## 🎯 هدف پروژه
@@ -56,9 +56,9 @@
 | 4 | [Functions](01-Beginner/04-Functions/fa/README.md) | توابع | ✅ |
 | 5 | [Strings](01-Beginner/05-Strings/fa/README.md) | رشته ها | ✅ |
 | 6 | [ Lists ](01-Beginner/06-Lists/fa/README.md) | لیست ها | ✅ |
-| 7 | [ Tuples ](01-Beginner/07-Tuples/fa/README.md) | تاپل ها | 🟡 |
-| 8 | [ Sets ](01-Beginner/08-Sets/fa/README.md) | مجموعه ها | ⬜ |
-| 9 | [ Dictionaries ](01-Beginner/09-Dictionaries/fa/README.md) | دیکشنری ها | ⬜ |
+| 7 | [ Tuples ](01-Beginner/07-Tuples/fa/README.md) | تاپل ها | ✅ |
+| 8 | [ Dictionaries ](01-Beginner/09-Dictionaries/fa/README.md) | دیکشنری ها | 🟡 |
+| 9 | [ Sets ](01-Beginner/08-Sets/fa/README.md) | مجموعه ها | ⬜ |
 
 ---
 

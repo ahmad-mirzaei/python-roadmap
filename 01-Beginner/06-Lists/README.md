@@ -9185,3 +9185,374 @@ Use variables, input, type casting where necessary, conditions, lists, `len()`, 
 
 ---
 
+# Part 13 — Copying a List
+
+## 1. Introduction
+
+Sometimes we need to create a copy of a list so that we can change the copy without changing the original list.
+
+This is important because simply assigning one list to another variable does not create an independent copy.
+
+## 2. The Problem with Simple Assignment
+
+Consider this example:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange', 'Mango']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+Both variables refer to the same list.
+
+Changing `new_fruits` also changes `fruits`.
+
+## 3. Copying with `copy()`
+
+Lists have a `copy()` method that creates a separate copy.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits.copy()
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+Now the two lists are separate.
+
+Changing `new_fruits` does not change `fruits`.
+
+## 4. Copying with Slicing
+
+We can also create a copy using slicing.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+new_fruits = fruits[:]
+
+new_fruits.append("Mango")
+
+print(fruits)
+print(new_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+The expression:
+
+```python
+fruits[:]
+```
+
+creates a new list containing all elements of `fruits`.
+
+## 5. Comparing the Methods
+
+These two methods create a separate list:
+
+```python
+new_fruits = fruits.copy()
+```
+
+and:
+
+```python
+new_fruits = fruits[:]
+```
+
+But this does not:
+
+```python
+new_fruits = fruits
+```
+
+The important difference is whether a new list is created.
+
+## 6. Changing the Copy
+
+After creating a copy, we can change it independently.
+
+```python
+numbers = [10, 20, 30]
+
+copied_numbers = numbers.copy()
+
+copied_numbers[0] = 100
+
+print(numbers)
+print(copied_numbers)
+```
+
+Output:
+
+```text
+[10, 20, 30]
+[100, 20, 30]
+```
+
+Only the copied list was changed.
+
+## 7. Removing an Element from the Copy
+
+We can also use list methods on the copied list.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.remove("Banana")
+
+print(fruits)
+print(copied_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Orange']
+```
+
+The original list remains unchanged.
+
+## 8. Adding Elements to the Copy
+
+We can add new elements to the copy.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.append("Mango")
+
+print(fruits)
+print(copied_fruits)
+```
+
+Output:
+
+```text
+['Apple', 'Banana', 'Orange']
+['Apple', 'Banana', 'Orange', 'Mango']
+```
+
+## 9. Using a Copy for Safe Changes
+
+Copying is useful when we want to keep the original data.
+
+For example:
+
+```python
+scores = [18, 15, 12, 9, 20]
+
+updated_scores = scores.copy()
+
+updated_scores.remove(9)
+
+print("Original:", scores)
+print("Updated:", updated_scores)
+```
+
+Output:
+
+```text
+Original: [18, 15, 12, 9, 20]
+Updated: [18, 15, 12, 20]
+```
+
+The original scores are still available.
+
+## 10. Common Beginner Mistakes
+
+### Mistake 1 — Thinking Assignment Creates a Copy
+
+This does not create an independent list:
+
+```python
+new_list = old_list
+```
+
+Both variables refer to the same list.
+
+### Mistake 2 — Changing the Wrong List
+
+After making a copy, make sure you modify the intended variable.
+
+```python
+fruits = ["Apple", "Banana"]
+
+copied_fruits = fruits.copy()
+
+copied_fruits.append("Orange")
+```
+
+Only `copied_fruits` changes.
+
+## 11. Important Summary
+
+Use `copy()` to create an independent copy of a list:
+
+```python
+new_list = old_list.copy()
+```
+
+You can also copy a list with slicing:
+
+```python
+new_list = old_list[:]
+```
+
+Do not use simple assignment when you need an independent list:
+
+```python
+new_list = old_list
+```
+
+Remember:
+
+```text
+copy() → creates a new list
+[:]    → creates a new list
+=      → refers to the same list
+```
+
+# Exercises
+
+## Exercise 1 — Create a Copy
+
+Create a list of five fruits and make a copy using `copy()`.
+
+Add a new fruit to the copy and print both lists.
+
+## Exercise 2 — Copy with Slicing
+
+Create a list of numbers and create a copy using `[:]`.
+
+Change one element in the copy and print both lists.
+
+## Exercise 3 — Compare Assignment and Copy
+
+Create a list and assign it to another variable using `=`.
+
+Change the second variable and observe what happens to the original list.
+
+Then repeat the example using `copy()`.
+
+## Exercise 4 — Copy and Remove
+
+Create a list of names.
+
+Make a copy and remove one name from the copy.
+
+Print both lists.
+
+## Exercise 5 — Copy and Update
+
+Create a list of scores.
+
+Make a copy, remove one score, and add another score to the copy.
+
+Print the original and updated lists.
+
+# Comprehensive Review
+
+## Question 1
+
+What is the difference between:
+
+```python
+new_list = old_list
+```
+
+and:
+
+```python
+new_list = old_list.copy()
+```
+
+## Question 2
+
+What will this program print?
+
+```python
+numbers = [10, 20, 30]
+
+copied_numbers = numbers.copy()
+
+copied_numbers.append(40)
+
+print(numbers)
+print(copied_numbers)
+```
+
+## Question 3
+
+Write a program that creates a copy of a list using slicing.
+
+## Question 4
+
+Create a list of fruits, make a copy, remove one fruit from the copy, and print both lists.
+
+## Question 5
+
+Why can copying a list be useful when we want to keep the original data unchanged?
+
+# Challenge
+
+## Python Roadmap Challenge
+
+Create a simple **Shopping List Manager**.
+
+Start with:
+
+```python
+shopping_list = ["Milk", "Bread", "Eggs", "Apples"]
+```
+
+Your program should:
+
+1. Print the original shopping list.
+2. Create a copy of the list.
+3. Ask the user for a new item.
+4. Add the new item only if it is not already in the copied list.
+5. Ask the user for an item to remove.
+6. Remove that item from the copied list only if it exists.
+7. Print the original list.
+8. Print the updated copied list.
+9. Print the number of items in the updated list.
+
+Use concepts learned so far, including variables, input, conditions, lists, `len()`, `in`, `not in`, `append()`, `remove()`, and `copy()`.
+
+---
+

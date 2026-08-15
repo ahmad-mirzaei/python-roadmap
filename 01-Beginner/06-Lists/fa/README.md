@@ -9226,382 +9226,563 @@ tasks = ["Study Python", "Exercise", "Read", "Practice Lists"]
 
 ---
 
-### بخش انگلیسی
+# بخش ۱۲ — حذف عناصر از لیست
 
-````markdown
-# Part 13 — Copying a List
+## ۱. مقدمه
 
-## 1. Introduction
+گاهی لازم است یک یا چند عنصر را از لیست حذف کنیم.
 
-Sometimes we need to create a copy of a list so that we can change the copy without changing the original list.
+پایتون روش های مختلفی برای حذف عناصر از لیست در اختیار ما قرار می دهد.
 
-This is important because simply assigning one list to another variable does not create an independent copy.
+در این بخش با موارد زیر آشنا می شویم:
 
-## 2. The Problem with Simple Assignment
+- `remove()`
+- `pop()`
+- `del`
+- `clear()`
 
-Consider this example:
+هر کدام کاربرد متفاوتی دارند.
+
+## ۲. استفاده از `remove()`
+
+متد `remove()` اولین تکرار یک مقدار مشخص را از لیست حذف می کند.
 
 ```python
-fruits = ["Apple", "Banana", "Orange"]
+fruits = ["Apple", "Banana", "Orange", "Banana"]
 
-new_fruits = fruits
-
-new_fruits.append("Mango")
+fruits.remove("Banana")
 
 print(fruits)
-print(new_fruits)
 ```
 
-Output:
+خروجی:
 
 ```text
-['Apple', 'Banana', 'Orange', 'Mango']
-['Apple', 'Banana', 'Orange', 'Mango']
+['Apple', 'Orange', 'Banana']
 ```
 
-Both variables refer to the same list.
+فقط اولین `"Banana"` حذف شد.
 
-Changing `new_fruits` also changes `fruits`.
+## ۳. حذف مقداری که وجود ندارد
 
-## 3. Copying with `copy()`
+اگر مقدار مورد نظر در لیست وجود نداشته باشد، `remove()` باعث ایجاد خطا می شود.
 
-Lists have a `copy()` method that creates a separate copy.
+برای مثال:
 
 ```python
 fruits = ["Apple", "Banana", "Orange"]
 
-new_fruits = fruits.copy()
-
-new_fruits.append("Mango")
-
-print(fruits)
-print(new_fruits)
+fruits.remove("Mango")
 ```
 
-Output:
+این کد باعث ایجاد `ValueError` می شود.
+
+قبل از استفاده از `remove()` می توانیم بررسی کنیم که مقدار مورد نظر وجود دارد یا نه.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+if "Mango" in fruits:
+    fruits.remove("Mango")
+
+print(fruits)
+```
+
+خروجی:
 
 ```text
 ['Apple', 'Banana', 'Orange']
-['Apple', 'Banana', 'Orange', 'Mango']
 ```
 
-Now the two lists are separate.
+## ۴. استفاده از `pop()`
 
-Changing `new_fruits` does not change `fruits`.
-
-## 4. Copying with Slicing
-
-We can also create a copy using slicing.
+متد `pop()` یک عنصر را با استفاده از اندیس آن حذف می کند.
 
 ```python
 fruits = ["Apple", "Banana", "Orange"]
 
-new_fruits = fruits[:]
-
-new_fruits.append("Mango")
+fruits.pop(1)
 
 print(fruits)
-print(new_fruits)
 ```
 
-Output:
+خروجی:
 
 ```text
-['Apple', 'Banana', 'Orange']
-['Apple', 'Banana', 'Orange', 'Mango']
-```
-
-The expression:
-
-```python
-fruits[:]
-```
-
-creates a new list containing all elements of `fruits`.
-
-## 5. Comparing the Methods
-
-These two methods create a separate list:
-
-```python
-new_fruits = fruits.copy()
-```
-
-and:
-
-```python
-new_fruits = fruits[:]
-```
-
-But this does not:
-
-```python
-new_fruits = fruits
-```
-
-The important difference is whether a new list is created.
-
-## 6. Changing the Copy
-
-After creating a copy, we can change it independently.
-
-```python
-numbers = [10, 20, 30]
-
-copied_numbers = numbers.copy()
-
-copied_numbers[0] = 100
-
-print(numbers)
-print(copied_numbers)
-```
-
-Output:
-
-```text
-[10, 20, 30]
-[100, 20, 30]
-```
-
-Only the copied list was changed.
-
-## 7. Removing an Element from the Copy
-
-We can also use list methods on the copied list.
-
-```python
-fruits = ["Apple", "Banana", "Orange"]
-
-copied_fruits = fruits.copy()
-
-copied_fruits.remove("Banana")
-
-print(fruits)
-print(copied_fruits)
-```
-
-Output:
-
-```text
-['Apple', 'Banana', 'Orange']
 ['Apple', 'Orange']
 ```
 
-The original list remains unchanged.
+اندیس `1` مربوط به `"Banana"` بود، بنابراین این عنصر حذف شد.
 
-## 8. Adding Elements to the Copy
+## ۵. استفاده از `pop()` بدون اندیس
 
-We can add new elements to the copy.
+اگر اندیس مشخص نکنیم، `pop()` آخرین عنصر را حذف می کند.
 
 ```python
 fruits = ["Apple", "Banana", "Orange"]
 
-copied_fruits = fruits.copy()
-
-copied_fruits.append("Mango")
+fruits.pop()
 
 print(fruits)
-print(copied_fruits)
 ```
 
-Output:
+خروجی:
 
 ```text
-['Apple', 'Banana', 'Orange']
-['Apple', 'Banana', 'Orange', 'Mango']
+['Apple', 'Banana']
 ```
 
-## 9. Using a Copy for Safe Changes
+## ۶. دریافت عنصر حذف شده
 
-Copying is useful when we want to keep the original data.
-
-For example:
+یکی از ویژگی های مفید `pop()` این است که عنصر حذف شده را برمی گرداند.
 
 ```python
-scores = [18, 15, 12, 9, 20]
+fruits = ["Apple", "Banana", "Orange"]
 
-updated_scores = scores.copy()
+removed_fruit = fruits.pop(1)
 
-updated_scores.remove(9)
-
-print("Original:", scores)
-print("Updated:", updated_scores)
+print(removed_fruit)
+print(fruits)
 ```
 
-Output:
+خروجی:
 
 ```text
-Original: [18, 15, 12, 9, 20]
-Updated: [18, 15, 12, 20]
+Banana
+['Apple', 'Orange']
 ```
 
-The original scores are still available.
+این ویژگی یکی از تفاوت های مهم `pop()` و `remove()` است.
 
-## 10. Common Beginner Mistakes
+## ۷. استفاده از `del`
 
-### Mistake 1 — Thinking Assignment Creates a Copy
-
-This does not create an independent list:
+دستور `del` می تواند یک عنصر را با استفاده از اندیس حذف کند.
 
 ```python
-new_list = old_list
+fruits = ["Apple", "Banana", "Orange"]
+
+del fruits[1]
+
+print(fruits)
 ```
 
-Both variables refer to the same list.
+خروجی:
 
-### Mistake 2 — Changing the Wrong List
+```text
+['Apple', 'Orange']
+```
 
-After making a copy, make sure you modify the intended variable.
+عنصر موجود در اندیس `1` حذف شد.
+
+## ۸. استفاده از `del` برای چند عنصر
+
+می توانیم از `del` همراه با برش نیز استفاده کنیم.
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+del numbers[1:4]
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[10, 50]
+```
+
+عناصر موجود در اندیس های `1`، `2` و `3` حذف شدند.
+
+## ۹. استفاده از `clear()`
+
+متد `clear()` تمام عناصر لیست را حذف می کند.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.clear()
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+[]
+```
+
+خود لیست همچنان وجود دارد، اما دیگر هیچ عنصری ندارد.
+
+## ۱۰. تفاوت `remove()` و `pop()`
+
+تفاوت اصلی این است که هر کدام عنصر مورد نظر را چگونه مشخص می کنند.
+
+`remove()` با مقدار کار می کند:
+
+```python
+fruits.remove("Apple")
+```
+
+`pop()` با اندیس کار می کند:
+
+```python
+fruits.pop(0)
+```
+
+برای مثال:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.remove("Banana")
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Orange']
+```
+
+اما:
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruits.pop(1)
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Orange']
+```
+
+هر دو `"Banana"` را حذف می کنند، اما روش پیدا کردن عنصر متفاوت است.
+
+## ۱۱. تفاوت `pop()` و `del`
+
+هر دو می توانند یک عنصر را با استفاده از اندیس حذف کنند.
+
+تفاوت مهم این است که `pop()` عنصر حذف شده را برمی گرداند.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+removed = fruits.pop(1)
+
+print(removed)
+```
+
+خروجی:
+
+```text
+Banana
+```
+
+اما `del` عنصر حذف شده را برنمی گرداند.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+del fruits[1]
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Apple', 'Orange']
+```
+
+## ۱۲. انتخاب روش مناسب
+
+وقتی مقدار را می دانیم، از `remove()` استفاده می کنیم:
+
+```python
+fruits.remove("Banana")
+```
+
+وقتی اندیس را می دانیم و می خواهیم عنصر حذف شده را دریافت کنیم، از `pop()` استفاده می کنیم:
+
+```python
+removed = fruits.pop(1)
+```
+
+برای حذف یک عنصر یا یک بازه بر اساس اندیس از `del` استفاده می کنیم:
+
+```python
+del fruits[1]
+```
+
+برای حذف تمام عناصر از `clear()` استفاده می کنیم:
+
+```python
+fruits.clear()
+```
+
+## ۱۳. حذف انتخاب کاربر
+
+می توانیم `input()`، `in` و `remove()` را با هم ترکیب کنیم.
+
+```python
+fruits = ["Apple", "Banana", "Orange"]
+
+fruit = input("Enter a fruit to remove: ")
+
+if fruit in fruits:
+    fruits.remove(fruit)
+    print(f"{fruit} was removed.")
+else:
+    print(f"{fruit} was not found.")
+
+print(fruits)
+```
+
+نمونه خروجی:
+
+```text
+Enter a fruit to remove: Banana
+Banana was removed.
+['Apple', 'Orange']
+```
+
+## ۱۴. حذف آخرین عنصر
+
+برای حذف آخرین عنصر می توانیم از `pop()` استفاده کنیم.
+
+```python
+tasks = ["Study", "Exercise", "Read"]
+
+last_task = tasks.pop()
+
+print(f"Removed task: {last_task}")
+print(tasks)
+```
+
+خروجی:
+
+```text
+Removed task: Read
+['Study', 'Exercise']
+```
+
+## ۱۵. حذف تمام تکرارهای یک مقدار
+
+متد `remove()` فقط اولین تکرار را حذف می کند.
+
+اگر بخواهیم تمام تکرارهای یک مقدار را حذف کنیم، می توانیم از حلقه استفاده کنیم.
+
+```python
+fruits = ["Apple", "Banana", "Apple", "Orange", "Apple"]
+
+while "Apple" in fruits:
+    fruits.remove("Apple")
+
+print(fruits)
+```
+
+خروجی:
+
+```text
+['Banana', 'Orange']
+```
+
+حلقه تا زمانی ادامه پیدا می کند که `"Apple"` در لیست وجود داشته باشد.
+
+## ۱۶. اشتباه های رایج
+
+### اشتباه ۱ — اشتباه گرفتن مقدار و اندیس
+
+این کد:
+
+```python
+fruits.remove(1)
+```
+
+می خواهد مقدار `1` را حذف کند.
+
+این کد به معنی «حذف عنصر موجود در اندیس 1» نیست.
+
+برای حذف عنصر اندیس `1` می توانیم از این روش استفاده کنیم:
+
+```python
+fruits.pop(1)
+```
+
+یا:
+
+```python
+del fruits[1]
+```
+
+### اشتباه ۲ — حذف مقدار موجود نبودن
+
+این کد ممکن است خطا ایجاد کند:
 
 ```python
 fruits = ["Apple", "Banana"]
 
-copied_fruits = fruits.copy()
-
-copied_fruits.append("Orange")
+fruits.remove("Mango")
 ```
 
-Only `copied_fruits` changes.
-
-## 11. Important Summary
-
-Use `copy()` to create an independent copy of a list:
+روش امن تر:
 
 ```python
-new_list = old_list.copy()
+if "Mango" in fruits:
+    fruits.remove("Mango")
 ```
 
-You can also copy a list with slicing:
+### اشتباه ۳ — فراموش کردن مقدار برگشتی `pop()`
+
+در این کد:
 
 ```python
-new_list = old_list[:]
+removed = fruits.pop(1)
 ```
 
-Do not use simple assignment when you need an independent list:
+عنصر حذف شده داخل متغیر `removed` قرار می گیرد.
+
+این ویژگی زمانی مفید است که بعد از حذف بخواهیم با آن عنصر کار کنیم.
+
+## ۱۷. جمع بندی
+
+برای حذف اولین مقدار مشخص از `remove()` استفاده می کنیم:
 
 ```python
-new_list = old_list
+my_list.remove(value)
 ```
 
-Remember:
+برای حذف یک عنصر با اندیس از `pop()` استفاده می کنیم:
+
+```python
+my_list.pop(index)
+```
+
+برای حذف آخرین عنصر بدون مشخص کردن اندیس:
+
+```python
+my_list.pop()
+```
+
+برای حذف یک عنصر یا یک بازه بر اساس اندیس از `del` استفاده می کنیم:
+
+```python
+del my_list[index]
+```
+
+برای حذف تمام عناصر:
+
+```python
+my_list.clear()
+```
+
+به صورت خلاصه:
 
 ```text
-copy() → creates a new list
-[:]    → creates a new list
-=      → refers to the same list
+remove() → مقدار
+pop()    → اندیس
+del      → اندیس یا برش
+clear()  → همه عناصر
 ```
 
-# Exercises
+# تمرین ها
 
-## Exercise 1 — Create a Copy
+## تمرین ۱ — حذف یک میوه
 
-Create a list of five fruits and make a copy using `copy()`.
+یک لیست از میوه ها بسازید و `"Banana"` را با استفاده از `remove()` حذف کنید.
 
-Add a new fruit to the copy and print both lists.
+## تمرین ۲ — حذف با اندیس
 
-## Exercise 2 — Copy with Slicing
+یک لیست از اعداد بسازید و عنصر موجود در اندیس `2` را با استفاده از `pop()` حذف کنید.
 
-Create a list of numbers and create a copy using `[:]`.
+## تمرین ۳ — ذخیره عنصر حذف شده
 
-Change one element in the copy and print both lists.
+یک لیست از نام ها بسازید.
 
-## Exercise 3 — Compare Assignment and Copy
+یک نام را با `pop()` حذف کنید و نام حذف شده را چاپ کنید.
 
-Create a list and assign it to another variable using `=`.
+## تمرین ۴ — حذف آخرین عنصر
 
-Change the second variable and observe what happens to the original list.
+یک لیست از کارها بسازید و آخرین کار را با استفاده از `pop()` حذف کنید.
 
-Then repeat the example using `copy()`.
+## تمرین ۵ — خالی کردن لیست
 
-## Exercise 4 — Copy and Remove
+یک لیست شامل چند عنصر بسازید و با استفاده از `clear()` آن را خالی کنید.
 
-Create a list of names.
+# مرور جامع
 
-Make a copy and remove one name from the copy.
+## سوال ۱
 
-Print both lists.
+تفاوت `remove()` و `pop()` چیست؟
 
-## Exercise 5 — Copy and Update
+## سوال ۲
 
-Create a list of scores.
-
-Make a copy, remove one score, and add another score to the copy.
-
-Print the original and updated lists.
-
-# Comprehensive Review
-
-## Question 1
-
-What is the difference between:
+این برنامه چه چیزی چاپ می کند؟
 
 ```python
-new_list = old_list
+fruits = ["Apple", "Banana", "Orange", "Banana"]
+
+fruits.remove("Banana")
+
+print(fruits)
 ```
 
-and:
+## سوال ۳
+
+تفاوت این دو چیست؟
 
 ```python
-new_list = old_list.copy()
+fruits.pop(1)
 ```
 
-## Question 2
-
-What will this program print?
+و:
 
 ```python
-numbers = [10, 20, 30]
-
-copied_numbers = numbers.copy()
-
-copied_numbers.append(40)
-
-print(numbers)
-print(copied_numbers)
+del fruits[1]
 ```
 
-## Question 3
+## سوال ۴
 
-Write a program that creates a copy of a list using slicing.
+برنامه ای بنویسید که یک میوه از کاربر دریافت کند و فقط در صورتی آن را از لیست حذف کند که در لیست وجود داشته باشد.
 
-## Question 4
+## سوال ۵
 
-Create a list of fruits, make a copy, remove one fruit from the copy, and print both lists.
+یک لیست از اعداد بسازید و تمام تکرارهای یک عدد مشخص را حذف کنید.
 
-## Question 5
+# چالش
 
-Why can copying a list be useful when we want to keep the original data unchanged?
+## چالش Python Roadmap
 
-# Challenge
+یک برنامه ساده با نام **Task Manager** بسازید و از مفاهیمی که تا اینجا یاد گرفته اید استفاده کنید.
 
-## Python Roadmap Challenge
-
-Create a simple **Shopping List Manager**.
-
-Start with:
+برنامه را با این لیست شروع کنید:
 
 ```python
-shopping_list = ["Milk", "Bread", "Eggs", "Apples"]
+tasks = ["Study Python", "Exercise", "Read", "Practice Lists"]
 ```
 
-Your program should:
+برنامه باید:
 
-1. Print the original shopping list.
-2. Create a copy of the list.
-3. Ask the user for a new item.
-4. Add the new item only if it is not already in the copied list.
-5. Ask the user for an item to remove.
-6. Remove that item from the copied list only if it exists.
-7. Print the original list.
-8. Print the updated copied list.
-9. Print the number of items in the updated list.
+1. لیست کارها را چاپ کند.
+2. تعداد کارها را چاپ کند.
+3. از کاربر نام کاری را که می خواهد حذف کند دریافت کند.
+4. با استفاده از `in` بررسی کند که آن کار وجود دارد یا نه.
+5. در صورت وجود، آن کار را حذف کند.
+6. نام کار حذف شده را چاپ کند.
+7. لیست به روز شده را چاپ کند.
+8. تعداد کارهای باقی مانده را چاپ کند.
+9. در صورت پیدا نشدن کار، پیام مناسب نمایش دهد.
 
-Use concepts learned so far, including variables, input, conditions, lists, `len()`, `in`, `not in`, `append()`, `remove()`, and `copy()`.
-````
+در این برنامه از متغیرها، `input`، تبدیل نوع در صورت نیاز، شرط ها، لیست ها، `len()`، `in`، `not in`، `remove()` و در صورت مناسب بودن `pop()` استفاده کنید.
 
-### بخش فارسی
+---
 
-````markdown
 # بخش ۱۳ — کپی کردن یک لیست
 
 ## ۱. مقدمه
@@ -9971,8 +10152,6 @@ shopping_list = ["Milk", "Bread", "Eggs", "Apples"]
 
 در این برنامه از مفاهیمی که تا اینجا یاد گرفته اید استفاده کنید، از جمله متغیرها، ورودی، شرط ها، لیست ها، `len()`، `in`، `not in`، `append()`، `remove()` و `copy()`.
 ````
-
-`docs(lists): add list copying section`
 
 ---
 

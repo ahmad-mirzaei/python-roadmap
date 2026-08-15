@@ -9185,8 +9185,6 @@ Your program should:
 
 # Part 12 — Sorting Lists
 
-> 🌐 Language: **English** | [فارسی](fa/README.md)
-
 ## 1. Introduction
 
 Sometimes we need to arrange the elements of a list in a specific order.

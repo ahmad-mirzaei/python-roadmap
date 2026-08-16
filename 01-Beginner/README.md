@@ -6453,3 +6453,616 @@ You should be able to explain **why Dictionary is the appropriate structure, wha
 
 ---
 
+# Dictionaries Mini Project
+
+## Student Management System
+
+In this mini project, we will combine the concepts learned throughout the Dictionary section into one practical program.
+
+The goal is not to create a large or complicated application.
+
+The goal is to practice **thinking in terms of data relationships** and using a Dictionary as the central structure for organizing and accessing that data.
+
+---
+
+## Project Goal
+
+Build a simple **Student Management System** that stores information about multiple students.
+
+Each student should have:
+
+* an identifier;
+* a name;
+* an age;
+* a city;
+* a collection of scores.
+
+A suitable starting structure is:
+
+```python
+students = {
+    "ali": {
+        "name": "Ali",
+        "age": 20,
+        "city": "Baku",
+        "scores": [85, 90, 95]
+    },
+    "sara": {
+        "name": "Sara",
+        "age": 22,
+        "city": "Ganja",
+        "scores": [92, 88, 96]
+    }
+}
+```
+
+Notice the structure carefully.
+
+The outer Dictionary uses a student identifier as its Key:
+
+```text
+"ali"
+"sara"
+```
+
+Each Value is another Dictionary containing information about that student.
+
+The `"scores"` Value is itself a List.
+
+This gives us a nested structure:
+
+```text
+Dictionary
+   │
+   ├── Student ID
+   │      │
+   │      └── Student Dictionary
+   │              │
+   │              ├── name → String
+   │              ├── age → Integer
+   │              ├── city → String
+   │              └── scores → List
+   │
+   └── Student ID
+          │
+          └── Student Dictionary
+```
+
+This project therefore combines several data structures instead of treating each structure as an isolated topic.
+
+---
+
+# Part 1 — Display Student Information
+
+Create a function:
+
+```python
+def show_student(student_id):
+    pass
+```
+
+The function should receive a student ID and display that student's information.
+
+For example:
+
+```python
+show_student("ali")
+```
+
+could produce:
+
+```text
+Name: Ali
+Age: 20
+City: Baku
+Scores: [85, 90, 95]
+```
+
+The function should handle the situation where the requested student does not exist.
+
+---
+
+# Part 2 — Add a Student
+
+Create a function:
+
+```python
+def add_student(student_id, name, age, city):
+    pass
+```
+
+The function should add a new student to the main Dictionary.
+
+For example:
+
+```python
+add_student(
+    "reza",
+    "Reza",
+    21,
+    "Shaki"
+)
+```
+
+After the operation, `"reza"` should become a new Key in `students`.
+
+The new student should begin with an empty score List:
+
+```python
+"scores": []
+```
+
+Consider what should happen if the student ID already exists.
+
+A good program should not silently overwrite existing student information.
+
+---
+
+# Part 3 — Update Student Information
+
+Create:
+
+```python
+def update_student(student_id, age=None, city=None):
+    pass
+```
+
+The function should update only the information provided.
+
+For example:
+
+```python
+update_student("ali", city="Sumqayit")
+```
+
+should change the city without changing Ali's age or scores.
+
+This requires careful handling of optional values.
+
+The goal is to practice modifying nested Dictionary data without accidentally replacing the entire student record.
+
+---
+
+# Part 4 — Add a Score
+
+Create:
+
+```python
+def add_score(student_id, score):
+    pass
+```
+
+For example:
+
+```python
+add_score("ali", 98)
+```
+
+should transform:
+
+```python
+"scores": [85, 90, 95]
+```
+
+into:
+
+```python
+"scores": [85, 90, 95, 98]
+```
+
+The function should also check that the student exists.
+
+---
+
+# Part 5 — Calculate the Average Score
+
+Create:
+
+```python
+def calculate_average(student_id):
+    pass
+```
+
+The function should calculate the average of the student's scores.
+
+For:
+
+```python
+[85, 90, 95]
+```
+
+the average is:
+
+```text
+90
+```
+
+Consider the case where a student has no scores.
+
+The program should handle that case deliberately rather than producing an unexpected error.
+
+---
+
+# Part 6 — Find the Top Student
+
+Create:
+
+```python
+def find_top_student():
+    pass
+```
+
+The function should determine which student has the highest average score.
+
+For example, if:
+
+```text
+Ali  → 90
+Sara → 92
+Reza → 88
+```
+
+the function should identify Sara.
+
+This part is important because it requires combining:
+
+* Dictionary iteration;
+* nested Dictionary access;
+* List processing;
+* calculations;
+* comparison.
+
+The solution should not depend on knowing the student names beforehand.
+
+---
+
+# Part 7 — Display All Students
+
+Create:
+
+```python
+def show_all_students():
+    pass
+```
+
+Iterate through the outer Dictionary and display every student's information.
+
+A possible output:
+
+```text
+--- Ali ---
+Age: 20
+City: Baku
+Scores: [85, 90, 95]
+
+--- Sara ---
+Age: 22
+City: Ganja
+Scores: [92, 88, 96]
+```
+
+This is an opportunity to practice:
+
+```python
+for student_id, student in students.items():
+    ...
+```
+
+rather than manually accessing individual students.
+
+---
+
+# Part 8 — Search Students by City
+
+Create:
+
+```python
+def find_students_by_city(city):
+    pass
+```
+
+For example:
+
+```python
+find_students_by_city("Baku")
+```
+
+should return or display all students who live in Baku.
+
+This demonstrates why Dictionary data can be useful for more than direct Key lookup.
+
+The Dictionary gives us the main structure, while iteration allows us to search through its Values.
+
+---
+
+# Part 9 — Find Students Above an Average
+
+Create:
+
+```python
+def students_above_average(minimum):
+    pass
+```
+
+For example:
+
+```python
+students_above_average(90)
+```
+
+should identify students whose average score is greater than or equal to `90`.
+
+This combines:
+
+```text
+Dictionary iteration
+        ↓
+Nested data access
+        ↓
+List calculation
+        ↓
+Comparison
+        ↓
+Result collection
+```
+
+---
+
+# Part 10 — Copy the Data
+
+Create a copy of the student database:
+
+```python
+students_copy = students.copy()
+```
+
+Then experiment with modifying a nested score List.
+
+Observe whether changing:
+
+```python
+students_copy["ali"]["scores"]
+```
+
+also affects:
+
+```python
+students["ali"]["scores"]
+```
+
+Explain why this happens.
+
+Then create a completely independent copy using:
+
+```python
+from copy import deepcopy
+
+students_copy = deepcopy(students)
+```
+
+Repeat the experiment.
+
+The purpose of this part is to make the difference between **shallow copying** and **deep copying** practical rather than theoretical.
+
+---
+
+# Part 11 — Convert the Data
+
+Create a List containing the students' IDs and names.
+
+For example:
+
+```python
+[
+    ("ali", "Ali"),
+    ("sara", "Sara"),
+    ("reza", "Reza")
+]
+```
+
+Then convert that List back into a Dictionary.
+
+This reinforces the idea that data can have multiple useful representations.
+
+---
+
+# Part 12 — Export to JSON
+
+Use Python's `json` module:
+
+```python
+import json
+```
+
+Convert the student database into JSON:
+
+```python
+json_data = json.dumps(students, indent=4)
+```
+
+Display the resulting JSON.
+
+Then convert it back:
+
+```python
+restored_students = json.loads(json_data)
+```
+
+Verify that the restored data can still be accessed as expected.
+
+For example:
+
+```python
+restored_students["ali"]["age"]
+```
+
+---
+
+# Part 13 — Build a Simple Menu
+
+The final version should provide a simple text-based menu:
+
+```text
+==============================
+ Student Management System
+==============================
+
+1. Show student
+2. Add student
+3. Update student
+4. Add score
+5. Calculate average
+6. Find top student
+7. Show all students
+8. Search by city
+9. Find students above average
+10. Export to JSON
+0. Exit
+```
+
+The user should be able to choose an operation repeatedly until selecting `0`.
+
+A typical program flow becomes:
+
+```text
+Start
+  ↓
+Display menu
+  ↓
+Read choice
+  ↓
+Perform operation
+  ↓
+Display result
+  ↓
+Return to menu
+  ↓
+Exit when choice == 0
+```
+
+---
+
+# Project Requirements
+
+Your final program should:
+
+* use a Dictionary as the main data structure;
+* use Nested Dictionaries for student records;
+* use Lists for scores;
+* support adding students;
+* support updating student information;
+* support adding scores;
+* calculate averages;
+* identify the highest-performing student;
+* display all students;
+* search students by city;
+* filter students by average score;
+* demonstrate shallow and deep copying;
+* convert between Dictionary and List representations;
+* serialize and deserialize JSON;
+* provide a simple interactive menu;
+* handle missing student IDs gracefully;
+* avoid unnecessary repetition by using functions.
+
+---
+
+# Important Design Principle
+
+Do not try to solve the entire project inside one giant block of code.
+
+Instead, divide the program into small responsibilities:
+
+```text
+show_student()
+add_student()
+update_student()
+add_score()
+calculate_average()
+find_top_student()
+show_all_students()
+find_students_by_city()
+students_above_average()
+```
+
+Each function should have one clear responsibility.
+
+The Dictionary then becomes the shared data model that these functions operate on.
+
+This is the important lesson of the project:
+
+> **A good data structure becomes much more useful when the program is designed around the relationships represented by that structure.**
+
+---
+
+# Extension Challenges
+
+After completing the required project, try improving it.
+
+### Challenge 1 — Remove a Student
+
+Add:
+
+```python
+def remove_student(student_id):
+    pass
+```
+
+Handle the case where the student does not exist.
+
+### Challenge 2 — Remove a Score
+
+Allow the user to remove a specific score from a student's List.
+
+### Challenge 3 — Find the Best Score
+
+Find the highest individual score across all students.
+
+### Challenge 4 — Sort Students
+
+Display students ordered by their average score.
+
+### Challenge 5 — Find the Youngest Student
+
+Determine which student has the lowest age.
+
+### Challenge 6 — Count Students by City
+
+Produce a structure such as:
+
+```python
+{
+    "Baku": 3,
+    "Ganja": 2,
+    "Shaki": 1
+}
+```
+
+This is a particularly useful exercise because it introduces the idea of using a Dictionary to **count occurrences**.
+
+### Challenge 7 — Save to a File
+
+Save the JSON representation to a file and load it again when the program starts.
+
+---
+
+# What You Should Understand After This Project
+
+After completing the project, you should be able to look at a problem and identify:
+
+1. What information needs to be stored?
+2. What uniquely identifies each piece of information?
+3. Which data should become Keys?
+4. Which data should become Values?
+5. Which Values need their own nested structure?
+6. When should Lists be used inside a Dictionary?
+7. When is direct lookup appropriate?
+8. When is iteration necessary?
+9. When should data be copied?
+10. When should data be converted into another representation?
+
+If you can answer these questions, you are no longer just memorizing Dictionary syntax.
+
+You are beginning to use Dictionaries as a **data modeling and problem-solving tool**.
+
+---
+

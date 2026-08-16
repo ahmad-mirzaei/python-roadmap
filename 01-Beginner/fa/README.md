@@ -1946,3 +1946,1166 @@ milk   → 5
 
 ---
 
+# پارت ۱۱ — Nested Dictionaries
+
+## مقدمه
+
+تا اینجا با Dictionaryهایی کار کردیم که Valueهای آن ها معمولاً داده های ساده بودند:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+اما داده های واقعی معمولاً ساختار پیچیده تری دارند.
+
+برای مثال اطلاعات یک دانش آموز ممکن است شامل موارد زیر باشد:
+
+* اطلاعات شخصی
+* اطلاعات تحصیلی
+* اطلاعات تماس
+* چندین نمره
+* فهرستی از مهارت ها
+
+اگر همه این اطلاعات را در یک Dictionary ساده قرار دهیم، با زیاد شدن داده ها ساختار خیلی سریع شلوغ می شود.
+
+Python با اجازه دادن به قرار گرفتن یک Dictionary به عنوان Value یک Dictionary دیگر، امکان ساخت ساختارهای منظم تر را فراهم می کند.
+
+به چنین ساختاری **Nested Dictionary** یا **Dictionary تو در تو** می گوییم.
+
+---
+
+## ۱. Nested Dictionary چیست؟
+
+Nested Dictionary دیکشنری ای است که یکی از Valueهای آن خودش یک Dictionary دیگر است.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+```
+
+ساختار:
+
+```text
+student
+│
+├── name   → "Ali"
+│
+└── details
+      │
+      ├── age  → 20
+      └── city → "Baku"
+```
+
+Dictionary بیرونی دارای Key به نام `"details"` است.
+
+Value مربوط به `"details"` خودش یک Dictionary است.
+
+آن Dictionary داخلی نیز Keyها و Valueهای خودش را دارد.
+
+---
+
+## ۲. چرا به Nested Dictionaries نیاز داریم؟
+
+Nested Dictionary به ما اجازه می دهد **داده های سلسله مراتبی** را نمایش دهیم.
+
+به جای این:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku",
+    "math": 18,
+    "python": 20
+}
+```
+
+می توانیم داده ها را بر اساس ارتباطشان گروه بندی کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "personal": {
+        "age": 20,
+        "city": "Baku"
+    },
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+```
+
+حالا خود ساختار مشخص می کند هر داده متعلق به چه بخشی است:
+
+```text
+student
+│
+├── name
+├── personal
+│    ├── age
+│    └── city
+│
+└── scores
+     ├── math
+     └── python
+```
+
+این نوع سازمان دهی زمانی که با داده های بزرگ تر کار می کنیم اهمیت بسیار بیشتری پیدا می کند.
+
+---
+
+## ۳. دسترسی به Value داخل Dictionary تو در تو
+
+برای دسترسی به داده داخل Dictionary داخلی، باید چند Key را پشت سر هم استفاده کنیم.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+```
+
+برای دسترسی به سن:
+
+```python
+print(student["details"]["age"])
+```
+
+خروجی:
+
+```text
+20
+```
+
+این دسترسی به صورت مفهومی چنین اتفاقی می افتد:
+
+```text
+student
+   ↓
+["details"]
+   ↓
+Dictionary داخلی
+   ↓
+["age"]
+   ↓
+20
+```
+
+این یکی از مهم ترین الگوها در کار با داده های تو در تو است.
+
+---
+
+## ۴. دسترسی به سطوح مختلف
+
+فرض کنید:
+
+```python
+student = {
+    "name": "Ali",
+    "personal": {
+        "age": 20,
+        "address": {
+            "city": "Baku",
+            "country": "Azerbaijan"
+        }
+    }
+}
+```
+
+می توانیم بنویسیم:
+
+```python
+student["name"]
+```
+
+که نتیجه آن:
+
+```text
+Ali
+```
+
+است.
+
+یا:
+
+```python
+student["personal"]["age"]
+```
+
+که نتیجه:
+
+```text
+20
+```
+
+است.
+
+و حتی عمیق تر:
+
+```python
+student["personal"]["address"]["city"]
+```
+
+که نتیجه:
+
+```text
+Baku
+```
+
+است.
+
+هر Key اضافی ما را یک سطح بیشتر در ساختار وارد می کند.
+
+---
+
+## ۵. Nested Dictionary می تواند چندین سطح داشته باشد
+
+محدودیتی وجود ندارد که Nested Dictionary فقط یک سطح عمق داشته باشد.
+
+مثلاً:
+
+```python
+company = {
+    "employee": {
+        "contact": {
+            "address": {
+                "city": "Baku"
+            }
+        }
+    }
+}
+```
+
+می توانیم شهر را این گونه دریافت کنیم:
+
+```python
+print(
+    company["employee"]["contact"]["address"]["city"]
+)
+```
+
+خروجی:
+
+```text
+Baku
+```
+
+البته Python اجازه چنین ساختاری را می دهد، اما این به معنی آن نیست که همیشه باید Dictionaryها را بسیار عمیق کنیم.
+
+اگر عمق بیش از حد زیاد شود، خواندن و نگهداری کد دشوار می شود.
+
+پس Nested کردن باید زمانی انجام شود که واقعاً باعث واضح تر شدن ساختار داده شود.
+
+---
+
+## ۶. تغییر یک Value داخلی
+
+Valueهای داخل Dictionaryهای تو در تو نیز قابل تغییر هستند.
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+student["details"]["age"] = 21
+```
+
+حالا:
+
+```python
+print(student["details"]["age"])
+```
+
+نتیجه:
+
+```text
+21
+```
+
+اصل کار همان Assignment معمولی Dictionary است.
+
+فقط قبل از رسیدن به Value باید مسیر داخل ساختار را مشخص کنیم.
+
+---
+
+## ۷. اضافه کردن Value به Dictionary داخلی
+
+می توانیم یک ورودی جدید نیز به Dictionary داخلی اضافه کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+student["details"]["country"] = "Azerbaijan"
+```
+
+حالا Dictionary داخلی:
+
+```python
+{
+    "age": 20,
+    "city": "Baku",
+    "country": "Azerbaijan"
+}
+```
+
+است.
+
+در واقع ما به جای Dictionary بیرونی، Dictionary ذخیره شده در `"details"` را تغییر داده ایم.
+
+---
+
+## ۸. اضافه کردن یک Dictionary تو در توی جدید
+
+می توانیم یک بخش کاملاً جدید نیز ایجاد کنیم:
+
+```python
+student = {
+    "name": "Ali"
+}
+
+student["scores"] = {
+    "math": 18,
+    "python": 20
+}
+```
+
+حالا ساختار چنین چیزی است:
+
+```text
+name
+   → Ali
+
+scores
+   → math   → 18
+   → python → 20
+```
+
+این قابلیت برای زمانی که ساختار داده در طول اجرای برنامه رشد می کند بسیار کاربردی است.
+
+---
+
+## ۹. حذف داده های تو در تو
+
+می توانیم یک ورودی را از Dictionary داخلی حذف کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+del student["details"]["city"]
+```
+
+در این حالت `"city"` از Dictionary داخلی حذف می شود.
+
+همچنین می توانیم کل Dictionary داخلی را حذف کنیم:
+
+```python
+del student["details"]
+```
+
+در این حالت Key `"details"` و Dictionary مربوط به آن از Dictionary بیرونی حذف می شوند.
+
+---
+
+## ۱۰. استفاده از `items()` در Nested Dictionaries
+
+متد `items()` که در پارت قبل یاد گرفتیم، برای Nested Dictionary نیز کاربرد دارد.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+for key, value in student.items():
+    print(key, value)
+```
+
+خروجی:
+
+```text
+name Ali
+details {'age': 20, 'city': 'Baku'}
+```
+
+یک نکته مهم وجود دارد:
+
+حلقه بیرونی کل Dictionary داخلی را به عنوان **یک Value** می بیند.
+
+خودش به صورت خودکار وارد Dictionary داخلی نمی شود.
+
+---
+
+## ۱۱. پیمایش Dictionary داخلی
+
+اگر بخواهیم Dictionary داخلی را پردازش کنیم، باید مشخصاً وارد آن شویم:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+for key, value in student["details"].items():
+    print(key, value)
+```
+
+خروجی:
+
+```text
+age 20
+city Baku
+```
+
+اینجا به Python گفته ایم:
+
+> «Dictionary ذخیره شده در `details` را بگیر و روی Itemهای آن پیمایش کن.»
+
+---
+
+## ۱۲. حلقه های `for` تو در تو
+
+برای چند Dictionary تو در تو می توانیم از چند حلقه استفاده کنیم.
+
+```python
+students = {
+    "student1": {
+        "name": "Ali",
+        "score": 18
+    },
+    "student2": {
+        "name": "Sara",
+        "score": 15
+    }
+}
+
+for student_id, student_info in students.items():
+    print(student_id)
+
+    for key, value in student_info.items():
+        print(key, value)
+```
+
+خروجی:
+
+```text
+student1
+name Ali
+score 18
+student2
+name Sara
+score 15
+```
+
+حلقه بیرونی هر دانش آموز را پردازش می کند.
+
+حلقه داخلی اطلاعات مربوط به همان دانش آموز را پردازش می کند.
+
+---
+
+## ۱۳. یک ساختار واقعی تر
+
+Nested Dictionaries زمانی که چند موجودیت مشابه داریم، بسیار مفید می شوند.
+
+مثلاً:
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "city": "Baku",
+        "scores": {
+            "math": 18,
+            "python": 20
+        }
+    },
+    "sara": {
+        "age": 19,
+        "city": "Ganja",
+        "scores": {
+            "math": 17,
+            "python": 19
+        }
+    }
+}
+```
+
+ساختار:
+
+```text
+students
+│
+├── ali
+│    ├── age
+│    ├── city
+│    └── scores
+│         ├── math
+│         └── python
+│
+└── sara
+     ├── age
+     ├── city
+     └── scores
+          ├── math
+          └── python
+```
+
+حالا هر دانش آموز مجموعه اطلاعات ساختاریافته خودش را دارد.
+
+---
+
+## ۱۴. دسترسی به داده عمیقاً تو در تو
+
+با ساختار بالا:
+
+```python
+print(students["ali"]["scores"]["python"])
+```
+
+خروجی:
+
+```text
+20
+```
+
+مسیر دسترسی:
+
+```text
+students
+   ↓
+ali
+   ↓
+scores
+   ↓
+python
+   ↓
+20
+```
+
+درک این مسیر از حفظ کردن Syntax مهم تر است.
+
+هر زمان چیزی شبیه این دیدید:
+
+```python
+data["a"]["b"]["c"]
+```
+
+باید آن را ذهنی این گونه بخوانید:
+
+> وارد `a` شو، سپس وارد `b` شو، سپس `c` را دریافت کن.
+
+---
+
+## ۱۵. تغییر داده عمیقاً تو در تو
+
+می توانیم یک Value در سطح عمیق تر را نیز تغییر دهیم:
+
+```python
+students["ali"]["scores"]["python"] = 21
+```
+
+حالا:
+
+```python
+print(students["ali"]["scores"]["python"])
+```
+
+نتیجه:
+
+```text
+21
+```
+
+اصل Assignment همان است.
+
+تنها تفاوت این است که برای رسیدن به Value باید از چند سطح عبور کنیم.
+
+---
+
+## ۱۶. بررسی وجود Key در سطوح مختلف
+
+عملگر `in` را می توان در هر سطح از Dictionary استفاده کرد.
+
+مثلاً:
+
+```python
+if "ali" in students:
+    print("Ali exists.")
+```
+
+می توانیم Dictionary داخلی را بررسی کنیم:
+
+```python
+if "scores" in students["ali"]:
+    print("Scores exist.")
+```
+
+و حتی سطح عمیق تر:
+
+```python
+if "python" in students["ali"]["scores"]:
+    print("Python score exists.")
+```
+
+نکته مهم این است که `in` در همان Dictionaryای که روی آن اعمال شده، وجود Key را بررسی می کند.
+
+---
+
+## ۱۷. جلوگیری از `KeyError`
+
+دسترسی تو در تو در صورتی که یکی از Keyهای مسیر وجود نداشته باشد، می تواند باعث خطا شود.
+
+مثلاً:
+
+```python
+print(students["ali"]["grades"]["python"])
+```
+
+اگر `"grades"` وجود نداشته باشد، Python خطای:
+
+```text
+KeyError
+```
+
+ایجاد می کند.
+
+در داده های تو در تو تمام مراحل مسیر باید معتبر باشند:
+
+```text
+students
+  ↓
+"ali"       باید وجود داشته باشد
+  ↓
+"grades"    باید وجود داشته باشد
+  ↓
+"python"    باید وجود داشته باشد
+```
+
+به همین دلیل قبل از دسترسی به داده های عمیق، باید ساختار داده را به خوبی بشناسیم.
+
+---
+
+## ۱۸. استفاده از `get()` در Nested Dictionaries
+
+گاهی می توانیم برای دسترسی امن تر از `get()` استفاده کنیم.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20
+    }
+}
+
+details = student.get("details", {})
+age = details.get("age")
+```
+
+اگر `"details"` وجود نداشته باشد، مقدار `details` به جای ایجاد فوری `KeyError` برابر یک Dictionary خالی می شود.
+
+این روش زمانی مفید است که بعضی قسمت های داده ممکن است وجود نداشته باشند.
+
+البته `get()` به صورت خودکار تمام سطوح را امن نمی کند؛ هنوز باید ساختار داده را به شکل صحیح مدیریت کنیم.
+
+---
+
+## ۱۹. Nested Dictionaries و سازمان دهی داده
+
+یکی از مهم ترین مزیت های Nested Dictionary، **سازمان دهی اطلاعات** است.
+
+این ساختار را ببینید:
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku",
+    "math_score": 18,
+    "python_score": 20
+}
+```
+
+در مقابل:
+
+```python
+data = {
+    "name": "Ali",
+    "personal": {
+        "age": 20,
+        "city": "Baku"
+    },
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+```
+
+ساختار دوم رابطه بین داده ها را بسیار واضح تر می کند.
+
+اگر اطلاعات بیشتری اضافه کنیم:
+
+```python
+data = {
+    "name": "Ali",
+    "personal": {
+        "age": 20,
+        "city": "Baku"
+    },
+    "scores": {
+        "math": 18,
+        "python": 20
+    },
+    "contact": {
+        "email": "ali@example.com"
+    }
+}
+```
+
+هر دسته اطلاعات جای مشخص خودش را دارد.
+
+---
+
+## ۲۰. Nested Dictionary یک نوع داده جدید نیست
+
+Nested Dictionary یک Data Type خاص و جداگانه در Python نیست.
+
+این فقط یک Dictionary معمولی است که یکی از Valueهای آن یک Dictionary دیگر است.
+
+مثلاً:
+
+```python
+data = {
+    "person": {
+        "name": "Ali"
+    }
+}
+```
+
+Dictionary بیرونی یک Dictionary است.
+
+Dictionary داخلی نیز یک Dictionary است.
+
+این نکته مهم است، چون تمام عملیات معمول Dictionary روی Dictionary داخلی نیز قابل استفاده هستند.
+
+---
+
+## ۲۱. ترکیب Nested Dictionary با List
+
+داده های تو در تو فقط شامل Dictionary نیستند.
+
+می توانیم Dictionary و List را با هم ترکیب کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "skills": [
+        "Python",
+        "HTML",
+        "CSS"
+    ],
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+```
+
+ساختار:
+
+```text
+student
+│
+├── name   → String
+├── skills → List
+└── scores → Dictionary
+```
+
+می توانیم به List دسترسی داشته باشیم:
+
+```python
+print(student["skills"][0])
+```
+
+خروجی:
+
+```text
+Python
+```
+
+و به Dictionary داخلی:
+
+```python
+print(student["scores"]["python"])
+```
+
+خروجی:
+
+```text
+20
+```
+
+این مثال نشان می دهد که ساختارهای داده Python می توانند در کنار یکدیگر برای مدل کردن داده های پیچیده تر استفاده شوند.
+
+---
+
+## ۲۲. مثال کاربردی: کاتالوگ محصولات
+
+یک فروشگاه آنلاین را در نظر بگیرید:
+
+```python
+products = {
+    "laptop": {
+        "price": 1200,
+        "stock": 5,
+        "brand": "Lenovo"
+    },
+    "phone": {
+        "price": 800,
+        "stock": 10,
+        "brand": "Samsung"
+    }
+}
+```
+
+قیمت لپ تاپ:
+
+```python
+print(products["laptop"]["price"])
+```
+
+خروجی:
+
+```text
+1200
+```
+
+موجودی:
+
+```python
+print(products["laptop"]["stock"])
+```
+
+و تغییر آن:
+
+```python
+products["laptop"]["stock"] = 4
+```
+
+این یک نمونه واقعی از استفاده Nested Dictionary برای نمایش یک موجودیت ساختاریافته است.
+
+---
+
+## ۲۳. پردازش چند محصول
+
+می توانیم تمام محصولات را پردازش کنیم:
+
+```python
+for product_name, product_info in products.items():
+    print(product_name)
+
+    for key, value in product_info.items():
+        print(f"{key}: {value}")
+```
+
+خروجی:
+
+```text
+laptop
+price: 1200
+stock: 5
+brand: Lenovo
+
+phone
+price: 800
+stock: 10
+brand: Samsung
+```
+
+الگوی مهم اینجا:
+
+```python
+for outer_key, inner_dictionary in data.items():
+    for inner_key, value in inner_dictionary.items():
+        ...
+```
+
+است.
+
+این الگو اجازه می دهد چند سطح از داده های Dictionary را پردازش کنیم.
+
+---
+
+## ۲۴. مدل ذهنی مهم
+
+وقتی با Nested Dictionary کار می کنیم، بهتر است ساختار را یک تکه بزرگ از Syntax نبینیم.
+
+آن را مثل یک **درخت** تصور کنیم.
+
+مثلاً:
+
+```text
+products
+│
+├── laptop
+│    ├── price
+│    ├── stock
+│    └── brand
+│
+└── phone
+     ├── price
+     ├── stock
+     └── brand
+```
+
+پس:
+
+```python
+products["laptop"]["price"]
+```
+
+فقط یک مسیر در این درخت است:
+
+```text
+products
+   ↓
+laptop
+   ↓
+price
+   ↓
+1200
+```
+
+وقتی این مدل ذهنی برایمان طبیعی شود، Nested Dictionaries بسیار ساده تر خواهند شد.
+
+---
+
+## نکات کلیدی
+
+* Nested Dictionary یعنی Dictionaryای که یکی از Valueهای آن یک Dictionary دیگر است.
+* برای نمایش داده های سلسله مراتبی و ساختاریافته بسیار مفید است.
+* برای دسترسی به داده های تو در تو از چند Key پشت سر هم استفاده می کنیم.
+* می توان Valueها را در هر سطح تغییر داد یا Value جدید اضافه کرد.
+* `items()` با Dictionaryهای داخلی نیز قابل استفاده است.
+* برای پیمایش چند سطح می توان از حلقه های `for` تو در تو استفاده کرد.
+* `in` در سطح مشخصی که روی آن اجرا می شود، وجود Key را بررسی می کند.
+* نبودن یکی از Keyهای مسیر می تواند باعث `KeyError` شود.
+* `get()` در شرایطی که بعضی داده ها ممکن است وجود نداشته باشند، می تواند مفید باشد.
+* Dictionary می تواند با List و سایر ساختارهای داده ترکیب شود.
+* Nested Dictionary یک Data Type جدید نیست؛ همچنان از Dictionaryهای معمولی ساخته شده است.
+* بهترین مدل ذهنی برای ساختارهای پیچیده، تصور کردن آن ها به شکل یک درخت از رابطه هاست.
+
+---
+
+# سوال های بخش
+
+## سوال ۱
+
+چه چیزی باعث می شود یک Dictionary به Nested Dictionary تبدیل شود؟
+
+## سوال ۲
+
+کد زیر چه چیزی چاپ می کند؟
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+print(student["details"]["city"])
+```
+
+## سوال ۳
+
+چگونه سن Ali را به `21` تغییر می دهید؟
+
+## سوال ۴
+
+چرا ممکن است Nested Dictionary نسبت به قرار دادن تمام اطلاعات در یک Dictionary ساده انتخاب بهتری باشد؟
+
+---
+
+# سوال جامع
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "scores": {
+            "math": 18,
+            "python": 20
+        }
+    },
+    "sara": {
+        "age": 19,
+        "scores": {
+            "math": 17,
+            "python": 19
+        }
+    }
+}
+```
+
+برنامه ای بنویسید که:
+
+1. نام هر دانش آموز را چاپ کند.
+2. سن او را چاپ کند.
+3. نمره Python او را چاپ کند.
+4. دانش آموزانی را که نمره Python آن ها حداقل `20` است چاپ کند.
+5. نمره Python مربوط به Ali را به `21` تغییر دهد.
+
+---
+
+# پاسخ ها
+
+## پاسخ سوال ۱
+
+زمانی که یکی از Valueهای Dictionary خودش یک Dictionary باشد، با Nested Dictionary روبه رو هستیم.
+
+مثلاً:
+
+```python
+data = {
+    "person": {
+        "name": "Ali"
+    }
+}
+```
+
+Value مربوط به `"person"` خودش یک Dictionary است.
+
+## پاسخ سوال ۲
+
+```text
+Baku
+```
+
+زیرا:
+
+```python
+student["details"]
+```
+
+Dictionary داخلی را دریافت می کند و:
+
+```python
+["city"]
+```
+
+Value مربوط به `"city"` را دریافت می کند.
+
+## پاسخ سوال ۳
+
+```python
+student["details"]["age"] = 21
+```
+
+## پاسخ سوال ۴
+
+Nested Dictionary اطلاعات مرتبط را در گروه های منطقی سازمان دهی می کند و رابطه سلسله مراتبی بین داده ها را واضح تر نشان می دهد.
+
+به جای اینکه همه چیز در یک سطح قرار بگیرد:
+
+```text
+age
+city
+math_score
+python_score
+```
+
+می توانیم ساختار را این گونه سازمان دهی کنیم:
+
+```text
+personal
+    age
+    city
+
+scores
+    math
+    python
+```
+
+هرچه داده ها پیچیده تر شوند، این نوع سازمان دهی ارزش بیشتری پیدا می کند.
+
+## پاسخ سوال جامع
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "scores": {
+            "math": 18,
+            "python": 20
+        }
+    },
+    "sara": {
+        "age": 19,
+        "scores": {
+            "math": 17,
+            "python": 19
+        }
+    }
+}
+
+for name, info in students.items():
+    print(name)
+    print(f"Age: {info['age']}")
+    print(f"Python: {info['scores']['python']}")
+
+for name, info in students.items():
+    if info["scores"]["python"] >= 20:
+        print(name)
+
+students["ali"]["scores"]["python"] = 21
+```
+
+---
+

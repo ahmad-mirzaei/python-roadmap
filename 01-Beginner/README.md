@@ -1931,3 +1931,1160 @@ milk   → 5
 
 ---
 
+# Part 11 — Nested Dictionaries
+
+## Introduction
+
+So far, we have worked with Dictionaries whose Values were mostly simple pieces of data:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+But real-world data is often more structured.
+
+A student may have:
+
+* personal information
+* academic information
+* contact information
+* multiple scores
+* a list of skills
+
+Putting all of this into one flat Dictionary can quickly become difficult to organize.
+
+Python solves this naturally by allowing a **Dictionary to contain another Dictionary as a Value**.
+
+This structure is called a **Nested Dictionary**.
+
+---
+
+## 1. What Is a Nested Dictionary?
+
+A Nested Dictionary is a Dictionary that contains another Dictionary inside it.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+```
+
+Here:
+
+```text
+student
+│
+├── name   → "Ali"
+│
+└── details
+      │
+      ├── age  → 20
+      └── city → "Baku"
+```
+
+The outer Dictionary contains the Key `"details"`.
+
+The Value associated with `"details"` is itself another Dictionary.
+
+That inner Dictionary has its own Keys and Values.
+
+---
+
+## 2. Why Do We Need Nested Dictionaries?
+
+Nested Dictionaries allow us to represent **hierarchical data**.
+
+Instead of putting everything at the same level:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku",
+    "math": 18,
+    "python": 20
+}
+```
+
+we can organize related information:
+
+```python
+student = {
+    "name": "Ali",
+    "personal": {
+        "age": 20,
+        "city": "Baku"
+    },
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+```
+
+Now the structure itself tells us what each piece of data means.
+
+```text
+student
+│
+├── name
+├── personal
+│    ├── age
+│    └── city
+│
+└── scores
+     ├── math
+     └── python
+```
+
+This organization becomes especially valuable when working with larger datasets.
+
+---
+
+## 3. Accessing a Value in a Nested Dictionary
+
+To access data inside the inner Dictionary, we use multiple Key lookups.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+```
+
+To access the age:
+
+```python
+print(student["details"]["age"])
+```
+
+Output:
+
+```text
+20
+```
+
+The lookup happens in two steps:
+
+```text
+student
+   ↓
+["details"]
+   ↓
+inner Dictionary
+   ↓
+["age"]
+   ↓
+20
+```
+
+This is one of the most important patterns for working with nested data.
+
+---
+
+## 4. Accessing Different Levels
+
+Suppose we have:
+
+```python
+student = {
+    "name": "Ali",
+    "personal": {
+        "age": 20,
+        "address": {
+            "city": "Baku",
+            "country": "Azerbaijan"
+        }
+    }
+}
+```
+
+We can access:
+
+```python
+student["name"]
+```
+
+which gives:
+
+```text
+Ali
+```
+
+We can access:
+
+```python
+student["personal"]["age"]
+```
+
+which gives:
+
+```text
+20
+```
+
+And we can go deeper:
+
+```python
+student["personal"]["address"]["city"]
+```
+
+which gives:
+
+```text
+Baku
+```
+
+Each additional Key moves one level deeper into the structure.
+
+---
+
+## 5. Nested Dictionaries Can Have Multiple Levels
+
+There is no requirement that nesting stops after one level.
+
+For example:
+
+```python
+company = {
+    "employee": {
+        "contact": {
+            "address": {
+                "city": "Baku"
+            }
+        }
+    }
+}
+```
+
+We can access the city with:
+
+```python
+print(
+    company["employee"]["contact"]["address"]["city"]
+)
+```
+
+Output:
+
+```text
+Baku
+```
+
+Although Python allows deep nesting, excessive nesting can make code difficult to read.
+
+So nesting should be used when it makes the data structure clearer, not simply because it is possible.
+
+---
+
+## 6. Updating a Nested Value
+
+Nested Values can be changed just like ordinary Dictionary Values.
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+student["details"]["age"] = 21
+```
+
+Now:
+
+```python
+print(student["details"]["age"])
+```
+
+produces:
+
+```text
+21
+```
+
+The important idea is that we navigate to the desired Value and then assign a new Value.
+
+---
+
+## 7. Adding a New Value to an Inner Dictionary
+
+We can also add new entries.
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+student["details"]["country"] = "Azerbaijan"
+```
+
+Now the inner Dictionary contains:
+
+```python
+{
+    "age": 20,
+    "city": "Baku",
+    "country": "Azerbaijan"
+}
+```
+
+The outer Dictionary itself has not changed structurally; we modified the Dictionary stored inside `"details"`.
+
+---
+
+## 8. Adding a Completely New Nested Dictionary
+
+We can create a new nested section as well:
+
+```python
+student = {
+    "name": "Ali"
+}
+
+student["scores"] = {
+    "math": 18,
+    "python": 20
+}
+```
+
+Now:
+
+```python
+print(student)
+```
+
+represents:
+
+```text
+name
+   → Ali
+
+scores
+   → math   → 18
+   → python → 20
+```
+
+This is useful when the structure needs to grow dynamically.
+
+---
+
+## 9. Deleting Nested Data
+
+We can delete an entry from an inner Dictionary:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+del student["details"]["city"]
+```
+
+Now `"city"` no longer exists inside `"details"`.
+
+We can also delete the entire nested Dictionary:
+
+```python
+del student["details"]
+```
+
+This removes the `"details"` Key and its associated Dictionary from the outer Dictionary.
+
+---
+
+## 10. Nested Dictionaries and `items()`
+
+The `items()` method we learned in the previous part also works with Nested Dictionaries.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+for key, value in student.items():
+    print(key, value)
+```
+
+Output:
+
+```text
+name Ali
+details {'age': 20, 'city': 'Baku'}
+```
+
+Notice something important:
+
+The outer loop sees the entire inner Dictionary as one Value.
+
+It does not automatically enter the inner Dictionary.
+
+---
+
+## 11. Iterating Through the Inner Dictionary
+
+If we want to process the inner Dictionary, we need another loop:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+for key, value in student["details"].items():
+    print(key, value)
+```
+
+Output:
+
+```text
+age 20
+city Baku
+```
+
+Here we explicitly tell Python:
+
+> "Take the Dictionary stored under `details`, then iterate through its items."
+
+---
+
+## 12. Nested `for` Loops
+
+For multiple nested Dictionaries, we can use nested loops.
+
+```python
+students = {
+    "student1": {
+        "name": "Ali",
+        "score": 18
+    },
+    "student2": {
+        "name": "Sara",
+        "score": 15
+    }
+}
+
+for student_id, student_info in students.items():
+    print(student_id)
+
+    for key, value in student_info.items():
+        print(key, value)
+```
+
+Output:
+
+```text
+student1
+name Ali
+score 18
+student2
+name Sara
+score 15
+```
+
+The outer loop processes each student.
+
+The inner loop processes the information belonging to that student.
+
+---
+
+## 13. A More Realistic Structure
+
+Nested Dictionaries become particularly useful when representing multiple objects.
+
+For example:
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "city": "Baku",
+        "scores": {
+            "math": 18,
+            "python": 20
+        }
+    },
+    "sara": {
+        "age": 19,
+        "city": "Ganja",
+        "scores": {
+            "math": 17,
+            "python": 19
+        }
+    }
+}
+```
+
+The structure is:
+
+```text
+students
+│
+├── ali
+│    ├── age
+│    ├── city
+│    └── scores
+│         ├── math
+│         └── python
+│
+└── sara
+     ├── age
+     ├── city
+     └── scores
+          ├── math
+          └── python
+```
+
+Now each student has their own structured set of information.
+
+---
+
+## 14. Accessing Deeply Nested Data
+
+Using the structure above:
+
+```python
+print(students["ali"]["scores"]["python"])
+```
+
+Output:
+
+```text
+20
+```
+
+The lookup follows this path:
+
+```text
+students
+   ↓
+ali
+   ↓
+scores
+   ↓
+python
+   ↓
+20
+```
+
+Understanding this path is more important than memorizing the syntax.
+
+Whenever you see:
+
+```python
+data["a"]["b"]["c"]
+```
+
+you should mentally read it as:
+
+> Enter `a`, then enter `b`, then retrieve `c`.
+
+---
+
+## 15. Updating Deeply Nested Data
+
+We can also modify a deeply nested Value:
+
+```python
+students["ali"]["scores"]["python"] = 21
+```
+
+Now:
+
+```python
+print(students["ali"]["scores"]["python"])
+```
+
+produces:
+
+```text
+21
+```
+
+The same assignment principle used with ordinary Dictionaries applies here.
+
+The only difference is that we have to navigate through more levels.
+
+---
+
+## 16. Checking for a Key at Different Levels
+
+The `in` operator can be used at each Dictionary level.
+
+For example:
+
+```python
+if "ali" in students:
+    print("Ali exists.")
+```
+
+We can also check an inner Dictionary:
+
+```python
+if "scores" in students["ali"]:
+    print("Scores exist.")
+```
+
+And even deeper:
+
+```python
+if "python" in students["ali"]["scores"]:
+    print("Python score exists.")
+```
+
+The important point is that the `in` operator checks the Dictionary at the level where it is applied.
+
+---
+
+## 17. Avoiding Key Errors
+
+A nested lookup can fail if one of the required Keys does not exist.
+
+For example:
+
+```python
+print(students["ali"]["grades"]["python"])
+```
+
+If `"grades"` does not exist, Python raises:
+
+```text
+KeyError
+```
+
+With nested data, every step of the lookup path must be valid.
+
+For example:
+
+```text
+students
+  ↓
+"ali"       must exist
+  ↓
+"grades"    must exist
+  ↓
+"python"    must exist
+```
+
+This is an important reason to understand the structure of the data before accessing deeply nested Values.
+
+---
+
+## 18. Using `get()` with Nested Dictionaries
+
+We can sometimes make access safer with `get()`.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20
+    }
+}
+
+details = student.get("details", {})
+age = details.get("age")
+```
+
+Now, if `"details"` does not exist, `details` becomes an empty Dictionary instead of immediately raising a `KeyError`.
+
+This is useful when working with data where some fields may be missing.
+
+However, `get()` does not automatically make every level safe. We still need to handle the structure carefully.
+
+---
+
+## 19. Nested Dictionaries and Data Organization
+
+A major advantage of Nested Dictionaries is **organization**.
+
+Compare:
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku",
+    "math_score": 18,
+    "python_score": 20
+}
+```
+
+with:
+
+```python
+data = {
+    "name": "Ali",
+    "personal": {
+        "age": 20,
+        "city": "Baku"
+    },
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+```
+
+The second structure makes relationships much clearer.
+
+If more information is added later, the structure can remain organized:
+
+```python
+data = {
+    "name": "Ali",
+    "personal": {
+        "age": 20,
+        "city": "Baku"
+    },
+    "scores": {
+        "math": 18,
+        "python": 20
+    },
+    "contact": {
+        "email": "ali@example.com"
+    }
+}
+```
+
+Each category has its own place.
+
+---
+
+## 20. Nested Dictionaries Are Not a Different Data Type
+
+A Nested Dictionary is not a special Python data type.
+
+It is simply a normal Dictionary whose Value happens to be another Dictionary.
+
+For example:
+
+```python
+data = {
+    "person": {
+        "name": "Ali"
+    }
+}
+```
+
+The outer structure is a Dictionary.
+
+The inner structure is also a Dictionary.
+
+This distinction is important because all normal Dictionary operations still apply to the inner Dictionary.
+
+---
+
+## 21. Combining Nested Dictionaries with Lists
+
+Nested data does not have to contain only Dictionaries.
+
+We can combine Dictionaries and Lists:
+
+```python
+student = {
+    "name": "Ali",
+    "skills": [
+        "Python",
+        "HTML",
+        "CSS"
+    ],
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+```
+
+Here:
+
+```text
+student
+│
+├── name   → String
+├── skills → List
+└── scores → Dictionary
+```
+
+We can access the List:
+
+```python
+print(student["skills"][0])
+```
+
+Output:
+
+```text
+Python
+```
+
+And the nested Dictionary:
+
+```python
+print(student["scores"]["python"])
+```
+
+Output:
+
+```text
+20
+```
+
+This demonstrates an important idea:
+
+> Python data structures can be combined to model increasingly complex data.
+
+---
+
+## 22. Practical Example: Product Catalog
+
+Consider an online store:
+
+```python
+products = {
+    "laptop": {
+        "price": 1200,
+        "stock": 5,
+        "brand": "Lenovo"
+    },
+    "phone": {
+        "price": 800,
+        "stock": 10,
+        "brand": "Samsung"
+    }
+}
+```
+
+We can access the laptop price:
+
+```python
+print(products["laptop"]["price"])
+```
+
+Output:
+
+```text
+1200
+```
+
+We can check its stock:
+
+```python
+print(products["laptop"]["stock"])
+```
+
+And we can update it:
+
+```python
+products["laptop"]["stock"] = 4
+```
+
+This is a realistic example of how Nested Dictionaries can represent structured entities.
+
+---
+
+## 23. Practical Example: Multiple Products
+
+We can process every product:
+
+```python
+for product_name, product_info in products.items():
+    print(product_name)
+
+    for key, value in product_info.items():
+        print(f"{key}: {value}")
+```
+
+Output:
+
+```text
+laptop
+price: 1200
+stock: 5
+brand: Lenovo
+
+phone
+price: 800
+stock: 10
+brand: Samsung
+```
+
+This pattern is important:
+
+```python
+for outer_key, inner_dictionary in data.items():
+    for inner_key, value in inner_dictionary.items():
+        ...
+```
+
+It allows us to move through multiple levels of structured Dictionary data.
+
+---
+
+## 24. The Important Mental Model
+
+When working with Nested Dictionaries, do not think of the structure as one giant block of syntax.
+
+Think of it as a tree.
+
+For example:
+
+```text
+products
+│
+├── laptop
+│    ├── price
+│    ├── stock
+│    └── brand
+│
+└── phone
+     ├── price
+     ├── stock
+     └── brand
+```
+
+Then a lookup such as:
+
+```python
+products["laptop"]["price"]
+```
+
+simply means:
+
+```text
+products
+   ↓
+laptop
+   ↓
+price
+   ↓
+1200
+```
+
+Once this mental model becomes natural, Nested Dictionaries become much easier to understand.
+
+---
+
+## Key Takeaways
+
+* A Nested Dictionary is a Dictionary containing another Dictionary as a Value.
+* Nested Dictionaries are useful for representing hierarchical and structured data.
+* Accessing nested data requires multiple Key lookups.
+* Values can be updated or added at any nesting level.
+* `items()` works with nested Dictionaries as well.
+* Nested `for` loops can be used to process multiple Dictionary levels.
+* `in` checks Keys at the specific Dictionary level where it is used.
+* Missing Keys at any level can cause a `KeyError`.
+* `get()` can help handle potentially missing data.
+* Dictionaries can be combined with Lists and other data structures.
+* A Nested Dictionary is still made from ordinary Python Dictionaries.
+* The most useful way to understand complex nested data is as a tree of relationships.
+
+---
+
+# Section Questions
+
+## Question 1
+
+What makes a Dictionary a Nested Dictionary?
+
+## Question 2
+
+What will this code print?
+
+```python
+student = {
+    "name": "Ali",
+    "details": {
+        "age": 20,
+        "city": "Baku"
+    }
+}
+
+print(student["details"]["city"])
+```
+
+## Question 3
+
+How would you change Ali's age to `21`?
+
+## Question 4
+
+Why might Nested Dictionaries be better than putting all information into one flat Dictionary?
+
+---
+
+# Comprehensive Question
+
+Given:
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "scores": {
+            "math": 18,
+            "python": 20
+        }
+    },
+    "sara": {
+        "age": 19,
+        "scores": {
+            "math": 17,
+            "python": 19
+        }
+    }
+}
+```
+
+Write a program that:
+
+1. Prints each student's name.
+2. Prints their age.
+3. Prints their Python score.
+4. Prints students whose Python score is at least `20`.
+5. Changes Ali's Python score to `21`.
+
+---
+
+# Answers
+
+## Answer 1
+
+A Dictionary becomes Nested when one of its Values is another Dictionary.
+
+Example:
+
+```python
+data = {
+    "person": {
+        "name": "Ali"
+    }
+}
+```
+
+The Value of `"person"` is itself a Dictionary.
+
+## Answer 2
+
+```text
+Baku
+```
+
+because:
+
+```python
+student["details"]
+```
+
+accesses the inner Dictionary, and:
+
+```python
+["city"]
+```
+
+retrieves its `"city"` Value.
+
+## Answer 3
+
+```python
+student["details"]["age"] = 21
+```
+
+## Answer 4
+
+Nested Dictionaries organize related information into logical groups and make hierarchical relationships explicit.
+
+Instead of having:
+
+```text
+age
+city
+math_score
+python_score
+```
+
+at the same level, we can organize them:
+
+```text
+personal
+    age
+    city
+
+scores
+    math
+    python
+```
+
+This becomes much more valuable as the amount and complexity of data increase.
+
+## Comprehensive Answer
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "scores": {
+            "math": 18,
+            "python": 20
+        }
+    },
+    "sara": {
+        "age": 19,
+        "scores": {
+            "math": 17,
+            "python": 19
+        }
+    }
+}
+
+for name, info in students.items():
+    print(name)
+    print(f"Age: {info['age']}")
+    print(f"Python: {info['scores']['python']}")
+
+for name, info in students.items():
+    if info["scores"]["python"] >= 20:
+        print(name)
+
+students["ali"]["scores"]["python"] = 21
+```
+
+---
+

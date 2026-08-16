@@ -1,20 +1,22 @@
 ## Course Outline
 
-1. Introduction to Sets
-2. Creating Sets
-3. Adding Elements to a Set
-4. Removing Elements from a Set
-5. Checking for an Element in a Set
-6. Set Length and Counting Elements
-7. Iterating Through Sets
-8. Set Union
-9. Set Intersection
-10. Set Difference
-11. Set Symmetric Difference
-12. Converting Between Sets and Other Data Structures
-13. Set Immutability and `frozenset`
-14. Final Review: Sets
-15. Sets Mini Project
+| #  | Topic                                             |
+| -- | ------------------------------------------------- |
+| 1  | Introduction to Sets                              |
+| 2  | Creating Sets                                     |
+| 3  | Adding Elements to a Set                          |
+| 4  | Removing Elements from a Set                      |
+| 5  | Checking for an Element in a Set                  |
+| 6  | Set Length and Counting Elements                  |
+| 7  | Iterating Through Sets                            |
+| 8  | Set Union                                         |
+| 9  | Set Intersection                                  |
+| 10 | Set Difference                                    |
+| 11 | Set Symmetric Difference                          |
+| 12 | Converting Between Sets and Other Data Structures |
+| 13 | Set Immutability and `frozenset`                  |
+| 14 | Final Review: Sets                                |
+| 15 | Sets Mini Project                                 |
 
 ---
 
@@ -332,3 +334,509 @@ At this point, remember these core ideas:
 8. Set Operations such as Union and Intersection are important tools for working with collections of unique data.
 
 In the next part, we will learn the different ways to **create Sets** in Python.
+
+---
+
+# Sets — Part 2: Creating Sets
+
+## Creating Sets
+
+In the previous part, we learned what a Set is and why it is useful.
+
+Now we will learn the different ways to **create Sets in Python**.
+
+---
+
+## 1. Creating a Set with Curly Braces
+
+The simplest way to create a Set is to place elements inside `{}`:
+
+```python
+numbers = {1, 2, 3, 4}
+```
+
+Python recognizes this as a Set because it contains elements separated by commas.
+
+You can check its type:
+
+```python
+print(type(numbers))
+```
+
+Output:
+
+```text
+<class 'set'>
+```
+
+---
+
+## 2. Creating a Set of Strings
+
+Sets can contain Strings:
+
+```python
+languages = {"Python", "Java", "C++"}
+```
+
+You can also create a Set of names:
+
+```python
+names = {"Ali", "Sara", "Reza"}
+```
+
+Each element is stored only once.
+
+---
+
+## 3. Creating a Set with Different Data Types
+
+A Set can contain different hashable data types:
+
+```python
+data = {10, "Python", 3.14, True}
+```
+
+However, remember that Set elements must be hashable.
+
+For example, this is invalid:
+
+```python
+data = {[1, 2], [3, 4]}
+```
+
+because Lists are mutable and unhashable.
+
+---
+
+## 4. Duplicate Values Are Automatically Removed
+
+When creating a Set, duplicate values are automatically eliminated:
+
+```python
+numbers = {1, 2, 2, 3, 3, 4}
+```
+
+The resulting Set contains:
+
+```text
+{1, 2, 3, 4}
+```
+
+This happens immediately when Python creates the Set.
+
+So a Set can be useful when you want to represent only unique values.
+
+---
+
+## 5. Creating an Empty Set
+
+As we saw in the previous part, `{}` does not create an Empty Set.
+
+This:
+
+```python
+empty = {}
+```
+
+creates a Dictionary.
+
+To create an Empty Set, use:
+
+```python
+empty = set()
+```
+
+Check the type:
+
+```python
+print(type(empty))
+```
+
+Output:
+
+```text
+<class 'set'>
+```
+
+This distinction is very important.
+
+```python
+{}
+```
+
+means:
+
+```text
+Empty Dictionary
+```
+
+while:
+
+```python
+set()
+```
+
+means:
+
+```text
+Empty Set
+```
+
+---
+
+## 6. Creating a Set from a List
+
+You can create a Set from an existing List using the `set()` constructor:
+
+```python
+numbers = [1, 2, 2, 3, 4, 4]
+
+unique_numbers = set(numbers)
+
+print(unique_numbers)
+```
+
+The duplicate values are removed.
+
+Conceptually:
+
+```text
+List
+    ↓
+set()
+    ↓
+Set of unique elements
+```
+
+This is one of the most common ways to use `set()`.
+
+---
+
+## 7. Creating a Set from a Tuple
+
+The same idea works with Tuples:
+
+```python
+numbers = (1, 2, 2, 3, 4)
+
+unique_numbers = set(numbers)
+```
+
+Now `unique_numbers` is a Set containing only the unique values.
+
+---
+
+## 8. Creating a Set from a String
+
+You can also pass a String to `set()`:
+
+```python
+letters = set("hello")
+
+print(letters)
+```
+
+The Set contains the unique characters from the String.
+
+For example, the characters may be represented as:
+
+```text
+{'h', 'e', 'l', 'o'}
+```
+
+Notice that the second `l` does not appear twice.
+
+This happens because each character is treated as an individual element and Sets only keep unique elements.
+
+---
+
+## 9. Creating a Set from a Dictionary
+
+When you pass a Dictionary to `set()`, Python uses the Dictionary's **Keys**:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+keys = set(student)
+
+print(keys)
+```
+
+The resulting Set contains:
+
+```text
+{'name', 'age', 'city'}
+```
+
+This is important because:
+
+```python
+set(dictionary)
+```
+
+works with the Keys, not the Values.
+
+If you want to create a Set from the Values, you can explicitly use:
+
+```python
+values = set(student.values())
+```
+
+---
+
+## 10. Creating a Set from Dictionary Items
+
+You can also work with the Dictionary's Items:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+items = set(student.items())
+```
+
+This creates a Set containing Tuples:
+
+```text
+{
+    ('name', 'Ali'),
+    ('age', 20)
+}
+```
+
+This works because the Keys and Values in these Tuples are hashable.
+
+---
+
+## 11. Creating a Set with `set()`
+
+The `set()` constructor is especially useful when the source data already exists:
+
+```python
+numbers = [1, 2, 3, 3, 4]
+
+numbers_set = set(numbers)
+```
+
+You can use the same pattern with many iterable objects:
+
+```python
+set(list_data)
+set(tuple_data)
+set(string_data)
+set(dictionary_data)
+```
+
+The exact result depends on the elements contained in the source object.
+
+---
+
+## 12. Set Comprehension
+
+Python also supports **Set Comprehension**.
+
+The basic structure is:
+
+```python
+{expression for item in iterable}
+```
+
+For example:
+
+```python
+numbers = {x for x in range(5)}
+```
+
+This produces a Set containing:
+
+```text
+{0, 1, 2, 3, 4}
+```
+
+You can also apply a condition:
+
+```python
+even_numbers = {x for x in range(10) if x % 2 == 0}
+```
+
+The result contains the unique even numbers.
+
+Set Comprehension is useful, but for now focus on understanding the basic idea:
+
+```text
+Iterable
+    ↓
+Process each element
+    ↓
+Generate a value
+    ↓
+Store the values in a Set
+```
+
+We will use Comprehensions more comfortably as we progress.
+
+---
+
+## 13. Set Comprehension vs List Comprehension
+
+The syntax is very similar.
+
+List Comprehension:
+
+```python
+numbers = [x for x in range(5)]
+```
+
+Set Comprehension:
+
+```python
+numbers = {x for x in range(5)}
+```
+
+The main visual difference is:
+
+```text
+[ ] → List
+{ } → Set
+```
+
+However, remember that `{}` by itself creates a Dictionary, not a Set.
+
+The presence of an expression inside the braces allows Python to recognize a Set Comprehension.
+
+---
+
+## 14. Choosing the Right Creation Method
+
+Different situations call for different approaches.
+
+### You already know the values
+
+Use:
+
+```python
+numbers = {1, 2, 3, 4}
+```
+
+### You have a List
+
+Use:
+
+```python
+numbers = set(my_list)
+```
+
+### You have a Tuple
+
+Use:
+
+```python
+numbers = set(my_tuple)
+```
+
+### You have a String
+
+Use:
+
+```python
+letters = set("hello")
+```
+
+### You need to create an Empty Set
+
+Use:
+
+```python
+numbers = set()
+```
+
+### You want to generate values dynamically
+
+Use Set Comprehension:
+
+```python
+numbers = {x for x in range(10)}
+```
+
+---
+
+## Common Beginner Mistakes
+
+### Mistake 1 — Using `{}` for an Empty Set
+
+Incorrect:
+
+```python
+numbers = {}
+```
+
+Correct:
+
+```python
+numbers = set()
+```
+
+---
+
+### Mistake 2 — Expecting Duplicates to remain
+
+```python
+numbers = {1, 1, 2, 2, 3}
+```
+
+This does not create five elements.
+
+It creates a Set containing three unique elements.
+
+---
+
+### Mistake 3 — Putting a List inside a Set
+
+This is invalid:
+
+```python
+numbers = {[1, 2], [3, 4]}
+```
+
+because Lists are unhashable.
+
+---
+
+### Mistake 4 — Assuming Set order
+
+Do not write code that depends on a particular displayed order:
+
+```python
+numbers = {10, 20, 30}
+```
+
+The purpose of a Set is uniqueness and Set Operations, not positional access.
+
+---
+
+## Key Takeaways
+
+After this part, you should know:
+
+1. Sets can be created using `{}` with elements.
+2. Empty Sets must be created with `set()`.
+3. `set()` can convert Lists, Tuples, Strings, and other iterable objects into Sets.
+4. Duplicate values are automatically removed.
+5. A Dictionary passed to `set()` produces a Set of its Keys.
+6. `set(dictionary.values())` can be used to create a Set from Values.
+7. Dictionary Items can be converted into a Set when the resulting Tuples are hashable.
+8. Set Comprehension provides a concise way to generate Sets.
+9. Set elements must be hashable.
+10. Set creation should be chosen based on the type and purpose of the source data.
+
+In the next part, we will learn how to **add elements to a Set** after it has been created.
+
+---
+

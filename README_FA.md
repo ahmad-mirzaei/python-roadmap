@@ -57,8 +57,8 @@
 | 5 | [Strings](01-Beginner/05-Strings/fa/README.md) | رشته ها | ✅ |
 | 6 | [ Lists ](01-Beginner/06-Lists/fa/README.md) | لیست ها | ✅ |
 | 7 | [ Tuples ](01-Beginner/07-Tuples/fa/README.md) | تاپل ها | ✅ |
-| 8 | [ Dictionaries ](01-Beginner/08-Dictionaries/fa/README.md) | دیکشنری ها | 🟡 |
-| 9 | [ Sets ](01-Beginner/09-Sets/fa/README.md) | مجموعه ها | ⬜ |
+| 8 | [ Dictionaries ](01-Beginner/08-Dictionaries/fa/README.md) | دیکشنری ها | ✅ |
+| 9 | [ Sets ](01-Beginner/09-Sets/fa/README.md) | مجموعه ها | ✅ |
 
 ---
 

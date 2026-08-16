@@ -54,8 +54,8 @@ This repository aims to help developers:
 | 5 | [Strings](01-Beginner/05-Strings/README.md) | ✅ |
 | 6 | [Lists](01-Beginner/06-Lists/README.md) | ✅ |
 | 7 | [Tuples](01-Beginner/07-Tuples/README.md) | ✅ |
-| 8 | [Dictionaries](01-Beginner/08-Dictionaries/README.md) | 🟡 |
-| 9 | [Sets](01-Beginner/09-Sets/README.md) | ⬜ |
+| 8 | [Dictionaries](01-Beginner/08-Dictionaries/README.md) | ✅ |
+| 9 | [Sets](01-Beginner/09-Sets/README.md) | ✅ |
 
 ---
 

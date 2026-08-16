@@ -1873,3 +1873,722 @@ and explain when each method should be used.
 
 ---
 
+# Sets — Part 5: Checking for an Element in a Set
+
+In the previous part, we learned how to remove elements from a Set.
+
+Now we will learn how to **check whether an element exists inside a Set**.
+
+The main operator for this is:
+
+```python
+in
+```
+
+We will also learn:
+
+* `in`
+* `not in`
+* using membership checks with `if`
+* membership checks with user input
+* why Set membership is useful
+* the difference between checking a Set and checking a List
+
+---
+
+## 1. Using `in`
+
+The `in` operator checks whether an element exists in a Set.
+
+```python
+numbers = {1, 2, 3, 4, 5}
+
+print(3 in numbers)
+```
+
+Output:
+
+```text
+True
+```
+
+Because `3` exists in the Set.
+
+If we check for an element that does not exist:
+
+```python
+print(10 in numbers)
+```
+
+Output:
+
+```text
+False
+```
+
+So:
+
+```text
+element in set
+→ True or False
+```
+
+---
+
+## 2. Using `not in`
+
+We can also check whether an element **does not exist** in a Set.
+
+```python
+numbers = {1, 2, 3, 4, 5}
+
+print(10 not in numbers)
+```
+
+Output:
+
+```text
+True
+```
+
+Because `10` is not inside the Set.
+
+For an existing element:
+
+```python
+print(3 not in numbers)
+```
+
+Output:
+
+```text
+False
+```
+
+Remember:
+
+```text
+in
+→ checks existence
+
+not in
+→ checks non-existence
+```
+
+---
+
+## 3. Using Membership Checks with `if`
+
+Membership checks become especially useful with `if`.
+
+```python
+students = {"Ali", "Sara", "Reza"}
+
+if "Ali" in students:
+    print("Ali is in the Set")
+```
+
+Output:
+
+```text
+Ali is in the Set
+```
+
+If the student does not exist:
+
+```python
+if "Mina" in students:
+    print("Mina is in the Set")
+```
+
+Nothing is printed because the condition is `False`.
+
+We can also use `else`:
+
+```python
+students = {"Ali", "Sara", "Reza"}
+
+if "Mina" in students:
+    print("Mina is in the Set")
+else:
+    print("Mina is not in the Set")
+```
+
+Output:
+
+```text
+Mina is not in the Set
+```
+
+---
+
+## 4. Checking User Input
+
+Membership checks are very useful when working with user input.
+
+```python
+allowed_users = {"Ali", "Sara", "Reza"}
+
+username = input("Enter your username: ")
+
+if username in allowed_users:
+    print("Access granted")
+else:
+    print("Access denied")
+```
+
+Here, the Set acts like a collection of allowed values.
+
+For example, if the user enters:
+
+```text
+Sara
+```
+
+the result is:
+
+```text
+Access granted
+```
+
+But if the user enters:
+
+```text
+Mina
+```
+
+the result is:
+
+```text
+Access denied
+```
+
+---
+
+## 5. Checking Before Removing
+
+Membership checking can also be combined with removal.
+
+For example:
+
+```python
+numbers = {1, 2, 3, 4}
+
+if 3 in numbers:
+    numbers.remove(3)
+
+print(numbers)
+```
+
+Output:
+
+```text
+{1, 2, 4}
+```
+
+This prevents `remove()` from raising a `KeyError` when the element does not exist.
+
+We could also use `discard()`:
+
+```python
+numbers.discard(3)
+```
+
+But understanding membership checks is important because `in` can be used for many other decisions.
+
+---
+
+## 6. Checking Before Adding
+
+We can also check whether an element already exists before adding it.
+
+```python
+numbers = {1, 2, 3}
+
+if 4 not in numbers:
+    numbers.add(4)
+
+print(numbers)
+```
+
+Result:
+
+```text
+{1, 2, 3, 4}
+```
+
+For Sets, this check is often unnecessary because Sets automatically prevent duplicates.
+
+For example:
+
+```python
+numbers.add(4)
+```
+
+is already safe if `4` exists.
+
+Still, explicit membership checks are useful when the program needs to make a decision based on whether an element exists.
+
+---
+
+## 7. Membership Checks Return Boolean Values
+
+The result of `in` and `not in` is always a Boolean:
+
+```python
+numbers = {1, 2, 3}
+
+result = 2 in numbers
+
+print(result)
+print(type(result))
+```
+
+Output:
+
+```text
+True
+<class 'bool'>
+```
+
+So:
+
+```python
+2 in numbers
+```
+
+is an expression that evaluates to either:
+
+```text
+True
+```
+
+or:
+
+```text
+False
+```
+
+This means it can be used anywhere a Boolean condition is expected.
+
+---
+
+## 8. Checking Strings
+
+Membership checking works with Strings stored inside a Set.
+
+```python
+languages = {"Python", "Java", "C++"}
+
+print("Python" in languages)
+```
+
+Output:
+
+```text
+True
+```
+
+But:
+
+```python
+print("python" in languages)
+```
+
+returns:
+
+```text
+False
+```
+
+because String comparison is case-sensitive.
+
+These are different values:
+
+```text
+"Python"
+"python"
+```
+
+So be careful when checking user input.
+
+---
+
+## 9. Checking Different Data Types
+
+A Set can contain different hashable data types.
+
+For example:
+
+```python
+data = {1, "Python", 3.14, (10, 20)}
+
+print(1 in data)
+print("Python" in data)
+print(3.14 in data)
+print((10, 20) in data)
+```
+
+The result of each check is:
+
+```text
+True
+```
+
+The type and value being checked must match an element in the Set.
+
+For example:
+
+```python
+print("1" in data)
+```
+
+returns:
+
+```text
+False
+```
+
+because `"1"` is a String while `1` is an Integer.
+
+---
+
+## 10. Checking for `None`
+
+`None` can also be stored in a Set and checked:
+
+```python
+data = {1, 2, None}
+
+print(None in data)
+```
+
+Output:
+
+```text
+True
+```
+
+This can be useful when working with collections that may contain missing or optional values.
+
+---
+
+## 11. Membership Checking and `if / elif / else`
+
+We can perform multiple membership checks:
+
+```python
+commands = {"start", "stop", "pause"}
+
+command = input("Enter a command: ")
+
+if command in commands:
+    print("Valid command")
+else:
+    print("Unknown command")
+```
+
+This pattern is useful when the program has a fixed collection of accepted values.
+
+For example:
+
+```text
+start
+stop
+pause
+```
+
+are accepted, while other commands are rejected.
+
+---
+
+## 12. Set Membership vs List Membership
+
+The `in` operator works with both Sets and Lists:
+
+```python
+numbers_list = [1, 2, 3, 4, 5]
+numbers_set = {1, 2, 3, 4, 5}
+
+print(4 in numbers_list)
+print(4 in numbers_set)
+```
+
+Both return:
+
+```text
+True
+```
+
+But there is an important performance difference.
+
+For a List, Python generally searches through the elements one by one.
+
+For a Set, Python is designed to perform membership checks efficiently using hashing.
+
+Conceptually:
+
+```text
+List
+→ search through elements
+
+Set
+→ hash-based lookup
+```
+
+At the beginner level, the important idea is:
+
+> Sets are especially useful when the main goal is quickly checking whether a value exists.
+
+You do not need to memorize the implementation details yet.
+
+---
+
+## 13. Membership Checking Does Not Modify the Set
+
+The `in` operator only checks the Set.
+
+It does not add, remove, or otherwise modify anything.
+
+```python
+numbers = {1, 2, 3}
+
+print(2 in numbers)
+
+print(numbers)
+```
+
+Output:
+
+```text
+True
+{1, 2, 3}
+```
+
+The Set remains unchanged.
+
+This is different from methods such as:
+
+```python
+numbers.add(4)
+numbers.remove(2)
+numbers.clear()
+```
+
+which modify the Set.
+
+---
+
+## 14. A Practical Example
+
+Imagine we have a Set of registered users:
+
+```python
+registered_users = {
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina"
+}
+```
+
+We can check whether a user is registered:
+
+```python
+username = input("Enter your username: ")
+
+if username in registered_users:
+    print("User is registered")
+else:
+    print("User is not registered")
+```
+
+This is a very common real-world pattern.
+
+The same idea can be used for:
+
+* allowed commands
+* valid categories
+* registered users
+* blocked users
+* available options
+* unique IDs
+* permissions
+* supported values
+
+---
+
+## Common Beginner Mistakes
+
+### Mistake 1 — Confusing `in` with `add()`
+
+Incorrect:
+
+```python
+numbers.in(3)
+```
+
+`in` is an operator, not a method.
+
+Correct:
+
+```python
+3 in numbers
+```
+
+---
+
+### Mistake 2 — Using `in` as if it modifies the Set
+
+This:
+
+```python
+3 in numbers
+```
+
+only checks whether `3` exists.
+
+It does not add or remove anything.
+
+---
+
+### Mistake 3 — Forgetting Case Sensitivity
+
+```python
+languages = {"Python"}
+
+print("python" in languages)
+```
+
+Output:
+
+```text
+False
+```
+
+because `"Python"` and `"python"` are different Strings.
+
+---
+
+### Mistake 4 — Confusing Value and String Representation
+
+```python
+numbers = {1, 2, 3}
+
+print("1" in numbers)
+```
+
+Output:
+
+```text
+False
+```
+
+because:
+
+```text
+1
+```
+
+is an Integer, while:
+
+```text
+"1"
+```
+
+is a String.
+
+---
+
+## Key Takeaways
+
+After this part, you should know:
+
+1. `in` checks whether an element exists in a Set.
+2. `not in` checks whether an element does not exist.
+3. Both return a Boolean value: `True` or `False`.
+4. Membership checks are commonly used with `if`.
+5. Membership checks do not modify the Set.
+6. Set membership is especially useful for checking whether a value belongs to a collection.
+7. String membership checks are case-sensitive.
+8. The type of the value matters when checking membership.
+9. Set membership is generally designed to be efficient because Sets use hashing.
+
+---
+
+## Exercises
+
+### Question 1
+
+What will this code print?
+
+```python
+numbers = {10, 20, 30}
+
+print(20 in numbers)
+print(50 in numbers)
+print(10 not in numbers)
+```
+
+---
+
+### Question 2
+
+Write a program that asks the user for a language and checks whether it is inside this Set:
+
+```python
+languages = {"Python", "Java", "C++"}
+```
+
+If it exists, print:
+
+```text
+Supported language
+```
+
+Otherwise print:
+
+```text
+Unsupported language
+```
+
+---
+
+### Question 3
+
+Why does this code print `False`?
+
+```python
+numbers = {1, 2, 3}
+
+print("1" in numbers)
+```
+
+Explain the difference between `1` and `"1"`.
+
+---
+
+## Comprehensive Set Question
+
+Create a small access-control program using this Set:
+
+```python
+allowed_users = {"Ali", "Sara", "Reza", "Mina"}
+```
+
+The program should:
+
+1. Ask the user to enter a username.
+2. Check whether the username exists in `allowed_users`.
+3. Print `"Access granted"` if the user exists.
+4. Print `"Access denied"` otherwise.
+5. If access is granted, remove that username from the Set using `remove()`.
+6. Print the updated Set.
+7. Ask for another username and use `not in` to determine whether that username is no longer in the Set.
+
+Your solution should demonstrate the concepts learned so far:
+
+**Creating Sets → Adding Elements → Removing Elements → `in` → `not in` → Boolean Conditions**
+
+---
+

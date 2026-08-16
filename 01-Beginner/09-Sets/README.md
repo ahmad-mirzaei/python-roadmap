@@ -8147,3 +8147,974 @@ This exercise should combine:
 
 ---
 
+# Sets — Part 13: Set Immutability and `frozenset`
+
+In the previous parts, we learned about Sets and different operations we can perform on them. Now we are going to learn about an important Python concept:
+
+**Set Immutability and `frozenset`**
+
+In this part, we will learn:
+
+* What Mutable and Immutable mean.
+* Why a normal Set is Mutable.
+* What `frozenset` is.
+* The differences between `set` and `frozenset`.
+* When we should use `frozenset`.
+* Why a `frozenset` can be stored inside a Set.
+* Why a `frozenset` can be used as a Dictionary Key.
+
+---
+
+## 1. What Do Mutable and Immutable Mean?
+
+Before learning about `frozenset`, we need to understand **Mutability**.
+
+If an Object can be changed after it is created, it is **Mutable**.
+
+If it cannot be changed after it is created, it is **Immutable**.
+
+Simply:
+
+```text
+Mutable
+→ can be changed
+
+Immutable
+→ cannot be changed
+```
+
+For example, a List is Mutable:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.append(4)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[1, 2, 3, 4]
+```
+
+The original Object has been changed.
+
+---
+
+## 2. A Normal Set Is Mutable
+
+A normal Set is also Mutable:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(4)
+
+print(numbers)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4}
+```
+
+We can also remove an Element:
+
+```python
+numbers.remove(2)
+
+print(numbers)
+```
+
+Output:
+
+```text
+{1, 3, 4}
+```
+
+Therefore:
+
+```text
+set
+→ Mutable
+```
+
+---
+
+## 3. Why Is Set Mutability Important?
+
+Because we can change a Set after creating it.
+
+For example:
+
+```python
+students = {"Ali", "Sara"}
+
+students.add("Reza")
+students.add("Mina")
+
+print(students)
+```
+
+The Set changes as the program runs.
+
+This is useful when our Collection is supposed to change during program execution.
+
+---
+
+## 4. What Is `frozenset`?
+
+Python provides another type of Set called:
+
+```python
+frozenset
+```
+
+A `frozenset` is the **Immutable** version of a Set.
+
+For example:
+
+```python
+numbers = frozenset({1, 2, 3})
+
+print(numbers)
+```
+
+Output:
+
+```text
+frozenset({1, 2, 3})
+```
+
+After creating a `frozenset`, we cannot add or remove Elements from it.
+
+---
+
+## 5. Difference Between `set` and `frozenset`
+
+The main comparison is:
+
+| Feature                    | `set` | `frozenset` |
+| -------------------------- | ----- | ----------- |
+| Mutable                    | Yes   | No          |
+| `add()`                    | Yes   | No          |
+| `remove()`                 | Yes   | No          |
+| `discard()`                | Yes   | No          |
+| Set Operations             | Yes   | Yes         |
+| Hashable                   | No    | Yes         |
+| Can be a Dictionary Key    | No    | Yes         |
+| Can be stored inside a Set | No    | Yes         |
+
+The most important difference is:
+
+```text
+set
+→ Mutable
+
+frozenset
+→ Immutable
+```
+
+---
+
+## 6. Trying to Change a `frozenset`
+
+If we try to add something to a `frozenset`:
+
+```python
+numbers = frozenset({1, 2, 3})
+
+numbers.add(4)
+```
+
+Python raises an error:
+
+```text
+AttributeError
+```
+
+The same applies when trying to remove an Element:
+
+```python
+numbers.remove(1)
+```
+
+This operation is also not available.
+
+So after creating:
+
+```python
+frozenset({1, 2, 3})
+```
+
+we cannot change its contents.
+
+---
+
+## 7. Creating a `frozenset` From a List
+
+We can convert suitable Iterables into a `frozenset`.
+
+For example, from a List:
+
+```python
+numbers = [1, 2, 3, 2, 4]
+
+numbers_set = frozenset(numbers)
+
+print(numbers_set)
+```
+
+Output:
+
+```text
+frozenset({1, 2, 3, 4})
+```
+
+Just like a normal Set, Duplicate Elements are removed.
+
+---
+
+## 8. Creating a `frozenset` From a Tuple
+
+```python
+numbers = (1, 2, 3, 2, 4)
+
+numbers_set = frozenset(numbers)
+
+print(numbers_set)
+```
+
+Output:
+
+```text
+frozenset({1, 2, 3, 4})
+```
+
+---
+
+## 9. Creating a `frozenset` From a String
+
+A String is also Iterable:
+
+```python
+word = "banana"
+
+letters = frozenset(word)
+
+print(letters)
+```
+
+Possible output:
+
+```text
+frozenset({'b', 'a', 'n'})
+```
+
+Each Character is stored only once.
+
+---
+
+## 10. Set Operations With `frozenset`
+
+Being Immutable does not mean that we cannot perform Set Operations on a `frozenset`.
+
+For example:
+
+```python
+a = frozenset({1, 2, 3})
+b = frozenset({3, 4, 5})
+
+print(a | b)
+```
+
+Output:
+
+```text
+frozenset({1, 2, 3, 4, 5})
+```
+
+Intersection:
+
+```python
+print(a & b)
+```
+
+Output:
+
+```text
+frozenset({3})
+```
+
+Difference:
+
+```python
+print(a - b)
+```
+
+Output:
+
+```text
+frozenset({1, 2})
+```
+
+Symmetric Difference:
+
+```python
+print(a ^ b)
+```
+
+Output:
+
+```text
+frozenset({1, 2, 4, 5})
+```
+
+Therefore:
+
+```text
+frozenset
+→ cannot be modified
+
+but
+→ Set Operations are still supported
+```
+
+---
+
+## 11. Results of Operations on `frozenset`
+
+If we combine two `frozenset` objects, the result is also normally a `frozenset`:
+
+```python
+a = frozenset({1, 2, 3})
+b = frozenset({3, 4, 5})
+
+result = a | b
+
+print(type(result))
+```
+
+Output:
+
+```text
+<class 'frozenset'>
+```
+
+This allows the Immutable nature of the result to be preserved.
+
+---
+
+## 12. Why Is `frozenset` Hashable?
+
+One of the most important features of `frozenset` is that it is **Hashable**.
+
+A normal Set is Mutable:
+
+```python
+my_set = {1, 2, 3}
+```
+
+Therefore, it cannot be Hashable.
+
+But:
+
+```python
+my_frozen_set = frozenset({1, 2, 3})
+```
+
+is Immutable and can therefore be Hashable.
+
+This has important applications.
+
+---
+
+## 13. Using `frozenset` as a Dictionary Key
+
+Dictionary Keys must be Hashable.
+
+Therefore, a normal Set cannot be a Dictionary Key:
+
+```python
+my_dict = {
+    {1, 2, 3}: "numbers"
+}
+```
+
+This causes an Error.
+
+But a `frozenset` can be used as a Dictionary Key:
+
+```python
+my_dict = {
+    frozenset({1, 2, 3}): "numbers"
+}
+
+print(my_dict)
+```
+
+This is valid.
+
+We can also retrieve the value using the same `frozenset`:
+
+```python
+key = frozenset({1, 2, 3})
+
+print(my_dict[key])
+```
+
+Output:
+
+```text
+numbers
+```
+
+---
+
+## 14. Storing a `frozenset` Inside a Set
+
+A normal Set cannot contain a Mutable Element.
+
+For example:
+
+```python
+my_set = {
+    {1, 2},
+    {3, 4}
+}
+```
+
+This is not valid.
+
+But we can use `frozenset`:
+
+```python
+my_set = {
+    frozenset({1, 2}),
+    frozenset({3, 4})
+}
+
+print(my_set)
+```
+
+Possible output:
+
+```text
+{frozenset({1, 2}), frozenset({3, 4})}
+```
+
+Because `frozenset` is Hashable, it can be used as a Set Element.
+
+---
+
+## 15. A Set of Sets
+
+If we want to create a Collection of Sets, we cannot use normal Sets directly.
+
+This is incorrect:
+
+```python
+groups = {
+    {1, 2},
+    {3, 4}
+}
+```
+
+But we can write:
+
+```python
+groups = {
+    frozenset({1, 2}),
+    frozenset({3, 4})
+}
+```
+
+Now we have:
+
+```text
+Set
+├── frozenset({1, 2})
+└── frozenset({3, 4})
+```
+
+This pattern is useful when we need a Collection of Unique Groups.
+
+---
+
+## 16. Converting a `frozenset` to a Set
+
+If we need a normal Set:
+
+```python
+numbers = frozenset({1, 2, 3})
+
+normal_set = set(numbers)
+
+print(normal_set)
+```
+
+Output:
+
+```text
+{1, 2, 3}
+```
+
+Now `normal_set` is Mutable:
+
+```python
+normal_set.add(4)
+
+print(normal_set)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4}
+```
+
+So:
+
+```text
+frozenset
+→ set
+```
+
+can convert an Immutable Collection into a Mutable one.
+
+---
+
+## 17. Converting a Set to a `frozenset`
+
+The opposite conversion is also possible:
+
+```python
+numbers = {1, 2, 3}
+
+frozen_numbers = frozenset(numbers)
+
+print(frozen_numbers)
+```
+
+After this conversion:
+
+```python
+frozen_numbers.add(4)
+```
+
+is no longer possible.
+
+---
+
+## 18. When Should We Use `frozenset`?
+
+In general, we should use `frozenset` when the Set should not change.
+
+For example, suppose we have the Permissions of a Role:
+
+```python
+admin_permissions = frozenset({
+    "read",
+    "write",
+    "delete"
+})
+```
+
+If the Permissions of this Role are supposed to remain fixed, `frozenset` is a suitable choice.
+
+Another example:
+
+```python
+allowed_colors = frozenset({
+    "red",
+    "green",
+    "blue"
+})
+```
+
+If the collection of allowed colors is fixed, Immutability can be useful.
+
+---
+
+## 19. Using `frozenset` for Fixed Configuration
+
+Suppose a program has a fixed collection of allowed Modes:
+
+```python
+allowed_modes = frozenset({
+    "read",
+    "write",
+    "admin"
+})
+```
+
+Other parts of the program can check the collection:
+
+```python
+if "admin" in allowed_modes:
+    print("Admin mode is available")
+```
+
+But another part of the program cannot accidentally modify the collection.
+
+---
+
+## 20. `frozenset` and Membership
+
+Membership checking works just like with a normal Set:
+
+```python
+permissions = frozenset({
+    "read",
+    "write"
+})
+
+print("read" in permissions)
+```
+
+Output:
+
+```text
+True
+```
+
+And:
+
+```python
+print("delete" in permissions)
+```
+
+Output:
+
+```text
+False
+```
+
+So Immutability does not prevent Membership checking.
+
+---
+
+## 21. `frozenset` and `len()`
+
+We can also calculate the number of Elements:
+
+```python
+numbers = frozenset({10, 20, 30, 40})
+
+print(len(numbers))
+```
+
+Output:
+
+```text
+4
+```
+
+Many non-mutating operations available for normal Sets are also available for `frozenset`.
+
+---
+
+## 22. `frozenset` and Iteration
+
+We can iterate over a `frozenset` as well:
+
+```python
+numbers = frozenset({10, 20, 30})
+
+for number in numbers:
+    print(number)
+```
+
+This works similarly to a normal Set.
+
+Immutability only means that we cannot change the contents of the Collection.
+
+---
+
+## 23. Comparing `set` and `frozenset` in Practice
+
+Consider:
+
+```python
+a = {1, 2, 3}
+b = frozenset({1, 2, 3})
+```
+
+Both support Membership:
+
+```python
+print(2 in a)
+print(2 in b)
+```
+
+Both support `len()`:
+
+```python
+print(len(a))
+print(len(b))
+```
+
+Both support Intersection:
+
+```python
+print(a & b)
+```
+
+But only the normal `set` can be modified:
+
+```python
+a.add(4)
+```
+
+while:
+
+```python
+b.add(4)
+```
+
+is not valid.
+
+---
+
+## 24. Real-World Example: Fixed Role Permissions
+
+Suppose we have two Roles:
+
+```python
+admin = frozenset({
+    "read",
+    "write",
+    "delete"
+})
+
+editor = frozenset({
+    "read",
+    "write"
+})
+```
+
+Common Permissions:
+
+```python
+common = admin & editor
+
+print(common)
+```
+
+Output:
+
+```text
+frozenset({'read', 'write'})
+```
+
+Permissions that only Admin has:
+
+```python
+admin_only = admin - editor
+
+print(admin_only)
+```
+
+Output:
+
+```text
+frozenset({'delete'})
+```
+
+This demonstrates that `frozenset` is useful for storing fixed data while still allowing Set Operations.
+
+---
+
+# Common Mistakes
+
+### Mistake 1 — Thinking `frozenset` Has No Operations
+
+This is incorrect.
+
+A `frozenset` cannot be modified, but Set Operations are still available:
+
+```python
+a | b
+a & b
+a - b
+a ^ b
+```
+
+---
+
+### Mistake 2 — Using `add()` on a `frozenset`
+
+This is incorrect:
+
+```python
+numbers = frozenset({1, 2, 3})
+
+numbers.add(4)
+```
+
+A `frozenset` does not have an `add()` method.
+
+---
+
+### Mistake 3 — Thinking a Normal Set Can Be a Dictionary Key
+
+This is invalid:
+
+```python
+data = {
+    {1, 2, 3}: "numbers"
+}
+```
+
+But this is valid:
+
+```python
+data = {
+    frozenset({1, 2, 3}): "numbers"
+}
+```
+
+---
+
+### Mistake 4 — Thinking Immutable Means Unusable
+
+Immutable does not mean that we cannot use the Object.
+
+We can still do:
+
+```python
+len(my_frozenset)
+```
+
+or:
+
+```python
+value in my_frozenset
+```
+
+or:
+
+```python
+my_frozenset & another_set
+```
+
+We simply cannot modify the contents of the Object.
+
+---
+
+# Key Takeaways
+
+After this part, you should know:
+
+1. A normal Set is **Mutable**.
+2. `frozenset` is the **Immutable** version of a Set.
+3. A `frozenset` cannot be modified after creation.
+4. A `frozenset` does not have methods such as `add()` and `remove()`.
+5. Set Operations such as Union, Intersection, Difference, and Symmetric Difference work with `frozenset`.
+6. `frozenset` is Hashable.
+7. A `frozenset` can be used as a Dictionary Key.
+8. A `frozenset` can be stored as an Element inside a Set.
+9. If we need a Set of Sets, we can use `frozenset`.
+10. A normal `set` can be converted to a `frozenset`.
+11. A `frozenset` can be converted back to a normal `set`.
+12. `frozenset` is useful for data that should not change during program execution.
+13. Membership checking, `len()`, and Iteration are still available for `frozenset`.
+14. Immutable does not mean unusable; it simply means that the Object cannot be modified.
+
+---
+
+## Exercises
+
+### Question 1
+
+Explain the difference between:
+
+```python
+a = {1, 2, 3}
+b = frozenset({1, 2, 3})
+```
+
+Then determine which of the following operations are valid:
+
+```python
+a.add(4)
+b.add(4)
+```
+
+---
+
+### Question 2
+
+Create a `frozenset` containing these Permissions:
+
+```text
+read
+write
+delete
+```
+
+Then check whether `"write"` exists in it.
+
+---
+
+### Question 3
+
+Create two `frozenset` objects for Admin and Editor Permissions and find:
+
+* Common Permissions
+* Admin-only Permissions
+* Editor-only Permissions
+* Non-common Permissions
+
+---
+
+## Comprehensive Set Question
+
+Design a program that manages Permissions for several Roles:
+
+```python
+admin = frozenset({
+    "read",
+    "write",
+    "delete",
+    "manage_users"
+})
+
+editor = frozenset({
+    "read",
+    "write",
+    "publish"
+})
+
+viewer = frozenset({
+    "read"
+})
+```
+
+The program should:
+
+1. Print the Permissions of each Role.
+2. Display the number of Permissions for each Role using `len()`.
+3. Check whether each Role has the `"read"` Permission.
+4. Find the common Permissions between Admin and Editor.
+5. Find the Permissions that only Admin has.
+6. Find the Permissions that only Editor has.
+7. Find the non-common Permissions between Admin and Editor.
+8. Find all Permissions available between Admin and Editor using Union.
+9. Create a Set containing the `frozenset` of each Role.
+10. Explain why the same operation cannot be performed with normal Sets.
+11. Convert one of the `frozenset` objects into a normal `set`.
+12. Add a new Permission to the converted Set.
+13. Explain why the original `frozenset` remains unchanged.
+14. Create a Dictionary that maps each Role's `frozenset` to its Role name.
+15. Explain why `frozenset` can be a Dictionary Key while a normal Set cannot.
+
+This exercise should combine:
+
+**Mutable → Immutable → `set` → `frozenset` → Hashable → Membership → `len()` → Iteration → Union → Intersection → Difference → Symmetric Difference → Dictionary Keys**
+
+---
+

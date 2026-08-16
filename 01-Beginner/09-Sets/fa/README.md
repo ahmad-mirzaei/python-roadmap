@@ -8230,3 +8230,981 @@ web_students = [
 
 ---
 
+# Sets — Part 13: Set Immutability and `frozenset`
+
+در پارت های قبلی با Setها و عملیات مختلف روی آن ها آشنا شدیم. حالا می خواهیم یکی از مفاهیم مهم در Python را بررسی کنیم:
+
+**Set Immutability و `frozenset`**
+
+در این بخش یاد می گیریم:
+
+* Mutable و Immutable یعنی چه؟
+* چرا Set معمولی Mutable است؟
+* چه تفاوتی بین `set` و `frozenset` وجود دارد؟
+* چه زمانی باید از `frozenset` استفاده کنیم؟
+* چرا `frozenset` می تواند داخل Set قرار بگیرد؟
+* چرا `frozenset` می تواند Key یک Dictionary باشد؟
+
+---
+
+## 1. Mutable و Immutable یعنی چه؟
+
+قبل از بررسی `frozenset` باید مفهوم **Mutability** را بدانیم.
+
+یک Object اگر بعد از ساخته شدن بتواند تغییر کند، **Mutable** است.
+
+اگر نتواند تغییر کند، **Immutable** است.
+
+به صورت ساده:
+
+```text
+Mutable
+→ قابل تغییر
+
+Immutable
+→ غیر قابل تغییر
+```
+
+مثلا List یک Data Structure Mutable است:
+
+```python
+numbers = [1, 2, 3]
+
+numbers.append(4)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+[1, 2, 3, 4]
+```
+
+یعنی Object اصلی تغییر کرده است.
+
+---
+
+## 2. Set معمولی Mutable است
+
+Set معمولی نیز Mutable است:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(4)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4}
+```
+
+همچنین می توانیم Element را حذف کنیم:
+
+```python
+numbers.remove(2)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+{1, 3, 4}
+```
+
+پس:
+
+```text
+set
+→ Mutable
+```
+
+---
+
+## 3. چرا Mutable بودن Set مهم است؟
+
+چون می توانیم Set را بعد از ایجاد شدن تغییر دهیم.
+
+مثلا:
+
+```python
+students = {"Ali", "Sara"}
+
+students.add("Reza")
+students.add("Mina")
+
+print(students)
+```
+
+Set به مرور تغییر می کند.
+
+این ویژگی زمانی مفید است که Collection ما قرار است در طول اجرای برنامه تغییر کند.
+
+---
+
+## 4. `frozenset` چیست؟
+
+Python یک نوع Set دیگر دارد به نام:
+
+```python
+frozenset
+```
+
+`frozenset` نسخه **Immutable** یک Set است.
+
+مثلا:
+
+```python
+numbers = frozenset({1, 2, 3})
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+frozenset({1, 2, 3})
+```
+
+بعد از ایجاد `frozenset` نمی توانیم Element جدید اضافه کنیم یا Elementی را حذف کنیم.
+
+---
+
+## 5. تفاوت `set` و `frozenset`
+
+مقایسه اصلی:
+
+| ویژگی                                | `set` | `frozenset` |
+| ------------------------------------ | ----- | ----------- |
+| Mutable                              | بله   | خیر         |
+| `add()`                              | دارد  | ندارد       |
+| `remove()`                           | دارد  | ندارد       |
+| `discard()`                          | دارد  | ندارد       |
+| Set Operations                       | دارد  | دارد        |
+| قابل Hash شدن                        | خیر   | بله         |
+| قابل استفاده به عنوان Dictionary Key | خیر   | بله         |
+| قابل قرار گرفتن داخل Set             | خیر   | بله         |
+
+پس مهم ترین تفاوت:
+
+```text
+set
+→ Mutable
+
+frozenset
+→ Immutable
+```
+
+---
+
+## 6. تلاش برای تغییر `frozenset`
+
+اگر بخواهیم به `frozenset` چیزی اضافه کنیم:
+
+```python
+numbers = frozenset({1, 2, 3})
+
+numbers.add(4)
+```
+
+Python خطا می دهد:
+
+```text
+AttributeError
+```
+
+چون `frozenset` متد `add()` ندارد.
+
+همین موضوع برای حذف Element نیز وجود دارد:
+
+```python
+numbers.remove(1)
+```
+
+این عملیات هم قابل انجام نیست.
+
+پس بعد از ساخت:
+
+```python
+frozenset({1, 2, 3})
+```
+
+نمی توانیم محتوای آن را تغییر دهیم.
+
+---
+
+## 7. ساخت `frozenset` از List
+
+می توانیم هر Iterable مناسب را به `frozenset` تبدیل کنیم.
+
+مثلا از List:
+
+```python
+numbers = [1, 2, 3, 2, 4]
+
+numbers_set = frozenset(numbers)
+
+print(numbers_set)
+```
+
+خروجی:
+
+```text
+frozenset({1, 2, 3, 4})
+```
+
+همانند Set معمولی، Duplicateها حذف می شوند.
+
+---
+
+## 8. ساخت `frozenset` از Tuple
+
+```python
+numbers = (1, 2, 3, 2, 4)
+
+numbers_set = frozenset(numbers)
+
+print(numbers_set)
+```
+
+خروجی:
+
+```text
+frozenset({1, 2, 3, 4})
+```
+
+---
+
+## 9. ساخت `frozenset` از String
+
+String نیز Iterable است:
+
+```python
+word = "banana"
+
+letters = frozenset(word)
+
+print(letters)
+```
+
+خروجی ممکن:
+
+```text
+frozenset({'b', 'a', 'n'})
+```
+
+هر Character فقط یک بار نگه داری می شود.
+
+---
+
+## 10. عملیات Set روی `frozenset`
+
+Immutable بودن به این معنی نیست که نمی توانیم روی `frozenset` عملیات Set انجام دهیم.
+
+مثلا:
+
+```python
+a = frozenset({1, 2, 3})
+b = frozenset({3, 4, 5})
+
+print(a | b)
+```
+
+خروجی:
+
+```text
+frozenset({1, 2, 3, 4, 5})
+```
+
+Intersection:
+
+```python
+print(a & b)
+```
+
+خروجی:
+
+```text
+frozenset({3})
+```
+
+Difference:
+
+```python
+print(a - b)
+```
+
+خروجی:
+
+```text
+frozenset({1, 2})
+```
+
+Symmetric Difference:
+
+```python
+print(a ^ b)
+```
+
+خروجی:
+
+```text
+frozenset({1, 2, 4, 5})
+```
+
+پس:
+
+```text
+frozenset
+→ تغییر پذیر نیست
+
+اما
+→ عملیات Set روی آن قابل انجام است
+```
+
+---
+
+## 11. نتیجه عملیات `frozenset`
+
+اگر دو `frozenset` را با هم ترکیب کنیم، نتیجه نیز معمولا یک `frozenset` خواهد بود:
+
+```python
+a = frozenset({1, 2, 3})
+b = frozenset({3, 4, 5})
+
+result = a | b
+
+print(type(result))
+```
+
+خروجی:
+
+```text
+<class 'frozenset'>
+```
+
+این ویژگی باعث می شود Immutable بودن نتیجه نیز حفظ شود.
+
+---
+
+## 12. چرا `frozenset` Hashable است؟
+
+یکی از مهم ترین ویژگی های `frozenset` این است که **Hashable** است.
+
+Set معمولی Mutable است:
+
+```python
+my_set = {1, 2, 3}
+```
+
+بنابراین نمی تواند Hashable باشد.
+
+اما:
+
+```python
+my_frozen_set = frozenset({1, 2, 3})
+```
+
+Immutable است و می تواند Hashable باشد.
+
+این موضوع کاربردهای مهمی دارد.
+
+---
+
+## 13. استفاده از `frozenset` به عنوان Dictionary Key
+
+Dictionary Key باید Hashable باشد.
+
+بنابراین Set معمولی نمی تواند Key باشد:
+
+```python
+my_dict = {
+    {1, 2, 3}: "numbers"
+}
+```
+
+این کد Error ایجاد می کند.
+
+اما `frozenset` می تواند Dictionary Key باشد:
+
+```python
+my_dict = {
+    frozenset({1, 2, 3}): "numbers"
+}
+
+print(my_dict)
+```
+
+این کد معتبر است.
+
+حتی می توانیم با همان `frozenset` مقدار را دریافت کنیم:
+
+```python
+key = frozenset({1, 2, 3})
+
+print(my_dict[key])
+```
+
+خروجی:
+
+```text
+numbers
+```
+
+---
+
+## 14. قرار دادن `frozenset` داخل Set
+
+Set معمولی نمی تواند Elementی داشته باشد که خودش Mutable باشد.
+
+مثلا:
+
+```python
+my_set = {
+    {1, 2},
+    {3, 4}
+}
+```
+
+معتبر نیست.
+
+اما می توانیم از `frozenset` استفاده کنیم:
+
+```python
+my_set = {
+    frozenset({1, 2}),
+    frozenset({3, 4})
+}
+
+print(my_set)
+```
+
+خروجی:
+
+```text
+{frozenset({1, 2}), frozenset({3, 4})}
+```
+
+چون `frozenset` Hashable است.
+
+این یکی از مهم ترین کاربردهای `frozenset` است.
+
+---
+
+## 15. Set از Setها؟
+
+اگر بخواهیم مجموعه ای از مجموعه ها داشته باشیم، نمی توانیم از Set معمولی استفاده کنیم.
+
+این اشتباه است:
+
+```python
+groups = {
+    {1, 2},
+    {3, 4}
+}
+```
+
+اما می توانیم بنویسیم:
+
+```python
+groups = {
+    frozenset({1, 2}),
+    frozenset({3, 4})
+}
+```
+
+در این حالت:
+
+```text
+Set
+├── frozenset({1, 2})
+└── frozenset({3, 4})
+```
+
+داریم.
+
+این الگو برای نمایش Collectionهایی از گروه های Unique بسیار مفید است.
+
+---
+
+## 16. تبدیل `frozenset` به Set
+
+اگر به یک Set معمولی نیاز داشته باشیم:
+
+```python
+numbers = frozenset({1, 2, 3})
+
+normal_set = set(numbers)
+
+print(normal_set)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+```
+
+حالا `normal_set` قابل تغییر است:
+
+```python
+normal_set.add(4)
+
+print(normal_set)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4}
+```
+
+پس:
+
+```text
+frozenset
+→ set
+```
+
+می تواند Immutable بودن را به Mutable بودن تبدیل کند.
+
+---
+
+## 17. تبدیل Set به `frozenset`
+
+برعکس آن هم امکان پذیر است:
+
+```python
+numbers = {1, 2, 3}
+
+frozen_numbers = frozenset(numbers)
+
+print(frozen_numbers)
+```
+
+بعد از این تبدیل:
+
+```python
+frozen_numbers.add(4)
+```
+
+دیگر امکان پذیر نیست.
+
+---
+
+## 18. چه زمانی از `frozenset` استفاده کنیم؟
+
+در حالت کلی وقتی Set ما نباید تغییر کند.
+
+مثلا فرض کن Permissionهای یک Role را داریم:
+
+```python
+admin_permissions = frozenset({
+    "read",
+    "write",
+    "delete"
+})
+```
+
+اگر قرار است Permissionهای این Role ثابت باشند، `frozenset` انتخاب مناسبی است.
+
+مثال دیگر:
+
+```python
+allowed_colors = frozenset({
+    "red",
+    "green",
+    "blue"
+})
+```
+
+اگر مجموعه رنگ های مجاز ثابت باشد، Immutable بودن می تواند مناسب باشد.
+
+---
+
+## 19. استفاده برای Configuration ثابت
+
+فرض کن یک برنامه مجموعه ای از Modeهای مجاز دارد:
+
+```python
+allowed_modes = frozenset({
+    "read",
+    "write",
+    "admin"
+})
+```
+
+حالا کدهای دیگر برنامه می توانند این مجموعه را بررسی کنند:
+
+```python
+if "admin" in allowed_modes:
+    print("Admin mode is available")
+```
+
+اما هیچ بخش دیگری از برنامه نمی تواند به صورت تصادفی آن را تغییر دهد.
+
+---
+
+## 20. `frozenset` و Membership
+
+بررسی Membership مانند Set معمولی است:
+
+```python
+permissions = frozenset({
+    "read",
+    "write"
+})
+
+print("read" in permissions)
+```
+
+خروجی:
+
+```text
+True
+```
+
+و:
+
+```python
+print("delete" in permissions)
+```
+
+خروجی:
+
+```text
+False
+```
+
+پس Immutable بودن مانع استفاده از Membership نمی شود.
+
+---
+
+## 21. `frozenset` و `len()`
+
+می توانیم تعداد Elementها را نیز محاسبه کنیم:
+
+```python
+numbers = frozenset({10, 20, 30, 40})
+
+print(len(numbers))
+```
+
+خروجی:
+
+```text
+4
+```
+
+پس بسیاری از عملیات غیر تغییری که روی Set داریم، روی `frozenset` نیز قابل استفاده هستند.
+
+---
+
+## 22. `frozenset` و Iteration
+
+می توانیم روی `frozenset` نیز Loop بزنیم:
+
+```python
+numbers = frozenset({10, 20, 30})
+
+for number in numbers:
+    print(number)
+```
+
+این موضوع مشابه Set معمولی است.
+
+Immutable بودن فقط به این معنی است که محتوای Collection را نمی توان تغییر داد.
+
+---
+
+## 23. مقایسه `set` و `frozenset` در عمل
+
+مثال:
+
+```python
+a = {1, 2, 3}
+b = frozenset({1, 2, 3})
+```
+
+هر دو می توانند Membership را بررسی کنند:
+
+```python
+print(2 in a)
+print(2 in b)
+```
+
+هر دو می توانند طول داشته باشند:
+
+```python
+print(len(a))
+print(len(b))
+```
+
+هر دو می توانند Intersection داشته باشند:
+
+```python
+print(a & b)
+```
+
+اما فقط `set` می تواند تغییر کند:
+
+```python
+a.add(4)
+```
+
+در حالی که:
+
+```python
+b.add(4)
+```
+
+معتبر نیست.
+
+---
+
+## 24. یک مثال واقعی: مجموعه Permissionهای ثابت
+
+فرض کن دو Role داریم:
+
+```python
+admin = frozenset({
+    "read",
+    "write",
+    "delete"
+})
+
+editor = frozenset({
+    "read",
+    "write"
+})
+```
+
+Permissionهای مشترک:
+
+```python
+common = admin & editor
+
+print(common)
+```
+
+خروجی:
+
+```text
+frozenset({'read', 'write'})
+```
+
+Permissionهایی که فقط Admin دارد:
+
+```python
+admin_only = admin - editor
+
+print(admin_only)
+```
+
+خروجی:
+
+```text
+frozenset({'delete'})
+```
+
+این نشان می دهد که `frozenset` هم برای نگه داری داده ثابت مناسب است و هم عملیات Set روی آن قابل انجام است.
+
+---
+
+# اشتباهات رایج
+
+### اشتباه ۱ — فکر کردن به اینکه `frozenset` هیچ عملیاتی ندارد
+
+این تصور اشتباه است.
+
+`frozenset` نمی تواند تغییر کند، اما عملیات Set روی آن وجود دارد:
+
+```python
+a | b
+a & b
+a - b
+a ^ b
+```
+
+---
+
+### اشتباه ۲ — استفاده از `add()` روی `frozenset`
+
+این کد اشتباه است:
+
+```python
+numbers = frozenset({1, 2, 3})
+
+numbers.add(4)
+```
+
+چون `frozenset` متد `add()` ندارد.
+
+---
+
+### اشتباه ۳ — تصور اینکه Set معمولی می تواند Dictionary Key باشد
+
+این کد معتبر نیست:
+
+```python
+data = {
+    {1, 2, 3}: "numbers"
+}
+```
+
+اما این کد معتبر است:
+
+```python
+data = {
+    frozenset({1, 2, 3}): "numbers"
+}
+```
+
+---
+
+### اشتباه ۴ — تصور اینکه Immutable یعنی غیر قابل استفاده
+
+Immutable بودن به این معنی نیست که نمی توانیم از Object استفاده کنیم.
+
+می توانیم:
+
+```python
+len(my_frozenset)
+```
+
+یا:
+
+```python
+value in my_frozenset
+```
+
+یا:
+
+```python
+my_frozenset & another_set
+```
+
+را انجام دهیم.
+
+فقط نمی توانیم محتوای خود Object را تغییر دهیم.
+
+---
+
+# نکات مهم
+
+بعد از این پارت باید این موارد را بلد باشی:
+
+1. Set معمولی **Mutable** است.
+2. `frozenset` نسخه **Immutable** Set است.
+3. `frozenset` بعد از ایجاد قابل تغییر نیست.
+4. `frozenset` متدهایی مثل `add()` و `remove()` ندارد.
+5. عملیات Set مثل Union، Intersection، Difference و Symmetric Difference روی `frozenset` قابل انجام هستند.
+6. `frozenset` Hashable است.
+7. `frozenset` می تواند Dictionary Key باشد.
+8. `frozenset` می تواند Element یک Set باشد.
+9. برای ساخت Setهایی از Setها باید از `frozenset` استفاده کنیم.
+10. می توان `set` را به `frozenset` تبدیل کرد.
+11. می توان `frozenset` را به `set` تبدیل کرد.
+12. `frozenset` برای داده هایی مناسب است که نباید در طول اجرای برنامه تغییر کنند.
+13. Membership، `len()` و Iteration روی `frozenset` همچنان قابل استفاده هستند.
+14. Immutable بودن به معنی غیر قابل استفاده بودن نیست؛ فقط به معنی غیر قابل تغییر بودن است.
+
+---
+
+## تمرین ها
+
+### سوال ۱
+
+تفاوت این دو را توضیح بده:
+
+```python
+a = {1, 2, 3}
+b = frozenset({1, 2, 3})
+```
+
+سپس مشخص کن کدام یک از دستورات زیر برای هر کدام قابل اجرا است:
+
+```python
+a.add(4)
+b.add(4)
+```
+
+---
+
+### سوال ۲
+
+یک `frozenset` از Permissionهای زیر بساز:
+
+```text
+read
+write
+delete
+```
+
+سپس بررسی کن آیا `"write"` در آن وجود دارد یا نه.
+
+---
+
+### سوال ۳
+
+دو `frozenset` برای Permissionهای Admin و Editor بساز و موارد زیر را پیدا کن:
+
+* Permissionهای مشترک
+* Permissionهای فقط Admin
+* Permissionهای فقط Editor
+* Permissionهای غیر مشترک
+
+---
+
+## سوال جامع Setها
+
+برنامه ای طراحی کن که اطلاعات Permissionهای چند Role را مدیریت کند:
+
+```python
+admin = frozenset({
+    "read",
+    "write",
+    "delete",
+    "manage_users"
+})
+
+editor = frozenset({
+    "read",
+    "write",
+    "publish"
+})
+
+viewer = frozenset({
+    "read"
+})
+```
+
+برنامه باید:
+
+1. Permissionهای هر Role را چاپ کند.
+2. تعداد Permissionهای هر Role را با `len()` نمایش دهد.
+3. بررسی کند آیا هر Role Permission `"read"` دارد یا نه.
+4. Permissionهای مشترک Admin و Editor را پیدا کند.
+5. Permissionهای فقط Admin را پیدا کند.
+6. Permissionهای فقط Editor را پیدا کند.
+7. Permissionهای غیر مشترک Admin و Editor را پیدا کند.
+8. تمام Permissionهای موجود بین Admin و Editor را با Union پیدا کند.
+9. یک Set شامل `frozenset`های Roleها بسازد.
+10. توضیح دهد چرا نمی توان همین کار را با Setهای معمولی انجام داد.
+11. یکی از `frozenset`ها را به `set` تبدیل کند.
+12. یک Permission جدید به Set تبدیل شده اضافه کند.
+13. توضیح دهد چرا Object اصلی `frozenset` همچنان تغییر نکرده است.
+14. یک Dictionary بسازد که `frozenset` هر Role را به نام Role مربوط کند.
+15. توضیح دهد چرا `frozenset` می تواند Dictionary Key باشد اما Set معمولی نمی تواند.
+
+این تمرین باید مفاهیم زیر را با هم ترکیب کند:
+
+**Mutable → Immutable → `set` → `frozenset` → Hashable → Membership → `len()` → Iteration → Union → Intersection → Difference → Symmetric Difference → Dictionary Keys**
+
+---
+

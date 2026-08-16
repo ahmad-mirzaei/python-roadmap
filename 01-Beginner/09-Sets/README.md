@@ -7236,3 +7236,914 @@ This exercise should combine:
 
 ---
 
+# Sets — Part 12: Converting Between Sets and Other Data Structures
+
+So far, we have learned how to create Sets and perform operations such as:
+
+* Union
+* Intersection
+* Difference
+* Symmetric Difference
+* Checking membership
+* Iterating through Sets
+* Counting Elements
+
+In this part, we will learn how to **convert Sets to other data structures and convert other data structures to Sets**.
+
+This is important because Python programs often need to move data between different structures depending on what we want to do with that data.
+
+---
+
+## 1. Converting a List to a Set
+
+We can convert a List into a Set using `set()`:
+
+```python
+numbers = [1, 2, 3, 2, 4, 1]
+
+numbers_set = set(numbers)
+
+print(numbers_set)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4}
+```
+
+Notice that duplicate values have been removed.
+
+This is one of the most useful reasons to convert a List into a Set.
+
+```text
+List
+→ allows duplicates
+
+Set
+→ stores unique elements
+```
+
+---
+
+## 2. Removing Duplicates From a List
+
+A common pattern is:
+
+```python
+numbers = [1, 2, 3, 2, 4, 1, 5, 3]
+
+unique_numbers = set(numbers)
+
+print(unique_numbers)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+The Set automatically removes duplicates.
+
+If we need the result to be a List again:
+
+```python
+numbers = [1, 2, 3, 2, 4, 1, 5, 3]
+
+unique_numbers = list(set(numbers))
+
+print(unique_numbers)
+```
+
+The result is a List containing unique values.
+
+However, there is an important detail:
+
+> Converting a List to a Set can change the order of the elements.
+
+If preserving order matters, this approach should be used carefully.
+
+---
+
+## 3. Converting a Tuple to a Set
+
+Tuples can also be converted into Sets:
+
+```python
+numbers = (1, 2, 3, 2, 4)
+
+numbers_set = set(numbers)
+
+print(numbers_set)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4}
+```
+
+Again, duplicates are removed.
+
+The general pattern is:
+
+```python
+set(tuple_value)
+```
+
+---
+
+## 4. Converting a String to a Set
+
+A String is an iterable, so we can convert it into a Set:
+
+```python
+word = "banana"
+
+letters = set(word)
+
+print(letters)
+```
+
+Possible output:
+
+```text
+{'b', 'a', 'n'}
+```
+
+The Set contains each unique character.
+
+For example:
+
+```python
+word = "programming"
+
+letters = set(word)
+
+print(letters)
+```
+
+The result contains each different character only once.
+
+This can be useful when we want to find:
+
+> Which unique characters appear in a String?
+
+---
+
+## 5. Converting a Set to a List
+
+We can convert a Set into a List with `list()`:
+
+```python
+numbers = {1, 2, 3, 4}
+
+numbers_list = list(numbers)
+
+print(numbers_list)
+```
+
+Possible output:
+
+```text
+[1, 2, 3, 4]
+```
+
+The general syntax is:
+
+```python
+list(set_value)
+```
+
+This is useful when we need List-specific operations.
+
+For example, Lists support indexing:
+
+```python
+numbers = {10, 20, 30}
+
+numbers_list = list(numbers)
+
+print(numbers_list[0])
+```
+
+A Set itself does not support indexing:
+
+```python
+numbers = {10, 20, 30}
+
+# numbers[0]  # Error
+```
+
+---
+
+## 6. Converting a Set to a Tuple
+
+We can also convert a Set into a Tuple:
+
+```python
+numbers = {1, 2, 3, 4}
+
+numbers_tuple = tuple(numbers)
+
+print(numbers_tuple)
+```
+
+Possible output:
+
+```text
+(1, 2, 3, 4)
+```
+
+The syntax is:
+
+```python
+tuple(set_value)
+```
+
+This can be useful when we need an immutable sequence.
+
+---
+
+## 7. Converting a Set to a Sorted List
+
+Because Sets do not guarantee the type of ordering we usually want, we can use `sorted()`:
+
+```python
+numbers = {5, 2, 8, 1, 4}
+
+numbers_list = sorted(numbers)
+
+print(numbers_list)
+```
+
+Output:
+
+```text
+[1, 2, 4, 5, 8]
+```
+
+Notice that `sorted()` returns a **List**, not a Set.
+
+This is an important difference:
+
+```python
+sorted(numbers)
+```
+
+returns:
+
+```text
+List
+```
+
+while:
+
+```python
+set(numbers)
+```
+
+returns:
+
+```text
+Set
+```
+
+---
+
+## 8. Converting a Set to a String
+
+We cannot simply use:
+
+```python
+str(my_set)
+```
+
+if our goal is to create a clean custom String representation.
+
+For example:
+
+```python
+letters = {"a", "b", "c"}
+
+text = "".join(sorted(letters))
+
+print(text)
+```
+
+Output:
+
+```text
+abc
+```
+
+Here we:
+
+1. Sort the Set.
+2. Convert the elements into a sequence.
+3. Join them together.
+
+This is useful when Set elements are Strings.
+
+---
+
+## 9. Converting a Dictionary's Keys to a Set
+
+A Dictionary's keys can be converted into a Set:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "course": "Python"
+}
+
+keys = set(student.keys())
+
+print(keys)
+```
+
+Possible output:
+
+```text
+{'name', 'age', 'course'}
+```
+
+We can also simply write:
+
+```python
+keys = set(student)
+```
+
+because iterating over a Dictionary normally gives us its keys.
+
+---
+
+## 10. Converting Dictionary Values to a Set
+
+Dictionary values can also be converted:
+
+```python
+student = {
+    "student1": "Ali",
+    "student2": "Sara",
+    "student3": "Ali"
+}
+
+values = set(student.values())
+
+print(values)
+```
+
+Output:
+
+```text
+{'Ali', 'Sara'}
+```
+
+Notice that the duplicate `"Ali"` disappears.
+
+This is useful when we want to find unique values stored in a Dictionary.
+
+---
+
+## 11. Converting Dictionary Items to a Set
+
+Dictionary Items are Key-Value pairs:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+We can get its Items:
+
+```python
+items = student.items()
+
+print(items)
+```
+
+To convert them into a Set:
+
+```python
+items_set = set(student.items())
+
+print(items_set)
+```
+
+Possible output:
+
+```text
+{('name', 'Ali'), ('age', 20)}
+```
+
+Each Item becomes a Tuple.
+
+This works because Dictionary Items are represented as pairs.
+
+---
+
+## 12. Why Can't We Put a Dictionary Inside a Set?
+
+A Set requires its elements to be **hashable**.
+
+A normal Dictionary is mutable, so it cannot be an element of a Set:
+
+```python
+my_set = {
+    {"name": "Ali"}
+}
+```
+
+This causes an error.
+
+Similarly, a List cannot be directly stored inside a Set:
+
+```python
+my_set = {
+    [1, 2, 3]
+}
+```
+
+This also causes an error.
+
+But a Tuple containing hashable values can be stored:
+
+```python
+my_set = {
+    (1, 2, 3)
+}
+```
+
+This works.
+
+The important idea is:
+
+```text
+List      → mutable → not hashable
+Dictionary → mutable → not hashable
+Tuple     → usually immutable → can be hashable
+```
+
+---
+
+## 13. Converting a List of Tuples to a Set
+
+Consider:
+
+```python
+data = [
+    ("Ali", 20),
+    ("Sara", 22),
+    ("Ali", 20)
+]
+
+data_set = set(data)
+
+print(data_set)
+```
+
+Output:
+
+```text
+{('Ali', 20), ('Sara', 22)}
+```
+
+The duplicate Tuple is removed.
+
+This is useful when working with structured data where each record is represented as a Tuple.
+
+---
+
+## 14. Converting a Set Back to a List
+
+Sometimes we first use a Set to remove duplicates and then convert the result back to a List:
+
+```python
+numbers = [1, 2, 2, 3, 4, 4, 5]
+
+unique_numbers = list(set(numbers))
+
+print(unique_numbers)
+```
+
+This pattern is very common:
+
+```text
+List
+→ Set
+→ List
+```
+
+It means:
+
+```text
+Original data
+→ remove duplicates
+→ return to List
+```
+
+But remember that the original order may not be preserved.
+
+---
+
+## 15. Removing Duplicates While Preserving Order
+
+If we want to remove duplicates while keeping the original order, a Set can be combined with a loop:
+
+```python
+numbers = [3, 1, 3, 2, 1, 4]
+
+seen = set()
+result = []
+
+for number in numbers:
+    if number not in seen:
+        seen.add(number)
+        result.append(number)
+
+print(result)
+```
+
+Output:
+
+```text
+[3, 1, 2, 4]
+```
+
+Here:
+
+* `seen` keeps track of values we have already encountered.
+* `result` keeps the original order.
+
+This is a more controlled approach than:
+
+```python
+list(set(numbers))
+```
+
+---
+
+## 16. Converting Between Sets and Other Data Structures
+
+Here is a useful summary:
+
+| From              | To          | Syntax                  |
+| ----------------- | ----------- | ----------------------- |
+| List              | Set         | `set(my_list)`          |
+| Tuple             | Set         | `set(my_tuple)`         |
+| String            | Set         | `set(my_string)`        |
+| Set               | List        | `list(my_set)`          |
+| Set               | Tuple       | `tuple(my_set)`         |
+| Set               | Sorted List | `sorted(my_set)`        |
+| Dictionary Keys   | Set         | `set(my_dict.keys())`   |
+| Dictionary Values | Set         | `set(my_dict.values())` |
+| Dictionary Items  | Set         | `set(my_dict.items())`  |
+
+---
+
+## 17. Choosing the Right Data Structure
+
+Different data structures are useful for different tasks.
+
+### List
+
+Use a List when:
+
+* Order matters.
+* Duplicates are allowed.
+* Indexing is important.
+
+```python
+numbers = [10, 20, 30]
+```
+
+### Tuple
+
+Use a Tuple when:
+
+* You need an immutable sequence.
+* The data should not normally change.
+
+```python
+point = (10, 20)
+```
+
+### Set
+
+Use a Set when:
+
+* You need unique elements.
+* Membership checking is important.
+* Set operations are useful.
+
+```python
+unique_numbers = {1, 2, 3}
+```
+
+### Dictionary
+
+Use a Dictionary when:
+
+* You need Key-Value relationships.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+Understanding when to convert between these structures is an important Python skill.
+
+---
+
+## 18. Real-World Example: Cleaning Data
+
+Suppose we receive duplicate usernames:
+
+```python
+usernames = [
+    "ali",
+    "sara",
+    "ali",
+    "reza",
+    "sara",
+    "mina"
+]
+```
+
+We can remove duplicates:
+
+```python
+unique_usernames = set(usernames)
+
+print(unique_usernames)
+```
+
+If we need them sorted:
+
+```python
+unique_usernames = sorted(set(usernames))
+
+print(unique_usernames)
+```
+
+Output:
+
+```text
+['ali', 'mina', 'reza', 'sara']
+```
+
+This is a very common data-cleaning pattern:
+
+```python
+sorted(set(usernames))
+```
+
+---
+
+## 19. Real-World Example: Comparing Data From Two Sources
+
+Suppose two systems provide user IDs:
+
+```python
+system_a = [101, 102, 103, 104]
+system_b = [103, 104, 105, 106]
+```
+
+Convert them to Sets:
+
+```python
+a = set(system_a)
+b = set(system_b)
+```
+
+Now we can easily compare them.
+
+Common users:
+
+```python
+common = a & b
+```
+
+Users only in System A:
+
+```python
+only_a = a - b
+```
+
+Users only in System B:
+
+```python
+only_b = b - a
+```
+
+Users appearing in only one system:
+
+```python
+different = a ^ b
+```
+
+This demonstrates why converting Lists into Sets can be extremely useful.
+
+---
+
+## 20. Important Limitation: Sets Do Not Preserve List Indexing
+
+Consider:
+
+```python
+numbers = [10, 20, 30]
+```
+
+We can write:
+
+```python
+print(numbers[0])
+```
+
+But with:
+
+```python
+numbers = {10, 20, 30}
+```
+
+we cannot use:
+
+```python
+numbers[0]
+```
+
+because Sets are not index-based.
+
+If we really need indexing:
+
+```python
+numbers = {10, 20, 30}
+
+numbers_list = list(numbers)
+
+print(numbers_list[0])
+```
+
+However, the specific element at index `0` should not be relied upon unless we explicitly create an ordered List, for example with `sorted()`.
+
+---
+
+## 21. Important Limitation: Conversion Does Not Always Preserve Structure
+
+When converting between data structures, we need to understand what information may be lost.
+
+For example:
+
+```python
+numbers = [3, 1, 3, 2]
+```
+
+After:
+
+```python
+numbers_set = set(numbers)
+```
+
+we get the unique values, but the List's duplicate information and intended ordering are no longer available.
+
+So conversion is not always just a change of syntax.
+
+Sometimes it changes the properties of the data.
+
+---
+
+# Key Takeaways
+
+After this part, you should know:
+
+1. `set()` can convert Lists, Tuples, Strings, and other iterables into Sets.
+2. Converting to a Set removes duplicate elements.
+3. `list()` converts a Set into a List.
+4. `tuple()` converts a Set into a Tuple.
+5. `sorted()` converts a Set into a sorted List.
+6. Dictionary Keys can be converted into Sets.
+7. Dictionary Values can be converted into Sets.
+8. Dictionary Items can be converted into Sets when the Items are hashable.
+9. Lists and Dictionaries cannot normally be elements of a Set because they are mutable and unhashable.
+10. Tuples can be Set elements when their contents are hashable.
+11. Converting a List to a Set may lose the original ordering.
+12. We can combine Sets with Lists to remove duplicates.
+13. Sets are useful for comparing data from different sources.
+14. Choosing the correct data structure depends on whether we need ordering, uniqueness, indexing, or Key-Value relationships.
+
+---
+
+## Exercises
+
+### Question 1
+
+Convert this List into a Set and remove its duplicates:
+
+```python
+numbers = [1, 2, 2, 3, 4, 3, 5, 1]
+```
+
+Then convert the result back into a List.
+
+---
+
+### Question 2
+
+Given:
+
+```python
+users = [
+    "Ali",
+    "Sara",
+    "Ali",
+    "Reza",
+    "Sara",
+    "Mina"
+]
+```
+
+Create a sorted List containing only unique usernames.
+
+---
+
+### Question 3
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Tehran"
+}
+```
+
+Create:
+
+1. A Set containing the Dictionary Keys.
+2. A Set containing the Dictionary Values.
+3. A Set containing the Dictionary Items.
+
+---
+
+## Comprehensive Set Question
+
+Create a program using:
+
+```python
+python_students = [
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina",
+    "Ali"
+]
+
+java_students = [
+    "Reza",
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Reza"
+]
+
+web_students = [
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Omid",
+    "Mina"
+]
+```
+
+Your program should:
+
+1. Convert all three Lists into Sets.
+2. Print the unique students in each course.
+3. Find students who study both Python and Java.
+4. Find students who study Python but not Java.
+5. Find students who study Java but not Python.
+6. Find students who study exactly one of Python and Java.
+7. Find all students across the three courses.
+8. Convert the final Set into a sorted List.
+9. Print the number of unique students using `len()`.
+10. Create a Dictionary containing the number of students in each course.
+11. Convert the Dictionary Keys into a Set.
+12. Convert the Dictionary Values into a Set.
+13. Convert the Dictionary Items into a Set.
+14. Explain which information may be lost when converting a List into a Set.
+15. Explain why a Set is useful for comparing the three courses.
+
+This exercise should combine:
+
+**Lists → Sets → `set()` → `list()` → `tuple()` → `sorted()` → Dictionary Keys → Dictionary Values → Dictionary Items → Union → Intersection → Difference → Symmetric Difference → `len()`**
+
+---
+

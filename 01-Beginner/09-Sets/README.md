@@ -4811,3 +4811,812 @@ This exercise should combine:
 
 ---
 
+# Sets — Part 9: Set Intersection
+
+In the previous part, we learned about **Set Union**, which combines all unique elements from two or more Sets.
+
+Now we will learn another important Set operation:
+
+**Set Intersection**
+
+Intersection allows us to find the elements that are **common to two or more Sets**.
+
+---
+
+## 1. What Is Set Intersection?
+
+The **Intersection** of two Sets contains only the elements that exist in **both Sets**.
+
+For example:
+
+```python
+set_a = {1, 2, 3, 4}
+set_b = {3, 4, 5, 6}
+
+result = set_a & set_b
+
+print(result)
+```
+
+Output:
+
+```text
+{3, 4}
+```
+
+Why?
+
+Because:
+
+```text
+Set A → {1, 2, 3, 4}
+Set B → {3, 4, 5, 6}
+              ↑  ↑
+            Common
+```
+
+Only `3` and `4` exist in both Sets.
+
+---
+
+## 2. Using the `&` Operator
+
+Python provides the `&` operator for Set Intersection.
+
+```python
+set_a = {1, 2, 3}
+set_b = {2, 3, 4}
+
+result = set_a & set_b
+
+print(result)
+```
+
+Output:
+
+```text
+{2, 3}
+```
+
+The syntax is:
+
+```python
+set_a & set_b
+```
+
+This means:
+
+> Return the elements that exist in both Sets.
+
+---
+
+## 3. Using the `intersection()` Method
+
+We can also use the `intersection()` method:
+
+```python
+set_a = {1, 2, 3}
+set_b = {2, 3, 4}
+
+result = set_a.intersection(set_b)
+
+print(result)
+```
+
+Output:
+
+```text
+{2, 3}
+```
+
+So we have two common approaches:
+
+```python
+set_a & set_b
+```
+
+and:
+
+```python
+set_a.intersection(set_b)
+```
+
+Both return the common elements.
+
+---
+
+## 4. Intersection Does Not Modify the Original Sets
+
+Just like Union, Intersection creates a new Set.
+
+```python
+set_a = {1, 2, 3}
+set_b = {2, 3, 4}
+
+result = set_a.intersection(set_b)
+
+print(set_a)
+print(set_b)
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 3}
+{2, 3, 4}
+{2, 3}
+```
+
+The original Sets remain unchanged.
+
+---
+
+## 5. Sets With No Common Elements
+
+If two Sets have no common elements:
+
+```python
+set_a = {1, 2, 3}
+set_b = {4, 5, 6}
+
+print(set_a & set_b)
+```
+
+Output:
+
+```text
+set()
+```
+
+The result is an **Empty Set**.
+
+This means the Sets have no common elements.
+
+---
+
+## 6. Identical Sets
+
+If two Sets are identical:
+
+```python
+set_a = {1, 2, 3}
+set_b = {1, 2, 3}
+
+print(set_a & set_b)
+```
+
+Output:
+
+```text
+{1, 2, 3}
+```
+
+Every element is common to both Sets.
+
+---
+
+## 7. Intersection With an Empty Set
+
+The Intersection of any Set with an Empty Set is empty.
+
+```python
+numbers = {1, 2, 3}
+empty = set()
+
+print(numbers & empty)
+```
+
+Output:
+
+```text
+set()
+```
+
+Conceptually:
+
+```text
+Set ∩ Empty Set = Empty Set
+```
+
+---
+
+## 8. Intersection of More Than Two Sets
+
+We can find the common elements of multiple Sets.
+
+```python
+a = {1, 2, 3, 4}
+b = {2, 3, 4, 5}
+c = {3, 4, 5, 6}
+
+result = a & b & c
+
+print(result)
+```
+
+Output:
+
+```text
+{3, 4}
+```
+
+Only `3` and `4` exist in all three Sets.
+
+We can also use the method:
+
+```python
+result = a.intersection(b, c)
+
+print(result)
+```
+
+Output:
+
+```text
+{3, 4}
+```
+
+---
+
+## 9. A Real-World Example
+
+Suppose we have two groups of students.
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+```
+
+We want to find students who study **both Python and Java**.
+
+```python
+both = python_students & java_students
+
+print(both)
+```
+
+Output:
+
+```text
+{"Reza", "Mina"}
+```
+
+These students are common to both groups.
+
+---
+
+## 10. Finding Common Skills
+
+Intersection is also useful for comparing skills.
+
+```python
+skills_a = {"Python", "Git", "SQL", "Linux"}
+skills_b = {"Python", "Docker", "Linux", "Java"}
+
+common_skills = skills_a & skills_b
+
+print(common_skills)
+```
+
+Output:
+
+```text
+{"Python", "Linux"}
+```
+
+The Intersection tells us which skills are shared.
+
+---
+
+## 11. Intersection and `len()`
+
+We can combine Intersection with `len()`.
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+common_count = len(a & b)
+
+print(common_count)
+```
+
+Output:
+
+```text
+2
+```
+
+There are two common elements.
+
+This is useful when we care about the **number of shared elements**, not the elements themselves.
+
+---
+
+## 12. Intersection and Iteration
+
+We can iterate through the Intersection:
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+for number in a & b:
+    print(number)
+```
+
+Possible output:
+
+```text
+3
+4
+```
+
+Remember that Set order is not guaranteed.
+
+For predictable output:
+
+```python
+for number in sorted(a & b):
+    print(number)
+```
+
+Output:
+
+```text
+3
+4
+```
+
+---
+
+## 13. Intersection and Membership Checking
+
+We can combine Intersection with `in`:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+common = a & b
+
+if 2 in common:
+    print("2 is common")
+```
+
+Output:
+
+```text
+2 is common
+```
+
+However, if we only want to check whether a particular element exists in both Sets, we can avoid creating another Set:
+
+```python
+if 2 in a and 2 in b:
+    print("2 is common")
+```
+
+This can be simpler for a single value.
+
+---
+
+## 14. Intersection With Lists Using `intersection()`
+
+The `&` operator requires Set operands.
+
+For example, this does not work:
+
+```python
+a = {1, 2, 3}
+b = [2, 3, 4]
+
+print(a & b)
+```
+
+Python raises a `TypeError`.
+
+But `intersection()` can accept an iterable:
+
+```python
+a = {1, 2, 3}
+
+result = a.intersection([2, 3, 4])
+
+print(result)
+```
+
+Output:
+
+```text
+{2, 3}
+```
+
+So remember:
+
+```text
+& operator
+→ requires Set operands
+
+intersection()
+→ can accept iterable objects
+```
+
+---
+
+## 15. Intersection and User Input
+
+We can use Intersection with data entered by the user.
+
+```python
+first = input("Enter names: ").split()
+second = input("Enter more names: ").split()
+
+set_a = set(first)
+set_b = set(second)
+
+common_names = set_a & set_b
+
+print("Common names:", common_names)
+```
+
+If the user enters:
+
+```text
+Ali Sara Reza Mina
+```
+
+and:
+
+```text
+Reza Mina Hassan
+```
+
+the result is:
+
+```text
+Common names: {'Reza', 'Mina'}
+```
+
+The Set automatically removes duplicate values.
+
+---
+
+## 16. Mathematical Properties of Intersection
+
+Intersection has important mathematical properties.
+
+### Commutative Property
+
+```text
+A ∩ B = B ∩ A
+```
+
+In Python:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+print(a & b)
+print(b & a)
+```
+
+Both produce:
+
+```text
+{2, 3}
+```
+
+Changing the order does not change the result.
+
+### Associative Property
+
+Intersection is also associative:
+
+```text
+(A ∩ B) ∩ C = A ∩ (B ∩ C)
+```
+
+For example:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+c = {2, 3, 5}
+
+result_1 = (a & b) & c
+result_2 = a & (b & c)
+
+print(result_1)
+print(result_2)
+```
+
+Both produce:
+
+```text
+{2, 3}
+```
+
+---
+
+## 17. Relationship Between Union and Intersection
+
+Union and Intersection are complementary Set operations.
+
+Consider:
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+```
+
+Union:
+
+```python
+a | b
+```
+
+gives:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+Intersection:
+
+```python
+a & b
+```
+
+gives:
+
+```text
+{3}
+```
+
+So:
+
+```text
+Union
+→ Everything from both Sets
+
+Intersection
+→ Only what both Sets share
+```
+
+A useful way to remember them:
+
+```text
+A | B
+→ "A OR B"
+
+A & B
+→ "A AND B"
+```
+
+---
+
+## 18. Common Beginner Mistakes
+
+### Mistake 1 — Confusing Intersection With Union
+
+If:
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+```
+
+then:
+
+```python
+a | b
+```
+
+returns:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+while:
+
+```python
+a & b
+```
+
+returns:
+
+```text
+{3}
+```
+
+Remember:
+
+```text
+| → Union
+& → Intersection
+```
+
+---
+
+### Mistake 2 — Thinking Intersection Keeps All Elements
+
+This:
+
+```python
+a & b
+```
+
+does not combine all elements.
+
+It keeps only the elements shared by both Sets.
+
+---
+
+### Mistake 3 — Expecting the Original Set to Change
+
+This:
+
+```python
+a & b
+```
+
+does not modify `a` or `b`.
+
+If you want to save the result:
+
+```python
+common = a & b
+```
+
+---
+
+### Mistake 4 — Using `&` With a List
+
+This is invalid:
+
+```python
+a & [1, 2, 3]
+```
+
+Use:
+
+```python
+a.intersection([1, 2, 3])
+```
+
+instead.
+
+---
+
+### Mistake 5 — Forgetting That an Empty Result Is Still a Set
+
+If there are no common elements:
+
+```python
+result = a & b
+```
+
+the result is:
+
+```python
+set()
+```
+
+not:
+
+```python
+{}
+```
+
+Remember:
+
+```text
+set()
+→ Empty Set
+
+{}
+→ Empty Dictionary
+```
+
+---
+
+## Key Takeaways
+
+After this part, you should know:
+
+1. Intersection returns elements common to two or more Sets.
+2. The `&` operator performs Intersection.
+3. The `intersection()` method also performs Intersection.
+4. Intersection automatically removes duplicates.
+5. Intersection does not modify the original Sets.
+6. Two Sets with no common elements produce an Empty Set.
+7. `len()` can count the number of common elements.
+8. We can iterate through an Intersection using `for`.
+9. `sorted()` can provide predictable output order.
+10. `&` requires Set operands.
+11. `intersection()` can accept iterable objects.
+12. Intersection is commutative and associative.
+13. `|` can be remembered as **OR**, while `&` can be remembered as **AND**.
+
+---
+
+## Exercises
+
+### Question 1
+
+What will this code print?
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a & b)
+```
+
+Why?
+
+---
+
+### Question 2
+
+Write a program that finds the students who study both Python and Java:
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+```
+
+Then print the number of students who study both languages.
+
+---
+
+### Question 3
+
+Explain the difference between:
+
+```python
+a | b
+```
+
+and:
+
+```python
+a & b
+```
+
+Use your own example.
+
+---
+
+## Comprehensive Set Question
+
+Create a program using:
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina", "Hassan"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+web_students = {"Mina", "Hassan", "Nima", "Omid"}
+```
+
+Your program should:
+
+1. Find all students using Union.
+2. Find students who study both Python and Java.
+3. Find students who study all three subjects.
+4. Print the number of students in each result using `len()`.
+5. Iterate through each result.
+6. Print each result in sorted order.
+7. Ask the user for a student name.
+8. Check whether the student studies both Python and Java.
+9. Explain the difference between the Union and Intersection results.
+
+This exercise should combine:
+
+**Creating Sets → `in` → `len()` → Iteration → `sorted()` → Union → Intersection**
+
+---
+

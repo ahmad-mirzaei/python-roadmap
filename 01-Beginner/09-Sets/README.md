@@ -1330,3 +1330,546 @@ Your goal is to demonstrate everything we have learned so far about **creating S
 
 ---
 
+# Sets — Part 4: Removing Elements from a Set
+
+In the previous part, we learned how to add elements to a Set using `add()`.
+
+Now we will learn how to **remove elements from a Set**.
+
+Python provides several methods for this:
+
+* `remove()`
+* `discard()`
+* `pop()`
+* `clear()`
+
+Although they all modify a Set, they behave differently.
+
+---
+
+## 1. Using `remove()`
+
+The `remove()` method removes a specific element from a Set.
+
+```python
+numbers = {1, 2, 3, 4}
+
+numbers.remove(3)
+
+print(numbers)
+```
+
+The result contains:
+
+```text
+{1, 2, 4}
+```
+
+The syntax is:
+
+```python
+set_name.remove(element)
+```
+
+---
+
+## 2. What Happens If the Element Does Not Exist?
+
+This is one of the most important differences between `remove()` and `discard()`.
+
+If the element does not exist:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.remove(5)
+```
+
+Python raises a `KeyError`.
+
+For example:
+
+```text
+KeyError: 5
+```
+
+So `remove()` should be used when you expect the element to exist.
+
+---
+
+## 3. Using `discard()`
+
+The `discard()` method also removes a specific element:
+
+```python
+numbers = {1, 2, 3, 4}
+
+numbers.discard(3)
+
+print(numbers)
+```
+
+Result:
+
+```text
+{1, 2, 4}
+```
+
+But there is an important difference.
+
+If the element does not exist:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.discard(5)
+
+print(numbers)
+```
+
+Nothing happens.
+
+No error is raised.
+
+The Set remains:
+
+```text
+{1, 2, 3}
+```
+
+---
+
+## 4. `remove()` vs `discard()`
+
+This distinction is very important:
+
+| Method      | Element exists | Element does not exist |
+| ----------- | -------------- | ---------------------- |
+| `remove()`  | Removes it     | Raises `KeyError`      |
+| `discard()` | Removes it     | Does nothing           |
+
+A simple way to remember:
+
+```text
+remove()
+→ "I expect this element to exist."
+
+discard()
+→ "Remove it if it exists."
+```
+
+For beginner code, `discard()` is often useful when you do not want to handle an error for a missing element.
+
+---
+
+## 5. Using `pop()`
+
+The `pop()` method removes and **returns an element** from the Set.
+
+```python
+numbers = {10, 20, 30, 40}
+
+value = numbers.pop()
+
+print(value)
+print(numbers)
+```
+
+The removed value is stored in `value`.
+
+An important point:
+
+**Sets are unordered, so you should not expect `pop()` to remove a particular element.**
+
+Do not write code that assumes it always removes the smallest, largest, first, or last element.
+
+The exact element removed should be treated as unspecified.
+
+---
+
+## 6. `pop()` Returns the Removed Element
+
+Unlike `remove()` and `discard()`, `pop()` gives us the removed element.
+
+```python
+numbers = {1, 2, 3}
+
+removed = numbers.pop()
+
+print(removed)
+print(numbers)
+```
+
+The first `print()` displays the removed element.
+
+The second displays the remaining Set.
+
+Conceptually:
+
+```text
+Set
+  ↓
+pop()
+  ↓
+Remove one element
+  ↓
+Return that element
+```
+
+---
+
+## 7. `pop()` on an Empty Set
+
+If we call `pop()` on an Empty Set:
+
+```python
+numbers = set()
+
+numbers.pop()
+```
+
+Python raises a `KeyError`.
+
+So before using `pop()` on a Set that may be empty, you should consider checking whether it contains elements.
+
+For example:
+
+```python
+if numbers:
+    value = numbers.pop()
+```
+
+---
+
+## 8. Using `clear()`
+
+The `clear()` method removes **all elements** from a Set.
+
+```python
+numbers = {1, 2, 3, 4}
+
+numbers.clear()
+
+print(numbers)
+```
+
+Result:
+
+```text
+set()
+```
+
+The Set itself still exists, but it is now empty.
+
+Compare:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.clear()
+
+print(type(numbers))
+```
+
+The type is still:
+
+```text
+<class 'set'>
+```
+
+---
+
+## 9. `clear()` vs Creating a New Set
+
+There is a difference between clearing a Set and assigning a new Empty Set.
+
+Using `clear()`:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.clear()
+```
+
+The existing Set object is emptied.
+
+Using assignment:
+
+```python
+numbers = {1, 2, 3}
+
+numbers = set()
+```
+
+the variable `numbers` is reassigned to another Set object.
+
+At the beginner level, both leave `numbers` empty, but the underlying behavior is different.
+
+For now, remember:
+
+```text
+clear()
+→ Empty the existing Set
+
+set()
+→ Create a new Empty Set
+```
+
+---
+
+## 10. Removing Elements While Checking Conditions
+
+Sometimes we need to remove a known element only if it exists.
+
+One approach is:
+
+```python
+numbers = {1, 2, 3, 4}
+
+if 3 in numbers:
+    numbers.remove(3)
+```
+
+Another simple approach is:
+
+```python
+numbers.discard(3)
+```
+
+This is one reason `discard()` can be convenient.
+
+---
+
+## 11. Removing Multiple Elements
+
+You can call removal methods multiple times:
+
+```python
+numbers = {1, 2, 3, 4, 5}
+
+numbers.remove(1)
+numbers.remove(2)
+numbers.discard(5)
+
+print(numbers)
+```
+
+The remaining elements are:
+
+```text
+{3, 4}
+```
+
+Each call changes the Set.
+
+---
+
+## 12. Important: Don't Modify a Set During Iteration
+
+A common mistake is trying to remove elements from a Set while directly iterating over that same Set:
+
+```python
+numbers = {1, 2, 3, 4, 5}
+
+for number in numbers:
+    if number % 2 == 0:
+        numbers.remove(number)
+```
+
+This can raise:
+
+```text
+RuntimeError: Set changed size during iteration
+```
+
+For now, avoid modifying a Set directly while iterating over it.
+
+Later, when we study more advanced techniques, we will learn safer ways to filter and transform collections.
+
+---
+
+## 13. Choosing the Right Method
+
+A useful summary:
+
+### Use `remove()` when:
+
+You expect the element to exist and want Python to notify you if it does not.
+
+```python
+numbers.remove(3)
+```
+
+### Use `discard()` when:
+
+You want to remove an element if it exists, without raising an error if it is missing.
+
+```python
+numbers.discard(3)
+```
+
+### Use `pop()` when:
+
+You want to remove **one unspecified element** and receive that removed element.
+
+```python
+value = numbers.pop()
+```
+
+### Use `clear()` when:
+
+You want to remove **all elements**.
+
+```python
+numbers.clear()
+```
+
+---
+
+## Common Beginner Mistakes
+
+### Mistake 1 — Assuming `remove()` ignores missing elements
+
+```python
+numbers = {1, 2, 3}
+
+numbers.remove(10)
+```
+
+This raises a `KeyError`.
+
+Use `discard()` if a missing element should not cause an error.
+
+---
+
+### Mistake 2 — Assuming `pop()` removes the first element
+
+Sets do not have indexes or a meaningful first element.
+
+So this assumption is incorrect:
+
+```python
+numbers = {10, 20, 30}
+
+numbers.pop()  # Not necessarily 10
+```
+
+---
+
+### Mistake 3 — Expecting `pop()` to return the remaining Set
+
+`pop()` returns the **removed element**, not the Set.
+
+```python
+removed = numbers.pop()
+```
+
+---
+
+### Mistake 4 — Confusing `clear()` with `discard()`
+
+`discard()` removes one specified element:
+
+```python
+numbers.discard(3)
+```
+
+`clear()` removes everything:
+
+```python
+numbers.clear()
+```
+
+---
+
+## Key Takeaways
+
+After this part, you should know:
+
+1. `remove()` removes a specific element.
+2. `remove()` raises `KeyError` if the element does not exist.
+3. `discard()` removes a specific element without raising an error if it is missing.
+4. `pop()` removes one unspecified element and returns it.
+5. `pop()` raises `KeyError` when the Set is empty.
+6. `clear()` removes all elements from a Set.
+7. Sets are unordered, so you should not depend on which element `pop()` removes.
+8. You should avoid modifying a Set directly while iterating over it.
+
+---
+
+## Exercises
+
+### Question 1
+
+What happens when this code runs?
+
+```python
+numbers = {1, 2, 3}
+
+numbers.remove(5)
+```
+
+How would you change the code if you wanted the program to continue without an error?
+
+---
+
+### Question 2
+
+Explain the difference between these two:
+
+```python
+numbers.remove(10)
+```
+
+and:
+
+```python
+numbers.discard(10)
+```
+
+What happens when `10` is not inside the Set?
+
+---
+
+### Question 3
+
+What does the following code guarantee about the final Set?
+
+```python
+numbers = {1, 2, 3, 4, 5}
+
+removed = numbers.pop()
+
+print(removed)
+print(numbers)
+```
+
+Can you predict exactly which number will be stored in `removed`?
+
+---
+
+## Comprehensive Set Question
+
+Write a program that starts with:
+
+```python
+students = {"Ali", "Sara", "Reza", "Mina", "Omid"}
+```
+
+Then perform these operations:
+
+1. Remove `"Sara"` using `remove()`.
+2. Try to remove `"Sara"` again, but this time make sure the program does not raise an error.
+3. Remove one remaining student using `pop()` and store the removed name in a variable.
+4. Print the removed name and the remaining Set.
+5. Finally, remove all remaining students using `clear()`.
+6. Print the final Set.
+
+Your solution should demonstrate the difference between:
+
+`remove()` → `discard()` → `pop()` → `clear()`
+
+and explain when each method should be used.
+
+---
+

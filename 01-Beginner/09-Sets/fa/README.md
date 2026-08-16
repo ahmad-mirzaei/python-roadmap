@@ -6504,3 +6504,812 @@ web_students = {"Mina", "Hassan", "Nima", "Omid"}
 
 ---
 
+# Sets — پارت ۱۱: تفاضل متقارن Setها (Set Symmetric Difference)
+
+در پارت قبلی با **Set Difference** آشنا شدیم؛ یعنی پیدا کردن Elementهایی که در یک Set وجود دارند اما در Set دیگر وجود ندارند.
+
+حالا می خواهیم با مفهوم مهم دیگری آشنا شویم:
+
+**Set Symmetric Difference**
+
+Symmetric Difference Elementهایی را پیدا می کند که در **یکی از دو Set وجود دارند، اما در هر دو Set وجود ندارند**.
+
+---
+
+## 1. Symmetric Difference چیست؟
+
+فرض کن:
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+```
+
+Elementهای مشترک:
+
+```text
+{3, 4}
+```
+
+Symmetric Difference Elementهای مشترک را حذف می کند و بقیه را نگه می دارد:
+
+```python
+result = a ^ b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 5, 6}
+```
+
+پس:
+
+```text
+A → {1, 2, 3, 4}
+B → {3, 4, 5, 6}
+
+مشترک → {3, 4}
+
+Symmetric Difference → {1, 2, 5, 6}
+```
+
+یک روش ساده برای به خاطر سپردن:
+
+```text
+Symmetric Difference
+→ هر چیزی که فقط در یکی از Setها باشد
+```
+
+---
+
+## 2. استفاده از Operator `^`
+
+Python برای Symmetric Difference از Operator `^` استفاده می کند.
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+result = a ^ b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 4}
+```
+
+Syntax:
+
+```python
+a ^ b
+```
+
+یعنی:
+
+> Elementهایی را بر گردان که در `a` یا `b` هستند، اما در هر دو نیستند.
+
+---
+
+## 3. استفاده از متد `symmetric_difference()`
+
+می توانیم از متد `symmetric_difference()` نیز استفاده کنیم:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+result = a.symmetric_difference(b)
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 4}
+```
+
+پس دو روش رایج داریم:
+
+```python
+a ^ b
+```
+
+و:
+
+```python
+a.symmetric_difference(b)
+```
+
+هر دو نتیجه یکسانی ایجاد می کنند.
+
+---
+
+## 4. Symmetric Difference جابجایی پذیر است
+
+بر خلاف Difference معمولی، Symmetric Difference به ترتیب Setها وابسته نیست.
+
+مثلا:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+print(a ^ b)
+print(b ^ a)
+```
+
+هر دو:
+
+```text
+{1, 4}
+```
+
+را تولید می کنند.
+
+بنابراین:
+
+```text
+A △ B = B △ A
+```
+
+این همان **خاصیت جابجایی** است.
+
+تفاوت آن با Difference را به خاطر بسپار:
+
+```text
+A - B ≠ B - A
+
+A ^ B = B ^ A
+```
+
+---
+
+## 5. Symmetric Difference، Setهای اصلی را تغییر نمی دهد
+
+مانند سایر عملیات Set، Symmetric Difference به صورت معمول یک Set جدید ایجاد می کند.
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+result = a ^ b
+
+print(a)
+print(b)
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+{2, 3, 4}
+{1, 4}
+```
+
+Setهای اصلی بدون تغییر باقی می مانند.
+
+---
+
+## 6. Symmetric Difference بین Setهای یکسان
+
+اگر دو Set دقیقا یکسان باشند:
+
+```python
+a = {1, 2, 3}
+b = {1, 2, 3}
+
+print(a ^ b)
+```
+
+خروجی:
+
+```text
+set()
+```
+
+چرا؟
+
+چون تمام Elementها در هر دو Set وجود دارند.
+
+Symmetric Difference فقط Elementهایی را نگه می دارد که دقیقا در یکی از Setها باشند.
+
+پس وقتی دو Set کاملا یکسان باشند، هیچ Elementی باقی نمی ماند.
+
+---
+
+## 7. Symmetric Difference با Empty Set
+
+اگر یکی از Setها خالی باشد:
+
+```python
+a = {1, 2, 3}
+empty = set()
+
+print(a ^ empty)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+```
+
+Set اصلی بر گردانده می شود.
+
+به صورت مفهومی:
+
+```text
+A △ ∅ = A
+```
+
+این منطقی است، چون تمام Elementهای `A` فقط در یکی از دو Set قرار دارند.
+
+---
+
+## 8. Symmetric Difference بین Setهای بدون Element مشترک
+
+اگر دو Set هیچ Element مشترکی نداشته باشند:
+
+```python
+a = {1, 2, 3}
+b = {4, 5, 6}
+
+print(a ^ b)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4, 5, 6}
+```
+
+چون هیچ Elementی مشترک نیست، تمام Elementها فقط در یکی از Setها قرار دارند.
+
+بنابراین:
+
+```text
+بدون اشتراک
+→ Symmetric Difference = Union
+```
+
+---
+
+## 9. Symmetric Difference در مقابل Difference
+
+این یکی از مهم ترین مقایسه هاست.
+
+فرض کن:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+```
+
+Difference معمولی:
+
+```python
+print(a - b)
+```
+
+خروجی:
+
+```text
+{1}
+```
+
+فقط Elementهایی را نگه می دارد که در `a` هستند و در `b` نیستند.
+
+اما:
+
+```python
+print(a ^ b)
+```
+
+خروجی:
+
+```text
+{1, 4}
+```
+
+Elementهایی را نگه می دارد که در **یکی از دو Set** هستند، اما در هر دو نیستند.
+
+پس:
+
+```text
+A - B
+→ فقط Elementهای A
+
+A ^ B
+→ فقط Elementهای A + فقط Elementهای B
+```
+
+---
+
+## 10. Symmetric Difference در مقابل Union
+
+Union همه چیز را نگه می دارد:
+
+```python
+a | b
+```
+
+اما Symmetric Difference Elementهای مشترک را حذف می کند:
+
+```python
+a ^ b
+```
+
+مثلا:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+```
+
+Union:
+
+```text
+{1, 2, 3, 4}
+```
+
+Symmetric Difference:
+
+```text
+{1, 4}
+```
+
+پس:
+
+```text
+| → همه چیز
+
+^ → همه چیز به جز Elementهای مشترک
+```
+
+---
+
+## 11. Symmetric Difference در مقابل Intersection
+
+Intersection فقط Elementهای مشترک را بر می گرداند:
+
+```python
+a & b
+```
+
+اما Symmetric Difference فقط Elementهای غیر مشترک را بر می گرداند:
+
+```python
+a ^ b
+```
+
+برای:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+```
+
+نتیجه:
+
+```text
+Intersection
+→ {2, 3}
+
+Symmetric Difference
+→ {1, 4}
+```
+
+می توانیم این دو را از نظر اشتراک این طور به خاطر بسپاریم:
+
+```text
+& → مشترک
+
+^ → غیر مشترک
+```
+
+---
+
+## 12. Symmetric Difference با استفاده از Union و Intersection
+
+می توانیم Symmetric Difference را با استفاده از عملیات قبلی نیز تعریف کنیم.
+
+رابطه ریاضی:
+
+```text
+A △ B = (A ∪ B) - (A ∩ B)
+```
+
+در Python:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+result = (a | b) - (a & b)
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 4}
+```
+
+این دقیقا همان نتیجه:
+
+```python
+a ^ b
+```
+
+است.
+
+این رابطه مهم است، چون مفاهیمی که تا اینجا یاد گرفته ایم را به هم متصل می کند.
+
+---
+
+## 13. Symmetric Difference و `len()`
+
+می توانیم تعداد Elementهای غیر مشترک را با `len()` حساب کنیم:
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+count = len(a ^ b)
+
+print(count)
+```
+
+خروجی:
+
+```text
+4
+```
+
+چهار Element غیر مشترک عبارتند از:
+
+```text
+{1, 2, 5, 6}
+```
+
+---
+
+## 14. پیمایش Symmetric Difference
+
+می توانیم روی نتیجه Symmetric Difference نیز پیمایش انجام دهیم:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+for number in a ^ b:
+    print(number)
+```
+
+خروجی ممکن:
+
+```text
+1
+4
+```
+
+برای داشتن ترتیب قابل پیش بینی:
+
+```python
+for number in sorted(a ^ b):
+    print(number)
+```
+
+خروجی:
+
+```text
+1
+4
+```
+
+---
+
+## 15. یک مثال واقعی
+
+فرض کن دو گروه از دانش آموزان در دوره های مختلف شرکت کرده اند:
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+```
+
+می خواهیم دانش آموزانی را پیدا کنیم که **فقط در یکی از دو دوره** شرکت کرده اند:
+
+```python
+only_one_course = python_students ^ java_students
+
+print(only_one_course)
+```
+
+خروجی:
+
+```text
+{"Ali", "Sara", "Hassan", "Nima"}
+```
+
+`Reza` و `Mina` در نتیجه نیستند، چون در هر دو دوره شرکت کرده اند.
+
+---
+
+## 16. پیدا کردن اعضای تغییر کرده
+
+Symmetric Difference برای مقایسه دو نسخه از داده نیز مفید است.
+
+مثلا:
+
+```python
+old_members = {"Ali", "Sara", "Reza"}
+new_members = {"Ali", "Reza", "Mina"}
+
+changed = old_members ^ new_members
+
+print(changed)
+```
+
+خروجی:
+
+```text
+{"Sara", "Mina"}
+```
+
+این نتیجه به ما می گوید کدام اعضا بین دو نسخه متفاوت هستند.
+
+البته این نتیجه به تنهایی مشخص نمی کند چه کسی حذف شده و چه کسی اضافه شده؛ فقط تمام اعضایی را نشان می دهد که وضعیت عضویتشان تغییر کرده است.
+
+---
+
+## 17. پیدا کردن تفاوت Permissionها
+
+فرض کن دو کاربر Permissionهای متفاوتی دارند:
+
+```python
+user_a_permissions = {"read", "write", "delete"}
+user_b_permissions = {"read", "write", "share"}
+```
+
+می توانیم Permissionهای غیر مشترک را پیدا کنیم:
+
+```python
+different_permissions = user_a_permissions ^ user_b_permissions
+
+print(different_permissions)
+```
+
+خروجی:
+
+```text
+{"delete", "share"}
+```
+
+این روش می تواند برای مقایسه Configurationها یا Permissionها کاربردی باشد.
+
+---
+
+## اشتباهات رایج
+
+### اشتباه ۱ — اشتباه گرفتن `^` و `-`
+
+این دو با هم فرق دارند:
+
+```python
+a - b
+```
+
+و:
+
+```python
+a ^ b
+```
+
+برای:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+```
+
+داریم:
+
+```text
+a - b
+→ {1}
+
+a ^ b
+→ {1, 4}
+```
+
+Difference فقط Set سمت چپ را بررسی می کند.
+
+Symmetric Difference هر دو Set را در نظر می گیرد.
+
+---
+
+### اشتباه ۲ — تصور اینکه `^` همان Intersection است
+
+Intersection از این Operator استفاده می کند:
+
+```python
+a & b
+```
+
+اما Symmetric Difference:
+
+```python
+a ^ b
+```
+
+به خاطر بسپار:
+
+```text
+& → مشترک
+
+^ → فقط در یکی از دو Set
+```
+
+---
+
+### اشتباه ۳ — تصور اینکه Symmetric Difference جهت دار است
+
+Difference معمولی جهت دارد:
+
+```text
+A - B ≠ B - A
+```
+
+اما Symmetric Difference جابجایی پذیر است:
+
+```text
+A ^ B = B ^ A
+```
+
+---
+
+### اشتباه ۴ — فراموش کردن حذف Elementهای مشترک
+
+اگر:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+```
+
+باشد:
+
+```python
+a ^ b
+```
+
+این نتیجه را نمی دهد:
+
+```text
+{1, 2, 3, 4}
+```
+
+بلکه:
+
+```text
+{1, 4}
+```
+
+است.
+
+چون `2` و `3` در هر دو Set وجود دارند و حذف می شوند.
+
+---
+
+## نکات مهم
+
+بعد از این پارت باید این موارد را بلد باشی:
+
+1. Symmetric Difference Elementهایی را بر می گرداند که فقط در یکی از Setها وجود دارند.
+2. Operator `^` برای Symmetric Difference استفاده می شود.
+3. متد `symmetric_difference()` همین عملیات را انجام می دهد.
+4. Symmetric Difference جابجایی پذیر است.
+5. `A ^ B` با `B ^ A` برابر است.
+6. Symmetric Difference دو Set یکسان، یک Empty Set ایجاد می کند.
+7. Symmetric Difference با Empty Set، Set اصلی را بر می گرداند.
+8. اگر دو Set هیچ Element مشترکی نداشته باشند، Symmetric Difference با Union برابر می شود.
+9. با `len()` می توان تعداد Elementهای غیر مشترک را حساب کرد.
+10. می توان روی نتیجه Symmetric Difference پیمایش انجام داد.
+11. `sorted()` می تواند خروجی قابل پیش بینی ایجاد کند.
+12. Symmetric Difference را می توان به صورت `(A | B) - (A & B)` نیز نوشت.
+13. Difference جهت دار است، اما Symmetric Difference جهت دار نیست.
+14. `&` برای Elementهای مشترک و `^` برای Elementهایی است که فقط در یکی از دو طرف وجود دارند.
+
+---
+
+## تمرین ها
+
+### سوال ۱
+
+این کد چه چیزی چاپ می کند؟
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a ^ b)
+```
+
+توضیح بده چرا `3` و `4` در نتیجه نیستند.
+
+---
+
+### سوال ۲
+
+برنامه ای بنویس که دانش آموزانی را پیدا کند که **فقط یکی از Python یا Java** را می خوانند:
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+```
+
+سپس تعداد این دانش آموزان را چاپ کن.
+
+---
+
+### سوال ۳
+
+تفاوت این دو را توضیح بده:
+
+```python
+a - b
+a ^ b
+```
+
+با استفاده از:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+```
+
+---
+
+## سوال جامع Setها
+
+با استفاده از Setهای زیر یک برنامه بنویس:
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina", "Hassan"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+web_students = {"Mina", "Hassan", "Nima", "Omid"}
+```
+
+برنامه باید:
+
+1. تمام دانش آموزان را با استفاده از Union پیدا کند.
+2. دانش آموزانی را که هم Python و هم Java می خوانند پیدا کند.
+3. دانش آموزانی را که Python می خوانند اما Java نمی خوانند پیدا کند.
+4. دانش آموزانی را که Java می خوانند اما Python نمی خوانند پیدا کند.
+5. دانش آموزانی را که دقیقا یکی از Python و Java را می خوانند پیدا کند.
+6. دانش آموزانی را که در Python یا Java هستند اما در هر دو نیستند پیدا کند.
+7. تعداد دانش آموزان هر نتیجه را با `len()` چاپ کند.
+8. روی نتیجه Symmetric Difference پیمایش انجام دهد.
+9. نتیجه را با `sorted()` چاپ کند.
+10. Symmetric Difference را یک بار با `^` محاسبه کند.
+11. یک بار با `(a | b) - (a & b)` محاسبه کند.
+12. بررسی کند که هر دو نتیجه با هم برابر هستند.
+13. نام یک دانش آموز را از کاربر دریافت کند.
+14. بررسی کند آیا آن دانش آموز دقیقا یکی از Python یا Java را می خواند.
+
+این تمرین باید این مفاهیم را با هم ترکیب کند:
+
+**Creating Sets → `in` → `len()` → Iteration → `sorted()` → Union → Intersection → Difference → Symmetric Difference**
+
+---
+

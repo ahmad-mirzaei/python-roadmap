@@ -960,3 +960,974 @@ Reza
 
 ---
 
+# Part 10 — Dictionary Items
+
+## Introduction
+
+In the previous part, we learned that a Dictionary is made of **Key-Value pairs**.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Each entry contains two related pieces of information:
+
+```text
+"name"  → "Ali"
+"age"   → 20
+"score" → 18
+```
+
+Sometimes we need only the Keys.
+
+Sometimes we need only the Values.
+
+But very often, we need **both the Key and its Value together**.
+
+This is where the `items()` method becomes important.
+
+---
+
+## 1. What Does `items()` Do?
+
+The `items()` method gives us access to all **Key-Value pairs** in a Dictionary.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+print(student.items())
+```
+
+The result represents the Dictionary entries as pairs:
+
+```text
+("name", "Ali")
+("age", 20)
+("score", 18)
+```
+
+Conceptually:
+
+```text
+Dictionary
+    ↓
+items()
+    ↓
+(Key, Value)
+(Key, Value)
+(Key, Value)
+```
+
+So the purpose of `items()` is:
+
+> **To work with each Key and its corresponding Value together.**
+
+---
+
+## 2. `items()` Returns Pairs
+
+Each element produced by `items()` represents one Key-Value pair.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+for item in student.items():
+    print(item)
+```
+
+Output:
+
+```text
+('name', 'Ali')
+('age', 20)
+```
+
+Each `item` represents one complete Dictionary entry.
+
+This is different from:
+
+```python
+student.keys()
+```
+
+which gives Keys, and:
+
+```python
+student.values()
+```
+
+which gives Values.
+
+We can think of the three methods as:
+
+```text
+keys()   → Keys
+values() → Values
+items()  → Keys + Values
+```
+
+---
+
+## 3. Iterating Through `items()`
+
+The most common use of `items()` is with a `for` loop.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+for item in student.items():
+    print(item)
+```
+
+Output:
+
+```text
+('name', 'Ali')
+('age', 20)
+('score', 18)
+```
+
+This gives us every Dictionary entry one by one.
+
+The loop does not give us the entire Dictionary at once. Instead, it processes each Key-Value pair separately.
+
+---
+
+## 4. Unpacking Key and Value
+
+Python allows us to unpack each pair directly into two variables:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+Output:
+
+```text
+name Ali
+age 20
+score 18
+```
+
+Here:
+
+```text
+key   → Key
+value → Value
+```
+
+For the first iteration:
+
+```text
+key   = "name"
+value = "Ali"
+```
+
+For the second:
+
+```text
+key   = "age"
+value = 20
+```
+
+And so on.
+
+This pattern is extremely common in Python:
+
+```python
+for key, value in dictionary.items():
+    ...
+```
+
+It is one of the main patterns you should become comfortable reading.
+
+---
+
+## 5. Why `items()` Is Useful
+
+Suppose we want to print the name of each student together with their score:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+```
+
+We need both parts:
+
+```text
+Student → Score
+```
+
+So:
+
+```python
+for name, score in scores.items():
+    print(name, score)
+```
+
+Output:
+
+```text
+Ali 18
+Sara 15
+Reza 19
+```
+
+Using `items()` makes the relationship between the two pieces of information explicit.
+
+---
+
+## 6. Using `items()` to Create Formatted Output
+
+We can combine `items()` with f-strings:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+
+for name, score in scores.items():
+    print(f"{name}: {score}")
+```
+
+Output:
+
+```text
+Ali: 18
+Sara: 15
+Reza: 19
+```
+
+This is useful when displaying Dictionary data in a readable format.
+
+---
+
+## 7. Using `items()` with Conditions
+
+Because we have both the Key and Value, we can make decisions based on either one.
+
+For example:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 12,
+    "Reza": 19,
+    "Mina": 10
+}
+
+for name, score in scores.items():
+    if score >= 15:
+        print(name)
+```
+
+Output:
+
+```text
+Ali
+Reza
+```
+
+Here the Value controls the condition:
+
+```python
+score >= 15
+```
+
+while the Key is printed.
+
+This pattern is very useful when processing structured data.
+
+---
+
+## 8. Using Both Key and Value in a Condition
+
+We can also use both:
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 12,
+    "Reza": 19
+}
+
+for name, score in students.items():
+    if name == "Ali" and score >= 15:
+        print(f"{name} passed.")
+```
+
+Output:
+
+```text
+Ali passed.
+```
+
+The important point is that `items()` gives us both pieces of information at the same time, allowing the condition to use either or both.
+
+---
+
+## 9. `items()` vs `keys()` vs `values()`
+
+These methods serve different purposes.
+
+Given:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+### `keys()`
+
+```python
+for key in student.keys():
+    print(key)
+```
+
+Gives:
+
+```text
+name
+age
+score
+```
+
+### `values()`
+
+```python
+for value in student.values():
+    print(value)
+```
+
+Gives:
+
+```text
+Ali
+20
+18
+```
+
+### `items()`
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+Gives:
+
+```text
+name Ali
+age 20
+score 18
+```
+
+The mental model is:
+
+```text
+keys()   → What identifies the data?
+values() → What data is stored?
+items()  → Which data belongs to which identifier?
+```
+
+---
+
+## 10. A Dictionary Entry as a Relationship
+
+One of the most important ideas behind `items()` is that a Dictionary is not simply a collection of unrelated values.
+
+It represents **relationships**.
+
+For example:
+
+```python
+prices = {
+    "apple": 2,
+    "banana": 1,
+    "orange": 3
+}
+```
+
+The important information is not only:
+
+```text
+2
+1
+3
+```
+
+It is:
+
+```text
+apple  → 2
+banana → 1
+orange → 3
+```
+
+`items()` allows us to process these relationships directly.
+
+This becomes increasingly important as Dictionaries become more complex.
+
+---
+
+## 11. Changing the Value While Iterating
+
+We can use a Key obtained from `items()` to modify the Dictionary.
+
+For example:
+
+```python
+scores = {
+    "Ali": 10,
+    "Sara": 12,
+    "Reza": 15
+}
+
+for name, score in scores.items():
+    scores[name] = score + 1
+
+print(scores)
+```
+
+Result:
+
+```text
+{'Ali': 11, 'Sara': 13, 'Reza': 16}
+```
+
+Here:
+
+```python
+scores[name]
+```
+
+uses the Key to access the corresponding entry.
+
+The Value is then replaced with an updated Value.
+
+This shows an important relationship:
+
+```text
+Key
+ ↓
+Dictionary entry
+ ↓
+Value
+```
+
+---
+
+## 12. Building a New Dictionary from `items()`
+
+We can also use `items()` to create another Dictionary.
+
+For example:
+
+```python
+prices = {
+    "apple": 2,
+    "banana": 1,
+    "orange": 3
+}
+
+expensive = {}
+
+for product, price in prices.items():
+    if price >= 2:
+        expensive[product] = price
+```
+
+The new Dictionary becomes:
+
+```python
+{
+    "apple": 2,
+    "orange": 3
+}
+```
+
+The Key and Value are kept together when the condition is satisfied.
+
+---
+
+## 13. Using `items()` with Different Value Types
+
+The Value does not have to be a simple number.
+
+For example:
+
+```python
+users = {
+    "Ali": 20,
+    "Sara": 25,
+    "Reza": 22
+}
+```
+
+works naturally with:
+
+```python
+for name, age in users.items():
+    print(f"{name} is {age} years old.")
+```
+
+But Values can also be Lists:
+
+```python
+skills = {
+    "Ali": ["Python", "HTML"],
+    "Sara": ["CSS", "JavaScript"]
+}
+```
+
+We can still use:
+
+```python
+for name, user_skills in skills.items():
+    print(name, user_skills)
+```
+
+Output:
+
+```text
+Ali ['Python', 'HTML']
+Sara ['CSS', 'JavaScript']
+```
+
+The Key-Value relationship remains the same even when the Value itself is more complex.
+
+---
+
+## 14. Nested Processing
+
+Because Values can contain other data structures, `items()` can be combined with additional operations.
+
+For example:
+
+```python
+skills = {
+    "Ali": ["Python", "HTML"],
+    "Sara": ["CSS", "JavaScript"]
+}
+
+for name, user_skills in skills.items():
+    print(name)
+
+    for skill in user_skills:
+        print(skill)
+```
+
+Output:
+
+```text
+Ali
+Python
+HTML
+Sara
+CSS
+JavaScript
+```
+
+The outer loop works with Dictionary Key-Value pairs.
+
+The inner loop works with the List stored as the Value.
+
+This demonstrates how different data structures can work together.
+
+---
+
+## 15. Using `items()` to Search for Data
+
+Suppose we want to find the person with a particular score:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 18,
+    "Mina": 12
+}
+
+for name, score in scores.items():
+    if score == 18:
+        print(name)
+```
+
+Output:
+
+```text
+Ali
+Reza
+```
+
+The Key tells us **who** has the score.
+
+The Value tells us **what the score is**.
+
+Without both pieces of information, this type of search would be less useful.
+
+---
+
+## 16. Understanding the Variable Names
+
+The names `key` and `value` are not special Python keywords.
+
+For example:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+works because of the meaning we give those variables.
+
+We could technically write:
+
+```python
+for x, y in student.items():
+    print(x, y)
+```
+
+This also works.
+
+But:
+
+```python
+for key, value in student.items():
+```
+
+is clearer because the variable names describe what they contain.
+
+Good variable names make Dictionary code easier to understand.
+
+---
+
+## 17. Common Beginner Mistake
+
+A common mistake is to write:
+
+```python
+for key, value in student:
+    print(key, value)
+```
+
+This is not the correct pattern for iterating over both Keys and Values.
+
+The correct form is:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+Why?
+
+Because iterating over a Dictionary directly normally iterates over its Keys.
+
+When we specifically want Key-Value pairs, we use:
+
+```python
+student.items()
+```
+
+---
+
+## 18. Another Common Mistake
+
+Another mistake is confusing the Value with the Key:
+
+```python
+for value, key in student.items():
+    print(key, value)
+```
+
+Technically, Python will still unpack two values, but the variable meanings are reversed.
+
+If the pair is:
+
+```text
+"name", "Ali"
+```
+
+then:
+
+```text
+value = "name"
+key   = "Ali"
+```
+
+This is logically misleading.
+
+A clearer pattern is:
+
+```python
+for key, value in student.items():
+    ...
+```
+
+Variable names should match the role of the data.
+
+---
+
+## 19. Practical Example: Product Inventory
+
+Consider:
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8
+}
+```
+
+We can display the inventory:
+
+```python
+for product, quantity in inventory.items():
+    print(f"{product}: {quantity}")
+```
+
+We can find products with low inventory:
+
+```python
+for product, quantity in inventory.items():
+    if quantity < 7:
+        print(product)
+```
+
+Output:
+
+```text
+banana
+```
+
+We can also update quantities:
+
+```python
+for product, quantity in inventory.items():
+    inventory[product] = quantity + 2
+```
+
+Now every product has two additional units.
+
+The same Key-Value relationship supports reading, checking, and updating data.
+
+---
+
+## 20. Complete Mental Model
+
+The most useful mental model is:
+
+```text
+Dictionary
+    │
+    ├── Key 1 → Value 1
+    ├── Key 2 → Value 2
+    └── Key 3 → Value 3
+             │
+           items()
+             │
+             ↓
+      (Key, Value)
+```
+
+When we write:
+
+```python
+for key, value in dictionary.items():
+```
+
+we are saying:
+
+> "Give me each relationship in the Dictionary, one at a time, and let me work with both sides of that relationship."
+
+This is why `items()` is especially useful when processing Dictionary data.
+
+---
+
+## Key Takeaways
+
+* `items()` provides access to Dictionary Key-Value pairs.
+* Each item represents one `(Key, Value)` pair.
+* The most common pattern is:
+
+```python
+for key, value in dictionary.items():
+```
+
+* `keys()` gives Keys.
+* `values()` gives Values.
+* `items()` gives both together.
+* `items()` is especially useful when a program needs to compare, display, search, filter, or process Keys and Values together.
+* The Key can be used to access or update its corresponding Value.
+* Values can contain complex structures such as Lists.
+* Meaningful variable names such as `key` and `value` make code easier to understand.
+* Iterating over a Dictionary directly is different from iterating over `dictionary.items()`.
+
+---
+
+# Section Questions
+
+## Question 1
+
+What does `items()` provide when used with a Dictionary?
+
+## Question 2
+
+What is the difference between these two loops?
+
+```python
+for key in student:
+    print(key)
+```
+
+and:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+## Question 3
+
+What will the following code print?
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 12,
+    "Reza": 19
+}
+
+for name, score in scores.items():
+    if score >= 18:
+        print(name)
+```
+
+---
+
+# Comprehensive Question
+
+Given:
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8,
+    "milk": 3
+}
+```
+
+Write a program using `items()` that:
+
+1. Prints every product and its quantity.
+2. Prints products whose quantity is less than `6`.
+3. Adds `2` to the quantity of every product.
+4. Prints the updated Dictionary.
+
+---
+
+# Answers
+
+## Answer 1
+
+`items()` provides the Key and its corresponding Value together as pairs.
+
+For example:
+
+```text
+("name", "Ali")
+("age", 20)
+```
+
+## Answer 2
+
+The first loop iterates through the Dictionary's Keys:
+
+```python
+for key in student:
+    print(key)
+```
+
+The second loop explicitly iterates through Key-Value pairs:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+## Answer 3
+
+The output is:
+
+```text
+Ali
+Reza
+```
+
+because their scores are at least `18`.
+
+## Comprehensive Answer
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8,
+    "milk": 3
+}
+
+for product, quantity in inventory.items():
+    print(f"{product}: {quantity}")
+
+for product, quantity in inventory.items():
+    if quantity < 6:
+        print(product)
+
+for product, quantity in inventory.items():
+    inventory[product] = quantity + 2
+
+print(inventory)
+```
+
+After the update, the quantities become:
+
+```text
+apple  → 12
+banana → 7
+orange → 10
+milk   → 5
+```
+
+---
+

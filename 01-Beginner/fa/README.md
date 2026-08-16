@@ -977,3 +977,972 @@ Reza
 
 ---
 
+# پارت ۱۰ — Dictionary Items
+
+## مقدمه
+
+در پارت قبل یاد گرفتیم که Dictionary از **جفت های Key و Value** تشکیل می شود.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+هر ورودی شامل دو بخش مرتبط است:
+
+```text
+"name"  → "Ali"
+"age"   → 20
+"score" → 18
+```
+
+گاهی فقط به Keyها نیاز داریم.
+
+گاهی فقط Valueها برای ما مهم هستند.
+
+اما در بسیاری از مواقع لازم است **Key و Value مربوط به آن را با هم** داشته باشیم.
+
+اینجاست که متد `items()` اهمیت پیدا می کند.
+
+---
+
+## ۱. `items()` چه کاری انجام می دهد؟
+
+متد `items()` امکان دسترسی به تمام **جفت های Key و Value** یک Dictionary را فراهم می کند.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+print(student.items())
+```
+
+نتیجه، ورودی های Dictionary را به صورت جفت نمایش می دهد:
+
+```text
+("name", "Ali")
+("age", 20)
+("score", 18)
+```
+
+از نظر مفهومی:
+
+```text
+Dictionary
+    ↓
+items()
+    ↓
+(Key, Value)
+(Key, Value)
+(Key, Value)
+```
+
+بنابراین هدف اصلی `items()` این است:
+
+> **این که بتوانیم با هر Key و Value مربوط به آن، هم زمان کار کنیم.**
+
+---
+
+## ۲. `items()` جفت ها را در اختیار ما قرار می دهد
+
+هر عنصر حاصل از `items()` نشان دهنده یک ورودی کامل Dictionary است.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+for item in student.items():
+    print(item)
+```
+
+خروجی:
+
+```text
+('name', 'Ali')
+('age', 20)
+```
+
+هر `item` یک ورودی کامل Dictionary را نشان می دهد.
+
+این موضوع با:
+
+```python
+student.keys()
+```
+
+که Keyها را در اختیار ما قرار می دهد و:
+
+```python
+student.values()
+```
+
+که Valueها را در اختیار ما قرار می دهد، متفاوت است.
+
+می توانیم این سه متد را این طور به خاطر بسپاریم:
+
+```text
+keys()   → Keyها
+values() → Valueها
+items()  → Key + Value
+```
+
+---
+
+## ۳. پیمایش Dictionary با `items()`
+
+رایج ترین استفاده از `items()` همراه با حلقه `for` است.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+for item in student.items():
+    print(item)
+```
+
+خروجی:
+
+```text
+('name', 'Ali')
+('age', 20)
+('score', 18)
+```
+
+به این ترتیب تمام ورودی های Dictionary یکی یکی پردازش می شوند.
+
+حلقه کل Dictionary را یک جا پردازش نمی کند؛ بلکه هر جفت Key-Value را به صورت جداگانه در اختیار ما قرار می دهد.
+
+---
+
+## ۴. باز کردن جفت Key و Value
+
+Python اجازه می دهد هر جفت را مستقیماً داخل دو متغیر قرار دهیم:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+خروجی:
+
+```text
+name Ali
+age 20
+score 18
+```
+
+در اینجا:
+
+```text
+key   → Key
+value → Value
+```
+
+در اولین مرحله:
+
+```text
+key   = "name"
+value = "Ali"
+```
+
+در مرحله دوم:
+
+```text
+key   = "age"
+value = 20
+```
+
+و به همین شکل ادامه پیدا می کند.
+
+این الگو یکی از مهم ترین الگوهایی است که هنگام کار با Dictionary باید به آن مسلط شویم:
+
+```python
+for key, value in dictionary.items():
+    ...
+```
+
+---
+
+## ۵. چرا `items()` کاربردی است؟
+
+فرض کنید می خواهیم نام هر دانش آموز را همراه با نمره او چاپ کنیم:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+```
+
+ما هم به Key و هم به Value نیاز داریم:
+
+```text
+Student → Score
+```
+
+پس می توانیم بنویسیم:
+
+```python
+for name, score in scores.items():
+    print(name, score)
+```
+
+خروجی:
+
+```text
+Ali 18
+Sara 15
+Reza 19
+```
+
+استفاده از `items()` رابطه بین دو بخش داده را به صورت مستقیم در اختیار ما قرار می دهد.
+
+---
+
+## ۶. استفاده از `items()` برای خروجی خوانا
+
+می توانیم `items()` را با f-string ترکیب کنیم:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 19
+}
+
+for name, score in scores.items():
+    print(f"{name}: {score}")
+```
+
+خروجی:
+
+```text
+Ali: 18
+Sara: 15
+Reza: 19
+```
+
+این روش برای نمایش خواناتر اطلاعات Dictionary بسیار کاربردی است.
+
+---
+
+## ۷. استفاده از `items()` همراه با شرط
+
+از آنجا که هم Key و هم Value را داریم، می توانیم بر اساس Value تصمیم گیری کنیم.
+
+مثلاً:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 12,
+    "Reza": 19,
+    "Mina": 10
+}
+
+for name, score in scores.items():
+    if score >= 15:
+        print(name)
+```
+
+خروجی:
+
+```text
+Ali
+Reza
+```
+
+در اینجا Value تعیین کننده شرط است:
+
+```python
+score >= 15
+```
+
+و Key چاپ می شود.
+
+این الگو برای پردازش داده های ساختار یافته بسیار مهم است.
+
+---
+
+## ۸. استفاده هم زمان از Key و Value در شرط
+
+می توانیم از هر دو بخش در یک شرط استفاده کنیم:
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 12,
+    "Reza": 19
+}
+
+for name, score in students.items():
+    if name == "Ali" and score >= 15:
+        print(f"{name} passed.")
+```
+
+خروجی:
+
+```text
+Ali passed.
+```
+
+نکته مهم این است که `items()` هر دو بخش اطلاعات را هم زمان در اختیار ما قرار می دهد.
+
+بنابراین شرط می تواند فقط به Key، فقط به Value، یا به هر دو وابسته باشد.
+
+---
+
+## ۹. تفاوت `items()` با `keys()` و `values()`
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+### `keys()`
+
+```python
+for key in student.keys():
+    print(key)
+```
+
+خروجی:
+
+```text
+name
+age
+score
+```
+
+### `values()`
+
+```python
+for value in student.values():
+    print(value)
+```
+
+خروجی:
+
+```text
+Ali
+20
+18
+```
+
+### `items()`
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+خروجی:
+
+```text
+name Ali
+age 20
+score 18
+```
+
+مدل ذهنی:
+
+```text
+keys()   → چه چیزی داده را مشخص می کند؟
+
+values() → چه داده ای ذخیره شده است؟
+
+items()  → کدام داده به کدام شناسه مربوط است؟
+```
+
+---
+
+## ۱۰. Dictionary به عنوان مجموعه ای از رابطه ها
+
+یکی از مهم ترین مفاهیم `items()` این است که Dictionary فقط مجموعه ای از Valueهای جدا از هم نیست.
+
+Dictionary **رابطه بین داده ها** را نشان می دهد.
+
+مثلاً:
+
+```python
+prices = {
+    "apple": 2,
+    "banana": 1,
+    "orange": 3
+}
+```
+
+اطلاعات مهم فقط این ها نیستند:
+
+```text
+2
+1
+3
+```
+
+بلکه رابطه کامل این است:
+
+```text
+apple  → 2
+banana → 1
+orange → 3
+```
+
+`items()` اجازه می دهد همین رابطه ها را مستقیماً پردازش کنیم.
+
+این مفهوم زمانی که Dictionaryهای پیچیده تر می سازیم اهمیت بیشتری پیدا می کند.
+
+---
+
+## ۱۱. تغییر Value هنگام پیمایش
+
+می توانیم از Key دریافت شده از `items()` برای تغییر Dictionary استفاده کنیم.
+
+مثلاً:
+
+```python
+scores = {
+    "Ali": 10,
+    "Sara": 12,
+    "Reza": 15
+}
+
+for name, score in scores.items():
+    scores[name] = score + 1
+
+print(scores)
+```
+
+نتیجه:
+
+```text
+{'Ali': 11, 'Sara': 13, 'Reza': 16}
+```
+
+در اینجا:
+
+```python
+scores[name]
+```
+
+از Key برای دسترسی به ورودی مربوطه استفاده می کند.
+
+سپس Value جدید جای Value قبلی قرار می گیرد.
+
+رابطه را می توان این طور دید:
+
+```text
+Key
+ ↓
+ورودی Dictionary
+ ↓
+Value
+```
+
+---
+
+## ۱۲. ساخت یک Dictionary جدید با استفاده از `items()`
+
+می توانیم با استفاده از `items()` یک Dictionary جدید نیز بسازیم.
+
+مثلاً:
+
+```python
+prices = {
+    "apple": 2,
+    "banana": 1,
+    "orange": 3
+}
+
+expensive = {}
+
+for product, price in prices.items():
+    if price >= 2:
+        expensive[product] = price
+```
+
+Dictionary جدید:
+
+```python
+{
+    "apple": 2,
+    "orange": 3
+}
+```
+
+در اینجا اگر شرط برقرار باشد، Key و Value مربوط به آن با هم به Dictionary جدید منتقل می شوند.
+
+---
+
+## ۱۳. Valueهای مختلف با `items()`
+
+Value الزاماً یک عدد یا String ساده نیست.
+
+مثلاً:
+
+```python
+users = {
+    "Ali": 20,
+    "Sara": 25,
+    "Reza": 22
+}
+```
+
+می توانیم بنویسیم:
+
+```python
+for name, age in users.items():
+    print(f"{name} is {age} years old.")
+```
+
+اما Value می تواند یک List نیز باشد:
+
+```python
+skills = {
+    "Ali": ["Python", "HTML"],
+    "Sara": ["CSS", "JavaScript"]
+}
+```
+
+باز هم می توانیم از `items()` استفاده کنیم:
+
+```python
+for name, user_skills in skills.items():
+    print(name, user_skills)
+```
+
+خروجی:
+
+```text
+Ali ['Python', 'HTML']
+Sara ['CSS', 'JavaScript']
+```
+
+رابطه Key-Value تغییری نکرده است، حتی اگر خود Value پیچیده تر شده باشد.
+
+---
+
+## ۱۴. پردازش تو در تو
+
+از آنجا که Value می تواند یک ساختار داده دیگر باشد، می توانیم `items()` را با عملیات دیگری ترکیب کنیم.
+
+مثلاً:
+
+```python
+skills = {
+    "Ali": ["Python", "HTML"],
+    "Sara": ["CSS", "JavaScript"]
+}
+
+for name, user_skills in skills.items():
+    print(name)
+
+    for skill in user_skills:
+        print(skill)
+```
+
+خروجی:
+
+```text
+Ali
+Python
+HTML
+Sara
+CSS
+JavaScript
+```
+
+حلقه بیرونی با جفت های Key-Value Dictionary کار می کند.
+
+حلقه داخلی با List ذخیره شده در Value کار می کند.
+
+این مثال نشان می دهد که چگونه چند ساختار داده می توانند در کنار یکدیگر استفاده شوند.
+
+---
+
+## ۱۵. جستجوی داده با `items()`
+
+فرض کنید می خواهیم افرادی را پیدا کنیم که نمره مشخصی دارند:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 18,
+    "Mina": 12
+}
+
+for name, score in scores.items():
+    if score == 18:
+        print(name)
+```
+
+خروجی:
+
+```text
+Ali
+Reza
+```
+
+Key به ما می گوید **چه کسی** این نمره را دارد.
+
+Value به ما می گوید **نمره چیست**.
+
+داشتن هر دو بخش در این نوع جستجو بسیار مهم است.
+
+---
+
+## ۱۶. نام متغیرها
+
+نام های `key` و `value` کلمات رزرو شده Python نیستند.
+
+مثلاً این کد:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+به این دلیل کار می کند که ما خودمان این نام ها را برای متغیرها انتخاب کرده ایم.
+
+حتی این هم از نظر Python معتبر است:
+
+```python
+for x, y in student.items():
+    print(x, y)
+```
+
+اما:
+
+```python
+for key, value in student.items():
+```
+
+خواناتر است، چون نام متغیرها نقش داده را مشخص می کنند.
+
+نام گذاری مناسب باعث می شود کد Dictionary بسیار راحت تر خوانده شود.
+
+---
+
+## ۱۷. یک اشتباه رایج در شروع کار
+
+یکی از اشتباهات رایج این است:
+
+```python
+for key, value in student:
+    print(key, value)
+```
+
+این روش برای دریافت هم زمان Key و Value الگوی درستی نیست.
+
+الگوی درست:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+چرا؟
+
+چون وقتی مستقیماً روی Dictionary پیمایش می کنیم، به صورت معمول Keyها را پیمایش می کنیم.
+
+اگر مشخصاً Key-Value pairها را بخواهیم، باید از:
+
+```python
+student.items()
+```
+
+استفاده کنیم.
+
+---
+
+## ۱۸. یک اشتباه رایج دیگر
+
+ممکن است ترتیب Key و Value را اشتباه بگیریم:
+
+```python
+for value, key in student.items():
+    print(key, value)
+```
+
+Python از نظر فنی دو مقدار را در دو متغیر قرار می دهد، اما نقش متغیرها برعکس شده است.
+
+اگر جفت این باشد:
+
+```text
+"name", "Ali"
+```
+
+آنگاه:
+
+```text
+value = "name"
+key   = "Ali"
+```
+
+این از نظر منطقی گمراه کننده است.
+
+الگوی واضح تر این است:
+
+```python
+for key, value in student.items():
+    ...
+```
+
+نام متغیرها باید با نقش داده هماهنگ باشند.
+
+---
+
+## ۱۹. مثال کاربردی: موجودی فروشگاه
+
+فرض کنید:
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8
+}
+```
+
+می توانیم موجودی را نمایش دهیم:
+
+```python
+for product, quantity in inventory.items():
+    print(f"{product}: {quantity}")
+```
+
+می توانیم محصولاتی را که موجودی کمی دارند پیدا کنیم:
+
+```python
+for product, quantity in inventory.items():
+    if quantity < 7:
+        print(product)
+```
+
+خروجی:
+
+```text
+banana
+```
+
+همچنین می توانیم مقدار موجودی را تغییر دهیم:
+
+```python
+for product, quantity in inventory.items():
+    inventory[product] = quantity + 2
+```
+
+در این حالت به موجودی تمام محصولات دو واحد اضافه می شود.
+
+همان رابطه Key-Value به ما اجازه می دهد داده را بخوانیم، بررسی کنیم و تغییر دهیم.
+
+---
+
+## ۲۰. مدل ذهنی کامل
+
+بهترین مدل ذهنی برای `items()` این است:
+
+```text
+Dictionary
+    │
+    ├── Key 1 → Value 1
+    ├── Key 2 → Value 2
+    └── Key 3 → Value 3
+             │
+           items()
+             │
+             ↓
+      (Key, Value)
+```
+
+وقتی می نویسیم:
+
+```python
+for key, value in dictionary.items():
+```
+
+در واقع به Python می گوییم:
+
+> «هر رابطه موجود در Dictionary را یکی یکی در اختیار من قرار بده تا بتوانم با هر دو طرف آن رابطه کار کنم.»
+
+به همین دلیل `items()` یکی از مهم ترین ابزارها برای پردازش Dictionary است.
+
+---
+
+## نکات کلیدی
+
+* `items()` امکان دسترسی به جفت های Key-Value را فراهم می کند.
+* هر Item یک جفت `(Key, Value)` است.
+* رایج ترین الگو این است:
+
+```python
+for key, value in dictionary.items():
+```
+
+* `keys()` فقط Keyها را در اختیار ما قرار می دهد.
+* `values()` فقط Valueها را در اختیار ما قرار می دهد.
+* `items()` هر دو را با هم در اختیار ما قرار می دهد.
+* `items()` برای نمایش، مقایسه، جستجو، فیلتر و پردازش هم زمان Key و Value بسیار کاربردی است.
+* Key می تواند برای دسترسی یا تغییر Value مربوط به خودش استفاده شود.
+* Value می تواند ساختارهای پیچیده ای مانند List داشته باشد.
+* نام گذاری مناسب متغیرهایی مانند `key` و `value` خوانایی کد را افزایش می دهد.
+* پیمایش مستقیم Dictionary با پیمایش `dictionary.items()` یکسان نیست.
+
+---
+
+# سوال های بخش
+
+## سوال ۱
+
+متد `items()` چه چیزی را از یک Dictionary در اختیار ما قرار می دهد؟
+
+## سوال ۲
+
+تفاوت این دو حلقه چیست؟
+
+```python
+for key in student:
+    print(key)
+```
+
+و:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+## سوال ۳
+
+کد زیر چه چیزی چاپ می کند؟
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 12,
+    "Reza": 19
+}
+
+for name, score in scores.items():
+    if score >= 18:
+        print(name)
+```
+
+---
+
+# سوال جامع
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8,
+    "milk": 3
+}
+```
+
+با استفاده از `items()` برنامه ای بنویسید که:
+
+1. هر محصول و تعداد موجودی آن را چاپ کند.
+2. محصولاتی را که تعداد موجودی آن ها کمتر از `6` است چاپ کند.
+3. به تعداد موجودی تمام محصولات `2` واحد اضافه کند.
+4. Dictionary به روز شده را چاپ کند.
+
+---
+
+# پاسخ ها
+
+## پاسخ سوال ۱
+
+`items()` جفت Key و Value مربوط به هر ورودی Dictionary را در اختیار ما قرار می دهد.
+
+مثلاً:
+
+```text
+("name", "Ali")
+("age", 20)
+```
+
+## پاسخ سوال ۲
+
+حلقه اول روی Keyهای Dictionary پیمایش می کند:
+
+```python
+for key in student:
+    print(key)
+```
+
+حلقه دوم به صورت مشخص روی جفت های Key-Value پیمایش می کند:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+## پاسخ سوال ۳
+
+خروجی:
+
+```text
+Ali
+Reza
+```
+
+چون نمره هر دو نفر حداقل `18` است.
+
+## پاسخ سوال جامع
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8,
+    "milk": 3
+}
+
+for product, quantity in inventory.items():
+    print(f"{product}: {quantity}")
+
+for product, quantity in inventory.items():
+    if quantity < 6:
+        print(product)
+
+for product, quantity in inventory.items():
+    inventory[product] = quantity + 2
+
+print(inventory)
+```
+
+بعد از به روز رسانی:
+
+```text
+apple  → 12
+banana → 7
+orange → 10
+milk   → 5
+```
+
+---
+

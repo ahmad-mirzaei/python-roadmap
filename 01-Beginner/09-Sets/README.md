@@ -9118,3 +9118,1110 @@ This exercise should combine:
 
 ---
 
+# Sets — Part 14: Final Review: Sets
+
+This is the final review of the **Sets** lesson.
+
+In this review, we will bring together everything we have learned about Sets in Python, from creating Sets to advanced concepts such as `frozenset`.
+
+---
+
+## 1. What Is a Set?
+
+A Set is a collection of **unique elements**.
+
+```python
+numbers = {1, 2, 3, 4}
+```
+
+A Set does not store duplicate elements.
+
+```python
+numbers = {1, 2, 2, 3, 3, 4}
+
+print(numbers)
+```
+
+Possible output:
+
+```text
+{1, 2, 3, 4}
+```
+
+The duplicate values are automatically removed.
+
+---
+
+## 2. Creating a Set
+
+We can create a Set using curly braces:
+
+```python
+fruits = {"apple", "banana", "orange"}
+```
+
+We can also use the `set()` constructor:
+
+```python
+numbers = set([1, 2, 3, 4])
+```
+
+An important special case is the empty Set.
+
+This:
+
+```python
+empty = {}
+```
+
+creates an empty **Dictionary**, not a Set.
+
+To create an empty Set, use:
+
+```python
+empty = set()
+```
+
+---
+
+## 3. Set Elements Must Be Hashable
+
+Set elements need to be Hashable.
+
+For example, these are valid:
+
+```python
+numbers = {1, 2, 3}
+names = {"Ali", "Sara"}
+```
+
+But a List cannot normally be an Element of a Set:
+
+```python
+my_set = {[1, 2, 3]}
+```
+
+This causes an Error because Lists are Mutable and Unhashable.
+
+A Tuple can be used if its contents are Hashable:
+
+```python
+my_set = {(1, 2, 3)}
+```
+
+---
+
+## 4. Adding Elements
+
+Use `add()` to add one Element:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(4)
+
+print(numbers)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4}
+```
+
+---
+
+## 5. Adding Multiple Elements
+
+Use `update()` to add multiple Elements:
+
+```python
+numbers = {1, 2}
+
+numbers.update([3, 4, 5])
+
+print(numbers)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+We can pass different Iterables to `update()`.
+
+For example:
+
+```python
+numbers.update((6, 7))
+```
+
+or:
+
+```python
+numbers.update({8, 9})
+```
+
+---
+
+## 6. Removing Elements
+
+We learned several ways to remove Elements.
+
+### `remove()`
+
+```python
+numbers = {1, 2, 3}
+
+numbers.remove(2)
+```
+
+If the Element does not exist, `remove()` raises a `KeyError`.
+
+### `discard()`
+
+```python
+numbers.discard(2)
+```
+
+If the Element does not exist, `discard()` does not raise an Error.
+
+### `pop()`
+
+```python
+numbers.pop()
+```
+
+`pop()` removes and returns an arbitrary Element.
+
+### `clear()`
+
+```python
+numbers.clear()
+```
+
+This removes all Elements.
+
+---
+
+## 7. Checking for an Element
+
+We can use the `in` operator:
+
+```python
+numbers = {1, 2, 3, 4}
+
+print(3 in numbers)
+```
+
+Output:
+
+```text
+True
+```
+
+And:
+
+```python
+print(10 in numbers)
+```
+
+Output:
+
+```text
+False
+```
+
+We can also use `not in`:
+
+```python
+print(10 not in numbers)
+```
+
+Output:
+
+```text
+True
+```
+
+Membership checking is one of the most important uses of Sets.
+
+---
+
+## 8. Counting Elements With `len()`
+
+Use `len()`:
+
+```python
+numbers = {10, 20, 30, 40}
+
+print(len(numbers))
+```
+
+Output:
+
+```text
+4
+```
+
+Because Sets automatically remove duplicates, `len()` counts unique Elements.
+
+---
+
+## 9. Iterating Through a Set
+
+We can use a `for` Loop:
+
+```python
+numbers = {10, 20, 30}
+
+for number in numbers:
+    print(number)
+```
+
+Remember:
+
+> Do not rely on a Set having the same ordering as the original List.
+
+If a specific order is required, create an ordered result:
+
+```python
+numbers = {5, 2, 8, 1}
+
+for number in sorted(numbers):
+    print(number)
+```
+
+---
+
+## 10. Set Union
+
+Union combines all Elements from both Sets.
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+result = a | b
+
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+We can also use:
+
+```python
+result = a.union(b)
+```
+
+---
+
+## 11. Set Intersection
+
+Intersection gives us Elements that exist in both Sets.
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+result = a & b
+
+print(result)
+```
+
+Output:
+
+```text
+{3}
+```
+
+Or:
+
+```python
+result = a.intersection(b)
+```
+
+---
+
+## 12. Set Difference
+
+Difference returns Elements that exist in the first Set but not in the second.
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+result = a - b
+
+print(result)
+```
+
+Output:
+
+```text
+{1, 2}
+```
+
+The operation is directional.
+
+This:
+
+```python
+a - b
+```
+
+is not necessarily the same as:
+
+```python
+b - a
+```
+
+---
+
+## 13. Symmetric Difference
+
+Symmetric Difference returns Elements that exist in exactly one of the Sets.
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+result = a ^ b
+
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 4, 5}
+```
+
+The common Element `3` is excluded.
+
+---
+
+## 14. Comparing Sets
+
+Python provides useful methods for comparing Sets.
+
+### `issubset()`
+
+Checks whether all Elements of one Set exist in another:
+
+```python
+a = {1, 2}
+b = {1, 2, 3, 4}
+
+print(a.issubset(b))
+```
+
+Output:
+
+```text
+True
+```
+
+We can also use:
+
+```python
+a <= b
+```
+
+---
+
+### `issuperset()`
+
+Checks whether one Set contains all Elements of another:
+
+```python
+a = {1, 2, 3, 4}
+b = {1, 2}
+
+print(a.issuperset(b))
+```
+
+Output:
+
+```text
+True
+```
+
+We can also use:
+
+```python
+a >= b
+```
+
+---
+
+### `isdisjoint()`
+
+Checks whether two Sets have no Elements in common:
+
+```python
+a = {1, 2}
+b = {3, 4}
+
+print(a.isdisjoint(b))
+```
+
+Output:
+
+```text
+True
+```
+
+---
+
+## 15. Removing Duplicates From a List
+
+One of the most common Set patterns is:
+
+```python
+numbers = [1, 2, 2, 3, 3, 4, 4]
+
+unique_numbers = set(numbers)
+
+print(unique_numbers)
+```
+
+We can convert it back into a List:
+
+```python
+unique_numbers = list(set(numbers))
+```
+
+But remember:
+
+> This approach does not guarantee that the original List order is preserved.
+
+If we need sorted output:
+
+```python
+unique_numbers = sorted(set(numbers))
+```
+
+---
+
+## 16. Converting Between Data Structures
+
+We can move between different Data Structures.
+
+### List → Set
+
+```python
+set(numbers)
+```
+
+### Tuple → Set
+
+```python
+set(numbers_tuple)
+```
+
+### String → Set
+
+```python
+set(text)
+```
+
+### Set → List
+
+```python
+list(my_set)
+```
+
+### Set → Tuple
+
+```python
+tuple(my_set)
+```
+
+### Set → Sorted List
+
+```python
+sorted(my_set)
+```
+
+### Dictionary Keys → Set
+
+```python
+set(my_dict.keys())
+```
+
+### Dictionary Values → Set
+
+```python
+set(my_dict.values())
+```
+
+### Dictionary Items → Set
+
+```python
+set(my_dict.items())
+```
+
+---
+
+## 17. Sets and Dictionaries
+
+Sets and Dictionaries have an important connection.
+
+Both are built around **Hashing**.
+
+A Dictionary stores:
+
+```text
+Key → Value
+```
+
+A Set stores:
+
+```text
+Element
+```
+
+A Set can be thought of as a collection where we care about the Keys but do not associate a Value with them.
+
+For example:
+
+```python
+students = {"Ali", "Sara", "Reza"}
+```
+
+while:
+
+```python
+students = {
+    "Ali": 20,
+    "Sara": 22,
+    "Reza": 21
+}
+```
+
+is a Dictionary.
+
+---
+
+## 18. Set Mutability
+
+A normal Set is Mutable:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(4)
+```
+
+The Set changes.
+
+Because it is Mutable, a normal Set is not Hashable.
+
+Therefore, it cannot be used as a Dictionary Key.
+
+---
+
+## 19. `frozenset`
+
+`frozenset` is the Immutable version of a Set:
+
+```python
+numbers = frozenset({1, 2, 3})
+```
+
+We cannot modify it:
+
+```python
+numbers.add(4)
+```
+
+This is invalid.
+
+But we can still perform Set Operations:
+
+```python
+a = frozenset({1, 2, 3})
+b = frozenset({3, 4, 5})
+
+print(a | b)
+print(a & b)
+print(a - b)
+print(a ^ b)
+```
+
+---
+
+## 20. Why Is `frozenset` Important?
+
+Because `frozenset` is Hashable.
+
+Therefore, it can be used as a Dictionary Key:
+
+```python
+groups = {
+    frozenset({"read", "write"}): "editor"
+}
+```
+
+It can also be stored inside a Set:
+
+```python
+groups = {
+    frozenset({1, 2}),
+    frozenset({3, 4})
+}
+```
+
+This allows us to represent a **Set of Sets**.
+
+---
+
+## 21. Set vs List
+
+It is important to know when to use each one.
+
+| Feature             | List      | Set                 |
+| ------------------- | --------- | ------------------- |
+| Duplicates          | Yes       | No                  |
+| Indexing            | Yes       | No                  |
+| Ordered sequence    | Yes       | No guaranteed order |
+| Membership checking | Supported | Very useful         |
+| Set Operations      | No        | Yes                 |
+| Mutable             | Yes       | Yes                 |
+
+Use a List when order and indexing matter.
+
+Use a Set when uniqueness and Membership checking matter.
+
+---
+
+## 22. Set vs Tuple
+
+| Feature        | Tuple                  | Set |
+| -------------- | ---------------------- | --- |
+| Mutable        | No                     | Yes |
+| Duplicates     | Yes                    | No  |
+| Indexing       | Yes                    | No  |
+| Hashable       | Yes, if contents allow | No  |
+| Set Operations | No                     | Yes |
+
+A Tuple is useful for immutable ordered data.
+
+A Set is useful for unique unordered data.
+
+---
+
+## 23. Set vs `frozenset`
+
+| Feature             | `set` | `frozenset` |
+| ------------------- | ----- | ----------- |
+| Mutable             | Yes   | No          |
+| Unique Elements     | Yes   | Yes         |
+| Set Operations      | Yes   | Yes         |
+| Hashable            | No    | Yes         |
+| Dictionary Key      | No    | Yes         |
+| Can be inside a Set | No    | Yes         |
+
+The simplest rule is:
+
+```text
+set
+→ Unique + Mutable
+
+frozenset
+→ Unique + Immutable
+```
+
+---
+
+## 24. Real-World Example
+
+Suppose we have students registered for three courses:
+
+```python
+python_students = {
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina"
+}
+
+java_students = {
+    "Reza",
+    "Mina",
+    "Hassan"
+}
+
+web_students = {
+    "Mina",
+    "Hassan",
+    "Nima"
+}
+```
+
+Students studying both Python and Java:
+
+```python
+python_students & java_students
+```
+
+Students studying Python but not Java:
+
+```python
+python_students - java_students
+```
+
+All students in Python or Java:
+
+```python
+python_students | java_students
+```
+
+Students who are in exactly one of Python and Java:
+
+```python
+python_students ^ java_students
+```
+
+All students across the three courses:
+
+```python
+python_students | java_students | web_students
+```
+
+This demonstrates how Sets make data comparison much easier.
+
+---
+
+# Common Mistakes
+
+## Mistake 1 — Using `{}` for an Empty Set
+
+Wrong:
+
+```python
+empty = {}
+```
+
+This creates a Dictionary.
+
+Correct:
+
+```python
+empty = set()
+```
+
+---
+
+## Mistake 2 — Expecting Set Indexing
+
+Wrong:
+
+```python
+numbers = {10, 20, 30}
+
+print(numbers[0])
+```
+
+Sets do not support indexing.
+
+If ordering is needed:
+
+```python
+numbers = {10, 20, 30}
+
+numbers_list = sorted(numbers)
+
+print(numbers_list[0])
+```
+
+---
+
+## Mistake 3 — Assuming Set Order
+
+Do not write code that depends on the order in which Set Elements appear.
+
+If you need predictable ordering:
+
+```python
+sorted(my_set)
+```
+
+---
+
+## Mistake 4 — Using `remove()` When the Element May Not Exist
+
+This can raise an Error:
+
+```python
+numbers.remove(10)
+```
+
+If the Element may not exist, `discard()` can be safer:
+
+```python
+numbers.discard(10)
+```
+
+---
+
+## Mistake 5 — Trying to Use a Set as a Dictionary Key
+
+This does not work:
+
+```python
+data = {
+    {1, 2, 3}: "numbers"
+}
+```
+
+Use:
+
+```python
+data = {
+    frozenset({1, 2, 3}): "numbers"
+}
+```
+
+instead.
+
+---
+
+## Mistake 6 — Forgetting That Difference Is Directional
+
+These are different:
+
+```python
+a - b
+```
+
+and:
+
+```python
+b - a
+```
+
+Always pay attention to which Set comes first.
+
+---
+
+# Final Review Checklist
+
+Before finishing the Sets lesson, you should be comfortable with all of these:
+
+* [ ] Creating a Set
+* [ ] Creating an empty Set
+* [ ] Understanding Unique Elements
+* [ ] Understanding Hashable Elements
+* [ ] Adding Elements with `add()`
+* [ ] Adding multiple Elements with `update()`
+* [ ] Removing Elements with `remove()`
+* [ ] Removing Elements safely with `discard()`
+* [ ] Removing an arbitrary Element with `pop()`
+* [ ] Removing all Elements with `clear()`
+* [ ] Checking Membership with `in`
+* [ ] Using `not in`
+* [ ] Counting Elements with `len()`
+* [ ] Iterating through Sets
+* [ ] Sorting Set Elements
+* [ ] Union
+* [ ] Intersection
+* [ ] Difference
+* [ ] Symmetric Difference
+* [ ] Subsets
+* [ ] Supersets
+* [ ] Disjoint Sets
+* [ ] Converting Lists to Sets
+* [ ] Converting Sets to Lists
+* [ ] Converting Tuples to Sets
+* [ ] Converting Strings to Sets
+* [ ] Converting Dictionary Keys to Sets
+* [ ] Converting Dictionary Values to Sets
+* [ ] Converting Dictionary Items to Sets
+* [ ] Understanding Set Mutability
+* [ ] Understanding `frozenset`
+* [ ] Understanding Hashability
+* [ ] Using `frozenset` as a Dictionary Key
+* [ ] Storing `frozenset` inside a Set
+* [ ] Understanding when to use List, Tuple, Set, and Dictionary
+
+---
+
+# Final Exercises
+
+### Question 1 — Basic Review
+
+Create a Set containing:
+
+```text
+10, 20, 30, 20, 40, 10, 50
+```
+
+Then:
+
+1. Print the Set.
+2. Print its length.
+3. Add `60`.
+4. Remove `20`.
+5. Check whether `40` exists.
+6. Iterate through the Set.
+
+---
+
+### Question 2 — Set Operations
+
+Given:
+
+```python
+a = {1, 2, 3, 4, 5}
+b = {4, 5, 6, 7, 8}
+```
+
+Find:
+
+1. Union
+2. Intersection
+3. `a - b`
+4. `b - a`
+5. Symmetric Difference
+
+Then explain why `a - b` and `b - a` are different.
+
+---
+
+### Question 3 — Set Relationships
+
+Given:
+
+```python
+small = {1, 2}
+large = {1, 2, 3, 4}
+other = {5, 6}
+```
+
+Determine:
+
+1. Is `small` a Subset of `large`?
+2. Is `large` a Superset of `small`?
+3. Are `small` and `other` Disjoint?
+4. Are `large` and `small` Disjoint?
+
+---
+
+### Question 4 — Data Conversion
+
+Given:
+
+```python
+numbers = [5, 3, 5, 2, 3, 1, 4]
+```
+
+Create:
+
+1. A Set containing unique values.
+2. A List containing unique values.
+3. A sorted List containing unique values.
+4. A Tuple containing unique values.
+
+Explain what happens to duplicate values and ordering during these conversions.
+
+---
+
+### Question 5 — `frozenset`
+
+Create:
+
+```python
+admin = frozenset({
+    "read",
+    "write",
+    "delete"
+})
+
+editor = frozenset({
+    "read",
+    "write"
+})
+```
+
+Find:
+
+1. Common Permissions.
+2. Admin-only Permissions.
+3. All Permissions.
+4. Symmetric Difference.
+
+Then explain why `admin` cannot be modified.
+
+---
+
+# Comprehensive Sets Project
+
+Create a program that manages students and their courses.
+
+Use:
+
+```python
+python_students = [
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina",
+    "Ali"
+]
+
+java_students = [
+    "Reza",
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Reza"
+]
+
+web_students = [
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Omid",
+    "Mina"
+]
+```
+
+Your program should:
+
+1. Convert each List into a Set.
+2. Remove Duplicate students.
+3. Print the Unique students in each course.
+4. Count the students in each course.
+5. Find students common to Python and Java.
+6. Find students only in Python.
+7. Find students only in Java.
+8. Find students who study exactly one of Python and Java.
+9. Find all students across the three courses.
+10. Sort all students alphabetically.
+11. Check whether a specific student exists in each course.
+12. Check whether one course's students form a Subset of another course.
+13. Check whether two courses are Disjoint.
+14. Create a Dictionary containing the number of students in each course.
+15. Convert the Dictionary Keys into a Set.
+16. Convert the Dictionary Values into a Set.
+17. Convert the Dictionary Items into a Set.
+18. Create a `frozenset` for the final collection of all students.
+19. Explain why the `frozenset` cannot be modified.
+20. Create a Set containing several `frozenset` course groups.
+21. Explain why normal Sets cannot be placed inside another Set.
+22. Use Union, Intersection, Difference, and Symmetric Difference throughout the project.
+
+Your final project should demonstrate the complete Sets lesson:
+
+**Creating Sets → Unique Elements → `add()` → `update()` → `remove()` → `discard()` → `pop()` → `clear()` → Membership → `len()` → Iteration → Union → Intersection → Difference → Symmetric Difference → Subset → Superset → Disjoint → Data Conversion → Mutability → `frozenset` → Hashability → Dictionary Keys**
+
+---
+

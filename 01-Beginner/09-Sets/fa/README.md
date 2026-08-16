@@ -9208,3 +9208,1108 @@ viewer = frozenset({
 
 ---
 
+# Sets — پارت ۱۴: مرور نهایی Setها
+
+در این پارت، تمام مطالبی را که درباره **Setها در Python** یاد گرفتیم، یک جا مرور می کنیم.
+
+از ساخت Set و اضافه و حذف کردن Elementها گرفته تا عملیات پیشرفته تر مثل `frozenset`، Hashability و تبدیل بین Data Structureها.
+
+---
+
+## 1. Set چیست؟
+
+Set یک Collection از **Elementهای یکتا** است.
+
+```python
+numbers = {1, 2, 3, 4}
+```
+
+Set مقدارهای تکراری را نگه داری نمی کند:
+
+```python
+numbers = {1, 2, 2, 3, 3, 4}
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4}
+```
+
+مقدارهای تکراری به صورت خودکار حذف می شوند.
+
+---
+
+## 2. ساخت Set
+
+می توانیم با استفاده از `{}` یک Set بسازیم:
+
+```python
+fruits = {"apple", "banana", "orange"}
+```
+
+یا از Constructor مربوط به `set()` استفاده کنیم:
+
+```python
+numbers = set([1, 2, 3, 4])
+```
+
+یک نکته مهم درباره Set خالی وجود دارد.
+
+این:
+
+```python
+empty = {}
+```
+
+یک **Dictionary خالی** می سازد، نه Set.
+
+برای ساخت Set خالی باید بنویسیم:
+
+```python
+empty = set()
+```
+
+---
+
+## 3. Elementهای Set باید Hashable باشند
+
+Elementهای یک Set باید **Hashable** باشند.
+
+مثلا این ها معتبر هستند:
+
+```python
+numbers = {1, 2, 3}
+names = {"Ali", "Sara"}
+```
+
+اما List نمی تواند مستقیما Element یک Set باشد:
+
+```python
+my_set = {[1, 2, 3]}
+```
+
+این کد Error ایجاد می کند، چون List یک Data Structure قابل تغییر و در نتیجه Unhashable است.
+
+Tuple می تواند Element یک Set باشد، به شرطی که Elementهای داخل آن Hashable باشند:
+
+```python
+my_set = {(1, 2, 3)}
+```
+
+---
+
+## 4. اضافه کردن Element
+
+برای اضافه کردن یک Element از `add()` استفاده می کنیم:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(4)
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4}
+```
+
+---
+
+## 5. اضافه کردن چند Element
+
+برای اضافه کردن چند Element می توانیم از `update()` استفاده کنیم:
+
+```python
+numbers = {1, 2}
+
+numbers.update([3, 4, 5])
+
+print(numbers)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+می توانیم Iterableهای مختلفی را به `update()` بدهیم:
+
+```python
+numbers.update((6, 7))
+```
+
+یا:
+
+```python
+numbers.update({8, 9})
+```
+
+---
+
+## 6. حذف کردن Elementها
+
+چند روش مختلف برای حذف Element از Set داریم.
+
+### `remove()`
+
+```python
+numbers = {1, 2, 3}
+
+numbers.remove(2)
+```
+
+اگر Element وجود نداشته باشد، `remove()` یک `KeyError` ایجاد می کند.
+
+### `discard()`
+
+```python
+numbers.discard(2)
+```
+
+اگر Element وجود نداشته باشد، `discard()` خطایی ایجاد نمی کند.
+
+### `pop()`
+
+```python
+numbers.pop()
+```
+
+یک Element دلخواه را حذف کرده و بر می گرداند.
+
+### `clear()`
+
+```python
+numbers.clear()
+```
+
+تمام Elementهای Set را حذف می کند.
+
+---
+
+## 7. بررسی وجود یک Element
+
+با استفاده از `in` می توانیم بررسی کنیم که یک Element داخل Set وجود دارد یا نه:
+
+```python
+numbers = {1, 2, 3, 4}
+
+print(3 in numbers)
+```
+
+خروجی:
+
+```text
+True
+```
+
+و:
+
+```python
+print(10 in numbers)
+```
+
+خروجی:
+
+```text
+False
+```
+
+همچنین می توانیم از `not in` استفاده کنیم:
+
+```python
+print(10 not in numbers)
+```
+
+خروجی:
+
+```text
+True
+```
+
+بررسی Membership یکی از مهم ترین کاربردهای Set است.
+
+---
+
+## 8. شمارش Elementها با `len()`
+
+برای به دست آوردن تعداد Elementها از `len()` استفاده می کنیم:
+
+```python
+numbers = {10, 20, 30, 40}
+
+print(len(numbers))
+```
+
+خروجی:
+
+```text
+4
+```
+
+چون Set مقدارهای تکراری را حذف می کند، `len()` تعداد Elementهای یکتا را محاسبه می کند.
+
+---
+
+## 9. پیمایش Set
+
+می توانیم با `for` روی Set پیمایش انجام دهیم:
+
+```python
+numbers = {10, 20, 30}
+
+for number in numbers:
+    print(number)
+```
+
+باید به خاطر داشته باشیم:
+
+> نباید به ترتیب قرار گرفتن Elementهای Set وابسته باشیم.
+
+اگر ترتیب مشخصی لازم داریم، می توانیم خروجی را مرتب کنیم:
+
+```python
+numbers = {5, 2, 8, 1}
+
+for number in sorted(numbers):
+    print(number)
+```
+
+---
+
+## 10. Set Union
+
+Union تمام Elementهای موجود در دو Set را ترکیب می کند.
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+result = a | b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+می توانیم از Method مربوط به آن نیز استفاده کنیم:
+
+```python
+result = a.union(b)
+```
+
+---
+
+## 11. Set Intersection
+
+Intersection Elementهایی را بر می گرداند که در هر دو Set وجود دارند.
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+result = a & b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{3}
+```
+
+یا:
+
+```python
+result = a.intersection(b)
+```
+
+---
+
+## 12. Set Difference
+
+Difference Elementهایی را بر می گرداند که در Set اول وجود دارند اما در Set دوم وجود ندارند.
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+result = a - b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2}
+```
+
+این عملیات **جهت دار** است.
+
+یعنی:
+
+```python
+a - b
+```
+
+الزاما با:
+
+```python
+b - a
+```
+
+یکسان نیست.
+
+---
+
+## 13. Set Symmetric Difference
+
+Symmetric Difference Elementهایی را بر می گرداند که فقط در یکی از دو Set وجود دارند.
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+result = a ^ b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 4, 5}
+```
+
+Element مشترک یعنی `3` در نتیجه قرار نمی گیرد.
+
+---
+
+## 14. مقایسه Setها
+
+Python چند Method مهم برای مقایسه Setها در اختیار ما قرار می دهد.
+
+### `issubset()`
+
+بررسی می کند که آیا تمام Elementهای یک Set در Set دیگر وجود دارند یا نه:
+
+```python
+a = {1, 2}
+b = {1, 2, 3, 4}
+
+print(a.issubset(b))
+```
+
+خروجی:
+
+```text
+True
+```
+
+همچنین می توانیم از:
+
+```python
+a <= b
+```
+
+استفاده کنیم.
+
+---
+
+### `issuperset()`
+
+بررسی می کند که آیا یک Set تمام Elementهای Set دیگر را در خود دارد یا نه:
+
+```python
+a = {1, 2, 3, 4}
+b = {1, 2}
+
+print(a.issuperset(b))
+```
+
+خروجی:
+
+```text
+True
+```
+
+یا:
+
+```python
+a >= b
+```
+
+---
+
+### `isdisjoint()`
+
+بررسی می کند که آیا دو Set هیچ Element مشترکی ندارند یا نه:
+
+```python
+a = {1, 2}
+b = {3, 4}
+
+print(a.isdisjoint(b))
+```
+
+خروجی:
+
+```text
+True
+```
+
+---
+
+## 15. حذف مقدارهای تکراری از List
+
+یکی از رایج ترین کاربردهای Set، حذف مقدارهای تکراری از یک List است:
+
+```python
+numbers = [1, 2, 2, 3, 3, 4, 4]
+
+unique_numbers = set(numbers)
+
+print(unique_numbers)
+```
+
+می توانیم دوباره آن را به List تبدیل کنیم:
+
+```python
+unique_numbers = list(set(numbers))
+```
+
+اما باید توجه کنیم که این روش ترتیب اصلی List را حفظ نمی کند.
+
+اگر List مرتب شده می خواهیم:
+
+```python
+unique_numbers = sorted(set(numbers))
+```
+
+---
+
+## 16. تبدیل بین Data Structureها
+
+می توانیم بین Data Structureهای مختلف تبدیل انجام دهیم.
+
+### List → Set
+
+```python
+set(numbers)
+```
+
+### Tuple → Set
+
+```python
+set(numbers_tuple)
+```
+
+### String → Set
+
+```python
+set(text)
+```
+
+### Set → List
+
+```python
+list(my_set)
+```
+
+### Set → Tuple
+
+```python
+tuple(my_set)
+```
+
+### Set → Sorted List
+
+```python
+sorted(my_set)
+```
+
+### Dictionary Keys → Set
+
+```python
+set(my_dict.keys())
+```
+
+### Dictionary Values → Set
+
+```python
+set(my_dict.values())
+```
+
+### Dictionary Items → Set
+
+```python
+set(my_dict.items())
+```
+
+---
+
+## 17. ارتباط Set و Dictionary
+
+Set و Dictionary ارتباط مهمی با یکدیگر دارند.
+
+هر دو بر اساس مفهوم **Hashing** کار می کنند.
+
+Dictionary به شکل زیر است:
+
+```text
+Key → Value
+```
+
+اما Set به شکل زیر است:
+
+```text
+Element
+```
+
+به زبان ساده می توان گفت در Set با مجموعه ای از مقدارهای Hashable سر و کار داریم، در حالی که در Dictionary هر Key یک Value مرتبط دارد.
+
+مثلا:
+
+```python
+students = {"Ali", "Sara", "Reza"}
+```
+
+در حالی که:
+
+```python
+students = {
+    "Ali": 20,
+    "Sara": 22,
+    "Reza": 21
+}
+```
+
+یک Dictionary است.
+
+---
+
+## 18. Mutable بودن Set
+
+Set معمولی Mutable است:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(4)
+```
+
+در نتیجه Set تغییر می کند.
+
+چون Set معمولی Mutable است، Hashable نیست.
+
+بنابراین نمی تواند به عنوان Dictionary Key استفاده شود.
+
+---
+
+## 19. `frozenset`
+
+`frozenset` نسخه Immutable یک Set است:
+
+```python
+numbers = frozenset({1, 2, 3})
+```
+
+نمی توانیم آن را تغییر دهیم:
+
+```python
+numbers.add(4)
+```
+
+این کد معتبر نیست.
+
+اما همچنان می توانیم عملیات Set را روی آن انجام دهیم:
+
+```python
+a = frozenset({1, 2, 3})
+b = frozenset({3, 4, 5})
+
+print(a | b)
+print(a & b)
+print(a - b)
+print(a ^ b)
+```
+
+---
+
+## 20. چرا `frozenset` مهم است؟
+
+چون `frozenset` **Hashable** است.
+
+در نتیجه می تواند به عنوان Dictionary Key استفاده شود:
+
+```python
+groups = {
+    frozenset({"read", "write"}): "editor"
+}
+```
+
+همچنین می تواند داخل یک Set قرار بگیرد:
+
+```python
+groups = {
+    frozenset({1, 2}),
+    frozenset({3, 4})
+}
+```
+
+به این ترتیب می توانیم یک **Set از Setها** داشته باشیم.
+
+---
+
+## 21. Set در مقابل List
+
+باید بدانیم چه زمانی از هر کدام استفاده کنیم.
+
+| ویژگی          | List            | Set                       |
+| -------------- | --------------- | ------------------------- |
+| مقدار تکراری   | بله             | خیر                       |
+| Indexing       | بله             | خیر                       |
+| ترتیب          | دارد            | ترتیب مشخصی تضمین نمی شود |
+| Membership     | پشتیبانی می شود | بسیار کاربردی             |
+| Set Operations | ندارد           | دارد                      |
+| Mutable        | بله             | بله                       |
+
+اگر ترتیب و Indexing مهم است، از List استفاده می کنیم.
+
+اگر یکتا بودن و Membership مهم است، Set انتخاب مناسب تری است.
+
+---
+
+## 22. Set در مقابل Tuple
+
+| ویژگی          | Tuple                        | Set  |
+| -------------- | ---------------------------- | ---- |
+| Mutable        | خیر                          | بله  |
+| مقدار تکراری   | بله                          | خیر  |
+| Indexing       | بله                          | خیر  |
+| Hashable       | در صورت مناسب بودن محتوا بله | خیر  |
+| Set Operations | ندارد                        | دارد |
+
+Tuple برای داده های مرتب و Immutable مناسب است.
+
+Set برای داده های یکتا و بدون ترتیب مشخص مناسب است.
+
+---
+
+## 23. Set در مقابل `frozenset`
+
+| ویژگی               | `set` | `frozenset` |
+| ------------------- | ----- | ----------- |
+| Mutable             | بله   | خیر         |
+| Elementهای یکتا     | بله   | بله         |
+| Set Operations      | بله   | بله         |
+| Hashable            | خیر   | بله         |
+| Dictionary Key      | خیر   | بله         |
+| قرار گرفتن داخل Set | خیر   | بله         |
+
+قانون ساده:
+
+```text
+set
+→ Unique + Mutable
+
+frozenset
+→ Unique + Immutable
+```
+
+---
+
+## 24. مثال واقعی
+
+فرض کنیم دانشجویان ثبت نام شده در سه دوره را داریم:
+
+```python
+python_students = {
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina"
+}
+
+java_students = {
+    "Reza",
+    "Mina",
+    "Hassan"
+}
+
+web_students = {
+    "Mina",
+    "Hassan",
+    "Nima"
+}
+```
+
+دانشجویانی که هم Python و هم Java می خوانند:
+
+```python
+python_students & java_students
+```
+
+دانشجویانی که Python می خوانند اما Java نمی خوانند:
+
+```python
+python_students - java_students
+```
+
+تمام دانشجویان Python یا Java:
+
+```python
+python_students | java_students
+```
+
+دانشجویانی که دقیقا در یکی از Python و Java هستند:
+
+```python
+python_students ^ java_students
+```
+
+تمام دانشجویان هر سه دوره:
+
+```python
+python_students | java_students | web_students
+```
+
+این مثال نشان می دهد که Set چطور مقایسه و تحلیل داده ها را ساده می کند.
+
+---
+
+# اشتباهات رایج
+
+## اشتباه ۱ — استفاده از `{}` برای Set خالی
+
+اشتباه:
+
+```python
+empty = {}
+```
+
+این یک Dictionary می سازد.
+
+درست:
+
+```python
+empty = set()
+```
+
+---
+
+## اشتباه ۲ — انتظار Indexing در Set
+
+اشتباه:
+
+```python
+numbers = {10, 20, 30}
+
+print(numbers[0])
+```
+
+Set از Indexing پشتیبانی نمی کند.
+
+اگر ترتیب لازم داریم:
+
+```python
+numbers = {10, 20, 30}
+
+numbers_list = sorted(numbers)
+
+print(numbers_list[0])
+```
+
+---
+
+## اشتباه ۳ — فرض کردن ترتیب Set
+
+نباید برنامه را طوری بنویسیم که به ترتیب Elementهای Set وابسته باشد.
+
+اگر ترتیب مشخص لازم داریم:
+
+```python
+sorted(my_set)
+```
+
+---
+
+## اشتباه ۴ — استفاده از `remove()` وقتی ممکن است Element وجود نداشته باشد
+
+این کد ممکن است Error ایجاد کند:
+
+```python
+numbers.remove(10)
+```
+
+اگر احتمال می دهیم Element وجود نداشته باشد، `discard()` گزینه امن تری است:
+
+```python
+numbers.discard(10)
+```
+
+---
+
+## اشتباه ۵ — استفاده از Set به عنوان Dictionary Key
+
+این کار امکان پذیر نیست:
+
+```python
+data = {
+    {1, 2, 3}: "numbers"
+}
+```
+
+به جای آن از `frozenset` استفاده می کنیم:
+
+```python
+data = {
+    frozenset({1, 2, 3}): "numbers"
+}
+```
+
+---
+
+## اشتباه ۶ — فراموش کردن جهت دار بودن Difference
+
+این دو عملیات متفاوت هستند:
+
+```python
+a - b
+```
+
+و:
+
+```python
+b - a
+```
+
+همیشه باید توجه کنیم کدام Set در سمت چپ قرار دارد.
+
+---
+
+# چک لیست مرور نهایی
+
+قبل از تمام کردن درس Sets باید با تمام موارد زیر راحت باشی:
+
+* [ ] ساخت Set
+* [ ] ساخت Set خالی
+* [ ] مفهوم Unique Element
+* [ ] مفهوم Hashable Element
+* [ ] اضافه کردن Element با `add()`
+* [ ] اضافه کردن چند Element با `update()`
+* [ ] حذف Element با `remove()`
+* [ ] حذف امن با `discard()`
+* [ ] حذف یک Element با `pop()`
+* [ ] حذف تمام Elementها با `clear()`
+* [ ] بررسی Membership با `in`
+* [ ] استفاده از `not in`
+* [ ] شمارش Elementها با `len()`
+* [ ] پیمایش Set
+* [ ] مرتب سازی Elementهای Set
+* [ ] Union
+* [ ] Intersection
+* [ ] Difference
+* [ ] Symmetric Difference
+* [ ] Subset
+* [ ] Superset
+* [ ] Disjoint Sets
+* [ ] تبدیل List به Set
+* [ ] تبدیل Set به List
+* [ ] تبدیل Tuple به Set
+* [ ] تبدیل String به Set
+* [ ] تبدیل Dictionary Keys به Set
+* [ ] تبدیل Dictionary Values به Set
+* [ ] تبدیل Dictionary Items به Set
+* [ ] مفهوم Mutable بودن Set
+* [ ] مفهوم `frozenset`
+* [ ] مفهوم Hashability
+* [ ] استفاده از `frozenset` به عنوان Dictionary Key
+* [ ] قرار دادن `frozenset` داخل Set
+* [ ] تفاوت List، Tuple، Set و Dictionary
+
+---
+
+# تمرین های نهایی
+
+### سوال ۱ — مرور مباحث پایه
+
+یک Set شامل موارد زیر بساز:
+
+```text
+10, 20, 30, 20, 40, 10, 50
+```
+
+سپس:
+
+1. Set را چاپ کن.
+2. تعداد Elementها را چاپ کن.
+3. مقدار `60` را اضافه کن.
+4. مقدار `20` را حذف کن.
+5. بررسی کن که آیا `40` وجود دارد یا نه.
+6. روی Set پیمایش انجام بده.
+
+---
+
+### سوال ۲ — عملیات Set
+
+Setهای زیر را داریم:
+
+```python
+a = {1, 2, 3, 4, 5}
+b = {4, 5, 6, 7, 8}
+```
+
+موارد زیر را پیدا کن:
+
+1. Union
+2. Intersection
+3. `a - b`
+4. `b - a`
+5. Symmetric Difference
+
+سپس توضیح بده چرا `a - b` و `b - a` متفاوت هستند.
+
+---
+
+### سوال ۳ — روابط بین Setها
+
+Setهای زیر را داریم:
+
+```python
+small = {1, 2}
+large = {1, 2, 3, 4}
+other = {5, 6}
+```
+
+مشخص کن:
+
+1. آیا `small` زیر مجموعه `large` است؟
+2. آیا `large` یک Superset از `small` است؟
+3. آیا `small` و `other` Disjoint هستند؟
+4. آیا `large` و `small` Disjoint هستند؟
+
+---
+
+### سوال ۴ — تبدیل Data Structureها
+
+List زیر را داریم:
+
+```python
+numbers = [5, 3, 5, 2, 3, 1, 4]
+```
+
+موارد زیر را ایجاد کن:
+
+1. یک Set شامل مقدارهای یکتا.
+2. یک List شامل مقدارهای یکتا.
+3. یک List مرتب شده شامل مقدارهای یکتا.
+4. یک Tuple شامل مقدارهای یکتا.
+
+سپس توضیح بده در این تبدیل ها چه اتفاقی برای مقدارهای تکراری و ترتیب Elementها می افتد.
+
+---
+
+### سوال ۵ — `frozenset`
+
+کد زیر را در نظر بگیر:
+
+```python
+admin = frozenset({
+    "read",
+    "write",
+    "delete"
+})
+
+editor = frozenset({
+    "read",
+    "write"
+})
+```
+
+موارد زیر را پیدا کن:
+
+1. Permissionهای مشترک.
+2. Permissionهای مخصوص Admin.
+3. تمام Permissionها.
+4. Symmetric Difference.
+
+سپس توضیح بده چرا `admin` قابل تغییر نیست.
+
+---
+
+# پروژه جامع Sets
+
+برنامه ای برای مدیریت دانشجویان و دوره های مختلف طراحی کن.
+
+از داده های زیر استفاده کن:
+
+```python
+python_students = [
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina",
+    "Ali"
+]
+
+java_students = [
+    "Reza",
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Reza"
+]
+
+web_students = [
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Omid",
+    "Mina"
+]
+```
+
+برنامه باید:
+
+1. هر List را به Set تبدیل کند.
+2. دانشجویان تکراری را حذف کند.
+3. دانشجویان یکتای هر دوره را چاپ کند.
+4. تعداد دانشجویان هر دوره را نمایش دهد.
+5. دانشجویان مشترک Python و Java را پیدا کند.
+6. دانشجویانی که فقط Python می خوانند را پیدا کند.
+7. دانشجویانی که فقط Java می خوانند را پیدا کند.
+8. دانشجویانی که دقیقا در یکی از Python و Java هستند را پیدا کند.
+9. تمام دانشجویان هر سه دوره را پیدا کند.
+10. تمام دانشجویان را به صورت Alphabetical مرتب کند.
+11. بررسی کند که یک دانشجوی مشخص در هر دوره وجود دارد یا نه.
+12. بررسی کند که آیا دانشجویان یک دوره Subset دوره دیگری هستند یا نه.
+13. بررسی کند که آیا دو دوره Disjoint هستند یا نه.
+14. یک Dictionary شامل تعداد دانشجویان هر دوره بسازد.
+15. Keys مربوط به Dictionary را به Set تبدیل کند.
+16. Values مربوط به Dictionary را به Set تبدیل کند.
+17. Items مربوط به Dictionary را به Set تبدیل کند.
+18. برای مجموعه نهایی تمام دانشجویان یک `frozenset` بسازد.
+19. توضیح دهد چرا `frozenset` قابل تغییر نیست.
+20. یک Set شامل چند `frozenset` مربوط به گروه های دوره ها بسازد.
+21. توضیح دهد چرا نمی توان Set معمولی را داخل Set دیگری قرار داد.
+22. در طول پروژه از Union، Intersection، Difference و Symmetric Difference استفاده کند.
+
+پروژه نهایی باید تمام مفاهیم درس Sets را پوشش دهد:
+
+**ساخت Set → Unique Elements → `add()` → `update()` → `remove()` → `discard()` → `pop()` → `clear()` → Membership → `len()` → Iteration → Union → Intersection → Difference → Symmetric Difference → Subset → Superset → Disjoint → تبدیل Data Structureها → Mutability → `frozenset` → Hashability → Dictionary Keys**
+
+---
+

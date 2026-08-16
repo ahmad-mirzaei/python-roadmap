@@ -125,3 +125,855 @@
 ---
 
 موفق باشید و از مسیر یادگیری لذت ببرید! 🐍
+
+---
+
+# پارت ۹ — Key و Value در Dictionary
+
+## مقدمه
+
+Dictionary داده ها را به صورت **جفت های Key-Value** ذخیره می کند.
+
+درک عمیق تفاوت بین Key و Value بسیار مهم است، چون تقریباً تمام کارهایی که با Dictionary انجام می دهیم بر اساس همین رابطه شکل می گیرند.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+در این Dictionary:
+
+* `"name"`، `"age"` و `"score"`، **Key** هستند.
+* `"Ali"`، `20` و `18`، **Value** هستند.
+
+می توانیم ساختار را این طور ببینیم:
+
+```text
+Key       → Value
+"name"    → "Ali"
+"age"     → 20
+"score"   → 18
+```
+
+Key داده را **مشخص می کند** و Value داده ای است که به آن Key مربوط است.
+
+---
+
+## ۱. Key در Dictionary چیست؟
+
+Key شناسه ای است که برای دسترسی به یک Value استفاده می شود.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+print(student["name"])
+```
+
+خروجی:
+
+```text
+Ali
+```
+
+در اینجا `"name"` یک Key و `"Ali"` Value مربوط به آن است.
+
+بنابراین Key به Python می گوید:
+
+> کدام Value را می خواهیم دریافت کنیم؟
+
+---
+
+## ۲. Value در Dictionary چیست؟
+
+Value داده ای است که تحت یک Key ذخیره شده است.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+Valueهای این Dictionary عبارت اند از:
+
+```text
+Ali
+20
+18
+```
+
+Valueها می توانند از نوع های مختلف باشند:
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20,
+    "active": True
+}
+```
+
+در اینجا:
+
+* `"Ali"` یک String است.
+* `20` یک Integer است.
+* `True` یک Boolean است.
+
+لازم نیست تمام Valueهای یک Dictionary از یک نوع باشند.
+
+---
+
+## ۳. دسترسی به Value با استفاده از Key
+
+رایج ترین رابطه بین Key و Value این است:
+
+```python
+dictionary[key]
+```
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+print(student["age"])
+```
+
+خروجی:
+
+```text
+20
+```
+
+ما Key را مشخص می کنیم و Python Value مربوط به آن را برمی گرداند.
+
+---
+
+## ۴. Keyها باید منحصر به فرد باشند
+
+Keyهای Dictionary باید منحصر به فرد باشند.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+فقط یک Key به نام `"name"` داریم.
+
+اگر یک Key را دوباره تعریف کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "name": "Sara"
+}
+```
+
+Python دو ورودی جداگانه با Key یکسان نگه نمی دارد.
+
+مقدار بعدی جای مقدار قبلی را می گیرد.
+
+در نتیجه Dictionary به شکل زیر خواهد بود:
+
+```python
+{
+    "name": "Sara"
+}
+```
+
+پس یک قانون مهم داریم:
+
+> **یک Dictionary نمی تواند دو ورودی مستقل با Key یکسان داشته باشد.**
+
+---
+
+## ۵. Valueها می توانند تکراری باشند
+
+بر خلاف Keyها، Valueها لازم نیست منحصر به فرد باشند.
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 18,
+    "Reza": 15
+}
+```
+
+در اینجا دو Key متفاوت، Value یکسان `18` دارند:
+
+```text
+Ali  → 18
+Sara → 18
+```
+
+این کاملاً معتبر است.
+
+پس:
+
+```text
+Keyها   → منحصر به فرد
+Valueها → می توانند تکراری باشند
+```
+
+این تفاوت هنگام جستجو در Dictionary اهمیت زیادی پیدا می کند.
+
+---
+
+## ۶. دریافت تمام Keyها با `keys()`
+
+Python متد `keys()` را در اختیار ما قرار می دهد:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+
+print(student.keys())
+```
+
+این متد یک View از Keyهای Dictionary در اختیار ما قرار می دهد.
+
+می توانیم روی آن پیمایش کنیم:
+
+```python
+for key in student.keys():
+    print(key)
+```
+
+خروجی:
+
+```text
+name
+age
+score
+```
+
+وقتی خود Keyها برای ما مهم هستند، `keys()` ابزار مناسبی است.
+
+---
+
+## ۷. دریافت تمام Valueها با `values()`
+
+متد `values()` برای دسترسی به Valueها استفاده می شود:
+
+```python
+for value in student.values():
+    print(value)
+```
+
+خروجی:
+
+```text
+Ali
+20
+18
+```
+
+این روش زمانی مناسب است که Keyها برای عملی که می خواهیم انجام دهیم اهمیتی نداشته باشند.
+
+---
+
+## ۸. دریافت Key و Value با هم با `items()`
+
+اگر هم Key و هم Value را لازم داشته باشیم، از `items()` استفاده می کنیم:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+خروجی:
+
+```text
+name Ali
+age 20
+score 18
+```
+
+از نظر مفهومی، هر مرحله از پیمایش یک جفت به شکل زیر در اختیار ما قرار می دهد:
+
+```text
+(Key, Value)
+```
+
+مثلاً:
+
+```text
+"name" → "Ali"
+"age" → 20
+"score" → 18
+```
+
+این یکی از مهم ترین الگوهای کار با Dictionary است.
+
+---
+
+## ۹. بررسی وجود یک Key
+
+عملگر `in` در حالت مستقیم روی Dictionary، وجود Key را بررسی می کند:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+print("name" in student)
+print("score" in student)
+```
+
+خروجی:
+
+```text
+True
+False
+```
+
+چون `"name"` وجود دارد، اما `"score"` Key موجودی نیست.
+
+---
+
+## ۱۰. بررسی وجود یک Value
+
+اگر بخواهیم Valueها را جستجو کنیم، از `values()` استفاده می کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+print(20 in student.values())
+```
+
+خروجی:
+
+```text
+True
+```
+
+این دو عبارت را با هم مقایسه کنید:
+
+```python
+"age" in student
+```
+
+و:
+
+```python
+20 in student.values()
+```
+
+اولی یک **Key** را بررسی می کند.
+
+دومی یک **Value** را بررسی می کند.
+
+این تفاوت یکی از نکات پایه و بسیار مهم Dictionary است.
+
+---
+
+## ۱۱. نقش متفاوت Key و Value
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+products = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8
+}
+```
+
+در اینجا Keyها نام محصولات هستند:
+
+```text
+apple
+banana
+orange
+```
+
+و Valueها تعداد موجودی هستند:
+
+```text
+10
+5
+8
+```
+
+اما می توانیم Dictionary مشابهی برای قیمت ها داشته باشیم:
+
+```python
+prices = {
+    "apple": 2,
+    "banana": 1,
+    "orange": 3
+}
+```
+
+ساختار Dictionary تغییری نکرده است؛ فقط معنای Valueها تغییر کرده است.
+
+این موضوع یک مفهوم مهم در برنامه نویسی را نشان می دهد:
+
+> **Dictionary ساختار داده را فراهم می کند؛ این برنامه نویس است که مشخص می کند Key و Value چه معنایی داشته باشند.**
+
+---
+
+## ۱۲. انتخاب Keyهای معنادار
+
+بهتر است Keyها به شکلی انتخاب شوند که داده ای را که مشخص می کنند، واضح نشان دهند.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+خواناتر از این است:
+
+```python
+student = {
+    "a": "Ali",
+    "b": 20,
+    "c": 18
+}
+```
+
+هر دو از نظر فنی می توانند کار کنند، اما Keyهای معنادار باعث می شوند کد راحت تر خوانده و نگهداری شود.
+
+یک Key خوب باید تا حد امکان درباره Value مربوط به خودش اطلاعات بدهد.
+
+---
+
+## ۱۳. تفاوت Lookup و Search
+
+بین **پیدا کردن Value با استفاده از Key** و **جستجوی یک Value** تفاوت مهمی وجود دارد.
+
+### Lookup
+
+```python
+student["age"]
+```
+
+ما Key را از قبل می دانیم و Value مربوط به آن را می خواهیم.
+
+به صورت مفهومی:
+
+```text
+Key → Value
+```
+
+### جستجوی Value
+
+```python
+20 in student.values()
+```
+
+ما Value را می دانیم و می خواهیم بررسی کنیم که آیا وجود دارد یا نه.
+
+به صورت مفهومی:
+
+```text
+Value → آیا وجود دارد؟
+```
+
+این دو عملیات نباید با یکدیگر اشتباه گرفته شوند.
+
+---
+
+## ۱۴. پیدا کردن Key بر اساس Value
+
+فرض کنید:
+
+```python
+scores = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 18
+}
+```
+
+می خواهیم تمام دانش آموزانی را پیدا کنیم که نمره `18` دارند.
+
+می توانیم جفت های Key-Value را بررسی کنیم:
+
+```python
+for name, score in scores.items():
+    if score == 18:
+        print(name)
+```
+
+خروجی:
+
+```text
+Ali
+Reza
+```
+
+دقت کنید که یک Value می تواند با چند Key مرتبط باشد.
+
+این دقیقاً به دلیل منحصر به فرد نبودن Valueهاست.
+
+---
+
+## ۱۵. Valueها می توانند ساختارهای داده متفاوتی باشند
+
+Value یک Dictionary فقط محدود به String، Integer یا Boolean نیست.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "skills": ["Python", "HTML"],
+    "active": True
+}
+```
+
+در اینجا:
+
+* `"name"` → String
+* `"age"` → Integer
+* `"skills"` → List
+* `"active"` → Boolean
+
+می توانیم از طریق Key به List دسترسی پیدا کنیم:
+
+```python
+print(student["skills"])
+```
+
+خروجی:
+
+```text
+['Python', 'HTML']
+```
+
+از آنجا که Value دریافت شده یک List است، می توانیم بعد از دریافت آن با قواعد List کار کنیم:
+
+```python
+print(student["skills"][0])
+```
+
+خروجی:
+
+```text
+Python
+```
+
+Dictionary مشخص می کند **کدام Value** را دریافت کنیم؛ سپس نوع خود Value مشخص می کند که بعد از آن چه کارهایی می توانیم انجام دهیم.
+
+---
+
+## ۱۶. Key بخشی از مدل داده است
+
+Key صرفاً یک برچسب برای نمایش اطلاعات نیست.
+
+Key در منطق برنامه نقش عملی دارد.
+
+مثلاً:
+
+```python
+user = {
+    "username": "ali123",
+    "email": "ali@example.com"
+}
+```
+
+می توانیم بنویسیم:
+
+```python
+user["email"]
+```
+
+تا ایمیل را دریافت کنیم.
+
+بنابراین `"email"` بخشی از نحوه سازمان دهی و دسترسی به اطلاعات کاربر در برنامه است.
+
+انتخاب Key مناسب باعث می شود کدهای بعدی بسیار واضح تر باشند.
+
+---
+
+## ۱۷. مثال کاربردی
+
+یک موجودی ساده فروشگاه را در نظر بگیرید:
+
+```python
+inventory = {
+    "apple": 10,
+    "banana": 5,
+    "orange": 8
+}
+```
+
+اگر نام محصول را بدانیم، می توانیم مستقیماً تعداد آن را دریافت کنیم:
+
+```python
+print(inventory["apple"])
+```
+
+خروجی:
+
+```text
+10
+```
+
+اگر بخواهیم تمام محصولات را ببینیم:
+
+```python
+for product in inventory.keys():
+    print(product)
+```
+
+اگر فقط تعداد موجودی ها را بخواهیم:
+
+```python
+for quantity in inventory.values():
+    print(quantity)
+```
+
+و اگر هر دو را بخواهیم:
+
+```python
+for product, quantity in inventory.items():
+    print(f"{product}: {quantity}")
+```
+
+خروجی:
+
+```text
+apple: 10
+banana: 5
+orange: 8
+```
+
+این سه روش، پایه ای ترین روش های کار با دو بخش اصلی Dictionary هستند.
+
+---
+
+## ۱۸. مدل ذهنی کامل
+
+می توانیم Dictionary را مجموعه ای از رابطه ها در نظر بگیریم:
+
+```text
+             Dictionary
+                 │
+        ┌────────┴────────┐
+        ↓                 ↓
+       Key              Value
+        │                 │
+   مشخص کننده داده     نگهدارنده داده
+        │                 │
+        └───────┬─────────┘
+                ↓
+          Key → Value
+```
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+یعنی:
+
+```text
+"name"  → "Ali"
+"age"   → 20
+"score" → 18
+```
+
+وقتی این رابطه به خوبی درک شود، متدهای `keys()`، `values()` و `items()` نیز بسیار ساده تر خواهند شد.
+
+---
+
+## نکات کلیدی
+
+* Dictionary از **جفت های Key-Value** تشکیل شده است.
+* Key یک بخش از داده را مشخص می کند.
+* Value داده مربوط به آن Key است.
+* Keyها باید منحصر به فرد باشند.
+* Valueها می توانند تکراری باشند.
+* `keys()` برای دسترسی به Keyها استفاده می شود.
+* `values()` برای دسترسی به Valueها استفاده می شود.
+* `items()` جفت های Key-Value را در اختیار ما قرار می دهد.
+* استفاده مستقیم از `in` روی Dictionary، Keyها را بررسی می کند.
+* `in dictionary.values()` برای بررسی Valueها استفاده می شود.
+* Keyهای معنادار باعث خوانایی بیشتر برنامه می شوند.
+* Valueها می توانند از نوع های مختلفی مانند List باشند.
+* Lookup کردن یک Value با Key با جستجوی یک Value متفاوت است.
+* برای پیدا کردن Keyها بر اساس Value معمولاً باید جفت های Key-Value را بررسی کنیم.
+
+---
+
+# سوال های بخش
+
+## سوال ۱
+
+تمام Keyها و تمام Valueهای Dictionary زیر را مشخص کنید:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "score": 18
+}
+```
+
+## سوال ۲
+
+تفاوت این دو عبارت چیست؟
+
+```python
+"age" in student
+```
+
+و:
+
+```python
+20 in student.values()
+```
+
+## سوال ۳
+
+Dictionary نهایی حاصل از کد زیر چه خواهد بود؟
+
+```python
+student = {
+    "name": "Ali",
+    "name": "Sara"
+}
+```
+
+---
+
+# سوال جامع
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 18,
+    "Mina": 12
+}
+```
+
+برنامه ای بنویسید که:
+
+1. تمام Keyها را چاپ کند.
+2. تمام Valueها را چاپ کند.
+3. تمام جفت های Key-Value را چاپ کند.
+4. بررسی کند که Value برابر `18` وجود دارد یا نه.
+5. تمام Keyهایی را پیدا و چاپ کند که Value آن ها `18` است.
+
+---
+
+# پاسخ ها
+
+## پاسخ سوال ۱
+
+Keyها:
+
+```text
+name
+age
+score
+```
+
+Valueها:
+
+```text
+Ali
+20
+18
+```
+
+## پاسخ سوال ۲
+
+```python
+"age" in student
+```
+
+بررسی می کند که `"age"` به عنوان یک **Key** وجود دارد یا نه.
+
+در مقابل:
+
+```python
+20 in student.values()
+```
+
+بررسی می کند که `20` به عنوان یک **Value** وجود دارد یا نه.
+
+## پاسخ سوال ۳
+
+Key تکراری دوم، مقدار قبلی را جایگزین می کند:
+
+```python
+{
+    "name": "Sara"
+}
+```
+
+## پاسخ سوال جامع
+
+```python
+students = {
+    "Ali": 18,
+    "Sara": 15,
+    "Reza": 18,
+    "Mina": 12
+}
+
+for key in students.keys():
+    print(key)
+
+for value in students.values():
+    print(value)
+
+for key, value in students.items():
+    print(f"{key}: {value}")
+
+if 18 in students.values():
+    print("18 exists.")
+
+for key, value in students.items():
+    if value == 18:
+        print(key)
+```
+
+خروجی بخش جستجوی نهایی:
+
+```text
+Ali
+Reza
+```
+
+---
+

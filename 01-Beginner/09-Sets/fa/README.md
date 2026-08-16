@@ -2621,3 +2621,766 @@ allowed_users = {"Ali", "Sara", "Reza", "Mina"}
 
 ---
 
+# Sets — پارت ۶: طول Set و شمارش عناصر
+
+در پارت قبلی یاد گرفتیم چطور با استفاده از `in` و `not in` بررسی کنیم که یک Element داخل Set وجود دارد یا نه.
+
+حالا می خواهیم یاد بگیریم چطور **تعداد عناصر یک Set را بشماریم**.
+
+تابع اصلی برای این کار:
+
+```python
+len()
+```
+
+است.
+
+---
+
+## 1. استفاده از `len()` با Set
+
+تابع `len()` تعداد عناصر موجود در Set را بر می گرداند.
+
+```python
+numbers = {10, 20, 30, 40}
+
+print(len(numbers))
+```
+
+خروجی:
+
+```text
+4
+```
+
+Syntax:
+
+```python
+len(set_name)
+```
+
+---
+
+## 2. Set فقط عناصر Unique را می شمارد
+
+چون Setها Duplicateها را نگه داری نمی کنند، `len()` فقط تعداد عناصر Unique را حساب می کند.
+
+```python
+numbers = {1, 2, 2, 3, 3, 3}
+
+print(len(numbers))
+```
+
+Set در عمل:
+
+```text
+{1, 2, 3}
+```
+
+است.
+
+پس خروجی:
+
+```text
+3
+```
+
+خواهد بود.
+
+این یکی از تفاوت های مهم Set و List است.
+
+مثلا:
+
+```python
+numbers_list = [1, 2, 2, 3, 3, 3]
+numbers_set = {1, 2, 2, 3, 3, 3}
+
+print(len(numbers_list))
+print(len(numbers_set))
+```
+
+خروجی:
+
+```text
+6
+3
+```
+
+در List تمام عناصر شمارش می شوند، اما در Set فقط عناصر Unique شمارش می شوند.
+
+---
+
+## 3. شمارش Stringها در Set
+
+`len()` روی Setهایی که شامل String هستند نیز کار می کند.
+
+```python
+languages = {"Python", "Java", "C++", "Go"}
+
+print(len(languages))
+```
+
+خروجی:
+
+```text
+4
+```
+
+هر String Unique یک Element محسوب می شود.
+
+---
+
+## 4. شمارش Empty Set
+
+یک Empty Set دارای طول صفر است.
+
+```python
+numbers = set()
+
+print(len(numbers))
+```
+
+خروجی:
+
+```text
+0
+```
+
+این موضوع برای بررسی اینکه آیا Set شامل چیزی هست یا نه بسیار کاربردی است.
+
+---
+
+## 5. استفاده از `len()` در `if`
+
+می توانیم نتیجه `len()` را داخل شرط استفاده کنیم.
+
+```python
+students = {"Ali", "Sara", "Reza"}
+
+if len(students) > 0:
+    print("The Set is not empty")
+```
+
+خروجی:
+
+```text
+The Set is not empty
+```
+
+برای بررسی خالی بودن نیز می توانیم بنویسیم:
+
+```python
+if len(students) == 0:
+    print("The Set is empty")
+```
+
+---
+
+## 6. یک روش ساده تر برای بررسی Empty بودن Set
+
+با اینکه `len()` کار می کند، در Python یک روش رایج تر نیز وجود دارد.
+
+به جای:
+
+```python
+if len(students) > 0:
+    print("Not empty")
+```
+
+می توانیم بنویسیم:
+
+```python
+if students:
+    print("Not empty")
+```
+
+و به جای:
+
+```python
+if len(students) == 0:
+    print("Empty")
+```
+
+می توانیم بنویسیم:
+
+```python
+if not students:
+    print("Empty")
+```
+
+این به این دلیل است که Empty Set یک مقدار **Falsy** است.
+
+Set غیر خالی **Truthy** است.
+
+به خاطر بسپار:
+
+```text
+Empty Set
+→ False
+
+Non-empty Set
+→ True
+```
+
+---
+
+## 7. شمارش عناصر بعد از `add()`
+
+طول Set وقتی Elementهای جدید و Unique اضافه می شوند تغییر می کند.
+
+```python
+numbers = {1, 2, 3}
+
+print(len(numbers))
+
+numbers.add(4)
+
+print(len(numbers))
+```
+
+خروجی:
+
+```text
+3
+4
+```
+
+اما اگر یک Element موجود را دوباره اضافه کنیم، طول افزایش پیدا نمی کند:
+
+```python
+numbers.add(4)
+
+print(len(numbers))
+```
+
+نتیجه همچنان:
+
+```text
+4
+```
+
+است.
+
+---
+
+## 8. شمارش عناصر بعد از حذف
+
+حذف یک Element موجود باعث کاهش طول Set می شود.
+
+```python
+numbers = {1, 2, 3, 4}
+
+numbers.remove(2)
+
+print(len(numbers))
+```
+
+خروجی:
+
+```text
+3
+```
+
+اما اگر با `discard()` یک Element غیر موجود را حذف کنیم، طول تغییری نمی کند:
+
+```python
+numbers.discard(10)
+
+print(len(numbers))
+```
+
+طول همچنان:
+
+```text
+3
+```
+
+خواهد بود.
+
+---
+
+## 9. استفاده از `len()` همراه User Input
+
+می توانیم از User Input یک Set بسازیم و سپس تعداد عناصر Unique آن را بشماریم.
+
+```python
+names = set()
+
+names.add(input("Enter a name: "))
+names.add(input("Enter another name: "))
+names.add(input("Enter another name: "))
+
+print("Unique names:", len(names))
+```
+
+اگر کاربر این موارد را وارد کند:
+
+```text
+Ali
+Sara
+Ali
+```
+
+Set شامل:
+
+```text
+{"Ali", "Sara"}
+```
+
+خواهد بود.
+
+پس خروجی:
+
+```text
+Unique names: 2
+```
+
+است.
+
+این یکی از کاربردهای مهم Setها است: **شمارش مقدارهای Unique**.
+
+---
+
+## 10. شمارش Unique Valueها از یک List
+
+یک الگوی بسیار رایج این است که یک List را به Set تبدیل کنیم و سپس `len()` را روی آن اجرا کنیم.
+
+```python
+numbers = [1, 2, 2, 3, 3, 4, 4, 4]
+
+unique_numbers = set(numbers)
+
+print(len(unique_numbers))
+```
+
+خروجی:
+
+```text
+4
+```
+
+مقادیر Unique:
+
+```text
+{1, 2, 3, 4}
+```
+
+هستند.
+
+این یک روش ساده و قدرتمند برای شمارش مقدارهای Unique است.
+
+---
+
+## 11. مقایسه تعداد کل و تعداد Unique
+
+می توانیم طول List را با طول Set ساخته شده از آن مقایسه کنیم.
+
+```python
+numbers = [1, 2, 2, 3, 3, 4]
+
+unique_numbers = set(numbers)
+
+print("Total:", len(numbers))
+print("Unique:", len(unique_numbers))
+```
+
+خروجی:
+
+```text
+Total: 6
+Unique: 4
+```
+
+این تفاوت نشان می دهد که بعضی مقدارها بیشتر از یک بار تکرار شده اند.
+
+---
+
+## 12. تشخیص Duplicateها
+
+از همین تکنیک می توانیم برای تشخیص وجود Duplicate در یک List استفاده کنیم.
+
+```python
+numbers = [1, 2, 3, 4]
+
+if len(numbers) == len(set(numbers)):
+    print("No duplicates")
+else:
+    print("Duplicates exist")
+```
+
+خروجی:
+
+```text
+No duplicates
+```
+
+حالا:
+
+```python
+numbers = [1, 2, 2, 3, 4]
+
+if len(numbers) == len(set(numbers)):
+    print("No duplicates")
+else:
+    print("Duplicates exist")
+```
+
+خروجی:
+
+```text
+Duplicates exist
+```
+
+چرا؟
+
+چون:
+
+```text
+len(numbers)
+→ 5
+
+len(set(numbers))
+→ 4
+```
+
+طول ها متفاوت هستند، پس حداقل یک Duplicate وجود داشته است.
+
+---
+
+## 13. شمارش عناصر در Setهای دارای Typeهای مختلف
+
+یک Set می تواند شامل Typeهای مختلف Hashable باشد:
+
+```python
+data = {
+    1,
+    "Python",
+    3.14,
+    (10, 20)
+}
+
+print(len(data))
+```
+
+خروجی:
+
+```text
+4
+```
+
+هر مورد یک Element محسوب می شود:
+
+```text
+1
+"Python"
+3.14
+(10, 20)
+```
+
+محتوای Tuple به صورت جداگانه شمارش نمی شود.
+
+مثلا:
+
+```python
+data = {(10, 20)}
+
+print(len(data))
+```
+
+خروجی:
+
+```text
+1
+```
+
+است.
+
+چون فقط یک Tuple به عنوان یک Element در Set داریم.
+
+---
+
+## 14. `len()` تعداد کاراکترهای داخل String را نمی شمارد
+
+این نکته نیز مهم است.
+
+مثلا:
+
+```python
+languages = {"Python", "JavaScript"}
+
+print(len(languages))
+```
+
+نتیجه:
+
+```text
+2
+```
+
+است.
+
+`len()` تعداد تمام کاراکترهای داخل Stringها را نمی شمارد.
+
+اگر بخواهیم طول خود String را حساب کنیم:
+
+```python
+language = "Python"
+
+print(len(language))
+```
+
+خروجی:
+
+```text
+6
+```
+
+است.
+
+پس:
+
+```text
+len(Set)
+→ تعداد عناصر Set
+
+len(String)
+→ تعداد کاراکترها
+```
+
+یک تابع می تواند با توجه به Type Object، معنی متفاوتی داشته باشد.
+
+---
+
+## 15. ترکیب `len()` و `in`
+
+می توانیم مفاهیمی که تا اینجا یاد گرفته ایم را با هم ترکیب کنیم.
+
+```python
+students = {"Ali", "Sara", "Reza"}
+
+if "Ali" in students and len(students) >= 3:
+    print("Ali is registered and there are enough students")
+```
+
+اینجا:
+
+* `in` وجود Element را بررسی می کند.
+* `len()` تعداد عناصر را بررسی می کند.
+* `and` دو شرط را با هم ترکیب می کند.
+
+این یک قدم مهم برای نوشتن برنامه های واقعی تر است.
+
+---
+
+## 16. ترکیب `len()` و `not in`
+
+می توانیم `len()` را با `not in` نیز ترکیب کنیم.
+
+```python
+students = {"Ali", "Sara", "Reza"}
+
+if "Mina" not in students and len(students) < 5:
+    print("Mina can be added")
+```
+
+سپس:
+
+```python
+students.add("Mina")
+```
+
+این مثال Membership Check، Counting و Modification را با هم ترکیب می کند.
+
+---
+
+## 17. محدودیت مهم: `len()` نمی گوید چه Elementهایی وجود دارند
+
+مثلا:
+
+```python
+numbers = {10, 20, 30}
+
+print(len(numbers))
+```
+
+نتیجه:
+
+```text
+3
+```
+
+است.
+
+اما `len()` به ما نمی گوید این سه Element دقیقا چه هستند.
+
+برای این کار باید از مواردی مثل این ها استفاده کنیم:
+
+* Iteration
+* Membership Check
+* چاپ کردن Set
+* تبدیل Set به Data Structure دیگر در صورت نیاز
+
+در پارت های بعدی Iteration روی Setها را یاد می گیریم.
+
+---
+
+## اشتباهات رایج مبتدی ها
+
+### اشتباه ۱ — تصور کردن اینکه `len()` Duplicateها را می شمارد
+
+```python
+numbers = {1, 2, 2, 3}
+
+print(len(numbers))
+```
+
+نتیجه:
+
+```text
+3
+```
+
+است، نه `4`.
+
+---
+
+### اشتباه ۲ — استفاده از `len()` برای Membership Check
+
+این کد اشتباه است:
+
+```python
+if len(numbers) == 3:
+    print("3 exists")
+```
+
+این فقط بررسی می کند که Set دقیقا سه Element دارد.
+
+بررسی نمی کند که مقدار `3` داخل Set وجود دارد یا نه.
+
+برای این کار باید بنویسیم:
+
+```python
+if 3 in numbers:
+    print("3 exists")
+```
+
+---
+
+### اشتباه ۳ — اشتباه گرفتن Empty Set و Empty Dictionary
+
+به خاطر داشته باش:
+
+```python
+set()
+```
+
+یک Empty Set می سازد.
+
+اما:
+
+```python
+{}
+```
+
+یک Empty Dictionary می سازد.
+
+این تفاوت در ادامه و هنگام کار با Data Structureهای مختلف Python بسیار مهم خواهد بود.
+
+---
+
+## نکات مهم
+
+بعد از این پارت باید این موارد را بلد باشی:
+
+1. `len(set_name)` تعداد عناصر Unique داخل Set را بر می گرداند.
+2. Duplicateها باعث افزایش طول Set نمی شوند.
+3. Empty Set دارای طول `0` است.
+4. می توان Set غیر خالی را مستقیما با `if set_name` بررسی کرد.
+5. با `not set_name` می توان Empty بودن Set را بررسی کرد.
+6. `len(set)` و `len(list)` وقتی Duplicate وجود دارد می توانند نتایج متفاوتی داشته باشند.
+7. `len(set(list))` یک الگوی مفید برای شمارش مقدارهای Unique است.
+8. مقایسه `len(list)` و `len(set(list))` می تواند برای تشخیص Duplicateها استفاده شود.
+9. `len()` تعداد عناصر Set را می شمارد، نه تعداد کاراکترهای Stringهای داخل آن را.
+10. می توان `len()` را با `in`، `not in`، `and` و شرط های دیگر ترکیب کرد.
+
+---
+
+## تمرین ها
+
+### سوال ۱
+
+این کد چه چیزی چاپ می کند؟
+
+```python
+numbers = {1, 2, 2, 3, 3, 3, 4}
+
+print(len(numbers))
+```
+
+توضیح بده چرا.
+
+---
+
+### سوال ۲
+
+برنامه ای بنویس که List زیر را داشته باشد:
+
+```python
+numbers = [1, 2, 2, 3, 4, 4, 5, 5, 5]
+```
+
+و خروجی زیر را چاپ کند:
+
+```text
+Total: ...
+Unique: ...
+```
+
+برای این کار از `len()` و `set()` استفاده کن.
+
+---
+
+### سوال ۳
+
+تفاوت این دو شرط چیست؟
+
+```python
+if len(numbers) == 0:
+```
+
+و:
+
+```python
+if not numbers:
+```
+
+وقتی `numbers` یک Set باشد، آیا هر دو یک چیز را بررسی می کنند؟
+
+---
+
+## سوال جامع Setها
+
+برنامه ای بنویس که با این Set شروع شود:
+
+```python
+students = {"Ali", "Sara", "Reza"}
+```
+
+سپس:
+
+1. تعداد دانش آموزان را با `len()` چاپ کن.
+2. از کاربر نام یک دانش آموز جدید را دریافت کن.
+3. با استفاده از `in` بررسی کن که آیا این دانش آموز از قبل در Set وجود دارد یا نه.
+4. اگر وجود نداشت، با `add()` او را به Set اضافه کن.
+5. تعداد جدید دانش آموزان Unique را چاپ کن.
+6. از کاربر نام دانش آموزی را که باید حذف شود دریافت کن.
+7. اگر دانش آموز وجود داشت، او را حذف کن.
+8. Set نهایی و طول آن را چاپ کن.
+9. اگر Set خالی شد، با `if not students` آن را تشخیص بده.
+
+در این سوال باید تمام مفاهیم یاد گرفته شده تا اینجا را با هم ترکیب کنی:
+
+**Creating Sets → Adding Elements → Removing Elements → `in` → `not in` → `len()` → Empty Set Checks → Boolean Conditions**
+
+---
+

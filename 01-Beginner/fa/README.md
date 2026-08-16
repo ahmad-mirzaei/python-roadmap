@@ -5278,3 +5278,1132 @@ scores = {
 
 ---
 
+# مرور نهایی: Dictionaries
+
+این بخش قرار نیست دوباره تمام متدهای Dictionary را به شکل جداگانه تکرار کند.
+
+هدف این مرور، ساختن یک **مدل ذهنی کامل از Dictionary** است؛ مدلی که بتوانید هنگام مواجه شدن با یک مسئله جدید، بدون حفظ کردن Syntaxهای پراکنده، تصمیم درست بگیرید.
+
+---
+
+## ۱. ایده اصلی Dictionary
+
+Dictionary داده ها را به شکل رابطه بین **Key** و **Value** نگه می دارد:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+```
+
+مدل ذهنی اصلی:
+
+```text
+"name" → "Ali"
+"age"  → 20
+"city" → "Baku"
+```
+
+بنابراین Dictionary زمانی مناسب است که برنامه بخواهد به این سؤال پاسخ دهد:
+
+> «با داشتن این شناسه، چه اطلاعاتی متعلق به آن است؟»
+
+مثلاً:
+
+```python
+student["age"]
+```
+
+به این معنا نیست که:
+
+> «عنصر دوم را بده.»
+
+بلکه یعنی:
+
+> «مقدار مربوط به Keyای به نام `age` را بده.»
+
+این تفاوت یکی از بنیادی ترین مفاهیم Dictionary است.
+
+---
+
+# ۲. Dictionary در برابر List
+
+این دو ساختار را مقایسه کنید:
+
+```python
+students = ["Ali", "Sara", "Reza"]
+```
+
+و:
+
+```python
+students = {
+    "first": "Ali",
+    "second": "Sara",
+    "third": "Reza"
+}
+```
+
+List به طور طبیعی با Position کار می کند:
+
+```python
+students[0]
+```
+
+اما Dictionary با Meaning یا Key کار می کند:
+
+```python
+students["first"]
+```
+
+پس تفاوت عمیق این نیست که:
+
+> List با عدد کار می کند و Dictionary با String.
+
+بلکه:
+
+* List → **Position-oriented**
+* Dictionary → **Key-oriented**
+
+Key به داده یک معنای مشخص می دهد.
+
+---
+
+# ۳. ساخت Dictionary
+
+Dictionary را می توان با `{}` ساخت:
+
+```python
+person = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+Dictionary خالی:
+
+```python
+person = {}
+```
+
+و سپس می توان داده به آن اضافه کرد:
+
+```python
+person["name"] = "Ali"
+person["age"] = 20
+```
+
+همچنین `dict()` وجود دارد:
+
+```python
+person = dict(name="Ali", age=20)
+```
+
+تمام این روش ها در نهایت یک نوع داده ایجاد می کنند:
+
+```python
+type(person)
+```
+
+```text
+<class 'dict'>
+```
+
+---
+
+# ۴. Key و Value نقش یکسانی ندارند
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+product = {
+    "name": "Laptop",
+    "price": 1200,
+    "stock": 15
+}
+```
+
+در اینجا:
+
+```text
+Keys:
+"name"
+"price"
+"stock"
+
+Values:
+"Laptop"
+1200
+15
+```
+
+Key مشخص می کند اطلاعات مربوط به چه چیزی است.
+
+Value خود اطلاعات است.
+
+به همین دلیل Keyها محدودیت های متفاوتی نسبت به Valueها دارند.
+
+Key باید **Hashable** باشد، در حالی که Value چنین محدودیتی ندارد.
+
+مثلاً این کاملاً معتبر است:
+
+```python
+data = {
+    "numbers": [1, 2, 3],
+    "settings": {"theme": "dark"},
+    "tags": {"python", "programming"}
+}
+```
+
+اما ساختارهای Mutable مانند List و Set را نمی توان معمولاً به عنوان Key استفاده کرد.
+
+---
+
+# ۵. دسترسی به داده
+
+مستقیم ترین روش:
+
+```python
+student["name"]
+```
+
+اگر Key وجود نداشته باشد:
+
+```python
+student["email"]
+```
+
+Python خطای:
+
+```text
+KeyError
+```
+
+می دهد.
+
+اگر احتمال می دهیم Key وجود نداشته باشد، `.get()` مناسب تر است:
+
+```python
+student.get("email")
+```
+
+که:
+
+```text
+None
+```
+
+برمی گرداند.
+
+می توانیم مقدار پیش فرض نیز تعیین کنیم:
+
+```python
+student.get("email", "Not provided")
+```
+
+نتیجه:
+
+```text
+Not provided
+```
+
+تفاوت مفهومی مهم:
+
+```text
+dictionary[key]
+```
+
+یعنی:
+
+> انتظار داریم این Key وجود داشته باشد.
+
+اما:
+
+```text
+dictionary.get(key)
+```
+
+یعنی:
+
+> ممکن است این Key وجود داشته باشد یا نداشته باشد.
+
+---
+
+# ۶. اضافه کردن و به روزرسانی
+
+این دستور:
+
+```python
+student["age"] = 21
+```
+
+دو رفتار ممکن دارد.
+
+اگر `"age"` از قبل وجود داشته باشد، مقدار آن تغییر می کند.
+
+اگر وجود نداشته باشد، یک Entry جدید ساخته می شود.
+
+پس:
+
+```python
+dictionary[key] = value
+```
+
+می تواند هم به معنای:
+
+```text
+Add
+```
+
+و هم:
+
+```text
+Update
+```
+
+باشد.
+
+تشخیص این دو رفتار بر اساس وجود یا عدم وجود Key انجام می شود.
+
+---
+
+# ۷. حذف داده
+
+چند روش مهم برای حذف وجود دارد:
+
+```python
+del student["age"]
+```
+
+یک Key مشخص را حذف می کند.
+
+```python
+student.pop("age")
+```
+
+Key را حذف می کند و Value آن را نیز برمی گرداند.
+
+```python
+student.clear()
+```
+
+تمام Entryها را حذف می کند.
+
+انتخاب روش به هدف برنامه بستگی دارد.
+
+اگر Value حذف شده را لازم داریم:
+
+```python
+age = student.pop("age")
+```
+
+از `del` مناسب تر است.
+
+---
+
+# ۸. بررسی Membership
+
+وقتی می نویسیم:
+
+```python
+"name" in student
+```
+
+Python بررسی می کند که `"name"` یک **Key** در Dictionary هست یا نه.
+
+این نکته بسیار مهم است:
+
+```python
+20 in student
+```
+
+معمولاً نمی پرسد که آیا `20` یکی از Valueهاست.
+
+برای Valueها:
+
+```python
+20 in student.values()
+```
+
+و برای Pairهای کامل:
+
+```python
+("age", 20) in student.items()
+```
+
+بنابراین Membership به این بستگی دارد که **کدام View از Dictionary** را بررسی می کنیم.
+
+---
+
+# ۹. طول Dictionary
+
+```python
+len(student)
+```
+
+تعداد Key-Value Pairها را برمی گرداند.
+
+برای:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+```
+
+نتیجه:
+
+```text
+3
+```
+
+این دستور تعداد Characterهای String یا تعداد Elementهای ساختارهای Nested را نمی شمارد.
+
+تعداد Entryهای سطح اصلی Dictionary را برمی گرداند.
+
+---
+
+# ۱۰. پیمایش Dictionary
+
+ساده ترین Loop:
+
+```python
+for key in student:
+    print(key)
+```
+
+روی Keyها Iteration می کند.
+
+برای Valueها:
+
+```python
+for value in student.values():
+    print(value)
+```
+
+برای هر دو:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+این حالت بسیار مهم است، چون دقیقاً با ساختار اصلی Dictionary هماهنگ است:
+
+```text
+key → value
+```
+
+---
+
+# ۱۱. Keys، Values و Items
+
+سه View اصلی Dictionary:
+
+```python
+student.keys()
+student.values()
+student.items()
+```
+
+سه دیدگاه متفاوت نسبت به یک Dictionary هستند:
+
+```text
+Dictionary
+   │
+   ├── keys()   → Keyها
+   │
+   ├── values() → Valueها
+   │
+   └── items()  → Key-Value Pairها
+```
+
+این Viewها زمانی مهم می شوند که فقط بخشی از اطلاعات Dictionary را نیاز داشته باشیم.
+
+---
+
+# ۱۲. ترکیب و Update کردن Dictionaryها
+
+فرض کنید:
+
+```python
+a = {
+    "name": "Ali",
+    "age": 20
+}
+
+b = {
+    "city": "Baku",
+    "age": 21
+}
+```
+
+می توانیم:
+
+```python
+a.update(b)
+```
+
+را اجرا کنیم.
+
+نتیجه:
+
+```python
+{
+    "name": "Ali",
+    "age": 21,
+    "city": "Baku"
+}
+```
+
+دقت کنید که `"age"` تغییر کرد.
+
+وقتی دو Dictionary یک Key مشترک دارند، Value جدید جای Value قبلی را می گیرد.
+
+این یک قانون مهم هنگام Merge کردن Dictionaryهاست.
+
+---
+
+# ۱۳. ترکیب Dictionaryها با `|`
+
+در نسخه های جدید Python می توان از Union Operator استفاده کرد:
+
+```python
+a = {"name": "Ali"}
+b = {"age": 20}
+
+result = a | b
+```
+
+نتیجه:
+
+```python
+{
+    "name": "Ali",
+    "age": 20
+}
+```
+
+تفاوت مهم با `update()`:
+
+```python
+a.update(b)
+```
+
+خود `a` را تغییر می دهد.
+
+اما:
+
+```python
+result = a | b
+```
+
+یک Dictionary جدید ایجاد می کند.
+
+---
+
+# ۱۴. Nested Dictionaries
+
+Dictionary می تواند Valueای داشته باشد که خودش یک Dictionary است:
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "city": "Baku"
+    },
+    "sara": {
+        "age": 22,
+        "city": "Ganja"
+    }
+}
+```
+
+در اینجا دسترسی مرحله ای است:
+
+```python
+students["ali"]["age"]
+```
+
+ابتدا:
+
+```python
+students["ali"]
+```
+
+یک Dictionary داخلی برمی گرداند.
+
+سپس:
+
+```python
+["age"]
+```
+
+داده داخل آن Dictionary را انتخاب می کند.
+
+مدل ذهنی:
+
+```text
+students
+   ↓
+"ali"
+   ↓
+Dictionary داخلی
+   ↓
+"age"
+   ↓
+20
+```
+
+این ساختار برای مدل کردن داده های واقعی و ساختاریافته بسیار قدرتمند است.
+
+---
+
+# ۱۵. Copy کردن Dictionary
+
+این قسمت یکی از منابع رایج خطاست.
+
+فرض کنید:
+
+```python
+original = {
+    "numbers": [1, 2, 3]
+}
+
+copy = original.copy()
+```
+
+Dictionary بیرونی Copy شده است، اما List داخلی همچنان Shared است.
+
+بنابراین:
+
+```python
+copy["numbers"].append(4)
+```
+
+می تواند روی:
+
+```python
+original["numbers"]
+```
+
+نیز اثر بگذارد.
+
+اگر ساختار Nested کاملاً مستقل می خواهیم:
+
+```python
+from copy import deepcopy
+
+copy = deepcopy(original)
+```
+
+تفاوت اصلی:
+
+```text
+copy()
+```
+
+→ Shallow Copy
+
+```text
+deepcopy()
+```
+
+→ Deep Copy
+
+---
+
+# ۱۶. تبدیل Dictionary
+
+Dictionary را می توان به Representationهای مختلف تبدیل کرد.
+
+Keyها:
+
+```python
+list(data.keys())
+```
+
+Valueها:
+
+```python
+list(data.values())
+```
+
+Items:
+
+```python
+list(data.items())
+```
+
+و Listای از Pairها می تواند دوباره Dictionary شود:
+
+```python
+pairs = [
+    ("name", "Ali"),
+    ("age", 20)
+]
+
+data = dict(pairs)
+```
+
+این تبدیل ها به ما اجازه می دهند Representation داده را با عملیات مورد نظر هماهنگ کنیم.
+
+مثلاً:
+
+```text
+Dictionary → List of pairs → Sorting
+```
+
+در حالی که:
+
+```text
+List of pairs → Dictionary → Key-based lookup
+```
+
+---
+
+# ۱۷. Dictionary و JSON
+
+Dictionary یک Object در Python است.
+
+JSON یک Data Format برای تبادل داده است.
+
+این دو مرتبط هستند اما یکی نیستند.
+
+Python Dictionary → JSON:
+
+```python
+import json
+
+json_data = json.dumps(data)
+```
+
+JSON → Python Dictionary:
+
+```python
+data = json.loads(json_data)
+```
+
+این مفهوم در برنامه های واقعی بسیار مهم است، چون APIها معمولاً داده های ساختاریافته را با JSON منتقل می کنند.
+
+---
+
+# ۱۸. مهم ترین سؤال ها هنگام کار با Dictionary
+
+وقتی با یک Dictionary مواجه می شوید، از خودتان بپرسید:
+
+### Key چه چیزی را نمایندگی می کند؟
+
+مثلاً:
+
+```python
+users["ali"]
+```
+
+آیا `"ali"` یک:
+
+* ID است؟
+* Username است؟
+* Category است؟
+* Database Identifier است؟
+
+وقتی معنای Key مشخص باشد، ساختار راحت تر قابل درک است.
+
+### Value چه چیزی را نمایش می دهد؟
+
+آیا:
+
+* Number است؟
+* String است؟
+* List است؟
+* Dictionary دیگری است؟
+* Object است؟
+
+### آیا ممکن است Key وجود نداشته باشد؟
+
+اگر بله، ممکن است:
+
+```python
+.get()
+```
+
+یا Membership Check مناسب باشد.
+
+### آیا Keyها، Valueها یا هر دو را نیاز داریم؟
+
+انتخاب کنید:
+
+```python
+.keys()
+.values()
+.items()
+```
+
+### آیا Dictionary اصلی را تغییر می دهیم؟
+
+این موضوع هنگام انتخاب بین:
+
+```python
+update()
+```
+
+و:
+
+```python
+|
+```
+
+مهم است.
+
+### آیا داده Nested است؟
+
+اگر بله، باید بررسی کنیم آیا Shallow Copy کافی است یا به Deep Copy نیاز داریم.
+
+---
+
+# ۱۹. الگوی حل مسئله با Dictionary
+
+بخش بزرگی از مسائل Dictionary را می توان با این فرآیند حل کرد:
+
+```text
+۱. مشخص کن چه چیزی داده را به صورت Unique شناسایی می کند.
+                    ↓
+۲. آن را به عنوان Key انتخاب کن.
+                    ↓
+۳. اطلاعات مرتبط را به عنوان Value ذخیره کن.
+                    ↓
+۴. بررسی کن آیا Key ممکن است وجود نداشته باشد.
+                    ↓
+۵. Lookup، Iteration، Update یا Removal مناسب را انتخاب کن.
+                    ↓
+۶. Representation مناسب برای عملیات بعدی را انتخاب کن.
+```
+
+مثلاً برای ذخیره Score دانش آموزان:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 78
+}
+```
+
+نام دانش آموز Identifier است.
+
+Score Value مربوط به آن Identifier است.
+
+بنابراین:
+
+```python
+scores["Sara"]
+```
+
+یک عملیات طبیعی است.
+
+---
+
+# ۲۰. Dictionary به عنوان Lookup Structure
+
+یکی از قدرتمندترین کاربردهای Dictionary، تبدیل جستجوهای تکراری به Lookup مستقیم است.
+
+فرض کنید:
+
+```python
+names = ["Ali", "Sara", "Reza"]
+scores = [85, 95, 78]
+```
+
+برای پیدا کردن Score مربوط به Sara باید رابطه بین Positionهای دو List را حفظ کنیم.
+
+اما Dictionary این رابطه را مستقیم بیان می کند:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 78
+}
+```
+
+حالا:
+
+```python
+scores["Sara"]
+```
+
+مستقیماً این رابطه را بیان می کند:
+
+```text
+Sara → 95
+```
+
+این دلیل عمیق اهمیت Dictionary است.
+
+Dictionary فقط داده ذخیره نمی کند.
+
+بلکه **رابطه بین Identifier و Information** را مدل می کند.
+
+---
+
+# ۲۱. Dictionary به عنوان ابزار Data Modeling
+
+Dictionary می تواند یک مفهوم واقعی را مدل کند:
+
+```python
+user = {
+    "username": "ali",
+    "age": 20,
+    "active": True
+}
+```
+
+یک Product:
+
+```python
+product = {
+    "name": "Laptop",
+    "price": 1200,
+    "stock": 15
+}
+```
+
+یک Configuration:
+
+```python
+config = {
+    "debug": True,
+    "port": 8000,
+    "host": "localhost"
+}
+```
+
+یک رابطه:
+
+```python
+grades = {
+    "math": 90,
+    "python": 95,
+    "english": 82
+}
+```
+
+پس یادگیری Dictionary فقط یادگیری Syntax نیست.
+
+این بخش در واقع مقدمه ای برای **Data Modeling** نیز محسوب می شود.
+
+---
+
+# ۲۲. تصویر بزرگ تر
+
+Data Structureهای اصلی Python را می توان بر اساس مسئله ای که حل می کنند دید:
+
+| Structure  | ایده اصلی               |
+| ---------- | ----------------------- |
+| List       | مجموعه مرتب             |
+| Tuple      | مجموعه مرتب و Immutable |
+| Set        | مجموعه Unique           |
+| Dictionary | رابطه Key-Value         |
+
+مهارت اصلی حفظ کردن همه متدها نیست.
+
+سؤال مهم این است:
+
+> داده من چه رابطه ای دارد و کدام Structure این رابطه را طبیعی تر نمایش می دهد؟
+
+اگر جواب این باشد:
+
+> «می خواهم اطلاعات را با یک Identifier پیدا کنم.»
+
+Dictionary معمولاً انتخاب طبیعی است.
+
+---
+
+# مدل ذهنی نهایی
+
+Dictionary را مانند یک سیستم از روابط دارای Label در نظر بگیرید:
+
+```text
+                 Dictionary
+                     │
+          ┌──────────┼──────────┐
+          ↓          ↓          ↓
+         Key        Key        Key
+          ↓          ↓          ↓
+       Value      Value      Value
+```
+
+حالا این مدل را به عملیات مختلف وصل کنید:
+
+```text
+Create
+  ↓
+Access
+  ↓
+Add / Update
+  ↓
+Check
+  ↓
+Iterate
+  ↓
+Remove
+  ↓
+Combine
+  ↓
+Nest
+  ↓
+Copy
+  ↓
+Convert
+```
+
+وقتی این مدل ذهنی را درک کنید، متدهای مختلف دیگر دستورات جدا از هم به نظر نمی رسند.
+
+همه آن ها عملیات متفاوتی روی یک ایده واحد هستند:
+
+> **Dictionary Keyها را به Valueها متصل می کند و به برنامه اجازه می دهد داده های مرتبط را به شکلی معنادار سازمان دهی، پیدا، تغییر و تبدیل کند.**
+
+---
+
+# سوالات مرور نهایی
+
+## سوال ۱
+
+تفاوت بنیادی دسترسی به یک List و یک Dictionary چیست؟
+
+## سوال ۲
+
+چرا:
+
+```python
+data[0]
+```
+
+لزوماً به معنی اولین Element یک Dictionary نیست؟
+
+## سوال ۳
+
+تفاوت:
+
+```python
+data[key]
+```
+
+و:
+
+```python
+data.get(key)
+```
+
+چیست؟
+
+## سوال ۴
+
+اگر مقداری را به Keyای که از قبل وجود دارد Assign کنیم چه اتفاقی می افتد؟
+
+## سوال ۵
+
+عبارت:
+
+```python
+key in data
+```
+
+دقیقاً چه چیزی را بررسی می کند؟
+
+## سوال ۶
+
+تفاوت این سه چیست؟
+
+```python
+data.keys()
+data.values()
+data.items()
+```
+
+## سوال ۷
+
+چه زمانی Dictionary را به جای List انتخاب می کنیم؟
+
+## سوال ۸
+
+تفاوت:
+
+```python
+data.update(other)
+```
+
+و:
+
+```python
+result = data | other
+```
+
+چیست؟
+
+## سوال ۹
+
+چرا وقتی Dictionary شامل Mutable Objectهای Nested است، `copy()` ممکن است کافی نباشد؟
+
+## سوال ۱۰
+
+تفاوت Shallow Copy و Deep Copy چیست؟
+
+## سوال ۱۱
+
+هنگام تبدیل Valueهای Dictionary به Set چه اتفاقی برای Valueهای تکراری می افتد؟
+
+## سوال ۱۲
+
+چرا Listای از `(key, value)` Pairها می تواند به Dictionary تبدیل شود؟
+
+---
+
+# چالش جامع
+
+داده زیر را در نظر بگیرید:
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "scores": [85, 90, 95]
+    },
+    "sara": {
+        "age": 22,
+        "scores": [92, 88, 96]
+    }
+}
+```
+
+برنامه ای بنویسید که:
+
+1. سن Ali را استخراج کند.
+2. یک دانش آموز جدید اضافه کند.
+3. سن Sara را Update کند.
+4. یک Score جدید به Ali اضافه کند.
+5. بررسی کند آیا `"reza"` وجود دارد یا نه.
+6. روی تمام دانش آموزان Iteration انجام دهد.
+7. نام و Scoreهای هر دانش آموز را چاپ کند.
+8. یک Shallow Copy از Dictionary ایجاد کند.
+9. نشان دهد چرا تغییر یک List داخلی می تواند روی Dictionary اصلی اثر بگذارد.
+10. یک Deep Copy ایجاد کند.
+11. Entryهای سطح اصلی را به Listای از Tupleها تبدیل کند.
+12. آن List را دوباره به Dictionary تبدیل کند.
+13. Dictionary را به JSON تبدیل کند.
+14. JSON را دوباره به Python Dictionary تبدیل کند.
+
+هدف این تمرین فقط اجرای عملیات نیست.
+
+باید بتوانید توضیح دهید:
+
+* چرا Dictionary برای این داده مناسب است؛
+* هر عملیات چه تغییری در Data Model ایجاد می کند؛
+* و در چه شرایطی Copy یا Conversion می تواند رفتار یا ویژگی های داده را تغییر دهد.
+
+---
+

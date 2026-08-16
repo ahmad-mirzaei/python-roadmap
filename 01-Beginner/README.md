@@ -5244,3 +5244,1212 @@ The goal is to observe not only the syntax of each conversion, but also how the 
 
 ---
 
+# Final Review: Dictionaries
+
+This review is not meant to repeat every Dictionary method one more time.
+
+The goal is to connect the topics together and build a **mental model of Dictionaries** that you can use when solving new problems.
+
+---
+
+## 1. The Core Idea of a Dictionary
+
+A Dictionary stores data as a relationship between a **key** and a **value**:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+```
+
+The important mental model is:
+
+```text
+"name" → "Ali"
+"age"  → 20
+"city" → "Baku"
+```
+
+A Dictionary is therefore useful when the program needs to answer questions such as:
+
+> "Given this identifier, what information belongs to it?"
+
+For example:
+
+```python
+student["age"]
+```
+
+does not mean:
+
+> "Give me the second element."
+
+It means:
+
+> "Give me the value associated with the key `age`."
+
+This distinction is fundamental.
+
+---
+
+# 2. Dictionary vs List
+
+Consider:
+
+```python
+students = ["Ali", "Sara", "Reza"]
+```
+
+and:
+
+```python
+students = {
+    "first": "Ali",
+    "second": "Sara",
+    "third": "Reza"
+}
+```
+
+The List is naturally accessed by position:
+
+```python
+students[0]
+```
+
+The Dictionary is naturally accessed by meaning:
+
+```python
+students["first"]
+```
+
+So the important difference is not simply:
+
+> List uses numbers, Dictionary uses strings.
+
+The deeper difference is:
+
+* List → **position-oriented**
+* Dictionary → **key-oriented**
+
+A key gives the data semantic meaning.
+
+---
+
+# 3. Creating Dictionaries
+
+A Dictionary can be created with `{}`:
+
+```python
+person = {
+    "name": "Ali",
+    "age": 20
+}
+```
+
+An empty Dictionary:
+
+```python
+person = {}
+```
+
+can later receive data:
+
+```python
+person["name"] = "Ali"
+person["age"] = 20
+```
+
+Python also provides `dict()`:
+
+```python
+person = dict(name="Ali", age=20)
+```
+
+The important idea is that different creation techniques ultimately produce the same type:
+
+```python
+type(person)
+```
+
+```text
+<class 'dict'>
+```
+
+---
+
+# 4. Keys and Values Have Different Roles
+
+Consider:
+
+```python
+product = {
+    "name": "Laptop",
+    "price": 1200,
+    "stock": 15
+}
+```
+
+Here:
+
+```text
+Keys:
+"name"
+"price"
+"stock"
+
+Values:
+"Laptop"
+1200
+15
+```
+
+The key identifies the information.
+
+The value is the information itself.
+
+This is why keys must satisfy different requirements from values.
+
+A Dictionary's keys must be **hashable**, while values do not have this restriction.
+
+For example, these can be values:
+
+```python
+data = {
+    "numbers": [1, 2, 3],
+    "settings": {"theme": "dark"},
+    "tags": {"python", "programming"}
+}
+```
+
+But mutable structures such as Lists and Sets cannot normally be Dictionary keys.
+
+---
+
+# 5. Accessing Data
+
+The most direct form is:
+
+```python
+student["name"]
+```
+
+If the key does not exist:
+
+```python
+student["email"]
+```
+
+Python raises:
+
+```text
+KeyError
+```
+
+When the key may not exist, `.get()` is often safer:
+
+```python
+student.get("email")
+```
+
+which returns:
+
+```text
+None
+```
+
+We can also provide a default:
+
+```python
+student.get("email", "Not provided")
+```
+
+This gives:
+
+```text
+Not provided
+```
+
+The important conceptual difference is:
+
+```text
+dictionary[key]
+```
+
+means:
+
+> This key is expected to exist.
+
+while:
+
+```text
+dictionary.get(key)
+```
+
+means:
+
+> This key may or may not exist.
+
+---
+
+# 6. Adding and Updating Data
+
+These two operations use the same syntax:
+
+```python
+student["age"] = 21
+```
+
+If `"age"` already exists, its value is updated.
+
+If it does not exist, a new key-value pair is created.
+
+Therefore:
+
+```python
+dictionary[key] = value
+```
+
+can mean either:
+
+```text
+Add
+```
+
+or:
+
+```text
+Update
+```
+
+depending on whether the key already exists.
+
+This is one of the most important behaviors to remember.
+
+---
+
+# 7. Removing Data
+
+Python provides several ways to remove Dictionary data.
+
+```python
+del student["age"]
+```
+
+removes a specific key.
+
+```python
+student.pop("age")
+```
+
+removes the key and returns its value.
+
+```python
+student.clear()
+```
+
+removes all entries.
+
+The choice depends on what the program needs.
+
+If the removed value is needed:
+
+```python
+age = student.pop("age")
+```
+
+is more useful than `del`.
+
+---
+
+# 8. Checking Membership
+
+When we write:
+
+```python
+"name" in student
+```
+
+Python checks whether `"name"` is a **key** in the Dictionary.
+
+This is important:
+
+```python
+20 in student
+```
+
+does not normally ask whether `20` is one of the values.
+
+To search values:
+
+```python
+20 in student.values()
+```
+
+To search key-value pairs:
+
+```python
+("age", 20) in student.items()
+```
+
+Therefore, membership testing depends on **which view of the Dictionary we are searching**.
+
+---
+
+# 9. Dictionary Length
+
+```python
+len(student)
+```
+
+returns the number of key-value pairs.
+
+For:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+```
+
+we get:
+
+```text
+3
+```
+
+It does not count individual characters inside strings or individual elements inside nested Lists.
+
+It counts the number of top-level entries.
+
+---
+
+# 10. Iterating Through a Dictionary
+
+The simplest loop:
+
+```python
+for key in student:
+    print(key)
+```
+
+iterates over keys.
+
+To get values:
+
+```python
+for value in student.values():
+    print(value)
+```
+
+To get both:
+
+```python
+for key, value in student.items():
+    print(key, value)
+```
+
+This last form is particularly important because it matches the fundamental structure:
+
+```text
+key → value
+```
+
+---
+
+# 11. Keys, Values, and Items
+
+The three main views are:
+
+```python
+student.keys()
+student.values()
+student.items()
+```
+
+They represent three different perspectives on the same Dictionary.
+
+```text
+Dictionary
+   │
+   ├── keys()   → keys
+   │
+   ├── values() → values
+   │
+   └── items()  → key-value pairs
+```
+
+This becomes especially useful when we need to process only one part of the data.
+
+---
+
+# 12. Combining and Updating Dictionaries
+
+Suppose:
+
+```python
+a = {
+    "name": "Ali",
+    "age": 20
+}
+
+b = {
+    "city": "Baku",
+    "age": 21
+}
+```
+
+We can update one Dictionary with another:
+
+```python
+a.update(b)
+```
+
+Now:
+
+```python
+{
+    "name": "Ali",
+    "age": 21,
+    "city": "Baku"
+}
+```
+
+Notice that `"age"` was replaced.
+
+When two Dictionaries contain the same key, the later value wins.
+
+This is a general rule worth remembering whenever Dictionaries are merged.
+
+---
+
+# 13. Combining Dictionaries with `|`
+
+Modern Python also supports Dictionary union:
+
+```python
+a = {"name": "Ali"}
+b = {"age": 20}
+
+result = a | b
+```
+
+Result:
+
+```python
+{
+    "name": "Ali",
+    "age": 20
+}
+```
+
+Unlike `.update()`, this creates a new Dictionary rather than modifying `a`.
+
+So there is an important distinction:
+
+```python
+a.update(b)
+```
+
+modifies `a`.
+
+While:
+
+```python
+result = a | b
+```
+
+creates a new result.
+
+---
+
+# 14. Nested Dictionaries
+
+A Dictionary can contain another Dictionary:
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "city": "Baku"
+    },
+    "sara": {
+        "age": 22,
+        "city": "Ganja"
+    }
+}
+```
+
+Now accessing data happens in stages:
+
+```python
+students["ali"]["age"]
+```
+
+The first lookup:
+
+```python
+students["ali"]
+```
+
+returns another Dictionary.
+
+Then:
+
+```python
+["age"]
+```
+
+accesses data inside that nested Dictionary.
+
+This gives us a powerful model:
+
+```text
+students
+   ↓
+"ali"
+   ↓
+inner Dictionary
+   ↓
+"age"
+   ↓
+20
+```
+
+Nested Dictionaries are useful for representing structured real-world data.
+
+---
+
+# 15. Copying Dictionaries
+
+This is a common source of mistakes.
+
+Consider:
+
+```python
+original = {
+    "numbers": [1, 2, 3]
+}
+
+copy = original.copy()
+```
+
+The outer Dictionary is copied, but the nested List is still shared.
+
+Therefore:
+
+```python
+copy["numbers"].append(4)
+```
+
+also affects:
+
+```python
+original["numbers"]
+```
+
+For a completely independent nested structure, `deepcopy()` is required:
+
+```python
+from copy import deepcopy
+
+copy = deepcopy(original)
+```
+
+The important distinction is:
+
+```text
+copy()
+```
+
+→ shallow copy
+
+```text
+deepcopy()
+```
+
+→ recursive independent copy
+
+---
+
+# 16. Converting Dictionaries
+
+A Dictionary can be viewed in different forms.
+
+Keys:
+
+```python
+list(data.keys())
+```
+
+Values:
+
+```python
+list(data.values())
+```
+
+Items:
+
+```python
+list(data.items())
+```
+
+A List of pairs can become a Dictionary:
+
+```python
+pairs = [
+    ("name", "Ali"),
+    ("age", 20)
+]
+
+data = dict(pairs)
+```
+
+This is useful because different operations favor different representations.
+
+For example:
+
+```text
+Dictionary → List of pairs → sorting
+```
+
+while:
+
+```text
+List of pairs → Dictionary → key-based lookup
+```
+
+---
+
+# 17. Dictionary and JSON
+
+A Dictionary is a Python object.
+
+JSON is a data-exchange format.
+
+They are related but not identical.
+
+Python Dictionary → JSON:
+
+```python
+import json
+
+json_data = json.dumps(data)
+```
+
+JSON → Python Dictionary:
+
+```python
+data = json.loads(json_data)
+```
+
+This is extremely important in real programming because APIs frequently exchange structured data using JSON.
+
+---
+
+# 18. The Most Important Dictionary Questions
+
+When working with a Dictionary, ask yourself:
+
+### What does the key represent?
+
+For example:
+
+```python
+users["ali"]
+```
+
+Does `"ali"` represent:
+
+* an ID?
+* a username?
+* a category?
+* a database identifier?
+
+Understanding the meaning of the key makes the structure easier to reason about.
+
+### What does the value represent?
+
+Is it:
+
+* a number?
+* a string?
+* a List?
+* another Dictionary?
+* an object?
+
+### Can the key be missing?
+
+If yes, consider:
+
+```python
+.get()
+```
+
+or an explicit membership check.
+
+### Do I need keys, values, or both?
+
+Choose:
+
+```python
+.keys()
+.values()
+.items()
+```
+
+### Am I modifying the original Dictionary?
+
+This matters when using:
+
+```python
+update()
+```
+
+versus:
+
+```python
+|
+```
+
+### Is nested data involved?
+
+If yes, consider whether a shallow copy is enough.
+
+---
+
+# 19. Dictionary Problem-Solving Pattern
+
+A large number of Dictionary problems can be approached with the following process:
+
+```text
+1. Identify what uniquely identifies the data.
+             ↓
+2. Choose that information as the key.
+             ↓
+3. Store the associated information as the value.
+             ↓
+4. Decide whether the key may be missing.
+             ↓
+5. Choose lookup, iteration, update, or removal.
+             ↓
+6. Choose the appropriate representation for the next operation.
+```
+
+For example, if we are storing student scores:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 78
+}
+```
+
+The student name is the identifier.
+
+The score is the associated value.
+
+That makes:
+
+```python
+scores["Sara"]
+```
+
+a natural operation.
+
+---
+
+# 20. Common Mistakes
+
+## Mistake 1 — Confusing Keys with Positions
+
+This:
+
+```python
+student[0]
+```
+
+does not mean:
+
+> Give me the first item.
+
+It searches for a key literally equal to `0`.
+
+If `0` is not a key, Python raises `KeyError`.
+
+---
+
+## Mistake 2 — Assuming `in` Searches Values
+
+```python
+20 in student
+```
+
+checks keys.
+
+For values:
+
+```python
+20 in student.values()
+```
+
+---
+
+## Mistake 3 — Modifying a Dictionary While Iterating
+
+Code like this can cause problems:
+
+```python
+for key in student:
+    del student[key]
+```
+
+Changing the Dictionary's size during iteration is unsafe.
+
+A safer approach is to iterate over a separate collection of keys:
+
+```python
+for key in list(student):
+    del student[key]
+```
+
+The important principle is:
+
+> Do not structurally modify the collection you are currently traversing unless the operation is explicitly designed for it.
+
+---
+
+## Mistake 4 — Forgetting Shallow Copy Behavior
+
+```python
+copy = original.copy()
+```
+
+does not recursively copy nested mutable objects.
+
+This matters whenever Dictionaries contain Lists, Sets, or other mutable structures.
+
+---
+
+## Mistake 5 — Accidentally Overwriting a Key
+
+Consider:
+
+```python
+data = {
+    "score": 80
+}
+
+data["score"] = 100
+```
+
+The original `80` is replaced.
+
+Dictionary keys are unique.
+
+Assigning a value to an existing key updates that key.
+
+---
+
+# 21. Dictionary as a Lookup Structure
+
+One of the strongest uses of a Dictionary is replacing repeated searching with direct lookup.
+
+Imagine:
+
+```python
+names = ["Ali", "Sara", "Reza"]
+scores = [85, 95, 78]
+```
+
+To find Sara's score, we need to relate positions between two Lists.
+
+A Dictionary makes that relationship explicit:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 78
+}
+```
+
+Now:
+
+```python
+scores["Sara"]
+```
+
+directly represents:
+
+```text
+Sara → 95
+```
+
+This is the deeper reason Dictionaries are so useful.
+
+They do not merely store data.
+
+They encode **relationships between identifiers and information**.
+
+---
+
+# 22. Dictionary as a Data Modeling Tool
+
+A Dictionary can model real-world concepts:
+
+```python
+user = {
+    "username": "ali",
+    "age": 20,
+    "active": True
+}
+```
+
+It can represent a product:
+
+```python
+product = {
+    "name": "Laptop",
+    "price": 1200,
+    "stock": 15
+}
+```
+
+It can represent configuration:
+
+```python
+config = {
+    "debug": True,
+    "port": 8000,
+    "host": "localhost"
+}
+```
+
+It can represent relationships:
+
+```python
+grades = {
+    "math": 90,
+    "python": 95,
+    "english": 82
+}
+```
+
+So Dictionary knowledge is not only about Python syntax.
+
+It is also an introduction to **data modeling**.
+
+---
+
+# 23. The Bigger Picture
+
+By now, the main Python data structures can be understood through the kind of problem they solve:
+
+| Structure  | Main idea                     |
+| ---------- | ----------------------------- |
+| List       | Ordered collection            |
+| Tuple      | Ordered, immutable collection |
+| Set        | Unique collection             |
+| Dictionary | Key-value relationship        |
+
+The important skill is not memorizing every method.
+
+The important skill is asking:
+
+> What relationship does my data have, and which structure expresses that relationship naturally?
+
+If the answer is:
+
+> "I need to find information using an identifier."
+
+A Dictionary is often the natural choice.
+
+---
+
+# Final Mental Model
+
+Think of a Dictionary as a system of labeled relationships:
+
+```text
+                 Dictionary
+                     │
+          ┌──────────┼──────────┐
+          ↓          ↓          ↓
+        Key        Key        Key
+          ↓          ↓          ↓
+       Value      Value      Value
+```
+
+Then connect that model to the operations:
+
+```text
+Create
+  ↓
+Access
+  ↓
+Add / Update
+  ↓
+Check
+  ↓
+Iterate
+  ↓
+Remove
+  ↓
+Combine
+  ↓
+Nest
+  ↓
+Copy
+  ↓
+Convert
+```
+
+Once this model is clear, individual methods stop looking like isolated commands.
+
+They become different operations on the same underlying idea:
+
+> **A Dictionary connects keys to values and gives the program a meaningful way to organize, find, modify, and transform related data.**
+
+---
+
+# Final Review Questions
+
+## Question 1
+
+What is the fundamental difference between accessing a List and accessing a Dictionary?
+
+## Question 2
+
+Why is this:
+
+```python
+data[0]
+```
+
+not necessarily the first element of a Dictionary?
+
+## Question 3
+
+What is the difference between:
+
+```python
+data[key]
+```
+
+and:
+
+```python
+data.get(key)
+```
+
+?
+
+## Question 4
+
+What happens when we assign a value to a key that already exists?
+
+## Question 5
+
+What does:
+
+```python
+key in data
+```
+
+actually check?
+
+## Question 6
+
+What is the difference between:
+
+```python
+data.keys()
+data.values()
+data.items()
+```
+
+?
+
+## Question 7
+
+When would you choose a Dictionary instead of a List?
+
+## Question 8
+
+What is the difference between:
+
+```python
+data.update(other)
+```
+
+and:
+
+```python
+result = data | other
+```
+
+?
+
+## Question 9
+
+Why can `copy()` be insufficient when a Dictionary contains nested mutable objects?
+
+## Question 10
+
+What is the difference between a shallow copy and a deep copy?
+
+## Question 11
+
+What happens when Dictionary values are converted to a Set?
+
+## Question 12
+
+Why can a List of `(key, value)` pairs be converted into a Dictionary?
+
+---
+
+# Comprehensive Challenge
+
+Consider the following data:
+
+```python
+students = {
+    "ali": {
+        "age": 20,
+        "scores": [85, 90, 95]
+    },
+    "sara": {
+        "age": 22,
+        "scores": [92, 88, 96]
+    }
+}
+```
+
+Write a program that:
+
+1. Accesses Ali's age.
+2. Adds a new student.
+3. Updates Sara's age.
+4. Adds another score for Ali.
+5. Checks whether `"reza"` exists.
+6. Iterates through all students.
+7. Prints each student's name and scores.
+8. Creates a shallow copy of the Dictionary.
+9. Demonstrates why modifying a nested List can affect the original.
+10. Creates a deep copy.
+11. Converts the top-level items into a List of Tuples.
+12. Converts that List back into a Dictionary.
+13. Converts the Dictionary into JSON.
+14. Converts the JSON back into a Python Dictionary.
+
+The goal is not merely to complete the operations.
+
+You should be able to explain **why Dictionary is the appropriate structure, what each operation does to the data model, and where copying or conversion can change the behavior of the data.**
+
+---
+

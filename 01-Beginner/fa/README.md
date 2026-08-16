@@ -3109,3 +3109,1117 @@ students["ali"]["scores"]["python"] = 21
 
 ---
 
+# پارت ۱۲ — Copying Dictionaries
+
+## مقدمه
+
+یکی از مهم ترین مفاهیم هنگام کار با Dictionary این است که تفاوت بین **Assignment** و **Copy کردن Dictionary** را به خوبی درک کنیم.
+
+در نگاه اول ممکن است این دو کد شبیه به هم به نظر برسند:
+
+```python
+first = {"name": "Ali", "age": 20}
+
+second = first
+```
+
+و:
+
+```python
+first = {"name": "Ali", "age": 20}
+
+second = first.copy()
+```
+
+اما این دو یک رابطه کاملاً متفاوت ایجاد می کنند.
+
+این تفاوت زمانی اهمیت زیادی پیدا می کند که بخواهیم داده ها را تغییر دهیم.
+
+---
+
+## ۱. Assignment باعث ساخت Copy نمی شود
+
+فرض کنید:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+another_student = student
+```
+
+ممکن است تصور کنیم حالا دو Dictionary داریم.
+
+اما `another_student` یک Copy مستقل نیست.
+
+هر دو متغیر به **همان Object** اشاره می کنند.
+
+از نظر مفهومی:
+
+```text
+student ─────────┐
+                 ↓
+          ┌──────────────┐
+          │  Dictionary  │
+          │ name → Ali   │
+          │ age  → 20    │
+          └──────────────┘
+                 ↑
+another_student ─┘
+```
+
+فقط یک Dictionary وجود دارد.
+
+دو نام به همان Object اشاره می کنند.
+
+---
+
+## ۲. تغییر یک متغیر روی دیگری هم اثر می گذارد
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+another_student = student
+
+another_student["age"] = 21
+
+print(student)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 21}
+```
+
+ما `another_student` را تغییر دادیم، اما `student` نیز تغییر کرد.
+
+دلیل آن این است که Dictionary جدیدی ساخته نشده بود.
+
+هر دو متغیر به یک Object اشاره می کردند.
+
+---
+
+## ۳. مفهوم Object Identity
+
+Python با عملگر `is` به ما اجازه می دهد بررسی کنیم آیا دو متغیر به یک Object یکسان اشاره می کنند یا نه.
+
+```python
+student = {
+    "name": "Ali"
+}
+
+another_student = student
+
+print(student is another_student)
+```
+
+خروجی:
+
+```text
+True
+```
+
+یعنی هر دو متغیر دقیقاً به یک Object اشاره دارند.
+
+این موضوع با بررسی برابر بودن داده ها متفاوت است.
+
+---
+
+## ۴. تفاوت `==` و `is`
+
+فرض کنید:
+
+```python
+first = {"name": "Ali"}
+second = {"name": "Ali"}
+```
+
+این دو Dictionary داده یکسانی دارند.
+
+بنابراین:
+
+```python
+print(first == second)
+```
+
+نتیجه:
+
+```text
+True
+```
+
+اما:
+
+```python
+print(first is second)
+```
+
+نتیجه:
+
+```text
+False
+```
+
+تفاوت اصلی:
+
+```text
+==  → آیا مقدارهای دو Object برابر هستند؟
+
+is  → آیا دقیقاً همان Object هستند؟
+```
+
+این تفاوت هنگام کار با Objectهای Mutable مثل Dictionary و List بسیار مهم است.
+
+---
+
+## ۵. ساخت Dictionary مستقل با `copy()`
+
+اگر بخواهیم یک Dictionary جداگانه ایجاد کنیم، می توانیم از `copy()` استفاده کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+another_student = student.copy()
+```
+
+حالا دو Object جدا داریم:
+
+```text
+student
+   ↓
+Dictionary A
+
+another_student
+   ↓
+Dictionary B
+```
+
+محتوای آن ها در ابتدا یکسان است، اما خود Objectها جدا هستند.
+
+---
+
+## ۶. تغییر Dictionary کپی شده
+
+حالا:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+another_student = student.copy()
+
+another_student["age"] = 21
+```
+
+اگر هر دو را چاپ کنیم:
+
+```python
+print(student)
+print(another_student)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 20}
+{'name': 'Ali', 'age': 21}
+```
+
+Dictionary اصلی تغییر نکرده است.
+
+این هدف اصلی Copy کردن است:
+
+> ایجاد یک Dictionary جدید که حداقل در سطح بیرونی بتواند مستقل از Dictionary اصلی تغییر کند.
+
+---
+
+## ۷. بررسی Copy با `is`
+
+می توانیم این موضوع را بررسی کنیم:
+
+```python
+student = {
+    "name": "Ali"
+}
+
+another_student = student.copy()
+
+print(student == another_student)
+print(student is another_student)
+```
+
+خروجی:
+
+```text
+True
+False
+```
+
+داده ها برابر هستند.
+
+اما Objectها متفاوت هستند.
+
+این دقیقاً همان رفتاری است که معمولاً از یک Copy انتظار داریم.
+
+---
+
+## ۸. یک روش دیگر برای Copy کردن Dictionary
+
+می توانیم از Constructor به نام `dict()` نیز استفاده کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+another_student = dict(student)
+```
+
+این روش نیز یک Dictionary بیرونی جدید ایجاد می کند.
+
+مثلاً:
+
+```python
+another_student["age"] = 21
+
+print(student["age"])
+```
+
+خروجی:
+
+```text
+20
+```
+
+هم `copy()` و هم `dict()` برای ساخت یک Dictionary بیرونی جدید کاربرد دارند.
+
+---
+
+## ۹. Copy با Dictionary Comprehension
+
+یک Dictionary را می توان با Dictionary Comprehension نیز کپی کرد:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+another_student = {
+    key: value
+    for key, value in student.items()
+}
+```
+
+این روش نیز یک Dictionary بیرونی جدید می سازد.
+
+اما برای یک Copy ساده، معمولاً این روش خواناتر است:
+
+```python
+another_student = student.copy()
+```
+
+Comprehension زمانی ارزش بیشتری دارد که همزمان بخواهیم داده ها را فیلتر یا تغییر دهیم.
+
+---
+
+## ۱۰. Shallow Copy چیست؟
+
+متد `copy()` یک **Shallow Copy** ایجاد می کند.
+
+یعنی:
+
+* Dictionary بیرونی Copy می شود؛
+* Entryهای سطح اول در Dictionary جدید قرار می گیرند؛
+* اما Objectهای Mutable تو در تو ممکن است همچنان مشترک باشند.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+
+another_student = student.copy()
+```
+
+Dictionaryهای بیرونی متفاوت هستند.
+
+اما Dictionary مربوط به `"scores"` همچنان مشترک است.
+
+به صورت مفهومی:
+
+```text
+student
+   ↓
+Outer Dictionary A
+   │
+   └── scores ─────┐
+                   ↓
+              Inner Dictionary
+              math → 18
+              python → 20
+                   ↑
+   ┌── scores ─────┘
+   │
+Outer Dictionary B
+   ↑
+another_student
+```
+
+این یکی از مهم ترین مفاهیم هنگام Copy کردن داده های Nested است.
+
+---
+
+## ۱۱. مشکل Shallow Copy
+
+حالا:
+
+```python
+another_student["scores"]["python"] = 21
+```
+
+چه اتفاقی برای Dictionary اصلی می افتد؟
+
+```python
+print(student["scores"]["python"])
+```
+
+خروجی:
+
+```text
+21
+```
+
+ممکن است این رفتار عجیب به نظر برسد.
+
+ما `copy()` کردیم، پس چرا Original هم تغییر کرد؟
+
+چون `copy()` فقط **Dictionary بیرونی** را Copy کرده است.
+
+Dictionary داخلی `"scores"` کپی نشده است.
+
+هر دو Dictionary بیرونی هنوز به همان Dictionary داخلی اشاره می کنند.
+
+---
+
+## ۱۲. دقیقاً چه چیزی با `copy()` کپی می شود؟
+
+فرض کنید:
+
+```python
+student = {
+    "name": "Ali",
+    "scores": {
+        "python": 20
+    }
+}
+
+another_student = student.copy()
+```
+
+رابطه تقریباً چنین است:
+
+```text
+student ───────────────→ Outer Dictionary A
+                           │
+                           ├── name → "Ali"
+                           │
+                           └── scores ─────┐
+                                          ↓
+                                      Inner Dictionary
+                                      python → 20
+                                          ↑
+another_student ───────→ Outer Dictionary B
+                           │
+                           └── scores ─────┘
+```
+
+Objectهای بیرونی متفاوت هستند.
+
+Object داخلی مشترک است.
+
+این دقیقاً معنی Shallow Copy است.
+
+---
+
+## ۱۳. بررسی Object داخلی با `is`
+
+می توانیم این موضوع را ثابت کنیم:
+
+```python
+student = {
+    "scores": {
+        "python": 20
+    }
+}
+
+another_student = student.copy()
+
+print(student is another_student)
+print(student["scores"] is another_student["scores"])
+```
+
+خروجی:
+
+```text
+False
+True
+```
+
+نتیجه اول نشان می دهد Dictionaryهای بیرونی متفاوت هستند.
+
+نتیجه دوم نشان می دهد Dictionaryهای داخلی همان Object هستند.
+
+---
+
+## ۱۴. چرا این موضوع مهم است؟
+
+این تفاوت زمانی اهمیت پیدا می کند که Dictionary شامل Objectهای Mutable دیگری مانند این موارد باشد:
+
+* Dictionary
+* List
+* Set
+* ساختارهای Mutable دیگر
+
+مثلاً:
+
+```python
+data = {
+    "name": "Ali",
+    "skills": ["Python", "HTML"]
+}
+```
+
+اگر این Dictionary را Shallow Copy کنیم:
+
+```python
+new_data = data.copy()
+```
+
+Dictionary بیرونی جدید است، اما List مربوط به `"skills"` می تواند همچنان مشترک باشد.
+
+بنابراین:
+
+```python
+new_data["skills"].append("CSS")
+```
+
+ممکن است روی:
+
+```python
+data["skills"]
+```
+
+نیز اثر بگذارد.
+
+درک این رفتار از ایجاد بسیاری از Bugهای دشوار جلوگیری می کند.
+
+---
+
+## ۱۵. Deep Copy
+
+اگر بخواهیم یک Copy کاملاً مستقل داشته باشیم، حتی برای Objectهای تو در تو، می توانیم از **Deep Copy** استفاده کنیم.
+
+Python این قابلیت را در Module به نام `copy` ارائه می دهد:
+
+```python
+import copy
+```
+
+سپس:
+
+```python
+another_student = copy.deepcopy(student)
+```
+
+Deep Copy به صورت بازگشتی Objectهای داخلی را نیز Copy می کند.
+
+---
+
+## ۱۶. تفاوت Shallow Copy و Deep Copy
+
+فرض کنید:
+
+```python
+student = {
+    "name": "Ali",
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+```
+
+### Shallow Copy
+
+```python
+another_student = student.copy()
+```
+
+نتیجه:
+
+```text
+Outer Dictionary → کپی شده
+Inner Dictionary → مشترک
+```
+
+### Deep Copy
+
+```python
+import copy
+
+another_student = copy.deepcopy(student)
+```
+
+نتیجه:
+
+```text
+Outer Dictionary → کپی شده
+Inner Dictionary → کپی شده
+```
+
+بنابراین:
+
+```python
+another_student["scores"]["python"] = 21
+```
+
+بعد از Deep Copy، روی:
+
+```python
+student["scores"]["python"]
+```
+
+اثری ندارد.
+
+---
+
+## ۱۷. نمایش عملی `deepcopy()`
+
+```python
+import copy
+
+student = {
+    "name": "Ali",
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+
+another_student = copy.deepcopy(student)
+
+another_student["scores"]["python"] = 21
+
+print(student["scores"]["python"])
+print(another_student["scores"]["python"])
+```
+
+خروجی:
+
+```text
+20
+21
+```
+
+Dictionary داخلی کاملاً مستقل است.
+
+---
+
+## ۱۸. Deep Copy و Identity
+
+می توانیم تفاوت را با `is` بررسی کنیم:
+
+```python
+import copy
+
+student = {
+    "scores": {
+        "python": 20
+    }
+}
+
+another_student = copy.deepcopy(student)
+
+print(student is another_student)
+print(student["scores"] is another_student["scores"])
+```
+
+خروجی:
+
+```text
+False
+False
+```
+
+هم Dictionary بیرونی و هم Dictionary داخلی Objectهای جداگانه هستند.
+
+---
+
+## ۱۹. انتخاب بین Assignment، Shallow Copy و Deep Copy
+
+این سه عملیات کاربردهای متفاوتی دارند.
+
+### Assignment
+
+```python
+second = first
+```
+
+زمانی استفاده می شود که عمداً بخواهیم Variable جدید به همان Object اشاره کند.
+
+```text
+first ─────┐
+           ↓
+        Object
+           ↑
+second ────┘
+```
+
+### Shallow Copy
+
+```python
+second = first.copy()
+```
+
+زمانی مناسب است که یک Dictionary بیرونی جدید بخواهیم، اما لزوماً نیازی نداشته باشیم Objectهای Mutable داخلی نیز مستقل باشند.
+
+```text
+first  → Outer A → Inner
+second → Outer B ──↑
+```
+
+### Deep Copy
+
+```python
+second = copy.deepcopy(first)
+```
+
+زمانی استفاده می شود که کل ساختار Nested باید کاملاً مستقل باشد.
+
+```text
+first  → Outer A → Inner A
+second → Outer B → Inner B
+```
+
+---
+
+## ۲۰. Copy قبل از تغییر
+
+یکی از کاربردهای رایج Copy این است که داده اصلی را نگه داریم و یک نسخه تغییر یافته بسازیم.
+
+مثلاً:
+
+```python
+original = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+updated = original.copy()
+
+updated["age"] = 21
+```
+
+حالا دو نسخه داریم:
+
+```text
+original → اطلاعات اصلی
+
+updated  → اطلاعات تغییر یافته
+```
+
+این الگو زمانی کاربردی است که بخواهیم نسخه اصلی داده همچنان در دسترس باشد.
+
+---
+
+## ۲۱. ساخت چند Record مستقل
+
+فرض کنید می خواهیم چند Record را بر اساس یک Template ایجاد کنیم:
+
+```python
+template = {
+    "name": "",
+    "age": 0,
+    "city": ""
+}
+```
+
+می توانیم:
+
+```python
+student1 = template.copy()
+student2 = template.copy()
+```
+
+سپس:
+
+```python
+student1["name"] = "Ali"
+student2["name"] = "Sara"
+```
+
+در این حالت Dictionaryهای بیرونی مستقل هستند:
+
+```python
+print(student1)
+print(student2)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 0, 'city': ''}
+{'name': 'Sara', 'age': 0, 'city': ''}
+```
+
+این الگو برای ساخت چند Record بر اساس یک ساختار مشترک بسیار مفید است.
+
+---
+
+## ۲۲. مشکل Objectهای Mutable
+
+مفهوم عمیق تر پشت Copy کردن Dictionary، مفهوم **Mutability** است.
+
+Dictionary یک Object Mutable است.
+
+یعنی بعد از ایجاد آن می توان محتوایش را تغییر داد.
+
+وقتی می نویسیم:
+
+```python
+second = first
+```
+
+Python Object Mutable را Duplicate نمی کند.
+
+فقط یک Reference دیگر به همان Object ایجاد می کند.
+
+وقتی می نویسیم:
+
+```python
+second = first.copy()
+```
+
+Python یک Dictionary بیرونی جدید ایجاد می کند.
+
+درک این رابطه بسیار مهم تر از حفظ کردن صرف Syntax مربوط به `copy()` است.
+
+---
+
+## ۲۳. مثال کاربردی
+
+فرض کنید:
+
+```python
+product = {
+    "name": "Laptop",
+    "price": 1200,
+    "specs": {
+        "ram": 16,
+        "storage": 512
+    }
+}
+```
+
+می خواهیم یک نسخه ارزان تر ایجاد کنیم.
+
+اگر فقط یک Value بیرونی را تغییر دهیم، Shallow Copy کافی است:
+
+```python
+discounted = product.copy()
+
+discounted["price"] = 1000
+```
+
+قیمت Original همچنان:
+
+```python
+print(product["price"])
+```
+
+خروجی:
+
+```text
+1200
+```
+
+اما اگر مشخصات داخلی را نیز تغییر دهیم:
+
+```python
+discounted["specs"]["ram"] = 32
+```
+
+ممکن است RAM محصول اصلی نیز تغییر کند، چون `"specs"` مشترک است.
+
+اگر استقلال کامل لازم باشد:
+
+```python
+import copy
+
+discounted = copy.deepcopy(product)
+```
+
+راه مناسب تری است.
+
+---
+
+## ۲۴. اشتباه رایج
+
+یک تصور رایج در میان افراد مبتدی این است:
+
+```python
+second = first
+```
+
+یعنی:
+
+> «از `first` یک Copy بساز.»
+
+اما چنین نیست.
+
+معنی آن این است:
+
+> «کاری کن `second` به همان Objectی اشاره کند که `first` به آن اشاره می کند.»
+
+این تفاوت هرچه برنامه بزرگ تر و ساختار داده پیچیده تر شود، اهمیت بیشتری پیدا می کند.
+
+---
+
+## ۲۵. یک قانون کاربردی
+
+یک قانون ساده برای به خاطر سپردن:
+
+```text
+=          → Assignment / Reference
+
+.copy()    → Shallow Copy
+
+deepcopy() → Copy بازگشتی و مستقل
+```
+
+برای Dictionaryهای ساده و بدون ساختار تو در تو:
+
+```python
+second = first.copy()
+```
+
+معمولاً کافی است.
+
+برای ساختارهای Nested و Mutable:
+
+```python
+second = copy.deepcopy(first)
+```
+
+ممکن است لازم باشد.
+
+---
+
+## نکات کلیدی
+
+* `second = first` یک Dictionary جدید ایجاد نمی کند.
+* Assignment فقط یک Reference دیگر به همان Object می سازد.
+* `is` بررسی می کند که دو Variable به یک Object اشاره می کنند یا نه.
+* `==` بررسی می کند که Valueهای دو Object برابر هستند یا نه.
+* `Dictionary.copy()` یک Dictionary بیرونی جدید ایجاد می کند.
+* `copy()` یک **Shallow Copy** ایجاد می کند.
+* Objectهای Mutable تو در تو ممکن است بعد از Shallow Copy همچنان مشترک باشند.
+* `copy.deepcopy()` Objectهای داخلی را نیز به صورت بازگشتی Copy می کند.
+* Deep Copy زمانی کاربرد دارد که استقلال کامل ساختار Nested لازم باشد.
+* `dict(first)` نیز می تواند یک Dictionary بیرونی جدید ایجاد کند.
+* Dictionary Comprehension می تواند برای Copy کردن همراه با Transform کردن داده ها استفاده شود.
+* درک Mutability و Referenceها از حفظ کردن Syntax مربوط به Copy مهم تر است.
+
+---
+
+# سوال های بخش
+
+## سوال ۱
+
+تفاوت این دو چیست؟
+
+```python
+second = first
+```
+
+و:
+
+```python
+second = first.copy()
+```
+
+## سوال ۲
+
+کد زیر چه چیزی چاپ می کند؟
+
+```python
+first = {"age": 20}
+second = first
+
+second["age"] = 21
+
+print(first["age"])
+```
+
+## سوال ۳
+
+تفاوت `==` و `is` چیست؟
+
+## سوال ۴
+
+چرا تغییر یک Dictionary داخلی بعد از `copy()` می تواند روی Dictionary اصلی نیز اثر بگذارد؟
+
+## سوال ۵
+
+چه زمانی از `copy.deepcopy()` استفاده می کنیم؟
+
+---
+
+# سوال جامع
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+student = {
+    "name": "Ali",
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+```
+
+برنامه ای بنویسید که:
+
+1. یک Shallow Copy ایجاد کند.
+2. یک Deep Copy ایجاد کند.
+3. نمره Python را در Shallow Copy تغییر دهد.
+4. نمره Python را در Deep Copy تغییر دهد.
+5. Original و هر دو Copy را چاپ کند.
+6. با استفاده از `is` نشان دهد کدام Dictionaryهای داخلی مشترک هستند.
+
+---
+
+# پاسخ ها
+
+## پاسخ سوال ۱
+
+```python
+second = first
+```
+
+یک Reference دیگر به همان Dictionary ایجاد می کند.
+
+اما:
+
+```python
+second = first.copy()
+```
+
+یک Dictionary بیرونی جدید ایجاد می کند.
+
+## پاسخ سوال ۲
+
+```text
+21
+```
+
+زیرا هر دو Variable به یک Dictionary اشاره می کنند.
+
+## پاسخ سوال ۳
+
+`==` مقدارها را مقایسه می کند.
+
+`is` هویت Object را بررسی می کند.
+
+مثلاً:
+
+```python
+first = {"name": "Ali"}
+second = {"name": "Ali"}
+
+print(first == second)  # True
+print(first is second)  # False
+```
+
+## پاسخ سوال ۴
+
+چون `copy()` یک Shallow Copy ایجاد می کند.
+
+Dictionary بیرونی Copy می شود، اما Objectهای Mutable داخلی مانند List و Dictionary می توانند همچنان مشترک باشند.
+
+## پاسخ سوال ۵
+
+زمانی از `copy.deepcopy()` استفاده می کنیم که بخواهیم کل ساختار Nested از جمله Objectهای داخلی آن کاملاً مستقل باشد.
+
+## پاسخ سوال جامع
+
+```python
+import copy
+
+student = {
+    "name": "Ali",
+    "scores": {
+        "math": 18,
+        "python": 20
+    }
+}
+
+shallow = student.copy()
+deep = copy.deepcopy(student)
+
+shallow["scores"]["python"] = 21
+deep["scores"]["python"] = 22
+
+print("Original:", student)
+print("Shallow:", shallow)
+print("Deep:", deep)
+
+print(student is shallow)
+print(student["scores"] is shallow["scores"])
+
+print(student is deep)
+print(student["scores"] is deep["scores"])
+```
+
+نتیجه مهم:
+
+```text
+student is shallow
+→ False
+
+student["scores"] is shallow["scores"]
+→ True
+
+student is deep
+→ False
+
+student["scores"] is deep["scores"]
+→ False
+```
+
+این نتیجه تفاوت اصلی بین Shallow Copy و Deep Copy را نشان می دهد.
+
+---
+

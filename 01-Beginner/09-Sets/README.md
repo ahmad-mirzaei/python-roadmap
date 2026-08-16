@@ -840,3 +840,493 @@ In the next part, we will learn how to **add elements to a Set** after it has be
 
 ---
 
+# Sets — Part 3: Adding Elements to a Set
+
+## Adding Elements to a Set
+
+In the previous part, we learned how to create Sets in Python.
+
+Now we will learn how to **add new elements to an existing Set**.
+
+The main method for this is:
+
+```python
+set.add()
+```
+
+---
+
+## 1. Using `add()`
+
+The `add()` method adds one element to a Set.
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(4)
+
+print(numbers)
+```
+
+The Set now contains `4` as well:
+
+```text
+{1, 2, 3, 4}
+```
+
+The syntax is:
+
+```python
+set_name.add(element)
+```
+
+For example:
+
+```python
+languages = {"Python", "Java"}
+
+languages.add("C++")
+```
+
+Now:
+
+```text
+{"Python", "Java", "C++"}
+```
+
+---
+
+## 2. Adding an Existing Element
+
+What happens if we add an element that already exists?
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(2)
+
+print(numbers)
+```
+
+Nothing changes.
+
+The Set remains:
+
+```text
+{1, 2, 3}
+```
+
+This is because Sets only store **unique elements**.
+
+So `add()` does not create duplicates.
+
+---
+
+## 3. Adding Elements One at a Time
+
+`add()` adds **one element at a time**.
+
+```python
+numbers = {1, 2}
+
+numbers.add(3)
+numbers.add(4)
+numbers.add(5)
+
+print(numbers)
+```
+
+The final Set contains:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+Each call to `add()` adds one element.
+
+---
+
+## 4. Adding a String
+
+You can add a String as one element:
+
+```python
+languages = {"Python", "Java"}
+
+languages.add("JavaScript")
+```
+
+The entire String `"JavaScript"` is one Set element.
+
+It does **not** add each character separately.
+
+```python
+languages.add("Go")
+```
+
+Now `"Go"` is another single element.
+
+---
+
+## 5. Adding a Tuple
+
+Because Tuples can be hashable, a Tuple can be added to a Set:
+
+```python
+data = {1, 2, 3}
+
+data.add((4, 5))
+
+print(data)
+```
+
+The Tuple `(4, 5)` is treated as one element.
+
+Conceptually:
+
+```text
+Set
+ ├── 1
+ ├── 2
+ ├── 3
+ └── (4, 5)
+```
+
+---
+
+## 6. Trying to Add a List
+
+A List cannot be added directly to a Set:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add([4, 5])
+```
+
+This produces an error because Lists are **unhashable**.
+
+You will typically see:
+
+```text
+TypeError: unhashable type: 'list'
+```
+
+This connects directly to the Hashable concept we introduced earlier.
+
+---
+
+## 7. `add()` Does Not Return the Updated Set
+
+One important detail about `add()` is that it modifies the existing Set **in place**.
+
+It does not return the modified Set.
+
+For example:
+
+```python
+numbers = {1, 2, 3}
+
+result = numbers.add(4)
+
+print(result)
+```
+
+The output is:
+
+```text
+None
+```
+
+But the Set itself has changed:
+
+```python
+print(numbers)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4}
+```
+
+So remember:
+
+```text
+add()
+  ↓
+modifies the Set
+  ↓
+returns None
+```
+
+This is a common source of confusion for beginners.
+
+---
+
+## 8. Adding User Input
+
+We can also add values entered by the user.
+
+```python
+names = set()
+
+name = input("Enter your name: ")
+
+names.add(name)
+
+print(names)
+```
+
+The entered name is added to the Set.
+
+Because this is a Set, entering the same name again will not create a duplicate.
+
+For example, if we repeatedly add:
+
+```text
+Ali
+Sara
+Ali
+Reza
+```
+
+the Set will contain only:
+
+```text
+{"Ali", "Sara", "Reza"}
+```
+
+---
+
+## 9. Adding Values in a Loop
+
+We can use `add()` inside a loop:
+
+```python
+numbers = set()
+
+for number in range(1, 6):
+    numbers.add(number)
+
+print(numbers)
+```
+
+The result contains:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+This is useful when values are generated dynamically.
+
+---
+
+## 10. `add()` vs `set()`
+
+These two have completely different purposes.
+
+`set()` is commonly used to **create or convert data into a Set**:
+
+```python
+numbers = set([1, 2, 3])
+```
+
+`add()` is used to **add one new element to an existing Set**:
+
+```python
+numbers.add(4)
+```
+
+Think of them like this:
+
+```text
+set()
+  ↓
+Create / Convert
+
+add()
+  ↓
+Add one element
+```
+
+---
+
+## 11. `add()` vs `update()`
+
+You will encounter `update()` soon, so it is important to understand the difference.
+
+`add()` adds **one element**:
+
+```python
+numbers = {1, 2}
+
+numbers.add(3)
+```
+
+`update()` can add **multiple elements from an iterable**:
+
+```python
+numbers = {1, 2}
+
+numbers.update([3, 4, 5])
+```
+
+Result:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+For now, remember:
+
+```text
+add()
+→ one element
+
+update()
+→ multiple elements
+```
+
+We will study `update()` more carefully when we work with Set modification.
+
+---
+
+## Common Beginner Mistakes
+
+### Mistake 1 — Expecting `add()` to return the Set
+
+Incorrect:
+
+```python
+numbers = {1, 2, 3}
+
+numbers = numbers.add(4)
+```
+
+After this assignment, `numbers` becomes `None`.
+
+Correct:
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(4)
+```
+
+---
+
+### Mistake 2 — Adding a List
+
+Incorrect:
+
+```python
+numbers.add([4, 5])
+```
+
+Lists are unhashable.
+
+If you want `(4, 5)` to be one element, you can use a Tuple:
+
+```python
+numbers.add((4, 5))
+```
+
+---
+
+### Mistake 3 — Expecting Duplicates
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(3)
+numbers.add(3)
+```
+
+The Set still contains only one `3`.
+
+---
+
+## Key Takeaways
+
+After this part, you should know:
+
+1. `add()` adds one element to an existing Set.
+2. Adding an existing element does not create a duplicate.
+3. `add()` modifies the Set in place.
+4. `add()` returns `None`.
+5. Hashable objects such as Tuples can be added to a Set.
+6. Lists cannot be added directly because they are unhashable.
+7. `add()` can be used inside loops and with user input.
+8. `set()` is mainly used to create or convert Sets, while `add()` adds one element.
+9. `add()` and `update()` have different purposes.
+
+---
+
+## Exercises
+
+### Question 1
+
+What will the final value of `numbers` contain?
+
+```python
+numbers = {1, 2, 3}
+
+numbers.add(3)
+numbers.add(4)
+numbers.add(4)
+numbers.add(5)
+```
+
+---
+
+### Question 2
+
+Fix the following code so that `(10, 20)` is added as one element to the Set:
+
+```python
+data = {1, 2, 3}
+
+data.add([10, 20])
+```
+
+---
+
+### Question 3
+
+What will be printed?
+
+```python
+numbers = {1, 2}
+
+result = numbers.add(3)
+
+print(result)
+print(numbers)
+```
+
+Explain why the two outputs are different.
+
+---
+
+## Comprehensive Set Question
+
+Create a program that starts with this Set:
+
+```python
+students = {"Ali", "Sara", "Reza"}
+```
+
+Then:
+
+1. Add `"Mina"` to the Set.
+2. Try to add `"Ali"` again.
+3. Add the names `"Omid"` and `"Nima"` one at a time using `add()`.
+4. Print the final Set.
+5. Explain why `"Ali"` appears only once.
+6. Store the return value of one `add()` call in a variable and explain what that value is.
+
+Your goal is to demonstrate everything we have learned so far about **creating Sets, uniqueness, hashable elements, and adding elements**.
+
+---
+

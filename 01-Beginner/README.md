@@ -4198,3 +4198,1049 @@ This demonstrates the central difference between shallow and deep copying.
 
 ---
 
+# Part 13 — Converting Between Dictionaries and Other Data Structures
+
+## Introduction
+
+A Dictionary is one of Python's most important data structures because it connects **keys** with **values**.
+
+But real programs rarely keep data in one structure forever.
+
+You may receive data as:
+
+* a List,
+* a Tuple,
+* a Set,
+* a sequence of key-value pairs,
+* or another Dictionary,
+
+and need to transform it into the structure that best fits the next operation.
+
+Understanding these conversions is therefore not just about memorizing syntax. It is about understanding **what information is preserved, what information is lost, and how Python interprets the data during conversion**.
+
+---
+
+## 1. Converting a Dictionary to a List
+
+When a Dictionary is passed to `list()`, Python converts it to a List containing its **keys**.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+keys = list(student)
+
+print(keys)
+```
+
+Output:
+
+```text
+['name', 'age', 'city']
+```
+
+This is equivalent to:
+
+```python
+keys = list(student.keys())
+```
+
+The important point is that:
+
+```python
+list(dictionary)
+```
+
+means:
+
+> Convert the Dictionary's keys into a List.
+
+It does **not** convert the complete key-value pairs into a List.
+
+---
+
+## 2. Converting Dictionary Keys to a List
+
+If the intention is specifically to obtain the keys, using `.keys()` makes the intention clearer:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+keys = list(student.keys())
+
+print(keys)
+```
+
+Output:
+
+```text
+['name', 'age', 'city']
+```
+
+This is useful when we need to process the keys as an actual List.
+
+For example:
+
+```python
+for key in keys:
+    print(key)
+```
+
+---
+
+## 3. Converting Dictionary Values to a List
+
+We can similarly convert the values:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+values = list(student.values())
+
+print(values)
+```
+
+Output:
+
+```text
+['Ali', 20, 'Baku']
+```
+
+Unlike `list(student)`, this gives us the Values rather than the Keys.
+
+---
+
+## 4. Converting Dictionary Items to a List
+
+Sometimes we need both keys and values.
+
+The `.items()` method provides key-value pairs:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+items = list(student.items())
+
+print(items)
+```
+
+Output:
+
+```text
+[('name', 'Ali'), ('age', 20), ('city', 'Baku')]
+```
+
+Each item is represented as a Tuple:
+
+```text
+(key, value)
+```
+
+So the result is a List of Tuples.
+
+Conceptually:
+
+```text
+Dictionary
+    ↓
+.items()
+    ↓
+dict_items
+    ↓
+list()
+    ↓
+List of Tuples
+```
+
+---
+
+## 5. Dictionary → List of Tuples
+
+This conversion is especially important because it creates a structure that can easily be processed as a sequence:
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20
+}
+
+pairs = list(data.items())
+```
+
+Result:
+
+```python
+[
+    ("name", "Ali"),
+    ("age", 20)
+]
+```
+
+Each Tuple represents one key-value relationship.
+
+This representation is often useful when:
+
+* sorting Dictionary entries,
+* iterating over pairs,
+* passing key-value data to functions,
+* or transforming the structure.
+
+---
+
+## 6. Dictionary → Tuple
+
+We can also convert the Dictionary's keys into a Tuple:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+keys = tuple(student)
+```
+
+Result:
+
+```python
+('name', 'age')
+```
+
+Similarly:
+
+```python
+values = tuple(student.values())
+```
+
+produces:
+
+```python
+('Ali', 20)
+```
+
+And:
+
+```python
+items = tuple(student.items())
+```
+
+produces:
+
+```python
+(('name', 'Ali'), ('age', 20))
+```
+
+---
+
+## 7. Dictionary → Set
+
+A Dictionary can also be converted into a Set:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+keys = set(student)
+```
+
+Result:
+
+```python
+{'name', 'age', 'city'}
+```
+
+Again, the conversion uses the Dictionary's keys.
+
+If we want the values:
+
+```python
+values = set(student.values())
+```
+
+The result contains the unique values.
+
+This is particularly useful when we care about **membership and uniqueness** rather than key-value relationships.
+
+---
+
+## 8. Converting a List of Pairs into a Dictionary
+
+The reverse operation is equally important.
+
+Suppose we have:
+
+```python
+pairs = [
+    ("name", "Ali"),
+    ("age", 20),
+    ("city", "Baku")
+]
+```
+
+We can convert it into a Dictionary:
+
+```python
+student = dict(pairs)
+
+print(student)
+```
+
+Output:
+
+```text
+{'name': 'Ali', 'age': 20, 'city': 'Baku'}
+```
+
+Python expects each element to contain exactly two parts:
+
+```text
+(key, value)
+```
+
+This is why a List of two-element Tuples is a natural source for `dict()`.
+
+---
+
+## 9. List of Lists → Dictionary
+
+The elements do not have to be Tuples.
+
+A List of two-element Lists also works:
+
+```python
+pairs = [
+    ["name", "Ali"],
+    ["age", 20],
+    ["city", "Baku"]
+]
+
+student = dict(pairs)
+```
+
+Result:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+```
+
+The important requirement is not whether the elements are Lists or Tuples.
+
+The important requirement is that each element provides **two values**:
+
+```text
+key + value
+```
+
+---
+
+## 10. Tuple of Pairs → Dictionary
+
+A Tuple containing key-value pairs can also be converted:
+
+```python
+pairs = (
+    ("name", "Ali"),
+    ("age", 20)
+)
+
+student = dict(pairs)
+
+print(student)
+```
+
+Output:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+So `dict()` can consume many iterable structures as long as each element can provide a key and a value.
+
+---
+
+## 11. Dictionary → Dictionary
+
+Passing a Dictionary to `dict()` creates a new outer Dictionary:
+
+```python
+original = {
+    "name": "Ali",
+    "age": 20
+}
+
+new_dictionary = dict(original)
+```
+
+The result contains the same key-value pairs.
+
+```python
+print(new_dictionary)
+```
+
+Output:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+At the outer level:
+
+```python
+print(original is new_dictionary)
+```
+
+returns:
+
+```text
+False
+```
+
+However, just like `.copy()`, this should be understood as an **outer/shallow copy**, not a recursive deep copy.
+
+---
+
+## 12. Converting Dictionary Keys and Values Together
+
+A useful transformation is to turn a Dictionary into a List of pairs:
+
+```python
+data = {
+    "Python": 90,
+    "HTML": 80,
+    "CSS": 75
+}
+
+pairs = list(data.items())
+```
+
+Result:
+
+```python
+[
+    ("Python", 90),
+    ("HTML", 80),
+    ("CSS", 75)
+]
+```
+
+Now the data can be handled as a sequence.
+
+For example:
+
+```python
+for subject, score in pairs:
+    print(subject, score)
+```
+
+This demonstrates why conversion is useful: we are not simply changing syntax; we are changing the **way the data can be processed**.
+
+---
+
+## 13. Converting a Dictionary into a List for Sorting
+
+Dictionary entries can be converted into a List of Tuples before sorting.
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 78
+}
+
+items = list(scores.items())
+
+items.sort(key=lambda item: item[1])
+
+print(items)
+```
+
+Output:
+
+```text
+[('Reza', 78), ('Ali', 85), ('Sara', 95)]
+```
+
+The Dictionary has been transformed into a sequence of pairs so that we can sort the entries according to their values.
+
+This is a practical example of choosing a data structure based on the operation we want to perform.
+
+---
+
+## 14. Converting a Dictionary to JSON
+
+Another important conversion in real programs is between Python Dictionaries and JSON.
+
+Python provides the `json` module:
+
+```python
+import json
+```
+
+A Dictionary can be converted into a JSON string with `json.dumps()`:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+json_data = json.dumps(student)
+
+print(json_data)
+```
+
+Output:
+
+```text
+{"name": "Ali", "age": 20}
+```
+
+This is not the same as simply converting the Dictionary to a String with `str()`.
+
+JSON is a structured data format designed for exchanging data between systems.
+
+---
+
+## 15. JSON → Dictionary
+
+The reverse conversion uses `json.loads()`:
+
+```python
+import json
+
+json_data = '{"name": "Ali", "age": 20}'
+
+student = json.loads(json_data)
+
+print(student)
+```
+
+Output:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+Now the JSON string has become a Python Dictionary.
+
+The general relationship is:
+
+```text
+Python Dictionary
+       ↓
+   json.dumps()
+       ↓
+    JSON string
+       ↓
+   json.loads()
+       ↓
+Python Dictionary
+```
+
+---
+
+## 16. Dictionary → List → Dictionary
+
+Conversions can be chained.
+
+For example:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+pairs = list(student.items())
+
+new_student = dict(pairs)
+```
+
+The final Dictionary contains the same key-value relationships.
+
+```python
+print(new_student)
+```
+
+Output:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+This pattern demonstrates an important idea:
+
+> A conversion can change the representation of data without necessarily changing the information it represents.
+
+---
+
+## 17. What Can Be Lost During Conversion?
+
+Not every conversion preserves every property.
+
+For example, converting Dictionary values to a Set:
+
+```python
+data = {
+    "a": 10,
+    "b": 10,
+    "c": 20
+}
+
+values = set(data.values())
+
+print(values)
+```
+
+produces:
+
+```text
+{10, 20}
+```
+
+The duplicate `10` disappears.
+
+Why?
+
+Because a Set stores unique elements.
+
+So:
+
+```text
+Dictionary → Set
+```
+
+can result in information loss when duplicate values exist.
+
+This is why conversion should always be intentional.
+
+---
+
+## 18. Dictionary → Set vs Dictionary → List
+
+Suppose:
+
+```python
+data = {
+    "a": 10,
+    "b": 10,
+    "c": 20
+}
+```
+
+Then:
+
+```python
+list(data.values())
+```
+
+produces:
+
+```text
+[10, 10, 20]
+```
+
+while:
+
+```python
+set(data.values())
+```
+
+produces:
+
+```text
+{10, 20}
+```
+
+The List preserves repeated values.
+
+The Set removes duplicates.
+
+Choosing between them depends on what the program needs.
+
+---
+
+## 19. Converting Keys to Different Structures
+
+For a Dictionary:
+
+```python
+data = {
+    "a": 10,
+    "b": 20,
+    "c": 30
+}
+```
+
+we can obtain:
+
+```python
+list(data.keys())
+```
+
+```text
+['a', 'b', 'c']
+```
+
+or:
+
+```python
+tuple(data.keys())
+```
+
+```text
+('a', 'b', 'c')
+```
+
+or:
+
+```python
+set(data.keys())
+```
+
+```text
+{'a', 'b', 'c'}
+```
+
+The same source data can therefore be represented in several different ways.
+
+---
+
+## 20. Choosing the Right Conversion
+
+The most important question is not:
+
+> "How do I convert this Dictionary?"
+
+The better question is:
+
+> "What structure does the next operation require?"
+
+For example:
+
+| Goal                              | Useful representation |
+| --------------------------------- | --------------------- |
+| Access by key                     | Dictionary            |
+| Process keys as a sequence        | List/Tuple of keys    |
+| Process key-value pairs           | List/Tuple of items   |
+| Remove duplicate values           | Set                   |
+| Sort entries                      | List of pairs         |
+| Exchange data with another system | JSON                  |
+| Build a Dictionary from pairs     | `dict()`              |
+
+The conversion should serve the operation.
+
+---
+
+## 21. A Practical Example
+
+Imagine receiving user information as a List of pairs:
+
+```python
+user_data = [
+    ("username", "ali"),
+    ("age", 20),
+    ("country", "Azerbaijan")
+]
+```
+
+We can convert it:
+
+```python
+user = dict(user_data)
+```
+
+Now accessing data becomes much easier:
+
+```python
+print(user["username"])
+print(user["age"])
+```
+
+Output:
+
+```text
+ali
+20
+```
+
+The original structure was useful for representing a sequence of pairs.
+
+The Dictionary is better for accessing information by key.
+
+---
+
+## 22. Another Practical Example
+
+Suppose we have:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 85
+}
+```
+
+If we need all scores:
+
+```python
+scores_list = list(scores.values())
+```
+
+Result:
+
+```text
+[85, 95, 85]
+```
+
+If we only need the unique scores:
+
+```python
+unique_scores = set(scores.values())
+```
+
+Result:
+
+```text
+{85, 95}
+```
+
+The same Dictionary can therefore produce different structures depending on the problem.
+
+---
+
+## 23. Common Mistakes
+
+### Mistake 1: Expecting `list(dictionary)` to contain values
+
+```python
+data = {"a": 10, "b": 20}
+
+print(list(data))
+```
+
+Result:
+
+```text
+['a', 'b']
+```
+
+It produces keys.
+
+For values, use:
+
+```python
+list(data.values())
+```
+
+---
+
+### Mistake 2: Forgetting `.items()`
+
+If we want key-value pairs:
+
+```python
+list(data.items())
+```
+
+not:
+
+```python
+list(data)
+```
+
+---
+
+### Mistake 3: Passing invalid data to `dict()`
+
+This works:
+
+```python
+dict([
+    ("a", 1),
+    ("b", 2)
+])
+```
+
+But this does not represent valid key-value pairs:
+
+```python
+dict([
+    ("a", 1, 2),
+    ("b", 3, 4)
+])
+```
+
+Each element must provide exactly two parts.
+
+---
+
+### Mistake 4: Assuming Set conversion preserves duplicates
+
+It does not.
+
+```python
+set([10, 10, 20])
+```
+
+becomes:
+
+```text
+{10, 20}
+```
+
+---
+
+## 24. The Deeper Concept
+
+The deeper lesson of conversion is that **data structures represent different ways of organizing information**.
+
+A Dictionary emphasizes:
+
+```text
+key → value
+```
+
+A List emphasizes:
+
+```text
+ordered sequence
+```
+
+A Tuple emphasizes:
+
+```text
+fixed sequence
+```
+
+A Set emphasizes:
+
+```text
+unique membership
+```
+
+JSON emphasizes:
+
+```text
+data exchange
+```
+
+Converting between them means choosing a representation that better matches the next operation.
+
+This is why understanding conversion is more important than memorizing individual conversion commands.
+
+---
+
+## Key Takeaways
+
+* `list(dictionary)` produces the Dictionary's keys.
+* `list(dictionary.keys())` explicitly produces a List of keys.
+* `list(dictionary.values())` produces a List of values.
+* `list(dictionary.items())` produces a List of `(key, value)` Tuples.
+* `tuple()` can be used similarly for keys, values, or items.
+* `set()` is useful when unique elements are needed.
+* `dict()` can build a Dictionary from iterable key-value pairs.
+* Lists of Tuples and Lists of Lists can be converted into Dictionaries.
+* `dict(existing_dictionary)` creates a new outer Dictionary.
+* `json.dumps()` converts a Python Dictionary into JSON text.
+* `json.loads()` converts JSON text into a Python Dictionary.
+* Conversions can change how data is processed.
+* Some conversions can lose information, especially when moving to a Set.
+* The correct conversion depends on the operation that comes next.
+
+---
+
+# Section Questions
+
+## Question 1
+
+What does this produce?
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20
+}
+
+print(list(data))
+```
+
+## Question 2
+
+How do you create a List containing all Dictionary values?
+
+## Question 3
+
+What does `list(data.items())` produce?
+
+## Question 4
+
+How can this structure be converted into a Dictionary?
+
+```python
+pairs = [
+    ("name", "Ali"),
+    ("age", 20)
+]
+```
+
+## Question 5
+
+What information can be lost when Dictionary values are converted to a Set?
+
+## Question 6
+
+What is the difference between `json.dumps()` and `json.loads()`?
+
+---
+
+# Comprehensive Question
+
+Given:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 85
+}
+```
+
+Write a program that:
+
+1. Converts the keys into a List.
+2. Converts the values into a List.
+3. Converts the values into a Set.
+4. Converts the items into a List of Tuples.
+5. Converts that List of Tuples back into a Dictionary.
+6. Converts the Dictionary into JSON.
+7. Converts the JSON back into a Python Dictionary.
+8. Prints each resulting structure.
+
+The goal is to observe not only the syntax of each conversion, but also how the representation and information characteristics change.
+
+---
+

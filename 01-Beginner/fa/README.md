@@ -4223,3 +4223,1058 @@ student["scores"] is deep["scores"]
 
 ---
 
+# پارت ۱۳ — Converting Between Dictionaries and Other Data Structures
+
+## مقدمه
+
+Dictionary یکی از مهم ترین Data Structureهای Python است، چون رابطه ای بین **Key** و **Value** ایجاد می کند.
+
+اما در برنامه های واقعی، داده ها معمولاً برای همیشه در یک ساختار باقی نمی مانند.
+
+ممکن است داده را به شکل:
+
+* List
+* Tuple
+* Set
+* مجموعه ای از Pairهای Key-Value
+* یا یک Dictionary دیگر
+
+دریافت کنیم و لازم باشد آن را به ساختاری تبدیل کنیم که برای عملیات بعدی مناسب تر است.
+
+بنابراین هدف این بخش فقط حفظ کردن Syntax تبدیل نیست.
+
+باید بفهمیم:
+
+* چه چیزی در تبدیل حفظ می شود؟
+* چه چیزی از بین می رود؟
+* Python داده را چگونه تفسیر می کند؟
+* و چه زمانی هر ساختار انتخاب بهتری است؟
+
+---
+
+## ۱. تبدیل Dictionary به List
+
+وقتی یک Dictionary را به `list()` می دهیم، Python آن را به Listای از **Keyها** تبدیل می کند.
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+keys = list(student)
+
+print(keys)
+```
+
+خروجی:
+
+```text
+['name', 'age', 'city']
+```
+
+این تقریباً معادل این است:
+
+```python
+keys = list(student.keys())
+```
+
+نکته مهم این است که:
+
+```python
+list(dictionary)
+```
+
+یعنی:
+
+> Keyهای Dictionary را به یک List تبدیل کن.
+
+این دستور کل Key-Valueها را به List تبدیل نمی کند.
+
+---
+
+## ۲. تبدیل Keyهای Dictionary به List
+
+اگر هدف ما مشخصاً گرفتن Keyها باشد، استفاده از `.keys()` مفهوم کد را واضح تر می کند:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+keys = list(student.keys())
+
+print(keys)
+```
+
+خروجی:
+
+```text
+['name', 'age', 'city']
+```
+
+این کار زمانی مفید است که بخواهیم Keyها را به عنوان یک List واقعی پردازش کنیم.
+
+مثلاً:
+
+```python
+for key in keys:
+    print(key)
+```
+
+---
+
+## ۳. تبدیل Valueهای Dictionary به List
+
+برای Valueها می توانیم از `.values()` استفاده کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+values = list(student.values())
+
+print(values)
+```
+
+خروجی:
+
+```text
+['Ali', 20, 'Baku']
+```
+
+بنابراین:
+
+```python
+list(student)
+```
+
+Keyها را می دهد، در حالی که:
+
+```python
+list(student.values())
+```
+
+Valueها را می دهد.
+
+---
+
+## ۴. تبدیل Items به List
+
+گاهی همزمان به Key و Value نیاز داریم.
+
+متد `.items()` Pairهای Key-Value را در اختیارمان قرار می دهد:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+items = list(student.items())
+
+print(items)
+```
+
+خروجی:
+
+```text
+[('name', 'Ali'), ('age', 20), ('city', 'Baku')]
+```
+
+هر Item یک Tuple به شکل زیر است:
+
+```text
+(key, value)
+```
+
+پس نتیجه نهایی یک **List از Tupleها** است.
+
+---
+
+## ۵. Dictionary → List of Tuples
+
+این تبدیل اهمیت زیادی دارد:
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20
+}
+
+pairs = list(data.items())
+```
+
+نتیجه:
+
+```python
+[
+    ("name", "Ali"),
+    ("age", 20)
+]
+```
+
+هر Tuple یک رابطه Key-Value را نمایش می دهد.
+
+این ساختار زمانی مفید است که بخواهیم:
+
+* Entryهای Dictionary را Sort کنیم؛
+* روی Pairها Iteration انجام دهیم؛
+* داده را به یک Function منتقل کنیم؛
+* یا ساختار را Transform کنیم.
+
+---
+
+## ۶. تبدیل Dictionary به Tuple
+
+می توانیم Keyهای Dictionary را به Tuple تبدیل کنیم:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+keys = tuple(student)
+```
+
+نتیجه:
+
+```python
+('name', 'age')
+```
+
+برای Valueها:
+
+```python
+values = tuple(student.values())
+```
+
+نتیجه:
+
+```python
+('Ali', 20)
+```
+
+و برای Items:
+
+```python
+items = tuple(student.items())
+```
+
+نتیجه:
+
+```python
+(('name', 'Ali'), ('age', 20))
+```
+
+---
+
+## ۷. تبدیل Dictionary به Set
+
+Dictionary را می توان به Set نیز تبدیل کرد:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+
+keys = set(student)
+```
+
+نتیجه:
+
+```python
+{'name', 'age', 'city'}
+```
+
+در اینجا نیز Keyهای Dictionary استفاده می شوند.
+
+اگر Valueها را بخواهیم:
+
+```python
+values = set(student.values())
+```
+
+این تبدیل زمانی مفید است که برای ما **Unique بودن و Membership** مهم باشد، نه رابطه Key-Value.
+
+---
+
+## ۸. تبدیل List از Pairها به Dictionary
+
+جهت برعکس نیز بسیار مهم است.
+
+فرض کنید:
+
+```python
+pairs = [
+    ("name", "Ali"),
+    ("age", 20),
+    ("city", "Baku")
+]
+```
+
+می توانیم آن را به Dictionary تبدیل کنیم:
+
+```python
+student = dict(pairs)
+
+print(student)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 20, 'city': 'Baku'}
+```
+
+Python انتظار دارد هر Element دقیقاً دو بخش داشته باشد:
+
+```text
+(key, value)
+```
+
+به همین دلیل Listای از Tupleهای دو عضوی یک ورودی طبیعی برای `dict()` است.
+
+---
+
+## ۹. List از Listها → Dictionary
+
+Elementها الزاماً Tuple نیستند.
+
+Listهای دو عضوی نیز قابل استفاده هستند:
+
+```python
+pairs = [
+    ["name", "Ali"],
+    ["age", 20],
+    ["city", "Baku"]
+]
+
+student = dict(pairs)
+```
+
+نتیجه:
+
+```python
+{
+    "name": "Ali",
+    "age": 20,
+    "city": "Baku"
+}
+```
+
+بنابراین مسئله اصلی List یا Tuple بودن نیست.
+
+مهم این است که هر Element دو مقدار در اختیار `dict()` قرار دهد:
+
+```text
+key + value
+```
+
+---
+
+## ۱۰. Tuple از Pairها → Dictionary
+
+Tupleای که شامل Pairهای Key-Value باشد نیز قابل تبدیل است:
+
+```python
+pairs = (
+    ("name", "Ali"),
+    ("age", 20)
+)
+
+student = dict(pairs)
+
+print(student)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+در نتیجه `dict()` می تواند ساختارهای Iterable مختلفی را دریافت کند، به شرطی که هر Element بتواند یک Key و یک Value ارائه کند.
+
+---
+
+## ۱۱. Dictionary → Dictionary
+
+اگر یک Dictionary را به `dict()` بدهیم، یک Dictionary بیرونی جدید ایجاد می شود:
+
+```python
+original = {
+    "name": "Ali",
+    "age": 20
+}
+
+new_dictionary = dict(original)
+```
+
+محتوای آن یکسان است:
+
+```python
+print(new_dictionary)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+اما:
+
+```python
+print(original is new_dictionary)
+```
+
+نتیجه:
+
+```text
+False
+```
+
+یعنی Dictionary بیرونی جدید است.
+
+البته این را باید مانند `copy()` یک **Shallow Copy** در نظر گرفت، نه یک Deep Copy بازگشتی.
+
+---
+
+## ۱۲. تبدیل همزمان Key و Value
+
+یکی از تبدیل های کاربردی این است که Dictionary را به Listای از Pairها تبدیل کنیم:
+
+```python
+data = {
+    "Python": 90,
+    "HTML": 80,
+    "CSS": 75
+}
+
+pairs = list(data.items())
+```
+
+نتیجه:
+
+```python
+[
+    ("Python", 90),
+    ("HTML", 80),
+    ("CSS", 75)
+]
+```
+
+حالا داده به شکل یک Sequence درآمده است.
+
+مثلاً:
+
+```python
+for subject, score in pairs:
+    print(subject, score)
+```
+
+این مثال نشان می دهد چرا Conversion مفید است.
+
+ما فقط Syntax را تغییر نداده ایم؛ بلکه **نحوه پردازش داده** را تغییر داده ایم.
+
+---
+
+## ۱۳. تبدیل Dictionary به List برای Sorting
+
+می توانیم Entryهای Dictionary را قبل از Sorting به List از Tupleها تبدیل کنیم:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 78
+}
+
+items = list(scores.items())
+
+items.sort(key=lambda item: item[1])
+
+print(items)
+```
+
+خروجی:
+
+```text
+[('Reza', 78), ('Ali', 85), ('Sara', 95)]
+```
+
+Dictionary به Sequenceای از Pairها تبدیل شده تا بتوانیم Entryها را بر اساس Value مرتب کنیم.
+
+این یک مثال عملی از انتخاب Data Structure بر اساس عملیاتی است که می خواهیم انجام دهیم.
+
+---
+
+## ۱۴. تبدیل Dictionary به JSON
+
+یکی دیگر از Conversionهای مهم در برنامه های واقعی، تبدیل Dictionary به JSON است.
+
+Python برای این کار Moduleای به نام `json` دارد:
+
+```python
+import json
+```
+
+با `json.dumps()` می توان Dictionary را به JSON String تبدیل کرد:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+json_data = json.dumps(student)
+
+print(json_data)
+```
+
+خروجی:
+
+```text
+{"name": "Ali", "age": 20}
+```
+
+این با تبدیل ساده Dictionary به String با `str()` متفاوت است.
+
+JSON یک Data Format ساختاریافته برای تبادل داده بین سیستم های مختلف است.
+
+---
+
+## ۱۵. JSON → Dictionary
+
+تبدیل برعکس با `json.loads()` انجام می شود:
+
+```python
+import json
+
+json_data = '{"name": "Ali", "age": 20}'
+
+student = json.loads(json_data)
+
+print(student)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+اکنون JSON String دوباره به Python Dictionary تبدیل شده است.
+
+رابطه کلی:
+
+```text
+Python Dictionary
+       ↓
+   json.dumps()
+       ↓
+    JSON String
+       ↓
+   json.loads()
+       ↓
+Python Dictionary
+```
+
+---
+
+## ۱۶. Dictionary → List → Dictionary
+
+Conversionها را می توان پشت سر هم نیز انجام داد.
+
+مثلاً:
+
+```python
+student = {
+    "name": "Ali",
+    "age": 20
+}
+
+pairs = list(student.items())
+
+new_student = dict(pairs)
+```
+
+Dictionary نهایی همان رابطه های Key-Value را دارد:
+
+```python
+print(new_student)
+```
+
+خروجی:
+
+```text
+{'name': 'Ali', 'age': 20}
+```
+
+این مثال یک مفهوم مهم را نشان می دهد:
+
+> Conversion می تواند Representation داده را تغییر دهد، بدون اینکه الزاماً اطلاعاتی که داده نمایش می دهد تغییر کند.
+
+---
+
+## ۱۷. چه چیزی ممکن است هنگام Conversion از بین برود؟
+
+همه Conversionها تمام ویژگی های ساختار قبلی را حفظ نمی کنند.
+
+مثلاً:
+
+```python
+data = {
+    "a": 10,
+    "b": 10,
+    "c": 20
+}
+
+values = set(data.values())
+
+print(values)
+```
+
+نتیجه:
+
+```text
+{10, 20}
+```
+
+یکی از `10`ها از بین رفته است.
+
+چرا؟
+
+چون Set فقط Elementهای Unique را نگه می دارد.
+
+پس:
+
+```text
+Dictionary → Set
+```
+
+در صورت وجود Valueهای تکراری می تواند باعث **از دست رفتن اطلاعات** شود.
+
+بنابراین Conversion باید آگاهانه انجام شود.
+
+---
+
+## ۱۸. Dictionary → Set در برابر Dictionary → List
+
+فرض کنید:
+
+```python
+data = {
+    "a": 10,
+    "b": 10,
+    "c": 20
+}
+```
+
+این:
+
+```python
+list(data.values())
+```
+
+نتیجه می دهد:
+
+```text
+[10, 10, 20]
+```
+
+اما:
+
+```python
+set(data.values())
+```
+
+نتیجه می دهد:
+
+```text
+{10, 20}
+```
+
+List مقدارهای تکراری را حفظ می کند.
+
+Set تکراری ها را حذف می کند.
+
+بنابراین انتخاب بین آن ها به نیاز برنامه بستگی دارد.
+
+---
+
+## ۱۹. تبدیل Keyها به ساختارهای مختلف
+
+برای Dictionary زیر:
+
+```python
+data = {
+    "a": 10,
+    "b": 20,
+    "c": 30
+}
+```
+
+می توانیم داشته باشیم:
+
+```python
+list(data.keys())
+```
+
+```text
+['a', 'b', 'c']
+```
+
+یا:
+
+```python
+tuple(data.keys())
+```
+
+```text
+('a', 'b', 'c')
+```
+
+یا:
+
+```python
+set(data.keys())
+```
+
+```text
+{'a', 'b', 'c'}
+```
+
+بنابراین یک منبع داده می تواند بر اساس نیاز برنامه با چند Representation مختلف نمایش داده شود.
+
+---
+
+## ۲۰. انتخاب Conversion مناسب
+
+مهم ترین سؤال این نیست:
+
+> «چطور این Dictionary را تبدیل کنم؟»
+
+سؤال بهتر این است:
+
+> «عملیات بعدی به چه Data Structureای نیاز دارد؟»
+
+مثلاً:
+
+| هدف                           | Representation مناسب |
+| ----------------------------- | -------------------- |
+| دسترسی با Key                 | Dictionary           |
+| پردازش Keyها به صورت Sequence | List/Tuple از Keyها  |
+| پردازش Key-Value Pairها       | List/Tuple از Items  |
+| حذف Valueهای تکراری           | Set                  |
+| Sort کردن Entryها             | List از Pairها       |
+| تبادل داده با سیستم دیگر      | JSON                 |
+| ساخت Dictionary از Pairها     | `dict()`             |
+
+پس Conversion باید در خدمت عملیاتی باشد که بعد از آن انجام می دهیم.
+
+---
+
+## ۲۱. مثال کاربردی
+
+فرض کنید اطلاعات کاربر را به شکل List از Pairها دریافت کرده ایم:
+
+```python
+user_data = [
+    ("username", "ali"),
+    ("age", 20),
+    ("country", "Azerbaijan")
+]
+```
+
+می توانیم آن را تبدیل کنیم:
+
+```python
+user = dict(user_data)
+```
+
+حالا دسترسی به داده بسیار ساده تر است:
+
+```python
+print(user["username"])
+print(user["age"])
+```
+
+خروجی:
+
+```text
+ali
+20
+```
+
+ساختار اولیه برای نمایش Sequenceای از Pairها مناسب بود.
+
+اما Dictionary برای دسترسی به اطلاعات با Key مناسب تر است.
+
+---
+
+## ۲۲. یک مثال کاربردی دیگر
+
+فرض کنید:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 85
+}
+```
+
+اگر همه Scoreها را بخواهیم:
+
+```python
+scores_list = list(scores.values())
+```
+
+نتیجه:
+
+```text
+[85, 95, 85]
+```
+
+اگر فقط Scoreهای Unique را بخواهیم:
+
+```python
+unique_scores = set(scores.values())
+```
+
+نتیجه:
+
+```text
+{85, 95}
+```
+
+یک Dictionary واحد می تواند بر اساس مسئله به ساختارهای متفاوتی تبدیل شود.
+
+---
+
+## ۲۳. اشتباهات رایج
+
+### اشتباه ۱: انتظار داشتن Valueها از `list(dictionary)`
+
+```python
+data = {"a": 10, "b": 20}
+
+print(list(data))
+```
+
+نتیجه:
+
+```text
+['a', 'b']
+```
+
+این دستور Keyها را تولید می کند.
+
+برای Valueها:
+
+```python
+list(data.values())
+```
+
+را استفاده کنید.
+
+---
+
+### اشتباه ۲: فراموش کردن `.items()`
+
+اگر Key و Value را با هم می خواهیم:
+
+```python
+list(data.items())
+```
+
+مناسب است، نه:
+
+```python
+list(data)
+```
+
+---
+
+### اشتباه ۳: دادن داده نامعتبر به `dict()`
+
+این درست است:
+
+```python
+dict([
+    ("a", 1),
+    ("b", 2)
+])
+```
+
+اما این ساختار Pairهای معتبر Key-Value ایجاد نمی کند:
+
+```python
+dict([
+    ("a", 1, 2),
+    ("b", 3, 4)
+])
+```
+
+هر Element باید دقیقاً دو بخش داشته باشد.
+
+---
+
+### اشتباه ۴: تصور اینکه Set تکراری ها را نگه می دارد
+
+این:
+
+```python
+set([10, 10, 20])
+```
+
+تبدیل می شود به:
+
+```text
+{10, 20}
+```
+
+---
+
+## ۲۴. مفهوم عمیق تر
+
+درس اصلی Conversion این است که **Data Structureهای مختلف، روش های مختلفی برای سازمان دهی اطلاعات هستند.**
+
+Dictionary روی این رابطه تأکید دارد:
+
+```text
+key → value
+```
+
+List روی این مفهوم تأکید دارد:
+
+```text
+ordered sequence
+```
+
+Tuple یک Sequence ثابت تر را نمایش می دهد:
+
+```text
+fixed sequence
+```
+
+Set روی این مفهوم تمرکز دارد:
+
+```text
+unique membership
+```
+
+و JSON بیشتر برای این هدف طراحی شده است:
+
+```text
+data exchange
+```
+
+پس تبدیل بین آن ها یعنی انتخاب Representationای که با عملیات بعدی برنامه بهتر سازگار باشد.
+
+به همین دلیل درک Conversionها از حفظ کردن چند دستور جداگانه مهم تر است.
+
+---
+
+## نکات کلیدی
+
+* `list(dictionary)` Keyهای Dictionary را تولید می کند.
+* `list(dictionary.keys())` به صورت واضح Listای از Keyها می سازد.
+* `list(dictionary.values())` Listای از Valueها می سازد.
+* `list(dictionary.items())` Listای از Tupleهای `(key, value)` می سازد.
+* `tuple()` نیز برای تبدیل Keyها، Valueها یا Items قابل استفاده است.
+* `set()` زمانی مفید است که Elementهای Unique نیاز داشته باشیم.
+* `dict()` می تواند از Pairهای Key-Value یک Dictionary بسازد.
+* List از Tupleها و List از Listها می توانند به Dictionary تبدیل شوند.
+* `dict(existing_dictionary)` یک Dictionary بیرونی جدید ایجاد می کند.
+* `json.dumps()` Dictionary را به JSON تبدیل می کند.
+* `json.loads()` JSON را به Python Dictionary تبدیل می کند.
+* Conversion می تواند نحوه پردازش داده را تغییر دهد.
+* بعضی Conversionها ممکن است باعث از دست رفتن اطلاعات شوند، مخصوصاً هنگام تبدیل به Set.
+* Conversion مناسب به عملیاتی بستگی دارد که قرار است بعد از آن انجام شود.
+
+---
+
+# سوال های بخش
+
+## سوال ۱
+
+کد زیر چه چیزی تولید می کند؟
+
+```python
+data = {
+    "name": "Ali",
+    "age": 20
+}
+
+print(list(data))
+```
+
+## سوال ۲
+
+چطور یک List شامل تمام Valueهای Dictionary ایجاد می کنیم؟
+
+## سوال ۳
+
+`list(data.items())` چه ساختاری تولید می کند؟
+
+## سوال ۴
+
+چطور ساختار زیر را به Dictionary تبدیل می کنیم؟
+
+```python
+pairs = [
+    ("name", "Ali"),
+    ("age", 20)
+]
+```
+
+## سوال ۵
+
+هنگام تبدیل Valueهای Dictionary به Set چه اطلاعاتی ممکن است از بین برود؟
+
+## سوال ۶
+
+تفاوت `json.dumps()` و `json.loads()` چیست؟
+
+---
+
+# سوال جامع
+
+Dictionary زیر را در نظر بگیرید:
+
+```python
+scores = {
+    "Ali": 85,
+    "Sara": 95,
+    "Reza": 85
+}
+```
+
+برنامه ای بنویسید که:
+
+1. Keyها را به List تبدیل کند.
+2. Valueها را به List تبدیل کند.
+3. Valueها را به Set تبدیل کند.
+4. Items را به Listای از Tupleها تبدیل کند.
+5. همان List از Tupleها را دوباره به Dictionary تبدیل کند.
+6. Dictionary را به JSON تبدیل کند.
+7. JSON را دوباره به Python Dictionary تبدیل کند.
+8. هر ساختار حاصل را چاپ کند.
+
+هدف فقط یادگیری Syntax نیست؛ باید مشاهده کنید که با هر Conversion، **Representation و ویژگی های داده** چگونه تغییر می کنند.
+
+---
+

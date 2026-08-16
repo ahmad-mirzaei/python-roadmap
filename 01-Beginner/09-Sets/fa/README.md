@@ -5687,3 +5687,820 @@ web_students = {"Mina", "Hassan", "Nima", "Omid"}
 
 ---
 
+# Sets — پارت ۱۰: تفاضل Setها (Set Difference)
+
+در پارت قبلی با **Set Intersection** آشنا شدیم؛ یعنی پیدا کردن Elementهایی که در دو یا چند Set مشترک هستند.
+
+حالا می خواهیم یکی دیگر از عملیات مهم Setها را یاد بگیریم:
+
+**Set Difference**
+
+Difference به ما کمک می کند Elementهایی را پیدا کنیم که در یک Set وجود دارند، اما **در Set دیگر وجود ندارند**.
+
+---
+
+## 1. Set Difference چیست؟
+
+فرض کن:
+
+```python
+set_a = {1, 2, 3, 4}
+set_b = {3, 4, 5, 6}
+```
+
+اگر Difference مربوط به `set_a` نسبت به `set_b` را بگیریم:
+
+```python
+result = set_a - set_b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2}
+```
+
+چرا؟
+
+چون `1` و `2` در `set_a` وجود دارند، اما در `set_b` وجود ندارند.
+
+به صورت مفهومی:
+
+```text
+Set A → {1, 2, 3, 4}
+Set B → {3, 4, 5, 6}
+
+A - B → {1, 2}
+```
+
+---
+
+## 2. استفاده از Operator `-`
+
+Python برای Set Difference از Operator `-` استفاده می کند.
+
+```python
+set_a = {1, 2, 3}
+set_b = {2, 3, 4}
+
+result = set_a - set_b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1}
+```
+
+Syntax:
+
+```python
+set_a - set_b
+```
+
+یعنی:
+
+> Elementهایی را بر گردان که در `set_a` هستند، اما در `set_b` نیستند.
+
+---
+
+## 3. Difference جهت دارد
+
+این یکی از مهم ترین نکات Set Difference است.
+
+مثلا:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+```
+
+حالا:
+
+```python
+print(a - b)
+```
+
+نتیجه:
+
+```text
+{1}
+```
+
+اما:
+
+```python
+print(b - a)
+```
+
+نتیجه:
+
+```text
+{4}
+```
+
+پس:
+
+```text
+A - B ≠ B - A
+```
+
+بر خلاف Union و Intersection، Difference **جابجایی پذیر نیست**.
+
+ترتیب Setها اهمیت دارد.
+
+---
+
+## 4. استفاده از متد `difference()`
+
+می توانیم از متد `difference()` نیز استفاده کنیم:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+result = a.difference(b)
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1}
+```
+
+پس دو روش رایج داریم:
+
+```python
+a - b
+```
+
+و:
+
+```python
+a.difference(b)
+```
+
+هر دو Elementهایی را بر می گردانند که در `a` هستند اما در `b` نیستند.
+
+---
+
+## 5. Difference، Set اصلی را تغییر نمی دهد
+
+Set Difference یک Set جدید ایجاد می کند.
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+result = a - b
+
+print(a)
+print(b)
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+{2, 3, 4}
+{1}
+```
+
+Setهای اصلی بدون تغییر باقی می مانند.
+
+---
+
+## 6. Difference بین Setهای بدون Element مشترک
+
+اگر دو Set هیچ Element مشترکی نداشته باشند:
+
+```python
+a = {1, 2, 3}
+b = {4, 5, 6}
+
+print(a - b)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+```
+
+چون هیچ Elementی از `a` در `b` وجود ندارد، تمام Elementهای `a` باقی می مانند.
+
+اما:
+
+```python
+print(b - a)
+```
+
+نیز:
+
+```text
+{4, 5, 6}
+```
+
+را بر می گرداند.
+
+---
+
+## 7. Difference بین Setهای یکسان
+
+اگر دو Set دقیقا یکسان باشند:
+
+```python
+a = {1, 2, 3}
+b = {1, 2, 3}
+
+print(a - b)
+```
+
+خروجی:
+
+```text
+set()
+```
+
+هیچ Elementی در `a` وجود ندارد که در `b` نباشد.
+
+بر عکس آن نیز Empty Set است:
+
+```python
+print(b - a)
+```
+
+خروجی:
+
+```text
+set()
+```
+
+---
+
+## 8. Difference با Empty Set
+
+اگر یک Empty Set را از یک Set دیگر کم کنیم:
+
+```python
+numbers = {1, 2, 3}
+empty = set()
+
+print(numbers - empty)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+```
+
+چیزی حذف نمی شود.
+
+به صورت مفهومی:
+
+```text
+A - ∅ = A
+```
+
+اما بر عکس آن متفاوت است:
+
+```python
+print(empty - numbers)
+```
+
+خروجی:
+
+```text
+set()
+```
+
+---
+
+## 9. Difference چند Set
+
+می توانیم Difference را چند بار انجام دهیم.
+
+```python
+a = {1, 2, 3, 4, 5}
+b = {2, 3}
+c = {4}
+
+result = a - b - c
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 5}
+```
+
+این عملیات از چپ به راست انجام می شود:
+
+```text
+a - b
+→ {1, 4, 5}
+
+{1, 4, 5} - c
+→ {1, 5}
+```
+
+---
+
+## 10. Difference با `difference()`
+
+متد `difference()` نیز می تواند چند Set دریافت کند:
+
+```python
+a = {1, 2, 3, 4, 5}
+b = {2, 3}
+c = {4}
+
+result = a.difference(b, c)
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 5}
+```
+
+این کار معادل:
+
+```python
+a - b - c
+```
+
+است.
+
+---
+
+## 11. یک مثال واقعی
+
+فرض کن دانش آموزان دو کلاس Python و Java را داریم:
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+```
+
+می خواهیم دانش آموزانی را پیدا کنیم که **Python می خوانند اما Java نمی خوانند**:
+
+```python
+python_only = python_students - java_students
+
+print(python_only)
+```
+
+خروجی:
+
+```text
+{"Ali", "Sara"}
+```
+
+همچنین می توانیم دانش آموزانی را پیدا کنیم که **Java می خوانند اما Python نمی خوانند**:
+
+```python
+java_only = java_students - python_students
+
+print(java_only)
+```
+
+خروجی:
+
+```text
+{"Hassan", "Nima"}
+```
+
+این یکی از کاربردهای بسیار مهم Set Difference است.
+
+---
+
+## 12. Difference و `len()`
+
+می توانیم Difference را با `len()` ترکیب کنیم:
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5}
+
+count = len(a - b)
+
+print(count)
+```
+
+خروجی:
+
+```text
+2
+```
+
+یعنی دو Element در `a` وجود دارند که در `b` نیستند.
+
+---
+
+## 13. Difference و Iteration
+
+می توانیم روی نتیجه Difference نیز پیمایش انجام دهیم:
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5}
+
+for number in a - b:
+    print(number)
+```
+
+خروجی ممکن:
+
+```text
+1
+2
+```
+
+اگر ترتیب قابل پیش بینی می خواهیم:
+
+```python
+for number in sorted(a - b):
+    print(number)
+```
+
+خروجی:
+
+```text
+1
+2
+```
+
+---
+
+## 14. Difference و بررسی عضویت
+
+می توانیم از `in` نیز استفاده کنیم:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+difference = a - b
+
+if 1 in difference:
+    print("1 exists only in A")
+```
+
+خروجی:
+
+```text
+1 exists only in A
+```
+
+اگر فقط یک مقدار خاص را بررسی می کنیم، می توانیم مستقیم بنویسیم:
+
+```python
+if 1 in a and 1 not in b:
+    print("1 exists only in A")
+```
+
+این روش زمانی که فقط یک Element خاص برایمان مهم است، ساده تر است.
+
+---
+
+## 15. Difference با List
+
+Operator `-` به Operandهای Set نیاز دارد.
+
+بنابراین این کد درست نیست:
+
+```python
+a = {1, 2, 3}
+b = [2, 3]
+
+print(a - b)
+```
+
+Python یک `TypeError` ایجاد می کند.
+
+اما `difference()` می تواند یک Iterable دریافت کند:
+
+```python
+a = {1, 2, 3}
+
+result = a.difference([2, 3])
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1}
+```
+
+پس به خاطر بسپار:
+
+```text
+- Operator
+→ به Operandهای Set نیاز دارد
+
+difference()
+→ می تواند Iterableهای دیگر را دریافت کند
+```
+
+---
+
+## 16. Difference در مقابل Intersection
+
+باید Difference و Intersection را با هم اشتباه نگیریم.
+
+فرض کن:
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+```
+
+Intersection:
+
+```python
+a & b
+```
+
+نتیجه:
+
+```text
+{3, 4}
+```
+
+این ها Elementهایی هستند که **در هر دو Set مشترک هستند**.
+
+اما Difference:
+
+```python
+a - b
+```
+
+نتیجه:
+
+```text
+{1, 2}
+```
+
+این ها Elementهایی هستند که در `a` وجود دارند اما **در `b` وجود ندارند**.
+
+به خاطر بسپار:
+
+```text
+A & B
+→ Elementهای مشترک
+
+A - B
+→ Elementهای فقط در A
+```
+
+---
+
+## 17. Difference در مقابل Union
+
+Union تمام Elementهای هر دو Set را می دهد:
+
+```python
+a | b
+```
+
+اما Difference فقط Elementهایی را می دهد که در Set سمت چپ وجود دارند و در Set سمت راست نیستند:
+
+```python
+a - b
+```
+
+مثلا:
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+```
+
+Union:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+Difference:
+
+```text
+{1, 2}
+```
+
+پس:
+
+```text
+| → ترکیب
+
+& → مشترک
+
+- → فقط در سمت چپ
+```
+
+---
+
+## اشتباهات رایج
+
+### اشتباه ۱ — فرض کردن جابجایی پذیری Difference
+
+این عبارت اشتباه است:
+
+```text
+A - B = B - A
+```
+
+مثلا:
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+print(a - b)
+print(b - a)
+```
+
+خروجی:
+
+```text
+{1}
+{4}
+```
+
+نتیجه ها متفاوت هستند.
+
+---
+
+### اشتباه ۲ — فراموش کردن اهمیت Set سمت چپ
+
+وقتی می نویسیم:
+
+```python
+a - b
+```
+
+Python از `a` شروع می کند و Elementهایی را که در `b` نیز وجود دارند حذف می کند.
+
+این عبارت به معنی «Elementهای متفاوت بین دو Set» نیست.
+
+این عملیات **Symmetric Difference** نام دارد که در ادامه آن را یاد خواهیم گرفت.
+
+---
+
+### اشتباه ۳ — انتظار تغییر Set اصلی
+
+این:
+
+```python
+a - b
+```
+
+باعث تغییر `a` نمی شود.
+
+برای ذخیره نتیجه:
+
+```python
+result = a - b
+```
+
+---
+
+### اشتباه ۴ — اشتباه گرفتن `{}` و `set()`
+
+وقتی Difference نتیجه ای نداشته باشد:
+
+```python
+set()
+```
+
+بر می گرداند، نه:
+
+```python
+{}
+```
+
+به یاد داشته باش:
+
+```text
+set()
+→ Empty Set
+
+{}
+→ Empty Dictionary
+```
+
+---
+
+## نکات مهم
+
+بعد از این پارت باید این موارد را بلد باشی:
+
+1. Set Difference Elementهای موجود در یک Set و غیر موجود در Set دیگر را پیدا می کند.
+2. Operator `-` برای Difference استفاده می شود.
+3. متد `difference()` نیز Difference را انجام می دهد.
+4. Difference جهت دار است.
+5. معمولا `A - B` با `B - A` متفاوت است.
+6. Difference Setهای اصلی را تغییر نمی دهد.
+7. Difference یک Set با Empty Set، خود Set اصلی را بر می گرداند.
+8. Difference دو Set یکسان، یک Empty Set ایجاد می کند.
+9. با `len()` می توان تعداد Elementهای Difference را به دست آورد.
+10. می توان روی نتیجه Difference پیمایش انجام داد.
+11. `sorted()` می تواند خروجی قابل پیش بینی ایجاد کند.
+12. Operator `-` به Operandهای Set نیاز دارد.
+13. `difference()` می تواند Iterableهای دیگر را دریافت کند.
+14. Difference با Union و Intersection تفاوت دارد.
+
+---
+
+## تمرین ها
+
+### سوال ۱
+
+این کد چه چیزی چاپ می کند؟
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a - b)
+print(b - a)
+```
+
+چرا دو نتیجه متفاوت هستند؟
+
+---
+
+### سوال ۲
+
+برنامه ای بنویس که این موارد را پیدا کند:
+
+* دانش آموزانی که Python می خوانند اما Java نمی خوانند
+* دانش آموزانی که Java می خوانند اما Python نمی خوانند
+
+با استفاده از:
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+```
+
+---
+
+### سوال ۳
+
+تفاوت این سه Operation را توضیح بده:
+
+```python
+a | b
+a & b
+a - b
+```
+
+برای هر کدام یک مثال ساده بزن.
+
+---
+
+## سوال جامع Setها
+
+با استفاده از Setهای زیر یک برنامه بنویس:
+
+```python
+python_students = {"Ali", "Sara", "Reza", "Mina", "Hassan"}
+java_students = {"Reza", "Mina", "Hassan", "Nima"}
+web_students = {"Mina", "Hassan", "Nima", "Omid"}
+```
+
+برنامه باید:
+
+1. تمام دانش آموزان را با استفاده از Union پیدا کند.
+2. دانش آموزانی را که هم Python و هم Java می خوانند پیدا کند.
+3. دانش آموزانی را که Python می خوانند اما Java نمی خوانند پیدا کند.
+4. دانش آموزانی را که Java می خوانند اما Python نمی خوانند پیدا کند.
+5. دانش آموزانی را که Python می خوانند اما Web نمی خوانند پیدا کند.
+6. تعداد دانش آموزان هر نتیجه را با `len()` چاپ کند.
+7. روی نتیجه های Difference پیمایش انجام دهد.
+8. نتیجه ها را با `sorted()` مرتب چاپ کند.
+9. نام یک دانش آموز را از کاربر دریافت کند.
+10. بررسی کند آیا آن دانش آموز فقط عضو گروه Python است یا نه.
+
+این تمرین باید این مفاهیم را با هم ترکیب کند:
+
+**Creating Sets → `in` → `len()` → Iteration → `sorted()` → Union → Intersection → Difference**
+
+---
+

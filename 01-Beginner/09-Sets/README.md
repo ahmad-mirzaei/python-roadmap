@@ -4083,3 +4083,731 @@ Your solution should combine:
 
 ---
 
+# Sets — Part 8: Set Union
+
+In the previous part, we learned how to iterate through Sets using `for`.
+
+Now we will start learning one of the most important features of Sets: **Set Operations**.
+
+The first operation is **Union**.
+
+Union allows us to combine the elements of two or more Sets while automatically removing duplicates.
+
+---
+
+## 1. What Is Set Union?
+
+The **Union** of two Sets contains all unique elements that exist in either Set.
+
+For example:
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+```
+
+The Union is:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+Notice that `3` appears in both Sets, but it appears only once in the result.
+
+Conceptually:
+
+```text
+Set A      Set B
+  ↓          ↓
+{1,2,3} + {3,4,5}
+       ↓
+{1,2,3,4,5}
+```
+
+---
+
+## 2. Using the `|` Operator
+
+Python provides the `|` operator for Set Union.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+result = set_a | set_b
+
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+The syntax is:
+
+```python
+set_a | set_b
+```
+
+This means:
+
+> Return all unique elements from `set_a` and `set_b`.
+
+---
+
+## 3. Using the `union()` Method
+
+We can also use the `union()` method.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+result = set_a.union(set_b)
+
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+So there are two common ways to perform Union:
+
+```python
+set_a | set_b
+```
+
+and:
+
+```python
+set_a.union(set_b)
+```
+
+Both produce the same Set.
+
+---
+
+## 4. Union Does Not Modify the Original Sets
+
+When we create a Union, the original Sets remain unchanged.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+result = set_a.union(set_b)
+
+print(set_a)
+print(set_b)
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 3}
+{3, 4, 5}
+{1, 2, 3, 4, 5}
+```
+
+The Union creates a new Set.
+
+---
+
+## 5. Union with No Common Elements
+
+If two Sets have no common elements:
+
+```python
+set_a = {1, 2, 3}
+set_b = {4, 5, 6}
+
+print(set_a | set_b)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4, 5, 6}
+```
+
+Since there are no duplicates, all elements are included.
+
+---
+
+## 6. Union with Identical Sets
+
+If two Sets contain exactly the same elements:
+
+```python
+set_a = {1, 2, 3}
+set_b = {1, 2, 3}
+
+print(set_a | set_b)
+```
+
+Output:
+
+```text
+{1, 2, 3}
+```
+
+The result still contains each element only once.
+
+---
+
+## 7. Union of More Than Two Sets
+
+The `union()` method can work with multiple Sets.
+
+```python
+set_a = {1, 2}
+set_b = {2, 3}
+set_c = {3, 4}
+
+result = set_a.union(set_b, set_c)
+
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4}
+```
+
+We can also chain the `|` operator:
+
+```python
+result = set_a | set_b | set_c
+
+print(result)
+```
+
+The result is the same:
+
+```text
+{1, 2, 3, 4}
+```
+
+---
+
+## 8. Union with Strings
+
+Union is not limited to numbers.
+
+```python
+languages_a = {"Python", "Java", "C++"}
+languages_b = {"Python", "Go", "Rust"}
+
+all_languages = languages_a | languages_b
+
+print(all_languages)
+```
+
+The result contains every unique language:
+
+```text
+{"Python", "Java", "C++", "Go", "Rust"}
+```
+
+`Python` appears in both Sets but only once in the Union.
+
+---
+
+## 9. A Real-World Example
+
+Imagine two groups of students.
+
+```python
+morning_students = {"Ali", "Sara", "Reza"}
+evening_students = {"Reza", "Mina", "Hassan"}
+```
+
+We want to know all students who attend either group.
+
+```python
+all_students = morning_students | evening_students
+
+print(all_students)
+```
+
+Result:
+
+```text
+{"Ali", "Sara", "Reza", "Mina", "Hassan"}
+```
+
+This is a practical use of Union.
+
+---
+
+## 10. Union and `len()`
+
+We can combine Union with `len()` to count the total number of unique elements.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+total_unique = len(set_a | set_b)
+
+print(total_unique)
+```
+
+Output:
+
+```text
+5
+```
+
+This tells us there are five unique elements across both Sets.
+
+---
+
+## 11. Union and Iteration
+
+We can also iterate through the result of a Union.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+for number in set_a | set_b:
+    print(number)
+```
+
+Possible output:
+
+```text
+1
+2
+3
+4
+5
+```
+
+Remember that the order is not guaranteed.
+
+If we need sorted output:
+
+```python
+for number in sorted(set_a | set_b):
+    print(number)
+```
+
+Output:
+
+```text
+1
+2
+3
+4
+5
+```
+
+---
+
+## 12. Union with an Empty Set
+
+The Union of a Set with an Empty Set returns the original elements.
+
+```python
+numbers = {1, 2, 3}
+empty = set()
+
+print(numbers | empty)
+```
+
+Output:
+
+```text
+{1, 2, 3}
+```
+
+Conceptually:
+
+```text
+Set ∪ Empty Set = Set
+```
+
+---
+
+## 13. Union Is Commutative
+
+Union has an important mathematical property:
+
+```text
+A ∪ B = B ∪ A
+```
+
+In Python:
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+print(set_a | set_b)
+print(set_b | set_a)
+```
+
+Both results contain:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+So changing the order of the two Sets does not change the resulting Set.
+
+---
+
+## 14. Union Is Associative
+
+Union is also associative:
+
+```text
+(A ∪ B) ∪ C = A ∪ (B ∪ C)
+```
+
+In Python:
+
+```python
+a = {1, 2}
+b = {2, 3}
+c = {3, 4}
+
+result_1 = (a | b) | c
+result_2 = a | (b | c)
+
+print(result_1)
+print(result_2)
+```
+
+Both produce:
+
+```text
+{1, 2, 3, 4}
+```
+
+This means we can group Union operations in different ways without changing the final Set.
+
+---
+
+## 15. Union with User Input
+
+We can also use Sets created from user input.
+
+For example:
+
+```python
+first = input("Enter names separated by spaces: ").split()
+second = input("Enter more names separated by spaces: ").split()
+
+set_a = set(first)
+set_b = set(second)
+
+all_names = set_a | set_b
+
+print(all_names)
+```
+
+If the user enters:
+
+```text
+Ali Sara Reza
+Reza Mina Hassan
+```
+
+the result contains:
+
+```text
+{"Ali", "Sara", "Reza", "Mina", "Hassan"}
+```
+
+The duplicate `Reza` is automatically removed.
+
+---
+
+## 16. Union with a List
+
+The `|` operator requires Sets.
+
+This works:
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+print(a | b)
+```
+
+But this does not:
+
+```python
+a = {1, 2, 3}
+b = [3, 4, 5]
+
+print(a | b)
+```
+
+Python raises a `TypeError`.
+
+If we want to use a List, convert it to a Set first:
+
+```python
+b = set([3, 4, 5])
+
+print(a | b)
+```
+
+---
+
+## 17. Union and the `union()` Method with Other Iterables
+
+The `union()` method is more flexible.
+
+For example:
+
+```python
+numbers = {1, 2, 3}
+
+result = numbers.union([3, 4, 5])
+
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+It can also work with other iterable objects:
+
+```python
+numbers = {1, 2, 3}
+
+result = numbers.union((3, 4, 5))
+
+print(result)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+So remember:
+
+```text
+| operator
+→ expects Set operands
+
+union()
+→ can accept other iterable objects
+```
+
+---
+
+## 18. Common Beginner Mistakes
+
+### Mistake 1 — Thinking Union keeps duplicates
+
+```python
+a = {1, 2, 3}
+b = {3, 4}
+
+print(a | b)
+```
+
+The result is:
+
+```text
+{1, 2, 3, 4}
+```
+
+not:
+
+```text
+{1, 2, 3, 3, 4}
+```
+
+Sets automatically eliminate duplicates.
+
+---
+
+### Mistake 2 — Confusing Union with Addition
+
+This is not valid:
+
+```python
+a + b
+```
+
+Sets are not combined using `+`.
+
+Use:
+
+```python
+a | b
+```
+
+or:
+
+```python
+a.union(b)
+```
+
+---
+
+### Mistake 3 — Expecting the Original Set to Change
+
+This:
+
+```python
+a | b
+```
+
+does not modify `a`.
+
+If you want to store the result:
+
+```python
+result = a | b
+```
+
+If you want to update a Set in place, we will later learn about `update()`.
+
+---
+
+### Mistake 4 — Assuming Union Has a Fixed Order
+
+Do not expect:
+
+```python
+{1, 2, 3, 4}
+```
+
+to always be displayed in that exact order.
+
+If predictable ordering is needed:
+
+```python
+sorted(a | b)
+```
+
+---
+
+## Key Takeaways
+
+After this part, you should know:
+
+1. Union combines all unique elements from two or more Sets.
+2. The `|` operator performs Set Union.
+3. The `union()` method also performs Union.
+4. Union automatically removes duplicates.
+5. Union does not modify the original Sets.
+6. Union can be used with multiple Sets.
+7. `len()` can count the unique elements in a Union.
+8. We can iterate through a Union using `for`.
+9. `sorted()` can provide predictable output order.
+10. The `|` operator expects Set operands.
+11. `union()` can accept other iterable objects.
+12. Union is commutative and associative.
+
+---
+
+## Exercises
+
+### Question 1
+
+What will this code print?
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+print(a | b)
+```
+
+Why does `3` appear only once?
+
+---
+
+### Question 2
+
+Write a program that combines these two Sets:
+
+```python
+python_students = {"Ali", "Sara", "Reza"}
+java_students = {"Reza", "Mina", "Hassan"}
+```
+
+Then print:
+
+1. All unique students.
+2. The number of unique students.
+
+---
+
+### Question 3
+
+What is the difference between:
+
+```python
+a | b
+```
+
+and:
+
+```python
+a.union(b)
+```
+
+Also explain why this works:
+
+```python
+a.union([3, 4, 5])
+```
+
+but this does not:
+
+```python
+a | [3, 4, 5]
+```
+
+---
+
+## Comprehensive Set Question
+
+Create a program for two groups of students:
+
+```python
+morning_students = {"Ali", "Sara", "Reza", "Mina"}
+evening_students = {"Reza", "Hassan", "Mina", "Nima"}
+```
+
+Your program should:
+
+1. Create a Union containing all unique students.
+2. Print the resulting Set.
+3. Print the number of unique students using `len()`.
+4. Iterate through the Union and print every student.
+5. Print the students in alphabetical order using `sorted()`.
+6. Ask the user for another student name.
+7. Add that student to the appropriate Set.
+8. Create the Union again.
+9. Print the final unique student count.
+
+This exercise should combine:
+
+**Creating Sets → Adding Elements → `in` → `len()` → Iteration → `sorted()` → Set Union**
+
+---
+

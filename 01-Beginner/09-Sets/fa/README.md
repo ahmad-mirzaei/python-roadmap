@@ -4136,3 +4136,739 @@ students = {"Ali", "Sara", "Reza", "Mina", "Hassan"}
 
 ---
 
+# Sets — پارت ۸: اجتماع Setها (Set Union)
+
+در پارت قبلی یاد گرفتیم چطور با استفاده از `for` روی عناصر Set پیمایش انجام دهیم.
+
+حالا وارد یکی از مهم ترین قابلیت های Setها می شویم: **Set Operations**.
+
+اولین Operation، مفهوم **Union** است.
+
+Union به ما اجازه می دهد عناصر دو یا چند Set را با هم ترکیب کنیم و Duplicateها را به صورت خودکار حذف کنیم.
+
+---
+
+## 1. Set Union چیست؟
+
+**Union** دو Set شامل تمام Elementهای Unique است که در یکی از دو Set وجود دارند.
+
+مثلا:
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+```
+
+Union آن ها:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+است.
+
+دقت کن که `3` در هر دو Set وجود دارد، اما در نتیجه فقط یک بار قرار می گیرد.
+
+به صورت مفهومی:
+
+```text
+Set A      Set B
+  ↓          ↓
+{1,2,3} + {3,4,5}
+       ↓
+{1,2,3,4,5}
+```
+
+---
+
+## 2. استفاده از Operator `|`
+
+Python برای Union از Operator `|` پشتیبانی می کند.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+result = set_a | set_b
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+Syntax:
+
+```python
+set_a | set_b
+```
+
+یعنی:
+
+> تمام Elementهای Unique موجود در `set_a` و `set_b` را بر گردان.
+
+---
+
+## 3. استفاده از متد `union()`
+
+روش دیگر استفاده از متد `union()` است.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+result = set_a.union(set_b)
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+پس دو روش رایج برای Union داریم:
+
+```python
+set_a | set_b
+```
+
+و:
+
+```python
+set_a.union(set_b)
+```
+
+هر دو یک Set یکسان ایجاد می کنند.
+
+---
+
+## 4. Union، Setهای اصلی را تغییر نمی دهد
+
+وقتی Union ایجاد می کنیم، Setهای اصلی بدون تغییر باقی می مانند.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+result = set_a.union(set_b)
+
+print(set_a)
+print(set_b)
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+{3, 4, 5}
+{1, 2, 3, 4, 5}
+```
+
+Union یک Set جدید ایجاد می کند.
+
+---
+
+## 5. Union بدون Element مشترک
+
+اگر دو Set هیچ Element مشترکی نداشته باشند:
+
+```python
+set_a = {1, 2, 3}
+set_b = {4, 5, 6}
+
+print(set_a | set_b)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4, 5, 6}
+```
+
+چون Duplicateای وجود ندارد، تمام Elementها وارد نتیجه می شوند.
+
+---
+
+## 6. Union دو Set یکسان
+
+اگر دو Set دقیقا Elementهای یکسانی داشته باشند:
+
+```python
+set_a = {1, 2, 3}
+set_b = {1, 2, 3}
+
+print(set_a | set_b)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+```
+
+هر Element همچنان فقط یک بار در نتیجه وجود دارد.
+
+---
+
+## 7. Union بیشتر از دو Set
+
+متد `union()` می تواند با چند Set کار کند.
+
+```python
+set_a = {1, 2}
+set_b = {2, 3}
+set_c = {3, 4}
+
+result = set_a.union(set_b, set_c)
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4}
+```
+
+می توانیم Operator `|` را نیز چند بار استفاده کنیم:
+
+```python
+result = set_a | set_b | set_c
+
+print(result)
+```
+
+نتیجه همان است:
+
+```text
+{1, 2, 3, 4}
+```
+
+---
+
+## 8. Union با String
+
+Union فقط برای اعداد نیست.
+
+```python
+languages_a = {"Python", "Java", "C++"}
+languages_b = {"Python", "Go", "Rust"}
+
+all_languages = languages_a | languages_b
+
+print(all_languages)
+```
+
+نتیجه شامل تمام Languageهای Unique است:
+
+```text
+{"Python", "Java", "C++", "Go", "Rust"}
+```
+
+`Python` در هر دو Set وجود دارد، اما در Union فقط یک بار قرار می گیرد.
+
+---
+
+## 9. یک مثال واقعی
+
+فرض کن دو گروه دانش آموز داریم:
+
+```python
+morning_students = {"Ali", "Sara", "Reza"}
+evening_students = {"Reza", "Mina", "Hassan"}
+```
+
+می خواهیم تمام دانش آموزانی را پیدا کنیم که در یکی از این دو گروه حضور دارند.
+
+```python
+all_students = morning_students | evening_students
+
+print(all_students)
+```
+
+نتیجه:
+
+```text
+{"Ali", "Sara", "Reza", "Mina", "Hassan"}
+```
+
+این یک کاربرد واقعی Union است.
+
+---
+
+## 10. ترکیب Union و `len()`
+
+می توانیم Union را با `len()` ترکیب کنیم تا تعداد کل Elementهای Unique را به دست آوریم.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+total_unique = len(set_a | set_b)
+
+print(total_unique)
+```
+
+خروجی:
+
+```text
+5
+```
+
+یعنی در مجموع پنج Element Unique در هر دو Set وجود دارد.
+
+---
+
+## 11. ترکیب Union و Iteration
+
+می توانیم روی نتیجه Union نیز Iteration انجام دهیم.
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+for number in set_a | set_b:
+    print(number)
+```
+
+خروجی ممکن:
+
+```text
+1
+2
+3
+4
+5
+```
+
+اما دوباره یادمان باشد که ترتیب تضمین شده نیست.
+
+اگر خروجی مرتب می خواهیم:
+
+```python
+for number in sorted(set_a | set_b):
+    print(number)
+```
+
+خروجی:
+
+```text
+1
+2
+3
+4
+5
+```
+
+---
+
+## 12. Union با Empty Set
+
+Union یک Set با Empty Set، همان Elementهای Set اصلی را بر می گرداند.
+
+```python
+numbers = {1, 2, 3}
+empty = set()
+
+print(numbers | empty)
+```
+
+خروجی:
+
+```text
+{1, 2, 3}
+```
+
+به صورت مفهومی:
+
+```text
+Set ∪ Empty Set = Set
+```
+
+---
+
+## 13. خاصیت جابجایی Union
+
+Union یک خاصیت مهم ریاضی دارد:
+
+```text
+A ∪ B = B ∪ A
+```
+
+در Python:
+
+```python
+set_a = {1, 2, 3}
+set_b = {3, 4, 5}
+
+print(set_a | set_b)
+print(set_b | set_a)
+```
+
+هر دو نتیجه شامل:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+هستند.
+
+پس تغییر ترتیب دو Set نتیجه Union را تغییر نمی دهد.
+
+---
+
+## 14. خاصیت شرکت پذیری Union
+
+Union خاصیت شرکت پذیری نیز دارد:
+
+```text
+(A ∪ B) ∪ C = A ∪ (B ∪ C)
+```
+
+در Python:
+
+```python
+a = {1, 2}
+b = {2, 3}
+c = {3, 4}
+
+result_1 = (a | b) | c
+result_2 = a | (b | c)
+
+print(result_1)
+print(result_2)
+```
+
+هر دو نتیجه:
+
+```text
+{1, 2, 3, 4}
+```
+
+هستند.
+
+یعنی می توانیم نحوه گروه بندی عملیات Union را تغییر دهیم، بدون اینکه نتیجه نهایی تغییر کند.
+
+---
+
+## 15. Union با User Input
+
+می توانیم از User Input نیز Set بسازیم و Union بگیریم.
+
+مثلا:
+
+```python
+first = input("Enter names separated by spaces: ").split()
+second = input("Enter more names separated by spaces: ").split()
+
+set_a = set(first)
+set_b = set(second)
+
+all_names = set_a | set_b
+
+print(all_names)
+```
+
+اگر کاربر وارد کند:
+
+```text
+Ali Sara Reza
+Reza Mina Hassan
+```
+
+نتیجه شامل:
+
+```text
+{"Ali", "Sara", "Reza", "Mina", "Hassan"}
+```
+
+خواهد بود.
+
+Duplicate مربوط به `Reza` به صورت خودکار حذف می شود.
+
+---
+
+## 16. Union با List
+
+Operator `|` به Operandهای از نوع Set نیاز دارد.
+
+این کد درست است:
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+print(a | b)
+```
+
+اما این کد درست نیست:
+
+```python
+a = {1, 2, 3}
+b = [3, 4, 5]
+
+print(a | b)
+```
+
+Python یک `TypeError` ایجاد می کند.
+
+اگر بخواهیم از List استفاده کنیم، ابتدا آن را به Set تبدیل می کنیم:
+
+```python
+b = set([3, 4, 5])
+
+print(a | b)
+```
+
+---
+
+## 17. Union با `union()` و سایر Iterableها
+
+متد `union()` انعطاف بیشتری دارد.
+
+مثلا:
+
+```python
+numbers = {1, 2, 3}
+
+result = numbers.union([3, 4, 5])
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+حتی می تواند با سایر Iterableها نیز کار کند:
+
+```python
+numbers = {1, 2, 3}
+
+result = numbers.union((3, 4, 5))
+
+print(result)
+```
+
+خروجی:
+
+```text
+{1, 2, 3, 4, 5}
+```
+
+پس به خاطر بسپار:
+
+```text
+| Operator
+→ به Operandهای Set نیاز دارد
+
+union()
+→ می تواند Iterableهای دیگر را نیز دریافت کند
+```
+
+---
+
+## اشتباهات رایج مبتدی ها
+
+### اشتباه ۱ — تصور اینکه Union Duplicateها را نگه می دارد
+
+```python
+a = {1, 2, 3}
+b = {3, 4}
+
+print(a | b)
+```
+
+نتیجه:
+
+```text
+{1, 2, 3, 4}
+```
+
+است، نه:
+
+```text
+{1, 2, 3, 3, 4}
+```
+
+Setها به صورت خودکار Duplicateها را حذف می کنند.
+
+---
+
+### اشتباه ۲ — اشتباه گرفتن Union با Addition
+
+این کار صحیح نیست:
+
+```python
+a + b
+```
+
+Setها با `+` ترکیب نمی شوند.
+
+از این استفاده کن:
+
+```python
+a | b
+```
+
+یا:
+
+```python
+a.union(b)
+```
+
+---
+
+### اشتباه ۳ — انتظار تغییر Set اصلی
+
+این:
+
+```python
+a | b
+```
+
+باعث تغییر `a` نمی شود.
+
+اگر می خواهی نتیجه را نگه داری:
+
+```python
+result = a | b
+```
+
+اگر بخواهی یک Set را مستقیما تغییر دهی، در پارت های بعدی با `update()` آشنا می شویم.
+
+---
+
+### اشتباه ۴ — فرض کردن ترتیب ثابت برای Union
+
+نباید انتظار داشته باشی:
+
+```text
+{1, 2, 3, 4}
+```
+
+همیشه دقیقا با همین ترتیب نمایش داده شود.
+
+اگر ترتیب قابل پیش بینی لازم داری:
+
+```python
+sorted(a | b)
+```
+
+---
+
+## نکات مهم
+
+بعد از این پارت باید این موارد را بلد باشی:
+
+1. Union تمام Elementهای Unique دو یا چند Set را با هم ترکیب می کند.
+2. Operator `|` برای Union استفاده می شود.
+3. متد `union()` نیز Union را انجام می دهد.
+4. Union به صورت خودکار Duplicateها را حذف می کند.
+5. Union Setهای اصلی را تغییر نمی دهد.
+6. می توان Union را روی چند Set انجام داد.
+7. با `len()` می توان تعداد Elementهای Unique در Union را حساب کرد.
+8. می توان با `for` روی نتیجه Union پیمایش کرد.
+9. `sorted()` می تواند ترتیب قابل پیش بینی برای خروجی ایجاد کند.
+10. Operator `|` به Operandهای Set نیاز دارد.
+11. `union()` می تواند Iterableهای دیگر را نیز دریافت کند.
+12. Union خاصیت جابجایی و شرکت پذیری دارد.
+
+---
+
+## تمرین ها
+
+### سوال ۱
+
+این کد چه چیزی چاپ می کند؟
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+print(a | b)
+```
+
+چرا `3` فقط یک بار ظاهر می شود؟
+
+---
+
+### سوال ۲
+
+برنامه ای بنویس که این دو Set را با هم ترکیب کند:
+
+```python
+python_students = {"Ali", "Sara", "Reza"}
+java_students = {"Reza", "Mina", "Hassan"}
+```
+
+سپس:
+
+1. تمام دانش آموزان Unique را چاپ کند.
+2. تعداد دانش آموزان Unique را چاپ کند.
+
+---
+
+### سوال ۳
+
+تفاوت این دو چیست؟
+
+```python
+a | b
+```
+
+و:
+
+```python
+a.union(b)
+```
+
+همچنین توضیح بده چرا این کد درست است:
+
+```python
+a.union([3, 4, 5])
+```
+
+اما این کد درست نیست:
+
+```python
+a | [3, 4, 5]
+```
+
+---
+
+## سوال جامع Setها
+
+برای دو گروه دانش آموز این Setها را داریم:
+
+```python
+morning_students = {"Ali", "Sara", "Reza", "Mina"}
+evening_students = {"Reza", "Hassan", "Mina", "Nima"}
+```
+
+برنامه باید:
+
+1. یک Union شامل تمام دانش آموزان Unique ایجاد کند.
+2. Set حاصل را چاپ کند.
+3. تعداد دانش آموزان Unique را با `len()` چاپ کند.
+4. با `for` روی Union پیمایش کند و تمام دانش آموزان را چاپ کند.
+5. دانش آموزان را با استفاده از `sorted()` به صورت الفبایی چاپ کند.
+6. از کاربر نام یک دانش آموز دیگر را دریافت کند.
+7. آن دانش آموز را به Set مناسب اضافه کند.
+8. Union را دوباره ایجاد کند.
+9. تعداد نهایی دانش آموزان Unique را چاپ کند.
+
+این تمرین باید این مفاهیم را با هم ترکیب کند:
+
+**Creating Sets → Adding Elements → `in` → `len()` → Iteration → `sorted()` → Set Union**
+
+---
+

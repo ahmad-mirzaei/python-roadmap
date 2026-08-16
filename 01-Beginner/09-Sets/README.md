@@ -3331,3 +3331,755 @@ Your solution should combine everything learned so far:
 
 ---
 
+# Sets — Part 7: Iterating Through Sets
+
+In the previous part, we learned how to use `len()` to count the number of elements in a Set.
+
+Now we will learn how to **iterate through the elements of a Set**.
+
+Iteration means going through the elements of a collection one by one.
+
+The main tool we will use is the `for` loop.
+
+---
+
+## 1. Basic `for` Loop with a Set
+
+We can use a `for` loop to access each element of a Set:
+
+```python
+fruits = {"apple", "banana", "orange"}
+
+for fruit in fruits:
+    print(fruit)
+```
+
+The output may be:
+
+```text
+apple
+orange
+banana
+```
+
+The exact order is not guaranteed.
+
+This is important because **Sets are unordered collections**.
+
+---
+
+## 2. Understanding the Loop
+
+Consider:
+
+```python
+numbers = {10, 20, 30}
+
+for number in numbers:
+    print(number)
+```
+
+The loop works conceptually like this:
+
+```text
+Take an element
+↓
+Store it temporarily in `number`
+↓
+Run the code inside the loop
+↓
+Move to another element
+↓
+Repeat until all elements have been processed
+```
+
+The variable name can be anything:
+
+```python
+for number in numbers:
+    print(number)
+```
+
+or:
+
+```python
+for item in numbers:
+    print(item)
+```
+
+Both are valid.
+
+---
+
+## 3. Printing Each Element
+
+A simple use of iteration is printing every element:
+
+```python
+languages = {"Python", "Java", "C++"}
+
+for language in languages:
+    print(language)
+```
+
+Each element is processed once during that iteration.
+
+However, because a Set has no guaranteed order, you should not rely on the output order.
+
+---
+
+## 4. Performing an Operation on Each Element
+
+Iteration is not only for printing.
+
+We can perform an operation on every element.
+
+For example:
+
+```python
+numbers = {1, 2, 3, 4}
+
+for number in numbers:
+    print(number * 2)
+```
+
+Possible output:
+
+```text
+2
+4
+6
+8
+```
+
+The operation is performed separately for each element.
+
+---
+
+## 5. Using `if` Inside a Set Loop
+
+We can combine iteration with conditions.
+
+```python
+numbers = {1, 2, 3, 4, 5, 6}
+
+for number in numbers:
+    if number % 2 == 0:
+        print(number)
+```
+
+Output:
+
+```text
+2
+4
+6
+```
+
+The loop visits every element, while the `if` statement selects only the even numbers.
+
+---
+
+## 6. Finding Specific Elements
+
+We can use iteration to search through a Set.
+
+```python
+names = {"Ali", "Sara", "Reza", "Mina"}
+
+for name in names:
+    if name.startswith("A"):
+        print(name)
+```
+
+Possible output:
+
+```text
+Ali
+```
+
+For simple membership checks, `in` is usually easier:
+
+```python
+if "Ali" in names:
+    print("Found")
+```
+
+But iteration is useful when we want to **inspect or process every element**.
+
+---
+
+## 7. Counting Elements During Iteration
+
+We can create a counter:
+
+```python
+numbers = {10, 20, 30, 40}
+
+count = 0
+
+for number in numbers:
+    count += 1
+
+print(count)
+```
+
+Output:
+
+```text
+4
+```
+
+This works, although when we only need the number of elements, `len()` is simpler:
+
+```python
+print(len(numbers))
+```
+
+Iteration becomes useful when we need to count elements that satisfy a condition.
+
+For example:
+
+```python
+numbers = {1, 2, 3, 4, 5, 6}
+
+even_count = 0
+
+for number in numbers:
+    if number % 2 == 0:
+        even_count += 1
+
+print(even_count)
+```
+
+Output:
+
+```text
+3
+```
+
+---
+
+## 8. Building a New Set While Iterating
+
+We can create another Set based on the elements of the first Set.
+
+```python
+numbers = {1, 2, 3, 4, 5, 6}
+
+even_numbers = set()
+
+for number in numbers:
+    if number % 2 == 0:
+        even_numbers.add(number)
+
+print(even_numbers)
+```
+
+Result:
+
+```text
+{2, 4, 6}
+```
+
+This is an important pattern:
+
+```text
+Original Set
+↓
+for loop
+↓
+condition
+↓
+New Set
+```
+
+---
+
+## 9. Iterating Through a Set of Strings
+
+Iteration also works naturally with Strings.
+
+```python
+languages = {"Python", "Java", "JavaScript"}
+
+for language in languages:
+    print("I know", language)
+```
+
+Possible output:
+
+```text
+I know Python
+I know Java
+I know JavaScript
+```
+
+Again, the order may differ.
+
+---
+
+## 10. Iterating Through a Set of Tuples
+
+Tuples can be elements of a Set because tuples are hashable when their contents are hashable.
+
+For example:
+
+```python
+points = {(1, 2), (3, 4), (5, 6)}
+
+for point in points:
+    print(point)
+```
+
+Possible output:
+
+```text
+(1, 2)
+(3, 4)
+(5, 6)
+```
+
+We can also unpack each Tuple:
+
+```python
+points = {(1, 2), (3, 4), (5, 6)}
+
+for x, y in points:
+    print("x =", x, "y =", y)
+```
+
+Possible output:
+
+```text
+x = 1 y = 2
+x = 3 y = 4
+x = 5 y = 6
+```
+
+---
+
+## 11. Using `break`
+
+We can stop a loop early with `break`.
+
+```python
+numbers = {1, 2, 3, 4, 5}
+
+for number in numbers:
+    if number == 3:
+        break
+
+    print(number)
+```
+
+The exact output order can vary because the Set is unordered.
+
+The important idea is that once the condition becomes true, `break` immediately stops the loop.
+
+---
+
+## 12. Using `continue`
+
+`continue` skips the current iteration and moves to the next one.
+
+```python
+numbers = {1, 2, 3, 4, 5}
+
+for number in numbers:
+    if number % 2 == 0:
+        continue
+
+    print(number)
+```
+
+The output contains only odd numbers:
+
+```text
+1
+3
+5
+```
+
+The exact order may differ.
+
+---
+
+## 13. Iterating and Checking Membership
+
+We can combine iteration with `in`.
+
+For example:
+
+```python
+numbers = {1, 2, 3, 4, 5}
+
+for number in numbers:
+    if number in {2, 4}:
+        print(number)
+```
+
+Output:
+
+```text
+2
+4
+```
+
+However, if the goal is simply to find whether a value exists, direct membership checking is usually better:
+
+```python
+if 2 in numbers:
+    print("Found")
+```
+
+Iteration is most useful when we need to process multiple elements.
+
+---
+
+## 14. Do Not Modify a Set While Iterating Over It
+
+One of the most important rules is:
+
+> Do not change the size of a Set while iterating over that same Set.
+
+For example, this can cause an error:
+
+```python
+numbers = {1, 2, 3, 4}
+
+for number in numbers:
+    if number % 2 == 0:
+        numbers.remove(number)
+```
+
+Python can raise:
+
+```text
+RuntimeError: Set changed size during iteration
+```
+
+Why?
+
+Because the loop is currently going through the Set while we are simultaneously removing elements from it.
+
+---
+
+## 15. Safe Way to Remove Elements While Iterating
+
+If we need to remove elements based on a condition, we can iterate over a copy:
+
+```python
+numbers = {1, 2, 3, 4}
+
+for number in numbers.copy():
+    if number % 2 == 0:
+        numbers.remove(number)
+
+print(numbers)
+```
+
+Result:
+
+```text
+{1, 3}
+```
+
+Here:
+
+```python
+numbers.copy()
+```
+
+creates a separate Set for the loop.
+
+The original Set can then be modified safely.
+
+---
+
+## 16. Another Safe Approach: Build a New Set
+
+Often, an even cleaner approach is to build a new Set.
+
+```python
+numbers = {1, 2, 3, 4}
+
+odd_numbers = set()
+
+for number in numbers:
+    if number % 2 != 0:
+        odd_numbers.add(number)
+
+print(odd_numbers)
+```
+
+Result:
+
+```text
+{1, 3}
+```
+
+This approach avoids modifying the original Set during iteration.
+
+---
+
+## 17. Iterating Through an Empty Set
+
+If a Set is empty:
+
+```python
+numbers = set()
+
+for number in numbers:
+    print(number)
+```
+
+Nothing is printed.
+
+The loop simply runs zero times.
+
+This is one reason why `for` loops work naturally with collections.
+
+---
+
+## 18. Using `for` with `len()`
+
+We can combine `len()` with iteration.
+
+```python
+students = {"Ali", "Sara", "Reza"}
+
+print("Number of students:", len(students))
+
+for student in students:
+    print(student)
+```
+
+Possible output:
+
+```text
+Number of students: 3
+Ali
+Sara
+Reza
+```
+
+The number is reliable, but the Set iteration order is not guaranteed.
+
+---
+
+## 19. Sorting a Set Before Iterating
+
+If we need a predictable order, we can use `sorted()`.
+
+```python
+numbers = {5, 2, 8, 1, 3}
+
+for number in sorted(numbers):
+    print(number)
+```
+
+Output:
+
+```text
+1
+2
+3
+5
+8
+```
+
+Notice that `sorted()` does **not** turn the Set itself into an ordered Set.
+
+Instead, it returns a sorted List that we iterate over.
+
+Conceptually:
+
+```text
+Set
+↓
+sorted()
+↓
+List
+↓
+for loop
+```
+
+---
+
+## 20. Iterating in Reverse Order
+
+If the elements can be sorted, we can also iterate in reverse:
+
+```python
+numbers = {5, 2, 8, 1, 3}
+
+for number in sorted(numbers, reverse=True):
+    print(number)
+```
+
+Output:
+
+```text
+8
+5
+3
+2
+1
+```
+
+This is useful when we need a predictable descending order.
+
+---
+
+## Common Beginner Mistakes
+
+### Mistake 1 — Assuming Set order
+
+Do not write code that depends on:
+
+```text
+first element
+second element
+third element
+```
+
+because Sets do not provide a guaranteed ordering.
+
+---
+
+### Mistake 2 — Trying to access a Set by index
+
+This does not work:
+
+```python
+numbers = {10, 20, 30}
+
+print(numbers[0])
+```
+
+Sets do not support indexing.
+
+Use iteration:
+
+```python
+for number in numbers:
+    print(number)
+```
+
+---
+
+### Mistake 3 — Modifying the Set During Iteration
+
+Avoid:
+
+```python
+for number in numbers:
+    numbers.remove(number)
+```
+
+Use a copy or create a new Set instead.
+
+---
+
+### Mistake 4 — Using iteration when `in` is enough
+
+If you only want to know whether an element exists:
+
+```python
+if 10 in numbers:
+    print("Found")
+```
+
+is simpler than looping through every element.
+
+---
+
+## Key Takeaways
+
+After this part, you should know:
+
+1. A `for` loop can iterate through a Set.
+2. Each iteration processes one element.
+3. Set iteration order is not guaranteed.
+4. `if`, `break`, and `continue` can be used inside a Set loop.
+5. We can create counters while iterating.
+6. We can build new Sets while iterating.
+7. We should not modify a Set's size while iterating over it.
+8. `copy()` can be used when we need to modify the original Set during iteration.
+9. `sorted()` can provide predictable iteration order.
+10. `in` is usually better than iteration when we only need a membership check.
+
+---
+
+## Exercises
+
+### Question 1
+
+What does this code do?
+
+```python
+numbers = {1, 2, 3, 4, 5, 6}
+
+for number in numbers:
+    if number % 2 == 0:
+        print(number)
+```
+
+Which elements can be printed?
+
+---
+
+### Question 2
+
+Write a program that takes:
+
+```python
+numbers = {1, 2, 3, 4, 5, 6, 7, 8}
+```
+
+and creates a new Set containing only numbers greater than `5`.
+
+---
+
+### Question 3
+
+Why can this code cause a `RuntimeError`?
+
+```python
+numbers = {1, 2, 3, 4}
+
+for number in numbers:
+    numbers.remove(number)
+```
+
+How can you modify the program so that the removal is safe?
+
+---
+
+## Comprehensive Set Question
+
+Create a program that starts with:
+
+```python
+students = {"Ali", "Sara", "Reza", "Mina", "Hassan"}
+```
+
+Your program should:
+
+1. Iterate through the Set.
+2. Print only students whose names start with `"A"` or `"M"`.
+3. Count how many such students exist.
+4. Create a new Set containing those students.
+5. Print the number of students using `len()`.
+6. Check whether `"Ali"` exists using `in`.
+7. Demonstrate why modifying the original Set directly during iteration is unsafe.
+8. Use a safe approach to remove the selected students from the original Set.
+9. Print the final Set.
+
+Your solution should combine:
+
+**Creating Sets → Adding Elements → Removing Elements → `in` → `not in` → `len()` → `for` → `if` → `break` / `continue` → Set Copy → New Sets**
+
+---
+

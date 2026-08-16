@@ -10313,3 +10313,527 @@ web_students = [
 
 ---
 
+# Sets — پارت ۱۵: پروژه کوچک Sets
+
+در این پارت نهایی، یک **سیستم مدیریت دوره ها** با استفاده از Setها می سازیم.
+
+هدف این است که مفاهیم اصلی که در طول درس Sets یاد گرفتیم را در یک پروژه عملی کنار هم استفاده کنیم.
+
+## اهداف پروژه
+
+برنامه ما باید بتواند:
+
+* دانشجویان دوره های مختلف را نگه داری کند.
+* دانشجویان تکراری را حذف کند.
+* دانشجویان را اضافه و حذف کند.
+* وجود یک دانشجو در یک دوره را بررسی کند.
+* تعداد دانشجویان را محاسبه کند.
+* دانشجویان مشترک بین دوره ها را پیدا کند.
+* دانشجویانی را که فقط در یک دوره هستند پیدا کند.
+* تمام دانشجویان دوره ها را پیدا کند.
+* از Union، Intersection، Difference و Symmetric Difference استفاده کند.
+* روی Setها و Dictionaryها پیمایش انجام دهد.
+* با `frozenset` کار کند.
+
+## ۱. داده های اولیه
+
+ابتدا سه List شامل نام دانشجویان داریم:
+
+```python
+python_students = [
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina",
+    "Ali"
+]
+
+java_students = [
+    "Reza",
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Reza"
+]
+
+web_students = [
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Omid",
+    "Mina"
+]
+```
+
+توجه کن که بعضی دانشجویان بیش از یک بار در داده ها وجود دارند.
+
+برای مثال:
+
+* `Ali` دو بار در Python وجود دارد.
+* `Reza` دو بار در Java وجود دارد.
+* `Mina` دو بار در Web وجود دارد.
+
+## ۲. تبدیل Listها به Set
+
+با تبدیل هر List به Set می توانیم Duplicateها را حذف کنیم:
+
+```python
+python_set = set(python_students)
+java_set = set(java_students)
+web_set = set(web_students)
+```
+
+حالا هر دانشجو فقط یک بار در هر Set وجود دارد.
+
+این یکی از کاربردهای مهم Set است.
+
+## ۳. نمایش دانشجویان
+
+```python
+print("Python:", python_set)
+print("Java:", java_set)
+print("Web:", web_set)
+```
+
+چون Setها ترتیب مشخصی ندارند، ترتیب خروجی تضمین شده نیست.
+
+اگر خروجی مرتب می خواهیم:
+
+```python
+print(sorted(python_set))
+```
+
+## ۴. شمارش دانشجویان
+
+برای شمارش دانشجویان یکتا از `len()` استفاده می کنیم:
+
+```python
+print("Python:", len(python_set))
+print("Java:", len(java_set))
+print("Web:", len(web_set))
+```
+
+## ۵. اضافه کردن دانشجوی جدید
+
+```python
+python_set.add("Omid")
+```
+
+اگر `Omid` از قبل داخل Set وجود داشته باشد، `add()` مقدار تکراری ایجاد نمی کند.
+
+## ۶. حذف دانشجو
+
+```python
+python_set.remove("Sara")
+```
+
+برای حذف امن تر می توانیم از `discard()` استفاده کنیم:
+
+```python
+python_set.discard("Sara")
+```
+
+برخلاف `remove()`، اگر عنصر وجود نداشته باشد، `discard()` خطا ایجاد نمی کند.
+
+## ۷. بررسی Membership
+
+```python
+if "Mina" in python_set:
+    print("Mina is enrolled in Python.")
+```
+
+این یکی از دلایل مهم استفاده از Setها است، چون بررسی Membership در Set مناسب و سریع است.
+
+## ۸. پیدا کردن دانشجویان مشترک دو دوره
+
+از Intersection استفاده می کنیم:
+
+```python
+python_java = python_set & java_set
+
+print("Python & Java:", python_java)
+```
+
+یا:
+
+```python
+python_java = python_set.intersection(java_set)
+```
+
+## ۹. پیدا کردن دانشجویان فقط Python
+
+```python
+python_only = python_set - java_set
+
+print("Python only:", python_only)
+```
+
+یعنی دانشجویانی که در Python هستند اما در Java نیستند.
+
+Difference جهت دار است:
+
+```python
+python_set - java_set
+```
+
+لزومی ندارد با:
+
+```python
+java_set - python_set
+```
+
+نتیجه یکسانی داشته باشد.
+
+## ۱۰. پیدا کردن دانشجویان فقط Java
+
+```python
+java_only = java_set - python_set
+
+print("Java only:", java_only)
+```
+
+## ۱۱. پیدا کردن دانشجویان دقیقا در یکی از دو دوره
+
+از Symmetric Difference استفاده می کنیم:
+
+```python
+python_java_unique = python_set ^ java_set
+
+print("Exactly one course:", python_java_unique)
+```
+
+دانشجویانی که در هر دو دوره هستند حذف می شوند و دانشجویانی که فقط در یکی از دو دوره هستند باقی می مانند.
+
+## ۱۲. پیدا کردن تمام دانشجویان
+
+از Union استفاده می کنیم:
+
+```python
+all_students = python_set | java_set | web_set
+
+print("All students:", all_students)
+```
+
+برای مرتب سازی:
+
+```python
+print(sorted(all_students))
+```
+
+## ۱۳. پیدا کردن دانشجویان هر سه دوره
+
+از Intersection استفاده می کنیم:
+
+```python
+all_three = python_set & java_set & web_set
+
+print("All three courses:", all_three)
+```
+
+## ۱۴. ساخت Dictionary دوره ها
+
+```python
+courses = {
+    "Python": python_set,
+    "Java": java_set,
+    "Web": web_set
+}
+```
+
+نام هر دوره یک Dictionary Key است و Set دانشجویان آن دوره به عنوان Value قرار گرفته است.
+
+## ۱۵. پیمایش در دوره ها
+
+```python
+for course, students in courses.items():
+    print(course)
+    print(sorted(students))
+```
+
+همچنین می توانیم تعداد دانشجویان را نمایش دهیم:
+
+```python
+for course, students in courses.items():
+    print(f"{course}: {len(students)} students")
+```
+
+در این قسمت چند مفهوم را با یک دیگر ترکیب کرده ایم:
+
+* Dictionary
+* Set
+* Iteration
+* `len()`
+* `sorted()`
+
+## ۱۶. پیدا کردن تمام دوره های یک دانشجو
+
+```python
+student = "Mina"
+
+for course, students in courses.items():
+    if student in students:
+        print(student, "is enrolled in", course)
+```
+
+این یک مثال عملی از ترکیب Membership Checking با Dictionary Iteration است.
+
+## ۱۷. مقایسه دوره ها
+
+```python
+print("Shared:", python_set & java_set)
+print("Python only:", python_set - java_set)
+print("Java only:", java_set - python_set)
+print("Exactly one:", python_set ^ java_set)
+print("All students:", python_set | java_set)
+```
+
+## ۱۸. بررسی Subset و Superset
+
+```python
+print(python_set.issubset(java_set))
+```
+
+همچنین:
+
+```python
+print(python_set <= java_set)
+```
+
+برای Superset:
+
+```python
+print(python_set.issuperset(java_set))
+```
+
+## ۱۹. بررسی Disjoint بودن
+
+```python
+print(python_set.isdisjoint(java_set))
+```
+
+اگر حداقل یک دانشجوی مشترک وجود داشته باشد:
+
+```text
+False
+```
+
+و اگر هیچ دانشجوی مشترکی وجود نداشته باشد:
+
+```text
+True
+```
+
+## ۲۰. ساخت `frozenset`
+
+```python
+all_students_frozen = frozenset(all_students)
+
+print(all_students_frozen)
+```
+
+حالا دیگر نمی توانیم آن را تغییر دهیم.
+
+برای مثال:
+
+```python
+all_students_frozen.add("New Student")
+```
+
+این کد Error ایجاد می کند، چون `frozenset` Immutable است.
+
+## ۲۱. استفاده از `frozenset` داخل Set
+
+یک Set معمولی نمی تواند Set دیگری را داخل خودش نگه داری کند، چون Set معمولی Unhashable است.
+
+اما `frozenset` Hashable است:
+
+```python
+course_groups = {
+    frozenset(python_set),
+    frozenset(java_set),
+    frozenset(web_set)
+}
+```
+
+## ۲۲. استفاده از `frozenset` به عنوان Dictionary Key
+
+چون `frozenset` Hashable است، می توانیم از آن به عنوان Dictionary Key استفاده کنیم:
+
+```python
+course_names = {
+    frozenset(python_set): "Python",
+    frozenset(java_set): "Java",
+    frozenset(web_set): "Web"
+}
+```
+
+اما Set معمولی نمی تواند به عنوان Key استفاده شود:
+
+```python
+course_names = {
+    python_set: "Python"
+}
+```
+
+Set معمولی Mutable و در نتیجه Unhashable است.
+
+# پروژه کوچک کامل
+
+```python
+python_students = [
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina",
+    "Ali"
+]
+
+java_students = [
+    "Reza",
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Reza"
+]
+
+web_students = [
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Omid",
+    "Mina"
+]
+
+# Convert Lists to Sets
+python_set = set(python_students)
+java_set = set(java_students)
+web_set = set(web_students)
+
+# Store courses in a Dictionary
+courses = {
+    "Python": python_set,
+    "Java": java_set,
+    "Web": web_set
+}
+
+# Display course information
+for course, students in courses.items():
+    print(f"{course}:")
+    print(f"  Students: {sorted(students)}")
+    print(f"  Count: {len(students)}")
+    print()
+
+# Shared students
+print("Python & Java:", python_set & java_set)
+
+# Students only in Python
+print("Python only:", python_set - java_set)
+
+# Students only in Java
+print("Java only:", java_set - python_set)
+
+# Students in exactly one of the two courses
+print("Exactly one:", python_set ^ java_set)
+
+# All students
+all_students = python_set | java_set | web_set
+
+print("All students:", sorted(all_students))
+
+# Students in all three courses
+print("All three:", python_set & java_set & web_set)
+
+# Find Mina's courses
+student = "Mina"
+
+for course, students in courses.items():
+    if student in students:
+        print(student, "is enrolled in", course)
+
+# Create an Immutable Set
+all_students_frozen = frozenset(all_students)
+
+print("Frozen students:", all_students_frozen)
+```
+
+# تمرین های نهایی
+
+### سوال ۱
+
+`Omid` را به دوره Python اضافه کن.
+
+سپس:
+
+1. دانشجویان Python را نمایش بده.
+2. تعداد دانشجویان را محاسبه کن.
+3. بررسی کن که آیا `Omid` در Set وجود دارد یا نه.
+
+### سوال ۲
+
+`Sara` را از Python حذف کن.
+
+سپس بررسی کن:
+
+```python
+"Sara" in python_set
+```
+
+### سوال ۳
+
+موارد زیر را پیدا کن:
+
+* دانشجویان مشترک Java و Web.
+* دانشجویان فقط Java.
+* دانشجویان فقط Web.
+
+### سوال ۴
+
+دانشجویانی را پیدا کن که:
+
+* در هر سه دوره هستند.
+* دقیقا در دو دوره هستند.
+* دقیقا در یک دوره هستند.
+
+### سوال ۵
+
+یک `frozenset` شامل تمام دانشجویان بساز.
+
+سعی کن آن را تغییر دهی و توضیح بده چرا Python یک Error ایجاد می کند.
+
+# سوال جامع Sets
+
+یک **سیستم مدیریت دوره ها** با استفاده از Setها بساز.
+
+برنامه باید:
+
+1. اطلاعات دانشجویان را به صورت List دریافت کند.
+2. Listها را به Set تبدیل کند.
+3. دانشجویان تکراری را حذف کند.
+4. دانشجویان را اضافه و حذف کند.
+5. Membership دانشجویان را بررسی کند.
+6. تعداد دانشجویان یکتا را محاسبه کند.
+7. دانشجویان مشترک بین دوره ها را پیدا کند.
+8. دانشجویانی را که فقط در یک دوره هستند پیدا کند.
+9. با استفاده از Union تمام دانشجویان را پیدا کند.
+10. دانشجویان مشترک هر سه دوره را پیدا کند.
+11. دانشجویانی را که دقیقا در یک دوره هستند پیدا کند.
+12. دانشجویانی را که دقیقا در دو دوره هستند پیدا کند.
+13. روابط Subset و Superset را بررسی کند.
+14. Disjoint بودن دوره ها را بررسی کند.
+15. روی Dictionary دوره ها پیمایش انجام دهد.
+16. دانشجویان را مرتب و نمایش دهد.
+17. یک `frozenset` شامل تمام دانشجویان بسازد.
+18. چند `frozenset` را داخل یک Set قرار دهد.
+19. از `frozenset` به عنوان Dictionary Key استفاده کند.
+20. توضیح دهد چرا Set معمولی نمی تواند Dictionary Key باشد.
+21. رابطه بین Mutability و Hashability را توضیح دهد.
+
+پروژه نهایی باید نشان دهد که می توانی مفاهیم اصلی Sets را در یک برنامه واقعی با یک دیگر ترکیب کنی.
+
+# سوالات پایان بخش
+
+1. چرا تبدیل List به Set در این پروژه مفید است؟
+2. تفاوت `remove()` و `discard()` چیست؟
+3. چرا `frozenset` می تواند Dictionary Key باشد ولی `set` نمی تواند؟
+4. چرا `python_set - java_set` با `java_set - python_set` متفاوت است؟
+5. ترکیب Setها با Dictionaryها در این پروژه چه مزیتی دارد؟

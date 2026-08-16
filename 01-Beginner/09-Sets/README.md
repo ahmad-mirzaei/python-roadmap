@@ -10225,3 +10225,522 @@ Your final project should demonstrate the complete Sets lesson:
 
 ---
 
+# Sets — Part 15: Sets Mini Project
+
+In this final part, we will build a small **Course Management System** using Sets.
+
+The goal is to bring together the main concepts we learned throughout the Sets lesson in one practical project.
+
+## Project Goals
+
+Our program will:
+
+* Store students enrolled in different courses.
+* Remove duplicate students.
+* Add and remove students.
+* Check whether a student exists in a course.
+* Count students.
+* Find students shared between courses.
+* Find students who belong to only one course.
+* Find all students across courses.
+* Use Set Union, Intersection, Difference, and Symmetric Difference.
+* Iterate through Sets and Dictionaries.
+* Work with `frozenset`.
+
+## 1. Initial Data
+
+Let's start with three Lists containing student names.
+
+```python
+python_students = [
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina",
+    "Ali"
+]
+
+java_students = [
+    "Reza",
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Reza"
+]
+
+web_students = [
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Omid",
+    "Mina"
+]
+```
+
+Notice that some students appear more than once.
+
+For example:
+
+* `Ali` appears twice in Python.
+* `Reza` appears twice in Java.
+* `Mina` appears twice in Web.
+
+## 2. Convert Lists to Sets
+
+We can remove duplicates by converting each List into a Set.
+
+```python
+python_set = set(python_students)
+java_set = set(java_students)
+web_set = set(web_students)
+```
+
+Now every student appears only once in each Set.
+
+This is one of the most useful features of Sets.
+
+## 3. Display the Students
+
+```python
+print("Python:", python_set)
+print("Java:", java_set)
+print("Web:", web_set)
+```
+
+Because Sets are unordered, the output order is not guaranteed.
+
+If we want a sorted result:
+
+```python
+print(sorted(python_set))
+```
+
+## 4. Count Students
+
+Use `len()` to count the unique students:
+
+```python
+print("Python:", len(python_set))
+print("Java:", len(java_set))
+print("Web:", len(web_set))
+```
+
+## 5. Add a New Student
+
+```python
+python_set.add("Omid")
+```
+
+If `Omid` already existed in the Set, `add()` would not create a duplicate.
+
+## 6. Remove a Student
+
+```python
+python_set.remove("Sara")
+```
+
+For safer removal, we can use `discard()`:
+
+```python
+python_set.discard("Sara")
+```
+
+Unlike `remove()`, `discard()` does not raise an Error if the element does not exist.
+
+## 7. Check Student Membership
+
+```python
+if "Mina" in python_set:
+    print("Mina is enrolled in Python.")
+```
+
+This is one of the major reasons Sets are useful: Membership checking is efficient.
+
+## 8. Find Students Shared by Two Courses
+
+Use Set Intersection:
+
+```python
+python_java = python_set & java_set
+
+print("Python & Java:", python_java)
+```
+
+Or:
+
+```python
+python_java = python_set.intersection(java_set)
+```
+
+## 9. Find Students Only in Python
+
+```python
+python_only = python_set - java_set
+
+print("Python only:", python_only)
+```
+
+This means students in Python who are not in Java.
+
+Difference is directional:
+
+```python
+python_set - java_set
+```
+
+is not necessarily the same as:
+
+```python
+java_set - python_set
+```
+
+## 10. Find Students Only in Java
+
+```python
+java_only = java_set - python_set
+
+print("Java only:", java_only)
+```
+
+## 11. Find Students in Exactly One of Two Courses
+
+Use Symmetric Difference:
+
+```python
+python_java_unique = python_set ^ java_set
+
+print("Exactly one course:", python_java_unique)
+```
+
+Students who belong to both courses are removed, while students who belong to only one course remain.
+
+## 12. Find All Students
+
+Use Union:
+
+```python
+all_students = python_set | java_set | web_set
+
+print("All students:", all_students)
+```
+
+For a sorted result:
+
+```python
+print(sorted(all_students))
+```
+
+## 13. Find Students in All Three Courses
+
+Use Intersection:
+
+```python
+all_three = python_set & java_set & web_set
+
+print("All three courses:", all_three)
+```
+
+## 14. Create a Dictionary of Courses
+
+```python
+courses = {
+    "Python": python_set,
+    "Java": java_set,
+    "Web": web_set
+}
+```
+
+Each course name is a Dictionary Key and each Set contains its students.
+
+## 15. Iterate Through the Courses
+
+```python
+for course, students in courses.items():
+    print(course)
+    print(sorted(students))
+```
+
+We can also display the number of students:
+
+```python
+for course, students in courses.items():
+    print(f"{course}: {len(students)} students")
+```
+
+This combines Dictionaries, Sets, Iteration, `len()`, and `sorted()`.
+
+## 16. Find All Courses for a Student
+
+```python
+student = "Mina"
+
+for course, students in courses.items():
+    if student in students:
+        print(student, "is enrolled in", course)
+```
+
+This combines Membership Checking with Dictionary Iteration.
+
+## 17. Compare Courses
+
+```python
+print("Shared:", python_set & java_set)
+print("Python only:", python_set - java_set)
+print("Java only:", java_set - python_set)
+print("Exactly one:", python_set ^ java_set)
+print("All students:", python_set | java_set)
+```
+
+## 18. Check Subset and Superset
+
+```python
+print(python_set.issubset(java_set))
+```
+
+We can also use:
+
+```python
+print(python_set <= java_set)
+```
+
+For Superset:
+
+```python
+print(python_set.issuperset(java_set))
+```
+
+## 19. Check Disjoint Sets
+
+```python
+print(python_set.isdisjoint(java_set))
+```
+
+If there is at least one shared student, the result is:
+
+```text
+False
+```
+
+If there are no shared students:
+
+```text
+True
+```
+
+## 20. Create a `frozenset`
+
+```python
+all_students_frozen = frozenset(all_students)
+
+print(all_students_frozen)
+```
+
+Now we cannot modify it.
+
+For example:
+
+```python
+all_students_frozen.add("New Student")
+```
+
+This produces an Error because `frozenset` is Immutable.
+
+## 21. Use `frozenset` Inside a Set
+
+A normal Set cannot contain another normal Set because a Set is Unhashable.
+
+However, `frozenset` is Hashable:
+
+```python
+course_groups = {
+    frozenset(python_set),
+    frozenset(java_set),
+    frozenset(web_set)
+}
+```
+
+## 22. Use `frozenset` as a Dictionary Key
+
+Because `frozenset` is Hashable, it can be used as a Dictionary Key:
+
+```python
+course_names = {
+    frozenset(python_set): "Python",
+    frozenset(java_set): "Java",
+    frozenset(web_set): "Web"
+}
+```
+
+A normal Set cannot be used this way:
+
+```python
+course_names = {
+    python_set: "Python"
+}
+```
+
+Normal Sets are Mutable and therefore Unhashable.
+
+# Complete Mini Project
+
+```python
+python_students = [
+    "Ali",
+    "Sara",
+    "Reza",
+    "Mina",
+    "Ali"
+]
+
+java_students = [
+    "Reza",
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Reza"
+]
+
+web_students = [
+    "Mina",
+    "Hassan",
+    "Nima",
+    "Omid",
+    "Mina"
+]
+
+# Convert Lists to Sets
+python_set = set(python_students)
+java_set = set(java_students)
+web_set = set(web_students)
+
+# Store courses in a Dictionary
+courses = {
+    "Python": python_set,
+    "Java": java_set,
+    "Web": web_set
+}
+
+# Display course information
+for course, students in courses.items():
+    print(f"{course}:")
+    print(f"  Students: {sorted(students)}")
+    print(f"  Count: {len(students)}")
+    print()
+
+# Shared students
+print("Python & Java:", python_set & java_set)
+
+# Students only in Python
+print("Python only:", python_set - java_set)
+
+# Students only in Java
+print("Java only:", java_set - python_set)
+
+# Students in exactly one of the two courses
+print("Exactly one:", python_set ^ java_set)
+
+# All students
+all_students = python_set | java_set | web_set
+
+print("All students:", sorted(all_students))
+
+# Students in all three courses
+print("All three:", python_set & java_set & web_set)
+
+# Find Mina's courses
+student = "Mina"
+
+for course, students in courses.items():
+    if student in students:
+        print(student, "is enrolled in", course)
+
+# Create an Immutable Set
+all_students_frozen = frozenset(all_students)
+
+print("Frozen students:", all_students_frozen)
+```
+
+# Final Exercises
+
+### Question 1
+
+Add `Omid` to the Python course.
+
+Then:
+
+1. Print the Python students.
+2. Count the students.
+3. Check whether `Omid` exists in the Set.
+
+### Question 2
+
+Remove `Sara` from Python.
+
+Then check:
+
+```python
+"Sara" in python_set
+```
+
+### Question 3
+
+Find:
+
+* Students shared by Java and Web.
+* Students only in Java.
+* Students only in Web.
+
+### Question 4
+
+Find students who are:
+
+* In all three courses.
+* In exactly two courses.
+* In exactly one course.
+
+### Question 5
+
+Create a `frozenset` containing all students.
+
+Try to modify it and explain why Python raises an Error.
+
+# Comprehensive Sets Question
+
+Build a complete **Course Management System** using Sets.
+
+The program should:
+
+1. Receive student data as Lists.
+2. Convert the Lists into Sets.
+3. Remove duplicate students.
+4. Add and remove students.
+5. Check student Membership.
+6. Count unique students.
+7. Find students shared between courses.
+8. Find students belonging only to one course.
+9. Find all students using Union.
+10. Find students shared by all three courses.
+11. Find students in exactly one course.
+12. Find students in exactly two courses.
+13. Check Subset and Superset relationships.
+14. Check whether two courses are Disjoint.
+15. Iterate through the course Dictionary.
+16. Sort and display students.
+17. Create a `frozenset` containing all students.
+18. Store multiple `frozenset`s inside a Set.
+19. Use `frozenset` as a Dictionary Key.
+20. Explain why a normal Set cannot be used as a Dictionary Key.
+21. Explain the relationship between Mutability and Hashability.
+
+The final project should demonstrate that you can combine the major Set concepts in a practical Python program.
+
+# Questions
+
+1. Why is converting a List into a Set useful in this project?
+2. What is the difference between `remove()` and `discard()`?
+3. Why can `frozenset` be used as a Dictionary Key while `set` cannot?
+4. Why are `python_set - java_set` and `java_set - python_set` different operations?
+5. What is the advantage of combining Sets with Dictionaries in this project?
+
+---
+

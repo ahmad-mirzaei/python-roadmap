@@ -991,21 +991,6 @@ Create a program that calculates:
 
 ---
 
-Displaying Results
-
-Print the results.
-
-Example:
-
-```python
-print("Addition:", addition)
-print("Subtraction:", subtraction)
-print("Multiplication:", multiplication)
-print("Division:", division)
-```
-
----
-
 ## Example Output
 
 Input:

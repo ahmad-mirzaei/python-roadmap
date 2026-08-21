@@ -1017,51 +1017,6 @@ country = "Iran"
 
 ---
 
-## مرحله اول — دریافت ورودی کاربر
-
-ابتدا دو عدد از کاربر دریافت کنید.
-
-مثال:
-
-```python
-first_number = float(input("Enter the first number: "))
-second_number = float(input("Enter the second number: "))
-```
-
-از `float()` استفاده می کنیم، چون کاربر ممکن است عدد اعشاری وارد کند.
-
----
-
-## مرحله دوم — انجام محاسبات
-
-حالا عملیات مختلف را انجام دهید.
-
-مثال:
-
-```python
-addition = first_number + second_number
-subtraction = first_number - second_number
-multiplication = first_number * second_number
-division = first_number / second_number
-```
-
----
-
-## مرحله سوم — نمایش نتیجه
-
-نتیجه ها را نمایش دهید.
-
-مثال:
-
-```python
-print("Addition:", addition)
-print("Subtraction:", subtraction)
-print("Multiplication:", multiplication)
-print("Division:", division)
-```
-
----
-
 ## نمونه خروجی
 
 ورودی:
@@ -1089,18 +1044,6 @@ Division: 2.0
 - تقسیم صحیح (`//`) را اضافه کنید.
 - باقیمانده تقسیم (`%`) را اضافه کنید.
 - توان (`**`) را اضافه کنید.
-
----
-
-## چیزهایی که تمرین کردید
-
-در این پروژه از موارد زیر استفاده کردید:
-
-- متغیر ها
-- دریافت ورودی از کاربر
-- تبدیل نوع داده
-- عملگر های حسابی
-- نمایش خروجی
 
 ---
 

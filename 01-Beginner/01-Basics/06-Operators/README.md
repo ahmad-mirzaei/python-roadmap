@@ -991,36 +991,6 @@ Create a program that calculates:
 
 ---
 
-## Step 1 — Getting User Input
-
-First, receive two numbers from the user.
-
-Example:
-
-```python
-first_number = float(input("Enter the first number: "))
-second_number = float(input("Enter the second number: "))
-```
-
-We use `float()` because the user may enter decimal numbers.
-
----
-
-## Step 2 — Performing Calculations
-
-Now perform the operations.
-
-Example:
-
-```python
-addition = first_number + second_number
-subtraction = first_number - second_number
-multiplication = first_number * second_number
-division = first_number / second_number
-```
-
----
-
 ## Step 3 — Displaying Results
 
 Print the results.
@@ -1065,16 +1035,3 @@ Improve the calculator:
 - Add exponent (`**`).
 
 ---
-
-## What You Practiced
-
-In this project, you used:
-
-- Variables
-- User input
-- Type conversion
-- Arithmetic operators
-- Output formatting
-
----
-

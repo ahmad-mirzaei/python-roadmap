@@ -991,7 +991,7 @@ Create a program that calculates:
 
 ---
 
-## Step 3 — Displaying Results
+Displaying Results
 
 Print the results.
 

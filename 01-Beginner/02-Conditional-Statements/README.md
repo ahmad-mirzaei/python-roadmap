@@ -1292,4 +1292,3 @@ Our program should:
 4. Display the appropriate message.
 
 ---
-

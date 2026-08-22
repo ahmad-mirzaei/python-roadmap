@@ -1020,3 +1020,905 @@ Improve the calculator:
 - Add exponent (`**`).
 
 ---
+
+# Operators — Operator Precedence
+
+In this part, we will learn about **Operator Precedence** in Python.
+
+Operator precedence determines **which operation Python performs first** when an expression contains multiple operators.
+
+Understanding precedence is important because an expression can produce a different result depending on the order in which its operations are evaluated.
+
+---
+
+## 1. What Is Operator Precedence?
+
+Consider this expression:
+
+```python
+result = 2 + 3 * 4
+
+print(result)
+```
+
+The result is:
+
+```text
+14
+```
+
+Why isn't the result `20`?
+
+Because Python performs multiplication before addition:
+
+```text
+3 * 4 = 12
+2 + 12 = 14
+```
+
+So Python effectively evaluates:
+
+```python
+2 + (3 * 4)
+```
+
+not:
+
+```python
+(2 + 3) * 4
+```
+
+---
+
+## 2. Parentheses Have the Highest Priority
+
+Parentheses can change the normal order of operations.
+
+```python
+result = (2 + 3) * 4
+
+print(result)
+```
+
+Output:
+
+```text
+20
+```
+
+Without parentheses:
+
+```python
+result = 2 + 3 * 4
+
+print(result)
+```
+
+Output:
+
+```text
+14
+```
+
+Therefore, parentheses are the easiest way to explicitly control the order of evaluation.
+
+---
+
+## 3. Basic Precedence Order
+
+A simplified Python operator precedence order is:
+
+| Priority | Operators                        | Description                                      |
+| -------- | -------------------------------- | ------------------------------------------------ |
+| 1        | `()`                             | Parentheses                                      |
+| 2        | `**`                             | Exponentiation                                   |
+| 3        | `+x`, `-x`                       | Unary plus and minus                             |
+| 4        | `*`, `/`, `//`, `%`              | Multiplication, division, floor division, modulo |
+| 5        | `+`, `-`                         | Addition and subtraction                         |
+| 6        | `==`, `!=`, `<`, `<=`, `>`, `>=` | Comparisons                                      |
+| 7        | `not`                            | Logical NOT                                      |
+| 8        | `and`                            | Logical AND                                      |
+| 9        | `or`                             | Logical OR                                       |
+
+The higher an operator appears in the table, the earlier Python generally evaluates it.
+
+---
+
+## 4. Multiplication Before Addition
+
+Consider:
+
+```python
+result = 10 + 5 * 2
+
+print(result)
+```
+
+Python evaluates:
+
+```text
+5 * 2 = 10
+10 + 10 = 20
+```
+
+Therefore:
+
+```text
+20
+```
+
+If we want addition first:
+
+```python
+result = (10 + 5) * 2
+
+print(result)
+```
+
+Now:
+
+```text
+15 * 2 = 30
+```
+
+Output:
+
+```text
+30
+```
+
+---
+
+## 5. Division and Multiplication
+
+Multiplication, division, floor division, and modulo have the same precedence level.
+
+For example:
+
+```python
+result = 20 / 5 * 2
+
+print(result)
+```
+
+These operators are evaluated from **left to right**:
+
+```text
+20 / 5 = 4
+4 * 2 = 8
+```
+
+Output:
+
+```text
+8.0
+```
+
+Similarly:
+
+```python
+result = 20 * 5 / 2
+
+print(result)
+```
+
+is evaluated as:
+
+```text
+20 * 5 = 100
+100 / 2 = 50
+```
+
+---
+
+## 6. Addition and Subtraction
+
+Addition and subtraction also have the same precedence.
+
+Python evaluates them from left to right.
+
+```python
+result = 20 - 5 + 2
+
+print(result)
+```
+
+Evaluation:
+
+```text
+20 - 5 = 15
+15 + 2 = 17
+```
+
+Output:
+
+```text
+17
+```
+
+It is equivalent to:
+
+```python
+result = (20 - 5) + 2
+```
+
+---
+
+## 7. Exponentiation
+
+Exponentiation has a higher precedence than multiplication, division, addition, and subtraction.
+
+```python
+result = 2 + 3 ** 2
+
+print(result)
+```
+
+Python first calculates:
+
+```text
+3 ** 2 = 9
+```
+
+Then:
+
+```text
+2 + 9 = 11
+```
+
+Output:
+
+```text
+11
+```
+
+This is equivalent to:
+
+```python
+result = 2 + (3 ** 2)
+```
+
+---
+
+## 8. Exponentiation and Parentheses
+
+Consider:
+
+```python
+result = (2 + 3) ** 2
+
+print(result)
+```
+
+Python first calculates:
+
+```text
+2 + 3 = 5
+```
+
+Then:
+
+```text
+5 ** 2 = 25
+```
+
+Output:
+
+```text
+25
+```
+
+Compare it with:
+
+```python
+result = 2 + 3 ** 2
+
+print(result)
+```
+
+Output:
+
+```text
+11
+```
+
+The parentheses completely change the result.
+
+---
+
+## 9. Unary Plus and Minus
+
+Unary operators are operators that work with one value.
+
+For example:
+
+```python
+x = -5
+y = +5
+
+print(x)
+print(y)
+```
+
+Here:
+
+```python
+-5
++5
+```
+
+are unary operations.
+
+They are different from binary subtraction and addition:
+
+```python
+5 - 3
+```
+
+and:
+
+```python
+5 + 3
+```
+
+---
+
+## 10. The `**` and Unary Minus Example
+
+Consider:
+
+```python
+result = -2 ** 2
+
+print(result)
+```
+
+The result is:
+
+```text
+-4
+```
+
+Why?
+
+Because exponentiation has higher precedence than the unary minus:
+
+```text
+2 ** 2 = 4
+-4
+```
+
+If we want the negative number to be squared:
+
+```python
+result = (-2) ** 2
+
+print(result)
+```
+
+Output:
+
+```text
+4
+```
+
+This is an important example of why parentheses matter.
+
+---
+
+## 11. Modulo and Floor Division
+
+The following operators have the same precedence:
+
+```text
+*
+/
+//
+%
+```
+
+For example:
+
+```python
+result = 17 % 5 + 2
+
+print(result)
+```
+
+First:
+
+```text
+17 % 5 = 2
+```
+
+Then:
+
+```text
+2 + 2 = 4
+```
+
+Output:
+
+```text
+4
+```
+
+Another example:
+
+```python
+result = 17 // 5 * 2
+
+print(result)
+```
+
+First:
+
+```text
+17 // 5 = 3
+```
+
+Then:
+
+```text
+3 * 2 = 6
+```
+
+---
+
+## 12. Comparison Operators
+
+Comparison operators have lower precedence than arithmetic operators.
+
+For example:
+
+```python
+result = 10 + 5 > 12
+
+print(result)
+```
+
+Python first performs:
+
+```text
+10 + 5 = 15
+```
+
+Then:
+
+```text
+15 > 12
+```
+
+Therefore:
+
+```text
+True
+```
+
+This is equivalent to:
+
+```python
+result = (10 + 5) > 12
+```
+
+---
+
+## 13. Multiple Comparisons
+
+Python allows chained comparisons.
+
+For example:
+
+```python
+age = 20
+
+result = 18 <= age < 30
+
+print(result)
+```
+
+Output:
+
+```text
+True
+```
+
+This is effectively checking:
+
+```python
+18 <= age and age < 30
+```
+
+Chained comparisons are a useful Python feature.
+
+---
+
+## 14. `not`, `and`, and `or`
+
+Logical operators have their own precedence.
+
+The order is:
+
+```text
+not
+and
+or
+```
+
+So:
+
+```python
+result = True or False and False
+
+print(result)
+```
+
+Python evaluates `and` first:
+
+```text
+False and False = False
+```
+
+Then:
+
+```text
+True or False = True
+```
+
+Output:
+
+```text
+True
+```
+
+This is equivalent to:
+
+```python
+result = True or (False and False)
+```
+
+---
+
+## 15. Using Parentheses with Logical Operators
+
+Consider:
+
+```python
+result = (True or False) and False
+
+print(result)
+```
+
+First:
+
+```text
+True or False = True
+```
+
+Then:
+
+```text
+True and False = False
+```
+
+Output:
+
+```text
+False
+```
+
+Compare:
+
+```python
+True or False and False
+```
+
+with:
+
+```python
+(True or False) and False
+```
+
+The results are different because parentheses change the evaluation order.
+
+---
+
+## 16. A Complex Example
+
+Consider:
+
+```python
+result = 10 + 2 * 3 ** 2
+
+print(result)
+```
+
+Let's evaluate it step by step.
+
+### Step 1 — Exponentiation
+
+```text
+3 ** 2 = 9
+```
+
+### Step 2 — Multiplication
+
+```text
+2 * 9 = 18
+```
+
+### Step 3 — Addition
+
+```text
+10 + 18 = 28
+```
+
+Therefore:
+
+```text
+28
+```
+
+---
+
+## 17. Another Complex Example
+
+```python
+result = (10 + 2) * 3 ** 2
+
+print(result)
+```
+
+First:
+
+```text
+10 + 2 = 12
+```
+
+Then:
+
+```text
+3 ** 2 = 9
+```
+
+Then:
+
+```text
+12 * 9 = 108
+```
+
+Output:
+
+```text
+108
+```
+
+---
+
+## 18. A Boolean Example
+
+Consider:
+
+```python
+age = 25
+has_ticket = True
+
+result = age >= 18 and has_ticket
+
+print(result)
+```
+
+Python first evaluates the comparison:
+
+```text
+age >= 18
+```
+
+which becomes:
+
+```text
+True
+```
+
+Then:
+
+```text
+True and True
+```
+
+Therefore:
+
+```text
+True
+```
+
+---
+
+## 19. A Mixed Arithmetic and Boolean Example
+
+```python
+x = 10
+
+result = x + 5 > 12 and x * 2 == 20
+
+print(result)
+```
+
+Python evaluates the arithmetic first:
+
+```text
+x + 5 = 15
+x * 2 = 20
+```
+
+Then the comparisons:
+
+```text
+15 > 12
+20 == 20
+```
+
+Both are `True`.
+
+Finally:
+
+```text
+True and True
+```
+
+So:
+
+```text
+True
+```
+
+---
+
+## 20. Parentheses as a Best Practice
+
+Even when you know the precedence rules, parentheses can make code easier to understand.
+
+Instead of:
+
+```python
+result = age >= 18 and score >= 60 or has_permission
+```
+
+we can write:
+
+```python
+result = (age >= 18 and score >= 60) or has_permission
+```
+
+The second version makes the intended logic much clearer.
+
+Parentheses are especially useful when expressions become complicated.
+
+---
+
+# Practical Summary
+
+The most important precedence rules to remember are:
+
+```text
+()
+**
++x, -x
+*, /, //, %
++, -
+comparisons
+not
+and
+or
+```
+
+A useful mental model is:
+
+```text
+Parentheses
+    ↓
+Power
+    ↓
+Multiply / Divide
+    ↓
+Add / Subtract
+    ↓
+Compare
+    ↓
+not
+    ↓
+and
+    ↓
+or
+```
+
+When you are unsure about an expression, use parentheses.
+
+Clear code is usually better than code that depends on the reader remembering every precedence rule.
+
+---
+
+# Final Exercises
+
+### Question 1
+
+What is the result?
+
+```python
+result = 2 + 3 * 4
+```
+
+### Question 2
+
+What is the result?
+
+```python
+result = (2 + 3) * 4
+```
+
+### Question 3
+
+What is the result?
+
+```python
+result = 2 + 3 ** 2 * 2
+```
+
+### Question 4
+
+What is the difference between:
+
+```python
+-2 ** 2
+```
+
+and:
+
+```python
+(-2) ** 2
+```
+
+### Question 5
+
+What is the result?
+
+```python
+result = True or False and False
+```
+
+### Question 6
+
+Rewrite this expression using parentheses so that the evaluation order is obvious:
+
+```python
+result = 10 + 5 * 2 > 15 and 20 % 3 == 2
+```
+
+---
+
+# Comprehensive Question
+
+Without running the code, determine the final value of each expression and explain the order in which Python evaluates the operators:
+
+```python
+a = 2 + 3 * 4
+b = (2 + 3) * 4
+c = 2 ** 3 * 2 + 1
+d = -2 ** 2
+e = (-2) ** 2
+f = 20 / 5 * 2
+g = 20 - 5 + 2
+h = True or False and False
+i = (True or False) and False
+j = 10 + 2 * 3 ** 2 > 25 and 20 % 3 == 2
+```
+
+For each expression:
+
+1. Identify the highest-precedence operator.
+2. Evaluate the expression step by step.
+3. Write the final result.
+4. Explain whether parentheses could make the expression clearer.
+
+---
+

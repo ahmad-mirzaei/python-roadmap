@@ -3588,8 +3588,6 @@ The next section will move from extracting characters to **working with the cont
 
 # Part 5 — String Methods
 
-> 🌐 Language: **English** | [فارسی](fa/README.md)
-
 ## 1. What Is a String Method?
 
 In the previous sections, we learned how to create strings, access characters using indexing, and extract parts of strings using slicing.

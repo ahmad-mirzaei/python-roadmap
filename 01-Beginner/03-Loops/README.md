@@ -1016,39 +1016,6 @@ This project uses several concepts from this lesson:
 
 ---
 
-## Project Code
-
-```python
-secret_number = 7
-
-while True:
-
-    guess = int(input("Enter your guess: "))
-
-    if guess == secret_number:
-        print("Congratulations! You guessed correctly.")
-        break
-
-    print("Wrong guess. Try again.")
-```
-
----
-
-## Example Output
-
-```text
-Enter your guess: 3
-Wrong guess. Try again.
-
-Enter your guess: 10
-Wrong guess. Try again.
-
-Enter your guess: 7
-Congratulations! You guessed correctly.
-```
-
----
-
 ## Challenge
 
 Improve the program.

@@ -1018,42 +1018,7 @@ text = "Python Programming"
 
 ---
 
-## کد پروژه
-
-```python
-secret_number = 7
-
-while True:
-
-    guess = int(input("Enter your guess: "))
-
-    if guess == secret_number:
-        print("Congratulations! You guessed correctly.")
-        break
-
-    print("Wrong guess. Try again.")
-```
-
----
-
-## نمونه اجرا
-
-```text
-Enter your guess: 3
-Wrong guess. Try again.
-
-Enter your guess: 10
-Wrong guess. Try again.
-
-Enter your guess: 7
-Congratulations! You guessed correctly.
-```
-
----
-
-## چالش
-
-حالا نوبت شماست که این برنامه را بهتر کنید.
+حالا این برنامه را بهتر کنید.
 
 آیا می توانید:
 

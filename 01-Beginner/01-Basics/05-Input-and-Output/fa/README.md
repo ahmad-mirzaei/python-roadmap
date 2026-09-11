@@ -614,21 +614,6 @@ age = int("Ahmad")
 
 ---
 
-## مرحله دوم — نمایش اطلاعات
-
-بعد از دریافت اطلاعات، نتیجه را نمایش دهید.
-
-مثال:
-
-```python
-print("Name:", name)
-print("Country:", country)
-print("Age:", age)
-print("Height:", height)
-```
-
----
-
 ## نمونه خروجی
 
 اگر کاربر وارد کند:

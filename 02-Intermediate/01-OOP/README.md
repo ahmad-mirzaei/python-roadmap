@@ -1,6 +1,6 @@
 # Object-Oriented Programming
 
-🌐 Language: **فارسی** | [English](../01-OOP/fa/README.md)
+🌐 Language: **English** | [فارسی](../01-OOP/fa/README.md)
 
 ## Table of Contents
 

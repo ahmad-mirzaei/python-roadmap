@@ -69,11 +69,6 @@ This repository aims to help developers:
 | 4 | File Handling | ⏳ |
 | 5 | Exception Handling | ⏳ |
 | 6 | Regular Expressions | ⏳ |
-- 
-- 
-- 
-- 
-- 
 
 ---
 

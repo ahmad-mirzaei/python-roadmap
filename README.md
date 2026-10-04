@@ -61,12 +61,19 @@ This repository aims to help developers:
 
 ### 🟡 Intermediate
 
-- Object-Oriented Programming ⏳
-- List Comprehensions 
-- Modules
-- File Handling
-- Exception Handling
-- Regular Expressions
+| Row | Title And Link | Status |
+| :---: | :---: | :---: |
+| 1 | [Object-Oriented Programming](/02-Intermediate/01-OOP/README.md) | ✍️ |
+| 2 | List Comprehensions  | ⏳ |
+| 3 | Modules | ⏳ |
+| 4 | File Handling | ⏳ |
+| 5 | Exception Handling | ⏳ |
+| 6 | Regular Expressions | ⏳ |
+- 
+- 
+- 
+- 
+- 
 
 ---
 

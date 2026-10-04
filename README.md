@@ -61,11 +61,11 @@ This repository aims to help developers:
 
 ### 🟡 Intermediate
 
-- List Comprehensions ⏳
+- Object-Oriented Programming ⏳
+- List Comprehensions 
 - Modules
 - File Handling
 - Exception Handling
-- Object-Oriented Programming
 - Regular Expressions
 
 ---
